@@ -126,8 +126,8 @@ Obj_ScrapEggman_Block:
 		; init
 		lea	ObjDat_ScrapEggman_Block(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		bset	#rbStatic,render_flags(a0)					; set static mapping flag
-		bset	#7,status(a0)							; disable player's balance animation
+		bset	#render_flags.static_mappings,render_flags(a0)			; set static mapping flag
+		bset	#status.npc.no_balancing,status(a0)				; disable player's balance animation
 		move.l	#.fwait,address(a0)
 
 .fwait
@@ -152,9 +152,9 @@ Obj_ScrapEggman_Block:
 		beq.s	.notp1
 		lea	(Player_1).w,a1							; a1=character
 		move.b	#1,prev_anim(a1)
-		bclr	#Status_OnObj,status(a1)
-		bclr	#Status_Push,status(a1)
-		bset	#Status_InAir,status(a1)
+		bclr	#status.player.on_object,status(a1)
+		bclr	#status.player.pushing,status(a1)
+		bset	#status.player.in_air,status(a1)
 		bne.s	.notp1								; if the player is already in the air, branch
 		move.b	#AniIDSonAni_Hurt,anim(a1)
 		clr.b	spin_dash_flag(a1)						; clear spin dash flag
@@ -166,9 +166,9 @@ Obj_ScrapEggman_Block:
 		beq.s	.notrelease
 		lea	(Player_2).w,a1							; a1=character
 		move.b	#1,prev_anim(a1)
-		bclr	#Status_OnObj,status(a1)
-		bclr	#Status_Push,status(a1)
-		bset	#Status_InAir,status(a1)
+		bclr	#status.player.on_object,status(a1)
+		bclr	#status.player.pushing,status(a1)
+		bset	#status.player.in_air,status(a1)
 		bne.s	.notrelease							; if the player is already in the air, branch
 		move.b	#AniIDSonAni_Hurt,anim(a1)
 		clr.b	spin_dash_flag(a1)						; clear spin dash flag

@@ -13,22 +13,22 @@ stair_origY			= objoff_46 ; original y-axis position (2 bytes)
 Obj_Staircase:
 
 		; init
-		ori.b	#rfCoord+rfStatic,render_flags(a0)				; set static mapping and screen coordinates flag
+		ori.b	#setBit(render_flags.level)|setBit(render_flags.static_mappings),render_flags(a0)	; set static mapping and screen coordinates flag
 		moveq	#7,d0
 		and.b	subtype(a0),d0
 		cmpi.w	#4,d0
 		blo.s	.skip
-		bchg	#0,render_flags(a0)
+		bchg	#render_flags.x_flip,render_flags(a0)
 
 .skip
-		btst	#1,render_flags(a0)
+		btst	#render_flags.y_flip,render_flags(a0)
 		beq.s	.notflipy
-		bchg	#0,render_flags(a0)
+		bchg	#render_flags.x_flip,render_flags(a0)
 
 .notflipy
 		moveq	#$34,d3
 		moveq	#2,d4
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.notflipx
 		moveq	#$3A,d3
 		moveq	#-2,d4
@@ -111,14 +111,14 @@ Obj_Staircase:
 ; ---------------------------------------------------------------------------
 
 Stair_TypeIndex: offsetTable
-		offsetTableEntry.w Stair_Type00		; 0
-		offsetTableEntry.w Stair_Type01		; 1
-		offsetTableEntry.w Stair_Type02		; 2
-		offsetTableEntry.w Stair_Type01		; 3
-		offsetTableEntry.w Stair_Type00		; 4
-		offsetTableEntry.w Stair_Type03		; 5
-		offsetTableEntry.w Stair_Type02		; 6
-		offsetTableEntry.w Stair_Type03		; 7
+		offsetTableEntry.w Stair_Type00						; 0
+		offsetTableEntry.w Stair_Type01						; 1
+		offsetTableEntry.w Stair_Type02						; 2
+		offsetTableEntry.w Stair_Type01						; 3
+		offsetTableEntry.w Stair_Type00						; 4
+		offsetTableEntry.w Stair_Type03						; 5
+		offsetTableEntry.w Stair_Type02						; 6
+		offsetTableEntry.w Stair_Type03						; 7
 ; ---------------------------------------------------------------------------
 
 Stair_Type00:

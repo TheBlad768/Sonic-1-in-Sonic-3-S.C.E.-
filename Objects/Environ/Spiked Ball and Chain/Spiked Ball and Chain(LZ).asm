@@ -38,7 +38,7 @@ Obj_SpikeBall2:
 		move.w	art_tile(a0),art_tile(a1)
 		move.b	render_flags(a0),render_flags(a1)
 		move.w	#priority_5,priority(a1)
-		bset	#6,render_flags(a1)						; set multi-draw flag
+		bset	#render_flags.multi_sprite,render_flags(a1)			; set multi-draw flag
 		move.w	a1,parent3(a0)							; save chain address
 		move.w	x_pos(a0),d2
 		move.w	d2,x_pos(a1)
@@ -132,7 +132,7 @@ SpikeBall2_Move:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_SpikeBall2:	subObjMainData Obj_SpikeBall2.main, rfCoord, 0, 48, 48, 4, $310, 0, 0, Map_SBall2
+ObjDat_SpikeBall2:	subObjMainData Obj_SpikeBall2.main, setBit(render_flags.level), 0, 48, 48, 4, $310, 0, 0, Map_SBall2
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Spiked Ball and Chain/Object Data/Map - Spiked Ball and Chain (LZ).asm"

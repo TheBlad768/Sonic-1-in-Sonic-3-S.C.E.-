@@ -17,8 +17,13 @@ Obj_Caterkiller:
 		jsr	(SetUp_ObjAttributes).w
 		clr.b	routine(a0)
 		move.w	#bytes_to_word(14/2,16/2),y_radius(a0)				; set y_radius and x_radius
-		andi.b	#3,render_flags(a0)
-		ori.b	#rfCoord,render_flags(a0)					; use screen coordinates
+
+		andi.b	#( \
+			setBit(status.npc.x_flip) | \
+			setBit(status.npc.y_flip) \
+		),render_flags(a0)
+
+		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.b	render_flags(a0),status(a0)
 		move.l	#.checkfall,address(a0)
 
@@ -39,7 +44,7 @@ Obj_Caterkiller:
 		bne.s	.fail
 
 .head
-		btst	#6,status(a0)
+		btst	#status.npc.touch,status(a0)
 		bne.w	Caterkiller_FragHead
 
 		; jump
@@ -109,7 +114,7 @@ Obj_Caterkiller:
 		move.l	x_pos(a0),d2
 		move.l	d2,d3
 		move.w	x_vel(a0),d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.notflipx
 		neg.w	d0
 
@@ -151,7 +156,7 @@ Obj_Caterkiller:
 		move.b	#$80,cat_flag2(a0,d0.w)
 		neg.w	x_pos+2(a0)
 		beq.s	.loc_1730A
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.loc_1730A
 		subq.w	#1,x_pos(a0)
 		addq.b	#1,cat_count(a0)
@@ -160,7 +165,7 @@ Obj_Caterkiller:
 		clr.b	cat_flag2(a0,d0.w)
 
 .loc_1730A
-		bchg	#0,status(a0)
+		bchg	#status.npc.x_flip,status(a0)
 		move.b	status(a0),render_flags(a0)
 		addq.b	#1,cat_count(a0)
 		andi.b	#$F,cat_count(a0)
@@ -186,7 +191,7 @@ Obj_Caterkiller_BodySegments:
 		move.w	d1,d0
 		add.w	d1,d1
 		add.w	d0,d1
-		btst	#0,status(a1)
+		btst	#status.npc.x_flip,status(a1)
 		beq.s	.notflipx
 		neg.w	d1
 
@@ -231,7 +236,7 @@ Cat_BodySeg2:
 
 Cat_BodySeg1:
 		movea.w	parent3(a0),a1							; body address
-		btst	#6,status(a0)
+		btst	#status.npc.touch,status(a0)
 		bne.w	Caterkiller_FragBody
 		move.b	cat_flag(a1),cat_flag(a0)
 		move.b	routine(a1),routine(a0)
@@ -243,7 +248,7 @@ Cat_BodySeg1:
 		move.l	x_pos(a0),d2
 		move.l	d2,d3
 		move.w	x_vel(a0),d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.loc_16C0C
 		neg.w	d0
 
@@ -263,7 +268,7 @@ Cat_BodySeg1:
 		move.b	d1,cat_flag2(a0,d0.w)
 		neg.w	x_pos+2(a0)
 		beq.s	.locj_173E4
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.locj_173E4
 		cmpi.w	#-$C0,x_vel(a0)
 		bne.s	.locj_173E4
@@ -274,7 +279,7 @@ Cat_BodySeg1:
 		clr.b	cat_flag2(a0,d0.w)
 
 .locj_173E4
-		bchg	#0,status(a0)
+		bchg	#status.npc.x_flip,status(a0)
 		move.b	status(a0),render_flags(a0)
 		addq.b	#1,cat_count(a0)
 		andi.b	#$F,cat_count(a0)
@@ -290,7 +295,7 @@ Cat_BodySeg1:
 
 .loc_16C64
 		movea.w	objoff_44(a0),a2						; head address
-		btst	#6,status(a2)
+		btst	#status.npc.touch,status(a2)
 		bne.s	Caterkiller_FragBody
 		jmp	(Child_DrawTouch_Sprite).w
 
@@ -301,13 +306,13 @@ Cat_FragSpeed:	dc.w -$200, -$180, $180, $200
 ; ---------------------------------------------------------------------------
 
 Caterkiller_FragBody:									; body
-		bset	#6,status(a1)							; set for head
+		bset	#status.npc.touch,status(a1)					; set for head
 
 Caterkiller_FragHead:									; head
 		moveq	#6,d0
 		and.b	subtype(a0),d0
 		move.w	Cat_FragSpeed(pc,d0.w),d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.notflipx
 		neg.w	d0
 
@@ -315,7 +320,7 @@ Caterkiller_FragHead:									; head
 		move.w	d0,x_vel(a0)
 		move.w	#-$400,y_vel(a0)
 		andi.b	#$F8,mapping_frame(a0)
-		bset	#3,shield_reaction(a0)						; bounce off all shields
+		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
 		move.l	#.main,address(a0)
 
 .main

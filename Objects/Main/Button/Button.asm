@@ -158,7 +158,7 @@ But_MZBlock:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Button:		subObjMainData Obj_Button.main, rfCoord, 0, 24, 32, 4, $47C, 0, 0, Map_Button
+ObjDat_Button:		subObjMainData Obj_Button.main, setBit(render_flags.level), 0, 24, 32, 4, $47C, 0, 0, Map_Button
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Main/Button/Object Data/Map - Button.asm"

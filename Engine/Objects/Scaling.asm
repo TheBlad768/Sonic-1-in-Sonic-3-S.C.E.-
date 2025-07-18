@@ -12,10 +12,10 @@ Perform_Art_Scaling:
 		pea	(a0)								; save a0
 		bsr.s	Init_ArtScaling
 		movea.l	(sp)+,a0							; restore a0
-		pea	(a0)
+		pea	(a0)								; save a0
 		move.w	art_tile(a0),d0
 		bsr.w	Process_ArtScaling
-		movea.l	(sp)+,a0
+		movea.l	(sp)+,a0							; restore a0
 		move.w	(Scalar_factor).w,d3
 		lsl.w	#4,d3
 		move.l	#dmaSource(vScaling_buffer),d1
@@ -86,7 +86,7 @@ loc_2469A:
 ; ---------------------------------------------------------------------------
 
 loc_246D2:
-		bclr	#7,render_flags(a0)
+		bclr	#render_flags.on_screen,render_flags(a0)
 		rts
 
 ; =============== S U B R O U T I N E =======================================

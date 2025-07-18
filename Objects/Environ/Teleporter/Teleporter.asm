@@ -141,7 +141,7 @@ loc_271D0:
 		bne.s	Obj_Teleport.return						; if yes, branch
 		move.w	x_pos(a1),d0
 		sub.w	x_pos(a0),d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	loc_166E0
 		addi.w	#15,d0
 
@@ -162,8 +162,8 @@ loc_166E0:
 		move.w	#$800,ground_vel(a1)
 		clr.l	x_vel(a1)
 		clr.b	spin_dash_flag(a1)						; clear spin dash flag
-		bclr	#Status_Push,status(a1)
-		bset	#Status_InAir,status(a1)
+		bclr	#status.player.pushing,status(a1)
+		bset	#status.player.in_air,status(a1)
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		clr.b	1(a4)								; sine

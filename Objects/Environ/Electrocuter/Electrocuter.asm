@@ -19,7 +19,7 @@ Obj_Electro:
 		; init
 		lea	ObjDat_Electro(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		bset	#Status_LtngShield,shield_reaction(a0)
+		bset	#shield_reaction.lightning_shield,shield_reaction(a0)
 		move.l	#.shock,address(a0)
 
 .shock

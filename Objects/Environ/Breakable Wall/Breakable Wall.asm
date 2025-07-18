@@ -50,7 +50,7 @@ loc_215B2:
 		bne.s	loc_215F4
 		cmpi.b	#PlayerID_Knuckles,character_id(a1)				; is player Knuckles?
 		beq.s	loc_215F4							; if yes, branch
-		btst	#Status_FireShield,shield_reaction(a1)
+		btst	#shield_reaction.fire_shield,shield_reaction(a1)
 		bne.s	loc_215E0
 		btst	#p1_pushing_bit,status(a0)
 		beq.s	loc_2162A
@@ -73,7 +73,7 @@ loc_215F4:
 		move.w	objoff_32(a0),x_vel(a1)
 		move.w	x_vel(a1),ground_vel(a1)
 		bclr	#p2_pushing_bit,status(a0)
-		bclr	#Status_Push,status(a1)
+		bclr	#status.player.pushing,status(a1)
 		bra.s	loc_215AC
 ; ---------------------------------------------------------------------------
 
@@ -103,7 +103,7 @@ Obj_BreakableWall_CreateFragments:
 
 .isleft
 		move.w	x_vel(a1),ground_vel(a1)
-		bclr	#Status_Push,status(a1)						; set sonic as not pushing an object
+		bclr	#status.player.pushing,status(a1)				; set sonic as not pushing an object
 
 	if _BWALL_KNUX_
 		; check Knuckles
@@ -115,10 +115,10 @@ Obj_BreakableWall_CreateFragments:
 		move.b	#$21,anim(a1)							; put Knuckles in his falling animation
 
 		; decide which direction to make Knuckles face
-		bclr	#Status_Facing,status(a1)
+		bclr	#status.player.x_flip,status(a1)
 		tst.w	x_vel(a1)
 		bpl.s	.notknux
-		bset	#Status_Facing,status(a1)
+		bset	#status.player.x_flip,status(a1)
 
 .notknux
 	endif
@@ -155,7 +155,7 @@ BreakObjectToPieces2:
 		adda.w	(a3,d0.w),a3
 		move.w	(a3)+,d1
 		subq.w	#1,d1								; fix dbf
-		bset	#rbStatic,render_flags(a0)					; set flag to "static mappings flag"
+		bset	#render_flags.static_mappings,render_flags(a0)			; set flag to "static mappings flag"
 		move.l	address(a0),d4							; get object address
 		move.b	render_flags(a0),d5						; get render type
 		movea.w	a0,a1								; load current object to a1
@@ -228,7 +228,7 @@ BreakableWall_FragSpd2:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_BreakableWall:	subObjMainData Obj_BreakableWall.main, rfCoord, 0, 64, 32, 5, $398, 2, 0, Map_BreakableWall
+ObjDat_BreakableWall:	subObjMainData Obj_BreakableWall.main, setBit(render_flags.level), 0, 64, 32, 5, $398, 2, 0, Map_BreakableWall
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Breakable Wall/Object Data/Map - Breakable Wall.asm"

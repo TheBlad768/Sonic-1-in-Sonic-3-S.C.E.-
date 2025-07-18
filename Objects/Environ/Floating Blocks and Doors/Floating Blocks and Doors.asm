@@ -76,7 +76,7 @@ Obj_FloatingBlock:
 		lea	(Oscillating_Data+$2A).w,a2
 		tst.w	(a2,d0.w)
 		bpl.s	.stillnotLZ
-		bchg	#0,status(a0)
+		bchg	#status.npc.x_flip,status(a0)
 
 .stillnotLZ
 		move.b	subtype(a0),d0
@@ -146,19 +146,19 @@ Obj_FloatingBlock:
 ; =============== S U B R O U T I N E =======================================
 
 BlocksDoors_TypeIndex: offsetTable
-		offsetTableEntry.w .type01	; 1
-		offsetTableEntry.w .type02	; 2
-		offsetTableEntry.w .type03	; 3
-		offsetTableEntry.w .type04	; 4
-		offsetTableEntry.w .type05	; 5
-		offsetTableEntry.w .type06	; 6
-		offsetTableEntry.w .type07	; 7
-		offsetTableEntry.w .type08	; 8
-		offsetTableEntry.w .type09	; 9
-		offsetTableEntry.w .type0A	; A
-		offsetTableEntry.w .type0B	; B
-		offsetTableEntry.w .type0C	; C
-		offsetTableEntry.w .type0D	; D
+		offsetTableEntry.w .type01						; 1
+		offsetTableEntry.w .type02						; 2
+		offsetTableEntry.w .type03						; 3
+		offsetTableEntry.w .type04						; 4
+		offsetTableEntry.w .type05						; 5
+		offsetTableEntry.w .type06						; 6
+		offsetTableEntry.w .type07						; 7
+		offsetTableEntry.w .type08						; 8
+		offsetTableEntry.w .type09						; 9
+		offsetTableEntry.w .type0A						; A
+		offsetTableEntry.w .type0B						; B
+		offsetTableEntry.w .type0C						; C
+		offsetTableEntry.w .type0D						; D
 ; ---------------------------------------------------------------------------
 
 .type01
@@ -178,7 +178,7 @@ BlocksDoors_TypeIndex: offsetTable
 		move.b	(Oscillating_Data+$1C).w,d0
 
 .moveLR
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.noflip
 		neg.w	d0
 		add.w	d1,d0
@@ -207,7 +207,7 @@ BlocksDoors_TypeIndex: offsetTable
 		move.b	(Oscillating_Data+$1C).w,d0
 
 .moveUD
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.noflip04
 		neg.w	d0
 		add.w	d1,d0
@@ -256,7 +256,7 @@ BlocksDoors_TypeIndex: offsetTable
 
 .loc_104AE
 		move.w	fb_height(a0),d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.loc_104BC
 		neg.w	d0
 
@@ -297,7 +297,7 @@ BlocksDoors_TypeIndex: offsetTable
 
 .loc_10512
 		move.w	fb_height(a0),d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.loc_10520
 		neg.w	d0
 
@@ -357,7 +357,7 @@ BlocksDoors_TypeIndex: offsetTable
 
 .loc_105A2
 		move.w	fb_height(a0),d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.loc_105B4
 		neg.w	d0
 		addi.w	#$80,d0
@@ -397,7 +397,7 @@ BlocksDoors_TypeIndex: offsetTable
 
 .wtf
 		move.w	fb_height(a0),d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.loc_10618
 		neg.w	d0
 		addi.w	#$80,d0
@@ -453,11 +453,20 @@ BlocksDoors_TypeIndex: offsetTable
 .square
 		tst.w	d3
 		bne.s	.loc_1068E
-		addq.b	#1,status(a0)
-		andi.b	#3,status(a0)
+		addq.b	#status.npc.y_flip,status(a0)
+
+		andi.b	#( \
+			setBit(status.npc.x_flip) | \
+			setBit(status.npc.y_flip) \
+		),status(a0)
 
 .loc_1068E
-		moveq	#3,d2
+
+		moveq	#signextendB( \
+			setBit(status.npc.x_flip) | \
+			setBit(status.npc.y_flip) \
+		),d2
+
 		and.b	status(a0),d2
 		bne.s	.loc_106AE
 		sub.w	d1,d0
@@ -509,7 +518,7 @@ BlocksDoors_TypeIndex: offsetTable
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_FloatingBlock:		subObjMainData Obj_FloatingBlock.action, rfCoord, 0, 0, 0, 3, 0, 2, 0, Map_FBlock
+ObjDat_FloatingBlock:		subObjMainData Obj_FloatingBlock.action, setBit(render_flags.level), 0, 0, 0, 3, 0, 2, 0, Map_FBlock
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Floating Blocks and Doors/Object Data/Map - Floating Blocks and Doors.asm"

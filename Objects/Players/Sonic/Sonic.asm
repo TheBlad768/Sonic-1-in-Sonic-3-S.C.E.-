@@ -67,7 +67,7 @@ Sonic_Init:										; Routine 0
 		move.w	y_radius(a0),default_y_radius(a0)				; set default_y_radius and default_x_radius
 		move.l	#Map_Sonic,mappings(a0)
 		move.l	#bytes_word_to_long(48/2,48/2,priority_2),height_pixels(a0)	; set height, width and priority
-		move.b	#rfCoord,render_flags(a0)					; use screen coordinates
+		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		clr.b	character_id(a0)						; PlayerID_Sonic
 		move.w	#$600,Max_speed-Max_speed(a4)
 		move.w	#$C,Acceleration-Max_speed(a4)
@@ -141,7 +141,12 @@ loc_10BFC:
 
 loc_10C0C:
 		movem.l	a4-a6,-(sp)
-		moveq	#6,d0
+
+		moveq	#signextendB( \
+			setBit(status.player.in_air) | \
+			setBit(status.player.rolling) \
+		),d0
+
 		and.b	status(a0),d0
 		move.w	Sonic_Modes(pc,d0.w),d0
 		jsr	Sonic_Modes(pc,d0.w)						; run Sonic's movement control code
@@ -172,7 +177,7 @@ loc_10C26:
 		bsr.w	Animate_Sonic
 		tst.b	(Reverse_gravity_flag).w
 		beq.s	.plc
-		eori.b	#2,render_flags(a0)
+		eori.b	#setBit(render_flags.y_flip),render_flags(a0)
 
 .plc
 		bsr.w	Sonic_Load_PLC
@@ -210,7 +215,7 @@ Sonic_Display:
 		jsr	(Draw_Sprite).w
 
 Sonic_ChkInvin:										; checks if invincibility has expired and disables it if it has.
-		btst	#Status_Invincible,status_secondary(a0)
+		btst	#status_secondary.invincible,status_secondary(a0)
 		beq.s	Sonic_ChkShoes
 		tst.b	invincibility_timer(a0)
 		beq.s	Sonic_ChkShoes							; if there wasn't any time left, that means we're in Super/Hyper mode
@@ -229,10 +234,10 @@ Sonic_ChkInvin:										; checks if invincibility has expired and disables it i
 		jsr	(Play_Music).w							; stop playing invincibility theme and resume normal level music
 
 Sonic_RmvInvin:
-		bclr	#Status_Invincible,status_secondary(a0)
+		bclr	#status_secondary.invincible,status_secondary(a0)
 
 Sonic_ChkShoes:										; checks if Speed Shoes have expired and disables them if they have.
-		btst	#Status_SpeedShoes,status_secondary(a0)				; does Sonic have speed shoes?
+		btst	#status_secondary.speed_shoes,status_secondary(a0)		; does Sonic have speed shoes?
 		beq.s	Sonic_ExitChk							; if so, branch
 		tst.b	speed_shoes_timer(a0)
 		beq.s	Sonic_ExitChk
@@ -253,7 +258,7 @@ Sonic_ChkShoes:										; checks if Speed Shoes have expired and disables them 
 		move.w	#$100,Deceleration-Max_speed(a4)				; set Deceleration
 
 .nots
-		bclr	#Status_SpeedShoes,status_secondary(a0)
+		bclr	#status_secondary.speed_shoes,status_secondary(a0)
 		music	mus_Slowdown,1							; slow down tempo
 ; ---------------------------------------------------------------------------
 
@@ -326,7 +331,7 @@ Sonic_InWater:
 		move.w	(Water_level).w,d0
 		cmp.w	y_pos(a0),d0							; is Sonic above the water?
 		bge.s	Sonic_OutWater							; if yes, branch
-		bset	#Status_Underwater,status(a0)					; set underwater flag
+		bset	#status.player.underwater,status(a0)				; set underwater flag
 		bne.s	locret_10E2C							; if already underwater, branch
 		addq.b	#1,(Water_entered_counter).w
 		movea.w	a0,a1
@@ -356,7 +361,7 @@ Sonic_InWater:
 ; ---------------------------------------------------------------------------
 
 Sonic_OutWater:
-		bclr	#Status_Underwater,status(a0)					; unset underwater flag
+		bclr	#status.player.underwater,status(a0)				; unset underwater flag
 		beq.s	locret_10E2C							; if already above water, branch
 		addq.b	#1,(Water_entered_counter).w
 
@@ -469,7 +474,7 @@ Sonic_MdAir:
 		bsr.w	Sonic_ChgJumpDir
 		bsr.w	Player_LevelBound
 		jsr	(MoveSprite_TestGravity).w
-		btst	#Status_Underwater,status(a0)					; is Sonic underwater?
+		btst	#status.player.underwater,status(a0)				; is Sonic underwater?
 		beq.s	loc_10FD6							; if not, branch
 		subi.w	#$28,y_vel(a0)							; reduce gravity by $28 ($38-$28=$10)
 
@@ -542,7 +547,7 @@ Sonic_MdJump:
 		bsr.w	Sonic_ChgJumpDir
 		bsr.w	Player_LevelBound
 		jsr	(MoveSprite_TestGravity).w
-		btst	#Status_Underwater,status(a0)					; is Sonic underwater?
+		btst	#status.player.underwater,status(a0)				; is Sonic underwater?
 		beq.s	loc_11056							; if not, branch
 		subi.w	#$28,y_vel(a0)							; reduce gravity by $28 ($38-$28=$10)
 
@@ -562,9 +567,9 @@ loc_11056:
 ; ---------------------------------------------------------------------------
 
 Sonic_ChgFallAnim:
-		btst	#Status_Roll,status(a0)						; is Sonic rolling?
+		btst	#status.player.rolling,status(a0)				; is Sonic rolling?
 		bne.s	.return								; if yes, branch
-		btst	#Status_OnObj,status(a0)					; is Sonic standing on an object?
+		btst	#status.player.on_object,status(a0)				; is Sonic standing on an object?
 		bne.s	.return								; if yes, branch
 		tst.b	flip_angle(a0)							; flip angle?
 		bne.s	.return								; if yes, branch
@@ -573,7 +578,7 @@ Sonic_ChgFallAnim:
 		moveq	#btnABC,d0							; read only A/B/C buttons
 		and.b	(Ctrl_1_pressed_logical).w,d0					; get button presses
 		beq.s	.return
-		bset	#Status_Roll,status(a0)
+		bset	#status.player.rolling,status(a0)
 		move.w	#bytes_to_word(28/2,14/2),y_radius(a0)				; set y_radius and x_radius
 		move.b	#AniIDSonAni_Roll,anim(a0)					; use "rolling"	animation
 		addq.w	#5,y_pos(a0)
@@ -612,10 +617,10 @@ Sonic_NotLeft:
 Sonic_NotRight:
 		move.w	(Camera_H_scroll_shift).w,d1
 		beq.s	.skip
-		bclr	#Status_Facing,status(a0)
+		bclr	#status.player.x_flip,status(a0)
 		tst.w	d1
 		bpl.s	.skip
-		bset	#Status_Facing,status(a0)
+		bset	#status.player.x_flip,status(a0)
 
 .skip
 		moveq	#$20,d0
@@ -626,9 +631,9 @@ Sonic_NotRight:
 		bne.w	loc_112EA							; if yes, branch
 		tst.w	d1
 		bne.w	loc_112EA
-		bclr	#Status_Push,status(a0)
+		bclr	#status.player.pushing,status(a0)
 		move.b	#AniIDSonAni_Wait,anim(a0)					; use standing animation
-		btst	#Status_OnObj,status(a0)
+		btst	#status.player.on_object,status(a0)
 		beq.w	Sonic_Balance
 		movea.w	interact(a0),a1							; load interacting object's RAM space
 		tst.b	status(a1)							; is status bit 7 set? (Balance anim off)
@@ -661,7 +666,7 @@ SuperSonic_Balance:
 ; balancing checks for when you're on the right edge of an object
 
 Sonic_BalanceOnObjRight:
-		btst	#Status_Facing,status(a0)					; is Sonic facing right?
+		btst	#status.player.x_flip,status(a0)				; is Sonic facing right?
 		bne.s	loc_11128							; if so, branch
 		move.b	#AniIDSonAni_Balance,anim(a0)					; balance animation 1
 		addq.w	#6,d2								; extend balance range
@@ -676,7 +681,7 @@ loc_11128:
 		; somewhat dummied out/redundant code from Sonic 2
 		; originally, Sonic displayed different animations for each direction faced
 		; but now, Sonic uses only the one set of animations no matter what, making the check pointless, and the code redundant
-		bclr	#Status_Facing,status(a0)
+		bclr	#status.player.x_flip,status(a0)
 		move.b	#AniIDSonAni_Balance,anim(a0)					; balance animation 1
 		addq.w	#6,d2								; extend balance range
 		cmp.w	d2,d1								; is Sonic within (two units before and) four units past the right edge?
@@ -686,7 +691,7 @@ loc_11128:
 ; ---------------------------------------------------------------------------
 
 Sonic_BalanceOnObjLeft:
-		btst	#Status_Facing,status(a0)					; is Sonic facing right?
+		btst	#status.player.x_flip,status(a0)				; is Sonic facing right?
 		beq.s	loc_11166
 		move.b	#AniIDSonAni_Balance,anim(a0)					; balance animation 1
 		cmpi.w	#-4,d1								; is Sonic within (two units before and) four units past the left edge?
@@ -697,7 +702,7 @@ loc_11166:	; +
 		; somewhat dummied out/redundant code from Sonic 2
 		; originally, Sonic displayed different animations for each direction faced
 		; but now, Sonic uses only the one set of animations no matter what, making the check pointless, and the code redundant
-		bset	#Status_Facing,status(a0)					; is Sonic facing right?
+		bset	#status.player.x_flip,status(a0)				; is Sonic facing right?
 		move.b	#AniIDSonAni_Balance,anim(a0)					; balance animation 1
 		cmpi.w	#-4,d1								; is Sonic within (two units before and) four units past the left edge?
 		bge.w	loc_112EA							; if so branch (instruction signed to match)
@@ -714,7 +719,7 @@ Sonic_Balance:
 		bne.w	loc_11250							; if so, branch
 		cmpi.b	#3,next_tilt(a0)
 		bne.s	loc_111F6
-		btst	#Status_Facing,status(a0)
+		btst	#status.player.x_flip,status(a0)
 		bne.s	loc_111CE
 		move.b	#AniIDSonAni_Balance,anim(a0)
 		move.w	x_pos(a0),d3
@@ -729,7 +734,7 @@ loc_111CE:	; +
 		; Somewhat dummied out/redundant code from Sonic 2
 		; Originally, Sonic displayed different animations for each direction faced
 		; But now, Sonic uses only the one set of animations no matter what, making the check pointless, and the code redundant
-		bclr	#Status_Facing,status(a0)
+		bclr	#status.player.x_flip,status(a0)
 		move.b	#AniIDSonAni_Balance,anim(a0)
 		move.w	x_pos(a0),d3
 		subq.w	#6,d3
@@ -743,7 +748,7 @@ loc_111CE:	; +
 loc_111F6:
 		cmpi.b	#3,tilt(a0)
 		bne.s	loc_11276
-		btst	#Status_Facing,status(a0)
+		btst	#status.player.x_flip,status(a0)
 		beq.s	loc_11228
 		move.b	#AniIDSonAni_Balance,anim(a0)
 		move.w	x_pos(a0),d3
@@ -756,7 +761,7 @@ loc_111F6:
 ; ---------------------------------------------------------------------------
 
 loc_11228:
-		bset	#Status_Facing,status(a0)
+		bset	#status.player.x_flip,status(a0)
 		move.b	#AniIDSonAni_Balance,anim(a0)
 		move.w	x_pos(a0),d3
 		addq.w	#6,d3
@@ -772,7 +777,7 @@ loc_11250:
 		bne.s	loc_11260
 
 loc_11258:
-		bclr	#Status_Facing,status(a0)
+		bclr	#status.player.x_flip,status(a0)
 		bra.s	loc_1126E
 ; ---------------------------------------------------------------------------
 
@@ -781,7 +786,7 @@ loc_11260:
 		bne.s	loc_11276
 
 loc_11268:
-		bset	#Status_Facing,status(a0)
+		bset	#status.player.x_flip,status(a0)
 
 loc_1126E:
 		move.b	#6,anim(a0)
@@ -922,9 +927,9 @@ loc_1137E:
 		beq.s	loc_113D0
 		add.w	d1,x_vel(a0)
 		clr.w	ground_vel(a0)
-		btst	#Status_Facing,status(a0)
+		btst	#status.player.x_flip,status(a0)
 		bne.s	locret_113CE
-		bset	#Status_Push,status(a0)
+		bset	#status.player.pushing,status(a0)
 
 locret_113CE:
 		rts
@@ -938,9 +943,9 @@ loc_113D0:
 loc_113D6:
 		sub.w	d1,x_vel(a0)
 		clr.w	ground_vel(a0)
-		btst	#Status_Facing,status(a0)
+		btst	#status.player.x_flip,status(a0)
 		beq.s	locret_113CE
-		bset	#Status_Push,status(a0)
+		bset	#status.player.pushing,status(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -958,9 +963,9 @@ sub_113F6:
 loc_113FE:
 		tst.w	(Camera_H_scroll_shift).w
 		bne.s	loc_11412
-		bset	#Status_Facing,status(a0)
+		bset	#status.player.x_flip,status(a0)
 		bne.s	loc_11412
-		bclr	#Status_Push,status(a0)
+		bclr	#status.player.pushing,status(a0)
 		move.b	#AniIDSonAni_Run,prev_anim(a0)
 
 loc_11412:
@@ -997,7 +1002,7 @@ loc_11438:
 		bmi.s	locret_11480
 		sfx	sfx_Skid
 		move.b	#AniIDSonAni_Stop,anim(a0)
-		bclr	#Status_Facing,status(a0)
+		bclr	#status.player.x_flip,status(a0)
 		cmpi.b	#12,air_left(a0)						; check air remaining
 		blo.s	locret_11480							; if less than 12, branch
 		move.l	#DashDust_CheckSkid,address(a6)					; Dust
@@ -1011,9 +1016,9 @@ locret_11480:
 sub_11482:
 		move.w	ground_vel(a0),d0
 		bmi.s	loc_114B6
-		bclr	#Status_Facing,status(a0)
+		bclr	#status.player.x_flip,status(a0)
 		beq.s	loc_1149C
-		bclr	#Status_Push,status(a0)
+		bclr	#status.player.pushing,status(a0)
 		move.b	#AniIDSonAni_Run,prev_anim(a0)
 
 loc_1149C:
@@ -1048,7 +1053,7 @@ loc_114BE:
 		bmi.s	locret_11506
 		sfx	sfx_Skid
 		move.b	#AniIDSonAni_Stop,anim(a0)
-		bset	#Status_Facing,status(a0)
+		bset	#status.player.x_flip,status(a0)
 		cmpi.b	#12,air_left(a0)						; check air remaining
 		blo.s	locret_11506							; if less than 12, branch
 		move.l	#DashDust_CheckSkid,address(a6)					; Dust
@@ -1116,7 +1121,7 @@ loc_11570:
 		bhs.s	loc_115C6
 		tst.b	spin_dash_flag(a0)
 		bne.s	loc_115B4
-		bclr	#Status_Roll,status(a0)
+		bclr	#status.player.rolling,status(a0)
 		move.b	y_radius(a0),d0
 		move.w	default_y_radius(a0),y_radius(a0)
 		move.b	#AniIDSonAni_Wait,anim(a0)
@@ -1140,7 +1145,7 @@ loc_115AE:
 
 loc_115B4:
 		move.w	#$400,ground_vel(a0)
-		btst	#Status_Facing,status(a0)
+		btst	#status.player.x_flip,status(a0)
 		beq.s	loc_115C6
 		neg.w	ground_vel(a0)
 
@@ -1183,7 +1188,7 @@ sub_11608:
 		bpl.s	loc_1161E
 
 loc_11610:
-		bset	#Status_Facing,status(a0)
+		bset	#status.player.x_flip,status(a0)
 		move.b	#AniIDSonAni_Roll,anim(a0)
 		rts
 ; ---------------------------------------------------------------------------
@@ -1202,7 +1207,7 @@ loc_11626:
 sub_1162C:
 		move.w	ground_vel(a0),d0
 		bmi.s	loc_11640
-		bclr	#Status_Facing,status(a0)
+		bclr	#status.player.x_flip,status(a0)
 		move.b	#AniIDSonAni_Roll,anim(a0)
 		rts
 ; ---------------------------------------------------------------------------
@@ -1229,12 +1234,12 @@ Sonic_ChgJumpDir:
 		move.w	x_vel(a0),d0
 		btst	#button_left,(Ctrl_1_logical).w
 		beq.s	loc_11682							; if not holding left, branch
-		bset	#Status_Facing,status(a0)
+		bset	#status.player.x_flip,status(a0)
 
 		; check
 		tst.w	(Camera_H_scroll_shift).w
 		beq.s	.skip
-		bclr	#Status_Facing,status(a0)
+		bclr	#status.player.x_flip,status(a0)
 
 .skip
 		sub.w	d5,d0								; add acceleration to the left
@@ -1250,7 +1255,7 @@ Sonic_ChgJumpDir:
 loc_11682:
 		btst	#button_right,(Ctrl_1_logical).w
 		beq.s	loc_1169E							; if not holding right, branch
-		bclr	#Status_Facing,status(a0)
+		bclr	#status.player.x_flip,status(a0)
 		add.w	d5,d0								; accelerate right in the air
 		cmp.w	d6,d0								; compare new speed with top speed
 		blt.s	loc_1169E							; if new speed is less than the maximum, branch
@@ -1415,7 +1420,7 @@ SonicKnux_Roll:
 		cmpi.w	#$100,d0							; is Sonic moving at $100 speed or faster?
 		bhs.s	SonicKnux_ChkRoll						; if so, branch
 
-;		btst	#Status_OnObj,status(a0)					; is Sonic/Knux stand on object?
+;		btst	#status.player.on_object,status(a0)				; is Sonic/Knux stand on object?
 ;		bne.s	locret_1177E							; if yes, branch
 
 		move.b	#AniIDSonAni_Duck,anim(a0)					; enter ducking animation
@@ -1432,13 +1437,13 @@ SonicKnux_ChkWalk:
 ; ---------------------------------------------------------------------------
 
 SonicKnux_ChkRoll:
-		btst	#Status_Roll,status(a0)						; is Sonic already rolling?
+		btst	#status.player.rolling,status(a0)				; is Sonic already rolling?
 		beq.s	SonicKnux_DoRoll						; if not, branch
 		rts
 ; ---------------------------------------------------------------------------
 
 SonicKnux_DoRoll:
-		bset	#Status_Roll,status(a0)
+		bset	#status.player.rolling,status(a0)
 		move.w	#bytes_to_word(28/2,14/2),y_radius(a0)				; set y_radius and x_radius
 		move.b	#AniIDSonAni_Roll,anim(a0)					; enter roll animation
 		addq.w	#5,y_pos(a0)
@@ -1492,7 +1497,7 @@ loc_117FC:
 		move.w	#$800,d2							; set higher jump speed if super
 
 loc_11822:
-		btst	#Status_Underwater,status(a0)					; test if underwater
+		btst	#status.player.underwater,status(a0)				; test if underwater
 		beq.s	loc_1182E
 		move.w	#$380,d2							; set lower jump speed if under
 
@@ -1506,18 +1511,18 @@ loc_1182E:
 		muls.w	d2,d0
 		asr.l	#8,d0
 		add.w	d0,y_vel(a0)							; make Sonic jump (in Y)
-		bset	#Status_InAir,status(a0)
-		bclr	#Status_Push,status(a0)
+		bset	#status.player.in_air,status(a0)
+		bclr	#status.player.pushing,status(a0)
 		addq.w	#4,sp
 		move.b	#1,jumping(a0)
 		clr.b	stick_to_convex(a0)
 		sfx	sfx_Jump
 		move.w	default_y_radius(a0),y_radius(a0)
-		btst	#Status_Roll,status(a0)
+		btst	#status.player.rolling,status(a0)
 		bne.s	locret_118B2
 		move.w	#bytes_to_word(28/2,14/2),y_radius(a0)				; set y_radius and x_radius
 		move.b	#AniIDSonAni_Roll,anim(a0)					; use "jumping" animation
-		bset	#Status_Roll,status(a0)
+		bset	#status.player.rolling,status(a0)
 		move.b	y_radius(a0),d0
 		sub.b	default_y_radius(a0),d0
 		ext.w	d0
@@ -1539,7 +1544,7 @@ Sonic_JumpHeight:
 
 		; check
 		move.w	#-$400,d1
-		btst	#Status_Underwater,status(a0)					; is Sonic underwater?
+		btst	#status.player.underwater,status(a0)				; is Sonic underwater?
 		beq.s	loc_118D2							; if not, branch
 		move.w	#-$200,d1							; underwater-specific
 
@@ -1580,14 +1585,14 @@ Sonic_InstaAndShieldMoves:
 ; ---------------------------------------------------------------------------
 
 Sonic_FireShield:
-		btst	#Status_Invincible,status_secondary(a0)				; first, does Sonic have invincibility?
+		btst	#status_secondary.invincible,status_secondary(a0)		; first, does Sonic have invincibility?
 		bne.s	locret_118FE							; if yes, branch
-		btst	#Status_FireShield,status_secondary(a0)				; does Sonic have a Fire Shield?
+		btst	#status_secondary.fire_shield,status_secondary(a0)		; does Sonic have a Fire Shield?
 		beq.s	Sonic_LightningShield						; if not, branch
 		move.b	#1,(Shield+anim).w
 		move.b	#1,double_jump_flag(a0)
 		move.w	#$800,d0
-		btst	#Status_Facing,status(a0)					; is Sonic facing left?
+		btst	#status.player.x_flip,status(a0)				; is Sonic facing left?
 		beq.s	loc_11958							; if not, branch
 		neg.w	d0								; reverse speed value, moving Sonic left
 
@@ -1601,7 +1606,7 @@ loc_11958:
 ; ---------------------------------------------------------------------------
 
 Sonic_LightningShield:
-		btst	#Status_LtngShield,status_secondary(a0)				; does Sonic have a Lightning Shield?
+		btst	#status_secondary.lightning_shield,status_secondary(a0)		; does Sonic have a Lightning Shield?
 		beq.s	Sonic_BubbleShield						; if not, branch
 		move.b	#1,(Shield+anim).w
 		move.b	#1,double_jump_flag(a0)
@@ -1611,7 +1616,7 @@ Sonic_LightningShield:
 ; ---------------------------------------------------------------------------
 
 Sonic_BubbleShield:
-		btst	#Status_BublShield,status_secondary(a0)				; does Sonic have a Bubble Shield
+		btst	#status_secondary.bubble_shield,status_secondary(a0)		; does Sonic have a Bubble Shield
 		beq.s	Sonic_CheckTransform						; if not, branch
 		move.b	#1,(Shield+anim).w
 		move.b	#1,double_jump_flag(a0)
@@ -1641,7 +1646,7 @@ Sonic_CheckTransform:
 		endif
 
 Sonic_InstaShield:
-		btst	#Status_Shield,status_secondary(a0)				; does Sonic have an S2 shield (The Elementals were already filtered out at this point)?
+		btst	#status_secondary.shield,status_secondary(a0)			; does Sonic have an S2 shield (The Elementals were already filtered out at this point)?
 		bne.s	locret_11A14							; if yes, branch
 		move.b	#1,(Shield+anim).w
 		move.b	#1,double_jump_flag(a0)
@@ -1682,7 +1687,7 @@ Sonic_Transform:
 		move.w	#$30,Acceleration-Max_speed(a4)
 		move.w	#$100,Deceleration-Max_speed(a4)
 		clr.b	invincibility_timer(a0)
-		bset	#Status_Invincible,status_secondary(a0)
+		bset	#status_secondary.invincible,status_secondary(a0)
 		sfx	sfx_SuperTransform
 		music	mus_Invincible,1						; play invincibility theme
 ; ---------------------------------------------------------------------------
@@ -1717,7 +1722,7 @@ Sonic_HyperDash:
 
 		; if there's no directional input, we just dash forward
 		move.w	#$800,d0							; go right...
-		btst	#Status_Facing,status(a0)					; ...unless Sonic is facing left...
+		btst	#status.player.x_flip,status(a0)				; ...unless Sonic is facing left...
 		beq.s	.applySpeeds
 		neg.w	d0								; ...in which case, go left
 
@@ -1797,7 +1802,7 @@ SonicKnux_SuperHyper:
 		move.w	#$600,Max_speed-Max_speed(a4)
 		move.w	#$C,Acceleration-Max_speed(a4)
 		move.w	#$80,Deceleration-Max_speed(a4)
-		btst	#Status_Underwater,status(a0)
+		btst	#status.player.underwater,status(a0)
 		beq.s	.return
 
 		; if underwater, apply corrected speed/acceleration/deceleration
@@ -1890,12 +1895,12 @@ loc_11CAC:
 
 loc_11CCE:
 		move.w	d0,(a1)
-		btst	#Status_Facing,status(a0)
+		btst	#status.player.x_flip,status(a0)
 		beq.s	loc_11CDC
 		neg.w	ground_vel(a0)
 
 loc_11CDC:
-		bset	#Status_Roll,status(a0)
+		bset	#status.player.rolling,status(a0)
 		clr.w	anim(a6)							; Dust
 		sfx	sfx_Dash
 		bra.s	loc_11D5E
@@ -1955,7 +1960,7 @@ loc_11D5E:
 		move.w	word_11D04(pc,d0.w),ground_vel(a0)
 
 .nots
-		btst	#Status_Facing,status(a0)
+		btst	#status.player.x_flip,status(a0)
 		beq.s	.notflipx
 		neg.w	ground_vel(a0)
 
@@ -2099,7 +2104,7 @@ Player_SlopeRepel:
 		add.b	angle(a0),d0
 		cmpi.b	#$60,d0
 		blo.s	loc_11E70
-		bset	#Status_InAir,status(a0)
+		bset	#status.player.in_air,status(a0)
 
 locret_11E6E:
 		rts
@@ -2479,9 +2484,9 @@ Sonic_TouchFloor_Check_Spindash:
 Sonic_TouchFloor:
 		move.b	y_radius(a0),d0
 		move.w	default_y_radius(a0),y_radius(a0)				; set y_radius and x_radius
-		btst	#Status_Roll,status(a0)
+		btst	#status.player.rolling,status(a0)
 		beq.s	loc_121D8
-		bclr	#Status_Roll,status(a0)
+		bclr	#status.player.rolling,status(a0)
 		clr.b	anim(a0)							; AniIDSonAni_Walk
 		sub.b	default_y_radius(a0),d0
 		ext.w	d0
@@ -2501,8 +2506,8 @@ loc_121D2:
 		add.w	d0,y_pos(a0)
 
 loc_121D8:
-		bclr	#Status_InAir,status(a0)
-		bclr	#Status_Push,status(a0)
+		bclr	#status.player.in_air,status(a0)
+		bclr	#status.player.pushing,status(a0)
 		moveq	#0,d0
 		move.b	d0,jumping(a0)
 		move.w	d0,(Chain_bonus_counter).w
@@ -2514,9 +2519,9 @@ loc_121D8:
 		beq.s	locret_12230
 		tst.b	(Super_Sonic_Knux_flag).w
 		bne.s	loc_1222A
-		btst	#Status_Invincible,status_secondary(a0)				; don't bounce when invincible
+		btst	#status_secondary.invincible,status_secondary(a0)		; don't bounce when invincible
 		bne.s	loc_1222A
-		btst	#Status_BublShield,status_secondary(a0)
+		btst	#status_secondary.bubble_shield,status_secondary(a0)
 		beq.s	loc_1222A
 		bsr.s	BubbleShield_Bounce
 
@@ -2531,7 +2536,7 @@ locret_12230:
 BubbleShield_Bounce:
 		movem.l	d1-d2,-(sp)
 		move.w	#$780,d2
-		btst	#Status_Underwater,status(a0)					; is Sonic underwater?
+		btst	#status.player.underwater,status(a0)				; is Sonic underwater?
 		beq.s	.isdry								; if not, branch
 		move.w	#$400,d2
 
@@ -2546,13 +2551,13 @@ BubbleShield_Bounce:
 		asr.l	#8,d0
 		add.w	d0,y_vel(a0)
 		movem.l	(sp)+,d1-d2
-		bset	#Status_InAir,status(a0)
-		bclr	#Status_Push,status(a0)
+		bset	#status.player.in_air,status(a0)
+		bclr	#status.player.pushing,status(a0)
 		move.b	#1,jumping(a0)
 		clr.b	stick_to_convex(a0)
 		move.w	#bytes_to_word(28/2,14/2),y_radius(a0)				; set y_radius and x_radius
 		move.b	#AniIDSonAni_Roll,anim(a0)
-		bset	#Status_Roll,status(a0)
+		bset	#status.player.rolling,status(a0)
 		move.b	y_radius(a0),d0
 		sub.b	default_y_radius(a0),d0
 		ext.w	d0
@@ -2583,7 +2588,7 @@ Sonic_Hurt:
 
 		jsr	(MoveSprite2_TestGravity).w
 		addi.w	#$30,y_vel(a0)
-		btst	#Status_Underwater,status(a0)
+		btst	#status.player.underwater,status(a0)
 		beq.s	loc_122F2
 		subi.w	#$20,y_vel(a0)
 
@@ -2626,7 +2631,7 @@ loc_12344:
 		movem.l	a4-a6,-(sp)
 		bsr.w	SonicKnux_DoLevelCollision
 		movem.l	(sp)+,a4-a6
-		btst	#Status_InAir,status(a0)					; is the player in the air?
+		btst	#status.player.in_air,status(a0)				; is the player in the air?
 		bne.s	locret_12388							; if yes, branch
 		moveq	#0,d0
 		move.l	d0,x_vel(a0)
@@ -2788,7 +2793,7 @@ sub_125E0:
 		bsr.s	Animate_Sonic
 		tst.b	(Reverse_gravity_flag).w
 		beq.s	.notgrav
-		eori.b	#2,render_flags(a0)
+		eori.b	#setBit(render_flags.y_flip),render_flags(a0)
 
 .notgrav
 		bra.w	Sonic_Load_PLC
@@ -2812,16 +2817,25 @@ Animate_Sonic:
 		move.b	d0,prev_anim(a0)
 		clr.b	anim_frame(a0)
 		clr.b	anim_frame_timer(a0)
-		bclr	#Status_Push,status(a0)
+		bclr	#status.player.pushing,status(a0)
 
 SAnim_Do:
 		add.w	d0,d0
 		adda.w	(a1,d0.w),a1
 		move.b	(a1),d0
 		bmi.s	SAnim_WalkRun
-		moveq	#1,d1
+
+		moveq	#signextendB( \
+			setBit(status.player.x_flip) \
+		),d1
+
 		and.b	status(a0),d1
-		andi.b	#-4,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		or.b	d1,render_flags(a0)
 		subq.b	#1,anim_frame_timer(a0)
 		bpl.s	SAnim_Delay
@@ -2884,7 +2898,11 @@ SAnim_WalkRun:
 		subq.b	#1,d0
 
 loc_126C8:
-		moveq	#1,d2
+
+		moveq	#signextendB( \
+			setBit(status.player.x_flip) \
+		),d2
+
 		and.b	status(a0),d2
 		bne.s	loc_126D4
 		not.b	d0
@@ -2895,10 +2913,15 @@ loc_126D4:
 		moveq	#3,d1
 
 loc_126DC:
-		andi.b	#-4,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		eor.b	d1,d2
 		or.b	d2,render_flags(a0)
-		btst	#Status_Push,status(a0)
+		btst	#status.player.pushing,status(a0)
 		bne.w	SAnim_Push
 		lsr.b	#4,d0
 		andi.b	#6,d0
@@ -3007,13 +3030,25 @@ loc_127C0:
 		bne.s	loc_12872
 		move.b	flip_angle(a0),d0
 		moveq	#0,d1
-		moveq	#1,d2
+
+		moveq	#signextendB( \
+			setBit(status.player.x_flip) \
+		),d2
+
 		and.b	status(a0),d2
 		bne.s	loc_1281E
-		andi.b	#-4,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		tst.b	flip_type(a0)
 		bpl.s	loc_12806
-		ori.b	#2,render_flags(a0)
+		ori.b	#( \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		neg.b	d0
 		addi.b	#$8F,d0
 		bra.s	loc_1280A
@@ -3031,8 +3066,17 @@ loc_1280A:
 ; ---------------------------------------------------------------------------
 
 loc_1281E:
-		andi.b	#-4,render_flags(a0)
-		ori.b	#3,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
+		ori.b	#( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		neg.b	d0
 		addi.b	#$8F,d0
 		divu.w	#$16,d0
@@ -3052,10 +3096,19 @@ loc_12872:
 		bne.s	loc_128CA
 		move.b	flip_angle(a0),d0
 		moveq	#0,d1
-		moveq	#1,d2
+
+		moveq	#signextendB( \
+			setBit(status.player.x_flip) \
+		),d2
+
 		and.b	status(a0),d2
 		bne.s	loc_128A8
-		andi.b	#-4,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		addi.b	#-8,d0
 		divu.w	#$16,d0
 		add.b	d3,d0
@@ -3065,8 +3118,13 @@ loc_12872:
 ; ---------------------------------------------------------------------------
 
 loc_128A8:
-		andi.b	#-4,render_flags(a0)
-		ori.b	#1,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
+		ori.b	#render_flags.y_flip,render_flags(a0)
 		addi.b	#-8,d0
 		divu.w	#$16,d0
 		add.b	d3,d0
@@ -3080,10 +3138,19 @@ loc_128CA:
 		bne.s	loc_12920
 		move.b	flip_angle(a0),d0
 		moveq	#0,d1
-		moveq	#1,d2
+
+		moveq	#signextendB( \
+			setBit(status.player.x_flip) \
+		),d2
+
 		and.b	status(a0),d2
 		bne.s	loc_128FC
-		andi.b	#-4,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		addi.b	#$B,d0
 		divu.w	#$16,d0
 		add.b	d3,d0
@@ -3093,8 +3160,17 @@ loc_128CA:
 ; ---------------------------------------------------------------------------
 
 loc_128FC:
-		andi.b	#-4,render_flags(a0)
-		ori.b	#3,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
+		ori.b	#( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		neg.b	d0
 		addi.b	#$8F,d0
 		divu.w	#$16,d0
@@ -3109,11 +3185,23 @@ loc_12920:
 		bne.s	loc_1297C
 		move.b	flip_angle(a0),d0
 		moveq	#0,d1
-		moveq	#1,d2
+
+		moveq	#signextendB( \
+			setBit(status.player.x_flip) \
+		),d2
+
 		and.b	status(a0),d2
 		bne.s	loc_1295A
-		andi.b	#-4,render_flags(a0)
-		ori.b	#2,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
+		ori.b	#( \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		neg.b	d0
 		addi.b	#$8F,d0
 		divu.w	#$16,d0
@@ -3124,8 +3212,13 @@ loc_12920:
 ; ---------------------------------------------------------------------------
 
 loc_1295A:
-		andi.b	#-4,render_flags(a0)
-		ori.b	#1,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
+		ori.b	#render_flags.y_flip,render_flags(a0)
 		addi.b	#$B,d0
 		divu.w	#$16,d0
 		add.b	d3,d0
@@ -3139,10 +3232,19 @@ loc_1297C:
 		bne.s	loc_129F6
 		move.b	flip_angle(a0),d0
 		moveq	#0,d1
-		moveq	#1,d2
+
+		moveq	#signextendB( \
+			setBit(status.player.x_flip) \
+		),d2
+
 		and.b	status(a0),d2
 		bne.s	loc_129BC
-		andi.b	#-4,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		tst.b	flip_type(a0)
 		bpl.s	loc_129A4
 		addi.b	#$B,d0
@@ -3161,17 +3263,30 @@ loc_129A8:
 ; ---------------------------------------------------------------------------
 
 loc_129BC:
-		andi.b	#-4,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		tst.b	flip_type(a0)
 		bpl.s	loc_129D6
-		ori.b	#3,render_flags(a0)
+		ori.b	#( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		neg.b	d0
 		addi.b	#$8F,d0
 		bra.s	loc_129E2
 ; ---------------------------------------------------------------------------
 
 loc_129D6:
-		ori.b	#3,render_flags(a0)
+		ori.b	#( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		neg.b	d0
 		addi.b	#$8F,d0
 
@@ -3185,12 +3300,21 @@ loc_129E2:
 
 loc_129F6:
 		move.b	flip_angle(a0),d0
-		andi.b	#-4,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		moveq	#0,d1
-		moveq	#1,d2
+
+		moveq	#signextendB( \
+			setBit(status.player.x_flip) \
+		),d2
+
 		and.b	status(a0),d2
 		beq.s	loc_12A12
-		ori.b	#1,render_flags(a0)
+		ori.b	#render_flags.y_flip,render_flags(a0)
 
 loc_12A12:
 		addi.b	#$B,d0
@@ -3202,9 +3326,18 @@ loc_12A12:
 ; ---------------------------------------------------------------------------
 
 loc_12A2A:
-		moveq	#1,d1
+
+		moveq	#signextendB( \
+			setBit(status.player.x_flip) \
+		),d1
+
 		and.b	status(a0),d1
-		andi.b	#-4,render_flags(a0)
+
+		andi.b	#~( \
+			setBit(render_flags.x_flip) | \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		or.b	d1,render_flags(a0)
 		subq.b	#1,anim_frame_timer(a0)
 		bpl.w	SAnim_Delay

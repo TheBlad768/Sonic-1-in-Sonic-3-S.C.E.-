@@ -24,7 +24,7 @@ Obj_SwingingPlatform:
 		move.w	#make_art_tile($31A,0,0),d0
 
 .notMZ
-		move.b	#rfCoord,render_flags(a0)					; use screen coordinates
+		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(16/2,48/2,priority_4),height_pixels(a0)	; set height, width and priority
 		move.w	x_pos(a0),swing_origX(a0)
 		move.w	y_pos(a0),swing_origY(a0)
@@ -59,7 +59,7 @@ Obj_SwingingPlatform:
 		move.w	art_tile(a0),art_tile(a1)
 		move.b	render_flags(a0),render_flags(a1)
 		move.w	#priority_5,priority(a1)
-		bset	#6,render_flags(a1)						; set multi-draw flag
+		bset	#render_flags.multi_sprite,render_flags(a1)			; set multi-draw flag
 		move.w	a1,parent3(a0)							; save chain address
 		move.w	x_pos(a0),d2
 		move.w	d2,x_pos(a1)
@@ -158,13 +158,13 @@ SwingingPlatform_Move:
 		move.b	(AIZ_vine_angle).w,d0
 
 .normal
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.notflipx
 		neg.b	d0
 		addi.b	#$80,d0
 
 .notflipx
-		btst	#1,status(a0)
+		btst	#status.npc.y_flip,status(a0)
 		beq.s	.notflipy
 		neg.b	d0
 

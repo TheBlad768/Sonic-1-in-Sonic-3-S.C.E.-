@@ -180,7 +180,7 @@ TitleScreen:
 		; create "TM" object
 		lea	(Breathing_bubbles+address).w,a1
 		move.l	#Map_TTM,mappings(a1)
-		move.b	#rfStatic,render_flags(a1)							; set static mapping
+		move.b	#setBit(render_flags.static_mappings),render_flags(a1)				; set static mapping
 		move.w	#$178,x_pos(a1)
 		move.w	#$F8,y_pos(a1)
 		move.l	#Draw_Sprite,address(a1)
@@ -365,7 +365,13 @@ Obj_TitleSonic:
 
 		; init
 		move.l	#Map_TSon,mappings(a0)
-		move.l	#words_to_long(priority_2,make_art_tile($300,1,0)),priority(a0)			; set priority and art_tile
+
+		; set priority and art_tile
+		move.l	#words_to_long( \
+		priority_2, \
+			make_art_tile($300,1,0) \
+		),priority(a0)
+
 		move.w	#$80+120,x_pos(a0)
 		move.w	#$80+94,y_pos(a0)								; position is fixed to screen
 		move.w	#30-1,objoff_2E(a0)								; set time delay to 0.5 seconds

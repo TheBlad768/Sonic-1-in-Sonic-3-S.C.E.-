@@ -70,7 +70,7 @@ Obj_LavaBall:
 
 .notSLZ
 		move.b	#$B|$80,collision_flags(a0)
-		bset	#Status_FireShield,shield_reaction(a0)
+		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 
 		; check MZ boss
 		tst.b	objoff_3F(a0)							; is lava ball was created by the MZ boss?
@@ -114,15 +114,15 @@ Obj_LavaBall:
 ; ---------------------------------------------------------------------------
 
 LBall_TypeIndex: offsetTable
-		offsetTableEntry.w LBall_Type00		; 0
-		offsetTableEntry.w LBall_Type00		; 1
-		offsetTableEntry.w LBall_Type00		; 2
-		offsetTableEntry.w LBall_Type00		; 3
-		offsetTableEntry.w LBall_Type04		; 4
-		offsetTableEntry.w LBall_Type05		; 5
-		offsetTableEntry.w LBall_Type06		; 6
-		offsetTableEntry.w LBall_Type07		; 7
-		offsetTableEntry.w LBall_Type08		; 8
+		offsetTableEntry.w LBall_Type00						; 0
+		offsetTableEntry.w LBall_Type00						; 1
+		offsetTableEntry.w LBall_Type00						; 2
+		offsetTableEntry.w LBall_Type00						; 3
+		offsetTableEntry.w LBall_Type04						; 4
+		offsetTableEntry.w LBall_Type05						; 5
+		offsetTableEntry.w LBall_Type06						; 6
+		offsetTableEntry.w LBall_Type07						; 7
+		offsetTableEntry.w LBall_Type08						; 8
 ; ---------------------------------------------------------------------------
 ; lavaball types 00-03 fly up and fall back down
 
@@ -134,10 +134,10 @@ LBall_Type00:
 		move.l	#Delete_Current_Sprite,address(a0)				; goto "LBall_Delete" routine
 
 .loc_E41E
-		bclr	#1,status(a0)
+		bclr	#status.npc.y_flip,status(a0)
 		tst.w	y_vel(a0)
 		bpl.s	LBall_Type08
-		bset	#1,status(a0)
+		bset	#status.npc.y_flip,status(a0)
 
 LBall_Type08:
 		rts
@@ -145,7 +145,7 @@ LBall_Type08:
 ; lavaball type 04 flies up until it hits the ceiling
 
 LBall_Type04:
-		bset	#1,status(a0)
+		bset	#status.npc.y_flip,status(a0)
 		jsr	(ObjCheckCeilingDist).w
 		tst.w	d1
 		bpl.s	.return
@@ -159,7 +159,7 @@ LBall_Type04:
 ; lavaball type 05 falls down until it hits the floor
 
 LBall_Type05:
-		bclr	#1,status(a0)
+		bclr	#status.npc.y_flip,status(a0)
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1
 		bpl.s	.return
@@ -173,7 +173,7 @@ LBall_Type05:
 ; lavaball types 06-07 move sideways
 
 LBall_Type06:
-		bset	#0,status(a0)
+		bset	#status.npc.x_flip,status(a0)
 		moveq	#-(16/2),d3
 		jsr	(ObjCheckLeftWallDist).w
 		tst.w	d1
@@ -187,7 +187,7 @@ LBall_Type06:
 ; ---------------------------------------------------------------------------
 
 LBall_Type07:
-		bclr	#0,status(a0)
+		bclr	#status.npc.x_flip,status(a0)
 		moveq	#16/2,d3
 		jsr	(ObjCheckRightWallDist).w
 		tst.w	d1
@@ -202,8 +202,8 @@ LBall_Type07:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_LavaMaker:	subObjMainData Obj_LavaMaker.makelava, rfCoord, 0, 64, 64, 0, 0, 0, 0, Map_Offscreen
-ObjDat_LavaBall:	subObjMainData Obj_LavaBall.action, rfCoord, 0, 16, 16, 3, $298, 0, 0, Map_Fire
+ObjDat_LavaMaker:	subObjMainData Obj_LavaMaker.makelava, setBit(render_flags.level), 0, 64, 64, 0, 0, 0, 0, Map_Offscreen
+ObjDat_LavaBall:	subObjMainData Obj_LavaBall.action, setBit(render_flags.level), 0, 16, 16, 3, $298, 0, 0, Map_Fire
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Lava Ball/Object Data/Anim - Fireballs.asm"

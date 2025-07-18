@@ -81,8 +81,8 @@ Obj_Junction:
 		clr.l	x_vel(a1)
 		move.w	#$800,ground_vel(a1)
 		move.b	#1,object_control(a1)						; lock controls
-		bclr	#Status_Push,status(a1)						; clear character push bit
-		bset	#Status_InAir,status(a1)					; set character in air bit
+		bclr	#status.player.pushing,status(a1)				; clear character push bit
+		bset	#status.player.in_air,status(a1)				; set character in air bit
 		clr.b	jumping(a1)							; clear character jumping flag
 		clr.b	double_jump_flag(a1)						; clear character double jumping flag
 		clr.b	spin_dash_flag(a1)						; clear spin dash flag
@@ -200,7 +200,7 @@ Jun_ChkSwitch:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Junction:	subObjMainData Obj_Junction.action, rfCoord+rfMulti, 0, 112, 112, 4, $31B, 2, 0, Map_Jun
+ObjDat_Junction:	subObjMainData Obj_Junction.action, setBit(render_flags.level)|setBit(render_flags.multi_sprite), 0, 112, 112, 4, $31B, 2, 0, Map_Jun
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Rotating Junction/Object Data/Map - Rotating Junction.asm"

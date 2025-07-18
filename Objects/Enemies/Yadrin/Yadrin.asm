@@ -22,7 +22,7 @@ Obj_Yadrin:
 		bpl.s	.floornotfound
 		add.w	d1,y_pos(a0)							; match object's position with the floor
 		clr.w	y_vel(a0)
-		bchg	#0,status(a0)
+		bchg	#status.npc.x_flip,status(a0)
 		move.l	#.move,objoff_34(a0)
 		move.l	#.action,address(a0)
 
@@ -45,7 +45,7 @@ Obj_Yadrin:
 		move.l	#.fixtofloor,objoff_34(a0)
 		move.w	#-$100,x_vel(a0)						; move object
 		move.b	#1,anim(a0)
-		bchg	#0,status(a0)
+		bchg	#status.npc.x_flip,status(a0)
 		bne.s	.noflip
 		neg.w	x_vel(a0)							; change direction
 

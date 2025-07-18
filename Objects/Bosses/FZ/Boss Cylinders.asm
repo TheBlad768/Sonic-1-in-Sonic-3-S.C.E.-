@@ -35,14 +35,14 @@ Obj_EggmanCylinder:
 		; init
 		lea	ObjDat_BossCylinder(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		bset	#7,status(a0)							; disable player's balance animation
+		bset	#status.npc.no_balancing,status(a0)				; disable player's balance animation
 		move.w	#bytes_to_word(64/2,128/2),objoff_3A(a0)			; set explosion radius
 		move.l	#.main,address(a0)
 
 		; check flipy
 		cmpi.b	#2,subtype(a0)
 		ble.s	.main
-		bset	#1,render_flags(a0)						; 4 and 6 only (flipy sprite)
+		bset	#render_flags.y_flip,render_flags(a0)				; 4 and 6 only (flipy sprite)
 
 .main
 		clr.l	obBFZEC_YVel(a0)
@@ -146,7 +146,7 @@ EggmanCylinder_Movement:
 
 		; check boss defeated
 		movea.w	parent3(a0),a1							; load Eggman address
-		btst	#7,status(a1)
+		btst	#status.npc.defeated,status(a1)
 		beq.s	.movechkup
 
 		; create explosions
@@ -161,7 +161,7 @@ EggmanCylinder_Movement:
 
 		; check boss defeated
 		movea.w	parent3(a0),a1							; load Eggman address
-		btst	#7,status(a1)
+		btst	#status.npc.defeated,status(a1)
 		beq.s	.notdefeatedup
 		subq.w	#1,obBFZEC_YVel(a0)
 
@@ -205,7 +205,7 @@ EggmanCylinder_Movement:
 
 		; check boss defeated
 		movea.w	parent3(a0),a1							; load Eggman address
-		btst	#7,status(a1)
+		btst	#status.npc.defeated,status(a1)
 		beq.s	.movechkdown
 
 		; create explosions
@@ -220,7 +220,7 @@ EggmanCylinder_Movement:
 
 		; check boss defeated
 		movea.w	parent3(a0),a1							; load Eggman address
-		btst	#7,status(a1)
+		btst	#status.npc.defeated,status(a1)
 		beq.s	.notdefeateddown
 		addq.w	#1,obBFZEC_YVel(a0)
 

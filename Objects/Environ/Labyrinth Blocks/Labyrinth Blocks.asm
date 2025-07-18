@@ -105,13 +105,13 @@ sub_12180:
 ; =============== S U B R O U T I N E =======================================
 
 LabyrinthBlock_TypeIndex: offsetTable
-		offsetTableEntry.w .type01	; 1
-		offsetTableEntry.w .type02	; 2
-		offsetTableEntry.w .type03	; 3
-		offsetTableEntry.w .type04	; 4
-		offsetTableEntry.w .type05	; 5
-		offsetTableEntry.w .type06	; 6
-		offsetTableEntry.w .type07	; 7
+		offsetTableEntry.w .type01						; 1
+		offsetTableEntry.w .type02						; 2
+		offsetTableEntry.w .type03						; 3
+		offsetTableEntry.w .type04						; 4
+		offsetTableEntry.w .type05						; 5
+		offsetTableEntry.w .type06						; 6
+		offsetTableEntry.w .type07						; 7
 ; ---------------------------------------------------------------------------
 
 .type01
@@ -214,7 +214,7 @@ LabyrinthBlock_TypeIndex: offsetTable
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_LabyrinthBlock:		subObjMainData Obj_LabyrinthBlock.action, rfCoord, 0, 0, 0, 3, $3E6, 2, 0, Map_LBlock
+ObjDat_LabyrinthBlock:		subObjMainData Obj_LabyrinthBlock.action, setBit(render_flags.level), 0, 0, 0, 3, $3E6, 2, 0, Map_LBlock
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Labyrinth Blocks/Object Data/Map - Labyrinth Blocks.asm"

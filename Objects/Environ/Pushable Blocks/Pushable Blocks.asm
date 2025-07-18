@@ -35,7 +35,7 @@ Obj_PushableBlock:
 
 .notLZ
 		move.w	d0,art_tile(a0)
-		move.b	#rfCoord,render_flags(a0)					; use screen coordinates
+		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(32/2,32/2,priority_3),height_pixels(a0)	; set height, width and priority
 		move.w	#bytes_to_word(30/2,32/2),y_radius(a0)				; set y_radius and x_radius
 		move.w	x_pos(a0),pushb_origX(a0)
@@ -156,7 +156,7 @@ PushableBlock_Floating:									; floating block on lava
 		jsr	(MoveSprite2).w
 
 .smove
-		btst	#1,status(a0)							; geyser flag set?
+		btst	#status.npc.y_flip,status(a0)					; geyser flag set?
 		beq.s	.checkxvel							; if not, branch
 
 		; geyser move
@@ -168,7 +168,7 @@ PushableBlock_Floating:									; floating block on lava
 		bpl.s	.push
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)
-		bclr	#1,status(a0)							; clr geyser flag
+		bclr	#status.npc.y_flip,status(a0)					; clr geyser flag
 
 		; check lava
 		move.w	(a1),d0								; get id of the 16x16 block
@@ -400,9 +400,9 @@ PushableBlock_MovePush:									; push block normal
 		bhs.s	.mright								; right move
 
 		; left move
-		btst	#Status_Push,d0							; player is pushing the block?
+		btst	#status.player.pushing,d0					; player is pushing the block?
 		beq.s	.return								; if not, branch
-		btst	#Status_Facing,d0						; player is looking at the block?
+		btst	#status.player.x_flip,d0					; player is looking at the block?
 		beq.s	.return								; if not, branch
 
 		; wait
@@ -455,9 +455,9 @@ PushableBlock_MovePush:									; push block normal
 .mright
 
 		; right move
-		btst	#Status_Push,d0							; player is pushing the block?
+		btst	#status.player.pushing,d0					; player is pushing the block?
 		beq.s	.return								; if not, branch
-		btst	#Status_Facing,d0						; player is looking at the block?
+		btst	#status.player.x_flip,d0					; player is looking at the block?
 		bne.s	.return								; if not, branch
 
 		; wait

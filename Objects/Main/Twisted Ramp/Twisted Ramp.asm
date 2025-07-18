@@ -18,7 +18,7 @@ Obj_TwistedRamp:
 ; =============== S U B R O U T I N E =======================================
 
 .check
-		btst	#Status_InAir,status(a1)					; is the player in the air?
+		btst	#status.player.in_air,status(a1)				; is the player in the air?
 		bne.w	.return								; if yes, branch
 
 		; check control flag
@@ -42,7 +42,7 @@ Obj_TwistedRamp:
 		bgt.s	.return
 
 		; check xflip
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		bne.s	.left
 
 		; right
@@ -59,7 +59,7 @@ Obj_TwistedRamp:
 
 .launch
 		move.w	#-$700,y_vel(a1)
-		bset	#Status_InAir,status(a1)
+		bset	#status.player.in_air,status(a1)
 		move.b	#PlayerID_Control,routine(a1)
 		moveq	#1,d0
 		move.w	d0,ground_vel(a1)

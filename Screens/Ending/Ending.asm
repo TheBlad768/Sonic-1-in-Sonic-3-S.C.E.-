@@ -104,8 +104,8 @@ EndingScreen:
 		; with emeralds
 		move.l	#words_to_long(0,$500),(Level_data_addr_RAM.xstart).w				; camerax (with emeralds)
 		move.w	#$620-$20,d0
-		move.w	d0,(Level_data_addr_RAM.SonLoc).w					; xpos (with emeralds)
-		move.w	d0,(Level_data_addr_RAM.KnuxLoc).w					; xpos (with emeralds)
+		move.w	d0,(Level_data_addr_RAM.SonLoc).w						; xpos (with emeralds)
+		move.w	d0,(Level_data_addr_RAM.KnuxLoc).w						; xpos (with emeralds)
 
 .noemer
 
@@ -155,7 +155,7 @@ EndingScreen:
 
 		; p1
 		lea	(Player_1).w,a1									; a1=character
-		bset	#Status_Facing,status(a1)							; make Sonic face left
+		bset	#status.player.x_flip,status(a1)						; make Sonic face left
 		move.w	#-$600,ground_vel(a1)								; set Sonic's speed
 		st	(Ctrl_1_locked).w								; lock controls
 		move.w	#bytes_to_word(btnL,0),(Ctrl_1_logical).w					; move Sonic to the left
@@ -165,7 +165,7 @@ EndingScreen:
 		tst.l	address(a1)									; is player RAM empty?
 		beq.s	.notp2										; if yes, branch
 		addi.w	#64,x_pos(a1)
-		bset	#Status_Facing,status(a1)							; make Tails face left
+		bset	#status.player.x_flip,status(a1)						; make Tails face left
 		move.w	#-$600,ground_vel(a1)								; set Tails's speed
 		st	(Ctrl_2_locked).w								; lock controls
 		move.w	#bytes_to_word(btnL,0),(Ctrl_2_logical).w					; move Tails to the left
@@ -512,7 +512,7 @@ Obj_EndChaos:
 		move.l	#.circular,address(a1)
 		move.l	#Map_ECha,mappings(a1)
 		move.w	#make_art_tile($3C5,0,1),art_tile(a1)
-		move.b	#rfCoord,render_flags(a1)							; use screen coordinates
+		move.b	#setBit(render_flags.level),render_flags(a1)					; use screen coordinates
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		move.l	#bytes_word_to_long(16/2,16/2,priority_1),height_pixels(a0)			; set height, width and priority

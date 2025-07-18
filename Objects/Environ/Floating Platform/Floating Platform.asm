@@ -21,7 +21,7 @@ Obj_FloatingPlatform:
 
 .notSLZ
 		move.l	d0,mappings(a0)
-		move.b	#rfCoord,render_flags(a0)					; use screen coordinates
+		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(34/2,64/2,priority_4),height_pixels(a0)	; set height, width and priority
 		move.w	x_pos(a0),objoff_30(a0)
 		move.w	x_pos(a0),objoff_32(a0)
@@ -77,19 +77,19 @@ loc_25642:
 ; =============== S U B R O U T I N E =======================================
 
 FloatingPlatform_TypeIndex: offsetTable
-		offsetTableEntry.w FloatingPlatform_Nudge		; 0
-		offsetTableEntry.w FloatingPlatform_LeftRight		; 1
-		offsetTableEntry.w FloatingPlatform_UpDown		; 2
-		offsetTableEntry.w FloatingPlatform_CheckFalling	; 3
-		offsetTableEntry.w FloatingPlatform_Falling		; 4
-		offsetTableEntry.w FloatingPlatform_LeftRight		; 5
-		offsetTableEntry.w FloatingPlatform_UpDown		; 6
-		offsetTableEntry.w FloatingPlatform_Button		; 7
-		offsetTableEntry.w FloatingPlatform_Raise		; 8
-		offsetTableEntry.w FloatingPlatform_Nudge		; 9
-		offsetTableEntry.w FloatingPlatform_Large		; A
-		offsetTableEntry.w FloatingPlatform_UpDown2		; B
-		offsetTableEntry.w FloatingPlatform_UpDown2		; C
+		offsetTableEntry.w FloatingPlatform_Nudge				; 0
+		offsetTableEntry.w FloatingPlatform_LeftRight				; 1
+		offsetTableEntry.w FloatingPlatform_UpDown				; 2
+		offsetTableEntry.w FloatingPlatform_CheckFalling			; 3
+		offsetTableEntry.w FloatingPlatform_Falling				; 4
+		offsetTableEntry.w FloatingPlatform_LeftRight				; 5
+		offsetTableEntry.w FloatingPlatform_UpDown				; 6
+		offsetTableEntry.w FloatingPlatform_Button				; 7
+		offsetTableEntry.w FloatingPlatform_Raise				; 8
+		offsetTableEntry.w FloatingPlatform_Nudge				; 9
+		offsetTableEntry.w FloatingPlatform_Large				; A
+		offsetTableEntry.w FloatingPlatform_UpDown2				; B
+		offsetTableEntry.w FloatingPlatform_UpDown2				; C
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -108,7 +108,7 @@ FloatingPlatform_LeftRight:								; type01(Left/Right) and type05(Right/Left)
 
 .main
 		sub.w	d1,d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.notflip
 		neg.w	d0
 
@@ -151,7 +151,7 @@ FloatingPlatform_UpDown:								; type02(Up/Down) and type06(Down/Up)
 
 .main
 		sub.w	d1,d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.notflip
 		neg.w	d0
 
@@ -231,9 +231,9 @@ FloatingPlatform_SetPlayerFalling:
 		move.w	#$200,y_vel(a1)
 		move.b	#1,prev_anim(a1)
 		move.b	#PlayerID_Control,routine(a1)
-		bclr	#Status_OnObj,status(a1)
-		bclr	#Status_Push,status(a1)
-		bset	#Status_InAir,status(a1)
+		bclr	#status.player.on_object,status(a1)
+		bclr	#status.player.pushing,status(a1)
+		bset	#status.player.in_air,status(a1)
 		bne.s	.return								; if the player is already in the air, branch
 
 		; set anim
@@ -313,7 +313,7 @@ FloatingPlatform_Large:									; type0A
 		moveq	#0,d0
 		move.b	(Oscillating_Data+$18).w,d0
 		sub.w	d1,d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.notflip
 		neg.w	d0
 

@@ -17,7 +17,7 @@ Obj_Girder:
 		; init
 		move.l	#Map_Gird,mappings(a0)
 		move.w	#make_art_tile($2DA,2,0),art_tile(a0)
-		ori.b	#rfCoord,render_flags(a0)					; use screen coordinates
+		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(48/2,192/2,priority_4),height_pixels(a0)	; set height, width and priority
 		move.w	x_pos(a0),gird_origX(a0)
 		move.w	y_pos(a0),gird_origY(a0)

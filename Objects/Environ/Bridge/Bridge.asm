@@ -16,7 +16,7 @@ Obj_TensionBridge:
 		andi.b	#$7F,subtype(a0)
 
 .plus
-		move.b	#rfCoord,render_flags(a0)					; use screen coordinates
+		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(16/2,256/2,priority_3),height_pixels(a0)	; set height, width and priority
 		move.w	y_pos(a0),d2
 		move.w	d2,objoff_3C(a0)
@@ -65,7 +65,7 @@ sub_38756:
 		move.w	art_tile(a0),art_tile(a1)
 		move.b	render_flags(a0),render_flags(a1)
 		move.w	priority(a0),priority(a1)
-		bset	#6,render_flags(a1)						; set multi-draw flag
+		bset	#render_flags.multi_sprite,render_flags(a1)			; set multi-draw flag
 		move.w	#bytes_to_word(16/2,128/2),height_pixels(a1)			; set height and width
 		move.w	d1,mainspr_childsprites(a1)
 		subq.b	#1,d1
@@ -217,7 +217,7 @@ sub_389DE:
 		lea	sub2_x_pos(a3),a2
 		move.w	mainspr_childsprites(a3),d6
 		subq.w	#1,d6
-		bclr	#6,render_flags(a3)						; clear multi-draw flag
+		bclr	#render_flags.multi_sprite,render_flags(a3)			; clear multi-draw flag
 		movea.w	a3,a1								; load object to a1
 		bra.s	loc_38A00
 ; ---------------------------------------------------------------------------
@@ -297,7 +297,7 @@ SolidObject_TensionBridge:
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
 		beq.s	SolidObjCheck_TensionBridge					; if not, branch
-		btst	#Status_InAir,status(a1)					; is the player in the air?
+		btst	#status.player.in_air,status(a1)				; is the player in the air?
 		bne.s	.release							; if yes, branch
 		move.w	x_pos(a1),d0
 		sub.w	x_pos(a0),d0
@@ -307,7 +307,7 @@ SolidObject_TensionBridge:
 		blo.s	.stand
 
 .release
-		bclr	#Status_OnObj,status(a1)
+		bclr	#status.player.on_object,status(a1)
 		bclr	d6,status(a0)
 		moveq	#0,d4
 		rts

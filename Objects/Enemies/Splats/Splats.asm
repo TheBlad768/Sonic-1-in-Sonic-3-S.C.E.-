@@ -65,7 +65,7 @@ Obj_Splats:
 		bsr.s	Splats_CheckWall
 		beq.s	.return
 		neg.w	x_vel(a0)
-		bchg	#0,render_flags(a0)
+		bchg	#render_flags.x_flip,render_flags(a0)
 
 .return
 		rts

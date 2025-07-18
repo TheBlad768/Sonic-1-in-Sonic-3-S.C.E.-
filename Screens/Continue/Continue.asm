@@ -262,10 +262,10 @@ Obj_Continue_SonicWTails:
 		move.b	d0,anim_frame(a0)
 		lea	.aniraw(pc,d0.w),a2
 		move.b	(a2)+,mapping_frame(a0)
-		bclr	#0,render_flags(a0)								; clear flipx
+		bclr	#render_flags.x_flip,render_flags(a0)						; clear flipx
 		tst.b	(a2)
 		beq.s	.draw
-		bset	#0,render_flags(a0)								; set flipx
+		bset	#render_flags.x_flip,render_flags(a0)						; set flipx
 
 .draw
 		jsr	(Sonic_Load_PLC).l
@@ -280,7 +280,7 @@ Obj_Continue_SonicWTails:
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
 
-.aniraw				; frame, flipx flag
+.aniraw		; frame, flipx flag
 		dc.b $5A, 1
 		dc.b $59, 1
 		dc.b $55, 0
@@ -413,7 +413,13 @@ Obj_Continue_TailsWSonic:
 .main
 		move.l	#.wait,address(a0)
 		move.l	#Map_Tails,mappings(a0)
-		move.l	#words_to_long(priority_5,make_art_tile(ArtTile_Player_2,0,0)),priority(a0)	; set priority and art_tile
+
+		; set priority and art_tile
+		move.l	#words_to_long( \
+		priority_5, \
+			make_art_tile(ArtTile_Player_2,0,0) \
+		),priority(a0)
+
 		clr.b	(Player_prev_frame_P2).w
 		move.w	#bytes_to_word(5,0),anim(a0)							; set anim and prev_anim
 		move.w	#bytes_to_word($AD,0),mapping_frame(a0)						; set frame and clear anim_frame
@@ -611,7 +617,7 @@ Obj_Continue_EggRobo:
 		; init
 		lea	ObjDat_919A6(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.b	#1,render_flags(a0)								; flipx
+		move.b	#render_flags.y_flip,render_flags(a0)						; flipx
 		move.l	#.main,address(a0)
 		move.w	#$80-32,x_pos(a0)
 		move.w	#$80+(224/2),y_pos(a0)
@@ -654,9 +660,9 @@ Obj_Continue_EggRobo_Legs:
 
 		; check
 		movea.w	parent3(a0),a1
-		btst	#2,render_flags(a1)								; is parent uses screen coordinates flag?
+		btst	#render_flags.level,render_flags(a1)						; is parent uses screen coordinates flag?
 		bne.s	.main										; if yes, branch
-		bclr	#2,render_flags(a0)								; clear screen coordinates flag
+		bclr	#render_flags.level,render_flags(a0)						; clear screen coordinates flag
 
 .main
 		jsr	(Refresh_ChildPositionAdjusted).w
@@ -687,9 +693,9 @@ Obj_Continue_EggRobo_Gun:
 
 		; check
 		movea.w	parent3(a0),a1
-		btst	#2,render_flags(a1)								; is parent uses screen coordinates flag?
+		btst	#render_flags.level,render_flags(a1)						; is parent uses screen coordinates flag?
 		bne.s	.main										; if yes, branch
-		bclr	#2,render_flags(a0)								; clear screen coordinates flag
+		bclr	#render_flags.level,render_flags(a0)						; clear screen coordinates flag
 
 .main
 		pea	(Child_Draw_Sprite).w
@@ -703,11 +709,11 @@ Refresh_ChildPositionAdjusted_Continue:
 		move.w	x_pos(a1),d0
 		move.b	child_dx(a0),d1
 		ext.w	d1
-		bclr	#0,render_flags(a0)
-		btst	#0,render_flags(a1)
+		bclr	#render_flags.x_flip,render_flags(a0)
+		btst	#render_flags.x_flip,render_flags(a1)
 		beq.s	.notflipx
 		neg.w	d1
-		bset	#0,render_flags(a0)
+		bset	#render_flags.x_flip,render_flags(a0)
 
 .notflipx
 		add.w	d1,d0
@@ -719,11 +725,11 @@ Refresh_ChildPositionAdjusted_Continue:
 .skipypos
 		move.b	child_dy(a0),d1
 		ext.w	d1
-		bclr	#1,render_flags(a0)
-		btst	#1,render_flags(a1)
+		bclr	#render_flags.y_flip,render_flags(a0)
+		btst	#render_flags.y_flip,render_flags(a1)
 		beq.s	.notflipy
 		neg.w	d1
-		bset	#1,render_flags(a0)
+		bset	#render_flags.y_flip,render_flags(a0)
 
 .notflipy
 		add.w	d1,d0

@@ -23,7 +23,7 @@ Obj_MotoBug:
 		bpl.s	.notonfloor
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)
-		bchg	#0,status(a0)
+		bchg	#status.npc.x_flip,status(a0)
 		move.l	#.move,objoff_34(a0)
 		move.l	#.action,address(a0)
 
@@ -43,7 +43,7 @@ Obj_MotoBug:
 		move.l	#.findfloor,objoff_34(a0)
 		move.b	#1,anim(a0)
 		move.w	#-$100,x_vel(a0)						; move object to the left
-		bchg	#0,status(a0)
+		bchg	#status.npc.x_flip,status(a0)
 		bne.s	.wait
 		neg.w	x_vel(a0)							; change direction
 

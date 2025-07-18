@@ -27,9 +27,9 @@ Obj_Elevator:
 		rts
 ; ---------------------------------------------------------------------------
 
-.Elev_Var1:
+.Elev_Var1
 		dc.b 80/2, 0		; width, frame number
-.Elev_Var2:
+.Elev_Var2
 		dc.b $10, 1	; 0	; distance to move, action type
 		dc.b $20, 1	; 1
 		dc.b $34, 1	; 2
@@ -68,8 +68,14 @@ Obj_Elevator:
 
 		; init
 		move.l	#Map_Elev,mappings(a0)
-		move.b	#rfCoord,render_flags(a0)					; use screen coordinates
-		move.l	#words_to_long(priority_4,make_art_tile(0,2,0)),priority(a0)	; set priority and art_tile
+		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
+
+		; set priority and art_tile
+		move.l	#words_to_long( \
+		priority_4, \
+			make_art_tile(0,2,0) \
+		),priority(a0)
+
 		move.w	x_pos(a0),elev_origX(a0)
 		move.w	y_pos(a0),elev_origY(a0)
 		move.l	#.main,address(a0)						; goto Elev_Platform next
@@ -101,17 +107,17 @@ Obj_Elevator:
 ; =============== S U B R O U T I N E =======================================
 
 .index
-		bra.s	.type01		; 1
-		bra.s	.type02		; 2
-		bra.s	.type01		; 3
-		bra.s	.type04		; 4
-		bra.s	.type01		; 5
-		bra.s	.type06		; 6
-		bra.s	.type01		; 7
-		bra.s	.type08		; 8
+		bra.s	.type01								; 1
+		bra.s	.type02								; 2
+		bra.s	.type01								; 3
+		bra.s	.type04								; 4
+		bra.s	.type01								; 5
+		bra.s	.type06								; 6
+		bra.s	.type01								; 7
+		bra.s	.type08								; 8
 ; ---------------------------------------------------------------------------
 
-		; type09		; 9
+		; type09								; 9
 		bsr.w	Elev_Move
 		move.w	objoff_34(a0),d0
 		neg.w	d0
@@ -239,7 +245,7 @@ Elev_MakeMulti:
 		move.l	#Obj_Elevator,address(a1)					; duplicate the object
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
-		move.b	#$E,subtype(a1)							; set 9 subtype
+		move.b	#$E,subtype(a1)							; set $E subtype
 
 .chkdel
 		jmp	(Delete_Sprite_If_Not_In_Range).w

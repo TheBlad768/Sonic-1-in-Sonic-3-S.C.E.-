@@ -12,17 +12,17 @@ Obj_Orbinaut:
 
 		; set
 		move.w	#-$40,x_vel(a0)							; move orbinaut to the left
-		btst	#0,status(a0)							; is orbinaut facing left??
+		btst	#status.npc.x_flip,status(a0)					; is orbinaut facing left??
 		beq.s	.rot								; if not, branch
 		neg.w	x_vel(a0)							; move orbinaut to the right
 
 .rot
 		moveq	#1,d0
-		btst	#0,status(a0)							; is orbinaut facing left?
+		btst	#status.npc.x_flip,status(a0)					; is orbinaut facing left?
 		beq.s	.noflip								; if not, branch
 		neg.b	d0
 
-.noflip:
+.noflip
 		move.b	d0,orb_rotation(a0)
 
 		; init
@@ -96,7 +96,7 @@ Obj_Orbinaut_Orb:
 		move.l	#Map_Orb_Orb,mappings(a0)
 		lea	ObjDat3_Orbinaut_Orb(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
-		bset	#rbStatic,render_flags(a0)					; set flag to "static mappings flag"
+		bset	#render_flags.static_mappings,render_flags(a0)			; set flag to "static mappings flag"
 		move.l	#.main,address(a0)
 
 .main
@@ -105,7 +105,7 @@ Obj_Orbinaut_Orb:
 		bne.s	.circle								; if not, branch
 		tst.b	orbo_angle(a0)							; is spikeorb directly under the orbinaut?
 		bne.s	.circle								; if not, branch
-		bset	#3,shield_reaction(a0)						; bounce off all shields
+		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
 		move.l	#.move,address(a0)
 		subq.b	#1,orb_count(a1)
 		bpl.s	.fire
@@ -113,7 +113,7 @@ Obj_Orbinaut_Orb:
 
 .fire
 		move.w	#-$200,x_vel(a0)						; move orb to the left (quickly)
-		btst	#0,status(a1)
+		btst	#status.npc.x_flip,status(a1)
 		beq.s	.move
 		neg.w	x_vel(a0)
 

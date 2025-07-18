@@ -13,7 +13,7 @@ Obj_VanishPlatform:
 		; init
 		move.l	#Map_VanP,mappings(a0)
 		move.w	#make_art_tile($364,2,0),art_tile(a0)
-		ori.b	#rfCoord,render_flags(a0)					; use screen coordinates
+		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(32/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority
 		move.l	#.main,address(a0)
 

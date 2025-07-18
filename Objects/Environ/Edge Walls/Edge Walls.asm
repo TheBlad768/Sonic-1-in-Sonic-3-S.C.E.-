@@ -9,7 +9,7 @@ Obj_EdgeWalls:
 		; init
 		move.l	#Map_EdgeWalls,mappings(a0)
 		move.w	#make_art_tile($3A4,2,0),art_tile(a0)
-		ori.b	#rfCoord,render_flags(a0)					; use screen coordinates
+		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(64/2,16/2,priority_6),height_pixels(a0)	; set height, width and priority
 		move.b	subtype(a0),mapping_frame(a0)
 

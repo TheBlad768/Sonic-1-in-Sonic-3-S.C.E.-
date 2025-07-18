@@ -33,7 +33,7 @@ Obj_CollapseFloor:
 
 .notSBZ
 		move.w	d0,art_tile(a0)
-		ori.b	#rfCoord,render_flags(a0)					; use screen coordinates
+		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(48/2,64/2,priority_4),height_pixels(a0)	; set height, width and priority
 		move.b	#7,cflo_timedelay(a0)
 		ori.b	#$80,status(a0)
@@ -91,9 +91,9 @@ CollapseFloor_PlayerRelease:
 		beq.s	.return
 		bclr	d6,status(a0)
 		move.b	#1,prev_anim(a1)
-		bclr	#Status_OnObj,status(a1)
-		bclr	#Status_Push,status(a1)
-		bset	#Status_InAir,status(a1)
+		bclr	#status.player.on_object,status(a1)
+		bclr	#status.player.pushing,status(a1)
+		bset	#status.player.in_air,status(a1)
 
 		; set anim
 		tst.b	spin_dash_flag(a1)

@@ -51,10 +51,10 @@ loc_4B9B6:
 ; ---------------------------------------------------------------------------
 
 Obj09_Index: offsetTable
-		offsetTableEntry.w Obj09_Main		; 0
-		offsetTableEntry.w Obj09_ChkDebug	; 2
-		offsetTableEntry.w Obj09_ExitStage	; 4
-		offsetTableEntry.w Obj09_Exit2		; 6
+		offsetTableEntry.w Obj09_Main						; 0
+		offsetTableEntry.w Obj09_ChkDebug					; 2
+		offsetTableEntry.w Obj09_ExitStage					; 4
+		offsetTableEntry.w Obj09_Exit2						; 6
 ; ---------------------------------------------------------------------------
 
 off_4B9C2:
@@ -93,10 +93,10 @@ loc_4B9E8:
 
 		; init
 		move.w	#make_art_tile($79C,0,0),art_tile(a0)
-		move.b	#rfCoord,render_flags(a0)					; use screen coordinates
+		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.b	#AniIDSonAni_Roll,anim(a0)
-		bset	#Status_Roll,status(a0)
-		bset	#Status_InAir,status(a0)
+		bset	#status.player.rolling,status(a0)
+		bset	#status.player.in_air,status(a0)
 
 Obj09_ChkDebug:										; Routine 2
 
@@ -111,7 +111,7 @@ Obj09_NoDebug:
 	endif
 
 		clr.b	objoff_30(a0)
-		btst	#Status_InAir,status(a0)					; is the player in the air?
+		btst	#status.player.in_air,status(a0)				; is the player in the air?
 		bne.s	Obj09_InAir							; if yes, branch
 
 Obj09_OnWall:
@@ -191,7 +191,7 @@ loc_1BAF2:
 ; =============== S U B R O U T I N E =======================================
 
 Obj09_MoveLeft:
-		bset	#Status_Facing,status(a0)
+		bset	#status.player.x_flip,status(a0)
 		move.w	ground_vel(a0),d0
 		beq.s	loc_1BB06
 		bpl.s	loc_1BB1A
@@ -215,7 +215,7 @@ loc_1BB1A:
 ; =============== S U B R O U T I N E =======================================
 
 Obj09_MoveRight:
-		bclr	#Status_Facing,status(a0)
+		bclr	#status.player.x_flip,status(a0)
 		move.w	ground_vel(a0),d0
 		bmi.s	loc_1BB48
 		addi.w	#$C,d0
@@ -259,7 +259,7 @@ Obj09_Jump:
 		muls.w	d2,d0
 		asr.l	#8,d0
 		move.w	d0,y_vel(a0)
-		bset	#Status_InAir,status(a0)
+		bset	#status.player.in_air,status(a0)
 		sfx	sfx_Jump,1							; play jumping sound
 
 ; ---------------------------------------------------------------------------
@@ -347,7 +347,7 @@ Obj09_Fall:
 		sub.l	d0,d3
 		moveq	#0,d0
 		move.w	d0,x_vel(a0)
-		bclr	#Status_InAir,status(a0)
+		bclr	#status.player.in_air,status(a0)
 		add.l	d1,d2
 		bsr.s	sub_1BCE8
 		beq.s	loc_1BCC6
@@ -364,7 +364,7 @@ loc_1BCB0:
 		sub.l	d1,d2
 		moveq	#0,d1
 		move.w	d1,y_vel(a0)
-		bclr	#Status_InAir,status(a0)
+		bclr	#status.player.in_air,status(a0)
 
 loc_1BCC6:
 		asr.l	#8,d0
@@ -377,7 +377,7 @@ loc_1BCD4:
 		asr.l	#8,d0
 		asr.l	#8,d1
 		movem.w	d0-d1,x_vel(a0)
-		bset	#Status_InAir,status(a0)
+		bset	#status.player.in_air,status(a0)
 		rts
 
 ; =============== S U B R O U T I N E =======================================
@@ -639,7 +639,7 @@ Obj09_ChkBumper:
 		muls.w	d2,d0
 		asr.l	#8,d0
 		move.w	d0,y_vel(a0)
-		bset	#Status_InAir,status(a0)
+		bset	#status.player.in_air,status(a0)
 		bsr.w	SS_RemoveCollectedItem
 		bne.s	Obj09_BumpSnd
 		move.b	#2,(a2)

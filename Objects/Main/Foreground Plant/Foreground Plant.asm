@@ -8,7 +8,7 @@ Obj_ForegroundPlant:
 
 		; init
 		move.l	#Map_ForegroundPlant,mappings(a0)
-		ori.b	#rfCoord,render_flags(a0)					; use screen coordinates
+		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.w	x_pos(a0),objoff_30(a0)
 		move.w	y_pos(a0),objoff_32(a0)
 

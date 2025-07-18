@@ -37,7 +37,7 @@ Obj_BuzzBomber:
 		move.w	#128-1,buzz_timedelay(a0)					; set time delay to just over 2 seconds
 		move.w	#$400,x_vel(a0)							; move Buzz Bomber to the right
 		move.b	#1,anim(a0)							; use "flying" animation
-		btst	#0,status(a0)							; is Buzz Bomber facing	left?
+		btst	#status.npc.x_flip,status(a0)					; is Buzz Bomber facing	left?
 		bne.s	.noflip								; if not, branch
 		neg.w	x_vel(a0)							; move Buzz Bomber to the left
 
@@ -54,7 +54,7 @@ Obj_BuzzBomber:
 		move.w	d0,y_pos(a1)
 		move.l	#words_to_long($200,$200),x_vel(a1)				; move missile to the right, downwards
 		moveq	#20,d0
-		btst	#0,status(a0)							; is Buzz Bomber facing	left?
+		btst	#status.npc.x_flip,status(a0)					; is Buzz Bomber facing	left?
 		bne.s	.noflip2							; if not, branch
 		neg.w	d0
 		neg.w	x_vel(a1)							; move missile to the left
@@ -91,7 +91,7 @@ Obj_BuzzBomber:
 
 .chgdirection
 		clr.b	buzz_buzzstatus(a0)						; set Buzz Bomber to "normal"
-		bchg	#0,status(a0)							; change direction
+		bchg	#status.npc.x_flip,status(a0)					; change direction
 		move.w	#60-1,buzz_timedelay(a0)
 
 .stop
@@ -114,8 +114,13 @@ Obj_Missile:
 		lea	ObjDat_BuzzBomber_Missile(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		clr.b	routine(a0)
-		bset	#3,shield_reaction(a0)						; bounce off all shields
-		andi.b	#3,status(a0)
+		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
+
+		andi.b	#( \
+			setBit(status.npc.x_flip) | \
+			setBit(status.npc.y_flip) \
+		),status(a0)
+
 		move.l	#.wait,address(a0)
 
 .wait

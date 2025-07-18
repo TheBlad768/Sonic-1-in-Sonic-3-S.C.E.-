@@ -140,13 +140,13 @@ BossWater_MoveSwing:
 ; ---------------------------------------------------------------------------
 
 .loc_1804E
-		bset	#0,render_flags(a0)
+		bset	#render_flags.x_flip,render_flags(a0)
 		addq.b	#2,angle(a0)
 		move.b	angle(a0),d0
 		jsr	(GetSineCosine).w
 		tst.w	d1
 		bpl.s	.loc_1806C
-		bclr	#0,render_flags(a0)
+		bclr	#render_flags.x_flip,render_flags(a0)
 
 .loc_1806C
 		asr.w	#4,d0
@@ -203,7 +203,7 @@ BossWater_MoveUp3:
 .loc_180E6
 		bne.s	.return
 		move.l	#BossWater_MoveUp4,obBW_Jump(a0)
-		bclr	#0,render_flags(a0)
+		bclr	#render_flags.x_flip,render_flags(a0)
 
 .return
 		rts
@@ -224,7 +224,7 @@ BossWater_MoveUp4:
 
 .loc_18112
 		music	mus_LZ								; play LZ music
-		bset	#0,render_flags(a0)
+		bset	#render_flags.x_flip,render_flags(a0)
 		move.l	#BossWater_MoveUp5,obBW_Jump(a0)
 
 		; flags
@@ -325,7 +325,7 @@ BossWater_MainProcess:
 		bne.s	.flash								; if yes, branch
 		move.b	#$30,boss_invulnerable_time(a0)					; make boss invulnerable
 		sfx	sfx_BossHit							; play "boss hit" sound
-		bset	#6,status(a0)							; set "boss hit" flag
+		bset	#status.npc.touch,status(a0)					; set "boss hit" flag
 
 .flash
 		moveq	#0,d0								; load normal palette
@@ -337,7 +337,7 @@ BossWater_MainProcess:
 		jsr	(BossFlash2).w
 		subq.b	#1,boss_invulnerable_time(a0)					; decrease boss invincibility timer
 		bne.s	.return
-		bclr	#6,status(a0)							; clear "boss hit" flag
+		bclr	#status.npc.touch,status(a0)					; clear "boss hit" flag
 		move.b	boss_backup_collision(a0),collision_flags(a0)			; if invincibility ended, allow collision again
 
 .return

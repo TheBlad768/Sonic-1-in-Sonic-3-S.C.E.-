@@ -11,7 +11,7 @@ Obj_AutoDoor:
 		; init
 		move.l	#Map_ADoor,mappings(a0)
 		move.w	#make_art_tile($470,2,0),art_tile(a0)
-		ori.b	#rfCoord,render_flags(a0)					; use screen coordinates
+		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(64/2,16/2,priority_4),height_pixels(a0)	; set height, width and priority
 		move.l	#.openshut,address(a0)
 
@@ -62,13 +62,13 @@ Obj_AutoDoor:
 		add.w	d1,d0
 		cmp.w	x_pos(a0),d0							; is Sonic left of the door?
 		bhs.s	.loc_899A							; if yes, branch
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		bne.s	.return
 		bra.s	.open
 ; ---------------------------------------------------------------------------
 
 .loc_899A
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.return
 
 .open

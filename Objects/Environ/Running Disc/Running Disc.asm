@@ -100,7 +100,7 @@ Disc_MovePlayer:
 		add.w	d2,d1
 		cmp.w	d3,d1
 		bhs.s	.loc_3291A
-		btst	#Status_InAir,status(a1)					; is the player in the air?
+		btst	#status.player.in_air,status(a1)				; is the player in the air?
 		beq.s	.loc_32926							; if not, branch
 		clr.b	(a2)
 		rts
@@ -120,12 +120,12 @@ Disc_MovePlayer:
 		tst.b	(a2)
 		bne.s	.loc_3294C
 		move.b	#1,(a2)
-		btst	#Status_Roll,status(a1)
+		btst	#status.player.rolling,status(a1)
 		bne.s	.loc_3293A
 		clr.b	anim(a1)							; AniIDSonAni_Walk
 
 .loc_3293A
-		bclr	#Status_Push,status(a1)
+		bclr	#status.player.pushing,status(a1)
 		move.b	#AniIDSonAni_Run,prev_anim(a1)
 		st	stick_to_convex(a1)
 
@@ -166,7 +166,7 @@ Disc_MovePlayer:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_RunningDisc:	subObjMainData Obj_RunningDisc.action, rfCoord+rfStatic, 0, 16, 16, 4, 0, 0, 0, Map_Disc
+ObjDat_RunningDisc:	subObjMainData Obj_RunningDisc.action, setBit(render_flags.level)|setBit(render_flags.static_mappings), 0, 16, 16, 4, 0, 0, 0, Map_Disc
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Running Disc/Object Data/Map - Running Disc.asm"

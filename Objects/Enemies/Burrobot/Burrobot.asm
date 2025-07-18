@@ -43,7 +43,7 @@ Obj_Burrobot:
 		move.w	#256-1,burro_timedelay(a0)
 		move.w	#$80,x_vel(a0)
 		move.b	#1,anim(a0)
-		bchg	#0,status(a0)							; change direction the Burrobot is facing
+		bchg	#status.npc.x_flip,status(a0)					; change direction the Burrobot is facing
 		beq.s	.nochg
 		neg.w	x_vel(a0)							; change direction the Burrobot is moving
 
@@ -59,7 +59,7 @@ Obj_Burrobot:
 		bne.s	.loc_AD78
 		move.b	x_radius(a0),d3
 		ext.w	d3
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		bne.s	.loc_AD6A
 		neg.w	d3
 

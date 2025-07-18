@@ -29,7 +29,7 @@ Obj_Jaws:
 		move.w	d0,jaws_timecount(a0)						; set turn delay time
 		move.w	d0,jaws_timedelay(a0)
 		move.w	#-$40,x_vel(a0)							; move Jaws to the left
-		btst	#0,render_flags(a0)						; is Jaws facing left?
+		btst	#render_flags.x_flip,render_flags(a0)				; is Jaws facing left?
 		beq.s	.turn								; if yes, branch
 		neg.w	x_vel(a0)							; move Jaws to the right
 
@@ -38,7 +38,7 @@ Obj_Jaws:
 		bpl.s	.animate							; if time remains, branch
 		move.w	jaws_timedelay(a0),jaws_timecount(a0)				; reset turn delay time
 		neg.w	x_vel(a0)							; change speed direction
-		bchg	#0,render_flags(a0)						; change Jaws facing direction
+		bchg	#render_flags.x_flip,render_flags(a0)				; change Jaws facing direction
 
 .animate
 

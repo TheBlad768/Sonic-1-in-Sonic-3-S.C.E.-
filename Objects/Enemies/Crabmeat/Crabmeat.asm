@@ -64,7 +64,7 @@ Obj_Crabmeat:
 		move.b	#3,anim(a0)
 	endif
 
-		bchg	#0,status(a0)
+		bchg	#status.npc.x_flip,status(a0)
 		bne.s	.noflip
 		neg.w	x_vel(a0)							; change direction
 
@@ -91,7 +91,7 @@ Obj_Crabmeat:
 		bne.s	.alt
 		move.b	x_radius(a0),d3
 		ext.w	d3
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.notflipx
 		neg.w	d3
 
@@ -150,7 +150,7 @@ Crab_SetAni:
 		cmpi.b	#6,d3
 		blo.s	.return
 		moveq	#1,d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		bne.s	.return
 		moveq	#2,d0
 
@@ -162,7 +162,7 @@ Crab_SetAni:
 		cmpi.b	#-6,d3
 		bhi.s	.return2
 		moveq	#2,d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		bne.s	.return2
 		moveq	#1,d0
 
@@ -182,7 +182,7 @@ Obj_Crabmeat_Missile:
 		; init
 		lea	ObjDat3_Crabmeat_Missile(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
-		bset	#3,shield_reaction(a0)						; bounce off all shields
+		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
 		move.l	#.main,address(a0)
 		move.l	#words_to_long(-$100,-$400),x_vel(a0)
 		tst.b	subtype(a0)

@@ -184,7 +184,7 @@ Obj_BigRing_Flash:
 		move.w	(Player_1+x_pos).w,d0
 		cmp.w	x_pos(a0),d0
 		blo.s	.draw
-		bset	#0,render_flags(a1)						; set direction based on where player approached
+		bset	#render_flags.x_flip,render_flags(a1)				; set direction based on where player approached
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
 
@@ -255,7 +255,15 @@ Obj_BigRing_Flash:
 		addq.w	#4*2,sp								; exit from object and current screen
 		move.b	#GameModeID_SpecialStageScreen,(Game_mode).w			; set screen mode to Special Stage
 		move.b	#1,(Special_bonus_entry_flag).w					; set special stage flag
-		moveq	#$71,d0
+
+		; set status
+		moveq	#signextendB( \
+			setBit(status_secondary.shield) | \
+			setBit(status_secondary.fire_shield) | \
+			setBit(status_secondary.lightning_shield) | \
+			setBit(status_secondary.bubble_shield) \
+		),d0
+
 		and.b	(Player_1+status_secondary).w,d0
 		move.b	d0,(Saved2_status_secondary).w
 		st	(Respawn_table_keep).w

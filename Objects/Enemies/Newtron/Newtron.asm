@@ -35,10 +35,10 @@ Obj_Newtron:
 
 .chkdistance
 		jsr	(Find_SonicTails).w
-		bset	#0,status(a0)
+		bset	#status.npc.x_flip,status(a0)
 		tst.w	d0
 		bne.s	.sonicisright
-		bclr	#0,status(a0)
+		bclr	#status.npc.x_flip,status(a0)
 
 .sonicisright
 		cmpi.w	#128,d2								; is Sonic within $80 pixels of the newtron?
@@ -60,10 +60,10 @@ Obj_Newtron:
 		cmpi.b	#4,mapping_frame(a0)						; has "appearing" animation finished?
 		bhs.s	.fall								; is yes, branch
 		jsr	(Find_SonicTails).w
-		bset	#0,status(a0)
+		bset	#status.npc.x_flip,status(a0)
 		tst.w	d0
 		bne.s	.sonicisright
-		bclr	#0,status(a0)
+		bclr	#status.npc.x_flip,status(a0)
 
 .sonicisright2
 		rts
@@ -90,7 +90,7 @@ Obj_Newtron:
 .pppppppp
 		move.b	#$D,collision_flags(a0)
 		move.w	#$200,x_vel(a0)							; move newtron horizontally
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		bne.s	.keepfalling
 		neg.w	x_vel(a0)
 
@@ -139,7 +139,7 @@ Obj_Newtron:
 		subq.w	#8,y_pos(a1)
 		move.w	#$200,x_vel(a1)
 		moveq	#20,d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		bne.s	.noflip
 		neg.w	d0
 		neg.w	x_vel(a1)

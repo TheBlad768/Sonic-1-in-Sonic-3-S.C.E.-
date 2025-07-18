@@ -51,7 +51,7 @@ Obj_Updraft:
 		neg.w	d1
 		asr.w	#6,d1
 		add.w	d1,y_pos(a1)
-		bset	#Status_InAir,status(a1)
+		bset	#status.player.in_air,status(a1)
 
 		; clr
 		moveq	#0,d0
@@ -80,7 +80,7 @@ Obj_Updraft:
 		move.b	#$7F,flips_remaining(a1)
 		move.b	#8,flip_speed(a1)
 
-.return:
+.return
 		rts
 ; ---------------------------------------------------------------------------
 

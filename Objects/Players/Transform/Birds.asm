@@ -22,7 +22,7 @@ Obj_SuperTailsBirds:
 		moveq	#0,d0
 		moveq	#4-1,d1
 
-.loop:
+.loop
 		move.l	#Obj_SuperTailsBirds_Init,address(a1)
 		move.b	d0,superTailsBirds_angle(a1)
 		addi.b	#256/4,d0							; 90 degrees
@@ -41,8 +41,19 @@ Obj_SuperTailsBirds_Init:
 
 		; init
 		move.l	#Map_SuperTails_Birds,mappings(a0)
-		move.l	#words_to_long(priority_1,make_art_tile(ArtTile_Player_1,0,1)),priority(a0)	; set priority and art_tile
-		move.l	#bytes_to_long(rfCoord,0,16/2,16/2),render_flags(a0)		; set screen coordinates flag and height and width
+
+		; set priority and art_tile
+		move.l	#words_to_long( \
+		priority_1, \
+			make_art_tile(ArtTile_Player_1,0,1) \
+		),priority(a0)
+
+		; set screen coordinates flag and height and width
+		move.l	#bytes_to_long( \
+			setBit(render_flags.level), \
+		0,16/2,16/2 \
+		),render_flags(a0)
+
 		move.w	(Player_1+x_pos).w,x_pos(a0)
 		move.w	(Player_1+y_pos).w,y_pos(a0)
 		subi.w	#$C0,x_pos(a0)
@@ -84,20 +95,26 @@ Obj_SuperTailsBirds_Main:
 		tst.w	x_vel(a0)
 		beq.s	.x_flip_done
 		bpl.s	.face_right
-		bset	#0,render_flags(a0)
+		bset	#render_flags.x_flip,render_flags(a0)
 		bra.s	.x_flip_done
 ; ---------------------------------------------------------------------------
 
 .face_right
-		bclr	#0,render_flags(a0)
+		bclr	#render_flags.x_flip,render_flags(a0)
 
 .x_flip_done
 
 		; update whether the sprite should be upside down
-		andi.b	#~2,render_flags(a0)
+		andi.b	#~( \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
+
 		tst.b	(Reverse_gravity_flag).w
 		beq.s	.not_upside_down
-		ori.b	#2,render_flags(a0)
+
+		ori.b	#( \
+			setBit(render_flags.y_flip) \
+		),render_flags(a0)
 
 .not_upside_down
 
@@ -220,7 +237,7 @@ Obj_SuperTailsBirds_GetDestination:
 		bne.s	.skip
 	endif
 
-		bset	#7,status(a1)
+		bset	#status.npc.defeated,status(a1)
 
 .skip
 		bra.s	.done

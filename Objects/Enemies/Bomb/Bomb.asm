@@ -13,7 +13,7 @@ Obj_BombBadnik:
 		; init
 		lea	ObjDat_Bomb(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		bchg	#0,status(a0)
+		bchg	#status.npc.x_flip,status(a0)
 		move.l	#.action,address(a0)
 		move.l	#.walk,objoff_34(a0)
 
@@ -33,7 +33,7 @@ Obj_BombBadnik:
 		move.w	#((25*60)+36)-1,bom_time(a0)					; set time delay to 25 seconds
 		move.w	#$10,x_vel(a0)
 		move.b	#1,anim(a0)							; use walking animation
-		bchg	#0,status(a0)
+		bchg	#status.npc.x_flip,status(a0)
 		beq.s	.noflip
 		neg.w	x_vel(a0)							; change direction
 
@@ -80,7 +80,7 @@ Obj_BombBadnik:
 		move.b	render_flags(a0),render_flags(a1)
 		move.w	bom_time(a0),bom_time(a1)					; set fuse time
 		move.w	#$10,y_vel(a1)
-		btst	#1,status(a0)							; is bomb upside-down?
+		btst	#status.npc.y_flip,status(a0)					; is bomb upside-down?
 		beq.s	.outofrange							; if not, branch
 		neg.w	y_vel(a1)							; reverse direction for fuse
 
@@ -93,7 +93,7 @@ Obj_BombBadnik:
 		bpl.s	.noexplode							; if time remains, branch
 
 		; remove
-		bset	#7,status(a0)
+		bset	#status.npc.defeated,status(a0)
 		move.l	#Obj_Explosion.skipanimal,address(a0)				; change object to explosion
 
 .noexplode
@@ -167,9 +167,9 @@ Obj_BombBadnik_Shrapnel:
 		; init
 		lea	ObjDat3_Bomb_Shrapnel(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
-		bset	#3,shield_reaction(a0)						; bounce off all shields
+		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
 		move.l	#.action,address(a0)
-		bset	#rbOnscreen,render_flags(a0)
+		bset	#render_flags.on_screen,render_flags(a0)
 
 .action
 		MoveSprite a0, $18							; make obj fall

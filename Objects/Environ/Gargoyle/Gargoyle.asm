@@ -56,12 +56,12 @@ Obj_Gargoyle_FireBall:
 		; init
 		lea	ObjDat_Gargoyle_FireBall(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		bset	#Status_FireShield,shield_reaction(a0)
+		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 		move.w	#bytes_to_word(16/2,16/2),y_radius(a0)				; set y_radius and x_radius
 		sfx	sfx_Fireball							; play lava ball sound
 		move.l	#.anifire,address(a0)
 		move.w	#$200,x_vel(a0)
-		btst	#0,status(a0)							; is gargoyle facing left?
+		btst	#status.npc.x_flip,status(a0)					; is gargoyle facing left?
 		bne.s	.anifire							; if not, branch
 		neg.w	x_vel(a0)
 
@@ -77,7 +77,7 @@ Obj_Gargoyle_FireBall:
 		; check wall
 		move.b	x_radius(a0),d3
 		ext.w	d3
-		btst	#0,status(a0)							; is fireball moving left?
+		btst	#status.npc.x_flip,status(a0)					; is fireball moving left?
 		bne.s	.isright							; if not, branch
 		neg.w	d3
 		jsr	(ObjCheckLeftWallDist).w

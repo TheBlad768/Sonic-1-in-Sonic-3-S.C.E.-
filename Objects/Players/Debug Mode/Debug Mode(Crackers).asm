@@ -35,8 +35,8 @@ Debug_Mode:
 
 .nottails
 		move.w	d0,(a1)								; clear drowning timer
-		bclr	#Status_InAir,status(a0)
-		bclr	#Status_Push,status(a0)
+		bclr	#status.player.in_air,status(a0)
+		bclr	#status.player.pushing,status(a0)
 		cmpi.b	#GameModeID_SpecialStageScreen,(Game_mode).w			; is game mode Special Stage?
 		bne.s	.notspecial							; if yes, branch
 		move.l	d0,(SStage_scalar_index_0).w					; clear stage angle to "upright" and stage rotation speed
@@ -44,7 +44,7 @@ Debug_Mode:
 ; ---------------------------------------------------------------------------
 
 .notspecial
-		bclr	#Status_Underwater,status(a0)
+		bclr	#status.player.underwater,status(a0)
 		beq.s	.control
 		movea.w	a0,a1								; a1=character
 		jsr	(Player_ResetAirTimer).l
@@ -90,8 +90,8 @@ Debug_Mode:
 		move.w	d0,ground_vel(a0)
 		move.b	d0,double_jump_flag(a0)
 		move.b	d0,jumping(a0)
-		andi.b	#setBit(Status_Facing),status(a0)
-		ori.b	#setBit(Status_InAir),status(a0)
+		andi.b	#setBit(status.player.underwater),status(a0)
+		ori.b	#setBit(status.player.in_air),status(a0)
 		move.b	#PlayerID_Control,routine(a0)
 		move.w	default_y_radius(a0),y_radius(a0)				; set y_radius and x_radius
 		rts

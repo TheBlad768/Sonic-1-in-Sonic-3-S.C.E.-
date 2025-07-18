@@ -58,7 +58,7 @@ Obj_Conveyor:
 		addi.w	#48,d1
 		cmpi.w	#48,d1
 		bhs.s	.return
-		btst	#Status_InAir,status(a1)					; is the player in the air?
+		btst	#status.player.in_air,status(a1)				; is the player in the air?
 		bne.s	.return								; if yes, branch
 		move.w	conv_speed(a0),d0
 		add.w	d0,x_pos(a1)

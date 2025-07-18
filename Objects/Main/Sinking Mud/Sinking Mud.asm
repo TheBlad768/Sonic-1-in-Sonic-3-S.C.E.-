@@ -14,7 +14,7 @@ Obj_SinkingMud:
 		moveq	#$30,d0
 		move.b	d0,objoff_38(a0)
 		move.b	d0,objoff_3A(a0)
-		bset	#7,status(a0)							; disable player's balance animation
+		bset	#status.npc.no_balancing,status(a0)				; disable player's balance animation
 		move.l	#.main,address(a0)
 
 .main
@@ -28,7 +28,7 @@ Obj_SinkingMud:
 		addq.b	#2,objoff_38(a0)
 
 loc_32ACE:
-		btst	#Status_OnObj,status(a1)
+		btst	#status.player.on_object,status(a1)
 		beq.s	loc_32AF4
 		movea.w	interact(a1),a2
 		cmpi.l	#Obj_SinkingMud.main,address(a2)
@@ -58,7 +58,7 @@ loc_32AF4:
 		addq.b	#2,objoff_3A(a0)
 
 loc_32B24:
-		btst	#Status_OnObj,status(a1)
+		btst	#status.player.on_object,status(a1)
 		beq.s	loc_32B4A
 		movea.w	interact(a1),a2
 		cmpi.l	#Obj_SinkingMud.main,address(a2)

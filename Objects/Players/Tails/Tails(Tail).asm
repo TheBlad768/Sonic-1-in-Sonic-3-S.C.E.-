@@ -15,7 +15,7 @@ Obj_Tails_Tail:
 
 .notspecial
 		move.w	d0,art_tile(a0)
-		move.l	#bytes_to_long(rfCoord,0,48/2,48/2),render_flags(a0)		; set screen coordinates flag and height and width
+		move.l	#bytes_to_long(setBit(render_flags.level),0,48/2,48/2),render_flags(a0)		; set screen coordinates flag and height and width
 		move.l	#.main,address(a0)
 
 .main
@@ -35,7 +35,7 @@ Obj_Tails_Tail:
 .nothighpriority
 		moveq	#0,d0
 		move.b	anim(a2),d0
-		btst	#Status_Push,status(a2)
+		btst	#status.player.pushing,status(a2)
 		beq.s	.check
 		tst.b	(WindTunnel_flag_P2).w
 		bne.s	.check
@@ -60,7 +60,7 @@ Obj_Tails_Tail:
 		beq.s	.dplc
 		cmpi.b	#3,anim(a0)							; is this the Directional animation?
 		beq.s	.dplc								; if so, skip the mirroring
-		eori.b	#2,render_flags(a0)						; reverse the vertical mirror render_flag bit (On if Off beforehand and vice versa)
+		eori.b	#setBit(render_flags.y_flip),render_flags(a0)			; reverse the vertical mirror render_flag bit (On if Off beforehand and vice versa)
 
 .dplc
 		bsr.w	Tails_Tail_Load_PLC

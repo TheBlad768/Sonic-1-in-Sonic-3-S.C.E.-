@@ -103,7 +103,7 @@ BossBall_Move:
 .flipx
 		move.w	#(1<<6)-1,objoff_2E(a0)						; set wait
 		move.l	#BossBall_Move,objoff_34(a0)
-		bchg	#0,render_flags(a0)
+		bchg	#render_flags.x_flip,render_flags(a0)
 		clr.w	x_vel(a0)
 		rts
 
@@ -151,7 +151,7 @@ BossBall_MainProcess:
 		bne.s	.flash								; if yes, branch
 		move.b	#$30,boss_invulnerable_time(a0)					; make boss invulnerable
 		sfx	sfx_BossHit							; play "boss hit" sound
-		bset	#6,status(a0)							; set "boss hit" flag
+		bset	#status.npc.touch,status(a0)					; set "boss hit" flag
 
 .flash
 		moveq	#0,d0								; load normal palette
@@ -163,7 +163,7 @@ BossBall_MainProcess:
 		jsr	(BossFlash2).w
 		subq.b	#1,boss_invulnerable_time(a0)					; decrease boss invincibility timer
 		bne.s	.return
-		bclr	#6,status(a0)							; clear "boss hit" flag
+		bclr	#status.npc.touch,status(a0)					; clear "boss hit" flag
 		move.b	boss_backup_collision(a0),collision_flags(a0)			; if invincibility ended, allow collision again
 
 .return
@@ -215,7 +215,7 @@ BossBall_Defeated:
 		move.w	d0,(Camera_stored_max_X_pos).w
 
 .notfree3
-		bset	#0,render_flags(a0)
+		bset	#render_flags.x_flip,render_flags(a0)
 		move.l	#words_to_long($400,0),x_vel(a0)
 
 		; reset animate art
@@ -273,7 +273,7 @@ Obj_BossBall_Crane:
 		; init
 		lea	ObjDat_BossBall_Crane(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		ori.b	#rfStatic,render_flags(a0)					; set static mapping flag
+		ori.b	#setBit(render_flags.static_mappings),render_flags(a0)		; set static mapping flag
 		move.b	#26,child_dy(a0)
 		move.w	#-$200,objoff_3A(a0)						; speed
 		move.w	#$80,objoff_3C(a0)
@@ -350,7 +350,7 @@ Obj_BossBall_Chain:
 		; init
 		lea	ObjDat_BossBall_Chain(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		ori.b	#rfStatic,render_flags(a0)					; set static mapping flag
+		ori.b	#setBit(render_flags.static_mappings),render_flags(a0)		; set static mapping flag
 		bsr.s	BossBall_GetWaitTime
 		move.l	#.down,address(a0)
 
@@ -438,7 +438,7 @@ Obj_BossBall_Scaled:
 		; init
 		lea	ObjDat_BossBall_Scaled(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		bset	#0,render_flags(a0)
+		bset	#render_flags.x_flip,render_flags(a0)
 		st	objoff_41(a0)							; reset prev scale factor
 		move.w	#$3F,objoff_2E(a0)
 		move.l	#words_to_long($300,$200),x_vel(a0)

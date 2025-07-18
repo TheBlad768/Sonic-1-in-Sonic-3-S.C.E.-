@@ -289,7 +289,7 @@ Load_StarPost_Stars:
 		move.l	#Obj_StarPost_Stars,address(a1)
 		move.l	#Map_StarPostStars,mappings(a1)
 		move.w	#make_art_tile(ArtTile_StarPost+8,0,0),art_tile(a1)
-		move.b	#rfCoord,render_flags(a1)					; use screen coordinates
+		move.b	#setBit(render_flags.level),render_flags(a1)			; use screen coordinates
 		move.w	priority(a0),priority(a1)
 		move.w	#bytes_to_word(16/2,16/2),height_pixels(a1)			; set height and width
 		move.b	#1,mapping_frame(a1)
@@ -364,7 +364,15 @@ Obj_StarPost_Stars:
 		addq.w	#4*2,sp								; exit from object and current screen
 		move.b	#GameModeID_SpecialStageScreen,(Game_mode).w			; set screen mode to Special Stage
 		move.b	#1,(Special_bonus_entry_flag).w					; set special stage flag
-		moveq	#$71,d0
+
+		; set status
+		moveq	#signextendB( \
+			setBit(status_secondary.shield) | \
+			setBit(status_secondary.fire_shield) | \
+			setBit(status_secondary.lightning_shield) | \
+			setBit(status_secondary.bubble_shield) \
+		),d0
+
 		and.b	(Player_1+status_secondary).w,d0
 		move.b	d0,(Saved2_status_secondary).w
 		st	(Respawn_table_keep).w
@@ -458,7 +466,11 @@ loc_2D5C0:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_StarPost:	subObjMainData Obj_StarPost.main, rfCoord+rfMulti, 0, 80, 16, 5, ArtTile_StarPost+8, 0, 0, Map_StarPost
+ObjDat_StarPost:	subObjMainData \
+				Obj_StarPost.main, \
+					setBit(render_flags.level) | \
+					setBit(render_flags.multi_sprite), \
+				0, 80, 16, 5, ArtTile_StarPost+8, 0, 0, Map_StarPost
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Main/StarPost/Object Data/Map - StarPost.asm"

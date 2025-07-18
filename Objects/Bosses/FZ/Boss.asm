@@ -145,10 +145,10 @@ BossFinal_MoveCylinders:
 
 		; flipx Eggman
 		jsr	(Find_SonicObject).w
-		bclr	#0,status(a0)							; left
+		bclr	#status.npc.x_flip,status(a0)					; left
 		tst.w	d0
 		beq.s	.return
-		bset	#0,status(a0)							; right
+		bset	#status.npc.x_flip,status(a0)					; right
 
 .return
 		rts
@@ -231,7 +231,7 @@ BossFinal_MainProcess:
 		move.l	(sp)+,d0							; restore players address
 
 .notp1
-		btst	#6,status(a0)							; Sonic hit the boss?
+		btst	#status.npc.touch,status(a0)							; Sonic hit the boss?
 		bne.s	.return								; if yes, branch
 		swap	d0								; get Tails address
 		tst.w	d0								; is Tails?
@@ -249,7 +249,7 @@ BossFinal_MainProcess:
 		; set flash anim
 		move.b	#100,boss_invulnerable_time(a0)
 		sfx	sfx_BossHit
-		bset	#6,status(a0)							; set "boss hit" flag
+		bset	#status.npc.touch,status(a0)					; set "boss hit" flag
 
 		; bounce player
 		bsr.s	.bounce
@@ -258,7 +258,7 @@ BossFinal_MainProcess:
 		move.b	#2,anim(a0)							; set hurt anim
 		subq.b	#1,boss_invulnerable_time(a0)
 		bne.s	.return
-		bclr	#6,status(a0)							; clear "boss hit" flag
+		bclr	#status.npc.touch,status(a0)					; clear "boss hit" flag
 		move.b	#1,anim(a0)							; set laugh anim
 		clr.b	collision_flags(a0)
 
@@ -268,7 +268,7 @@ BossFinal_MainProcess:
 
 .bounce
 		move.w	#-$300,d0
-		btst	#0,status(a0)
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.notflipx
 		neg.w	d0
 
@@ -285,10 +285,10 @@ BossFinal_MainProcess:
 		move.b	#$21,anim(a1)							; put Knuckles in his falling animation
 
 		; decide which direction to make Knuckles face
-		bclr	#Status_Facing,status(a1)
+		bclr	#status.player.x_flip,status(a1)
 		tst.w	x_vel(a1)
 		bmi.s	.directiondecided
-		bset	#Status_Facing,status(a1)
+		bset	#status.player.x_flip,status(a1)
 
 .directiondecided
 		move.w	default_y_radius(a1),y_radius(a1)				; set default_y_radius and default_x_radius
@@ -309,7 +309,7 @@ BossFinal_Defeated:
 
 		; start defeated
 		move.l	#.defeated,address(a0)
-		bset	#7,status(a0)							; set defeated flag
+		bset	#status.npc.defeated,status(a0)					; set defeated flag
 		move.b	#3,anim(a0)							; set defeated anim
 		jmp	(BossDefeated_StopTimer).w
 ; ---------------------------------------------------------------------------
@@ -321,7 +321,7 @@ BossFinal_Defeated:
 		bne.w	.draw
 		move.l	#.defeatedfall,address(a0)
 		move.l	#FZ_Resize.afterboss,(Level_data_addr_RAM.Resize).w
-		bset	#0,status(a0)							; set flipx
+		bset	#status.npc.x_flip,status(a0)					; set flipx
 		bset	#4,objoff_38(a0)						; remove plasma ball launcher
 		move.b	#9,anim(a0)							; set defeated jump anim
 
@@ -496,7 +496,7 @@ Obj_BossFinal_RobotnikShip:
 		; init
 		lea	ObjDat_BossFZRobotnikShip(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		bset	#0,render_flags(a0)
+		bset	#render_flags.x_flip,render_flags(a0)
 		move.b	#1,collision_property(a0)
 
 		; load robotnik ship stand
@@ -546,7 +546,7 @@ Obj_BossFinal_RobotnikShip:
 		tst.b	collision_property(a0)
 		bne.s	.chkdel
 		clr.b	collision_flags(a0)
-		bset	#7,status(a0)
+		bset	#status.npc.defeated,status(a0)					; set defeated flag
 		move.l	#.chkdel,address(a0)
 		move.w	#$60,y_vel(a0)
 
@@ -645,13 +645,13 @@ Obj_BossFinal_CheckPlayers:
 .chkpxpos
 		cmpi.w	#$2990,x_pos(a1)
 		blt.s	.chkpxcam
-		btst	#Status_InAir,status(a1)					; is the player in the air?
+		btst	#status.player.in_air,status(a1)				; is the player in the air?
 		bne.s	.chkpxcam							; if yes, branch
 		clr.w	ground_vel(a1)							; clear ground velocity
 		st	(a3)								; set ctrl locked
 		move.w	#bytes_to_word(btnUp,0),(a2)					; set ctrl logical
 		movea.w	parent3(a0),a4							; load robotnik ship address
-		btst	#7,status(a4)							; is boss defeated?
+		btst	#status.npc.defeated,status(a4)							; is boss defeated?
 		beq.s	.chkpxcam							; if not, branch
 		clr.w	(a2)								; clear ctrl logical
 

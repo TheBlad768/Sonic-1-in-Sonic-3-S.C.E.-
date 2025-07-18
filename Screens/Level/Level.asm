@@ -288,17 +288,17 @@ SpawnLevelMainSprites:
 
 		; set fall
 		moveq	#AniIDSonAni_Slide,d1
-		btst	#Status_Roll,(SBZ2_player_roll).w						; is Sonic rolling after SBZ2?
+		btst	#status.player.rolling,(SBZ2_player_roll).w					; is Sonic rolling after SBZ2?
 		beq.s	.setfall									; if not, branch
 		moveq	#AniIDSonAni_Roll,d1
 
 .setfall
 		move.b	d1,anim(a1)
-		bset	#Status_InAir,status(a1)
+		bset	#status.player.in_air,status(a1)
 		tst.l	address(a2)
 		beq.s	.notLZ4
 		move.b	d1,anim(a2)
-		bset	#Status_InAir,status(a2)
+		bset	#status.player.in_air,status(a2)
 
 .notLZ4
 		cmpi.w	#bytes_to_word(LevelID_SBZ,2),(Current_zone_and_act).w				; is FZ?
@@ -397,7 +397,13 @@ SpawnLevelMainSprites_SpawnPlayers:
 SpawnLevelMainSprites_SpawnPowerup:
 
 		; check status
-		moveq	#$71,d1
+		moveq	#signextendB( \
+			setBit(status_secondary.shield) | \
+			setBit(status_secondary.fire_shield) | \
+			setBit(status_secondary.lightning_shield) | \
+			setBit(status_secondary.bubble_shield) \
+		),d1
+
 		move.b	(Saved_status_secondary).w,d0
 		clr.b	(Saved_status_secondary).w
 		and.b	d1,d0
@@ -417,43 +423,75 @@ SpawnLevelMainSprites_SpawnPowerup:
 		lea	(Player_1).w,a1									; a1=character
 
 		; check shields
-		btst	#Status_FireShield,d0
+		btst	#status_secondary.fire_shield,d0
 		beq.s	.ltngshield
-		andi.b	#$8E,status_secondary(a1)
-		bset	#Status_Shield,status_secondary(a1)
-		bset	#Status_FireShield,status_secondary(a1)
+
+		; sets Status_Shield, Status_FireShield, Status_LtngShield, and Status_BublShield to 0
+		andi.b	#~( \
+			setBit(status_secondary.shield) | \
+			setBit(status_secondary.fire_shield) | \
+			setBit(status_secondary.lightning_shield) | \
+			setBit(status_secondary.bubble_shield) \
+		),status_secondary(a1)
+
+		bset	#status_secondary.shield,status_secondary(a1)
+		bset	#status_secondary.fire_shield,status_secondary(a1)
 		move.l	#Obj_FireShield,(Shield+address).w
 		move.w	a1,(Shield+parent).w
 		rts
 ; ---------------------------------------------------------------------------
 
 .ltngshield
-		btst	#Status_LtngShield,d0
+		btst	#status_secondary.lightning_shield,d0
 		beq.s	.bublshield
-		andi.b	#$8E,status_secondary(a1)
-		bset	#Status_Shield,status_secondary(a1)
-		bset	#Status_LtngShield,status_secondary(a1)
+
+		; sets Status_Shield, Status_FireShield, Status_LtngShield, and Status_BublShield to 0
+		andi.b	#~( \
+			setBit(status_secondary.shield) | \
+			setBit(status_secondary.fire_shield) | \
+			setBit(status_secondary.lightning_shield) | \
+			setBit(status_secondary.bubble_shield) \
+		),status_secondary(a1)
+
+		bset	#status_secondary.shield,status_secondary(a1)
+		bset	#status_secondary.lightning_shield,status_secondary(a1)
 		move.l	#Obj_LightningShield,(Shield+address).w
 		move.w	a1,(Shield+parent).w
 		rts
 ; ---------------------------------------------------------------------------
 
 .bublshield
-		btst	#Status_BublShield,d0
+		btst	#status_secondary.bubble_shield,d0
 		beq.s	.blueshield
-		andi.b	#$8E,status_secondary(a1)
-		bset	#Status_Shield,status_secondary(a1)
-		bset	#Status_BublShield,status_secondary(a1)
+
+		; sets Status_Shield, Status_FireShield, Status_LtngShield, and Status_BublShield to 0
+		andi.b	#~( \
+			setBit(status_secondary.shield) | \
+			setBit(status_secondary.fire_shield) | \
+			setBit(status_secondary.lightning_shield) | \
+			setBit(status_secondary.bubble_shield) \
+		),status_secondary(a1)
+
+		bset	#status_secondary.shield,status_secondary(a1)
+		bset	#status_secondary.bubble_shield,status_secondary(a1)
 		move.l	#Obj_BubbleShield,(Shield+address).w
 		move.w	a1,(Shield+parent).w
 		rts
 ; ---------------------------------------------------------------------------
 
 .blueshield
-		btst	#Status_Shield,d0
+		btst	#status_secondary.shield,d0
 		beq.s	.notshield
-		andi.b	#$8E,status_secondary(a1)
-		bset	#Status_Shield,status_secondary(a1)
+
+		; sets Status_Shield, Status_FireShield, Status_LtngShield, and Status_BublShield to 0
+		andi.b	#~( \
+			setBit(status_secondary.shield) | \
+			setBit(status_secondary.fire_shield) | \
+			setBit(status_secondary.lightning_shield) | \
+			setBit(status_secondary.bubble_shield) \
+		),status_secondary(a1)
+
+		bset	#status_secondary.shield,status_secondary(a1)
 		move.l	#Obj_BlueShield,(Shield+address).w
 		move.w	a1,(Shield+parent).w
 

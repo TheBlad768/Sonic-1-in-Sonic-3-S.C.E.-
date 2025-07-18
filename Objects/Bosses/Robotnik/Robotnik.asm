@@ -30,11 +30,13 @@ Obj_RobotnikHead3:
 		movea.w	parent3(a0),a1
 
 		; check defeated flag
-		btst	#7,status(a1)
+		btst	#status.npc.defeated,status(a1)
 		bne.s	.defeated
 
 		move.b	#2,anim(a0)							; hurt animate
-		btst	#6,status(a1)
+
+		; check touch flag
+		btst	#status.npc.touch,status(a1)
 		bne.s	.draw
 
 		; check laugh flag
@@ -105,11 +107,13 @@ Obj_RobotnikHead4:
 		movea.w	parent3(a0),a1
 
 		; check defeated flag
-		btst	#7,status(a1)
+		btst	#status.npc.defeated,status(a1)
 		bne.s	.defeated
 
 		move.b	#2,anim(a0)							; hurt animate
-		btst	#6,status(a1)
+
+		; check touch flag
+		btst	#status.npc.touch,status(a1)
 		bne.s	.draw
 
 		; check laugh flag

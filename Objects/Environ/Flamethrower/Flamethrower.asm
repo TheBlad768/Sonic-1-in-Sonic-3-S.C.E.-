@@ -28,10 +28,10 @@ Obj_Flamethrower:
 		; init
 		lea	ObjDat_Flamethrower(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		bset	#Status_FireShield,shield_reaction(a0)
+		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 		move.l	#.action,address(a0)
 		move.b	#10,flame_frame(a0)
-		btst	#1,status(a0)							; is flipy?
+		btst	#status.npc.y_flip,status(a0)					; is flipy?
 		beq.s	.action								; if not, branch
 		move.b	#21,flame_frame(a0)
 		move.b	#2,anim(a0)

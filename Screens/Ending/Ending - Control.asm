@@ -102,7 +102,7 @@ End_MoveSonic:
 		subq.b	#2,d0								; check routine
 		bne.s	.return3
 		addq.b	#2,(a0)								; next routine
-		bset	#Status_Facing,status(a1)					; left side
+		bset	#status.player.x_flip,status(a1)				; left side
 		move.w	#(320/2)+64,x_pos(a1)						; p2
 		tst.b	d5								; is player 1?
 		bne.s	.return3							; if not, branch

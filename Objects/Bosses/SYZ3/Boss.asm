@@ -243,7 +243,7 @@ BossBlock_MoveRestart:
 
 BossBlock_Restart:
 		move.w	(Camera_min_X_pos).w,d0
-		btst	#0,render_flags(a0)
+		btst	#render_flags.x_flip,render_flags(a0)
 		bne.s	.right
 		addq.w	#8,d0
 		cmp.w	x_pos(a0),d0
@@ -271,13 +271,13 @@ BossBlock_Restart:
 
 BossBlock_Setup4:
 		move.w	(Camera_min_X_pos).w,d0
-		btst	#0,render_flags(a0)
+		btst	#render_flags.x_flip,render_flags(a0)
 		bne.s	.right
 		addq.w	#8,d0
 		cmp.w	x_pos(a0),d0
 		blt.s	BossBlock_Setup3
 		neg.w	x_vel(a0)
-		bchg	#0,render_flags(a0)
+		bchg	#render_flags.x_flip,render_flags(a0)
 		bra.s	BossBlock_Setup3
 ; ---------------------------------------------------------------------------
 
@@ -286,7 +286,7 @@ BossBlock_Setup4:
 		cmp.w	x_pos(a0),d0
 		bgt.s	BossBlock_Setup3
 		neg.w	x_vel(a0)
-		bchg	#0,render_flags(a0)
+		bchg	#render_flags.x_flip,render_flags(a0)
 
 BossBlock_Setup3:
 		jsr	(Swing_UpAndDown).w
@@ -328,7 +328,7 @@ BossBlock_MainProcess:
 		bne.s	.flash								; if yes, branch
 		move.b	#$30,boss_invulnerable_time(a0)					; make boss invulnerable
 		sfx	sfx_BossHit							; play "boss hit" sound
-		bset	#6,status(a0)							; set "boss hit" flag
+		bset	#status.npc.touch,status(a0)					; set "boss hit" flag
 
 .flash
 		moveq	#0,d0								; load normal palette
@@ -340,7 +340,7 @@ BossBlock_MainProcess:
 		jsr	(BossFlash2).w
 		subq.b	#1,boss_invulnerable_time(a0)					; decrease boss invincibility timer
 		bne.s	.return
-		bclr	#6,status(a0)							; clear "boss hit" flag
+		bclr	#status.npc.touch,status(a0)					; clear "boss hit" flag
 		move.b	boss_backup_collision(a0),collision_flags(a0)			; if invincibility ended, allow collision again
 
 .return
@@ -393,7 +393,7 @@ BossBlock_Defeated:
 		move.w	d0,(Camera_stored_max_X_pos).w
 
 .notfree3
-		bset	#0,render_flags(a0)
+		bset	#render_flags.x_flip,render_flags(a0)
 		move.l	#words_to_long($400,0),x_vel(a0)
 
 		; return
@@ -447,7 +447,7 @@ Obj_BossBlock_Spike:
 		; init
 		lea	ObjDat_BossBlock_Spike(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		bset	#rbStatic,render_flags(a0)					; set static mapping flag
+		bset	#render_flags.static_mappings,render_flags(a0)			; set static mapping flag
 		move.l	#.main,address(a0)
 
 .main
@@ -476,7 +476,7 @@ Obj_BossBlock_Spike:
 		; check touch
 		tst.w	objoff_3C(a0)							; spike hidden?
 		bmi.s	.draw								; if yes, branch
-		btst	#6,status(a1)							; boss flashing?
+		btst	#status.npc.touch,status(a1)					; boss flashing?
 		bne.s	.draw								; if yes, branch
 		btst	#sBossBlock_SpikeTouch,obBB_Status(a1)				; flag set?
 		bne.s	.draw								; if yes, branch
@@ -502,7 +502,7 @@ Obj_SYZBlock:
 		jsr	(SetUp_ObjAttributes).w
 		move.w	#bytes_to_word(0,36),child_dx(a0)				; set dxy
 		move.w	y_pos(a0),objoff_30(a0)
-		bset	#7,status(a0)							; disable player's balance animation
+		bset	#status.npc.no_balancing,status(a0)				; disable player's balance animation
 		move.l	#.check,address(a0)
 
 .check

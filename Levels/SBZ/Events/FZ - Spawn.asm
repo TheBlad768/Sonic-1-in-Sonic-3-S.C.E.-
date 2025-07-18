@@ -56,7 +56,7 @@ Obj_Spawn_FinalZone:
 
 .setjump
 		move.w	#-$780,y_vel(a1)
-		bset	#Status_InAir,status(a1)
+		bset	#status.player.in_air,status(a1)
 		clr.b	jumping(a1)
 		move.b	#AniIDSonAni_Spring,anim(a1)
 		move.b	#1,object_control(a1)						; lock controls

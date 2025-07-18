@@ -59,7 +59,7 @@ Obj_BallHog:
 		bne.s	.fail
 		move.l	#words_to_long(-$100,0),x_vel(a1)				; cannonball bounces to the left
 		moveq	#-4,d0
-		btst	#0,render_flags(a0)						; is Ball Hog facing right?
+		btst	#render_flags.x_flip,render_flags(a0)				; is Ball Hog facing right?
 		beq.s	.noflip								; if not, branch
 		neg.w	d0
 		neg.w	x_vel(a1)							; cannonball bounces to the right
@@ -127,7 +127,7 @@ Obj_BallHog_Cannonball:
 		bpl.s	.animate							; if time is > 0, branch
 
 		; remove
-		bset	#7,status(a0)
+		bset	#status.npc.defeated,status(a0)
 		move.l	#Obj_Explosion.skipanimal,address(a0)				; change object to explosion
 		rts
 ; ---------------------------------------------------------------------------

@@ -66,7 +66,7 @@ Obj_GeyserMaker:
 
 .isgeyser
 		movea.w	parent3(a0),a1							; get parent object address (pushable blocks)
-		bset	#1,status(a1)							; set geyser flag
+		bset	#status.npc.y_flip,status(a1)					; set geyser flag
 		move.w	#-$580,y_vel(a1)
 
 .checkdelete
@@ -221,7 +221,7 @@ Obj_LavaGeyser_Extra:
 		; init
 		lea	ObjDat3_LavaGeyser(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
-		bset	#Status_FireShield,shield_reaction(a0)
+		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 		move.l	#.loc_EFFC,address(a0)
 
 .loc_EFFC
