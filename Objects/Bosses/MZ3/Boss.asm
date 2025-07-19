@@ -400,7 +400,7 @@ Obj_BossFire_Fire:
 		move.l	#Obj74_Action,address(a0)
 		tst.b	subtype(a0)
 		bne.s	loc_1870A
-		move.b	#$B|$80,collision_flags(a0)
+		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
 		move.l	#loc_18886,address(a0)
 		bra.w	loc_18886
 ; ---------------------------------------------------------------------------
@@ -422,7 +422,7 @@ Obj74_Drop:
 		bset	#status.npc.y_flip,status(a0)
 		subq.b	#1,objoff_3F(a0)
 		bpl.s	.return
-		move.b	#$B|$80,collision_flags(a0)
+		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
 		clr.b	subtype(a0)
 		addi.w	#$18,y_vel(a0)
 		bclr	#status.npc.y_flip,status(a0)

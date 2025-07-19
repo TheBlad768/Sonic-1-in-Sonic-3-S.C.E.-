@@ -109,7 +109,7 @@ Splats_CheckWall:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Splats:		subObjData Map_Splats, $400, 0, 0, 40, 24, 4, 0, 2
+ObjDat_Splats:		subObjData Map_Splats, $400, 0, 0, 40, 24, 4, 0, 2|collision_flags.npc.touch
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Enemies/Splats/Object Data/Map - Splats.asm"

@@ -195,7 +195,7 @@ Obj_BossPlasma_Ball:
 
 ; mapping
 ObjDat_BossPlasma:		subObjData Map_PLaunch, $300, 0, 0, 16, 16, 3, 0, 0
-ObjDat_BossPlasmaBall:		subObjData Map_Plasma, $300, 1, 0, 24, 24, 3, 0, $1A|$80
+ObjDat_BossPlasmaBall:		subObjData Map_Plasma, $300, 1, 0, 24, 24, 3, 0, $1A|collision_flags.npc.hurt
 
 Child6_BossPlasma:
 		dc.w 1-1

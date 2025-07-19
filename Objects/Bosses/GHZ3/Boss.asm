@@ -391,7 +391,7 @@ Obj_BossBall_Ball:
 		addq.w	#1,y_pos(a0)
 		subq.w	#1,objoff_2E(a0)
 		bpl.s	.angle
-		move.b	#$F|$80,collision_flags(a0)					; set collision
+		move.b	#$F|collision_flags.npc.hurt,collision_flags(a0)		; set collision
 		move.l	#.wait,address(a0)
 
 .wait

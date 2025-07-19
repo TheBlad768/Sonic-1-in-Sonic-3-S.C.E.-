@@ -187,9 +187,9 @@ Obj_BombBadnik_Shrapnel:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Bomb:			subObjData Map_Bomb, $500, 0, 0, 40, 24, 3, 0, $1A|$80
+ObjDat_Bomb:			subObjData Map_Bomb, $500, 0, 0, 40, 24, 3, 0, $1A|collision_flags.npc.hurt
 ObjDat3_Bomb_Fuse:		subObjData FALSE, FALSE, 0, 0, 16, 8, 3, 8, 0
-ObjDat3_Bomb_Shrapnel:		subObjData FALSE, FALSE, 0, 0, 8, 8, 3, $A, $18|$80
+ObjDat3_Bomb_Shrapnel:		subObjData FALSE, FALSE, 0, 0, 8, 8, 3, $A, $18|collision_flags.npc.hurt
 
 Child6_BombBadnik_Fuse:
 		dc.w 1-1

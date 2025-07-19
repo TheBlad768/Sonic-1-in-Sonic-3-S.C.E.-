@@ -72,7 +72,7 @@ Obj_Newtron:
 .fall
 		cmpi.b	#1,mapping_frame(a0)
 		bne.s	.loc_DE42
-		move.b	#$C,collision_flags(a0)
+		move.b	#$C|collision_flags.npc.touch,collision_flags(a0)
 
 .loc_DE42
 		jsr	(MoveSprite).w
@@ -88,7 +88,7 @@ Obj_Newtron:
 		addq.b	#1,anim(a0)
 
 .pppppppp
-		move.b	#$D,collision_flags(a0)
+		move.b	#$D|collision_flags.npc.touch,collision_flags(a0)
 		move.w	#$200,x_vel(a0)							; move newtron horizontally
 		btst	#status.npc.x_flip,status(a0)
 		bne.s	.keepfalling
@@ -118,7 +118,7 @@ Obj_Newtron:
 .type01
 		cmpi.b	#1,mapping_frame(a0)
 		bne.s	.firemissile
-		move.b	#$C,collision_flags(a0)
+		move.b	#$C|collision_flags.npc.touch,collision_flags(a0)
 
 .firemissile
 		cmpi.b	#2,mapping_frame(a0)

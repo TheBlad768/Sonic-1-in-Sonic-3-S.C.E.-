@@ -20,7 +20,7 @@ Obj_Saws:
 		; check
 		cmpi.b	#3,subtype(a0)							; is object a ground saw?
 		bhs.s	.action								; if yes, branch
-		move.b	#$22|$80,collision_flags(a0)
+		move.b	#$22|collision_flags.npc.hurt,collision_flags(a0)
 
 .action
 		moveq	#7,d0
@@ -127,7 +127,7 @@ Saws_TypeIndex: offsetTable
 		; set
 		st	saw_here(a0)
 		move.w	#$600,x_vel(a0)							; move object to the right
-		move.b	#$22|$80,collision_flags(a0)
+		move.b	#$22|collision_flags.npc.hurt,collision_flags(a0)
 		move.b	#2,mapping_frame(a0)
 		sfx	sfx_Saw								; play saw sound
 
@@ -172,7 +172,7 @@ Saws_TypeIndex: offsetTable
 		; set
 		st	saw_here(a0)
 		move.w	#-$600,x_vel(a0)						; move object to the left
-		move.b	#$22|$80,collision_flags(a0)
+		move.b	#$22|collision_flags.npc.hurt,collision_flags(a0)
 		move.b	#2,mapping_frame(a0)
 		sfx	sfx_Saw								; play saw sound
 

@@ -31,8 +31,8 @@ Obj_Harpoon:
 ; ---------------------------------------------------------------------------
 
 .types
-		dc.b $1B|$80, $1C|$80, $1D|$80						; horizontal
-		dc.b $1E|$80, $1F|$80, $20|$80						; vertical
+		dc.b $1B|collision_flags.npc.hurt, $1C|collision_flags.npc.hurt, $1D|collision_flags.npc.hurt	; horizontal
+		dc.b $1E|collision_flags.npc.hurt, $1F|collision_flags.npc.hurt, $20|collision_flags.npc.hurt	; vertical
 	even
 ; ---------------------------------------------------------------------------
 

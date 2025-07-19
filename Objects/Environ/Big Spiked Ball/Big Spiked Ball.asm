@@ -15,7 +15,7 @@ Obj_BigSpikeBall:
 		; init
 		movem.l	ObjDat_BigSpikeBall(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.b	#6|$80,collision_flags(a0)
+		move.b	#6|collision_flags.npc.hurt,collision_flags(a0)
 		move.w	x_pos(a0),bball_origX(a0)
 		move.w	y_pos(a0),bball_origY(a0)
 

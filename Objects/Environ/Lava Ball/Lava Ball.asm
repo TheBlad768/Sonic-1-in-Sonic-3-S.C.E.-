@@ -69,7 +69,7 @@ Obj_LavaBall:
 		move.w	#make_art_tile($434,0,0),art_tile(a0)				; SLZ specific code
 
 .notSLZ
-		move.b	#$B|$80,collision_flags(a0)
+		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 
 		; check MZ boss

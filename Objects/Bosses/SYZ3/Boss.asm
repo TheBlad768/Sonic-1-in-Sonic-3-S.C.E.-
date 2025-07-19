@@ -634,7 +634,7 @@ BossBlock_BreakChunkBlock:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_BossBlock_Spike:		subObjData Map_BossSYZBlockSpike, $400, 0, 0, 32, 32, 5, 0, 4|$80
+ObjDat_BossBlock_Spike:		subObjData Map_BossSYZBlockSpike, $400, 0, 0, 32, 32, 5, 0, 4|collision_flags.npc.hurt
 ObjDat_BossBlock_Block:		subObjData Map_BossSYZBlock, $406, 2, 1, 32, 32, 4, 0, 0
 
 Child1_BossBlock_Spike:

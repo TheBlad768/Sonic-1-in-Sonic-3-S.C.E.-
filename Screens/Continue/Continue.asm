@@ -939,7 +939,7 @@ ObjDat_Continue_SonicAlone:			subObjMainData Obj_Continue_SonicAlone.main, 0, 0,
 ObjDat_Continue_TailsWSonic:			subObjMainData Obj_Continue_TailsWSonic.waitstart, 0, 0, 40, 32, 4, $8C, 0, 0, Map_ContinueSprites
 ObjDat_Continue_Knuckles:			subObjMainData Obj_Continue_Knuckles.waitstart, 0, 0, 48, 32, 4, $8C, 3, 0, Map_ContinueSprites
 ObjDat_Continue_Knuckles2:			subObjMainData Obj_Continue_Knuckles.waitstart2, 0, 0, 96, 64, 1, ArtTile_CutsceneKnuckles, 3, 0, Map_Knuckles
-ObjDat_919A6:					subObjData Map_EggRoboBadnik, $500, 0, 1, 48, 40, 5, 1, 6
+ObjDat_919A6:					subObjData Map_EggRoboBadnik, $500, 0, 1, 48, 40, 5, 1, 6|collision_flags.npc.touch
 ObjDat3_919BE:					subObjData FALSE, FALSE, 0, 0, 32, 24, 5, 6, 0
 ObjDat3_919C4:					subObjData FALSE, FALSE, 0, 0, 24, 32, 5, 2, 0
 ObjDat3_919CA:					subObjData FALSE, FALSE, 0, 0, 8, 64, 5, 7, 0

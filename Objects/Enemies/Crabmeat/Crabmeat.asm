@@ -205,8 +205,8 @@ Obj_Crabmeat_Missile:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Crabmeat:		subObjData Map_Crab, $3FC, 0, 0, 32, 48, 3, 0, 6
-ObjDat3_Crabmeat_Missile:	subObjData FALSE, FALSE, 0, 0, 16, 16, 3, 0, 7|$80
+ObjDat_Crabmeat:		subObjData Map_Crab, $3FC, 0, 0, 32, 48, 3, 0, 6|collision_flags.npc.touch
+ObjDat3_Crabmeat_Missile:	subObjData FALSE, FALSE, 0, 0, 16, 16, 3, 0, 7|collision_flags.npc.hurt
 
 Child1_Crabmeat_Missile:
 		dc.w 2-1

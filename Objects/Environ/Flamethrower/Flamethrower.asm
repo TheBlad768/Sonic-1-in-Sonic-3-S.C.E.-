@@ -64,7 +64,7 @@ Obj_Flamethrower:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Flamethrower:		subObjData Map_Flame, $562, 0, 1, 40, 24, 1, 0, $23|$80
+ObjDat_Flamethrower:		subObjData Map_Flame, $562, 0, 1, 40, 24, 1, 0, $23|collision_flags.npc.hurt
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Flamethrower/Object Data/Anim - Flamethrower.asm"

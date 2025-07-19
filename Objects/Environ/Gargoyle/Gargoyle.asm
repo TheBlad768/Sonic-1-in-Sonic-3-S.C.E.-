@@ -100,7 +100,7 @@ Obj_Gargoyle_FireBall:
 
 ; mapping
 ObjDat_Gargoyle:		subObjData Map_Gar, $2E9, 2, 0, 32, 32, 3, 0, 0
-ObjDat_Gargoyle_FireBall:	subObjData Map_Gar, $2E9, 0, 0, 16, 16, 4, 2, $18|$90
+ObjDat_Gargoyle_FireBall:	subObjData Map_Gar, $2E9, 0, 0, 16, 16, 4, 2, $18|collision_flags.npc.hurt
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Gargoyle/Object Data/Map - Gargoyle.asm"

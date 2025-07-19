@@ -9,7 +9,7 @@ Obj_Bumper:
 		; init
 		movem.l	ObjDat_Bumper(pc),d0-d3						; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.b	#$17|$C0,collision_flags(a0)
+		move.b	#$17|collision_flags.npc.special,collision_flags(a0)
 
 .hit
 		tst.b	collision_property(a0)

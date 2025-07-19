@@ -35,7 +35,7 @@ Obj_SwingingPlatform:
 		move.l	#Map_Swing_SLZ,d1
 		move.w	#make_art_tile($3A6,2,0),d0
 		move.w	#bytes_to_word(32/2,64/2),height_pixels(a0)			; set height and width
-		move.b	#$19|$80,collision_flags(a0)
+		move.b	#$19|collision_flags.npc.hurt,collision_flags(a0)
 
 .notSLZ
 
@@ -45,7 +45,7 @@ Obj_SwingingPlatform:
 		move.l	#Map_Swing_SBZ,d1
 		move.w	#make_art_tile($448,0,0),d0
 		move.w	#bytes_to_word(48/2,48/2),height_pixels(a0)			; set height and width
-		move.b	#6|$80,collision_flags(a0)
+		move.b	#6|collision_flags.npc.hurt,collision_flags(a0)
 
 .notSBZ
 		move.w	d0,art_tile(a0)

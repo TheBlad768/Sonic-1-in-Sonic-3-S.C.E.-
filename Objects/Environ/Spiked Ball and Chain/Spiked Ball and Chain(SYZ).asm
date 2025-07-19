@@ -63,7 +63,7 @@ Obj_SpikeBall:
 		move.b	render_flags(a0),render_flags(a1)
 		move.w	priority(a0),priority(a1)
 		move.w	height_pixels(a0),height_pixels(a1)				; set height and width
-		move.b	#$18|$80,collision_flags(a1)
+		move.b	#$18|collision_flags.npc.hurt,collision_flags(a1)
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		tst.w	d0								; object RAM slots ended?

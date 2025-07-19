@@ -126,7 +126,7 @@ Obj_Missile:
 .wait
 		subq.w	#1,buzz_timedelay(a0)						; subtract 1 from time delay
 		bpl.s	.notdraw
-		move.b	#7|$80,collision_flags(a0)
+		move.b	#7|collision_flags.npc.hurt,collision_flags(a0)
 		move.l	#.frombuzz,address(a0)
 		tst.b	subtype(a0)							; was object created by	a Newtron?
 		beq.s	.animatebuzz							; if not, branch
@@ -167,7 +167,7 @@ Obj_Missile:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_BuzzBomber:		subObjData Map_Buzz, $440, 0, 0, 48, 48, 3, 0, 8
+ObjDat_BuzzBomber:		subObjData Map_Buzz, $440, 0, 0, 48, 48, 3, 0, 8|collision_flags.npc.touch
 ObjDat_BuzzBomber_Missile:	subObjData Map_Missile, $440, 1, 0, 16, 16, 3, 0, 0
 ; ---------------------------------------------------------------------------
 

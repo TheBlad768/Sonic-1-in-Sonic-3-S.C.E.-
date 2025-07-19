@@ -540,7 +540,7 @@ Obj_BossFinal_RobotnikShip:
 		move.w	d0,y_pos(a0)
 		move.l	#words_to_long($180,-$18),x_vel(a0)				; x_vel + y_vel
 		move.l	#.checktouch,address(a0)
-		move.b	#$F,collision_flags(a0)
+		move.b	#$F|collision_flags.npc.touch,collision_flags(a0)
 
 .checktouch
 		tst.b	collision_property(a0)

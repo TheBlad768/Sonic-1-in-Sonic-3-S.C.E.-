@@ -48,7 +48,7 @@ Obj_Roller:
 		move.l	#.chkjump,objoff_34(a0)
 		move.b	#2,anim(a0)
 		move.w	#$700,x_vel(a0)							; move Roller horizontally
-		move.b	#$E|$80,collision_flags(a0)					; make Roller invincible
+		move.b	#$E|collision_flags.npc.hurt,collision_flags(a0)		; make Roller invincible
 
 .skip
 		addq.w	#4,sp								; exit from current object
@@ -62,7 +62,7 @@ Obj_Roller:
 		bpl.s	.return
 		move.b	#1,anim(a0)
 		move.w	#$700,x_vel(a0)
-		move.b	#$E|$80,collision_flags(a0)
+		move.b	#$E|collision_flags.npc.hurt,collision_flags(a0)
 
 .return
 		rts
@@ -119,7 +119,7 @@ Roll_Stop:
 		sub.w	x_pos(a0),d0
 		bhs.s	.return
 		clr.b	anim(a0)
-		move.b	#$E,collision_flags(a0)
+		move.b	#$E|collision_flags.npc.touch,collision_flags(a0)
 		clr.w	x_vel(a0)
 		move.w	#2*60,roller_timedelay(a0)					; set waiting time to 2 seconds
 		bset	#7,roller_flag(a0)
