@@ -78,10 +78,10 @@ Obj_EndSign:
 		move.w	#bytes_to_word(60/2,48/2),y_radius(a0)				; set y_radius and x_radius
 		move.l	#AniRaw_EndSigns1,d0
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
-		blo.s	.notknux
+		blo.s	.notKnux
 		move.l	#AniRaw_EndSigns2,d0
 
-.notknux
+.notKnux
 		move.l	d0,objoff_30(a0)
 
 		; create stub
@@ -238,13 +238,13 @@ Obj_EndSign:
 		; load second main plc
 		lea	(PLC2_Sonic).l,a5
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
-		blo.s	.notknux2
+		blo.s	.notKnux2
 
 .kplc2		:= PLC2_Knuckles-PLC2_Sonic						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
 
 		lea	(.kplc2)(a5),a5
 
-.notknux2
+.notKnux2
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
 		; exit from dplc slot

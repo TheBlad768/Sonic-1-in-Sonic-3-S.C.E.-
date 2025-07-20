@@ -96,10 +96,10 @@ Obj_Spawn_FinalZone:
 		; check
 		lea	(Level_data_addr_RAM.SonLoc).w,a1				; load Sonic's start location
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
-		blo.s	.notknux
+		blo.s	.notKnux
 		addq.w	#2*2,a1								; load Knuckles's start location
 
-.notknux
+.notKnux
 		move.l	(a1),(Saved_X_pos).w						; save Sonic's position on x-axis and y-axis
 		jsr	(Save_Level_Data).l
 		clr.l	(Saved_timer).w

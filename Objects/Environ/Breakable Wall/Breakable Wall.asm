@@ -108,19 +108,19 @@ Obj_BreakableWall_CreateFragments:
 	if _BWALL_KNUX_
 		; check Knuckles
 		cmpi.b	#PlayerID_Knuckles,character_id(a1)				; is player Knuckles?
-		bne.s	.notknux							; if not, branch
+		bne.s	.notKnux							; if not, branch
 		cmpi.b	#1,double_jump_flag(a1)						; is Knuckles gliding?
-		bne.s	.notknux							; if not, branch
+		bne.s	.notKnux							; if not, branch
 		move.b	#2,double_jump_flag(a1)						; make him stop gliding
 		move.b	#$21,anim(a1)							; put Knuckles in his falling animation
 
 		; decide which direction to make Knuckles face
 		bclr	#status.player.x_flip,status(a1)
 		tst.w	x_vel(a1)
-		bpl.s	.notknux
+		bpl.s	.notKnux
 		bset	#status.player.x_flip,status(a1)
 
-.notknux
+.notKnux
 	endif
 
 		move.l	#Obj_BreakableWallFall,address(a0)

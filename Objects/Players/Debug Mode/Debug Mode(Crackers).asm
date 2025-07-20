@@ -30,10 +30,10 @@ Debug_Mode:
 		; load player's breathing bubbles
 		lea	(Breathing_bubbles+objoff_30).w,a1
 		cmpi.b	#PlayerID_Tails,character_id(a0)				; is player Tails?
-		bne.s	.nottails							; if not, branch
+		bne.s	.notTails							; if not, branch
 		lea	(Breathing_bubbles_P2+objoff_30).w,a1
 
-.nottails
+.notTails
 		move.w	d0,(a1)								; clear drowning timer
 		bclr	#status.player.in_air,status(a0)
 		bclr	#status.player.pushing,status(a0)

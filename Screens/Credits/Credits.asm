@@ -207,10 +207,10 @@ Credits_Process_LoadText:
 		; load player palette
 		moveq	#PalID_Sonic,d0
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w						; is Knuckles?
-		blo.s	.notknux									; if not, branch
+		blo.s	.notKnux									; if not, branch
 		moveq	#PalID_Knuckles,d0
 
-.notknux
+.notKnux
 		jsr	(LoadPalette).w									; load player's palette
 		moveq	#PalID_Ending,d0
 		jmp	(LoadPalette).w

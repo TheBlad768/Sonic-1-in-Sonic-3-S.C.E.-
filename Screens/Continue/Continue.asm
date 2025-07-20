@@ -815,10 +815,10 @@ Obj_Continue_Icons:
 
 		; check
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
-		blo.s	.notknux
+		blo.s	.notKnux
 		ori.w	#palette_line_3,art_tile(a0)							; for Knuckles
 
-.notknux
+.notKnux
 		bsr.s	Continue_Icons_GetPos
 		move.w	#$80+((224/2)-24),y_pos(a0)
 		bsr.s	Continue_Icons_LoadAnim
@@ -859,13 +859,13 @@ Continue_Icons_GetPos:
 Continue_Icons_LoadAnim:
 		move.w	(Player_mode).w,d4
 		cmpi.w	#PlayerModeID_Tails,d4								; is Tails?
-		bne.s	.nottails									; if not, branch
+		bne.s	.notTails									; if not, branch
 
 		; create tails tails icons
 		lea	Child6_Continue_Tails_tails_Icons(pc),a2
 		jsr	(CreateChild6_Simple).w
 
-.nottails
+.notTails
 		add.w	d4,d4
 		add.w	d4,d4
 		move.l	.index(pc,d4.w),objoff_30(a0)

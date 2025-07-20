@@ -48,7 +48,7 @@ Obj_Pole:
 		; check p1
 		lea	(Player_1).w,a1							; a1=character
 		move.w	(Ctrl_1).w,d1
-		moveq	#0,d2								; WindTunnel_holding_flag
+		moveq	#WindTunnel_holding_flag.player_1,d2
 		bsr.s	.control
 
 		; check p2
@@ -57,7 +57,7 @@ Obj_Pole:
 		tst.l	address(a1)							; is player RAM empty?
 		beq.s	.rcheck								; if yes, branch
 		move.w	(Ctrl_2).w,d1
-		moveq	#1,d2
+		moveq	#WindTunnel_holding_flag.player_2,d2
 		bsr.s	.control
 
 .rcheck

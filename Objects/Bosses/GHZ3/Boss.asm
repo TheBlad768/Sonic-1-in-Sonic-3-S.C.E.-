@@ -446,10 +446,10 @@ Obj_BossBall_Scaled:
 		move.l	#.wait,address(a0)
 		move.l	#ArtScaled_RobotnikGHZ,d0					; art pointer
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w				; is Knuckles?
-		blo.s	.notknux							; if not, branch
+		blo.s	.notKnux							; if not, branch
 		move.l	#ArtScaled_EggRoboGHZ,d0					; art pointer
 
-.notknux
+.notKnux
 		move.l	d0,objoff_42(a0)						; set art pointer
 
 .wait

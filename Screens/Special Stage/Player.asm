@@ -76,17 +76,17 @@ Obj09_Main:										; Routine 0
 
 loc_4B9E8:
 		cmpi.b	#PlayerModeID_KnucklesTails-1,d0
-		bne.s	.notknuxtails
+		bne.s	.notKnuxtails
 		subq.w	#1,d0
 
-.notknuxtails
+.notKnuxtails
 		move.b	d0,character_id(a0)
 		cmpi.b	#PlayerModeID_Tails-1,d0
-		bne.s	.nottails
+		bne.s	.notTails
 		move.l	#Obj_Tails_Tail,(Tails_tails+address).w
 		move.w	a0,(Tails_tails+objoff_30).w
 
-.nottails
+.notTails
 		add.w	d0,d0
 		add.w	d0,d0
 		move.l	off_4B9C2(pc,d0.w),mappings(a0)

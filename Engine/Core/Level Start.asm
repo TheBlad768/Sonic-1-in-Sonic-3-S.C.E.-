@@ -40,10 +40,10 @@ Get_LevelSizeStart:
 .startloc
 		lea	(Level_data_addr_RAM.SonLoc).w,a1				; load Sonic's start location
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
-		blo.s	.notknux
+		blo.s	.notKnux
 		addq.w	#2*2,a1								; load Knuckles's start location
 
-.notknux
+.notKnux
 		move.w	(a1)+,d1
 		move.w	d1,(Player_1+x_pos).w						; set Sonic's position on x-axis
 		move.w	(a1),d0

@@ -21,10 +21,10 @@ Obj_ScrapEggman:
 		; init
 		lea	ObjDat_ScrapEggman(pc),a1
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w			; is Knuckles?
-		bne.s	.notknux							; if not, branch
+		bne.s	.notKnux							; if not, branch
 		lea	ObjDat_ScrapEggRobo(pc),a1
 
-.notknux
+.notKnux
 		jsr	(SetUp_ObjAttributes).w
 		st	objoff_3A(a0)							; reset DPLC frame
 		move.l	#.checkxcam,address(a0)
@@ -56,10 +56,10 @@ Obj_ScrapEggman:
 		; DPLC
 		lea	PLCPtr_ScrapEggman(pc),a2
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w			; is Knuckles?
-		bne.s	.notknux2							; if not, branch
+		bne.s	.notKnux2							; if not, branch
 		lea	PLCPtr_ScrapEggRobo(pc),a2
 
-.notknux2
+.notKnux2
 		jsr	(Perform_DPLC).w
 
 .draw

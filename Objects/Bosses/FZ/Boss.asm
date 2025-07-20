@@ -22,10 +22,10 @@ Obj_BossFinal:
 		; init
 		lea	ObjDat_BossFZEggman(pc),a1					; load Eggman data
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w			; is Knuckles?
-		bne.s	.notknux							; if not, branch
+		bne.s	.notKnux							; if not, branch
 		lea	ObjDat_BossFZEggRobo(pc),a1					; load Egg Robo data
 
-.notknux
+.notKnux
 		jsr	(SetUp_ObjAttributes).w
 		st	obBFZ_DPLC(a0)							; reset DPLC frame
 		st	(Boss_flag).w
@@ -196,10 +196,10 @@ BossFinal_MainProcess:
 		; DPLC
 		lea	PLCPtr_ScrapEggman(pc),a2
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w			; is Knuckles?
-		bne.s	.notknux							; if not, branch
+		bne.s	.notKnux							; if not, branch
 		lea	PLCPtr_ScrapEggRobo(pc),a2
 
-.notknux
+.notKnux
 		jsr	(Perform_DPLC).w
 
 		; draw
@@ -451,10 +451,10 @@ BossFinal_Defeated:
 		; DPLC
 		lea	PLCPtr_ScrapEggman(pc),a2
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w			; is Knuckles?
-		bne.s	.notknux							; if not, branch
+		bne.s	.notKnux							; if not, branch
 		lea	PLCPtr_ScrapEggRobo(pc),a2
 
-.notknux
+.notKnux
 		jsr	(Perform_DPLC).w
 
 		; draw

@@ -149,28 +149,32 @@ Water_WindTunnels:
 		tst.w	(Debug_placement_mode).w						; is debug mode on?
 		bne.s	LoadWaterPalette.return							; if yes, branch
 		cmpi.w	#PlayerModeID_Tails,(Player_mode).w					; is Tails?
-		beq.s	loc_6F82								; if yes, branch
+		beq.s	.isTails								; if yes, branch
 
-		; check
+		; check p1
 		lea	(Player_1).w,a1								; a1=character
 		lea	(WindTunnel_flag).w,a3
 		move.b	(Ctrl_1_logical).w,d6
-		moveq	#0,d5
+		moveq	#WindTunnel_holding_flag.player_1,d5
 		bsr.s	LZ_WaterTunnels
+
+		; check p2
 		addq.w	#1,a3
 		lea	(Player_2).w,a1								; a1=character
 		tst.l	address(a1)								; is player RAM empty?
 		beq.s	LoadWaterPalette.return							; if yes, branch
 		move.b	(Ctrl_2_logical).w,d6
-		moveq	#1,d5
+		moveq	#WindTunnel_holding_flag.player_2,d5
 		bra.s	LZ_WaterTunnels
 ; ---------------------------------------------------------------------------
 
-loc_6F82:
+.isTails
+
+		; check p1
 		lea	(Player_1).w,a1								; a1=character
 		lea	(WindTunnel_flag_P2).w,a3
 		move.b	(Ctrl_1_logical).w,d6
-		moveq	#0,d5
+		moveq	#WindTunnel_holding_flag.player_1,d5
 
 ; =============== S U B R O U T I N E =======================================
 

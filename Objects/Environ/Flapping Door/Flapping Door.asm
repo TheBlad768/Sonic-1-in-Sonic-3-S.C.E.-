@@ -43,7 +43,12 @@ Obj_FlapDoor:
 		move.w	(Player_1+x_pos).w,d0
 		cmp.w	x_pos(a0),d0							; has Sonic passed through the door?
 		bhs.s	.display							; if yes, branch
-		move.b	#3,(WindTunnel_holding_flag).w					; Player_1 + Player_2 (bit set 0 + 1) ; disable wind tunnel
+
+		; disable wind tunnel
+		move.b	#( \
+			setBit(WindTunnel_holding_flag.player_1) | \
+			setBit(WindTunnel_holding_flag.player_2) \
+		),(WindTunnel_holding_flag).w
 
 .solid
 		moveq	#(16/2)+$B,d1							; width

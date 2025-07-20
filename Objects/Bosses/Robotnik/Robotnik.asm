@@ -12,10 +12,10 @@ Obj_RobotnikHead3:
 		move.l	#.main,address(a0)
 		move.l	#Ani_RobotnikHead,objoff_30(a0)
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w
-		bne.s	.notknux
+		bne.s	.notKnux
 		bsr.s	sub_67B14							; load Egg Robo art
 
-.notknux
+.notKnux
 		movea.w	parent3(a0),a1
 		move.w	art_tile(a1),d0
 		andi.w	#$87FF,d0
@@ -94,10 +94,10 @@ Obj_RobotnikHead4:
 		move.l	#.main,address(a0)
 		move.l	#Ani_RobotnikHead,objoff_30(a0)
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w
-		bne.s	.notknux
+		bne.s	.notKnux
 		bsr.s	sub_67B14							; load Egg Robo art
 
-.notknux
+.notKnux
 		movea.w	parent3(a0),a1
 		move.w	art_tile(a1),d0
 		andi.w	#$87FF,d0

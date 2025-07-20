@@ -232,7 +232,12 @@ BlocksDoors_TypeIndex: offsetTable
 		move.w	(Player_1+x_pos).w,d0
 		cmp.w	x_pos(a0),d0
 		bhs.s	.aaa
-		move.b	#3,(WindTunnel_holding_flag).w					; Player_1 + Player_2 (bit set 0 + 1)
+
+		; disable wind tunnel
+		move.b	#( \
+			setBit(WindTunnel_holding_flag.player_1) | \
+			setBit(WindTunnel_holding_flag.player_2) \
+		),(WindTunnel_holding_flag).w
 
 .aaa
 		lea	(Level_trigger_array).w,a2

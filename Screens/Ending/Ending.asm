@@ -81,10 +81,10 @@ EndingScreen:
 		; load player palette
 		lea	(Level_data_addr_RAM.SPal).w,a1							; load Sonic palette
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w						; is Knuckles?
-		blo.s	.notknux									; if not, branch
+		blo.s	.notKnux									; if not, branch
 		addq.w	#1,a1										; load Knuckles palette
 
-.notknux
+.notKnux
 		moveq	#0,d0
 		move.b	(a1),d0										; player palette
 		jsr	(LoadPalette).w									; load player's palette
