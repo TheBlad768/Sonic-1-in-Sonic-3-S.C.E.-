@@ -93,7 +93,7 @@ Obj_LavaWall:
 
 .check
 		cmpi.b	#PlayerID_Hurt,(Player_1+routine).w				; is Sonic falling back from getting hurt?
-		bhs.s	.sonichurt							; if yes, branch
+		bhs.s	.Sonichurt							; if yes, branch
 
 		; move lava
 		move.w	lwall_x_vel(a0),d0
@@ -106,7 +106,7 @@ Obj_LavaWall:
 		add.w	lwall_child_dx(a0),d0
 		move.w	d0,sub2_x_pos(a0)
 
-.sonichurt
+.Sonichurt
 		tst.b	lwall_flag(a0)							; is object set to move?
 		bne.s	.draw								; if yes, branch
 		jmp	(Sprite_CheckDeleteTouch3).w

@@ -87,7 +87,7 @@ Obj_EggCapsule:
 .normal
 		btst	#1,objoff_38(a0)						; is button pressed?
 		beq.s	.return								; if not, branch
-		move.l	#.sonicendpose,objoff_34(a0)
+		move.l	#.Sonicendpose,objoff_34(a0)
 
 .open
 		move.b	#1,mapping_frame(a0)						; set empty egg capsule frame
@@ -112,14 +112,14 @@ Obj_EggCapsule:
 
 ; =============== S U B R O U T I N E =======================================
 
-.sonicendpose
+.Sonicendpose
 		tst.b	(Boss_flag).w							; boss is defeated?
 		bne.s	.return								; if not, branch
-		move.l	#.tailsendpose,d0
+		move.l	#.Tailsendpose,d0
 		bra.w	Check_SonicEndPose
 ; ---------------------------------------------------------------------------
 
-.tailsendpose
+.Tailsendpose
 		bra.w	Check_TailsEndPose
 
 ; ---------------------------------------------------------------------------

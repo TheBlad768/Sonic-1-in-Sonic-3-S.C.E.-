@@ -35,13 +35,13 @@ LZ3_WaterResize:
 		cmpi.w	#$1600,d0
 		blo.s	.setwater2
 		cmpi.w	#$508,(Target_water_level).w
-		beq.s	.sonicislow
+		beq.s	.Sonicislow
 		cmpi.w	#$600,(Player_1+y_pos).w					; is Sonic below $600 y-axis?
-		bhs.s	.sonicislow							; if yes, branch
+		bhs.s	.Sonicislow							; if yes, branch
 		cmpi.w	#$280,(Player_1+y_pos).w
 		bhs.s	.setwater2
 
-.sonicislow
+.Sonicislow
 		move.w	#$508,d1
 		move.w	d1,(Mean_water_level).w
 		cmpi.w	#$1970,d0

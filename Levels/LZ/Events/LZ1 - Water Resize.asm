@@ -11,7 +11,7 @@ LZ1_WaterResize:
 		blo.s	.setwater							; if not, branch
 		move.w	#$108,d1
 		cmpi.w	#$200,(Player_1+y_pos).w					; is Sonic above $200 y-axis?
-		blo.s	.sonicishigh							; if yes, branch
+		blo.s	.Sonicishigh							; if yes, branch
 		cmpi.w	#$E00,d0
 		blo.s	.setwater
 		move.w	#$318,d1
@@ -31,7 +31,7 @@ LZ1_WaterResize:
 		rts
 ; ---------------------------------------------------------------------------
 
-.sonicishigh
+.Sonicishigh
 		cmpi.w	#$E80,d0
 		blo.s	.setwater
 		move.w	#$E8,d1

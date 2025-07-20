@@ -18,7 +18,7 @@ Obj_HyperSonicKnux_Trail:
 .main
 
 		; check
-		tst.b	(Super_Sonic_Knux_flag).w					; are we in non-super/hyper state?
+		tst.b	(Super_Sonic_Knux_flag).w					; are we in non-Super/Hyper state?
 		beq.s	.delete								; if so, branch and delete
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.s	.return								; if yes, branch

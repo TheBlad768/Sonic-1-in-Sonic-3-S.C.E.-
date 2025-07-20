@@ -37,10 +37,10 @@ Obj_Newtron:
 		jsr	(Find_SonicTails).w
 		bset	#status.npc.x_flip,status(a0)
 		tst.w	d0
-		bne.s	.sonicisright
+		bne.s	.Sonicisright
 		bclr	#status.npc.x_flip,status(a0)
 
-.sonicisright
+.Sonicisright
 		cmpi.w	#128,d2								; is Sonic within $80 pixels of the newtron?
 		bhs.s	.outofrange							; if not, branch
 		move.l	#.type00,objoff_34(a0)						; goto .type00 next
@@ -62,10 +62,10 @@ Obj_Newtron:
 		jsr	(Find_SonicTails).w
 		bset	#status.npc.x_flip,status(a0)
 		tst.w	d0
-		bne.s	.sonicisright
+		bne.s	.Sonicisright
 		bclr	#status.npc.x_flip,status(a0)
 
-.sonicisright2
+.Sonicisright2
 		rts
 ; ---------------------------------------------------------------------------
 

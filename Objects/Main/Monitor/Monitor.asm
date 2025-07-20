@@ -507,7 +507,7 @@ Monitor_Give_SuperSonic:
 ; ---------------------------------------------------------------------------
 
 .notTails
-		bhs.s	.hyperKnuckles
+		bhs.s	.HyperKnuckles
 
 		; Sonic
 		move.w	#$A00,Max_speed-Max_speed(a4)					; set max speed
@@ -522,7 +522,7 @@ Monitor_Give_SuperSonic:
 		bra.s	.continued
 ; ---------------------------------------------------------------------------
 
-.hyperKnuckles
+.HyperKnuckles
 		st	(Super_Sonic_Knux_flag).w
 		move.l	#Obj_HyperSonicKnux_Trail,(Super_stars).w
 

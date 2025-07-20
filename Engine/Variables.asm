@@ -126,7 +126,7 @@ Scroll_force_positions:					ds.b 1						; if this is set scrolling will be based
 							ds.b 1						; even
 Scroll_forced_X_pos:					ds.l 1						; replace player xpos
 Scroll_forced_Y_pos:					ds.l 1						; replace player ypos
-Glide_screen_shake:					ds.w 1						; alternate screen shaking flag only used when hyper knuckles hits a wall after gliding
+Glide_screen_shake:					ds.w 1						; alternate screen shaking flag only used when Hyper Knuckles hits a wall after gliding
 Screen_shaking_flag:					ds.w 1						; flag for enabling screen shake. Negative values cause screen to shake infinitely, positive values make the screen shake for a short amount of time
 Screen_shaking_offset:					ds.w 1						; vertical offset when screen_shaking_flag is enabled. This is added to camera position later
 Screen_shaking_last_offset:				ds.w 1						; value of Screen_shaking_offset for the previous frame

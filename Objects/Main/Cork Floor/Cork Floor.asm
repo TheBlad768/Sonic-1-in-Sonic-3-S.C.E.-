@@ -49,10 +49,10 @@ Obj_CorkFloor:
 .checkroll
 		lea	(Player_1).w,a1							; a1=character
 		move.b	objoff_34(a0),d0
-		bsr.s	.sonicroll
+		bsr.s	.Sonicroll
 		lea	(Player_2).w,a1							; a1=character
 		move.b	objoff_36(a0),d0
-		bsr.s	.sonicroll
+		bsr.s	.Sonicroll
 		bra.s	.getbonus
 ; ---------------------------------------------------------------------------
 
@@ -63,16 +63,16 @@ Obj_CorkFloor:
 		cmpi.b	#AniIDSonAni_Roll,objoff_34(a0)
 		bne.s	.draw
 		lea	(Player_1).w,a1							; a1=character
-		bsr.s	.tailsroll
+		bsr.s	.Tailsroll
 		bra.s	.getbonus
 
 ; =============== S U B R O U T I N E =======================================
 
-.sonicroll
+.Sonicroll
 		cmpi.b	#AniIDSonAni_Roll,d0
 		bne.s	.notroll
 
-.tailsroll
+.Tailsroll
 		bset	#status.player.rolling,status(a1)
 		move.w	#bytes_to_word(28/2,14/2),y_radius(a1)				; set y_radius and x_radius
 		move.b	#AniIDSonAni_Roll,anim(a1)
@@ -92,7 +92,7 @@ Obj_CorkFloor:
 		cmpi.b	#AniIDSonAni_Roll,objoff_36(a0)
 		bne.w	.draw
 		lea	(Player_2).w,a1							; a1=character
-		bsr.s	.tailsroll
+		bsr.s	.Tailsroll
 
 .getbonus
 		move.w	objoff_38(a0),(Chain_bonus_counter).w

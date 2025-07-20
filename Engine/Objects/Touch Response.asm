@@ -901,11 +901,11 @@ HyperTouch_Harmful:
 HyperTouch_Special:
 		ori.b	#3,collision_property(a1)
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w				; are we in Knuckles Alone mode?
-		blo.s	.sonicortails							; if not, branch
+		blo.s	.SonicorTails							; if not, branch
 		move.w	x_pos(a1),(Player_2+x_pos).w					; ???
 		move.w	y_pos(a1),(Player_2+y_pos).w					; ???
 
-.sonicortails
+.SonicorTails
 		move.b	#AniIDSonAni_Roll,(Player_2+anim).w				; put sidekick in his rolling animation
 		bset	#status.player.in_air,(Player_2+status).w
 		rts

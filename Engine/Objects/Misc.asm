@@ -392,10 +392,10 @@ Check_PlayerAttack:
 
 .index
 		bra.s	.fail								; 0 - Sonic
-		bra.s	.tailsattack							; 1 - Tails
+		bra.s	.Tailsattack							; 1 - Tails
 ; ---------------------------------------------------------------------------
 
-.knuxattack										; 2 - Knuckles
+.Knuxattack										; 2 - Knuckles
 		cmpi.b	#1,double_jump_flag(a1)
 		beq.s	.hit
 		cmpi.b	#3,double_jump_flag(a1)
@@ -406,7 +406,7 @@ Check_PlayerAttack:
 		rts
 ; ---------------------------------------------------------------------------
 
-.tailsattack
+.Tailsattack
 		tst.b	double_jump_flag(a1)
 		beq.s	.fail								; if Tails is not flying, branch
 		btst	#status.player.underwater,status(a1)

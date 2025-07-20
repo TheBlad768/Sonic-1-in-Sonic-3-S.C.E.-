@@ -475,7 +475,7 @@ Obj_Continue_Knuckles:
 
 		; check
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w						; is Knuckles?
-		bhs.s	.setknux									; if yes, branch
+		bhs.s	.setKnux									; if yes, branch
 
 		; for Sonic and Tails
 		move.w	#$80-64,x_pos(a0)
@@ -486,7 +486,7 @@ Obj_Continue_Knuckles:
 		bra.s	.main
 ; ---------------------------------------------------------------------------
 
-.setknux
+.setKnux
 
 		; init
 		movem.l	ObjDat_Continue_Knuckles(pc),d0-d3						; copy data to d0-d3

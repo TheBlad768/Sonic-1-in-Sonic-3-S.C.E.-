@@ -76,10 +76,10 @@ Obj09_Main:										; Routine 0
 
 loc_4B9E8:
 		cmpi.b	#PlayerModeID_KnucklesTails-1,d0
-		bne.s	.notKnuxtails
+		bne.s	.notKnuxTails
 		subq.w	#1,d0
 
-.notKnuxtails
+.notKnuxTails
 		move.b	d0,character_id(a0)
 		cmpi.b	#PlayerModeID_Tails-1,d0
 		bne.s	.notTails

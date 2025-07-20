@@ -65,10 +65,10 @@ Obj_Seesaw:
 
 .leftside1
 		cmpi.w	#8,d0
-		bhs.s	.checktails
+		bhs.s	.checkTails
 		moveq	#1,d1
 
-.checktails
+.checkTails
 		btst	#p2_standing_bit,status(a0)
 		beq.s	.slope
 		moveq	#2,d2

@@ -281,7 +281,7 @@ Obj_Sonic_Ending:
 		; init (with emeralds)
 		lea	ObjDat_SonicEnding(pc),a1							; load Sonic data
 		cmpi.w	#PlayerModeID_Tails,(Player_mode).w						; is Tails?
-		bne.s	.notatails									; if not, branch
+		bne.s	.notTails									; if not, branch
 
 		; remove Tails tails
 		lea	(Tails_tails).w,a1
@@ -290,7 +290,7 @@ Obj_Sonic_Ending:
 		; init
 		lea	ObjDat_TailsEnding(pc),a1							; load Tails data
 
-.notatails
+.notTails
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w						; is Knuckles?
 		blo.s	.loadobja									; if not, branch
 		lea	ObjDat_KnuxEnding(pc),a1							; load Knuckles data
@@ -432,10 +432,10 @@ Obj_Sonic_Ending:
 		; init (without emeralds)
 		lea	ObjDat_SonicEnding(pc),a1							; load Sonic data
 		cmpi.w	#PlayerModeID_Tails,(Player_mode).w						; is Tails?
-		bne.s	.notatails2									; if not, branch
+		bne.s	.notTails2									; if not, branch
 		lea	ObjDat_TailsEnding(pc),a1							; load Tails data
 
-.notatails2
+.notTails2
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w						; is Knuckles?
 		blo.s	.loadobja2									; if not, branch
 		lea	ObjDat_KnuxEnding(pc),a1							; load Knuckles data

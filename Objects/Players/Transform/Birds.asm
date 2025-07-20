@@ -65,7 +65,7 @@ Obj_SuperTailsBirds_Main:
 
 		; check
 		tst.b	(Super_Tails_flag).w
-		bne.s	.tails_still_super
+		bne.s	.Tails_still_super
 
 		; Tails has returned to normal - make the birds fly away
 		moveq	#0,d0
@@ -84,7 +84,7 @@ Obj_SuperTailsBirds_Main:
 		move.b	#2*60,superTailsBirds_search_delay(a0)				; only search for enemies every two seconds (probably to reduce lag)
 		move.l	#Obj_SuperTailsBirds_FlyAway,address(a0)
 
-.tails_still_super
+.Tails_still_super
 		bsr.s	Obj_SuperTailsBirds_GetDestination
 
 .move
