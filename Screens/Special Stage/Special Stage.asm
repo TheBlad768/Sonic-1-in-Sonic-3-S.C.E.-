@@ -421,31 +421,31 @@ SS_BGLoad:
 		EniDecomp	MapEni_SSBg1, RAM_start, ArtTile_SS_Background_Fish, 2, 0		; decompress Enigma mappings
 		locVRAM	$5000,d3									; set nametable address
 		lea	(RAM_start+$80).l,a2
-		moveq	#6,d7
+		moveq	#7-1,d7
 
 loc_48BE:
 		move.l	d3,d0
-		moveq	#3,d6
+		moveq	#4-1,d6
 		moveq	#0,d4
-		cmpi.w	#3,d7
+		cmpi.w	#4-1,d7
 		bhs.s	loc_48CC
 		moveq	#1,d4
 
 loc_48CC:
-		moveq	#7,d5
+		moveq	#8-1,d5
 
 loc_48CE:
 		lea	(a2),a1
 		eori.b	#1,d4
 		bne.s	loc_48E2
-		cmpi.w	#6,d7
+		cmpi.w	#7-1,d7
 		bne.s	loc_48F2
 		lea	(RAM_start).l,a1
 
 loc_48E2:
 		movem.l	d0-d4,-(sp)
-		moveq	#(64/8-1),d1
-		moveq	#(64/8-1),d2
+		moveq	#bytesToXcnt(64,8),d1
+		moveq	#bytesToXcnt(64,8),d2
 		jsr	(Plane_Map_To_VRAM).w
 		movem.l	(sp)+,d0-d4
 
@@ -555,7 +555,7 @@ loc_4C9A:
 		addq.w	#4,a3
 		moveq	#0,d1
 		move.b	(a2)+,d1
-		subq.w	#1,d1
+		subq.w	#1,d1										; dbf fix
 
 loc_4CA4:
 		move.l	d0,(a1,d2.w)

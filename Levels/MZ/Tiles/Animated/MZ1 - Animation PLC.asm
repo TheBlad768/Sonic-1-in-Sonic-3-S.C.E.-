@@ -44,7 +44,7 @@ AnimateTiles_MZ:
 		and.w	d3,d0
 		add.w	d0,d0
 		add.w	d0,d0
-		moveq	#($80/4)-1,d1							; size
+		moveq	#bytesToXcnt($80,4),d1						; size
 		jsr	AniArt_MZextra(pc,d0.w)
 		addq.w	#4,d3								; next
 		dbf	d2,.loop
@@ -58,28 +58,28 @@ AnimateTiles_MZ:
 ; =============== S U B R O U T I N E =======================================
 
 AniArt_MZextra:
-		bra.s	loc_1C3EE	; 0
-		rts	; nop
-		bra.s	loc_1C3FA	; 4
-		rts	; nop
-		bra.s	loc_1C410	; 8
-		rts	; nop
-		bra.s	loc_1C41E	; C
-		rts	; nop
-		bra.w	loc_1C434	; 10
-		bra.w	loc_1C442	; 14
-		bra.w	loc_1C458	; 18
-		bra.w	loc_1C466	; 1C
-		bra.w	loc_1C47C	; 20
-		bra.w	loc_1C48A	; 24
-		bra.w	loc_1C4A0	; 28
-		bra.w	loc_1C4AE	; 2C
-		bra.w	loc_1C4C4	; 30
-		bra.w	loc_1C4D2	; 34
-		bra.w	loc_1C4E8	; 38
+		bra.s	loc_1C3EE							; 0
+		rts									; nop
+		bra.s	loc_1C3FA							; 4
+		rts									; nop
+		bra.s	loc_1C410							; 8
+		rts									; nop
+		bra.s	loc_1C41E							; C
+		rts									; nop
+		bra.w	loc_1C434							; 10
+		bra.w	loc_1C442							; 14
+		bra.w	loc_1C458							; 18
+		bra.w	loc_1C466							; 1C
+		bra.w	loc_1C47C							; 20
+		bra.w	loc_1C48A							; 24
+		bra.w	loc_1C4A0							; 28
+		bra.w	loc_1C4AE							; 2C
+		bra.w	loc_1C4C4							; 30
+		bra.w	loc_1C4D2							; 34
+		bra.w	loc_1C4E8							; 38
 ; ---------------------------------------------------------------------------
 
-loc_1C4FA:				; 3C
+loc_1C4FA:										; 3C
 		move.l	(a1),d0
 		move.b	$F(a1),d0
 		ror.l	#8,d0
