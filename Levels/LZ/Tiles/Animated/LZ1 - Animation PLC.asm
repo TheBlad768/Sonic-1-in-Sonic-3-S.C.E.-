@@ -27,7 +27,12 @@ AnimateTiles_LZ:
 		clr.b	d0								; clear garbage data
 		add.l	d0,d1								; get frame
 		move.w	#tiles_to_bytes($3F6),d2					; load art destination
-		move.w	#tiles_to_bytes(dmaLength(16)),d3				; size of art (in words) ; we only need one frame (32x32)
+
+		; size of art (in words) ; we only need one frame (32x32)
+		move.w	#tiles_to_bytes( \
+		dmaLength(16) \
+		),d3
+
 		jmp	(Add_To_DMA_Queue).w
 ; ---------------------------------------------------------------------------
 

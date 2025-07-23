@@ -56,9 +56,14 @@ loc_384F8:
 		move.w	d1,d0
 		add.w	d0,d0
 		add.w	d0,d1
-		addi.l	#dmaSource(ArtUnc_WaterSplash),d1
-		move.w	#tiles_to_bytes($36E),d2
-		move.w	#tiles_to_bytes(dmaLength(12)),d3
+		addi.l	#dmaSource(ArtUnc_WaterSplash),d1				; get next frame
+		move.w	#tiles_to_bytes($36E),d2					; load art destination
+
+		; size of art (in words) ; we only need one frame
+		move.w	#tiles_to_bytes( \
+		dmaLength(12) \
+		),d3
+
 		jsr	(Add_To_DMA_Queue).w
 
 .draw

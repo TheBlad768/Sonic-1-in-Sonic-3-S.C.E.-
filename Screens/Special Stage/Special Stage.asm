@@ -786,7 +786,12 @@ SS_AniWallsRings:
 		lsr.w	#2,d1										; /2 = $0100 (AssumeSourceAddressIsRAMSafe) ; $400>>1
 		addi.l	#dmaSource(ArtUnc_SSWalls),d1							; get next frame
 		move.w	#tiles_to_bytes(ArtTile_SS_Wall),d2						; load art destination
-		move.w	#tiles_to_bytes(dmaLength(16)),d3						; size of art (in words) ; we only need one frame
+
+		; size of art (in words) ; we only need one frame
+		move.w	#tiles_to_bytes( \
+		dmaLength(16) \
+		),d3
+
 		jsr	(Add_To_DMA_Queue).w
 
 .ranim
@@ -804,7 +809,12 @@ SS_AniWallsRings:
 		lsl.w	#6,d1
 		add.l	#dmaSource(ArtUnc_SSRing),d1							; get next frame
 		move.w	#tiles_to_bytes($7B2),d2							; load art destination
-		moveq	#tiles_to_bytes(dmaLength(4)),d3						; size of art (in words) ; we only need one frame
+
+		; size of art (in words) ; we only need one frame
+		moveq	#tiles_to_bytes( \
+		dmaLength(4) \
+		),d3				
+
 		jsr	(Add_To_DMA_Queue).w
 
 loc_1B2C8:

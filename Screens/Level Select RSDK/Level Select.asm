@@ -390,7 +390,12 @@ LevelSelectRSDK_UpdateIcons:
 		move.w	.table+2(pc,d1.w),d1
 		addi.l	#dmaSource(ArtUnc_LevelSelectRSDKIcons),d1					; get next frame
 		move.w	#tiles_to_bytes($50),d2								; load art destination
-		move.w	#tiles_to_bytes(dmaLength(12)),d3						; size of art (in words) ; we only need one frame
+
+		; size of art (in words) ; we only need one frame
+		move.w	#tiles_to_bytes( \
+		dmaLength(12) \
+		),d3
+
 		jmp	(Add_To_DMA_Queue).w
 ; ---------------------------------------------------------------------------
 

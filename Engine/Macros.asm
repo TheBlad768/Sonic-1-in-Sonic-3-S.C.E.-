@@ -1592,7 +1592,7 @@ plreq macro toVRAMaddr,fromROMaddr
 zonewarning macro loc,elementsize
 ._end
 	if (._end-loc)-(ZoneCount*elementsize)<>0
-	fatal "Size of loc (\{(._end-loc)/elementsize}) does not match ZoneCount (\{ZoneCount})."
+		fatal "Size of loc (\{(._end-loc)/elementsize}) does not match ZoneCount (\{ZoneCount})."
 	endif
     endm
 ; ---------------------------------------------------------------------------
