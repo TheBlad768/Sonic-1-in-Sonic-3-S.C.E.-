@@ -222,7 +222,10 @@ subObjMainData macro address,render,routine,height,width,prio,vram,pal,pri,mappi
 
 ; macro to level select icons
 setRSDKIcons macro pal, icon
-	dc.w (pal)*palette_line_size, (icon)*tiles_to_bytes(dmaLength(12))
+	dc.w (pal)*palette_line_size
+	dc.w (icon)*tiles_to_bytes( \
+	dmaLength(12) \
+	)
     endm
 ; ---------------------------------------------------------------------------
 
