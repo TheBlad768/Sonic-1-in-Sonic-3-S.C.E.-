@@ -84,10 +84,10 @@ Obj_Newtron:
 		move.l	#.matchfloor,objoff_34(a0)
 		move.b	#2,anim(a0)
 		btst	#5,art_tile(a0)							; palette_line_1
-		beq.s	.pppppppp
+		beq.s	.notgreen
 		addq.b	#1,anim(a0)
 
-.pppppppp
+.notgreen
 		move.b	#$D|collision_flags.npc.touch,collision_flags(a0)
 		move.w	#$200,x_vel(a0)							; move newtron horizontally
 		btst	#status.npc.x_flip,status(a0)
