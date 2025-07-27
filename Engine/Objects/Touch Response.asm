@@ -557,6 +557,8 @@ HurtCharacter:
 
 		move.b	#AniIDSonAni_Hurt2,anim(a0)
 		move.b	#2*60,invulnerability_timer(a0)					; set temp invincible time to 2 seconds
+
+		; check
 		moveq	#signextendB(sfx_SpikeHit),d0					; load spikes damage sound
 		move.l	mappings(a2),d1
 		cmpi.l	#Map_Spikes,d1							; was damage caused by spikes?
