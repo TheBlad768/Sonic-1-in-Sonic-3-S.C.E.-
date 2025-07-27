@@ -1307,7 +1307,7 @@ sfxcont macro track,wait,terminate,byte
     endif
     endm
 
-	; extended music
+; extended music
 emusic macro track,terminate
 	move.w	#(track),d0
     if ("terminate"="0") || ("terminate"="")
@@ -1317,7 +1317,7 @@ emusic macro track,terminate
     endif
     endm
 
-	; extended sfx
+; extended sfx
 esfx macro track,terminate
 	move.w	#(track),d0
     if ("terminate"="0") || ("terminate"="")
