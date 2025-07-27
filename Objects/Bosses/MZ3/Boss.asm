@@ -398,6 +398,8 @@ Obj_BossFire_Fire:
 		move.w	y_pos(a0),objoff_38(a0)
 		move.l	#Obj74_Drop,obBFF_Jump(a0)
 		move.l	#Obj74_Action,address(a0)
+
+		; check
 		tst.b	subtype(a0)
 		bne.s	loc_1870A
 		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
