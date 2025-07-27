@@ -574,6 +574,8 @@ HurtCharacter:
 ; ---------------------------------------------------------------------------
 
 .norings
+
+		; check
 		moveq	#signextendB(sfx_SpikeHit),d0					; load spikes damage sound
 		move.l	mappings(a2),d1
 		cmpi.l	#Map_Spikes,d1							; was damage caused by spikes?
