@@ -38,6 +38,7 @@ ShakeScreen_BG:
 		beq.s	.return
 		subq.w	#1,d0
 		move.w	d0,(Glide_screen_shake).w
+		andi.w	#$3F,d0
 		move.b	ScreenShakeArray(pc,d0.w),d0
 		ext.w	d0
 		add.w	d0,(Camera_X_pos_copy).w

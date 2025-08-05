@@ -53,6 +53,7 @@ Level_Setup:
 Screen_Events:
 		move.w	(Camera_X_pos).w,(Camera_X_pos_copy).w
 		move.w	(Camera_Y_pos).w,(Camera_Y_pos_copy).w
+		bsr.w	ShakeScreen_BG
 		lea	(Plane_buffer).w,a0
 		movea.l	(Level_data_addr_RAM.16x16RAM).w,a2
 		movea.l	(Level_layout_addr2_ROM).w,a3

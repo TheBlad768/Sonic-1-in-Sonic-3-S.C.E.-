@@ -534,7 +534,7 @@ Knuckles_Gliding_HitWall:
 		bpl.s	.noQuake
 		cmpi.w	#$480,ground_vel(a0)
 		blo.s	.noQuake
-		move.w	#$14,(Glide_screen_shake).w
+		move.w	#(ScreenShakeArray2-ScreenShakeArray),(Glide_screen_shake).w
 		bsr.w	HyperAttackTouchResponse
 		moveq	#signextendB(sfx_Thump),d0
 
