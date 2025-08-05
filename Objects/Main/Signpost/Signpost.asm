@@ -69,9 +69,11 @@ Obj_EndSign:
 		; init
 		lea	ObjSlot_EndSigns(pc),a1
 		jsr	(SetUp_ObjAttributesSlotted).w
-		btst	#high_priority_bit,(Player_1+art_tile).w
-		beq.s	.nothighpriority
-		bset	#high_priority_bit,art_tile(a0)					; signs have same priority as Sonic
+
+		; check priority
+		btst	#high_priority_bit,(Player_1+art_tile).w			; is Sonic has high priority?
+		beq.s	.nothighpriority						; if not, branch
+		bset	#high_priority_bit,art_tile(a0)					; signs have same priority as Sonic (high priority)
 
 .nothighpriority
 		move.w	a0,(Signpost_addr).w						; put RAM address here for use by hidden monitor object
@@ -265,9 +267,11 @@ Obj_SignpostSparkle:
 		; init
 		lea	ObjDat_SignpostSparkle(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		btst	#high_priority_bit,(Player_1+art_tile).w
-		beq.s	.nothighpriority
-		bset	#high_priority_bit,art_tile(a0)					; sparkles have same priority as Sonic
+
+		; check priority
+		btst	#high_priority_bit,(Player_1+art_tile).w			; is Sonic has high priority?
+		beq.s	.nothighpriority						; if not, branch
+		bset	#high_priority_bit,art_tile(a0)					; sparkles have same priority as Sonic (high priority)
 
 .nothighpriority
 		move.l	#.main,address(a0)
@@ -314,9 +318,11 @@ Obj_SignpostStub:
 		jsr	(SetUp_ObjAttributes).w
 		bset	#render_flags.static_mappings,render_flags(a0)			; set flag to "static mappings flag"
 		move.l	#.main,address(a0)
-		btst	#high_priority_bit,(Player_1+art_tile).w
-		beq.s	.main
-		bset	#high_priority_bit,art_tile(a0)					; stub have same priority as Sonic
+
+		; check priority
+		btst	#high_priority_bit,(Player_1+art_tile).w			; is Sonic has high priority?
+		beq.s	.main								; if not, branch
+		bset	#high_priority_bit,art_tile(a0)					; stub have same priority as Sonic (high priority)
 
 .main
 		jsr	(Refresh_ChildPosition).w

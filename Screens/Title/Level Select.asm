@@ -48,8 +48,8 @@ TitleLevelSelectScreen:
 		clearRAM H_scroll_buffer, V_scroll_buffer_end						; clear hvscroll buffer
 
 		; clear
-		move.l	d0,(V_scroll_value).w								; clear vscroll value
-		move.l	d0,(H_scroll_value).w								; clear hscroll value
+		move.l	d0,(V_scroll_value).w								; clear VScroll value
+		move.l	d0,(H_scroll_value).w								; clear HScroll value
 
 		; load text
 		bsr.w	TitleLevelSelect_LoadText
@@ -62,8 +62,8 @@ TitleLevelSelectScreen:
 
 		; we need to switch plans
 		disableInts
-		lea	(VDP_data_port).l,a6
-		lea	VDP_control_port-VDP_data_port(a6),a5
+		lea	(VDP_data_port).l,a6								; load VDP data address to a6
+		lea	VDP_control_port-VDP_data_port(a6),a5						; load VDP control address to a5
 
 		; copy foreground buffer from VRAM to RAM
 		lea	(TitleLevelSelect_buffer3).l,a1

@@ -201,8 +201,8 @@ SpecialStageScreen:
 		move.l	#Obj_PlayerSpecial,(Player_1+address).w						; load special stage player object
 
 		; update palette
-		lea	(VDP_data_port).l,a6
-		lea	VDP_control_port-VDP_data_port(a6),a5
+		lea	(VDP_data_port).l,a6								; load VDP data address to a6
+		lea	VDP_control_port-VDP_data_port(a6),a5						; load VDP control address to a5
 		bsr.w	PalCycle_SS
 
 		; set
@@ -813,7 +813,7 @@ SS_AniWallsRings:
 		; size of art (in words) ; we only need one frame
 		moveq	#tiles_to_bytes( \
 		dmaLength(4) \
-		),d3				
+		),d3
 
 		jsr	(Add_To_DMA_Queue).w
 

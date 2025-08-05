@@ -65,7 +65,7 @@ Obj_GeyserMaker:
 ; ---------------------------------------------------------------------------
 
 .isgeyser
-		movea.w	parent3(a0),a1							; get parent object address (pushable blocks)
+		movea.w	parent3(a0),a1							; a1=parent object (pushable blocks)
 		bset	#status.npc.y_flip,status(a1)					; set geyser flag
 		move.w	#-$580,y_vel(a1)
 
@@ -173,12 +173,12 @@ Obj_LavaGeyser:
 		bra.s	.type00								; 0
 ; ---------------------------------------------------------------------------
 
-		; type01											; 1
+		; type01								; 1
 		addi.w	#$18,y_vel(a0)							; increase object's falling speed
 		move.w	lgeyser_ypos(a0),d0
 		cmp.w	y_pos(a0),d0
 		bhs.s	.return
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 		move.b	#1,anim(a1)							; bubble2 anim
 		jmp	(Go_Delete_Sprite).w
 ; ---------------------------------------------------------------------------
@@ -188,7 +188,7 @@ Obj_LavaGeyser:
 		move.w	lgeyser_ypos(a0),d0
 		cmp.w	y_pos(a0),d0
 		bhs.s	.return
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 		move.b	#3,anim(a1)							; bubble3 anim
 		jmp	(Go_Delete_Sprite).w
 ; ---------------------------------------------------------------------------
@@ -225,7 +225,7 @@ Obj_LavaGeyser_Extra:
 		move.l	#.loc_EFFC,address(a0)
 
 .loc_EFFC
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 		moveq	#$60,d0
 		add.w	y_pos(a1),d0
 		move.w	d0,y_pos(a0)

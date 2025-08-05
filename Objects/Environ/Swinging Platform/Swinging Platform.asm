@@ -172,7 +172,7 @@ SwingingPlatform_Move:
 		jsr	(GetSineCosine).w
 		move.w	swing_origY(a0),d2
 		move.w	swing_origX(a0),d3
-		movea.w	parent3(a0),a1							; load chain address
+		movea.w	parent3(a0),a1							; load chain address into a1
 		move.w	mainspr_childsprites(a1),d6
 		subq.w	#1,d6
 		blo.s	.return

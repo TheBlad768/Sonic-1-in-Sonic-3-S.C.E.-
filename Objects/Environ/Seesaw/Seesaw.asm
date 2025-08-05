@@ -190,7 +190,7 @@ Obj_See_Spikeball:
 
 .main
 		pea	.draw(pc)
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object (seesaw)
 		moveq	#0,d0
 		move.b	see_frame(a0),d0
 		sub.b	see_frame(a1),d0

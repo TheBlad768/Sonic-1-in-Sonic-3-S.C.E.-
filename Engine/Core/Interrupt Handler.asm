@@ -6,8 +6,8 @@
 
 VInt:
 		movem.l	d0-a6,-(sp)										; save all the registers to the stack
-		lea	(VDP_data_port).l,a6
-		lea	VDP_control_port-VDP_data_port(a6),a5
+		lea	(VDP_data_port).l,a6									; load VDP data address to a6
+		lea	VDP_control_port-VDP_data_port(a6),a5							; load VDP control address to a5
 
 		; check
 		tst.b	(V_int_routine).w
@@ -28,9 +28,9 @@ VInt:
 		dbf	d0,*											; otherwise, waste a bit of time here
 
 .notpal
-		moveq	#$7E,d0
-		and.b	(V_int_routine).w,d0
-		clr.b	(V_int_routine).w
+		moveq	#$7E,d0											; limit VInt routine value to $7E max
+		and.b	(V_int_routine).w,d0									; get VInt routine to d0
+		clr.b	(V_int_routine).w									; clear VInt routine
 		st	(H_int_flag).w										; allow H Interrupt code to run
 		move.w	VInt_Table(pc,d0.w),d0
 		jsr	VInt_Table(pc,d0.w)
@@ -72,7 +72,7 @@ VInt_Lag_Main:
 
 		; branch if a level is running
 		moveq	#$7C,d0											; limit Game Mode value to $7C max
-		and.b	(Game_mode).w,d0									; load Game Mode
+		and.b	(Game_mode).w,d0									; get Game Mode to d0
 		cmpi.b	#GameModeID_DemoScreen,d0								; is game on a demo?
 		beq.s	VInt_Lag_Level										; if yes, branch
 		cmpi.b	#GameModeID_LevelScreen,d0								; is game on a level?
@@ -132,7 +132,7 @@ VInt_Main:
 
 		; demo
 		tst.w	(Demo_timer).w										; is there time left on the demo?
-		beq.s	.return
+		beq.s	.return											; if not, branch
 		subq.w	#1,(Demo_timer).w									; subtract 1 from time left
 
 .return
@@ -149,7 +149,7 @@ VInt_Menu:
 
 		; demo
 		tst.w	(Demo_timer).w										; is there time left on the demo?
-		beq.s	.kospm
+		beq.s	.kospm											; if not, branch
 		subq.w	#1,(Demo_timer).w									; subtract 1 from time left
 
 .kospm
@@ -212,7 +212,7 @@ VInt_LevelSelect:
 
 		; demo
 		tst.w	(Demo_timer).w										; is there time left on the demo?
-		beq.s	.return
+		beq.s	.return											; if not, branch
 		subq.w	#1,(Demo_timer).w									; subtract 1 from time left
 
 .return
@@ -238,7 +238,7 @@ VInt_Continue:
 
 		; demo
 		tst.w	(Demo_timer).w										; is there time left on the demo?
-		beq.s	.return
+		beq.s	.return											; if not, branch
 		subq.w	#1,(Demo_timer).w									; subtract 1 from time left
 
 .return
@@ -258,7 +258,7 @@ VInt_SpecialStage:
 
 		; demo
 		tst.w	(Demo_timer).w										; is there time left on the demo?
-		beq.s	.return
+		beq.s	.return											; if not, branch
 		subq.w	#1,(Demo_timer).w									; subtract 1 from time left
 
 .return
@@ -277,7 +277,7 @@ VInt_SpecialStageResults:
 
 		; demo
 		tst.w	(Demo_timer).w										; is there time left on the demo?
-		beq.s	.return
+		beq.s	.return											; if not, branch
 		subq.w	#1,(Demo_timer).w									; subtract 1 from time left
 
 .return
@@ -303,7 +303,7 @@ VInt_Sega:
 
 		; demo
 		tst.w	(Demo_timer).w										; is there time left on the demo?
-		beq.s	.return
+		beq.s	.return											; if not, branch
 		subq.w	#1,(Demo_timer).w									; subtract 1 from time left
 
 .return
@@ -324,8 +324,8 @@ VInt_Level:
 		stopZ802
 		jsr	(Poll_Controllers).w
 		startZ802
-		tst.b	(Game_paused).w
-		bne.s	VInt_Level_NoNegativeFlash
+		tst.b	(Game_paused).w										; is the game paused?
+		bne.s	VInt_Level_NoNegativeFlash								; if yes, branch
 		tst.b	(Hyper_Sonic_flash_timer).w
 		beq.s	VInt_Level_NoFlash
 
@@ -407,7 +407,7 @@ Do_Updates:
 
 		; demo
 		tst.w	(Demo_timer).w										; is there time left on the demo?
-		beq.s	.return
+		beq.s	.return											; if not, branch
 		subq.w	#1,(Demo_timer).w									; subtract 1 from time left
 
 .return
@@ -461,7 +461,7 @@ HInt:
 		beq.w	HInt_Done
 		clr.b	(H_int_flag).w
 		movem.l	a0-a1,-(sp)
-		lea	(VDP_data_port).l,a1
+		lea	(VDP_data_port).l,a1									; load VDP data address to a1
 		move.w	#$8A00+223,VDP_control_port-VDP_data_port(a1)
 		lea	(Water_palette).w,a0
 		move.l	#vdpComm(0,CRAM,WRITE),VDP_control_port-VDP_data_port(a1)
@@ -471,6 +471,8 @@ HInt:
 	endr
 
 		movem.l	(sp)+,a0-a1
+
+		; check
 		tst.b	(Do_Updates_in_H_int).w
 		beq.s	HInt_Done
 		clr.b	(Do_Updates_in_H_int).w

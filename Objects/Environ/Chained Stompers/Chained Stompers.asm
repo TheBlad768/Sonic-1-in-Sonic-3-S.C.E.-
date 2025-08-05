@@ -298,7 +298,7 @@ Obj_ChainStomp_Spikes:
 
 .main
 		moveq	#0,d0
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 		move.b	objoff_32(a1),d0
 		add.w	objoff_40(a0),d0
 		move.w	d0,y_pos(a0)

@@ -175,7 +175,7 @@ Obj_BigRing_Flash:
 		move.l	#AniRaw_BigRingFlash,objoff_30(a0)
 
 		; copy
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 		move.w	x_pos(a1),x_pos(a0)
 		move.w	y_pos(a1),y_pos(a0)
 		move.b	subtype(a1),subtype(a0)						; copy positional data from parent ring

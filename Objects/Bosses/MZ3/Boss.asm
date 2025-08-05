@@ -439,7 +439,7 @@ Obj74_Drop:
 
 Obj74_MakeFlame:
 		subq.w	#2,y_pos(a0)
-		bset	#high_priority_bit,art_tile(a0)
+		bset	#high_priority_bit,art_tile(a0)					; high priority
 		move.l	#words_to_long($A0,0),x_vel(a0)
 		move.w	x_pos(a0),objoff_30(a0)
 		move.w	y_pos(a0),objoff_38(a0)
@@ -536,7 +536,7 @@ Obj74_FallEdge:
 .abs
 		cmpi.w	#18,d0
 		bne.s	.skip
-		bclr	#high_priority_bit,art_tile(a0)
+		bclr	#high_priority_bit,art_tile(a0)					; low priority
 
 .skip
 		jsr	(ObjCheckFloorDist).w
@@ -548,7 +548,7 @@ Obj74_FallEdge:
 		move.w	objoff_32(a0),x_pos(a0)
 		move.w	objoff_38(a0),y_pos(a0)
 		move.l	#Obj74_Duplicate,obBFF_Jump(a0)
-		bset	#high_priority_bit,art_tile(a0)
+		bset	#high_priority_bit,art_tile(a0)					; high priority
 
 .return
 		rts
@@ -560,7 +560,7 @@ Obj74_Delete:
 ; =============== S U B R O U T I N E =======================================
 
 loc_18886:
-		bset	#high_priority_bit,art_tile(a0)
+		bset	#high_priority_bit,art_tile(a0)					; high priority
 		subq.b	#1,objoff_3F(a0)
 		bne.s	.anim
 		move.b	#1,anim(a0)

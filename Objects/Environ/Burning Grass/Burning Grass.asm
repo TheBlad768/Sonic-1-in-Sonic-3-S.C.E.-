@@ -19,7 +19,7 @@ Obj_GrassFire:
 		move.l	#.main,address(a0)
 
 .main
-		movea.w	parent3(a0),a2
+		movea.w	parent3(a0),a2							; a2=parent object (Large Grassy Platforms)
 		movea.l	objoff_3C(a0),a1						; LGrass data pointer
 		move.w	x_pos(a0),d1
 		sub.w	gfire_origX(a0),d1
@@ -47,7 +47,7 @@ Obj_GrassFire:
 		jsr	(CreateChild6_Simple).w
 		bne.s	Obj_GrassFire_Fire.anim
 		move.b	shield_reaction(a0),shield_reaction(a1)
-		move.w	parent3(a0),parent3(a1)
+		move.w	parent3(a0),parent3(a1)						; copy parent object
 		move.w	d3,gfire_origY(a1)
 		bra.s	Obj_GrassFire_Fire.anim
 
@@ -65,7 +65,7 @@ Obj_GrassFire_Fire:
 		move.l	#.main,address(a0)
 
 .main
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object (Large Grassy Platforms)
 		move.w	gfire_origY(a0),d0
 		add.w	objoff_32(a1),d0
 		move.w	d0,y_pos(a0)

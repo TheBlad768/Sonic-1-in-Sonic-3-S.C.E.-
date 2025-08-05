@@ -40,6 +40,8 @@ Obj_Invisible_SolidBlock:
 		addq.w	#1,d3
 		move.w	x_pos(a0),d4
 		jsr	(SolidObjectFull2).w
+
+		; check
 		out_of_xrange.s	.offscreen
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		beq.s	.return								; if not, branch

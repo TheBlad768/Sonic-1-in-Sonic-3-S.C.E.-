@@ -191,7 +191,7 @@ Obj_Bouncing_Ring_Normal:
 Obj_Bouncing_Ring_TestGravity:
 
 		; move sprite
-		movem.w	x_vel(a0),d0-d2							; load xy speed
+		movem.w	x_vel(a0),d0/d2							; load xy speed
 		tst.b	(Reverse_gravity_flag).w
 		beq.s	.notgrav
 		neg.l	d2								; reverse y speed
@@ -385,7 +385,6 @@ ObjDat3_BouncingRing:		subObjMainData \
 					setBit(render_flags.static_mappings) | \
 					setBit(render_flags.on_screen), \
 				0, 16, 16, 3, ArtTile_Ring, 1, 1, Map_Ring_10+2
-
 ; ---------------------------------------------------------------------------
 
 Rings_Velocity:

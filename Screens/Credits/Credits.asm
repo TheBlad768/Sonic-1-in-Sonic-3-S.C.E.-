@@ -223,8 +223,8 @@ Credits_Process_LoadText:
 
 Credits_LoadText:
 		disableIntsSave
-		lea	(VDP_data_port).l,a6
-		lea	VDP_control_port-VDP_data_port(a6),a5
+		lea	(VDP_data_port).l,a6								; load VDP data address to a6
+		lea	VDP_control_port-VDP_data_port(a6),a5						; load VDP control address to a5
 		move.w	#$8F80,VDP_control_port-VDP_control_port(a5)					; VRAM increment at $80 bytes (vertical write)
 		move.l	#vdpCommDelta(planeLoc(64,1,0)),d4						; row increment value
 
@@ -865,7 +865,7 @@ Obj_CreditsEggRobo_Eyes:
 
 .setf
 		move.l	#.refresh,address(a0)
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1									; a1=parent object
 		bset	#2,objoff_38(a1)
 		rts
 ; ---------------------------------------------------------------------------
@@ -875,7 +875,7 @@ Obj_CreditsEggRobo_Eyes:
 
 .refresh
 		moveq	#-20,d0
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1									; a1=parent object
 		tst.b	mapping_frame(a1)
 		beq.s	.refreshs
 		addq.b	#1,d0

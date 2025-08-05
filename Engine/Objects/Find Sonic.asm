@@ -8,19 +8,23 @@ Find_SonicObject:
 		lea	(Player_1).w,a1				; a1=character
 
 Find_OtherObject:
+
+		; check xpos
 		moveq	#0,d0					; d0 = 0 if other object is left of calling object, 2 if right of it
-		move.w	x_pos(a0),d2
-		sub.w	x_pos(a1),d2
-		bpl.s	.left
-		neg.w	d2
-		addq.w	#2,d0
+		move.w	x_pos(a0),d2				; load object x position to d2
+		sub.w	x_pos(a1),d2				; subtract player x position from d2
+		bpl.s	.left					; branch, if player is left of object
+		neg.w	d2					; absolute distance
+		addq.w	#2,d0					; set d0 = 2 (player is right)
 
 .left
+
+		; check ypos
 		moveq	#0,d1					; d1 = 0 if other object is above calling object, 2 if below it
-		move.w	y_pos(a0),d3
-		sub.w	y_pos(a1),d3
-		bpl.s	.up
-		neg.w	d3
+		move.w	y_pos(a0),d3				; load object y position to d3
+		sub.w	y_pos(a1),d3				; subtract player y position from d3
+		bpl.s	.up					; branch, if player is above object
+		neg.w	d3					; absolute distance
 		addq.w	#2,d1
 
 .up
@@ -33,37 +37,43 @@ Find_OtherObject:
 ; =============== S U B R O U T I N E =======================================
 
 Find_SonicTails:
-		moveq	#0,d0					; d0 = 0 if Sonic/Tails is left of object, 2 if right of object
 		lea	(Player_1).w,a1				; a1=character
-		move.w	x_pos(a0),d2
-		sub.w	x_pos(a1),d2
-		bpl.s	.sleft
-		neg.w	d2
-		addq.w	#2,d0
+
+		; check xpos
+		moveq	#0,d0					; d0 = 0 if Sonic/Tails is left of object, 2 if right of object
+		move.w	x_pos(a0),d2				; load object x position to d2
+		sub.w	x_pos(a1),d2				; subtract Sonic x position from d2
+		bpl.s	.sleft					; branch, if Sonic is left of object
+		neg.w	d2					; absolute distance
+		addq.w	#2,d0					; set d0 = 2 (Sonic is right)
 
 .sleft
-		moveq	#0,d1					; d1 = 0 if Sonic/Tails is above object, 2 if below object
 		lea	(Player_2).w,a2				; a2=character
-		move.w	x_pos(a0),d3
-		sub.w	x_pos(a2),d3
-		bpl.s	.tleft
-		neg.w	d3
-		addq.w	#2,d1
+
+		; check xpos
+		moveq	#0,d1					; d1 = 0 if Sonic/Tails is above object, 2 if below object
+		move.w	x_pos(a0),d3				; load object x position to d3
+		sub.w	x_pos(a2),d3				; subtract Tails x position from d3
+		bpl.s	.tleft					; branch, if Tails is left of object
+		neg.w	d3					; absolute distance
+		addq.w	#2,d1					; set d1 = 2 (Tails is right)
 
 .tleft
-		cmp.w	d3,d2
-		bls.s	.ypos
-		movea.w	a2,a1
-		move.w	d1,d0
-		move.w	d3,d2
+		cmp.w	d3,d2					; compare Tails distance (d3) to Sonic distance (d2)
+		bls.s	.ypos					; if Sonic is closer, keep a1 = Sonic
+		movea.w	a2,a1					; load Tails to a1
+		move.w	d1,d0					; set d0 to Tails direction
+		move.w	d3,d2					; set d2 to Tails distance
 
 .ypos
-		moveq	#0,d1
-		move.w	y_pos(a0),d3
-		sub.w	y_pos(a1),d3
-		bpl.s	.up
-		neg.w	d3
-		addq.w	#2,d1
+
+		; check ypos
+		moveq	#0,d1					; d1 = 0 if other object is above calling object, 2 if below it
+		move.w	y_pos(a0),d3				; load object y position to d3
+		sub.w	y_pos(a1),d3				; subtract player y position from d3
+		bpl.s	.up					; branch, if player is above object
+		neg.w	d3					; absolute distance
+		addq.w	#2,d1					; set d1 = 2 (player is below)
 
 .up
 		rts

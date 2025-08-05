@@ -659,7 +659,7 @@ Obj_Continue_EggRobo_Legs:
 		move.l	#.main,address(a0)
 
 		; check
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1									; a1=parent object
 		btst	#render_flags.level,render_flags(a1)						; is parent uses screen coordinates flag?
 		bne.s	.main										; if yes, branch
 		bclr	#render_flags.level,render_flags(a0)						; clear screen coordinates flag
@@ -692,7 +692,7 @@ Obj_Continue_EggRobo_Gun:
 		move.l	#.main,address(a0)
 
 		; check
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1									; a1=parent object
 		btst	#render_flags.level,render_flags(a1)						; is parent uses screen coordinates flag?
 		bne.s	.main										; if yes, branch
 		bclr	#render_flags.level,render_flags(a0)						; clear screen coordinates flag
@@ -703,7 +703,7 @@ Obj_Continue_EggRobo_Gun:
 ; =============== S U B R O U T I N E =======================================
 
 Refresh_ChildPositionAdjusted_Continue:
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1									; a1=parent object
 
 .skipp
 		move.w	x_pos(a1),d0

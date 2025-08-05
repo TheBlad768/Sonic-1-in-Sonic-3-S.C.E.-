@@ -81,7 +81,7 @@ Obj_SpikeBall:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SpikeBall_Child:
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 		move.b	sball_angle(a1),sball_angle(a0)					; angle
 		moveq	#4,d2								; radius
 		jsr	(MoveSprite_CircularSimple).w

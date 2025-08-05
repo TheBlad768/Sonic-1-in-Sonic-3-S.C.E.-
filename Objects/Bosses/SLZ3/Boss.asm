@@ -298,7 +298,7 @@ Obj_BossSpikeBall_ShipTube:
 		jsr	(Refresh_ChildPositionAdjusted).w
 
 		; draw
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object (boss)
 
 		; check defeated flag
 		btst	#status.npc.defeated,status(a1)
@@ -352,7 +352,7 @@ Obj_BossSpikeBall_SpikeBall:
 		lea	ObjDat_See_SpikeBall(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.fall,address(a0)
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object (seesaw)
 		move.w	x_pos(a1),see_origX(a0)
 		move.w	y_pos(a1),see_origY(a0)
 		bset	#status.npc.x_flip,status(a0)
@@ -365,7 +365,7 @@ Obj_BossSpikeBall_SpikeBall:
 .fall
 		pea	.draw(pc)
 		jsr	(MoveSprite).w
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object (seesaw)
 		lea	See_Speeds(pc),a2
 		moveq	#0,d0
 		move.b	mapping_frame(a1),d0
@@ -380,7 +380,7 @@ Obj_BossSpikeBall_SpikeBall:
 		add.w	(a2,d0.w),d1
 		cmp.w	y_pos(a0),d1
 		bgt.w	.locret_18EA8
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object (seesaw)
 		moveq	#2,d1
 		btst	#status.npc.x_flip,status(a0)
 		beq.s	.notflipx
@@ -394,7 +394,7 @@ Obj_BossSpikeBall_SpikeBall:
 ; ---------------------------------------------------------------------------
 
 .loc_18DC6
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object (seesaw)
 		moveq	#0,d0
 		move.b	see_frame(a0),d0
 		sub.b	see_frame(a1),d0
@@ -479,7 +479,7 @@ Obj_BossSpikeBall_SpikeBall:
 ; ---------------------------------------------------------------------------
 
 .loc_18EAA
-		movea.w	parent4(a0),a1							; load boss address
+		movea.w	parent4(a0),a1							; a1=parent object (boss)
 
 		; check touch and defeated
 		moveq	#signextendB( \

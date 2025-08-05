@@ -435,7 +435,7 @@ Obj_2EC1E:
 loc_2EC2A:
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bmi.s	loc_2EC3E							; if yes, branch
-		movea.w	parent2(a0),a1
+		movea.w	parent2(a0),a1							; a1=parent object
 		subq.w	#1,objoff_30(a1)						; if offscreen, subtract from number of elements and delete
 		jmp	(Delete_Current_Sprite).w
 ; ---------------------------------------------------------------------------

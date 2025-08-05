@@ -16,18 +16,18 @@ Obj_RobotnikHead3:
 		bsr.s	sub_67B14							; load Egg Robo art
 
 .notKnux
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 		move.w	art_tile(a1),d0
 		andi.w	#$87FF,d0
 		or.w	d0,art_tile(a0)							; set VRAM
 
 		; check
-		btst	#high_priority_bit,art_tile(a1)
-		beq.s	.main
-		bset	#high_priority_bit,art_tile(a0)
+		btst	#high_priority_bit,art_tile(a1)					; is parent object has high priority?
+		beq.s	.main								; if not, branch
+		bset	#high_priority_bit,art_tile(a0)					; high priority
 
 .main
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 
 		; check defeated flag
 		btst	#status.npc.defeated,status(a1)
@@ -73,7 +73,7 @@ loc_67B1C:
 		move.l	#Ani_EggRoboHead,objoff_30(a0)
 
 		; load art
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 		move.w	art_tile(a1),d2
 		andi.w	#$7FF,d2
 		lsl.w	#5,d2
@@ -98,13 +98,13 @@ Obj_RobotnikHead4:
 		bsr.s	sub_67B14							; load Egg Robo art
 
 .notKnux
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 		move.w	art_tile(a1),d0
 		andi.w	#$87FF,d0
 		or.w	d0,art_tile(a0)							; set VRAM
 
 .main
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 
 		; check defeated flag
 		btst	#status.npc.defeated,status(a1)
@@ -136,7 +136,7 @@ Obj_RobotnikHead4:
 		jsr	(Animate_Sprite).w
 
 		; check delete flag
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 		btst	#5,objoff_38(a1)
 		bne.s	.delete
 
@@ -168,7 +168,7 @@ Obj_RobotnikShipFlame:
 		move.l	#.main,address(a0)
 
 .main
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 		btst	#5,objoff_38(a1)						; 4
 		bne.s	Obj_RobotnikHead4.delete
 		jsr	(Refresh_ChildPositionAdjusted).w

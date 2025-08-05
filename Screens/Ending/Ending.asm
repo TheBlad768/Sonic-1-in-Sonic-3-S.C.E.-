@@ -339,7 +339,7 @@ Obj_Sonic_Ending:
 ; ---------------------------------------------------------------------------
 
 .lookup
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1									; a1=parent object
 		cmpi.w	#$2000,echa_radius(a1)
 		bne.w	.draw
 		sfx	sfx_SuperEmerald								; play sfx
@@ -356,7 +356,7 @@ Obj_Sonic_Ending:
 		bne.w	.draw
 
 		; delete chaos emeralds objects
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1									; a1=parent object
 		move.l	#Go_Delete_Sprite,address(a1)
 		st	(Restart_level_flag).w								; set level to restart
 		move.w	#1*60,eson_time(a0)
@@ -543,7 +543,7 @@ Obj_EndChaos:
 ; ---------------------------------------------------------------------------
 
 .circular
-		movea.w	parent3(a0),a1									; load parent
+		movea.w	parent3(a0),a1									; a1=parent object
 		move.w	echa_speed(a1),d0
 		add.w	d0,angle(a0)
 		move.b	angle(a0),d0

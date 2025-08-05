@@ -278,7 +278,7 @@
 		include "Data/Objects Data.asm"
 
 ; ---------------------------------------------------------------------------
-; Sega screen subroutines
+; Sega screen Subroutine
 ; ---------------------------------------------------------------------------
 
 	if ~~SegaVer
@@ -295,19 +295,19 @@
 		include "Screens/Title/Level Select.asm"
 
 ; ---------------------------------------------------------------------------
-; Options screen subroutines
+; Options screen Subroutine
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Options/Options.asm"
 
 ; ---------------------------------------------------------------------------
-; Level Select screen subroutines
+; Level Select screen Subroutine
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Level Select/Level Select.asm"
 
 ; ---------------------------------------------------------------------------
-; Level Select RSDK screen subroutines
+; Level Select RSDK screen Subroutine
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Level Select RSDK/Level Select.asm"
@@ -477,7 +477,7 @@
 		include "Sound/Engine/MegaPCM.asm"
 
 ; ---------------------------------------------------------------------------
-; Clone sound driver subroutines
+; Clone sound driver Subroutine
 ; ---------------------------------------------------------------------------
 
 		include "Sound/Engine/Sonic 2 Clone Driver v2.asm"
@@ -485,7 +485,7 @@
 	if MSUMode
 
 ; ---------------------------------------------------------------------------
-; MegaCD Driver
+; MegaCD Driver Subroutine
 ; ---------------------------------------------------------------------------
 
 		include "Sound/MSU/MSU.asm"

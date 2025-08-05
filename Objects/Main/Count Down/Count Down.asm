@@ -12,8 +12,8 @@ Obj_AirCountdown:
 		move.b	#1,objoff_37(a0)
 
 		; check player
-		tst.b	parent+1(a0)
-		beq.s	.countdown
+		tst.b	parent+1(a0)							; is Tails?
+		beq.s	.countdown							; if not, branch
 		move.l	#Map_Bubbler2,mappings(a0)					; 2P
 
 .countdown
@@ -47,8 +47,8 @@ Obj_AirCountdown:
 		cmpi.w	#12,d0
 		bhi.s	AirCountdown_ReduceAir
 		bne.s	loc_184E8
-		tst.b	parent+1(a0)
-		bne.s	loc_184E8
+		tst.b	parent+1(a0)							; is Tails?
+		bne.s	loc_184E8							; if yes, branch
 		music	mus_Drowning							; play drowning music
 
 loc_184E8:
@@ -60,8 +60,8 @@ loc_184E8:
 ; ---------------------------------------------------------------------------
 
 AirCountdown_WarnSound:
-		tst.b	parent+1(a0)
-		bne.s	AirCountdown_ReduceAir
+		tst.b	parent+1(a0)							; is Tails?
+		bne.s	AirCountdown_ReduceAir						; if yes, branch
 		sfx	sfx_AirDing							; play air ding sound
 
 AirCountdown_ReduceAir:
@@ -112,7 +112,7 @@ AirCountdown_ReduceAir:
 		move.b	#1,invincibility_timer(a2)
 
 .notp1
-		bset	#high_priority_bit,art_tile(a2)
+		bset	#high_priority_bit,art_tile(a2)					; high priority
 
 locret_1857A:
 		rts
@@ -374,8 +374,8 @@ AirCountdown_Load_Art:
 		lsl.w	#5,d1
 		addi.l	#dmaSource(ArtUnc_AirCountDown),d1
 		move.w	#tiles_to_bytes(ArtTile_DashDust),d2				; 1P
-		tst.b	parent+1(a0)
-		beq.s	.notp2
+		tst.b	parent+1(a0)							; is Tails?
+		beq.s	.notp2								; if not, branch
 		move.w	#tiles_to_bytes(ArtTile_DashDust_P2),d2				; 2P
 
 .notp2

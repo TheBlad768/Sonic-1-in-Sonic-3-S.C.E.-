@@ -185,7 +185,7 @@ Obj_TitleCard:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_TitleCardRedBanner:
-		movea.w	parent2(a0),a1
+		movea.w	parent2(a0),a1							; a1=parent object
 		move.w	objoff_32(a1),d0
 		beq.s	.loc_2D90A
 		tst.b	render_flags(a0)						; is the object visible on the screen?
@@ -233,7 +233,7 @@ Obj_TitleCardName:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_TitleCardElement:
-		movea.w	parent2(a0),a1
+		movea.w	parent2(a0),a1							; a1=parent object
 		move.w	objoff_32(a1),d0
 		beq.s	.loc_2D984
 		tst.b	render_flags(a0)						; is the object visible on the screen?
@@ -267,8 +267,8 @@ Obj_TitleCardAct:
 		cmpi.w	#bytes_to_word(LevelID_SBZ,2),(Current_zone_and_act).w		; is level Final Zone?
 		bne.s	Obj_TitleCardElement						; if not, branch
 
-		; delete
-		movea.w	parent2(a0),a1							; remove a number of the act, if not needed
+		; remove a number of the act, if not needed
+		movea.w	parent2(a0),a1							; a1=parent object
 		subq.w	#1,objoff_30(a1)
 		jmp	(Delete_Current_Sprite).w
 ; ---------------------------------------------------------------------------

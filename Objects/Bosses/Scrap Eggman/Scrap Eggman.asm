@@ -133,7 +133,7 @@ Obj_ScrapEggman_Block:
 .fwait
 
 		; check flag
-		movea.w	parent3(a0),a1
+		movea.w	parent3(a0),a1							; a1=parent object
 		tst.b	sEggman_Block(a1)
 		beq.w	.solid
 		move.l	#.twait,address(a0)

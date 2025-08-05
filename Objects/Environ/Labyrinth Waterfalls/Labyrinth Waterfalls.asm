@@ -14,7 +14,7 @@ Obj_Waterfall:
 		; set
 		move.b	subtype(a0),d0							; get object type
 		bpl.s	.under80							; branch if $00-$7F
-		bset	#high_priority_bit,art_tile(a0)
+		bset	#high_priority_bit,art_tile(a0)					; high priority
 
 .under80
 		andi.b	#$F,d0								; read only the 2nd digit
@@ -48,10 +48,10 @@ Obj_Waterfall:
 ; ---------------------------------------------------------------------------
 
 .loc_12B36
-		bclr	#high_priority_bit,art_tile(a0)
+		bclr	#high_priority_bit,art_tile(a0)					; low priority
 		tst.l	(Chunk_table+($32*$80+$20)).l					; is empty block?
 		bne.s	.anim								; if not, branch
-		bset	#high_priority_bit,art_tile(a0)
+		bset	#high_priority_bit,art_tile(a0)					; high priority
 		bra.s	.anim
 
 ; =============== S U B R O U T I N E =======================================

@@ -26,15 +26,17 @@ Obj_SuperSonicKnux_Stars:
 		0,48/2,48/2 \
 		),render_flags(a0)
 
+		; check priority
+		btst	#high_priority_bit,(Player_1+art_tile).w			; is Sonic has high priority?
+		beq.s	.nothighpriority						; if not, branch
+		bset	#high_priority_bit,art_tile(a0)					; stars have same priority as Sonic (high priority)
+
+.nothighpriority
+		move.l	#.main,address(a0)
+
+.main
+
 		; check
-		btst	#high_priority_bit,(Player_1+art_tile).w
-		beq.s	loc_1919E
-		bset	#high_priority_bit,art_tile(a0)
-
-loc_1919E:
-		move.l	#loc_191A4,address(a0)
-
-loc_191A4:
 		tst.b	(Super_Sonic_Knux_flag).w
 		beq.s	loc_19230
 		tst.b	objoff_34(a0)

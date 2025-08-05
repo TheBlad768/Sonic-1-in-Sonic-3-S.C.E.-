@@ -31,6 +31,8 @@ Obj_Invisible_KillBlock:
 		addq.w	#1,d1
 		lsl.w	#3,d1
 		move.b	d1,height_pixels(a0)
+
+		; check
 		btst	#status.npc.x_flip,status(a0)					; is it flipx?
 		beq.s	loc_1F5F0							; if not, branch
 		move.l	#loc_1F66C,address(a0)						; set side kill
@@ -145,9 +147,9 @@ loc_1F712:
 
 sub_1F734:
 		movem.w	d6/a0,-(sp)
-		movea.w	a0,a2
-		movea.w	a1,a0
-		jsr	(Kill_Character).l
+		movea.w	a0,a2								; load current object to a2
+		movea.w	a1,a0								; load player to a0
+		jsr	(Kill_Character).l						; "
 		movem.w	(sp)+,d6/a0
 
 locret_1F742:
