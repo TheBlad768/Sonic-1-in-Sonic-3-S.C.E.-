@@ -123,12 +123,8 @@ theld macro press,player
 ; input: 16-bit VRAM address, control port (default is (VDP_control_port).l)
 ; ---------------------------------------------------------------------------
 
-locVRAM macro loc,controlport
-	if ("controlport"=="")
-		move.l	#$40000000|vdpCommDelta(loc),(VDP_control_port).l
-	else
-		move.l	#$40000000|vdpCommDelta(loc),controlport
-	endif
+locVRAM macro loc,controlport=(VDP_control_port).l
+	move.l	#$40000000|vdpCommDelta(loc),controlport
     endm
 
 ; ---------------------------------------------------------------------------
@@ -232,10 +228,10 @@ subObjMainData macro address,render,routine,height,width,prio,vram,pal,pri,mappi
 	dc.b render,routine,(height/2),(width/2)
 	dc.w sprite_priority(prio),make_art_tile(vram,pal,pri)
 	dc.l mappings
-    if ("frame"<>"")
+    ifnb frame
 	dc.b frame
     endif
-    if ("collision"<>"")
+    ifnb collision
 	dc.b collision
     endif
     endm
@@ -614,7 +610,7 @@ AddToDMAQueue macro art,vram,size,terminate
 
 out_of_xrange macro exit,xpos
 	moveq	#-$80,d0								; round down to nearest $80
-    if ("xpos"<>"")
+    ifnb xpos
 		and.w	xpos,d0								; get object position (if specified as not x_pos)
     else
 		and.w	x_pos(a0),d0							; get object position
@@ -635,7 +631,7 @@ out_of_xrange2 macro exit
 
 out_of_yrange macro exit,ypos
 	moveq	#-$80,d0								; round down to nearest $80
-    if ("ypos"<>"")
+    ifnb ypos
 		and.w	ypos,d0								; get object position (if specified as not y_pos)
     else
 		and.w	y_pos(a0),d0							; get object position
@@ -670,7 +666,7 @@ respawn_delete macro terminate
 ; ---------------------------------------------------------------------------
 
 getobjectRAMslot macro address
-    if ("address"=="")
+    ifb address
 	fatal "Error! Empty value!"
     endif
 	move.w	#Dynamic_object_RAM_end,d0
@@ -681,7 +677,7 @@ getobjectRAMslot macro address
     endm
 
 MoveSprite macro address,gravity,terminate
-    if ("address"=="")
+    ifb address
 	fatal "Error! Empty value!"
     endif
 	movem.w	x_vel(address),d0/d2							; load xy speed
@@ -689,18 +685,18 @@ MoveSprite macro address,gravity,terminate
 	asl.l	#8,d2									; shift velocity to line up with the middle 16 bits of the 32-bit position
 	add.l	d0,x_pos(address)							; add to x-axis position ; note this affects the subpixel position x_sub(address) = 2+x_pos(address)
 	add.l	d2,y_pos(address)							; add to y-axis position ; note this affects the subpixel position y_sub(address) = 2+y_pos(address)
-    if ("gravity"<>"")
+    ifnb gravity
 	addi.w	#gravity,y_vel(address)							; increase vertical speed (apply gravity)
 	else
 	addi.w	#$38,y_vel(address)							; increase vertical speed (apply gravity)
     endif
-    if ("terminate"<>"")
+    ifnb terminate
 	rts
     endif
     endm
 
 MoveSprite2 macro address,terminate
-    if ("address"=="")
+    ifb address
 	fatal "Error! Empty value!"
     endif
 	movem.w	x_vel(address),d0/d2							; load xy speed
@@ -708,57 +704,57 @@ MoveSprite2 macro address,terminate
 	asl.l	#8,d2									; shift velocity to line up with the middle 16 bits of the 32-bit position
 	add.l	d0,x_pos(address)							; add to x-axis position ; note this affects the subpixel position x_sub(address) = 2+x_pos(address)
 	add.l	d2,y_pos(address)							; add to y-axis position ; note this affects the subpixel position y_sub(address) = 2+y_pos(address)
-    if ("terminate"<>"")
+    ifnb terminate
 	rts
     endif
     endm
 
 MoveSpriteXOnly macro address,terminate
-    if ("address"=="")
+    ifb address
 	fatal "Error! Empty value!"
     endif
 	move.w	x_vel(address),d0							; load x speed
 	ext.l	d0
 	asl.l	#8,d0									; shift velocity to line up with the middle 16 bits of the 32-bit position
 	add.l	d0,x_pos(address)							; add to x-axis position ; note this affects the subpixel position x_sub(address) = 2+x_pos(address)
-    if ("terminate"<>"")
+    ifnb terminate
 	rts
     endif
     endm
 
 MoveSpriteYOnly macro address,gravity,terminate
-    if ("address"=="")
+    ifb address
 	fatal "Error! Empty value!"
     endif
 	move.w	y_vel(address),d0							; load y speed
 	ext.l	d0
 	asl.l	#8,d0									; shift velocity to line up with the middle 16 bits of the 32-bit position
 	add.l	d0,y_pos(address)							; add to y-axis position ; note this affects the subpixel position y_sub(a0) = 2+y_pos(a0)
-    if ("gravity"<>"")
+    ifnb gravity
 	addi.w	#gravity,y_vel(address)							; increase vertical speed (apply gravity)
 	else
 	addi.w	#$38,y_vel(address)							; increase vertical speed (apply gravity)
     endif
-    if ("terminate"<>"")
+    ifnb terminate
 	rts
     endif
     endm
 
 MoveSprite2YOnly macro address,terminate
-    if ("address"=="")
+    ifb address
 	fatal "Error! Empty value!"
     endif
 	move.w	y_vel(address),d0							; load y speed
 	ext.l	d0
 	asl.l	#8,d0									; shift velocity to line up with the middle 16 bits of the 32-bit position
 	add.l	d0,y_pos(address)							; add to y-axis position ; note this affects the subpixel position y_sub(a0) = 2+y_pos(a0)
-    if ("terminate"<>"")
+    ifnb terminate
 	rts
     endif
     endm
 
 Add_SpriteToCollisionResponseList macro address,terminate
-    if ("address"=="")
+    ifb address
 	fatal "Error! Empty value!"
     endif
 	lea	(Collision_response_list).w,address
@@ -769,7 +765,7 @@ Add_SpriteToCollisionResponseList macro address,terminate
 	move.w	a0,(address,d0.w)							; store RAM address in list
 
 .full
-    if ("terminate"<>"")
+    ifnb terminate
 	rts
     endif
     endm
@@ -780,7 +776,7 @@ CreateNewSprite macro obj,terminate
 	move.l	#obj,address(a1)
 
 .skip
-    if ("terminate"<>"")
+    ifnb terminate
 	rts
     endif
     endm
@@ -791,7 +787,7 @@ CreateNewSprite3 macro obj,terminate
 	move.l	#obj,address(a1)
 
 .skip
-    if ("terminate"<>"")
+    ifnb terminate
 	rts
     endif
     endm
@@ -821,7 +817,7 @@ btns_mask := btns_mask|button_C_mask
     case "S"
 btns_mask := btns_mask|button_start_mask
     elsecase
-    if ("buttons"<>"")
+    ifnb buttons
 	fatal "Error! Button variable not defined!"
     endif
     endcase
@@ -1230,7 +1226,7 @@ zoneanimcount := zoneanimcount + 1
 ; ---------------------------------------------------------------------------
 
 tribyte macro val
-	if "val"<>""
+	ifnb val
 		dc.b (val >> 16)&$FF,(val>>8)&$FF,val&$FF
 		shift
 		tribyte ALLARGS
