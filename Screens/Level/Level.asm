@@ -53,8 +53,11 @@ LevelScreen:
 	if GameDebug
 
 		if GameDebugCheat
-			tst.b	(Debug_cheat_flag).w
-			beq.s	.anotheld
+			ifndef __DEBUG__
+				; check cheat
+				tst.b	(Debug_cheat_flag).w
+				beq.s	.anotheld
+			endif
 		endif
 
 		btst	#button_C,(Ctrl_1_held).w							; is C button held?

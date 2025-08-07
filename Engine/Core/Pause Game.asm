@@ -16,7 +16,11 @@ Pause_Game:
 		tst.b	(Ctrl_1_pressed).w						; is Start button pressed?
 
 	if LevelSelectCheat
-		bpl.w	.nopause							; if not, branch
+		ifndef __DEBUG__
+			bpl.w	.nopause						; if not, branch
+		else
+			bpl.s	.nopause						; if not, branch
+		endif
 	else
 		bpl.s	.nopause							; if not, branch
 	endif
@@ -32,14 +36,16 @@ Pause_Game:
     if GameDebug
 
 	if LevelSelectCheat
-		tst.b	(Level_select_flag).w
-		beq.s	.chkstart
+		ifndef __DEBUG__
+			tst.b	(Level_select_flag).w
+			beq.s	.chkstart
+		endif
 	endif
 
 		btst	#button_A,(Ctrl_1_pressed).w					; is button A pressed?
 		beq.s	.chkframeadvance						; if not, branch
 
-	if SCEDebug
+	ifdef __DEBUG__
 		move.b	#GameModeID_LevelSelectScreen,(Game_mode).w			; set screen mode to Level Select (SCE)
 	else
 		move.b	#GameModeID_TitleScreen,(Game_mode).w				; set screen mode to Title Screen
@@ -75,5 +81,5 @@ Pause_Game:
 .frameadvance
 		st	(Game_paused).w
 		SMPS_UnpauseMusic							; unpause the music
-		rts											; advance by a single frame
+		rts									; advance by a single frame
 	endif

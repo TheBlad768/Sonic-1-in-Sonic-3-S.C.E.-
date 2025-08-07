@@ -257,10 +257,11 @@ TitleScreen:
 		move.b	#GameModeID_LevelScreen,(Game_mode).w						; set screen mode to Level
 
 	if LevelSelectCheat
-
-		; check cheat
-		tst.b	(Level_select_flag).w								; check if level select code is on
-		beq.s	.return										; if not, play level
+		ifndef __DEBUG__
+			; check cheat
+			tst.b	(Level_select_flag).w							; check if level select code is on
+			beq.s	.return									; if not, play level
+		endif
 	endif
 
 		moveq	#btnDir+btnABC,d0								; don't check Start

@@ -6,7 +6,6 @@
 ZoneCount:				= 6	; discrete zones are: GHZ, MZ, SYZ, LZ, SLZ, SBZ
 LevelSelectCheat:			= 1	; if 1, enable level select cheat check
 GameDebugCheat:				= 1	; if 1, enable debug mode cheat check
-SCEDebug:				= 0	; if 1, enable debug level select
 GameDebug:				= 1	; if 1, enable debug mode for player
 GameDebugAlt:				= 0	; if 1, enable alt debug mode for player
 BossDebug:				= 0	; if 1, set one hit on all bosses
