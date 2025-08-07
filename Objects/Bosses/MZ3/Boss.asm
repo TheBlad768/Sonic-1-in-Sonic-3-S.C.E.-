@@ -464,7 +464,8 @@ Obj74_MakeFlame:
 	endr
 
 	if object_size&2
-		move.w	d0,.a(a3)							; copy 2 bytes
+		move.w	(a2)+,.a(a3)							; copy 2 bytes
+		set	.a,.a + 2
 	endif
 
 		neg.w	x_vel(a1)
