@@ -3,7 +3,7 @@
 ; ---------------------------------------------------------------------------
 
 ; RAM
-vLavaMZBuffer		= RAM_start+$7E00						; buffer size is $200 bytes
+vMZLavaBuffer		= RAM_start+$7E00						; buffer size is $200 bytes
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -30,10 +30,10 @@ AnimateTiles_MZ:
 		moveq	#0,d3
 		move.b	(Oscillating_Data+8).w,d3					; get oscillating value
 
-	if ((vLavaMZBuffer)&$8000)
-		lea	(vLavaMZBuffer).w,a5
+	if ((vMZLavaBuffer)&$8000)
+		lea	(vMZLavaBuffer).w,a5
 	else
-		lea	(vLavaMZBuffer).l,a5
+		lea	(vMZLavaBuffer).l,a5
 	endif
 
 		moveq	#4-1,d2								; $80*4=$200
@@ -43,174 +43,82 @@ AnimateTiles_MZ:
 		moveq	#$F,d0
 		and.w	d3,d0
 		add.w	d0,d0
-		add.w	d0,d0
 		moveq	#bytesToXcnt($80,4),d1						; size
-		jsr	AniArt_MZextra(pc,d0.w)
+		bsr.s	.process
 		addq.w	#4,d3								; next
 		dbf	d2,.loop
 
 		; load art
-		QueueStaticDMA vLavaMZBuffer,tiles_to_bytes($10),tiles_to_bytes($2D2)
+		QueueStaticDMA vMZLavaBuffer,tiles_to_bytes($10),tiles_to_bytes($2D2)
 
 .return
 		rts
 
 ; =============== S U B R O U T I N E =======================================
 
-AniArt_MZextra:
-		bra.s	loc_1C3EE							; 0
-		rts									; nop
-		bra.s	loc_1C3FA							; 4
-		rts									; nop
-		bra.s	loc_1C410							; 8
-		rts									; nop
-		bra.s	loc_1C41E							; C
-		rts									; nop
-		bra.w	loc_1C434							; 10
-		bra.w	loc_1C442							; 14
-		bra.w	loc_1C458							; 18
-		bra.w	loc_1C466							; 1C
-		bra.w	loc_1C47C							; 20
-		bra.w	loc_1C48A							; 24
-		bra.w	loc_1C4A0							; 28
-		bra.w	loc_1C4AE							; 2C
-		bra.w	loc_1C4C4							; 30
-		bra.w	loc_1C4D2							; 34
-		bra.w	loc_1C4E8							; 38
-; ---------------------------------------------------------------------------
+.process
 
-loc_1C4FA:										; 3C
-		move.l	(a1),d0
-		move.b	$F(a1),d0
-		ror.l	#8,d0
-		move.l	d0,(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C4FA
-		rts
-; ---------------------------------------------------------------------------
+		; check flag
+		move.b	.script+1(pc,d0.w),d4						; get flag
+		bpl.s	.normal
 
-loc_1C3EE:
-		move.l	(a1),(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C3EE
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C3FA:
-		move.l	2(a1),d0
-		move.b	1(a1),d0
-		ror.l	#8,d0
-		move.l	d0,(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C3FA
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C410:
-		move.l	2(a1),(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C410
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C41E:
-		move.l	4(a1),d0
-		move.b	3(a1),d0
-		ror.l	#8,d0
-		move.l	d0,(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C41E
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C434:
-		move.l	4(a1),(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C434
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C442:
-		move.l	6(a1),d0
-		move.b	5(a1),d0
-		ror.l	#8,d0
-		move.l	d0,(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C442
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C458:
-		move.l	6(a1),(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C458
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C466:
-		move.l	8(a1),d0
-		move.b	7(a1),d0
-		ror.l	#8,d0
-		move.l	d0,(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C466
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C47C:
-		move.l	8(a1),(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C47C
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C48A:
-		move.l	$A(a1),d0
-		move.b	9(a1),d0
-		ror.l	#8,d0
-		move.l	d0,(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C48A
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C4A0:
-		move.l	$A(a1),(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C4A0
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C4AE:
-		move.l	$C(a1),d0
-		move.b	$B(a1),d0
-		ror.l	#8,d0
-		move.l	d0,(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C4AE
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C4C4:
-		move.l	$C(a1),(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C4C4
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C4D2:
-		move.l	$C(a1),d0
-		rol.l	#8,d0
-		move.b	(a1),d0
-		move.l	d0,(a5)+
-		lea	$10(a1),a1
-		dbf	d1,loc_1C4D2
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1C4E8:
+.copy
 		move.w	$E(a1),(a5)+
 		move.w	(a1),(a5)+
 		lea	$10(a1),a1
-		dbf	d1,loc_1C4E8
+		dbf	d1,.copy
 		rts
+; ---------------------------------------------------------------------------
+
+.normal
+		moveq	#0,d5
+		move.b	.script(pc,d0.w),d5						; get RAM shift
+
+.find
+		move.l	(a1,d5.w),d0
+
+		; check flag
+		tst.b	d4
+		beq.s	.set
+
+		; check flag
+		cmpi.b	#2,d4
+		bne.s	.check
+		rol.l	#8,d0
+		move.b	(a1),d0
+		bra.s	.set
+; ---------------------------------------------------------------------------
+
+.check
+		move.b	-1(a1,d5.w),d0							; normal
+		cmpi.b	#3,d4
+		bne.s	.rol
+		move.b	$F(a1,d5.w),d0							; last
+
+.rol
+		ror.l	#8,d0
+
+.set
+		move.l	d0,(a5)+
+		lea	$10(a1),a1
+		dbf	d1,.find
+		rts
+; ---------------------------------------------------------------------------
+
+.script
+		dc.b 0, 0	; RAM shift, flag
+		dc.b 2, 1
+		dc.b 2, 0
+		dc.b 4, 1
+		dc.b 4, 0
+		dc.b 6, 1
+		dc.b 6, 0
+		dc.b 8, 1
+		dc.b 8, 0
+		dc.b $A, 1
+		dc.b $A, 0
+		dc.b $C, 1
+		dc.b $C, 0
+		dc.b $C, 2
+		dc.b $E, -1
+		dc.b 0, 3
