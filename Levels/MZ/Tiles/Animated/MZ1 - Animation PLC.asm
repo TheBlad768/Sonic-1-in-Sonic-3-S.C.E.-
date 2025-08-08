@@ -62,10 +62,14 @@ AnimateTiles_MZ:
 		move.b	.script+1(pc,d0.w),d4						; get flag
 		bpl.s	.normal
 
+		; I have no idea how to optimize this right now
+		; so this is separate from the main code
+		; if negative flag was set, execute the code below
+
 .copy
 		move.w	$E(a1),(a5)+
 		move.w	(a1),(a5)+
-		lea	$10(a1),a1
+		lea	$10(a1),a1							; next
 		dbf	d1,.copy
 		rts
 ; ---------------------------------------------------------------------------
@@ -78,29 +82,29 @@ AnimateTiles_MZ:
 		move.l	(a1,d5.w),d0
 
 		; check flag
-		tst.b	d4
-		beq.s	.set
+		tst.b	d4								; is this a zero flag?
+		beq.s	.set								; if yes, branch
 
 		; check flag
-		cmpi.b	#2,d4
-		bne.s	.check
-		rol.l	#8,d0
+		cmpi.b	#2,d4								; is 2 flag was set?
+		bne.s	.check								; if not, branch
+		rol.l	#8,d0								; AABBCCDD to BBCCDDAA
 		move.b	(a1),d0
 		bra.s	.set
 ; ---------------------------------------------------------------------------
 
 .check
-		move.b	-1(a1,d5.w),d0							; normal
-		cmpi.b	#3,d4
-		bne.s	.rol
-		move.b	$F(a1,d5.w),d0							; last
+		move.b	-1(a1,d5.w),d0							; normal (1 flag)
+		cmpi.b	#3,d4								; is 3 flag was set?
+		bne.s	.rotate									; if not, branch
+		move.b	$F(a1,d5.w),d0							; last (3 flag)
 
-.rol
-		ror.l	#8,d0
+.rotate
+		ror.l	#8,d0								; AABBCCDD to DDAABBCC
 
 .set
 		move.l	d0,(a5)+
-		lea	$10(a1),a1
+		lea	$10(a1),a1							; next
 		dbf	d1,.find
 		rts
 ; ---------------------------------------------------------------------------
