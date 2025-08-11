@@ -133,9 +133,8 @@ AnimateTiles_MZ:
 		lea	$10-3(a1),a1							; next
 	endr
 
-	; last
+	; AABBCCDD to BBCCDDAA (last)
 	rept 3
-		; AABBCCDD to BBCCDDAA
 		move.b	(a1)+,(a5)+							; send to DMA buffer
 	endr
 
@@ -155,9 +154,8 @@ AnimateTiles_MZ:
 		lea	$10-4(a1),a1							; next
 	endr
 
-	; last
+	; AABBCCDD to DDAABBCC (last)
 	rept 4
-		; AABBCCDD to DDAABBCC
 		move.b	(a1)+,(a5)+							; send to DMA buffer
 	endr
 
