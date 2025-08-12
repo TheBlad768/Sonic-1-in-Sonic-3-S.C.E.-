@@ -451,22 +451,17 @@ Obj74_MakeFlame:
 
 		; if you make a different object size, you need to change this code
 
-	if object_size<>$4A
+	if object_size<>$50
 		fatal "Warning! The object size is different!"
 	endif
 
 		set	.a,0
 
-	rept object_size/$24
-		movem.l	(a2)+,d0-d6/a4-a5
-		movem.l	d0-d6/a4-a5,.a(a3)						; copy $24 bytes
-		set	.a,.a + $24
+	rept object_size/$28
+		movem.l	(a2)+,d0-d6/a4-a6
+		movem.l	d0-d6/a4-a6,.a(a3)						; copy $28 bytes
+		set	.a,.a + $28
 	endr
-
-	if object_size&2
-		move.w	(a2)+,.a(a3)							; copy 2 bytes
-		set	.a,.a + 2
-	endif
 
 		neg.w	x_vel(a1)
 		move.l	#Obj74_Duplicate,obBFF_Jump(a1)
