@@ -39,11 +39,6 @@ AnimateTiles_MZ:
 	endif
 
 	rept 3
-		lea	(a4),a1								; copy lava patterns to a1
-		moveq	#$F,d0								; maximum 16 modes
-		and.w	d3,d0								; get current mode
-		add.w	d0,d0								; multiply by 4
-		add.w	d0,d0								; "
 		bsr.s	.process							; "
 		addq.w	#4,d3								; next
 	endr
@@ -51,51 +46,51 @@ AnimateTiles_MZ:
 		; load art
 		pea	.QueueStaticDMA(pc)						; do later
 
-		; last
-		lea	(a4),a1								; copy lava patterns to a1
-		moveq	#$F,d0								; maximum 16 modes
-		and.w	d3,d0								; get current mode
-		add.w	d0,d0								; multiply by 4
-		add.w	d0,d0								; "
-
-		; process current mode below
+		; process current mode below (last)
 
 ; =============== S U B R O U T I N E =======================================
 
 .process
 
+		; get mode
+		lea	(a4),a1								; copy lava patterns to a1
+		moveq	#$F,d0								; maximum 16 modes
+		and.w	d3,d0								; get current mode
+		move.w	d0,d1								; copy RAM shift to d1
+		add.w	d0,d0								; multiply by 2
+
 		; get flag
-		move.w	.script+2(pc,d0.w),d4						; get flag
-		bmi.s	.minus
+		move.w	.script(pc,d0.w),d0						; get flag
+		bmi.s	.load								; if RAM shift off flag, do nothing
+		adda.w	d1,a1								; RAM shift
 
-		adda.w	.script(pc,d0.w),a1						; RAM shift
-
-		; check flags
-		jmp	.script(pc,d4.w)
+.load
+		andi.w	#$7FFF,d0							; clear RAM shift off flag
+		jmp	.script(pc,d0.w)
 ; ---------------------------------------------------------------------------
 
 .frame
 		dc.w 0, 1*$200, 2*$200, 3*$200
 .script
-		dc.w 0, (.mode00-.script)	; RAM shift, mode offset
-		dc.w 1, (.mode01-.script)
-		dc.w 2, (.mode00-.script)
-		dc.w 3, (.mode01-.script)
-		dc.w 4, (.mode00-.script)
-		dc.w 5, (.mode01-.script)
-		dc.w 6, (.mode00-.script)
-		dc.w 7, (.mode01-.script)
-		dc.w 8, (.mode00-.script)
-		dc.w 9, (.mode01-.script)
-		dc.w $A, (.mode00-.script)
-		dc.w $B, (.mode01-.script)
-		dc.w $C, (.mode00-.script)
-		dc.w $D, (.mode02-.script)
-		dc.w $E, -1
-		dc.w 0, (.mode03-.script)
+		dc.w (.mode00-.script)|setBit(15)	; mode offset, RAM shift off flag
+		dc.w (.mode01-.script)
+		dc.w (.mode00-.script)
+		dc.w (.mode01-.script)
+		dc.w (.mode00-.script)
+		dc.w (.mode01-.script)
+		dc.w (.mode00-.script)
+		dc.w (.mode01-.script)
+		dc.w (.mode00-.script)
+		dc.w (.mode01-.script)
+		dc.w (.mode00-.script)
+		dc.w (.mode01-.script)
+		dc.w (.mode00-.script)
+		dc.w (.mode02-.script)
+		dc.w (.mode03-.script)|setBit(15)
+		dc.w (.mode04-.script)|setBit(15)
 ; ---------------------------------------------------------------------------
 
-.minus
+.mode03
 
 		set	.a,0
 
@@ -162,7 +157,7 @@ AnimateTiles_MZ:
 		rts
 ; ---------------------------------------------------------------------------
 
-.mode03
+.mode04
 
 	rept bytesToXcnt($80,4)								; 32-1
 
