@@ -237,7 +237,7 @@ mSBZp macro duration,colours,paladdress,ramaddress
 ; ---------------------------------------------------------------------------
 
 ; macro to declare sub-object data
-subObjData macro mappings,vram,pal,pri,height,width,prio,frame,collision
+subObjData macro mappings=FALSE,vram=FALSE,pal,pri,height,width,prio,frame,collision
     if upstring("mappings")<>"FALSE"
 	dc.l mappings
     endif
@@ -259,7 +259,7 @@ subObjSlotData macro slots,vram,pal,pri,offset,index,mappings,height,width,prio,
     endm
 
 ; macro to declare sub-object data
-subObjMainData macro address,render,routine,height,width,prio,vram,pal,pri,mappings,frame,collision
+subObjMainData macro address=FALSE,render,routine,height,width,prio,vram,pal,pri,mappings,frame,collision
     if upstring("address")<>"FALSE"
 	dc.l address
     endif
