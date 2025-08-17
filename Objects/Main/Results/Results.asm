@@ -68,7 +68,10 @@ Obj_LevelResults:
 ; ---------------------------------------------------------------------------
 
 .nottb
-		divu.w	#30,d0								; divide time by 30
+
+		; divide time by 30
+		mulu.w	#ceil(65536,30),d0						; here we will use 'magic number'
+		swap	d0								; get the result
 		moveq	#7,d1
 		cmp.w	d1,d0								; if result is above 7, make it 7
 		blo.s	.gettb

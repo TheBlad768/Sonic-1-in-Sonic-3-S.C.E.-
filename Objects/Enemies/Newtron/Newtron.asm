@@ -26,7 +26,7 @@ Obj_Newtron:
 ; ---------------------------------------------------------------------------
 
 .action2
-		jsr	(MoveSprite2).w
+		MoveSpriteXOnly a0
 		lea	Ani_Newt(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
@@ -71,11 +71,11 @@ Obj_Newtron:
 
 .fall
 		cmpi.b	#1,mapping_frame(a0)
-		bne.s	.loc_DE42
+		bne.s	.checkfall
 		move.b	#$C|collision_flags.npc.touch,collision_flags(a0)
 
-.loc_DE42
-		jsr	(MoveSprite).w
+.checkfall
+		MoveSpriteYOnly a0
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1								; has newtron hit the floor?
 		bpl.s	.keepfalling							; if not, branch
@@ -99,7 +99,7 @@ Obj_Newtron:
 ; ---------------------------------------------------------------------------
 
 .matchfloor
-		jsr	(MoveSprite2).w
+		MoveSpriteXOnly a0
 		jsr	(ObjCheckFloorDist).w
 		cmpi.w	#-8,d1
 		blt.s	.nextroutine

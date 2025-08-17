@@ -57,7 +57,7 @@ Obj_Roller:
 
 .rollnochk
 		cmpi.b	#2,anim(a0)
-		beq.s	.loc_E0F8
+		beq.s	.next
 		subq.w	#1,roller_timedelay(a0)
 		bpl.s	.return
 		move.b	#1,anim(a0)
@@ -68,7 +68,7 @@ Obj_Roller:
 		rts
 ; ---------------------------------------------------------------------------
 
-.loc_E0F8
+.next
 		move.l	#.chkjump,objoff_34(a0)
 		rts
 ; ---------------------------------------------------------------------------

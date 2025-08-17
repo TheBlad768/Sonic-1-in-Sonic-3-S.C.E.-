@@ -54,7 +54,7 @@ Obj_Burrobot:
 .Burro_Move
 		subq.w	#1,burro_timedelay(a0)
 		bmi.s	.loc_AD84
-		jsr	(MoveSprite2).w
+		MoveSpriteXOnly a0
 		bchg	#0,burro_flag(a0)
 		bne.s	.loc_AD78
 		move.b	x_radius(a0),d3
@@ -127,6 +127,8 @@ Obj_Burrobot:
 		bne.s	.return								; if yes, branch
 		cmpi.w	#128,d3
 		bhs.s	.return
+
+		; check debug mode
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.s	.return								; if yes, branch
 		move.l	#.Burro_Jump,objoff_34(a0)

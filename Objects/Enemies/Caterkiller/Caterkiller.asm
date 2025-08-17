@@ -324,7 +324,7 @@ Caterkiller_FragHead:									; head
 		move.l	#.main,address(a0)
 
 .main
-		jsr	(MoveSprite).w
+		MoveSprite a0
 		tst.w	y_vel(a0)
 		bmi.s	.draw
 		jsr	(ObjCheckFloorDist).w

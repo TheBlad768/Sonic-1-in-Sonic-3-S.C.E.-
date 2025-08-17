@@ -76,7 +76,7 @@ Obj_BuzzBomber:
 .chknearsonic
 		subq.w	#1,buzz_timedelay(a0)						; subtract 1 from time delay
 		bmi.s	.chgdirection
-		jsr	(MoveSprite2).w
+		MoveSpriteXOnly a0
 		tst.b	buzz_buzzstatus(a0)
 		bne.s	.keepgoing
 		jsr	(Find_SonicTails).w

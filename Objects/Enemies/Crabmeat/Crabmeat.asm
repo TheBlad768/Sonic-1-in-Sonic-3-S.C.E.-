@@ -86,7 +86,7 @@ Obj_Crabmeat:
 .walkonfloor
 		subq.w	#1,crab_timedelay(a0)
 		bmi.s	.chgdirection
-		jsr	(MoveSprite2).w
+		MoveSpriteXOnly a0
 		bchg	#0,crab_mode(a0)
 		bne.s	.alt
 		move.b	x_radius(a0),d3
@@ -184,13 +184,15 @@ Obj_Crabmeat_Missile:
 		jsr	(SetUp_ObjAttributes3).w
 		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
 		move.l	#.main,address(a0)
-		move.l	#words_to_long(-$100,-$400),x_vel(a0)
+
+		; set x_vel and y_vel
+		move.l	#words_to_long(-$100,-$400),x_vel(a0)				; x_vel and y_vel
 		tst.b	subtype(a0)
 		beq.s	.main
 		neg.w	x_vel(a0)
 
 .main
-		jsr	(MoveSprite).w
+		MoveSprite a0
 
 		; animate
 		moveq	#8,d0

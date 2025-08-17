@@ -670,7 +670,7 @@ loc_1B1C0:
 		divu.w	#$18,d0
 		adda.w	d0,a0
 
-; BuildSprites:
+; Render_Sprites:
 		lea	(SStage_Buffer2).l,a2								; load layout
 		lea	SStage_Buffer3-SStage_Buffer2(a2),a1						; load object xypos
 		lea	(Sprite_table_buffer).w,a6							; set address for sprite table
