@@ -28,7 +28,7 @@ rm -f S1S3.debug.h
 
 # Generate debug information
 ${AS_MSGPATH}/convsym S1S3.debug.lst S1S3.debug.gen -input as_lst -range 0 FFFFFF -exclude -filter \"z[A-Z].+\" -a
-${AS_MSGPATH}/convsym S1S3.debug.lst "Engine/_RAM.debug.asm" -in as_lst -out asm -range FF0000 FFFFFF
+${AS_MSGPATH}/convsym S1S3.debug.lst "Engine/_RAM.debug.lst" -in as_lst -out asm -range FF0000 FFFFFF
 
 # Make ROM padding (commented out as in the original)
 #${AS_MSGPATH}/rompad S1S3.debug.gen 255 0
