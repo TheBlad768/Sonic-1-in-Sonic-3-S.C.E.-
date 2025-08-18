@@ -44,6 +44,7 @@ Obj_Girder:
 		tst.b	render_flags(a0)						; is the object visible on the screen?
 		bpl.s	.chkdel								; if not, branch
 
+		; solid
 		moveq	#$B,d1
 		add.b	width_pixels(a0),d1
 		moveq	#0,d2
@@ -66,7 +67,7 @@ Gird_ChgMove:
 
 		; get par
 		lea	.settings(pc,d0.w),a1
-		move.l	(a1)+,x_vel(a0)
+		move.l	(a1)+,x_vel(a0)							; x_vel and y_vel
 		move.w	(a1),gird_time(a0)
 		move.w	#7,gird_delay(a0)
 		rts
