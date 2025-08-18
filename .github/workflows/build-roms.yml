@@ -1,0 +1,30 @@
+name: Build S1S3 ROMs
+
+on:
+  push:
+    branches: [flamedriver, Clone-Driver-v2]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set branch variable
+        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+
+      - name: Run build.bat
+        run: cmd /c build.bat
+
+      - name: Run build_debug.bat
+        run: cmd /c build_debug.bat
+
+      - name: Upload ROMs
+        uses: actions/upload-artifact@v4
+        with:
+          name: ROMs-${{ env.BRANCH_NAME }}
+          path: |
+            S1S3.gen
+            S1S3.debug.gen
