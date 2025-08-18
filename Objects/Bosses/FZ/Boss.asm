@@ -29,7 +29,7 @@ Obj_BossFinal:
 		jsr	(SetUp_ObjAttributes).w
 		st	obBFZ_DPLC(a0)							; reset DPLC frame
 		st	(Boss_flag).w
-		move.l	(V_int_run_count).w,(RNG_seed).w				; set to RNG for more RNG
+		move.l	(V_int_run_count).w,(RNG_seed).w				; set to RNG seed for more RNG
 		move.b	#BossFinal_Hits,collision_property(a0)				; set hits
 		move.l	#BossFinal_Setup,address(a0)
 		move.l	#BossFinal_WaitXpos,obBFZ_Jump(a0)

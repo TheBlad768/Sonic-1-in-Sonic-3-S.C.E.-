@@ -31,6 +31,7 @@ GetDemoPtr:
 		move.w	#$8000,(Ctrl_2).w
 		st	(Demo_start_button).w
 		move.w	#30*60,(Demo_timer).w						; set demo timer
+		clr.l	(RNG_seed).w							; reset RNG seed
 
 .return
 		rts
