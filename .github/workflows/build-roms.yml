@@ -2,7 +2,17 @@ name: Build S1S3 ROMs
 
 on:
   push:
-    branches: [flamedriver, Clone-Driver-v2]
+    branches:
+    - flamedriver
+    - Clone-Driver-v2
+
+    paths-ignore:
+    - '.github/workflows/**'
+    - 'README.md'
+    - '_CD/**'
+    - 'Engine/_examples/**'
+    - 'Projects/**'
+    - 'Utilities/**'
 
 jobs:
   build:
