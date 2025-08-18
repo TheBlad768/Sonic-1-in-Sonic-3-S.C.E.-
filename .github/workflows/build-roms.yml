@@ -13,7 +13,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set branch variable
-        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+        shell: powershell
+        run: |
+          $branch = $env:GITHUB_REF -replace 'refs/heads/', ''
+          echo "BRANCH_NAME=$branch" >> $env:GITHUB_ENV
 
       - name: Run build.bat
         run: cmd /c build.bat
