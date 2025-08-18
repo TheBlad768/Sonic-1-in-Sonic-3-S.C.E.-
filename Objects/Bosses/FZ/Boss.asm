@@ -243,8 +243,13 @@ BossFinal_MainProcess:
 		beq.s	.return
 
 		; hurt boss
+	if BossDebug
+		clr.b	collision_property(a0)
+		bra.s	BossFinal_Defeated
+	else
 		subq.b	#1,collision_property(a0)
 		beq.s	BossFinal_Defeated
+	endif
 
 		; set flash anim
 		move.b	#100,boss_invulnerable_time(a0)
