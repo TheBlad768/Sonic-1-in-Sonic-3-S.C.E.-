@@ -26,7 +26,6 @@ Obj_VanishPlatform:
 		subq.w	#1,d0
 		move.w	d0,vanp_timer(a0)
 		move.w	d0,vanp_timelen(a0)
-		moveq	#0,d0								; clear d0 for mul
 		move.b	subtype(a0),d0							; get object type
 		andi.w	#$F0,d0								; read only the 1st digit
 		addi.w	#$80,d1
