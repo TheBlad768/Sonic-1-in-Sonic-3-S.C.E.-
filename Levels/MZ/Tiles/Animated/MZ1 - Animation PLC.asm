@@ -4,6 +4,7 @@
 
 ; RAM
 vMZLavaBuffer		= RAM_start+$7E00						; buffer size is $200 bytes
+current_offset_table	:= AnimateTiles_MZ.script					; for LavaEntry macro
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -25,8 +26,7 @@ AnimateTiles_MZ:
 		move.b	-7(a1),d0							; get surface lava frame number
 		subq.b	#1,d0								; fix dbf
 		andi.w	#3,d0								; maximum number
-		add.w	d0,d0								; multiply by 2
-		move.w	.frame(pc,d0.w),d0						; multiply frame number by $200
+		ror.w	#7,d0								; multiply frame num by $200
 		adda.w	d0,a4								; jump to appropriate tile
 		moveq	#0,d3								; we need to clear the register so that we can use the word values
 		move.b	(Oscillating_Data+8).w,d3					; get oscillating value
@@ -69,25 +69,17 @@ AnimateTiles_MZ:
 		jmp	.script(pc,d0.w)
 ; ---------------------------------------------------------------------------
 
-.frame
-		dc.w 0, 1*$200, 2*$200, 3*$200
 .script
-		dc.w (.mode00-.script)|setBit(15)	; mode offset, RAM shift off flag
-		dc.w (.mode01-.script)
-		dc.w (.mode00-.script)
-		dc.w (.mode01-.script)
-		dc.w (.mode00-.script)
-		dc.w (.mode01-.script)
-		dc.w (.mode00-.script)
-		dc.w (.mode01-.script)
-		dc.w (.mode00-.script)
-		dc.w (.mode01-.script)
-		dc.w (.mode00-.script)
-		dc.w (.mode01-.script)
-		dc.w (.mode00-.script)
-		dc.w (.mode02-.script)
-		dc.w (.mode03-.script)|setBit(15)
-		dc.w (.mode04-.script)|setBit(15)
+		LavaEntry .mode00, TRUE	; mode offset, RAM shift off flag
+
+	rept 6
+		LavaEntry .mode01, FALSE
+		LavaEntry .mode00, FALSE
+	endr
+
+		LavaEntry .mode02, FALSE
+		LavaEntry .mode03, TRUE
+		LavaEntry .mode04, TRUE
 ; ---------------------------------------------------------------------------
 
 .mode03

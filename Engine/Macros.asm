@@ -306,6 +306,14 @@ LargeGrassEntry macro ptr,frame,width
 	dc.b frame,(width/2)
     endm
 
+LavaEntry macro ptr,flag
+    if flag
+	offsetTableEntry.w (ptr)|setBit(15)
+    else
+	offsetTableEntry.w ptr
+    endif
+    endm
+
 StillSpritesEntry macro prio,vram,pal,pri,height,width
 	dc.w sprite_priority(prio),make_art_tile(vram,pal,pri)
 	dc.b (height/2),(width/2)
@@ -368,11 +376,11 @@ __LABEL__ label *
 clearRAM macro startaddr,endaddr
     if startaddr>endaddr
 	fatal "Starting address of clearRAM \{startaddr} is after ending address \{endaddr}."
-    elseif startaddr==endaddr
+    elseif startaddr=endaddr
 	warning "clearRAM is clearing zero bytes. Turning this into a nop instead."
 	exitm
     endif
-    if ((startaddr)&$8000)==0
+    if ((startaddr)&$8000)=0
 	lea	(startaddr).l,a1
     else
 	lea	(startaddr).w,a1
@@ -402,11 +410,11 @@ clearRAM macro startaddr,endaddr
 clearRAM2 macro startaddr,endaddr
     if startaddr>endaddr
 	fatal "Starting address of clearRAM2 \{startaddr} is after ending address \{endaddr}."
-    elseif startaddr==endaddr
+    elseif startaddr=endaddr
 	warning "clearRAM2 is clearing zero bytes. Turning this into a nop instead."
 	exitm
     endif
-    if ((startaddr)&$8000)==0
+    if ((startaddr)&$8000)=0
 	lea	(startaddr).l,a1
     else
 	lea	(startaddr).w,a1
@@ -430,11 +438,11 @@ clearRAM2 macro startaddr,endaddr
 clearRAM3 macro startaddr,endaddr
     if startaddr>endaddr
 	fatal "Starting address of clearRAM \{startaddr} is after ending address \{endaddr}."
-    elseif startaddr==endaddr
+    elseif startaddr=endaddr
 	warning "clearRAM is clearing zero bytes. Turning this into a nop instead."
 	exitm
     endif
-    if ((startaddr)&$8000)==0
+    if ((startaddr)&$8000)=0
 	lea	(startaddr).l,a1
     else
 	lea	(startaddr).w,a1
@@ -466,16 +474,16 @@ clearRAM3 macro startaddr,endaddr
 copyRAM macro startaddr,endaddr,startaddr2
     if startaddr>endaddr
 	fatal "Starting address of copyRAM \{startaddr} is after ending address \{endaddr}."
-    elseif startaddr==endaddr
+    elseif startaddr=endaddr
 	warning "copyRAM is copy zero bytes. Turning this into a nop instead."
 	exitm
     endif
-    if ((startaddr)&$8000)==0
+    if ((startaddr)&$8000)=0
 	lea	(startaddr).l,a1
     else
 	lea	(startaddr).w,a1
     endif
-    if ((startaddr2)&$8000)==0
+    if ((startaddr2)&$8000)=0
 	lea	(startaddr2).l,a2
     else
 	lea	(startaddr2).w,a2
@@ -505,16 +513,16 @@ copyRAM macro startaddr,endaddr,startaddr2
 copyRAM2 macro startaddr,endaddr,startaddr2
     if startaddr>endaddr
 	fatal "Starting address of copyRAM2 \{startaddr} is after ending address \{endaddr}."
-    elseif startaddr==endaddr
+    elseif startaddr=endaddr
 	warning "copyRAM2 is copy zero bytes. Turning this into a nop instead."
 	exitm
     endif
-    if ((startaddr)&$8000)==0
+    if ((startaddr)&$8000)=0
 	lea	(startaddr).l,a1
     else
 	lea	(startaddr).w,a1
     endif
-    if ((startaddr2)&$8000)==0
+    if ((startaddr2)&$8000)=0
 	lea	(startaddr2).l,a2
     else
 	lea	(startaddr2).w,a2
@@ -541,7 +549,7 @@ copyRAM2 macro startaddr,endaddr,startaddr2
 ; load Kosinski Plus data to RAM
 QueueKosPlus macro data,ram,terminate
 	lea	(data).l,a1
-    if ((ram)&$8000)==0
+    if ((ram)&$8000)=0
 	lea	(ram).l,a2
     else
 	lea	(ram).w,a2
@@ -575,7 +583,7 @@ QueueKosPlusModule macro art,vram,terminate
 ; load Enigma data to RAM
 EniDecomp macro data,ram,vram,palette,pri,terminate
 	lea	(data).l,a0
-    if ((ram)&$8000)==0
+    if ((ram)&$8000)=0
 	lea	(ram).l,a1
     else
 	lea	(ram).w,a1
@@ -1667,9 +1675,9 @@ __LABEL__Scroll:
 
 dScroll_Data macro pixel,size,velocity,plane
 	dc.w velocity, size
-	if upstring("plane")=="FG"
+	if upstring("plane")="FG"
 		dc.w H_scroll_buffer+(pixel<<2)
-	elseif upstring("plane")=="BG"
+	elseif upstring("plane")="BG"
 		dc.w (H_scroll_buffer+2)+(pixel<<2)
 	else
 		fatal "Error! Non-existent plan."
