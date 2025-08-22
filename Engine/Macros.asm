@@ -1712,16 +1712,16 @@ optstr macro str
 	; codepage for level select
 	save
 	codepage LEVELSCREEN
-	CHARSET ' ', 43
-	CHARSET '0','9', 1
-	CHARSET 'A','Z', 17
-	CHARSET 'a','z', 17
-	CHARSET '*', 11
-	CHARSET '@', 12
-	CHARSET ':', 13
-	CHARSET '-', 14
-	CHARSET '/', 15
-	CHARSET '.', 16
+	charset ' ', 43
+	charset '0','9', 1
+	charset 'A','Z', 17
+	charset 'a','z', 17
+	charset '*', 11
+	charset '@', 12
+	charset ':', 13
+	charset '-', 14
+	charset '/', 15
+	charset '.', 16
 	restore
 
 ; macro for generating credits strings
@@ -1751,70 +1751,70 @@ creditstr_end macro
 	; codepage for options
 	save
 	codepage OPTIONSCREEN
-	CHARSET ' ', 43
-	CHARSET '0','9', 1
-	CHARSET 'A','Z', 17
-	CHARSET 'a','z', 17
-	CHARSET '@', 11
-	CHARSET '*', 12
-	CHARSET ':', 13
-	CHARSET '-', 14
-	CHARSET '^', 15
-	CHARSET '.', 16
+	charset ' ', 43
+	charset '0','9', 1
+	charset 'A','Z', 17
+	charset 'a','z', 17
+	charset '@', 11
+	charset '*', 12
+	charset ':', 13
+	charset '-', 14
+	charset '^', 15
+	charset '.', 16
 	restore
 
 	; codepage for credits
 	save
 	codepage CREDITSCREEN
-	CHARSET ' ', 63
-	CHARSET 'A','Z', 1
-	CHARSET 'a','z', 1
-	CHARSET '.', 27
-	CHARSET '(', 28
-	CHARSET ')', 29
-	CHARSET '0','9', 30
-	CHARSET '!', 40
+	charset ' ', 63
+	charset 'A','Z', 1
+	charset 'a','z', 1
+	charset '.', 27
+	charset '(', 28
+	charset ')', 29
+	charset '0','9', 30
+	charset '!', 40
 	restore
 
 	; codepage for credits
 	save
 	codepage CREDITSCREEN2
-	CHARSET ' ', 63
-	CHARSET 'A','Z', 1
-	CHARSET 'a','z', 1
-	CHARSET '0','9', 27
-	CHARSET ':', 37
-	CHARSET '.', 38
-	CHARSET '!', 39
-	CHARSET '?', 40
-	CHARSET '#', 41
-	CHARSET '%', 42
-	CHARSET '/', 43
-	CHARSET ';', 44
-	CHARSET ',', 45
-	CHARSET '*', 46
-	CHARSET '"', 47
-	CHARSET '$', 48
-	CHARSET '_', 49
-	CHARSET '-', 50
-	CHARSET '=', 51
+	charset ' ', 63
+	charset 'A','Z', 1
+	charset 'a','z', 1
+	charset '0','9', 27
+	charset ':', 37
+	charset '.', 38
+	charset '!', 39
+	charset '?', 40
+	charset '#', 41
+	charset '%', 42
+	charset '/', 43
+	charset ';', 44
+	charset ',', 45
+	charset '*', 46
+	charset '"', 47
+	charset '$', 48
+	charset '_', 49
+	charset '-', 50
+	charset '=', 51
 	restore
 
 	; codepage for HUD
 	save
 	codepage HUD
-	CHARSET ' ',$FF
-	CHARSET '0',0
-	CHARSET '1',2
-	CHARSET '2',4
-	CHARSET '3',6
-	CHARSET '4',8
-	CHARSET '5',$A
-	CHARSET '6',$C
-	CHARSET '7',$E
-	CHARSET '8',$10
-	CHARSET '9',$12
-	CHARSET '*',$14
-	CHARSET ':',$16
-	CHARSET 'E',$18
+	charset ' ',$FF
+	charset '0',0
+	charset '1',2
+	charset '2',4
+	charset '3',6
+	charset '4',8
+	charset '5',$A
+	charset '6',$C
+	charset '7',$E
+	charset '8',$10
+	charset '9',$12
+	charset '*',$14
+	charset ':',$16
+	charset 'E',$18
 	restore
