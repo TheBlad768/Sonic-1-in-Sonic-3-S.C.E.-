@@ -63,27 +63,39 @@ ChangeRingFrame:
 ; =============== S U B R O U T I N E =======================================
 
 Osc_Data:
-		dc.l %0000000111110101							; oscillation direction bitfield ; ($1F5 = set bit 0($01) + bit 2($04) + bit 4($10) + bit 5($20) + bit 6($40) + bit 7($80) + bit 8($100)
-		dc.w $80, 0								; bit 11 (bit is not set) ; baseline values
-		dc.w $80, 0								; bit 10 (bit is not set)
-		dc.w $80, 0								; bit F (bit is not set)
-		dc.w $80, 0								; bit E (bit is not set)
-		dc.w $80, 0								; bit D (bit is not set)
-		dc.w $80, 0								; bit C (bit is not set)
-		dc.w $80, 0								; bit B (bit is not set)
-		dc.w $80, 0								; bit A (bit is not set)
-		dc.w $80, 0								; bit 9 (bit is not set)
-		dc.w $3848, $EE								; bit 8 (bit is set)
-		dc.w $2080, $B4								; bit 7 (bit is set)
-		dc.w $3080,$10E								; bit 6 (bit is set)
-		dc.w $5080,$1C2								; bit 5 (bit is set)
-		dc.w $7080,$276								; bit 4 (bit is set)
-		dc.w $80, 0								; bit 3 (bit is not set)
-		dc.w $4000, $FE								; bit 2 (bit is set)
 
-		; Sonic 1
-		dc.w $80, 0								; bit 1 (bit is not set)
-		dc.w $50F0, $11E							; bit 0 (bit is set)
+		; oscillation direction bitfield
+		; set to initial state
+		dc.l \
+			setBit(0) | \
+			setBit(2) | \
+			setBit(4) | \
+			setBit(5) | \
+			setBit(6) | \
+			setBit(7) | \
+			setBit(8)
+
+		; baseline values
+		dc.w $80, 0								; bit 11
+		dc.w $80, 0								; bit 10
+		dc.w $80, 0								; bit F
+		dc.w $80, 0								; bit E
+		dc.w $80, 0								; bit D
+		dc.w $80, 0								; bit C
+		dc.w $80, 0								; bit B
+		dc.w $80, 0								; bit A
+		dc.w $80, 0								; bit 9
+		dc.w $3848, $EE								; bit 8
+		dc.w $2080, $B4								; bit 7
+		dc.w $3080,$10E								; bit 6
+		dc.w $5080,$1C2								; bit 5
+		dc.w $7080,$276								; bit 4
+		dc.w $80, 0								; bit 3
+		dc.w $4000, $FE								; bit 2
+
+		; from Sonic 1
+		dc.w $80, 0								; bit 1
+		dc.w $50F0, $11E							; bit 0
 Osc_Data_end
 ; ---------------------------------------------------------------------------
 
@@ -149,14 +161,14 @@ OscillateNumDo:
 ; ---------------------------------------------------------------------------
 
 Osc_Data2:										; frequency, amplitude
-		dc.w 2, $10								; bit $11
-		dc.w 2, $18								; bit $10
-		dc.w 2, $20								; bit $F
-		dc.w 2, $30								; bit $E
-		dc.w 4, $20								; bit $D
-		dc.w 8, 8								; bit $C
-		dc.w 8, $40								; bit $B
-		dc.w 4, $40								; bit $A
+		dc.w 2, $10								; bit 11
+		dc.w 2, $18								; bit 10
+		dc.w 2, $20								; bit F
+		dc.w 2, $30								; bit E
+		dc.w 4, $20								; bit D
+		dc.w 8, 8								; bit C
+		dc.w 8, $40								; bit B
+		dc.w 4, $40								; bit A
 		dc.w 2, $38								; bit 9
 		dc.w 2, $38								; bit 8
 		dc.w 2, $20								; bit 7
@@ -166,7 +178,7 @@ Osc_Data2:										; frequency, amplitude
 		dc.w 2, $40								; bit 3
 		dc.w 2, $40								; bit 2
 
-		; Sonic 1
+		; from Sonic 1
 		dc.w 2, $50								; bit 1
 		dc.w 2, $50								; bit 0
 Osc_Data2_end
