@@ -543,7 +543,26 @@ copyRAM2 macro startaddr,endaddr,startaddr2
     endm
 
 ; ---------------------------------------------------------------------------
-; load Kosinski Plus and Kosinski Plus Moduled
+; load Kosinski Plus
+; ---------------------------------------------------------------------------
+
+; load Kosinski Plus data to RAM
+KosPlusDecomp macro data,ram,terminate
+	lea	(data).l,a0
+    if ((ram)&$8000)=0
+	lea	(ram).l,a1
+    else
+	lea	(ram).w,a1
+    endif
+    if ("terminate"="0") || ("terminate"="")
+	jsr	(KosPlus_Decomp).w
+    else
+	jmp	(KosPlus_Decomp).w
+    endif
+    endm
+
+; ---------------------------------------------------------------------------
+; load Kosinski Plus and Kosinski Plus Moduled Queue
 ; ---------------------------------------------------------------------------
 
 ; load Kosinski Plus data to RAM
@@ -1241,7 +1260,7 @@ palscripthdr macro palette,entries,value
     endm
 
 ; macro to define a palette script data
-palscriptdata macro frames,data
+palscriptdata macro frames
 .framec :=	frames-1
 	shift
 	dc.w ALLARGS
@@ -1249,7 +1268,7 @@ palscriptdata macro frames,data
     endm
 
 ; macro to define a palette script data from an external file
-palscriptfile macro frames,data
+palscriptfile macro frames
 .framec :=	frames-1
 	shift
 	binclude ALLARGS
