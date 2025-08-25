@@ -69,13 +69,13 @@ ArtUnc_KnucklesEnding:			binclude "Screens/Ending/Uncompressed Art/Knuckles Endi
 ; Uncompressed Scaled graphics
 ; ===========================================================================
 
-ArtScaled_RobotnikGHZ:			binclude "Objects/Bosses/Robotnik/Uncompressed Art/Robotnik Ship(GHZ).unc"
+ArtScaled_RobotnikGHZ:			binclude "Objects/Bosses/Robotnik/Uncompressed Scaled Art/Robotnik Ship(GHZ).unc"
 	even
-ArtScaled_EggRoboGHZ:			binclude "Objects/Bosses/Robotnik/Uncompressed Art/Egg Robo Ship(GHZ).unc"
+ArtScaled_EggRoboGHZ:			binclude "Objects/Bosses/Robotnik/Uncompressed Scaled Art/Egg Robo Ship(GHZ).unc"
 	even
-ArtScaled_RobotnikMZ:			binclude "Objects/Bosses/Robotnik/Uncompressed Art/Robotnik Ship(MZ).unc"
+ArtScaled_RobotnikMZ:			binclude "Objects/Bosses/Robotnik/Uncompressed Scaled Art/Robotnik Ship(MZ).unc"
 	even
-ArtScaled_EggRoboMZ:			binclude "Objects/Bosses/Robotnik/Uncompressed Art/Egg Robo Ship(MZ).unc"
+ArtScaled_EggRoboMZ:			binclude "Objects/Bosses/Robotnik/Uncompressed Scaled Art/Egg Robo Ship(MZ).unc"
 	even
 
 ; ===========================================================================
