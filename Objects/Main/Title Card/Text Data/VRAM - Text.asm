@@ -9,7 +9,8 @@ TitleCardLetters_Index: offsetTable
 		offsetTableEntry.w TitleCard_LZ		; 6
 		offsetTableEntry.w TitleCard_SLZ	; 8
 		offsetTableEntry.w TitleCard_SBZ	; A
-		offsetTableEntry.w TitleCard_FZ		; C
+
+		zonewarning TitleCardLetters_Index,(1*2)
 
 ; find unique letters and load it to VRAM
 TitleCard_GHZ:		titlecardLetters "GREEN HILL"
