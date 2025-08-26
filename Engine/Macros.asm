@@ -1522,7 +1522,7 @@ copyTilemap2 macro loc,address,width,height,terminate
 ; input: destination, width [cells], height [cells], terminate
 ; ---------------------------------------------------------------------------
 
-copyTilemap3	 macro loc,width,height,terminate
+copyTilemap3 macro loc,width,height,terminate
 	locVRAM	loc,d0
 	moveq	#bytesToXcnt(width,8),d1
 	moveq	#bytesToXcnt(height,8),d2
@@ -1705,17 +1705,40 @@ dScroll_Data macro pixel,size,velocity,plane
 ; ---------------------------------------------------------------------------
 
 ; macro for defining title card letters in conjunction with the remapped character set
-titlecardLetters macro str
+titlecardLetters macro opt,str
 	save
 	codepage TITLECARD
-.llookup	:= " ABCDEFGHIJKLMNOPQRSTUVWXYZ.()0123456789!"				; letter lookup string
-.used := setBit(' ')|setBit('Z')|setBit('O')|setBit('N')|setBit('E')			; set to initial state
-    irpc char,str
-	if ~~(.used&setBit(strstr(.llookup,"char")))					; has the letter been used already?
-.used := .used|setBit(strstr(.llookup,"char"))						; if not, mark it as used
-	dc.b upstring("char")								; output letter code
-	endif
+.llookup := " ABCDEFGHIJKLMNOPQRSTUVWXYZ.()0123456789!"					; letter lookup string
+.ignore := " ZONE"									; set to initial state
+.used := 0
+    irpc char,.ignore
+.used := .used|setBit(strstr(.llookup,"char"))
     endm
+    if opt
+	; not sort letters (S2 style)
+	irpc char,str
+	    if ~~(.used & setBit(strstr(.llookup,"char")))				; has the letter been used already?
+.used := .used|setBit(strstr(.llookup,"char"))						; if not, mark it as used
+		if strstr(.ignore,"char") < 0
+		    dc.b upstring("char")						; output letter code
+		endif
+	    endif
+	endm
+    else
+	; letters in alphabetical order (S3K style)
+	irpc char,str
+	    if ~~(.used & setBit(strstr(.llookup,"char")))				; has the letter been used already?
+.used := .used|setBit(strstr(.llookup,"char"))						; if not, mark it as used
+	    endif
+	endm
+	irpc char,.llookup
+	    if .used & setBit(strstr(.llookup,"char"))
+		if strstr(.ignore,"char") < 0
+		    dc.b upstring("char")						; output letter code
+		endif
+	    endif
+	endm
+    endif
 	dc.b -1	; end marker
 	restore
     endm
