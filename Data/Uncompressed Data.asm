@@ -28,6 +28,13 @@ ArtUnc_WaterSplash:			binclude "Objects/Main/Water Splash/Uncompressed Art/Water
 	even
 
 ; ===========================================================================
+; Uncompressed Title Card graphics
+; ===========================================================================
+
+ArtUnc_TitleCardLargeText:		bincludeEntry "Objects/Main/Title Card/Uncompressed Art/Large Text.unc"
+	even
+
+; ===========================================================================
 ; Uncompressed Level Select RSDK screen graphics
 ; ===========================================================================
 

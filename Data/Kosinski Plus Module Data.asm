@@ -75,8 +75,6 @@ ArtKosPM_ResultsTAILS:			binclude "Objects/Main/Results/KosinskiPM Art/TAILS.kos
 	even
 ArtKosPM_ResultsKNUCKLES:		binclude "Objects/Main/Results/KosinskiPM Art/KNUCKLES.kospm"
 	even
-ArtKosPM_TitleCardRedAct:		binclude "Objects/Main/Title Card/KosinskiPM Art/Title Card Red ACT.kospm"
-	even
 ArtKosPM_StarPostStars1:		binclude "Objects/Main/StarPost/KosinskiPM Art/StarPost Stars 1.kospm"
 	even
 ArtKosPM_StarPostStars2:		binclude "Objects/Main/StarPost/KosinskiPM Art/StarPost Stars 2.kospm"
@@ -88,6 +86,8 @@ ArtKosPM_StarPostStars3:		binclude "Objects/Main/StarPost/KosinskiPM Art/StarPos
 ; Kosinski Plus Module compressed Title Card graphics
 ; ===========================================================================
 
+ArtKosPM_TitleCardRedAct:		binclude "Objects/Main/Title Card/KosinskiPM Art/Title Card Red ACT.kospm"
+	even
 ArtKosPM_TitleCardNum1:			binclude "Objects/Main/Title Card/KosinskiPM Art/Title Card Number 1.kospm"
 	even
 ArtKosPM_TitleCardNum2:			binclude "Objects/Main/Title Card/KosinskiPM Art/Title Card Number 2.kospm"
@@ -95,20 +95,6 @@ ArtKosPM_TitleCardNum2:			binclude "Objects/Main/Title Card/KosinskiPM Art/Title
 ArtKosPM_TitleCardNum3:			binclude "Objects/Main/Title Card/KosinskiPM Art/Title Card Number 3.kospm"
 	even
 ArtKosPM_TitleCardNum4:			binclude "Objects/Main/Title Card/KosinskiPM Art/Title Card Number 4.kospm"
-	even
-ArtKosPM_GHZTitleCard:			binclude "Objects/Main/Title Card/KosinskiPM Art/Levels/GHZ - Title Card.kospm"
-	even
-ArtKosPM_MZTitleCard:			binclude "Objects/Main/Title Card/KosinskiPM Art/Levels/MZ - Title Card.kospm"
-	even
-ArtKosPM_SYZTitleCard:			binclude "Objects/Main/Title Card/KosinskiPM Art/Levels/SYZ - Title Card.kospm"
-	even
-ArtKosPM_LZTitleCard:			binclude "Objects/Main/Title Card/KosinskiPM Art/Levels/LZ - Title Card.kospm"
-	even
-ArtKosPM_SLZTitleCard:			binclude "Objects/Main/Title Card/KosinskiPM Art/Levels/SLZ - Title Card.kospm"
-	even
-ArtKosPM_SBZTitleCard:			binclude "Objects/Main/Title Card/KosinskiPM Art/Levels/SBZ - Title Card.kospm"
-	even
-ArtKosPM_FZTitleCard:			binclude "Objects/Main/Title Card/KosinskiPM Art/Levels/FZ - Title Card.kospm"
 	even
 
 ; ===========================================================================
@@ -386,8 +372,6 @@ ArtKosPM_StHLogoEnding:			binclude "Screens/Ending/KosinskiPM Art/StH Logo Endin
 ; Kosinski Plus Module compressed Credits screen graphics
 ; ===========================================================================
 
-ArtKosPM_LargeTextCredits:		binclude "Screens/Credits/KosinskiPM Art/Large Text.kospm"
-	even
 ArtKosPM_SmallTextCredits:		binclude "Screens/Credits/KosinskiPM Art/8x16 Font.kospm"
 	even
 ArtKosPM_RobotnikCredits:		binclude "Screens/Credits/KosinskiPM Art/Robotnik.kospm"

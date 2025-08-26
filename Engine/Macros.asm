@@ -1704,44 +1704,22 @@ dScroll_Data macro pixel,size,velocity,plane
     endm
 ; ---------------------------------------------------------------------------
 
-; macro for generating standard strings
-standardstr macro str
+; macro for defining title card letters in conjunction with the remapped character set
+titlecardLetters macro str
 	save
-	codepage STANDARD
-	dc.b strlen(str)-1, str
+	codepage TITLECARD
+.llookup	:= " ABCDEFGHIJKLMNOPQRSTUVWXYZ.()0123456789!"				; letter lookup string
+.used := setBit(' ')|setBit('Z')|setBit('O')|setBit('N')|setBit('E')			; set to initial state
+    irpc char,str
+	if ~~(.used&setBit(strstr(.llookup,"char")))					; has the letter been used already?
+.used := .used|setBit(strstr(.llookup,"char"))						; if not, mark it as used
+	dc.b upstring("char")								; output letter code
+	endif
+    endm
+	dc.b -1	; end marker
 	restore
     endm
-
-; macro for generating level select strings
-levselstr macro str
-	save
-	codepage LEVELSCREEN
-	dc.b strlen(str)-1, str
-	restore
-    endm
-
-; macro for generating options strings
-optstr macro str
-	save
-	codepage OPTIONSCREEN
-	dc.b strlen(str)-1, str
-	restore
-    endm
-
-	; codepage for level select
-	save
-	codepage LEVELSCREEN
-	charset ' ', 43
-	charset '0','9', 1
-	charset 'A','Z', 17
-	charset 'a','z', 17
-	charset '*', 11
-	charset '@', 12
-	charset ':', 13
-	charset '-', 14
-	charset '/', 15
-	charset '.', 16
-	restore
+; ---------------------------------------------------------------------------
 
 ; macro for generating credits strings
 creditstr macro plane,str
@@ -1766,6 +1744,47 @@ creditstr macro plane,str
 creditstr_end macro
 	dc.w 0	; end marker
     endm
+; ---------------------------------------------------------------------------
+
+; macro for generating standard strings
+standardstr macro str
+	save
+	codepage STANDARD
+	dc.b strlen(str)-1, str
+	restore
+    endm
+
+; macro for generating level select strings
+levselstr macro str
+	save
+	codepage LEVELSCREEN
+	dc.b strlen(str)-1, str
+	restore
+    endm
+
+; macro for generating options strings
+optstr macro str
+	save
+	codepage OPTIONSCREEN
+	dc.b strlen(str)-1, str
+	restore
+    endm
+; ---------------------------------------------------------------------------
+
+	; codepage for level select
+	save
+	codepage LEVELSCREEN
+	charset ' ', 43
+	charset '0','9', 1
+	charset 'A','Z', 17
+	charset 'a','z', 17
+	charset '*', 11
+	charset '@', 12
+	charset ':', 13
+	charset '-', 14
+	charset '/', 15
+	charset '.', 16
+	restore
 
 	; codepage for options
 	save
@@ -1780,6 +1799,19 @@ creditstr_end macro
 	charset '-', 14
 	charset '^', 15
 	charset '.', 16
+	restore
+
+	; codepage for title card
+	save
+	codepage TITLECARD
+	charset ' ', 0
+	charset 'A','Z', 1
+	charset 'a','z', 1
+	charset '.', 27
+	charset '(', 28
+	charset ')', 29
+	charset '0','9', 30
+	charset '!', 40
 	restore
 
 	; codepage for credits

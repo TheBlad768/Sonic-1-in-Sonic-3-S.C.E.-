@@ -1,5 +1,5 @@
 ; ---------------------------------------------------------------------------
-; TitleCard (Object)
+; Title Card (Object)
 ; ---------------------------------------------------------------------------
 
 ; =============== S U B R O U T I N E =======================================
@@ -30,46 +30,12 @@ Obj_TitleCard:
 		move.w	#tiles_to_bytes($53D),d2
 		jsr	(Queue_KosPlus_Module).w
 
-		; load zone name art
-		moveq	#0,d0
-		move.b	(Current_zone).w,d0						; otherwise, just use current zone
-		add.w	d0,d0								; multiply by 4
-		add.w	d0,d0
-		movea.l	.levelgfx(pc,d0.w),a1
-		cmpi.w	#bytes_to_word(LevelID_LZ,3),(Current_zone_and_act).w		; is level Labyrinth Zone 4?
-		bne.s	.notSBZ3							; if not, branch
-		lea	(ArtKosPM_SBZTitleCard).l,a1
-
-.notSBZ3
-		cmpi.w	#bytes_to_word(LevelID_SBZ,2),(Current_zone_and_act).w
-		bne.s	.notFZ
-		lea	(ArtKosPM_FZTitleCard).l,a1
-
-.notFZ
-		move.w	#tiles_to_bytes($54D),d2
-		jsr	(Queue_KosPlus_Module).w
-
 		; next
 		move.w	#1*60+30,objoff_2E(a0)						; set wait value
 		clr.w	objoff_32(a0)
 		st	objoff_48(a0)
 		move.l	#.create,address(a0)
 		rts
-
-; ---------------------------------------------------------------------------
-; The letters for the name of the zone
-; Exception: ENOZ/ZONE. These letters are already in VRAM
-; ---------------------------------------------------------------------------
-
-.levelgfx
-		dc.l ArtKosPM_GHZTitleCard	; GHZ
-		dc.l ArtKosPM_MZTitleCard	; MZ
-		dc.l ArtKosPM_SYZTitleCard	; SYZ
-		dc.l ArtKosPM_LZTitleCard	; LZ
-		dc.l ArtKosPM_SLZTitleCard	; SLZ
-		dc.l ArtKosPM_SBZTitleCard	; SBZ
-
-		zonewarning .levelgfx,4
 ; ---------------------------------------------------------------------------
 
 .create
@@ -271,6 +237,75 @@ Obj_TitleCardAct:
 		movea.w	parent2(a0),a1							; a1=parent object
 		subq.w	#1,objoff_30(a1)
 		jmp	(Delete_Current_Sprite).w
+
+; ---------------------------------------------------------------------------
+; Title Card load letter to VRAM
+; ---------------------------------------------------------------------------
+
+; =============== S U B R O U T I N E =======================================
+
+TitleCard_LoadLetter:
+
+.decomp	= 0
+
+		lea	VDP_data_port-VDP_control_port(a5),a6				; load VDP data address to a6
+		locVRAM	tiles_to_bytes($54D),VDP_control_port-VDP_control_port(a5)
+
+	if .decomp
+		lea	(ArtKosP_TitleCardLargeText).l,a0
+		lea	(RAM_start).l,a1
+		lea	(a1),a3
+		jsr	(KosPlus_Decomp).w
+		lea	(a3),a2
+	else
+		lea	(ArtUnc_TitleCardLargeText).l,a2
+	endif
+
+		; load zone name art
+		moveq	#0,d0
+		move.b	(Current_zone).w,d0						; otherwise, just use current zone
+		add.w	d0,d0								; multiply by 2
+		lea	TitleCardLetters_Index(pc),a1
+		adda.w	(a1,d0.w),a1
+
+		; check level
+		cmpi.w	#bytes_to_word(LevelID_LZ,3),(Current_zone_and_act).w		; is level Labyrinth Zone 4?
+		bne.s	.notSBZ3							; if not, branch
+		lea	TitleCard_SBZ(pc),a1
+
+.notSBZ3
+		cmpi.w	#bytes_to_word(LevelID_SBZ,2),(Current_zone_and_act).w
+		bne.s	.notFZ
+		lea	TitleCard_FZ(pc),a1
+
+.notFZ
+		lea	(Credits_DrawLargeText.letters).l,a3
+
+.find
+		moveq	#0,d0
+		move.b	(a1)+,d0
+		bmi.s	.exit								; if zero, exit
+		subq.b	#1,d0								; -1
+		add.w	d0,d0								; multiply by 4
+		add.w	d0,d0
+		movem.w	(a3,d0.w),d0-d1							; get id letter and size
+		lsl.w	#5,d0								; multiply by $20
+		lea	(a2,d0.w),a4
+
+.copy
+
+	rept 8*3
+		move.l	(a4)+,VDP_data_port-VDP_data_port(a6)
+	endr
+
+		dbf	d1,.copy
+
+		; next
+		bra.s	.find
+; ---------------------------------------------------------------------------
+
+.exit
+		rts
 ; ---------------------------------------------------------------------------
 
 ObjArray_TtlCard: titlecardresultsheader
@@ -286,4 +321,5 @@ ObjArray_TtlCardBonus: titlecardresultsheader
 ObjArray_TtlCardBonus_end
 ; ---------------------------------------------------------------------------
 
+		include "Objects/Main/Title Card/Text Data/VRAM - Text.asm"
 		include "Objects/Main/Title Card/Object Data/Map - Title Card.asm"

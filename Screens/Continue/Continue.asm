@@ -60,6 +60,11 @@ ContinueScreen:
 		lea	PLC_Continue(pc),a5
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
+.artsize	:= (ArtUnc_TitleCardLargeText_end-ArtUnc_TitleCardLargeText)&$FFFF
+
+		; load text art
+		QueueStaticDMA ArtUnc_TitleCardLargeText,.artsize,tiles_to_bytes($347)
+
 .waitplc
 		move.b	#VintID_Fade,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
@@ -971,7 +976,6 @@ PLC_Continue: plrlistheader
 		plreq 1, ArtKosPM_ContinueDigits
 		plreq $8C, ArtKosPM_ContinueSprites
 		plreq $D9, ArtKosPM_ContinueIcons
-		plreq $347, ArtKosPM_LargeTextCredits
 PLC_Continue_end
 ; ---------------------------------------------------------------------------
 

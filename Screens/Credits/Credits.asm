@@ -65,6 +65,11 @@ CreditsScreen:
 		lea	PLC_Credits(pc),a5
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
+.artsize	:= (ArtUnc_TitleCardLargeText_end-ArtUnc_TitleCardLargeText)&$FFFF
+
+		; load text art
+		QueueStaticDMA ArtUnc_TitleCardLargeText,.artsize,tiles_to_bytes(1)
+
 		; load palette
 		lea	(Pal_Credits).l,a1
 		lea	(Target_palette).w,a2
@@ -954,7 +959,6 @@ ObjDat_CreditsEggRobo_ScrapMetal:	subObjMainData Draw_Sprite, setBit(render_flag
 ObjDat_CreditsEggRobo_Eyes:		subObjMainData Obj_CreditsEggRobo_Eyes.refresh, setBit(render_flags.level), 0, 16, 16, 3, $232, 0, 0, Map_CreditsEggRobo
 
 PLC_Credits: plrlistheader
-		plreq 1, ArtKosPM_LargeTextCredits
 		plreq $100, ArtKosPM_SmallTextCredits
 		plreq $182, ArtKosPM_RobotnikCredits
 		plreq $232, ArtKosPM_EggRoboCredits
