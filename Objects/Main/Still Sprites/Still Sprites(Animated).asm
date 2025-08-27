@@ -13,7 +13,7 @@ Obj_AnimatedStillSprite:
 		; get
 		moveq	#0,d0
 		move.b	subtype(a0),d0
-		move.b	d0,mapping_frame(a0)
+		move.b	d0,anim(a0)
 		add.w	d0,d0								; multiply by 6
 		move.w	d0,d1
 		add.w	d0,d0
