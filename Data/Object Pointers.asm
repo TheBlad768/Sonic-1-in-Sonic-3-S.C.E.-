@@ -76,7 +76,7 @@ Obj_Index:
 		dc.l Obj_MarbleBrick					; $46
 		dc.l Obj_Bumper						; $47
 		dc.l Delete_Current_Sprite				; $48
-		dc.l Obj_WaterSound					; $49
+		dc.l Obj_SoundStillSprite				; $49
 		dc.l Delete_Current_Sprite				; $4A
 		dc.l Obj_BigRing					; $4B
 		dc.l Obj_GeyserMaker					; $4C
