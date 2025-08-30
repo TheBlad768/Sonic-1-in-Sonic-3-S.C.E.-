@@ -7,6 +7,7 @@ dashdust_prev_frame			= objoff_34	; .b
 dashdust_dust_timer			= objoff_36	; .b
 dashdust_tails				= objoff_38	; .b
 dashdust_vram_art			= objoff_40	; .w ; address of art in VRAM (same as art_tile * $20)
+dashdust_parent				= objoff_42	; .w
 
 ; =============== S U B R O U T I N E =======================================
 
