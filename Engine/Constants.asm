@@ -1025,10 +1025,14 @@ Water_move							= Water_full_screen_flag			; alias from Sonic 2 (GitHub)
 Water_fullscreen_flag						= Water_full_screen_flag			; alias from Sonic 2 (GitHub)
 
 ; water variables
-v_pal_water_dup							= Target_water_palette				; alias from Sonic 1 (GitHub)
-v_pal_water							= Water_palette					; alias from Sonic 1 (GitHub)
-v_pal_dry							= Normal_palette				; alias from Sonic 1 (GitHub)
-v_pal_dry_dup							= Target_palette				; alias from Sonic 1 (GitHub)
+v_pal_water_dup							= Target_water_palette				; alias from Sonic 1 (GitHub, old)
+v_pal_water							= Water_palette					; alias from Sonic 1 (GitHub, old)
+v_pal_dry							= Normal_palette				; alias from Sonic 1 (GitHub, old)
+v_pal_dry_dup							= Target_palette				; alias from Sonic 1 (GitHub, old)
+v_palette_water_fading						= Target_water_palette				; alias from Sonic 1 (GitHub)
+v_palette_water							= Water_palette					; alias from Sonic 1 (GitHub)
+v_palette							= Normal_palette				; alias from Sonic 1 (GitHub)
+v_palette_fading						= Target_palette				; alias from Sonic 1 (GitHub)
 
 ; main variables
 v_vbla_count							= V_int_run_count				; alias from Sonic 1 (GitHub)
