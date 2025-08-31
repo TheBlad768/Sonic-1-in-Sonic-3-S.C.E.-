@@ -685,9 +685,9 @@ Obj_BossSpikeBall_SpikeBall_Shrapnel:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_BossSpikeBall_Ship:			subObjData Map_RobotnikShip, $3B0, 1, 0, 64, 64, 4, $C, $F|collision_flags.npc.touch
-ObjDat_BossSpikeBall_ShipTube:			subObjData Map_BossSpikeBall_Tube, $440, 1, 0, 8, 32, 3, 0, 0
-ObjDat_RobotnikShip_SpikeBall_Shrapnel:		subObjData Map_Bomb, $4C1, 0, 1, 8, 8, 2, $A, $18|collision_flags.npc.hurt
+ObjDat_BossSpikeBall_Ship:			subObjData Map_RobotnikShip, $3B0, 1, FALSE, 64, 64, 4, $C, $F|collision_flags.npc.touch
+ObjDat_BossSpikeBall_ShipTube:			subObjData Map_BossSpikeBall_Tube, $440, 1, FALSE, 8, 32, 3, 0, 0
+ObjDat_RobotnikShip_SpikeBall_Shrapnel:		subObjData Map_Bomb, $4C1, 0, TRUE, 8, 8, 2, $A, $18|collision_flags.npc.hurt
 
 Child1_BossSpikeBall_ShipTube:
 		dc.w 1-1

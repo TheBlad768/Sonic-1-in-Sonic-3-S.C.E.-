@@ -25,7 +25,7 @@ Obj_SpinConvey:
 
 		; init
 		move.l	#Map_Spin,mappings(a0)
-		move.w	#make_art_tile($3C8,0,0),art_tile(a0)
+		move.w	#make_art_tile($3C8,0,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(14/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority
 		move.l	#sub_163D8,address(a0)

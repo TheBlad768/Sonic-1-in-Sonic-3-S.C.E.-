@@ -60,4 +60,4 @@ Obj_HyperSonicKnux_Trail:
 ObjDat_HyperSonicKnux_Trail:		subObjMainData \
 					Obj_HyperSonicKnux_Trail.main, \
 						setBit(render_flags.level), \
-					0, 48, 48, 0, ArtTile_Player_1, 0, 0, Map_Knuckles
+					0, 48, 48, 0, ArtTile_Player_1, 0, FALSE, Map_Knuckles

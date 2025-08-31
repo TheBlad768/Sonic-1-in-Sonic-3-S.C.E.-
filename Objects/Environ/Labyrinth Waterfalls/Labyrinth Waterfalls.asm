@@ -57,7 +57,7 @@ Obj_Waterfall:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Waterfalls:	subObjData Map_WFall, $259, 2, 0, 48, 48, 1, 0, 0
+ObjDat_Waterfalls:	subObjData Map_WFall, $259, 2, FALSE, 48, 48, 1, 0, 0
 
 AniRaw_WFall:	dc.b 5, 9, $A, $B, arfEnd
 	even

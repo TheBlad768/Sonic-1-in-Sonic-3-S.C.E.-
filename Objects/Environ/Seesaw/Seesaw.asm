@@ -14,7 +14,7 @@ Obj_Seesaw:
 
 		; init
 		move.l	#Map_Seesaw,mappings(a0)
-		move.w	#make_art_tile($37A,0,0),art_tile(a0)
+		move.w	#make_art_tile($37A,0,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(96/2,96/2,priority_3),height_pixels(a0)	; set height, width and priority
 		move.w	x_pos(a0),see_origX(a0)
@@ -329,7 +329,7 @@ Seesaw_LaunchCharacter:
 
 ; =============== S U B R O U T I N E =======================================
 
-ObjDat_See_SpikeBall:	subObjData Map_SSawBall, $4EE, 0, 0, 24, 24, 4, 1, $B|collision_flags.npc.hurt
+ObjDat_See_SpikeBall:	subObjData Map_SSawBall, $4EE, 0, FALSE, 24, 24, 4, 1, $B|collision_flags.npc.hurt
 
 Child6_See_Spikeball:
 		dc.w 1-1

@@ -339,8 +339,8 @@ Caterkiller_FragHead:									; head
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Caterkiller:		subObjData Map_Cat, $552, 1, 0, 32, 16, 4, 0, $B|collision_flags.npc.touch
-ObjDat3_Caterkiller_BodySeg:	subObjData FALSE, FALSE, 0, 0, 32, 16, 5, 8, $B|collision_flags.npc.special
+ObjDat_Caterkiller:		subObjData Map_Cat, $552, 1, FALSE, 32, 16, 4, 0, $B|collision_flags.npc.touch
+ObjDat3_Caterkiller_BodySeg:	subObjData FALSE, FALSE, 0, FALSE, 32, 16, 5, 8, $B|collision_flags.npc.special
 
 Child8_Caterkiller_FragBody:
 		dc.w 3-1

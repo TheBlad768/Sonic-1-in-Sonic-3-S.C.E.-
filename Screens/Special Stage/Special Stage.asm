@@ -421,7 +421,7 @@ SSExtraRender_Data:
 SS_BGLoad:
 
 		; load mappings for the birds and fish
-		EniDecomp	MapEni_SSBg1, RAM_start, ArtTile_SS_Background_Fish, 2, 0		; decompress Enigma mappings
+		EniDecomp	MapEni_SSBg1, RAM_start, ArtTile_SS_Background_Fish, 2, FALSE		; decompress Enigma mappings
 		locVRAM	$5000,d3									; set nametable address
 		lea	(RAM_start+$80).l,a2
 		moveq	#7-1,d7
@@ -469,7 +469,7 @@ loc_491C:
 		dbf	d7,loc_48BE
 
 		; load mappings for the clouds
-		EniDecomp	MapEni_SSBg2, RAM_start, ArtTile_SS_Background_Clouds, 2, 0		; decompress Enigma mappings
+		EniDecomp	MapEni_SSBg2, RAM_start, ArtTile_SS_Background_Clouds, 2, FALSE		; decompress Enigma mappings
 		copyTilemap	VRAM_Plane_A_Name_Table, 512, 256
 		lea	(RAM_start).l,a1
 		copyTilemap	(VRAM_Plane_A_Name_Table+$1000), 512, 512, 1

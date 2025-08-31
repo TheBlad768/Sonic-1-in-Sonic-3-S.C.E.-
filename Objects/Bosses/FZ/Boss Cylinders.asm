@@ -262,7 +262,7 @@ EggmanCylinder_Movement:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_BossCylinder:		subObjData Map_EggCyl, $300, 0, 0, 192, 64, 3, 0, 0
+ObjDat_BossCylinder:		subObjData Map_EggCyl, $300, 0, FALSE, 192, 64, 3, 0, 0
 
 Child6_EggmanCylinder:
 		dc.w 4-1

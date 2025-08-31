@@ -143,8 +143,8 @@ Obj_SpinPlatform:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Trapdoor:	subObjData Map_Trap, $43F8, 2, 0, 128, 128, 1, 0, 0
-ObjDat_Spinner:		subObjData Map_Spin, $3C8, 0, 0, 14, 32, 1, 0, 0
+ObjDat_Trapdoor:	subObjData Map_Trap, $43F8, 2, FALSE, 128, 128, 1, 0, 0
+ObjDat_Spinner:		subObjData Map_Spin, $3C8, 0, FALSE, 14, 32, 1, 0, 0
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Spinning Platforms/Object Data/Anim - Spinning Platforms.asm"

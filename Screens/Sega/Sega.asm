@@ -50,7 +50,7 @@ SegaScreen:
 		QueueKosPlusModule	ArtKosPM_Sega, 1
 
 		; load mapping
-		EniDecomp	MapEni_Sega, RAM_start, 1, 0, 1						; decompress Enigma mappings
+		EniDecomp	MapEni_Sega, RAM_start, 1, 0, TRUE					; decompress Enigma mappings
 
 		; check console region
 		tst.b	(Graphics_flags).w

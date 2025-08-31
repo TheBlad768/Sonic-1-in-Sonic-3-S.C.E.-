@@ -106,7 +106,7 @@ Yad_ChkWall:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Yadrin:		subObjData Map_Yad, $3BE, 1, 0, 34, 40, 4, 0, $C|collision_flags.npc.special
+ObjDat_Yadrin:		subObjData Map_Yad, $3BE, 1, FALSE, 34, 40, 4, 0, $C|collision_flags.npc.special
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Enemies/Yadrin/Object Data/Anim - Yadrin.asm"

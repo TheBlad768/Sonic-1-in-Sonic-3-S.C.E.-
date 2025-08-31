@@ -508,10 +508,10 @@ Obj_BossBall_Scaled:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_BossBall_Crane:		subObjData Map_GiantBall_Crane, $494, 0, 0, 16, 16, 6, 0, 0
-ObjDat_BossBall_Chain:		subObjData Map_GiantBall_Crane, $498, 0, 0, 16, 16, 6, 0, 0
-ObjDat_BossBall_Ball:		subObjData Map_GiantBall, $49C, 2, 0, 64, 64, 5, 0, 0
-ObjDat_BossBall_Scaled:		subObjData Map_ScaledArt, $340, 0, 0, 128, 128, 1, 0, 0
+ObjDat_BossBall_Crane:		subObjData Map_GiantBall_Crane, $494, 0, FALSE, 16, 16, 6, 0, 0
+ObjDat_BossBall_Chain:		subObjData Map_GiantBall_Crane, $498, 0, FALSE, 16, 16, 6, 0, 0
+ObjDat_BossBall_Ball:		subObjData Map_GiantBall, $49C, 2, FALSE, 64, 64, 5, 0, 0
+ObjDat_BossBall_Scaled:		subObjData Map_ScaledArt, $340, 0, FALSE, 128, 128, 1, 0, 0
 
 ; dplc
 PLCPtr_BossBall_Ball:		dc.l dmaSource(ArtUnc_GiantBall), DPLC_GiantBall

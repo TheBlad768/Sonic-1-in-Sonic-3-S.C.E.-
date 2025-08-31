@@ -67,7 +67,7 @@ Obj_LabyrinthConvey_Platforms:
 
 		; init
 		move.l	#Map_LConv_Platform,mappings(a0)
-		move.w	#make_art_tile($406,2,0),art_tile(a0)
+		move.w	#make_art_tile($406,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level)|setBit(render_flags.static_mappings),render_flags(a0)	; set static mapping and screen coordinates flag
 		move.l	#bytes_word_to_long(32/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority
 		addq.b	#1,mapping_frame(a0)						; platform frame

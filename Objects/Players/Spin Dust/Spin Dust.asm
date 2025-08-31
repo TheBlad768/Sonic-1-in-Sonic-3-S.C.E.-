@@ -24,7 +24,7 @@ Obj_DashDust:
 		st	dashdust_tails(a0)						; Tails flag
 		cmpi.w	#PlayerModeID_Tails,(Player_mode).w				; is Tails?
 		beq.s	.main								; if yes, branch
-		move.w	#make_art_tile(ArtTile_DashDust_P2,0,0),art_tile(a0)
+		move.w	#make_art_tile(ArtTile_DashDust_P2,0,FALSE),art_tile(a0)
 		move.l	#words_to_long(tiles_to_bytes(ArtTile_DashDust_P2),Player_2),dashdust_vram_art(a0)
 
 .main
@@ -263,7 +263,7 @@ Obj_DashDust_SkidDust:
 ObjDat_DashDust:	subObjMainData \
 			Obj_DashDust.main, \
 				setBit(render_flags.level), \
-			0, 32, 32, 1, ArtTile_DashDust, 0, 0, Map_DashDust
+			0, 32, 32, 1, ArtTile_DashDust, 0, FALSE, Map_DashDust
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Players/Spin Dust/Object Data/Anim - Dash Splash Drown.asm"

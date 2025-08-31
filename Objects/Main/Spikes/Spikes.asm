@@ -40,7 +40,7 @@ Obj_Spikes:
 		; set priority and art_tile
 		move.l	#words_to_long( \
 		priority_4, \
-			make_art_tile(ArtTile_SpikesSprings+8,0,0) \
+			make_art_tile(ArtTile_SpikesSprings+8,0,FALSE) \
 		),priority(a0)
 
 		lsr.w	d0
@@ -52,7 +52,7 @@ Obj_Spikes:
 
 .sideways
 		move.l	#sub_240E2,address(a0)						; sideways
-		move.w	#make_art_tile(ArtTile_SpikesSprings,0,0),art_tile(a0)
+		move.w	#make_art_tile(ArtTile_SpikesSprings,0,FALSE),art_tile(a0)
 
 loc_23FE8:
 		move.b	status(a0),d0

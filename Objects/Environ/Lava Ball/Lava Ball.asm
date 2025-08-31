@@ -66,7 +66,7 @@ Obj_LavaBall:
 		; check
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; is level Star Light Zone?
 		bne.s	.notSLZ								; if not, branch
-		move.w	#make_art_tile($434,0,0),art_tile(a0)				; SLZ specific code
+		move.w	#make_art_tile($434,0,FALSE),art_tile(a0)			; SLZ specific code
 
 .notSLZ
 		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
@@ -202,8 +202,8 @@ LBall_Type07:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_LavaMaker:	subObjMainData Obj_LavaMaker.makelava, setBit(render_flags.level), 0, 64, 64, 0, 0, 0, 0, Map_Offscreen
-ObjDat_LavaBall:	subObjMainData Obj_LavaBall.action, setBit(render_flags.level), 0, 16, 16, 3, $298, 0, 0, Map_Fire
+ObjDat_LavaMaker:	subObjMainData Obj_LavaMaker.makelava, setBit(render_flags.level), 0, 64, 64, 0, 0, 0, FALSE, Map_Offscreen
+ObjDat_LavaBall:	subObjMainData Obj_LavaBall.action, setBit(render_flags.level), 0, 16, 16, 3, $298, 0, FALSE, Map_Fire
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Lava Ball/Object Data/Anim - Fireballs.asm"

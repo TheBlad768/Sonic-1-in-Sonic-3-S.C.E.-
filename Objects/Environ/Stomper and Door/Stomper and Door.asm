@@ -35,7 +35,7 @@ Obj_ScrapStomp:
 		move.b	d0,mapping_frame(a0)
 		move.l	#.action,address(a0)
 		move.l	#Map_Stomp,mappings(a0)
-		move.w	#make_art_tile($2B2,1,0),art_tile(a0)
+		move.w	#make_art_tile($2B2,1,FALSE),art_tile(a0)
 
 		; check level
 		cmpi.b	#LevelID_LZ,(Current_zone).w					; check if level is LZ/SBZ3
@@ -48,7 +48,7 @@ Obj_ScrapStomp:
 ; ---------------------------------------------------------------------------
 
 .isSBZ3
-		move.w	#make_art_tile($41F0,2,0),art_tile(a0)				; LZ4
+		move.w	#make_art_tile($41F0,2,FALSE),art_tile(a0)			; LZ4
 		cmpi.w	#$A80,x_pos(a0)
 		bne.s	.isSBZ12
 

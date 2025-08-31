@@ -28,10 +28,10 @@ Obj_PushableBlock:
 
 		; init
 		move.l	#Map_Push,mappings(a0)
-		move.w	#make_art_tile($562,2,0),d0					; MZ specific code
+		move.w	#make_art_tile($562,2,FALSE),d0					; MZ specific code
 		cmpi.b	#LevelID_LZ,(Current_zone).w					; check if level is LZ
 		bne.s	.notLZ								; if not, branch
-		move.w	#make_art_tile($3DE,2,0),d0					; LZ specific code
+		move.w	#make_art_tile($3DE,2,FALSE),d0					; LZ specific code
 
 .notLZ
 		move.w	d0,art_tile(a0)
@@ -53,7 +53,7 @@ Obj_PushableBlock:
 		move.b	(a2),mapping_frame(a0)
 		tst.b	subtype(a0)
 		beq.s	.chkgone
-		move.w	#make_art_tile($562,2,1),art_tile(a0)
+		move.w	#make_art_tile($562,2,TRUE),art_tile(a0)
 
 .chkgone
 		move.w	respawn_addr(a0),d0						; get address in respawn table

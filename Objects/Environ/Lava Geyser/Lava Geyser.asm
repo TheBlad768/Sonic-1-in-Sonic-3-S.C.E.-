@@ -263,10 +263,10 @@ Obj_LavaGeyser_Extra:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_GeyserMaker:		subObjData Map_Geyser, $36D, 3, 1, 112, 112, 1, 0, 0
-ObjDat_LavaGeyser:		subObjData Map_Geyser, $36D, 3, 0, 64, 64, 1, 0, 0
-ObjDat3_LavaGeyser:		subObjData FALSE, FALSE, 0, 0, 256, 64, 1, 0, $13|collision_flags.npc.hurt
-ObjDat3_LavaGeyser2:		subObjData FALSE, FALSE, 0, 0, 64, 64, 0, 0, 0
+ObjDat_GeyserMaker:		subObjData Map_Geyser, $36D, 3, TRUE, 112, 112, 1, 0, 0
+ObjDat_LavaGeyser:		subObjData Map_Geyser, $36D, 3, FALSE, 64, 64, 1, 0, 0
+ObjDat3_LavaGeyser:		subObjData FALSE, FALSE, 0, FALSE, 256, 64, 1, 0, $13|collision_flags.npc.hurt
+ObjDat3_LavaGeyser2:		subObjData FALSE, FALSE, 0, FALSE, 64, 64, 0, 0, 0
 
 Child6_LavaGeyser:
 		dc.w 1-1

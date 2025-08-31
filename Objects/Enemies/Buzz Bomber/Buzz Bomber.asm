@@ -167,8 +167,8 @@ Obj_Missile:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_BuzzBomber:		subObjData Map_Buzz, $440, 0, 0, 48, 48, 3, 0, 8|collision_flags.npc.touch
-ObjDat_BuzzBomber_Missile:	subObjData Map_Missile, $440, 1, 0, 16, 16, 3, 0, 0
+ObjDat_BuzzBomber:		subObjData Map_Buzz, $440, 0, FALSE, 48, 48, 3, 0, 8|collision_flags.npc.touch
+ObjDat_BuzzBomber_Missile:	subObjData Map_Missile, $440, 1, FALSE, 16, 16, 3, 0, 0
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Enemies/Buzz Bomber/Object Data/Anim - Buzz Bomber.asm"

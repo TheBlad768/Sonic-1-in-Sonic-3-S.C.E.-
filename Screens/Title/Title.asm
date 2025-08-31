@@ -57,7 +57,7 @@ TitleScreen:
 		beq.s	.notcheat
 
 		; load mapping
-		EniDecomp	MapEni_TitleCredits, RAM_start, $540, 0, 1				; decompress Enigma mappings
+		EniDecomp	MapEni_TitleCredits, RAM_start, $540, 0, TRUE				; decompress Enigma mappings
 		copyTilemap	VRAM_Plane_B_Name_Table, 320, 224
 
 		; load credits text art
@@ -89,7 +89,7 @@ TitleScreen:
 		lea	(Reserved_object_3).w,a1							; load "SONIC TEAM PRESENTS" object
 		move.l	#Draw_Sprite,address(a1)
 		move.l	#Map_TText,mappings(a1)
-		move.w	#make_art_tile($540,0,0),art_tile(a1)
+		move.w	#make_art_tile($540,0,FALSE),art_tile(a1)
 		move.w	#$120,x_pos(a1)
 		move.w	#$F0,y_pos(a1)
 
@@ -142,7 +142,7 @@ TitleScreen:
 .skiptext2
 
 		; load mapping
-		EniDecomp	MapEni_TitleFG, RAM_start, $200, 0, 0					; decompress Enigma mappings
+		EniDecomp	MapEni_TitleFG, RAM_start, $200, 0, FALSE				; decompress Enigma mappings
 		copyTilemap	(VRAM_Plane_A_Name_Table+$208), 272, 176
 
 		; load ©1991 text
@@ -370,7 +370,7 @@ Obj_TitleSonic:
 		; set priority and art_tile
 		move.l	#words_to_long( \
 		priority_2, \
-			make_art_tile($300,1,0) \
+			make_art_tile($300,1,FALSE) \
 		),priority(a0)
 
 		move.w	#$80+120,x_pos(a0)
@@ -424,7 +424,7 @@ Obj_TitlePSB:
 
 		; init
 		move.l	#Map_TPSB,mappings(a0)
-		move.w	#make_art_tile($200,0,0),art_tile(a0)
+		move.w	#make_art_tile($200,0,FALSE),art_tile(a0)
 		move.w	#$D8,x_pos(a0)
 		move.w	#$130,y_pos(a0)
 		move.w	#(1<<5)-1,tpsb_timer(a0)							; set wait

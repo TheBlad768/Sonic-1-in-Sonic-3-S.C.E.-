@@ -24,7 +24,7 @@ Obj_PurpleRock:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_PurpleRock:	subObjMainData Obj_PurpleRock.solid, setBit(render_flags.level), 0, 40, 48, 4, $380, 3, 0, Map_PRock
+ObjDat_PurpleRock:	subObjMainData Obj_PurpleRock.solid, setBit(render_flags.level), 0, 40, 48, 4, $380, 3, FALSE, Map_PRock
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Purple Rock/Object Data/Map - Purple Rock.asm"

@@ -76,7 +76,7 @@ Knuckles_Init:										; Routine 0
 		bne.s	Knuckles_Init_Continued
 
 		; only happens when not starting at a checkpoint:
-		move.w	#make_art_tile(ArtTile_Player_1,0,0),art_tile(a0)
+		move.w	#make_art_tile(ArtTile_Player_1,0,FALSE),art_tile(a0)
 		move.w	#bytes_to_word($C,$D),top_solid_bit(a0)
 
 		cmpi.b	#2,(Special_bonus_entry_flag).w

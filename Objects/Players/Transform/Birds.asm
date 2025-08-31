@@ -45,7 +45,7 @@ Obj_SuperTailsBirds_Init:
 		; set priority and art_tile
 		move.l	#words_to_long( \
 		priority_1, \
-			make_art_tile(ArtTile_Player_1,0,1) \
+			make_art_tile(ArtTile_Player_1,0,TRUE) \
 		),priority(a0)
 
 		; set screen coordinates flag and height and width

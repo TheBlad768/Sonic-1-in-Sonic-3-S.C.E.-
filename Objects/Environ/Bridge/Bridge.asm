@@ -9,7 +9,7 @@ Obj_TensionBridge:
 		; init
 		move.l	#sub_387E0,address(a0)						; normal bridge
 		move.l	#Map_TensionBridge,mappings(a0)
-		move.w	#make_art_tile($33E,2,0),art_tile(a0)
+		move.w	#make_art_tile($33E,2,FALSE),art_tile(a0)
 		tst.b	subtype(a0)
 		bpl.s	.plus
 		move.l	#sub_387B6,address(a0)						; bridge explosion

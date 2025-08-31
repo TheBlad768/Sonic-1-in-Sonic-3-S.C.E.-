@@ -231,11 +231,11 @@ Obj_ScrapEggman_BlockPieces:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_ScrapEggman:			subObjData Map_ScrapEggman, $320, 0, 1, 56, 40, 4, 0, 0
-ObjDat_ScrapEggRobo:			subObjData Map_ScrapEggRobo, $320, 0, 1, 56, 32, 4, 0, 0
-ObjDat_ScrapEggman_ControlDesk:		subObjData Map_ScrapControlDesk, $340, 1, 1, 56, 32, 3, 0, 0
-ObjDat_ScrapEggman_Block:		subObjData Map_FFloor, $364, 2, 1, 32, 32, 3, 0, 0
-ObjDat_ScrapEggman_BlockPieces:		subObjData Map_FFloor_Pieces, $364, 2, 1, 16, 16, 3, 0, 0
+ObjDat_ScrapEggman:			subObjData Map_ScrapEggman, $320, 0, TRUE, 56, 40, 4, 0, 0
+ObjDat_ScrapEggRobo:			subObjData Map_ScrapEggRobo, $320, 0, TRUE, 56, 32, 4, 0, 0
+ObjDat_ScrapEggman_ControlDesk:		subObjData Map_ScrapControlDesk, $340, 1, TRUE, 56, 32, 3, 0, 0
+ObjDat_ScrapEggman_Block:		subObjData Map_FFloor, $364, 2, TRUE, 32, 32, 3, 0, 0
+ObjDat_ScrapEggman_BlockPieces:		subObjData Map_FFloor_Pieces, $364, 2, TRUE, 16, 16, 3, 0, 0
 
 ; dplc
 PLCPtr_ScrapEggman:			dc.l dmaSource(ArtUnc_ScrapEggman), DPLC_ScrapEggman

@@ -73,7 +73,7 @@ Obj_Elevator:
 		; set priority and art_tile
 		move.l	#words_to_long( \
 		priority_4, \
-			make_art_tile(0,2,0) \
+			make_art_tile(0,2,FALSE) \
 		),priority(a0)
 
 		move.w	x_pos(a0),elev_origX(a0)

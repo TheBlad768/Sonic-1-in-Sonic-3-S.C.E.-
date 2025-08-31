@@ -202,7 +202,7 @@ SpecialStage_Results_Load:
 		move.b	(a2)+,width_pixels(a1)
 		move.b	#setBit(render_flags.multi_sprite),render_flags(a1)
 		move.l	#Map_Results,mappings(a1)
-		move.w	#make_art_tile($500,0,0),art_tile(a1)
+		move.w	#make_art_tile($500,0,FALSE),art_tile(a1)
 		move.w	a0,parent2(a1)
 		lea	next_object(a1),a1
 		dbf	d1,.loop
@@ -368,7 +368,7 @@ Obj_2EBE8:										; (Continue Sonic Icon)
 
 		; init
 		move.l	#Map_Results,mappings(a0)
-		move.w	#make_art_tile($500,0,0),art_tile(a0)
+		move.w	#make_art_tile($500,0,FALSE),art_tile(a0)
 		move.w	#$17C,x_pos(a0)
 		move.w	#$14C,y_pos(a0)
 		move.l	#.draw,address(a0)

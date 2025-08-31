@@ -139,7 +139,7 @@ Obj_Burrobot:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Burrobot:	subObjData Map_Burro, $510, 0, 0, 38, 16, 4, 0, 5|collision_flags.npc.touch
+ObjDat_Burrobot:	subObjData Map_Burro, $510, 0, FALSE, 38, 16, 4, 0, 5|collision_flags.npc.touch
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Enemies/Burrobot/Object Data/Anim - Burrobot.asm"

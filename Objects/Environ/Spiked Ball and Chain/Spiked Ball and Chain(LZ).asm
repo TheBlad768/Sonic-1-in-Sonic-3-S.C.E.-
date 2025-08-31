@@ -132,7 +132,7 @@ SpikeBall2_Move:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_SpikeBall2:	subObjMainData Obj_SpikeBall2.main, setBit(render_flags.level), 0, 48, 48, 4, $310, 0, 0, Map_SBall2
+ObjDat_SpikeBall2:	subObjMainData Obj_SpikeBall2.main, setBit(render_flags.level), 0, 48, 48, 4, $310, 0, FALSE, Map_SBall2
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Spiked Ball and Chain/Object Data/Map - Spiked Ball and Chain (LZ).asm"

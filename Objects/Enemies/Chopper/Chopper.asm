@@ -43,7 +43,7 @@ Obj_Chopper:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Chopper:		subObjData Map_Chop, $4EC, 0, 0, 32, 32, 4, 0, 9|collision_flags.npc.touch
+ObjDat_Chopper:		subObjData Map_Chop, $4EC, 0, FALSE, 32, 32, 4, 0, 9|collision_flags.npc.touch
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Enemies/Chopper/Object Data/Anim - Chopper.asm"

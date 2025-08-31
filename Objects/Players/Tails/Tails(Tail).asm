@@ -8,14 +8,14 @@ Obj_Tails_Tail:
 
 		; init
 		move.l	#Map_Tails_Tail,mappings(a0)
-		move.w	#make_art_tile(ArtTile_Player_2_Tail,0,0),d0			; normal
+		move.w	#make_art_tile(ArtTile_Player_2_Tail,0,FALSE),d0		; normal
 		cmpi.b	#GameModeID_SpecialStageScreen,(Game_mode).w			; is game mode Special Stage?
 		bne.s	.notspecial							; if not, branch
-		move.w	#make_art_tile($7AC,0,0),d0					; Special Stage
+		move.w	#make_art_tile($7AC,0,FALSE),d0					; Special Stage
 
 .notspecial
 		move.w	d0,art_tile(a0)
-		move.l	#bytes_to_long(setBit(render_flags.level),0,48/2,48/2),render_flags(a0)		; set screen coordinates flag and height and width
+		move.l	#bytes_to_long(setBit(render_flags.level),0,48/2,48/2),render_flags(a0)	; set screen coordinates flag and height and width
 		move.l	#.main,address(a0)
 
 .main

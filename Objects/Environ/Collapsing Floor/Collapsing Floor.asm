@@ -20,16 +20,16 @@ Obj_CollapseFloor:
 .set
 		move.l	d0,objoff_30(a0)
 		move.l	#Map_CFlo,mappings(a0)
-		move.w	#make_art_tile($562,2,0),d0
+		move.w	#make_art_tile($562,2,FALSE),d0
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; is level Star Light Zone?
 		bne.s	.notSLZ								; if not, branch
-		move.w	#make_art_tile($41C,2,0),d0
+		move.w	#make_art_tile($41C,2,FALSE),d0
 		addq.b	#2,mapping_frame(a0)
 
 .notSLZ
 		cmpi.b	#LevelID_SBZ,(Current_zone).w					; is level Scrap Brain Zone?
 		bne.s	.notSBZ								; if not, branch
-		move.w	#make_art_tile($2AA,2,0),d0
+		move.w	#make_art_tile($2AA,2,FALSE),d0
 
 .notSBZ
 		move.w	d0,art_tile(a0)

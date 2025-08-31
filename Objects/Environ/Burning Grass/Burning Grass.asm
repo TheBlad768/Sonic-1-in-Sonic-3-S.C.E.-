@@ -89,8 +89,8 @@ Obj_GrassFire_Fire:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_GrassFire:		subObjData Map_Fire, $298, 0, 0, 16, 16, 1, 0, $B|collision_flags.npc.hurt
-ObjDat3_GrassFire_Fire:		subObjData FALSE, FALSE, 0, 0, 16, 16, 1, 0, $B|collision_flags.npc.hurt
+ObjDat_GrassFire:		subObjData Map_Fire, $298, 0, FALSE, 16, 16, 1, 0, $B|collision_flags.npc.hurt
+ObjDat3_GrassFire_Fire:		subObjData FALSE, FALSE, 0, FALSE, 16, 16, 1, 0, $B|collision_flags.npc.hurt
 
 Child6_GrassFire_Fire:
 		dc.w 1-1

@@ -514,7 +514,7 @@ Obj_EndChaos:
 		move.w	a0,parent3(a1)
 		move.l	#.circular,address(a1)
 		move.l	#Map_ECha,mappings(a1)
-		move.w	#make_art_tile($3C5,0,1),art_tile(a1)
+		move.w	#make_art_tile($3C5,0,TRUE),art_tile(a1)
 		move.b	#setBit(render_flags.level),render_flags(a1)					; use screen coordinates
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
@@ -577,7 +577,7 @@ Obj_EndSTH:
 
 		; init
 		move.l	#Map_ESth,mappings(a0)
-		move.w	#make_art_tile($480,3,1),art_tile(a0)
+		move.w	#make_art_tile($480,3,TRUE),art_tile(a0)
 		move.w	#$80+88,y_pos(a0)
 		move.b	(Player_mode+1).w,mapping_frame(a0)
 		move.w	#4-1,objoff_2E(a0)								; set duration for delay
@@ -629,11 +629,11 @@ Redraw_EndingChunks:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_SonicEnding:	subObjData Map_SonicEnding, $3E1, 0, 0, 38, 18, 2, 0, 0
+ObjDat_SonicEnding:	subObjData Map_SonicEnding, $3E1, 0, FALSE, 38, 18, 2, 0, 0
 			dc.l Ani_ESonic, PLCPtr_SonicEnding
-ObjDat_TailsEnding:	subObjData Map_TailsEnding, $3E1, 0, 0, 30, 18, 2, 0, 0
+ObjDat_TailsEnding:	subObjData Map_TailsEnding, $3E1, 0, FALSE, 30, 18, 2, 0, 0
 			dc.l Ani_ETails, PLCPtr_TailsEnding
-ObjDat_KnuxEnding:	subObjData Map_KnucklesEnding, $3E1, 0, 0, 38, 18, 2, 0, 0
+ObjDat_KnuxEnding:	subObjData Map_KnucklesEnding, $3E1, 0, FALSE, 38, 18, 2, 0, 0
 			dc.l Ani_EKnuckles, PLCPtr_KnucklesEnding
 
 ; dplc

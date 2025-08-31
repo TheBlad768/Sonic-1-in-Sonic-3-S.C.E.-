@@ -118,7 +118,7 @@ Obj_LavaWall:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_LavaWall:	subObjData Map_LWall, $36D, 3, 0, 64, 180, 1, 1, $14|collision_flags.npc.hurt
+ObjDat_LavaWall:	subObjData Map_LWall, $36D, 3, FALSE, 64, 180, 1, 1, $14|collision_flags.npc.hurt
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Lava Wall/Object Data/Map - Lava Wall.asm"

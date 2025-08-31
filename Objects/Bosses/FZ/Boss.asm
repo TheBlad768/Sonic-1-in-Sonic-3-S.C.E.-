@@ -677,11 +677,11 @@ Obj_BossFinal_CheckPlayers:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_BossFZEggman:			subObjData Map_ScrapEggman, $2B0, 0, 0, 56, 56, 4, 0, 0
-ObjDat_BossFZEggRobo:			subObjData Map_ScrapEggRobo, $2B0, 0, 0, 56, 56, 4, 0, 0
-ObjDat_BossFZControlDesk:		subObjData Map_EggCyl, $300, 0, 0, 16, 32, 0, $B, 0
-ObjDat_BossFZRobotnikShip:		subObjData Map_RobotnikShip, $3A0, 0, 0, 64, 64, 4, $C, 0
-ObjDat_BossFZRobotnikShipStand:		subObjData Map_RobotnikShipStand, $420, 0, 0, 24, 56, 3, 0, 0
+ObjDat_BossFZEggman:			subObjData Map_ScrapEggman, $2B0, 0, FALSE, 56, 56, 4, 0, 0
+ObjDat_BossFZEggRobo:			subObjData Map_ScrapEggRobo, $2B0, 0, FALSE, 56, 56, 4, 0, 0
+ObjDat_BossFZControlDesk:		subObjData Map_EggCyl, $300, 0, FALSE, 16, 32, 0, $B, 0
+ObjDat_BossFZRobotnikShip:		subObjData Map_RobotnikShip, $3A0, 0, FALSE, 64, 64, 4, $C, 0
+ObjDat_BossFZRobotnikShipStand:		subObjData Map_RobotnikShipStand, $420, 0, FALSE, 24, 56, 3, 0, 0
 
 Child11_BossFinal_AfterBoss:
 		dc.w 3-1

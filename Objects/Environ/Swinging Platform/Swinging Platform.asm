@@ -16,12 +16,12 @@ Obj_SwingingPlatform:
 
 		; init
 		move.l	#Map_Swing_GHZ,d1
-		move.w	#make_art_tile($3C2,0,0),d0
+		move.w	#make_art_tile($3C2,0,FALSE),d0
 
 		; check level
 		cmpi.b	#LevelID_MZ,(Current_zone).w					; is level Marble Zone?
 		bne.s	.notMZ								; if not, branch
-		move.w	#make_art_tile($31A,0,0),d0
+		move.w	#make_art_tile($31A,0,FALSE),d0
 
 .notMZ
 		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
@@ -33,7 +33,7 @@ Obj_SwingingPlatform:
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; is level Star Light Zone?
 		bne.s	.notSLZ								; if not, branch
 		move.l	#Map_Swing_SLZ,d1
-		move.w	#make_art_tile($3A6,2,0),d0
+		move.w	#make_art_tile($3A6,2,FALSE),d0
 		move.w	#bytes_to_word(32/2,64/2),height_pixels(a0)			; set height and width
 		move.b	#$19|collision_flags.npc.hurt,collision_flags(a0)
 
@@ -43,7 +43,7 @@ Obj_SwingingPlatform:
 		cmpi.b	#LevelID_SBZ,(Current_zone).w					; is level Scrap Brain Zone?
 		bne.s	.notSBZ								; if not, branch
 		move.l	#Map_Swing_SBZ,d1
-		move.w	#make_art_tile($448,0,0),d0
+		move.w	#make_art_tile($448,0,FALSE),d0
 		move.w	#bytes_to_word(48/2,48/2),height_pixels(a0)			; set height and width
 		move.b	#6|collision_flags.npc.hurt,collision_flags(a0)
 

@@ -31,19 +31,19 @@ Obj_StillSprite:
 .index
 
 		; GHZ (Bridge)								; 0
-		StillSpritesEntry	1, $342, 2, 0, 32, 16
+		StillSpritesEntry	1, $342, 2, FALSE, 32, 16
 
 		; MZ (Brick)								; 1
-		StillSpritesEntry	1, 1, 2, 0, 32, 32
+		StillSpritesEntry	1, 1, 2, FALSE, 32, 32
 
 		; SYZ (Siren)								; 2
-		StillSpritesEntry	6, $11, 0, 0, 16, 32
+		StillSpritesEntry	6, $11, 0, FALSE, 16, 32
 
 		; LZ (Wheel)								; 3
-		StillSpritesEntry	1, $3F6, 0, 0, 32, 32
+		StillSpritesEntry	1, $3F6, 0, FALSE, 32, 32
 
 		; SLZ (Cannon)								; 4
-		StillSpritesEntry	2, $42C, 2, 0, 32, 16
+		StillSpritesEntry	2, $42C, 2, FALSE, 32, 16
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Main/Still Sprites/Object Data/Map - Still Sprites.asm"

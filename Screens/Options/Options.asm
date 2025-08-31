@@ -93,7 +93,7 @@ OptionsScreen:
 		disableInts
 
 		; load mapping
-		EniDecomp	MapEni_OptionsBG, RAM_start, 1, 2, 0					; decompress Enigma mappings
+		EniDecomp	MapEni_OptionsBG, RAM_start, 1, 2, FALSE				; decompress Enigma mappings
 		copyTilemap	VRAM_Plane_B_Name_Table, 320, 224
 
 		; clear foreground buffers
@@ -312,7 +312,7 @@ Options_Controls:
 		and.b	(Ctrl_1_pressed).w,d1
 		beq.s	Options_FindUpDownControls.returnup
 		move.w	d3,d0
-		addi.w	#dac__First,d0									; $00 is reserved for pause
+		addq.w	#1,d0										; $00 is reserved for pause
 		jmp	(Play_Sample).w									; play sample
 
 ; ---------------------------------------------------------------------------

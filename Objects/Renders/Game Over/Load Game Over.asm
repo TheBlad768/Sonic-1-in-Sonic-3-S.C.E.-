@@ -87,7 +87,7 @@ Render_GameOver:
 
 .draw
 		move.w	GameOver_RAM.ypos-GameOver_RAM(a4),d1				; ypos
-		move.w	#make_art_tile(ArtTile_Shield,0,1),d5				; VRAM
+		move.w	#make_art_tile(ArtTile_Shield,0,TRUE),d5			; VRAM
 		movea.l	GameOver_RAM.mappings-GameOver_RAM(a4),a1			; mappings
 
 		; GAME/TIME

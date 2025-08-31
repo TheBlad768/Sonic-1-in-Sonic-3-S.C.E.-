@@ -92,7 +92,7 @@ loc_4B9E8:
 		move.l	off_4B9C2(pc,d0.w),mappings(a0)
 
 		; init
-		move.w	#make_art_tile($79C,0,0),art_tile(a0)
+		move.w	#make_art_tile($79C,0,FALSE),art_tile(a0)
 		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.b	#AniIDSonAni_Roll,anim(a0)
 		bset	#status.player.rolling,status(a0)

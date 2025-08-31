@@ -103,7 +103,7 @@ Obj_Bumper:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Bumper:		subObjMainData Obj_Bumper.hit, setBit(render_flags.level), 0, 32, 32, 1, $372, 0, 0, Map_Bump
+ObjDat_Bumper:		subObjMainData Obj_Bumper.hit, setBit(render_flags.level), 0, 32, 32, 1, $372, 0, FALSE, Map_Bump
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Bumper/Object Data/Anim - Bumper.asm"

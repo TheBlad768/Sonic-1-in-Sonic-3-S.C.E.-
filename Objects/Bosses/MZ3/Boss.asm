@@ -646,10 +646,10 @@ Obj_BossFire_Scaled:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_BossFire_Fire:			subObjData Map_Fire, $298, 0, 0, 16, 16, 5, 0, 0
-ObjDat_BossFire_ShipTube:		subObjData Map_BossFire_Tube, $420, 1, 0, 32, 48, 3, 0, 0
-ObjDat_BossFire_ShipTubeFlame:		subObjData Map_BossFire_Tube, $420, 1, 0, 8, 16, 5, 1, 0
-ObjDat_BossFire_Scaled:			subObjData Map_ScaledArt, $340, 0, 0, 128, 128, 6, 0, 0
+ObjDat_BossFire_Fire:			subObjData Map_Fire, $298, 0, FALSE, 16, 16, 5, 0, 0
+ObjDat_BossFire_ShipTube:		subObjData Map_BossFire_Tube, $420, 1, FALSE, 32, 48, 3, 0, 0
+ObjDat_BossFire_ShipTubeFlame:		subObjData Map_BossFire_Tube, $420, 1, FALSE, 8, 16, 5, 1, 0
+ObjDat_BossFire_Scaled:			subObjData Map_ScaledArt, $340, 0, FALSE, 128, 128, 6, 0, 0
 
 Child1_BossFire_ShipTube:
 		dc.w 2-1

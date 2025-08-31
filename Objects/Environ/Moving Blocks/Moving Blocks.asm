@@ -22,7 +22,7 @@ Obj_MovingBlock:
 
 		; init
 		move.l	#Map_MBlock,d2
-		move.w	#make_art_tile($562,2,0),d1
+		move.w	#make_art_tile($562,2,FALSE),d1
 		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		moveq	#48/2,d0							; height and y_radius
 
@@ -30,7 +30,7 @@ Obj_MovingBlock:
 		cmpi.b	#LevelID_LZ,(Current_zone).w					; check if level is LZ
 		bne.s	.notLZ								; if not, branch
 		move.l	#Map_MBlockLZ,d2						; LZ specific code
-		move.w	#make_art_tile($3BC,2,0),d1
+		move.w	#make_art_tile($3BC,2,FALSE),d1
 		bset	#render_flags.static_mappings,render_flags(a0)			; set static mapping flag
 		moveq	#14/2,d0							; height and y_radius
 
@@ -42,10 +42,10 @@ Obj_MovingBlock:
 		; check level
 		cmpi.b	#LevelID_SBZ,(Current_zone).w					; check if level is SBZ
 		bne.s	.notSBZ								; if not, branch
-		move.w	#make_art_tile($2B2,1,0),d1					; SBZ specific code (object 5228)
+		move.w	#make_art_tile($2B2,1,FALSE),d1					; SBZ specific code (object 5228)
 		cmpi.b	#$28,subtype(a0)						; is object 5228?
 		beq.s	.notSBZ								; if yes, branch
-		move.w	#make_art_tile($380,2,0),d1					; SBZ specific code (object 523x)
+		move.w	#make_art_tile($380,2,FALSE),d1					; SBZ specific code (object 523x)
 
 .notSBZ
 		move.w	d1,art_tile(a0)

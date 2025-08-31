@@ -8,7 +8,7 @@ Obj_Monitor:
 
 		; init
 		move.l	#Map_Monitor,mappings(a0)
-		move.w	#make_art_tile(ArtTile_Monitors,0,0),art_tile(a0)
+		move.w	#make_art_tile(ArtTile_Monitors,0,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(32/2,28/2,priority_3),height_pixels(a0)	; set height, width and priority
 
@@ -254,7 +254,7 @@ Obj_MonitorAnimate:
 Obj_MonitorContents:
 
 		; init
-		move.w	#make_art_tile(ArtTile_Monitors,0,0),art_tile(a0)
+		move.w	#make_art_tile(ArtTile_Monitors,0,FALSE),art_tile(a0)
 
 		; set screen coordinates and static mapping flag
 		ori.b	#( \
@@ -385,7 +385,7 @@ Monitor_Give_SpeedShoes:
 		move.w	#$C00,Max_speed-Max_speed(a4)					; set max speed
 		move.w	#$18,Acceleration-Max_speed(a4)					; set acceleration
 		move.w	#$80,Deceleration-Max_speed(a4)					; set deceleration
-		music	mus_Speedup,1							; speed up the music
+		music	mus_ExtraLife,1							; play the 1up song
 ; ---------------------------------------------------------------------------
 
 Monitor_Give_Rings:

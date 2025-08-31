@@ -82,11 +82,11 @@ LevelSelectRSDKScreen:
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
 		; load BG mapping
-		EniDecomp	MapEni_LevelSelectRSDKBG, RAM_start+$2000, $60, 0, 0			; decompress Enigma mappings
+		EniDecomp	MapEni_LevelSelectRSDKBG, RAM_start+$2000, $60, 0, FALSE		; decompress Enigma mappings
 		copyTilemap	VRAM_Plane_B_Name_Table, 320, 224
 
 		; load icons mapping
-		EniDecomp	MapEni_LevelSelectRSDKIcons, RAM_start+$2000, 0, 0, 0			; decompress Enigma mappings
+		EniDecomp	MapEni_LevelSelectRSDKIcons, RAM_start+$2000, 0, 0, FALSE		; decompress Enigma mappings
 
 		; load icon
 		lea	(LevelSelectRSDK_buffer+$AB0).l,a2

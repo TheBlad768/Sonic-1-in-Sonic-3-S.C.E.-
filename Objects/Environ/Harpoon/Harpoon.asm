@@ -59,7 +59,7 @@ Obj_Harpoon_end
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Harpoon:		subObjData Map_Harp, $3CC, 0, 0, 40, 16, 4, 0, 0
+ObjDat_Harpoon:		subObjData Map_Harp, $3CC, 0, FALSE, 40, 16, 4, 0, 0
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Harpoon/Object Data/Anim - Harpoon.asm"

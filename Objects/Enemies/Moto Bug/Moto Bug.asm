@@ -111,8 +111,8 @@ Obj_MotoBug_Smoke:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_MotoBug:			subObjData Map_Moto, $561, 0, 0, 40, 40, 4, 0, $C|collision_flags.npc.touch
-ObjDat3_MotoBug_Smoke:		subObjData FALSE, FALSE, 0, 0, 8, 8, 4, 0, 0
+ObjDat_MotoBug:			subObjData Map_Moto, $561, 0, FALSE, 40, 40, 4, 0, $C|collision_flags.npc.touch
+ObjDat3_MotoBug_Smoke:		subObjData FALSE, FALSE, 0, FALSE, 8, 8, 4, 0, 0
 
 Child6_MotoBug_Smoke:
 		dc.w 1-1

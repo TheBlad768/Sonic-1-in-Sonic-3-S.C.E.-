@@ -14,7 +14,7 @@ Obj_BreakableWall:
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; is level Star Light Zone?
 		bne.s	.notSLZ								; if not, branch
-		move.w	#make_art_tile($414,2,0),art_tile(a0)
+		move.w	#make_art_tile($414,2,FALSE),art_tile(a0)
 
 .notSLZ
 		move.b	subtype(a0),mapping_frame(a0)
@@ -228,7 +228,7 @@ BreakableWall_FragSpd2:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_BreakableWall:	subObjMainData Obj_BreakableWall.main, setBit(render_flags.level), 0, 64, 32, 5, $398, 2, 0, Map_BreakableWall
+ObjDat_BreakableWall:	subObjMainData Obj_BreakableWall.main, setBit(render_flags.level), 0, 64, 32, 5, $398, 2, FALSE, Map_BreakableWall
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Breakable Wall/Object Data/Map - Breakable Wall.asm"

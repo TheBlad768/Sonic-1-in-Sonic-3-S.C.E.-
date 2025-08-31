@@ -8,7 +8,7 @@ Obj_FloatingPlatform:
 
 		; init
 		move.l	#Map_Plat_GHZ,d0
-		move.w	#make_art_tile(0,2,0),art_tile(a0)
+		move.w	#make_art_tile(0,2,FALSE),art_tile(a0)
 		cmpi.b	#LevelID_SYZ,(Current_zone).w					; check if level is SYZ
 		bne.s	.notSYZ								; if not, branch
 		move.l	#Map_Plat_SYZ,d0

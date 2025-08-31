@@ -348,7 +348,7 @@ titlecardresultsobjdata macro address,xdest,xpos,ypos,frame,width,exit
 ; macro to declare Special Stage data
 specialStageData macro frame,mappings,palette,vram
 	dc.l (frame)<<24|(mappings)
-	dc.w make_art_tile(vram,palette,0)
+	dc.w make_art_tile(vram,palette,FALSE)
     endm
 
 ; macro to declare Special Stage BG data

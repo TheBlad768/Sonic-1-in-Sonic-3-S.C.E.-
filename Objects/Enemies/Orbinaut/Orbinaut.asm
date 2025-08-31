@@ -32,14 +32,14 @@ Obj_Orbinaut:
 		; check level
 		cmpi.b	#LevelID_SBZ,(Current_zone).w					; check if level is SBZ
 		bne.s	.notscrap
-		move.w	#make_art_tile($429,0,0),art_tile(a0)				; SBZ specific code
+		move.w	#make_art_tile($429,0,FALSE),art_tile(a0)			; SBZ specific code
 
 .notscrap
 
 		; check level
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; check if level is SLZ
 		bne.s	.notslz
-		move.w	#make_art_tile($55B,1,0),art_tile(a0)				; SLZ specific code
+		move.w	#make_art_tile($55B,1,FALSE),art_tile(a0)			; SLZ specific code
 
 .notslz
 
@@ -136,8 +136,8 @@ Obj_Orbinaut_Orb:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Orbinaut:		subObjData Map_Orb, $55B, 0, 0, 24, 24, 4, 0, $B|collision_flags.npc.touch
-ObjDat3_Orbinaut_Orb:		subObjData FALSE, FALSE, 0, 0, 16, 16, 4, 0, $18|collision_flags.npc.hurt
+ObjDat_Orbinaut:		subObjData Map_Orb, $55B, 0, FALSE, 24, 24, 4, 0, $B|collision_flags.npc.touch
+ObjDat3_Orbinaut_Orb:		subObjData FALSE, FALSE, 0, FALSE, 16, 16, 4, 0, $18|collision_flags.npc.hurt
 
 Child6_Orbinaut_Orb:
 		dc.w 4-1

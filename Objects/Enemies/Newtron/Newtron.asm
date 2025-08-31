@@ -162,7 +162,7 @@ Obj_Newtron:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Newtron:		subObjData Map_Newt, $50C, 0, 0, 32, 40, 4, 0, 0
+ObjDat_Newtron:		subObjData Map_Newt, $50C, 0, FALSE, 32, 40, 4, 0, 0
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Enemies/Newtron/Object Data/Anim - Newtron.asm"

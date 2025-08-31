@@ -276,8 +276,8 @@ Obj_BigRing_Flash:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjSlot_BigRing:		subObjSlotData 1-1, ArtTile_Explosion, 1, 0, $40, 4, Map_BigRing, 64, 64, 5, 0, 0
-ObjSlot_BigRingFlash:		subObjSlotData 1-1, ArtTile_Player_1, 1, 0, $18, 6, Map_BigRingFlash, 64, 64, 4, 0, 0
+ObjSlot_BigRing:		subObjSlotData 1-1, ArtTile_Explosion, 1, FALSE, $40, 4, Map_BigRing, 64, 64, 5, 0, 0
+ObjSlot_BigRingFlash:		subObjSlotData 1-1, ArtTile_Player_1, 1, FALSE, $18, 6, Map_BigRingFlash, 64, 64, 4, 0, 0
 
 ; dplc
 DPLCPtr_BigRing:		dc.l dmaSource(ArtUnc_BigRing), DPLC_BigRing

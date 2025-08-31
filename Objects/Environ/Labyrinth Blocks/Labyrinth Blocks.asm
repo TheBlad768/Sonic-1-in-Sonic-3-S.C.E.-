@@ -214,7 +214,7 @@ LabyrinthBlock_TypeIndex: offsetTable
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_LabyrinthBlock:		subObjMainData Obj_LabyrinthBlock.action, setBit(render_flags.level), 0, 0, 0, 3, $3E6, 2, 0, Map_LBlock
+ObjDat_LabyrinthBlock:		subObjMainData Obj_LabyrinthBlock.action, setBit(render_flags.level), 0, 0, 0, 3, $3E6, 2, FALSE, Map_LBlock
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Labyrinth Blocks/Object Data/Map - Labyrinth Blocks.asm"

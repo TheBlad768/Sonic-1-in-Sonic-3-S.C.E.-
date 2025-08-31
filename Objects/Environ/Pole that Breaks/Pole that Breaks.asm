@@ -198,7 +198,7 @@ Obj_Pole:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_Pole:		subObjMainData Obj_Pole.action, setBit(render_flags.level), 0, 64, 16, 4, $3DE, 2, 0, Map_Pole
+ObjDat_Pole:		subObjMainData Obj_Pole.action, setBit(render_flags.level), 0, 64, 16, 4, $3DE, 2, FALSE, Map_Pole
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Pole that Breaks/Object Data/Map - Pole that Breaks.asm"

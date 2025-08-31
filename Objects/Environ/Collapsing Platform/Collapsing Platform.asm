@@ -13,7 +13,7 @@ Obj_CollapsingPlatform:
 
 		; init
 		move.l	#Map_CollapsingPlatform,mappings(a0)
-		move.w	#make_art_tile(0,2,0),art_tile(a0)
+		move.w	#make_art_tile(0,2,FALSE),art_tile(a0)
 		move.l	#CFlo_Data1,objoff_30(a0)
 		move.l	#CPlat_Data,objoff_3C(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
