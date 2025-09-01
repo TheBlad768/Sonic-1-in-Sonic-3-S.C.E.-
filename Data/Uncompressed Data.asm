@@ -38,7 +38,7 @@ ArtUnc_TitleCardLargeText:		bincludeEntry "Objects/Main/Title Card/Uncompressed 
 ; Uncompressed Level Select RSDK screen graphics
 ; ===========================================================================
 
-ArtUnc_LevelSelectRSDKIcons:		binclude "Screens/Level Select RSDK/Uncompressed Art/Zone Icons.unc"
+ArtUnc_LevelSelectRSDKIcons:		binclude "Screens/Level Select/RSDK/Uncompressed Art/Zone Icons.unc"
 	even
 
 ; ===========================================================================

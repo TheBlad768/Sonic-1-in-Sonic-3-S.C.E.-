@@ -101,9 +101,13 @@ ArtKosPM_TitleCardNum4:			binclude "Objects/Main/Title Card/KosinskiPM Art/Title
 ; Kosinski Plus Module compressed Sega screen graphics
 ; ===========================================================================
 
-ArtKosPM_Sega:				binclude "Screens/Sega/KosinskiPM Art/Foreground.kospm"
-	even
-ArtKosPM_SegaProto:			binclude "Screens/Sega Proto/KosinskiPM Art/Foreground.kospm"
+	if SegaVersion=0
+ArtKosPM_Sega:				binclude "Screens/Sega/S3K/KosinskiPM Art/Foreground.kospm"
+	elseif SegaVersion=1
+ArtKosPM_Sega:				binclude "Screens/Sega/S1/KosinskiPM Art/Foreground.kospm"
+	else
+ArtKosPM_SegaProto:			binclude "Screens/Sega/Proto/KosinskiPM Art/Foreground.kospm"
+	endif
 	even
 
 ; ===========================================================================
@@ -132,16 +136,16 @@ ArtKosPM_OptionsText:			binclude "Screens/Options/KosinskiPM Art/Text.kospm"
 ; Kosinski Plus Module compressed Level Select screen graphics
 ; ===========================================================================
 
-ArtKosPM_LevelSelectText:		binclude "Screens/Level Select/KosinskiPM Art/Text.kospm"
+ArtKosPM_LevelSelectText:		binclude "Screens/Level Select/SCE/KosinskiPM Art/Text.kospm"
 	even
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Level Select RSDK screen graphics
 ; ===========================================================================
 
-ArtKosPM_LevelSelectRSDKBG:		binclude "Screens/Level Select RSDK/KosinskiPM Art/Background.kospm"
+ArtKosPM_LevelSelectRSDKBG:		binclude "Screens/Level Select/RSDK/KosinskiPM Art/Background.kospm"
 	even
-ArtKosPM_LevelSelectRSDKIcons:		binclude "Screens/Level Select RSDK/KosinskiPM Art/Icon.kospm"
+ArtKosPM_LevelSelectRSDKIcons:		binclude "Screens/Level Select/RSDK/KosinskiPM Art/Icon.kospm"
 	even
 
 ; ===========================================================================

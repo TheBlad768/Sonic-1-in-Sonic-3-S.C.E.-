@@ -7,9 +7,13 @@
 ; Enigma compressed Sega screen data
 ; ===========================================================================
 
-MapEni_Sega:				binclude "Screens/Sega/Enigma Map/Foreground.eni"
-	even
-MapEni_SegaProto:			binclude "Screens/Sega Proto/Enigma Map/Foreground.eni"
+	if SegaVersion=0
+MapEni_Sega:				binclude "Screens/Sega/S3K/Enigma Map/Foreground.eni"
+	elseif SegaVersion=1
+MapEni_Sega:				binclude "Screens/Sega/S1/Enigma Map/Foreground.eni"
+	else
+MapEni_SegaProto:			binclude "Screens/Sega/Proto/Enigma Map/Foreground.eni"
+	endif
 	even
 
 ; ===========================================================================
@@ -32,9 +36,9 @@ MapEni_OptionsBG:			binclude "Screens/Options/Enigma Map/Background.eni"
 ; Enigma compressed Level Select RSDK screen data
 ; ===========================================================================
 
-MapEni_LevelSelectRSDKBG:		binclude "Screens/Level Select RSDK/Enigma Map/Background.eni"
+MapEni_LevelSelectRSDKBG:		binclude "Screens/Level Select/RSDK/Enigma Map/Background.eni"
 	even
-MapEni_LevelSelectRSDKIcons:		binclude "Screens/Level Select RSDK/Enigma Map/Icon.eni"
+MapEni_LevelSelectRSDKIcons:		binclude "Screens/Level Select/RSDK/Enigma Map/Icon.eni"
 	even
 
 ; ===========================================================================

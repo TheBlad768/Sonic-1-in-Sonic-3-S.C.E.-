@@ -29,10 +29,17 @@ Pal_WaterRobotnikLZ:				bincludeEntry "Objects/Bosses/Robotnik/Palettes/Water(LZ
 ; Palette Sega screen data
 ; ===========================================================================
 
-Pal_SegaProto:					bincludeEntry "Screens/Sega Proto/Palettes/1.pal"
+	if SegaVersion=1
+Pal_AniSega2_1:					bincludeEntry "Screens/Sega/S1/Palettes/Animated/1.pal"
 	even
-Pal_AniSegaProto:				bincludeEntry "Screens/Sega Proto/Palettes/Animated/1.pal"
+Pal_AniSega2_2:					bincludeEntry "Screens/Sega/S1/Palettes/Animated/2.pal"
 	even
+	else
+Pal_SegaProto:					bincludeEntry "Screens/Sega/Proto/Palettes/1.pal"
+	even
+Pal_AniSegaProto:				bincludeEntry "Screens/Sega/Proto/Palettes/Animated/1.pal"
+	even
+	endif
 
 ; ===========================================================================
 ; Palette Title screen data
@@ -54,16 +61,16 @@ Pal_Options:					bincludeEntry "Screens/Options/Palettes/1.pal"
 ; Palette Level Select screen data
 ; ===========================================================================
 
-Pal_LevelSelect:				bincludeEntry "Screens/Level Select/Palettes/1.pal"
+Pal_LevelSelect:				bincludeEntry "Screens/Level Select/SCE/Palettes/1.pal"
 	even
 
 ; ===========================================================================
 ; Palette Level Select RSDK screen data
 ; ===========================================================================
 
-Pal_LevelSelectRSDK:				bincludeEntry "Screens/Level Select RSDK/Palettes/1.pal"
+Pal_LevelSelectRSDK:				bincludeEntry "Screens/Level Select/RSDK/Palettes/1.pal"
 	even
-Pal_LevelSelectRSDKIcons:			bincludeEntry "Screens/Level Select RSDK/Palettes/Icons.pal"
+Pal_LevelSelectRSDKIcons:			bincludeEntry "Screens/Level Select/RSDK/Palettes/Icons.pal"
 	even
 
 ; ===========================================================================

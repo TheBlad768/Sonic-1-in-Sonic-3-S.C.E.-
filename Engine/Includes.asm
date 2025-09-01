@@ -269,10 +269,12 @@
 ; Sega screen Subroutine
 ; ---------------------------------------------------------------------------
 
-	if ~~SegaVer
-		include "Screens/Sega/Sega.asm"
+	if SegaVersion=0
+		include "Screens/Sega/S3K/Sega.asm"
+	elseif SegaVersion=1
+		include "Screens/Sega/S1/Sega.asm"
 	else
-		include "Screens/Sega Proto/Sega.asm"
+		include "Screens/Sega/Proto/Sega.asm"
 	endif
 
 ; ---------------------------------------------------------------------------
@@ -292,13 +294,13 @@
 ; Level Select screen Subroutine
 ; ---------------------------------------------------------------------------
 
-		include "Screens/Level Select/Level Select.asm"
+		include "Screens/Level Select/SCE/Level Select.asm"
 
 ; ---------------------------------------------------------------------------
 ; Level Select RSDK screen Subroutine
 ; ---------------------------------------------------------------------------
 
-		include "Screens/Level Select RSDK/Level Select.asm"
+		include "Screens/Level Select/RSDK/Level Select.asm"
 
 ; ---------------------------------------------------------------------------
 ; Level screen Subroutine
