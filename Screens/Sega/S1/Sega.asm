@@ -69,7 +69,7 @@ SegaScreen:
 
 		; init palette
 		lea	(Palette_cycle_counters+2).w,a0
-		move.w	#-$A,(a0)+
+		move.w	#-(5*2),(a0)+
 		move.l	#PalCycle_Sega,(a0)
 
 		; load palette
