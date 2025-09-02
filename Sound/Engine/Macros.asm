@@ -213,9 +213,10 @@ SMPS_id function ptr,((ptr-offset)/ptrsize+idstart)
 
 ; ---------------------------------------------------------------------------
 ; Macro to communicate with Sega CD
-; Arguments:	1 - command id
-;		2 - command arg
-;		2 - command arg2
+; Arguments:
+; 1 - command id
+; 2 - command arg
+; 2 - command arg2
 ; -------------------------------------------------------------
 
 MCDSend macro	id, arg, arg2
