@@ -69,11 +69,13 @@ Play_Music			= SMPS_QueueSound1
 Play_Music2			= SMPS_QueueSound1_2
 PlaySound			= SMPS_QueueSound1
 Play_Sound			= SMPS_QueueSound1
+QueueSound1			= SMPS_QueueSound1
 PlaySFX				= SMPS_QueueSound2
 Play_SFX			= SMPS_QueueSound2
 Play_SFX2			= SMPS_QueueSound2_2
 PlaySound_Special		= SMPS_QueueSound2
 Play_Sound_2			= SMPS_QueueSound2
+QueueSound2			= SMPS_QueueSound2
 PlaySound_Unused		= SMPS_QueueSound3
 Play_Sample			= SMPS_PlayDACSample
 
