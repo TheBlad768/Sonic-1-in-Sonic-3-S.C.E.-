@@ -2,4 +2,4 @@
 ; Sprite mappings - foreground plant sprites
 ; ---------------------------------------------------------------------------
 
-Map_ForegroundPlant:
+Map_MovementStillSprite:

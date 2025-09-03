@@ -1,13 +1,13 @@
 ; ---------------------------------------------------------------------------
-; Foreground Plant (Object)
+; Object XX - movement scenery
 ; ---------------------------------------------------------------------------
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_ForegroundPlant:
+Obj_MovementStillSprite:
 
 		; init
-		move.l	#Map_ForegroundPlant,mappings(a0)
+		move.l	#Map_MovementStillSprite,mappings(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.w	x_pos(a0),objoff_30(a0)
 		move.w	y_pos(a0),objoff_32(a0)
@@ -28,8 +28,11 @@ Obj_ForegroundPlant:
 		move.b	subtype(a0),d0
 		lsr.w	#2,d0
 		andi.w	#$3C,d0
-		move.l	.load(pc,d0.w),address(a0)
-		rts
+		movea.l	.load(pc,d0.w),a1
+
+		; draw
+		move.l	a1,address(a0)
+		jmp	(a1)
 ; ---------------------------------------------------------------------------
 
 .load
@@ -186,4 +189,4 @@ sub_2C37A:
 		jmp	(Sprite_OnScreen_Test2).w
 ; ---------------------------------------------------------------------------
 
-		include "Objects/Main/Foreground Plant/Object Data/Map - Foreground Plant.asm"
+		include "Objects/Main/Still Sprites/Object Data/Map - Still Sprites(Movement).asm"

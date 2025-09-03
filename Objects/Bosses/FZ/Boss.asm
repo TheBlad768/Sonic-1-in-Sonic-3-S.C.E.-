@@ -164,7 +164,7 @@ BossFinal_CreatePlasmaBalls:
 
 		; enable plasma ball launcher
 		sfx	sfx_Electric							; play sfx
-		move.w	parent2(a0),a1							; load plasma ball launcher address
+		movea.w	parent2(a0),a1							; load plasma ball launcher address
 		st	obBFZBP_Enable(a1)						; create plasma balls
 		move.b	#1,obBFZ_Count(a0)
 

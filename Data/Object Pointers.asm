@@ -56,7 +56,7 @@ Obj_Index:
 		dc.l Obj_Button						; $32
 		dc.l Obj_PushableBlock					; $33
 		dc.l Obj_StarPost					; $34
-		dc.l Obj_ForegroundPlant				; $35
+		dc.l Obj_MovementStillSprite				; $35
 		dc.l Delete_Current_Sprite				; $36
 		dc.l Obj_SpikeBall2					; $37
 		dc.l Obj_Animal_Ending					; $38

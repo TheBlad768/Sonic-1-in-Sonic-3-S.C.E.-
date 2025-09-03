@@ -105,7 +105,7 @@ CreditsScreen:
 		jsr	(Wait_VSync).w
 
 		; load process
-		move.l	(Credits_process).w,a0
+		movea.l	(Credits_process).w,a0
 		jsr	(a0)
 
 		; check end
@@ -141,7 +141,7 @@ CreditsScreen:
 		addq.w	#1,(Level_frame_counter).w
 
 		; load process
-		move.l	(Credits_process).w,a0
+		movea.l	(Credits_process).w,a0
 		jsr	(a0)
 		jsr	(Process_Sprites).w
 		bsr.w	Credits_ScreenShake
