@@ -38,6 +38,7 @@ Debug_SLZ1: dbglistheader
 	dbglistobj Obj_Orbinaut, Map_Orb, 2, 0, $55B, 1, FALSE
 	dbglistobj Obj_Animal, Map_Animals1, 0, 2, $592, 0, FALSE
 	dbglistobj Obj_StarPost, Map_StarPost, 1, 0, $5EC, 0, FALSE
+	dbglistobj Obj_BigRing, Map_BigRing, 1, 0, ArtTile_Explosion, 1, FALSE
 	dbglistobj Obj_EggCapsule, Map_EggCapsule, 1, 0, $494, 0, FALSE
 	dbglistobj Obj_EggCapsule_Flying, Map_EggCapsule, 1, 0, $494, 0, FALSE
 Debug_SLZ1_end

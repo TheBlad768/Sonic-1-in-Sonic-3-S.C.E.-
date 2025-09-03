@@ -40,6 +40,7 @@ Debug_GHZ1: dbglistheader
 	dbglistobj Obj_EdgeWalls, Map_EdgeWalls, 0, 0, $3A4, 2, FALSE
 	dbglistobj Obj_SwingingPlatform, Map_Swing_GHZ, 7, 0, $3C2, 0, FALSE
 	dbglistobj Obj_StarPost, Map_StarPost, 1, 0, $5EC, 0, FALSE
+	dbglistobj Obj_BigRing, Map_BigRing, 1, 0, ArtTile_Explosion, 1, FALSE
 	dbglistobj Obj_EggCapsule, Map_EggCapsule, 1, 0, $494, 0, FALSE
 	dbglistobj Obj_EggCapsule_Flying, Map_EggCapsule, 1, 0, $494, 0, FALSE
 Debug_GHZ1_end

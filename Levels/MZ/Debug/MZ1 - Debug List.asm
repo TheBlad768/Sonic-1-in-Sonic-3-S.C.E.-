@@ -45,6 +45,7 @@ Debug_MZ1: dbglistheader
 	dbglistobj Obj_Animal, Map_Animals4, 0, 2, $592, 0, FALSE
 	dbglistobj Obj_Button, Map_Button, 0, 0, $47C, 2, FALSE
 	dbglistobj Obj_StarPost, Map_StarPost, 1, 0, $5EC, 0, FALSE
+	dbglistobj Obj_BigRing, Map_BigRing, 1, 0, ArtTile_Explosion, 1, FALSE
 	dbglistobj Obj_EggCapsule, Map_EggCapsule, 1, 0, $494, 0, FALSE
 	dbglistobj Obj_EggCapsule_Flying, Map_EggCapsule, 1, 0, $494, 0, FALSE
 Debug_MZ1_end
