@@ -1,5 +1,5 @@
 ; ---------------------------------------------------------------------------
-; Sprite mappings - foreground plant sprites
+; Sprite mappings - movement still sprites
 ; ---------------------------------------------------------------------------
 
 Map_MovementStillSprite:
