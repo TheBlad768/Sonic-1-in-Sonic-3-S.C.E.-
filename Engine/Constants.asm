@@ -108,9 +108,9 @@ PLCKosPlusM_Count:						= 32						; the greater the queues, the more RAM is used
 ; V-Int routines
 ; ---------------------------------------------------------------------------
 
-offset :=	VInt_Table
-ptrsize :=	1
-idstart :=	0
+offset := VInt_Table
+ptrsize := 1
+idstart := 0
 
 VintID_Lag =							id(ptr_VInt_Lag)				; 0
 VintID_Main =							id(ptr_VInt_Main)				; 2
@@ -128,9 +128,9 @@ VintID_Continue =						id(ptr_VInt_Continue)				; 14
 ; Game mode routines
 ; ---------------------------------------------------------------------------
 
-offset :=	Game_Modes
-ptrsize :=	1
-idstart :=	0
+offset := Game_Modes
+ptrsize := 1
+idstart := 0
 
 GameModeID_SegaScreen =						id(GameMode_SegaScreen)				; 0
 GameModeID_TitleScreen =					id(GameMode_TitleScreen)			; 4
@@ -170,9 +170,9 @@ PlayerModeID_KnucklesTails					equ 4
 ; Player routines (Sonic)
 ; ---------------------------------------------------------------------------
 
-offset :=	Sonic_Index
-ptrsize :=	1
-idstart :=	0
+offset := Sonic_Index
+ptrsize := 1
+idstart := 0
 
 PlayerID_Init =							id(ptr_Sonic_Init)				; 0
 PlayerID_Control =						id(ptr_Sonic_Control)				; 2
@@ -186,9 +186,9 @@ PlayerID_Drown =						id(ptr_Sonic_Drown)				; C
 ; palette IDs
 ; ---------------------------------------------------------------------------
 
-offset :=	PalPointers
-ptrsize :=	8
-idstart :=	0
+offset := PalPointers
+ptrsize := 8
+idstart := 0
 
 ; Main
 PalID_Sonic =							id(PalPtr_Sonic)				; 0
@@ -222,9 +222,9 @@ PalID_Ending =							id(PalPtr_Ending)				; 17
 ; Sonic animation IDs
 ; ---------------------------------------------------------------------------
 
-offset :=	AniSonic
-ptrsize :=	2
-idstart :=	0
+offset := AniSonic
+ptrsize := 2
+idstart := 0
 
 AniIDSonAni_Walk =						id(ptr_SonAni_Walk)				; 00
 AniIDSonAni_Run =						id(ptr_SonAni_Run)				; 01
@@ -267,9 +267,9 @@ AniIDSonAni_Carry2 =						id(ptr_SonAni_Carry2)				; 23
 ; Tails animation IDs
 ; ---------------------------------------------------------------------------
 
-offset :=	AniTails
-ptrsize :=	2
-idstart :=	0
+offset := AniTails
+ptrsize := 2
+idstart := 0
 
 AniIDTailsAni_Run2 =						id(ptr_TailsAni_Run2)				; 1F
 AniIDTailsAni_Transform =					id(ptr_TailsAni_Transform)			; 29
@@ -278,9 +278,9 @@ AniIDTailsAni_Transform =					id(ptr_TailsAni_Transform)			; 29
 ; Knuckles animation IDs
 ; ---------------------------------------------------------------------------
 
-offset :=	AniKnuckles
-ptrsize :=	2
-idstart :=	0
+offset := AniKnuckles
+ptrsize := 2
+idstart := 0
 
 AniIDKnuxAni_Carry =						id(ptr_KnuxAni_Carry)				; 25
 AniIDKnuxAni_Carry2 =						id(ptr_KnuxAni_Carry2)				; 26

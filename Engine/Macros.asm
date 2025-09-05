@@ -1262,7 +1262,7 @@ tribyte macro val
 palscriptptr macro header,data
 	dc.w data-header, 0
 	dc.l header
-._headpos :=	header
+._headpos := header
     endm
 
 ; macro to define a palette script header
@@ -1273,7 +1273,7 @@ palscripthdr macro palette,entries,value
 
 ; macro to define a palette script data
 palscriptdata macro frames
-.framec :=	frames-1
+.framec := frames-1
 	shift
 	dc.w ALLARGS
 	dc.w .framec
@@ -1281,7 +1281,7 @@ palscriptdata macro frames
 
 ; macro to define a palette script data from an external file
 palscriptfile macro frames
-.framec :=	frames-1
+.framec := frames-1
 	shift
 	binclude ALLARGS
 	dc.w .framec
@@ -1295,7 +1295,7 @@ palscriptrept macro header
 ; macro to define loop from start for x number of times, then initialize with new header
 palscriptloop macro header
 	dc.w -4, header-._headpos
-._headpos :=	header
+._headpos := header
     endm
 
 ; macro to run the custom script routine
