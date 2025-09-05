@@ -384,7 +384,14 @@ Obj_TitleSonic:
 		move.l	#Obj_SpriteMask2,address(a1)
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	#$80+144,y_pos(a1)
-		move.b	#$A0+(8+1),subtype(a1)								; height/frame, bit 3(8) + priority
+
+		; height/frame, bit 3(parent flag) + priority
+		move.b	#( \
+			$A0 + \
+				setBit(3) + \
+			1 \
+		),subtype(a1)
+
 		move.w	a0,parent3(a1)									; save parent
 
 .wait
@@ -531,8 +538,8 @@ Obj_TitlePSB:
 
 Title_DrawVIcon:
 		disableIntsSave
-		lea	(VDP_data_port).l,a6						; load VDP data address to a6
-		lea	VDP_control_port-VDP_data_port(a6),a5				; load VDP control address to a5
+		lea	(VDP_data_port).l,a6								; load VDP data address to a6
+		lea	VDP_control_port-VDP_data_port(a6),a5						; load VDP control address to a5
 
 .next
 		move.l	d1,VDP_control_port-VDP_control_port(a5)
