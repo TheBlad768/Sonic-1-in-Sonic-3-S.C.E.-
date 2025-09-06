@@ -118,8 +118,6 @@ ArtKosPM_TitleFG:			binclude "Screens/Title/KosinskiPM Art/Foreground.kospm"
 	even
 ArtKosPM_TitleCredits:			binclude "Screens/Title/KosinskiPM Art/Hidden Credits.kospm"
 	even
-ArtKosPM_TitleSonic:			binclude "Screens/Title/KosinskiPM Art/Sonic.kospm"
-	even
 ArtKosPM_TitleText:			binclude "Screens/Title/KosinskiPM Art/Text.kospm"
 	even
 

@@ -373,6 +373,7 @@ Obj_TitleSonic:
 			make_art_tile($300,1,FALSE) \
 		),priority(a0)
 
+		st	objoff_3A(a0)									; reset DPLC frame
 		move.w	#$80+120,x_pos(a0)
 		move.w	#$80+94,y_pos(a0)								; position is fixed to screen
 		move.w	#30-1,objoff_2E(a0)								; set time delay to 0.5 seconds
@@ -406,14 +407,18 @@ Obj_TitleSonic:
 .move
 		subq.w	#8,y_pos(a0)									; move Sonic up
 		cmpi.w	#$80+22,y_pos(a0)								; has Sonic reached final position?
-		bne.s	.draw										; if not, branch
+		bne.s	.dplc										; if not, branch
 		move.l	#.anim,address(a0)
 
 .anim
 		lea	Ani_TSon(pc),a1
 		jsr	(Animate_Sprite).w
 
-.draw
+.dplc
+		lea	PLCPtr_TSon(pc),a2
+		jsr	(Perform_DPLC).w
+
+		; draw
 		jmp	(Draw_Sprite).w
 
 ; ---------------------------------------------------------------------------
@@ -462,7 +467,7 @@ Obj_TitlePSB:
 .soptions
 
 		; fix options xpos
-		moveq	#4,d0										; set FG line pos
+		moveq	#4+8,d0										; set FG line pos
 		lea	(H_scroll_buffer+(192*4)).w,a1
 
 	rept 7
@@ -591,6 +596,11 @@ Title_Code:
 		dc.b 0											; stop
 	even
 
+; =============== S U B R O U T I N E =======================================
+
+; dplc
+PLCPtr_TSon:	dc.l dmaSource(ArtUnc_TitleSonic), DPLC_TSon
+
 ; ---------------------------------------------------------------------------
 ; Title pointer data
 ; ---------------------------------------------------------------------------
@@ -602,7 +612,6 @@ Title_Code:
 PLC_Title: plrlistheader
 		plreq 0, GHZ_8x8_KosPM
 		plreq $200, ArtKosPM_TitleFG
-		plreq $300, ArtKosPM_TitleSonic
 		plreq $510, ArtKosPM_OptionsText
 PLC_Title_end
 ; ---------------------------------------------------------------------------
@@ -614,21 +623,21 @@ PLC_Title_end
 Title_StartGameText:
 		dc.b "Start Game"
 		dc.b $81, $F3		; next line, select palette line
-		dc.b " Options",-1
+		dc.b "Options",-1
 Title_StartGameText2:
 		dc.b $F3		; select palette line
 		dc.b "Start Game"
 		dc.b $81, $F2		; next line, select palette line
-		dc.b " Options",-1
+		dc.b "Options",-1
 Title_ContinueText:
 		dc.b " Continue"
 		dc.b $81, $F3		; next line, select palette line
-		dc.b " Options",-1
+		dc.b "Options",-1
 Title_ContinueText2:
 		dc.b $F3		; select palette line
 		dc.b " Continue"
 		dc.b $81, $F2		; next line, select palette line
-		dc.b " Options",-1
+		dc.b "Options",-1
 Title_CopyrightText:
 		dc.b "@ 1991 SEGA",-1
 	even
@@ -640,5 +649,6 @@ Title_CopyrightText:
 		include "Screens/Title/Object Data/Anim - Sonic.asm"
 		include "Screens/Title/Object Data/Map - Text.asm"
 		include "Screens/Title/Object Data/Map - Sonic.asm"
+		include "Screens/Title/Object Data/DPLC - Sonic.asm"
 		include "Screens/Title/Object Data/Map - Press Start.asm"
 		include "Screens/Title/Object Data/Map - TM.asm"

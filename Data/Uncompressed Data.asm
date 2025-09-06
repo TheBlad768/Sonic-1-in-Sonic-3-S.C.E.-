@@ -35,6 +35,13 @@ ArtUnc_TitleCardLargeText:		bincludeEntry "Objects/Main/Title Card/Uncompressed 
 	even
 
 ; ===========================================================================
+; Uncompressed Title screen graphics
+; ===========================================================================
+
+ArtUnc_TitleSonic:			binclude "Screens/Title/Uncompressed Art/Sonic.unc"
+	even
+
+; ===========================================================================
 ; Uncompressed Level Select RSDK screen graphics
 ; ===========================================================================
 
