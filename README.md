@@ -91,7 +91,7 @@ You can use this source code as a base for your projects, or just as an example 
 
 #### If you are interested in the source code with the Z80 Sound Driver:
 
-- [Sonic-1-in-Sonic-3-S.C.E.-Clone-Driver-v2-](https://github.com/TheBlad768/Sonic-1-in-Sonic-3-S.C.E.-/tree/flamedriver)
+- [Sonic-1-in-Sonic-3-S.C.E.-Flamedriver-](https://github.com/TheBlad768/Sonic-1-in-Sonic-3-S.C.E.-/tree/flamedriver)
 
 #### Main source code:
 
