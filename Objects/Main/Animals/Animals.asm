@@ -16,12 +16,12 @@ animal_ground_pointer				= objoff_34	; .l
 		; note: you must also load the corresponding art in the PLCs
 
 Obj_Animal_ZoneAnimals:
-		zoneAnimals.b Rabbit, Flicky	; GHZ
-		zoneAnimals.b Squirrel, Seal	; MZ
-		zoneAnimals.b Pig, Chicken		; SYZ
-		zoneAnimals.b Penguin, Seal	; LZ
-		zoneAnimals.b Pig, Flicky		; SLZ
-		zoneAnimals.b Rabbit, Chicken	; SBZ
+		zoneanimals.b Rabbit, Flicky	; GHZ
+		zoneanimals.b Squirrel, Seal	; MZ
+		zoneanimals.b Pig, Chicken		; SYZ
+		zoneanimals.b Penguin, Seal	; LZ
+		zoneanimals.b Pig, Flicky		; SLZ
+		zoneanimals.b Rabbit, Chicken	; SBZ
 
 		zonewarning Obj_Animal_ZoneAnimals,(1*2)
 
