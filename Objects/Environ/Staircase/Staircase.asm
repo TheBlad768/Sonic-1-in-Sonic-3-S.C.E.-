@@ -13,7 +13,12 @@ stair_origY			= objoff_46 ; original y-axis position (2 bytes)
 Obj_Staircase:
 
 		; init
-		ori.b	#setBit(render_flags.level)|setBit(render_flags.static_mappings),render_flags(a0)	; set static mapping and screen coordinates flag
+		; set static mapping and screen coordinates flag
+		ori.b	#( \
+			setBit(render_flags.level) | \
+			setBit(render_flags.static_mappings) \
+		),render_flags(a0)
+
 		moveq	#7,d0
 		and.b	subtype(a0),d0
 		cmpi.w	#4,d0

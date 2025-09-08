@@ -219,7 +219,12 @@ Obj_SideStomp_Spikes:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_SideStomp:		subObjMainData Obj_SideStomp.action, setBit(render_flags.level)|setBit(render_flags.multi_sprite), 0, 64, 256, 3, $328, 0, FALSE, Map_SStom
+ObjDat_SideStomp:	subObjMainData \
+				Obj_SideStomp.action, \
+					setBit(render_flags.level) | \
+					setBit(render_flags.multi_sprite), \
+				0, 64, 256, 3, $328, 0, FALSE, Map_SStom
+
 ObjDat_SideStomp_Spikes:	subObjData FALSE, FALSE, 0, FALSE, 40, 32, 4, 2, 0
 
 Child6_SideStomp_Spikes:

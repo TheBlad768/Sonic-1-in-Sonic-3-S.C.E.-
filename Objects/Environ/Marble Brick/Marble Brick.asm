@@ -100,7 +100,11 @@ Obj_MarbleBrick:
 ; =============== S U B R O U T I N E =======================================
 
 ; mapping
-ObjDat_MarbleBrick:		subObjMainData Obj_MarbleBrick.action, setBit(render_flags.level)|setBit(render_flags.static_mappings), 0, 32, 32, 1, 0, 2, FALSE, Map_Brick
+ObjDat_MarbleBrick:	subObjMainData \
+				Obj_MarbleBrick.action, \
+					setBit(render_flags.level) | \
+					setBit(render_flags.static_mappings), \
+				0, 32, 32, 1, 0, 2, FALSE, Map_Brick
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Environ/Marble Brick/Object Data/Map - Marble Brick.asm"
