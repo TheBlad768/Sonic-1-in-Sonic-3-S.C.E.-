@@ -31,7 +31,7 @@ Snd_Continue_Jump00:
 	dc.b	$08, dKickS3, $04, nRst, dKickS3, dSnareS3, nRst, dSnareS3, nRst, $08, dSnareS3, $02
 	dc.b	dSnareS3, dSnareS3, $04, dSnareS3, dSnareS3
 	smpsJump            Snd_Continue_Jump00
-	
+
 ; FM1 Data
 Snd_Continue_FM1:
 	smpsSetvoice        $03
@@ -79,7 +79,7 @@ Snd_Continue_Jump03:
 	dc.b	nF1, $0B, nRst, $01, nFs1, $07, nRst, $01, nG1, $03, nRst, $09
 	dc.b	nG0, $03, nRst, $01, nG0, $0B, nRst, $01
 	smpsJump            Snd_Continue_Jump03
-	
+
 ; FM3 Data
 Snd_Continue_FM3:
 	smpsSetvoice        $08
