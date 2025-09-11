@@ -280,8 +280,8 @@ ObjSlot_BigRing:		subObjSlotData 1-1, ArtTile_Explosion, 1, FALSE, $40, 4, Map_B
 ObjSlot_BigRingFlash:		subObjSlotData 1-1, ArtTile_Player_1, 1, FALSE, $18, 6, Map_BigRingFlash, 64, 64, 4, 0, 0
 
 ; dplc
-DPLCPtr_BigRing:		dc.l dmaSource(ArtUnc_BigRing), DPLC_BigRing
-DPLCPtr_BigRingFlash:		dc.l dmaSource(ArtUnc_BigRingFlash), DPLC_BigRingFlash
+DPLCPtr_BigRing:		DPLCEntry ArtUnc_BigRing, DPLC_BigRing
+DPLCPtr_BigRingFlash:		DPLCEntry ArtUnc_BigRingFlash, DPLC_BigRingFlash
 
 AniRaw_BigRing:			dc.b 4, 0, 0, 1, 2, 3, 4, 5, 6, 7, arfChange, $C, 6, $A, 9, 8, $B, arfEnd
 AniRaw_BigRingFlash:		dc.b 0, 0, 0, 1, 2, 3|$40, 3, 2, 1, 0, arfJump

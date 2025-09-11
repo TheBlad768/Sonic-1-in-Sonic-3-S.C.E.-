@@ -238,8 +238,8 @@ ObjDat_ScrapEggman_Block:		subObjData Map_FFloor, $364, 2, TRUE, 32, 32, 3, 0, 0
 ObjDat_ScrapEggman_BlockPieces:		subObjData Map_FFloor_Pieces, $364, 2, TRUE, 16, 16, 3, 0, 0
 
 ; dplc
-PLCPtr_ScrapEggman:			dc.l dmaSource(ArtUnc_ScrapEggman), DPLC_ScrapEggman
-PLCPtr_ScrapEggRobo:			dc.l dmaSource(ArtUnc_ScrapEggRobo), DPLC_ScrapEggRobo
+PLCPtr_ScrapEggman:			DPLCEntry ArtUnc_ScrapEggman, DPLC_ScrapEggman
+PLCPtr_ScrapEggRobo:			DPLCEntry ArtUnc_ScrapEggRobo, DPLC_ScrapEggRobo
 
 Child1_ScrapEggman_ControlDesk:
 		dc.w 1-1

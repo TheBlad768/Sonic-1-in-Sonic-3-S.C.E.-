@@ -29,7 +29,7 @@
 		; Solid pointer, 1st data, 2nd data
 		; Objects pointer, 1st data, 2nd data
 		; Rings pointer, 1st data, 2nd data
-		; Palette, Water palette, Music
+		; Palette, Water palette, Music, Water flag (disabled by default)
 		levartptrs \
 		LZ_8x8_KosPM, \
 		0, \
@@ -53,7 +53,8 @@
 		0, \
 		PalID_LZ, \
 		PalID_WaterLZ, \
-		mus_LZ
+		mus_LZ, \
+		TRUE
 
 		; PLC
 		dc.l PLC1_LZ2_Before							; PLC1

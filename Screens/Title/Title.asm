@@ -599,7 +599,7 @@ Title_Code:
 ; =============== S U B R O U T I N E =======================================
 
 ; dplc
-PLCPtr_TSon:	dc.l dmaSource(ArtUnc_TitleSonic), DPLC_TSon
+PLCPtr_TSon:	DPLCEntry ArtUnc_TitleSonic, DPLC_TSon
 
 ; ---------------------------------------------------------------------------
 ; Title pointer data

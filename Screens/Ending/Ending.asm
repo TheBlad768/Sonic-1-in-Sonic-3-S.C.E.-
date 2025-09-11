@@ -637,9 +637,9 @@ ObjDat_KnuxEnding:	subObjData Map_KnucklesEnding, $3E1, 0, FALSE, 38, 18, 2, 0, 
 			dc.l Ani_EKnuckles, PLCPtr_KnucklesEnding
 
 ; dplc
-PLCPtr_SonicEnding:	dc.l dmaSource(ArtUnc_SonicEnding), DPLC_SonicEnding
-PLCPtr_TailsEnding:	dc.l dmaSource(ArtUnc_TailsEnding), DPLC_TailsEnding
-PLCPtr_KnucklesEnding:	dc.l dmaSource(ArtUnc_KnucklesEnding), DPLC_KnucklesEnding
+PLCPtr_SonicEnding:	DPLCEntry ArtUnc_SonicEnding, DPLC_SonicEnding
+PLCPtr_TailsEnding:	DPLCEntry ArtUnc_TailsEnding, DPLC_TailsEnding
+PLCPtr_KnucklesEnding:	DPLCEntry ArtUnc_KnucklesEnding, DPLC_KnucklesEnding
 
 ; ---------------------------------------------------------------------------
 ; Ending pointer data

@@ -392,12 +392,6 @@ Obj_BossBall_Ball:
 		subq.w	#1,objoff_2E(a0)
 		bpl.s	.angle
 		move.b	#$F|collision_flags.npc.hurt,collision_flags(a0)		; set collision
-		move.l	#.wait,address(a0)
-
-.wait
-		movea.w	parent4(a0),a1							; load boss address
-		btst	#2,obBGB_Status(a1)						; wait boss attack flag
-		beq.s	.circular
 		move.l	#.circular,address(a0)
 
 .circular
@@ -514,7 +508,7 @@ ObjDat_BossBall_Ball:		subObjData Map_GiantBall, $49C, 2, FALSE, 64, 64, 5, 0, 0
 ObjDat_BossBall_Scaled:		subObjData Map_ScaledArt, $340, 0, FALSE, 128, 128, 1, 0, 0
 
 ; dplc
-PLCPtr_BossBall_Ball:		dc.l dmaSource(ArtUnc_GiantBall), DPLC_GiantBall
+PLCPtr_BossBall_Ball:		DPLCEntry ArtUnc_GiantBall, DPLC_GiantBall
 
 Child9_GHZBall:
 		dc.w 6-1
