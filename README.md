@@ -19,14 +19,11 @@
 
 ## Disclaimer
 
-Source code with the Sonic 2 Clone Driver v2 (Mega PCM 2.0 version). Unstable version. I haven't tested how well the game works with this sound driver. You can use this version of the source code, but it's not recommended.
-Clone driver works poorly and is slow. The music from S3K sounds weird. I just recommend continuing to use the S3K Z80 driver.
+This is a port of Sonic The Hedgehog (1991) to [Sonic Clean Engine (S.C.E.) Extended version](https://github.com/TheBlad768/Sonic-Clean-Engine-S.C.E.-Extended-), our heavily modified and improved Sonic 3 & Knuckles engine, which we have been using for a long time for our MD projects (such as Hellfire Saga and Sonic 3 & Knuckles: Epilogue).
 
-This is a port of Sonic The Hedgehog (1991) to Sonic Clean Engine (S.C.E.), our heavily modified and improved Sonic 3 & Knuckles engine, which we have been using for a long time for our MD projects (such as Hellfire Saga and Sonic 3 & Knuckles: Epilogue).
+Free use. You use it at your own risk. All code is provided “as is”.
 
-Free use. You use it at your own risk. All code is provided “as is”. This source code uses software from other authors. Check their licenses before using it. You assume any and all responsibility for using this content responsibly. I claims no responsibility or warranty. Commercial usage is expressly prohibited.
-
-You can use this source code as a base for your projects, or just as an example for optimizations of your source code.
+Sonic Clean Engine (S.C.E.) uses software from other authors. Check their licenses before using it. You assume any and all responsibility for using this content responsibly. I claims no responsibility or warranty. Commercial usage is expressly prohibited.
 
 ## Screenshots
 
@@ -87,17 +84,75 @@ You can use this source code as a base for your projects, or just as an example 
 
 </details>
 
+## Features
+
+- Cleaned up and optimized disassembly of Sonic 3 & Knuckles:
+
+    - There are no hardcoded things as there were in the original Sonic 3 & Knuckles. Complete freedom in your work;
+
+- Changed level layout format. Now there are two bytes for chunk IDs:
+
+    - This will allow you to create more chunks for levels because there will be no one-byte limit here. This will allow you to port levels even from Sonic CD;
+
+- All current level settings in one file. No more searching through the entire Sonic disassembly to replace chunks, layout, palette, music, and other things. Just open [Pointer.asm](Levels/DEZ/Pointers) located in each level folder;
+
+- Various sound drivers. There is a Z80 Sound Flamedriver and an M68K Sound Driver. It all depends on your tasks;
+
+- Many original subroutines have been replaced with faster equivalents. These new subroutines do not break compatibility with the original Sonic 3 & Knuckles. Therefore, there is no need to worry about this:
+
+    - Updated Ultra DMA Queue subroutines and compression algorithms(Kosinski Plus, Kosinski Plus Module, Updated Enigma) have optimized S3K's performance very well;
+
+- I rewrote the code of all the screens, objects, and other things to get maximum performance:
+
+    - Poorly written object code can significantly reduce game performance, regardless of whether other subroutines have been optimized very well. All code has been rewritten in S3K style. If you are familiar with Sonic 3 & Knuckles disassembly, you will have no problems with the S1S3/SCE code;
+
+- The size of the object slots is now 0x50 bytes. Additional free bytes will facilitate work on complex objects.
+
+## Changes for the Sonic 1 in Sonic 3 & Knuckles (S.C.E. Version)
+
+- New game engine. The original Sonic 1 has serious performance issues, so the game runs much better now;
+
+- Some things are kept in the style of Sonic 3 & Knuckles. There is a mix of graphics and music from Sonic 1 and Sonic 3 & Knuckles;
+
+- Playable Tails and Knuckles. You can play as Sonic and Tails or Knuckles and Tails. The villain switches between Eggman and Eggrobo depending on which character you choose to play;
+
+- All level layouts have been updated to match Sonic 1 2013 and Sonic Origins. New paths for Tails and Knuckles in MZ3, SYZ2 and SLZ1, new secrets pretty much everywhere else;
+
+- New artwork for bosses and other stuff;
+
+- New settings menu;
+
+- Seven Special Stages. Special Stages are now only available through Star Posts, but only if you have 50 rings. The player will lose 50 rings for entering the stage;
+
+- You can get 7 Chaos Emeralds and use Super/Hyper Transformations;
+
+- Many minor improvements in polish, such as added SFX or boss intros.
+
+## Cheats and Secrets
+
+- S1 Level Select: U, D, L, R, A+Start on the Title Screen;
+
+- S.C.E. Level Select: U, D, L, R, A+C+Start on the Title Screen;
+
+- Hidden Credits: Hold A+C on the Sega Screen;
+
+- Debug Mode: 1, 9, 9, 1, 0, 6, 2, 3 in the Sound Test of any Level Select;
+
+- All Emeralds: 4, 1, 2, 6 in the Sound Test of any Level Select;
+
+- Results skip: A, B or C during Got Through/Special Stage screens.
+
 ## Additional links
 
-#### If you are interested in the source code with the Z80 Sound Driver:
+#### If you are interested in the Sonic 1 in Sonic 3 & Knuckles (S.C.E. Version) with the Z80 Sound Driver:
 
 - [Sonic-1-in-Sonic-3-S.C.E.-Flamedriver-](https://github.com/TheBlad768/Sonic-1-in-Sonic-3-S.C.E.-/tree/flamedriver)
 
-#### Main source code:
+#### Main repository:
 
 - [Sonic-Clean-Engine-S.C.E.-](https://github.com/TheBlad768/Sonic-Clean-Engine-S.C.E.-)
 
-#### Extended source code:
+#### Sonic Clean Engine (S.C.E.) Extended version:
 
 - [Sonic-Clean-Engine-S.C.E.-Extended-](https://github.com/TheBlad768/Sonic-Clean-Engine-S.C.E.-Extended-)
 
@@ -117,7 +172,7 @@ To build this, use build.bat if you're a Windows user, or build.sh if you're a L
 
 1. S.C.E. uses [Kosinski Plus algorithm](https://github.com/flamewing/mdcomp/blob/master/src/asm/KosinskiPlus.asm), but **Flex2** program does not support **Kosinski Plus Module**. Therefore, **Flex2.json** project file is partially useless. **SonMapEd** program does not support **Kosinski Plus** at all. You can only open uncompressed graphics.
 
-### Solution: Fork the program from Nichloya:
+### Solution: Use the fork from Nichloya:
 
 - [Flex2](https://github.com/Nichloya/Flex2/releases)
 
@@ -257,13 +312,13 @@ Try to keep 2 passes at all times. If you see 3, 4 or more passes, you should fi
 - [Telegram channel](http://t.me/theblad768channel)
 - [Red Miso Studios Discord](https://discords.com/servers/redmisostudios)
 
-## These projects are based on this source code
+## These projects are based on the Sonic Clean Engine (S.C.E.)
 
 - Sonic 3 Rebuilt by TomatoWave_0
 - [Sonic The Hedgehog in Hellfire Saga](https://github.com/TheBlad768/Hellfire-Saga-Public-Source)
 - [Sonic 3 & Knuckles: Epilogue](https://github.com/TheBlad768/Sonic-3-Knuckles-Epilogue-Public-Source)
 - TishaProject (2019)
-- Sonic Virtual Adventure (2017) (Cancelled) — In the past I made this source code specifically for this project (:
+- Sonic Virtual Adventure (2017) (Cancelled) — In the past I made the Sonic Clean Engine (S.C.E.) specifically for this project (:
 
 ## Check out the Sonic Retro Disassemblies
 
