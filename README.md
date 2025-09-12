@@ -21,9 +21,7 @@
 
 This is a port of Sonic The Hedgehog (1991) to [Sonic Clean Engine (S.C.E.) Extended version](https://github.com/TheBlad768/Sonic-Clean-Engine-S.C.E.-Extended-), our heavily modified and improved Sonic 3 & Knuckles engine, which we have been using for a long time for our MD projects (such as Hellfire Saga and Sonic 3 & Knuckles: Epilogue).
 
-Free use. You use it at your own risk. All code is provided “as is”.
-
-Sonic Clean Engine (S.C.E.) uses software from other authors. Check their licenses before using it. You assume any and all responsibility for using this content responsibly. I claims no responsibility or warranty. Commercial usage is expressly prohibited.
+Please read the [license](LICENSE) before using this project.
 
 ## Screenshots
 
