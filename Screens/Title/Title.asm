@@ -205,12 +205,6 @@ TitleScreen:
 		jsr	(Wait_VSync).w
 		addq.w	#1,(Level_frame_counter).w
 		jsr	(Process_Sprites).w
-		jsr	(DeformBgLayer).w
-		jsr	(Screen_Events).w
-		jsr	(Animate_Palette).w
-		jsr	(Process_KosPlus_Module_Queue).w
-		jsr	(Render_Sprites).w
-		bsr.w	Title_Code
 
 		; move background
 		move.w	(Player_1+x_pos).w,d0
@@ -223,9 +217,19 @@ TitleScreen:
 		tst.w	(Demo_timer).w
 		beq.w	.demo
 		tst.b	(Title_end).w
-		beq.s	.loop
+		beq.s	.notexit
 		tst.b	(Ctrl_1_pressed).w								; is Start pressed?
-		bpl.s	.loop										; if not, branch
+		bmi.s	.exit										; if yes, branch
+
+.notexit
+		bsr.w	Title_Code
+		jsr	(DeformBgLayer).w
+		jsr	(Screen_Events).w
+		jsr	(Animate_Palette).w
+		jsr	(Process_KosPlus_Module_Queue).w
+		jsr	(Render_Sprites).w
+		bra.s	.loop
+; ---------------------------------------------------------------------------
 
 .exit
 		tst.b	(Title_control).w
