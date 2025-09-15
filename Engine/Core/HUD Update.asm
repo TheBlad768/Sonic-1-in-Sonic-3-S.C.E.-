@@ -385,12 +385,13 @@ DrawSixDigitNumber:
 ; HUD counter sizes
 ; ---------------------------------------------------------------------------
 
+HUD_1000000:	dc.l 1000000
 HUD_100000:	dc.l 100000
-HUD_10000:		dc.l 10000
-HUD_1000:		dc.l 1000
-HUD_100:		dc.l 100
+HUD_10000:	dc.l 10000
+HUD_1000:	dc.l 1000
+HUD_100:	dc.l 100
 HUD_10:		dc.l 10
-HUD_1:			dc.l 1
+HUD_1:		dc.l 1
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to load time numbers patterns
@@ -515,3 +516,46 @@ UpdateHUD_SS:
 		moveq	#0,d1
 		move.w	(Special_stage_rings_left).w,d1						; load number of rings
 		bra.w	DrawThreeDigitNumber
+
+; ---------------------------------------------------------------------------
+; Get BCD
+;
+; Inputs:
+; d1 = long value
+;
+; Outputs:
+; d1 = long value
+; ---------------------------------------------------------------------------
+
+; =============== S U B R O U T I N E =======================================
+
+Get_BCD:
+		movem.l	d0/d2-d3/d6/a1,-(sp)
+
+		; init
+		lea	HUD_1000000(pc),a1
+		moveq	#6-1,d6									; from 1000000 to 10
+		moveq	#0,d3
+
+.loop
+		move.l	(a1)+,d0
+		cmp.l	d0,d1
+		blo.s	.next
+		moveq	#-1,d2
+
+.finddigit
+		addq.b	#1,d2
+		sub.l	d0,d1
+		bhs.s	.finddigit
+		add.l	d0,d1
+		or.b	d2,d3
+
+.next
+		rol.l	#4,d3
+		dbf	d6,.loop
+		or.b	d1,d3
+		exg	d1,d3
+
+		; exit
+		movem.l	(sp)+,d0/d2-d3/d6/a1
+		rts
