@@ -3739,17 +3739,17 @@
                         }
                     ],
                     "art": {
-                        "path": "../Screens/Title/KosinskiPM Art/Sonic.kospm",
-                        "compression": "KosinskiPlus-M",
+                        "path": "../Screens/Title/Uncompressed Art/Sonic.unc",
+                        "compression": "Uncompressed",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Screens/Title/Object Data/Map - Title Sonic.asm",
+                        "path": "../Screens/Title/Object Data/Map - Sonic.asm",
                         "label": ""
                     },
                     "dplcs": {
-                        "enabled": false,
-                        "path": "",
+                        "enabled": true,
+                        "path": "../Screens/Title/Object Data/DPLC - Sonic.asm",
                         "label": ""
                     },
                     "uuid": "8c836ae2-2072-4c69-9677-75b8c92e2ac8"
@@ -3769,7 +3769,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Screens/Title/Object Data/Map - Title Text.asm",
+                        "path": "../Screens/Title/Object Data/Map - Text.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -3794,7 +3794,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Screens/Title/Object Data/Map - Title Press Start.asm",
+                        "path": "../Screens/Title/Object Data/Map - Press Start.asm",
                         "label": ""
                     },
                     "dplcs": {
