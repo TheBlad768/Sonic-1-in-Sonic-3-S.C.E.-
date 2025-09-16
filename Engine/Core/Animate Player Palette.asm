@@ -100,9 +100,9 @@ SuperHyper_PalCycle_RevertNotSonic:
 		bhs.s	SuperHyper_PalCycle_RevertKnuckles
 
 		; load
-		lea	(PalCycle_SuperTails).l,a0								; Used here because the first set of colours is Tails' normal palette
+		lea	(PalCycle_SuperTails).l,a0								; used here because the first set of colours is Tails' normal palette
 		bsr.w	SuperHyper_PalCycle_ApplyTails
-		lea	(PalCycle_SuperSonic).l,a0								; Why does Tails manipulate Sonic's palette? For his Super-form's Super Flickies
+		lea	(PalCycle_SuperSonic).l,a0								; why does Tails manipulate Sonic's palette? For his Super-form's Super Flickies
 		bra.w	SuperHyper_PalCycle_Apply
 ; ---------------------------------------------------------------------------
 
