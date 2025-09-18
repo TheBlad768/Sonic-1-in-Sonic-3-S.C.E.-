@@ -24,6 +24,8 @@ VInt:
 		; detect PAL region consoles
 		btst	#0,(VDP_control_port-VDP_control_port)+1(a5)
 		beq.s	.notpal								; branch if it's not a PAL system
+
+		; wait to hide CRAM dots
 		move.w	#$700,d0
 		dbf	d0,*								; otherwise, waste a bit of time here
 
@@ -85,6 +87,8 @@ VInt_Lag_Level:
 		; detect PAL region consoles
 		btst	#0,(VDP_control_port-VDP_control_port)+1(a5)
 		beq.s	.notpal								; branch if it isn't a PAL system
+
+		; wait to hide CRAM dots
 		move.w	#$700,d0
 		dbf	d0,*								; otherwise waste a bit of time here
 
@@ -112,6 +116,8 @@ VInt_Lag_NoWater:
 		; detect PAL region consoles
 		btst	#0,(VDP_control_port-VDP_control_port)+1(a5)
 		beq.s	.notpal								; branch if it isn't a PAL system
+
+		; wait to hide CRAM dots
 		move.w	#$700,d0
 		dbf	d0,*								; otherwise, waste a bit of time here
 
