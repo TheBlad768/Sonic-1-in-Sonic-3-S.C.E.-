@@ -5,22 +5,22 @@
 		; Level init
 		dc.l LZ3_Resize								; Resize
 		dc.l LZ3_WaterResize							; Water resize
-		dc.l 0										; After boss
+		dc.l 0									; After boss
 
 		; Animate palette
 		dc.l AnPal_LZ								; Animate palette main code
-		dc.l 0										; Animate palette scripts
+		dc.l 0									; Animate palette scripts
 
 		; Level setup
 		dc.l LZ3_ScreenInit							; Screen init
-		dc.l LZ1_BackgroundInit						; Background init
+		dc.l LZ1_BackgroundInit							; Background init
 		dc.l LZ1_ScreenEvent							; Screen event
 		dc.l LZ1_BackgroundEvent						; Background event
 
 		; Animate tiles
-		dc.l 0										; Animate tiles init
+		dc.l 0									; Animate tiles init
 		dc.l AnimateTiles_LZ							; Animate tiles main code
-		dc.l -1										; Animate tiles PLC scripts
+		dc.l -1									; Animate tiles PLC scripts
 
 		; Art 1st 8x8 data, 2nd 8x8 data
 		; Blocks pointer, 1st 16x16 data, 2nd 16x16 data
@@ -62,10 +62,10 @@
 		dc.l PLCAnimals_LZ1							; PLC animals
 
 		; Level size
-		dc.w $100									; Level xstart
-		dc.w $222F									; Level xend
-		dc.w -$100									; Level ystart
-		dc.w $800									; Level yend
+		dc.w $100								; Level xstart
+		dc.w $222F								; Level xend
+		dc.w -$100								; Level ystart
+		dc.w $800								; Level yend
 
 		; Starting water height
 		dc.w $900
@@ -86,5 +86,5 @@
 	if (GameDebug)&&(~~GameDebugAlt)
 		dc.l Debug_LZ1								; Debug Mode
 	else
-		dc.l 0										; Unused
+		dc.l 0									; Unused
 	endif
