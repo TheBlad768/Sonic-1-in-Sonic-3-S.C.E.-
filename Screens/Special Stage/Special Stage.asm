@@ -131,6 +131,7 @@ SpecialStageScreen:
 		move.b	d0,(Water_full_screen_flag).w
 		move.b	d0,(Water_flag).w
 		move.b	d0,(HUD_RAM.status).w
+		move.b	d0,(Update_HUD_timer).w								; clear time counter update flag
 		move.w	d0,(Camera_min_Y_pos).w								; set level size for debug mode
 
 		; set
