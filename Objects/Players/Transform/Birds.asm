@@ -226,14 +226,14 @@ Obj_SuperTailsBirds_GetDestination:
 		; boss related? could be special enemies in general
 		tst.b	collision_property(a1)
 		beq.s	.destroy_enemy
-		move.b	collision_flags(a1),boss_backup_collision(a1)			; save current collision
+		move.b	collision_flags(a1),boss_saved_collision(a1)			; save current collision
 		move.b	#Player_2&$FF,objoff_1C(a1)					; save value of RAM address of which player hit the boss
 		clr.b	collision_flags(a1)
 
 	if BossDebug
-		clr.b	boss_hitcount2(a1)
+		clr.b	boss_hitcount(a1)
 	else
-		subq.b	#1,boss_hitcount2(a1)
+		subq.b	#1,boss_hitcount(a1)
 		bne.s	.skip
 	endif
 

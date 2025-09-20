@@ -196,7 +196,7 @@ BossSpikeBall_MainProcess:
 		subq.b	#1,boss_invulnerable_time(a0)					; decrease boss invincibility timer
 		bne.s	.return
 		bclr	#status.npc.touch,status(a0)					; clear "boss hit" flag
-		move.b	boss_backup_collision(a0),collision_flags(a0)			; if invincibility ended, allow collision again
+		move.b	boss_saved_collision(a0),collision_flags(a0)			; if invincibility ended, allow collision again
 
 .return
 		rts
@@ -496,7 +496,7 @@ Obj_BossSpikeBall_SpikeBall:
 		beq.s	.loc_18F38
 		move.l	#BossSpikeBall_SpikeBall_Explode,address(a0)
 		clr.w	objoff_2E(a0)							; timer
-		move.b	collision_flags(a1),boss_backup_collision(a1)
+		move.b	collision_flags(a1),boss_saved_collision(a1)
 		clr.b	collision_flags(a1)
 		subq.b	#1,collision_property(a1)
 		bne.s	.loc_18F38
