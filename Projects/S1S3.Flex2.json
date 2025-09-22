@@ -302,22 +302,22 @@
                     "name": "Dash Dust",
                     "palettes": [
                         {
-                            "path": "..\\Objects\\Players\\Sonic\\Palettes\\Sonic.pal",
+                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
                             "length": 1
                         }
                     ],
                     "art": {
-                        "path": "..\\Objects\\Players\\Spin Dust\\Uncompressed Art\\Dash Dust.unc",
+                        "path": "../Objects/Players/Spin Dust/Uncompressed Art/Dash Dust.unc",
                         "compression": "Uncompressed",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\Objects\\Players\\Spin Dust\\Object Data\\Map - Dash Dust.asm",
+                        "path": "../Objects/Players/Spin Dust/Object Data/Map - Dash Dust.asm",
                         "label": ""
                     },
                     "dplcs": {
                         "enabled": true,
-                        "path": "..\\Objects\\Players\\Spin Dust\\Object Data\\DPLC - Dash Splash Drown.asm",
+                        "path": "../Objects/Players/Spin Dust/Object Data/DPLC - Dash Splash Drown.asm",
                         "label": ""
                     },
                     "uuid": "ac74ea7f-97ac-4188-8135-5b39d4922138"
@@ -327,22 +327,22 @@
                     "name": "Splash Drown",
                     "palettes": [
                         {
-                            "path": "..\\Objects\\Players\\Sonic\\Palettes\\Sonic.pal",
+                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
                             "length": 1
                         }
                     ],
                     "art": {
-                        "path": "..\\Objects\\Players\\Spin Dust\\Uncompressed Art\\Splash Drown.unc",
+                        "path": "../Objects/Players/Spin Dust/Uncompressed Art/Splash Drown.unc",
                         "compression": "Uncompressed",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\Objects\\Players\\Spin Dust\\Object Data\\Map - Dash Dust.asm",
+                        "path": "../Objects/Players/Spin Dust/Object Data/Map - Dash Dust.asm",
                         "label": ""
                     },
                     "dplcs": {
                         "enabled": true,
-                        "path": "..\\Objects\\Players\\Spin Dust\\Object Data\\DPLC - Dash Splash Drown.asm",
+                        "path": "../Objects/Players/Spin Dust/Object Data/DPLC - Dash Splash Drown.asm",
                         "label": ""
                     },
                     "uuid": "74ea7f97-ac71-4841-b55b-39d49221384f"
@@ -521,17 +521,17 @@
                     "name": "Explosion",
                     "palettes": [
                         {
-                            "path": "..\\Objects\\Players\\Sonic\\Palettes\\Sonic.pal",
+                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
                             "length": 1
                         }
                     ],
                     "art": {
-                        "path": "..\\Objects\\Main\\Explosion\\KosinskiPM Art\\Explosion.kospm",
+                        "path": "../Objects/Main/Explosion/KosinskiPM Art/Explosion.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\Objects\\Main\\Explosion\\Object Data\\Map - Explosion.asm",
+                        "path": "../Objects/Main/Explosion/Object Data/Map - Explosion.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -947,17 +947,17 @@
                         }
                     ],
                     "art": {
-                        "path": "..\\Objects\\Bosses\\GHZ3\\Uncompressed Art\\Giant Ball.unc",
+                        "path": "../Objects/Bosses/GHZ3/Uncompressed Art/Giant Ball.unc",
                         "compression": "Uncompressed",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\Objects\\Bosses\\GHZ3\\Object Data\\Map - Giant Ball.asm",
+                        "path": "../Objects/Bosses/GHZ3/Object Data/Map - Giant Ball.asm",
                         "label": ""
                     },
                     "dplcs": {
                         "enabled": true,
-                        "path": "..\\Objects\\Bosses\\GHZ3\\Object Data\\DPLC - Giant Ball.asm",
+                        "path": "../Objects/Bosses/GHZ3/Object Data/DPLC - Giant Ball.asm",
                         "label": ""
                     }
                 },
