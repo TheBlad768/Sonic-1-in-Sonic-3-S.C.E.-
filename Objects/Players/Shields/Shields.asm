@@ -432,7 +432,7 @@ Obj_InstaShield:
 
 .main
 		movea.w	parent(a0),a2							; a2=character
-		btst	#status_secondary.invincible,status_secondary(a2)				; is the player invincible?
+		btst	#status_secondary.invincible,status_secondary(a2)		; is the player invincible?
 		bne.s	Obj_BlueShield.return						; if so, return
 		move.w	x_pos(a2),x_pos(a0)						; inherit player's x_pos
 		move.w	y_pos(a2),y_pos(a0)						; inherit player's y_pos
