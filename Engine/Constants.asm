@@ -102,8 +102,8 @@ ChaosEmeralds_Count =						7						; number of chaos emeralds (6 or 7)
 ; PLC queues
 ; ---------------------------------------------------------------------------
 
-PLCKosPlus_Queues =						4						; maximum kosinski plus queues
-PLCKosPlusM_Queues =						32						; maximum kosinski plus module queues
+PLCKosPlus_Queues =						4						; maximum kosinski plus queues (affects RAM)
+PLCKosPlusM_Queues =						32						; maximum kosinski plus module queues (affects RAM)
 
 ; ---------------------------------------------------------------------------
 ; V-Int routines
