@@ -2,12 +2,12 @@
 ; Uncompressed player graphics
 ; ===========================================================================
 
-	align $10000	; for DMA...
+	align $20000	; for DMA...
 
 ArtUnc_Sonic:					binclude "Objects/Players/Sonic/Uncompressed Art/Sonic.unc"
 	even
 
-	align $10000	; for DMA...
+	align $20000	; for DMA...
 
 ArtUnc_Tails:					binclude "Objects/Players/Tails/Uncompressed Art/Tails.unc"
 	even
@@ -16,7 +16,7 @@ ArtUnc_Tails_Extra:				binclude "Objects/Players/Tails/Uncompressed Art/Tails Ex
 ArtUnc_Tails_Tail:				binclude "Objects/Players/Tails/Uncompressed Art/Tails tails.unc"
 	even
 
-	align $10000	; for DMA...
+	align $20000	; for DMA...
 
 ArtUnc_Knuckles:				binclude "Objects/Players/Knuckles/Uncompressed Art/Knuckles.unc"
 	even
