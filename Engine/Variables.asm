@@ -46,9 +46,9 @@ Collision_response_list:				ds.w $80/2					; only objects in this list are proce
 Stat_table:						 = *						; used by Tails' AI in a Sonic and Tails game
 Pos_table_P2:						ds.l 64						; recorded player xy position buffer
 Pos_table:						ds.l 64						; recorded player xy position buffer
-Ring_status_table:					ds.w RingTable_Count				; ring status table(1 word)
+Ring_status_table:					ds.w RingsTable_Size				; ring status table(1 word)
 Ring_status_table_end					= *
-Object_respawn_table:					ds.b ObjectTable_Count				; object respawn table(1 byte)
+Object_respawn_table:					ds.b ObjectsTable_Size				; object respawn table(1 byte)
 Object_respawn_table_end				= *
 Sprite_table_buffer:					ds.b 80*8
 Sprite_table_buffer_end					= *
@@ -370,13 +370,13 @@ KosPlus_decomp_queue_count:				ds.w 1						; the number of pieces of data on the
 KosPlus_decomp_stored_registers:			ds.w 12						; allows decompression to be spread over multiple frames
 KosPlus_decomp_stored_SR:				ds.w 1
 KosPlus_decomp_bookmark:				ds.l 1						; the address within the Kosinski Plus queue processor at which processing is to be resumed
-KosPlus_decomp_queue:					ds.l 2*4					; 2 longwords per entry, first is source location and second is decompression location
+KosPlus_decomp_queue:					ds.l 2*PLCKosPlus_Queues			; 2 longwords per entry, first is source location and second is decompression location
 KosPlus_decomp_source:					= KosPlus_decomp_queue				; the compressed data location for the first entry in the queue
 KosPlus_decomp_destination:				= KosPlus_decomp_queue+4			; the decompression location for the first entry in the queue
 KosPlus_decomp_queue_end				= *
 KosPlus_modules_left:					ds.w 1						; the number of modules left to decompresses. Sign bit set indicates a module is being decompressed/has been decompressed
 KosPlus_last_module_size:				ds.w 1						; the uncompressed size of the last module in words. All other modules are $800 words
-KosPlus_module_queue:					ds.b 6*PLCKosPlusM_Count			; 6 bytes per entry, first longword is source location and next word is VRAM destination
+KosPlus_module_queue:					ds.b 6*PLCKosPlusM_Queues			; 6 bytes per entry, first longword is source location and next word is VRAM destination
 KosPlus_module_source:					= KosPlus_module_queue				; the compressed data location for the first module in the queue
 KosPlus_module_destination:				= KosPlus_module_queue+4			; the VRAM destination for the first module in the queue
 KosPlus_module_queue_end				= *

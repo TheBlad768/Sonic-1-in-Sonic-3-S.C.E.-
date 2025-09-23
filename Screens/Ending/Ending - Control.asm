@@ -73,7 +73,7 @@ End_MoveSonic:
 
 		; p2
 		move.w	#bytes_to_word(AniIDSonAni_Wait,AniIDSonAni_Walk),anim(a1)	; use "standing" animation and reset animate
-		cmpi.b	#ChaosEmer_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
 		bne.s	.nonoemrd							; if not, branch
 		move.w	#bytes_to_word(AniIDSonAni_LookUp,AniIDSonAni_Walk),anim(a1)	; use "look up" animation and reset animate
 

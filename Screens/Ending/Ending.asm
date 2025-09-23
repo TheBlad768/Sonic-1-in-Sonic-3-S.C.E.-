@@ -101,7 +101,7 @@ EndingScreen:
 		bne.s	.waitplc									; wait for KosPlusM queue to clear
 
 		; check emeralds
-		cmpi.b	#ChaosEmer_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
 		bne.s	.noemer										; if not, branch
 
 		; with emeralds
@@ -278,7 +278,7 @@ eson_dplc		= objoff_34
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Sonic_Ending:
-		cmpi.b	#ChaosEmer_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
 		bne.w	.nonoemrd									; if not, branch
 
 		; init (with emeralds)
@@ -506,7 +506,7 @@ Obj_EndChaos:
 		; create chaos emeralds
 		moveq	#0,d2										; mapping frame
 		moveq	#0,d3										; angle
-		moveq	#ChaosEmer_Count-1,d6
+		moveq	#ChaosEmeralds_Count-1,d6
 		jsr	(Create_New_Sprite3).w
 		bne.s	.expand
 
@@ -522,7 +522,7 @@ Obj_EndChaos:
 		move.b	d2,mapping_frame(a1)
 		addq.b	#1,d2
 		move.b	d3,angle(a1)
-		addi.b	#256/ChaosEmer_Count,d3								; angle between each emerald
+		addi.b	#256/ChaosEmeralds_Count,d3							; angle between each emerald
 		jsr	(Create_New_Sprite4).w								; find next free object slot
 		dbne	d6,.cloop
 

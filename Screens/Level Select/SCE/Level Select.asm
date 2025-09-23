@@ -21,7 +21,7 @@ LevelSelect_MusicTestCount:		= LevelSelect_CharacterCount+1
 LevelSelect_SoundTestCount:		= LevelSelect_MusicTestCount+1
 LevelSelect_SampleTestCount:		= LevelSelect_SoundTestCount+1
 LevelSelect_MaxCount:			= 11
-LevelSelect_MaxSpecialStages:		= ChaosEmer_Count
+LevelSelect_MaxSpecialStages:		= ChaosEmeralds_Count
 LevelSelect_MaxCharacters:		= 5
 LevelSelect_MaxMusicNumber:		= (mus__Last-mus__First)
 LevelSelect_MaxSoundNumber:		= (sfx__Last-sfx__First)
@@ -844,15 +844,15 @@ LevelSelect_Code:
 ; ---------------------------------------------------------------------------
 
 .emeraldcheat
-		move.b	#ChaosEmer_Count,(Chaos_emerald_count).w					; give emeralds to the player
+		move.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; give emeralds to the player
 
 		; set 'got emeralds'
 		lea	(Collected_emeralds_array).w,a2
 
-	if ChaosEmer_Count=7
+	if ChaosEmeralds_Count=7
 		move.l	#words_to_long($101,$101),(a2)+							; set 'got emerald' flags
 		move.l	#words_to_long($101,$100),(a2)+
-	elseif ChaosEmer_Count=6
+	elseif ChaosEmeralds_Count=6
 		move.l	#words_to_long($101,$101),(a2)+							; set 'got emerald' flags
 		move.l	#words_to_long($101,0),(a2)+
 	else

@@ -534,7 +534,7 @@ Obj09_ChkEmer:
 		move.l	a1,4(a2)
 
 Obj09_GetEmer:
-		cmpi.b	#ChaosEmer_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
 		beq.s	Obj09_NoEmer							; if yes, branch
 
 		; get emerald

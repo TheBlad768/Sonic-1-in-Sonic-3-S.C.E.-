@@ -1194,12 +1194,12 @@ SS_Load:
 		move.b	(Current_special_stage).w,d0							; load number of last Special Stage entered
 		move.b	d0,(Saved_special_stage).w
 		addq.b	#1,(Current_special_stage).w
-		cmpi.b	#ChaosEmer_Count,(Current_special_stage).w
+		cmpi.b	#ChaosEmeralds_Count,(Current_special_stage).w
 		blo.s	SS_ChkEmldNum
 		clr.b	(Current_special_stage).w							; reset if higher than 6/7
 
 SS_ChkEmldNum:
-		cmpi.b	#ChaosEmer_Count,(Chaos_emerald_count).w					; do you have all emeralds?
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; do you have all emeralds?
 		beq.s	SS_LoadData									; if yes, branch
 		moveq	#0,d1
 		move.b	(Chaos_emerald_count).w,d1

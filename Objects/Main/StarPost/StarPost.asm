@@ -82,7 +82,7 @@ Obj_StarPost:
 		move.w	#34,objoff_36(a0)						; rotation time
 
 		; check bonus
-		cmpi.b	#ChaosEmer_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
 		beq.s	.notbonus							; if yes, branch
 		cmpi.w	#50,(Ring_count).w						; does Sonic have at least 50 rings?
 		blo.s	.notbonus							; if not, branch

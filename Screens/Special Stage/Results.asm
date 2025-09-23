@@ -291,7 +291,7 @@ Obj_2EAD8:
 		tst.w	(Special_stage_spheres_left).w
 		bne.w	loc_2EC7A
 		bsr.w	sub_2ECA8
-		cmpi.b	#ChaosEmer_Count,(a1)
+		cmpi.b	#ChaosEmeralds_Count,(a1)
 		blo.s	Obj_2EAF6
 		subi.w	#16,x_pos(a0)
 		subi.w	#16,objoff_46(a0)
@@ -315,7 +315,7 @@ Obj_2EB30:
 		sub.w	d0,x_pos(a0)
 		sub.w	d0,objoff_46(a0)
 		bsr.w	sub_2ECA8
-		cmpi.b	#ChaosEmer_Count,(a1)
+		cmpi.b	#ChaosEmeralds_Count,(a1)
 		blo.w	loc_2EA4A
 		subi.w	#16,x_pos(a0)
 		subi.w	#16,objoff_46(a0)
@@ -327,7 +327,7 @@ Obj_2EB64:
 		tst.w	(Special_stage_spheres_left).w
 		bne.s	loc_2EC7A
 		bsr.w	sub_2ECBC
-		cmpi.b	#ChaosEmer_Count,(Chaos_emerald_count).w
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w
 		blo.w	loc_2EA4A
 		subq.w	#8,x_pos(a0)
 		subq.w	#8,objoff_46(a0)
@@ -340,7 +340,7 @@ Obj_2EBA4:
 		bne.s	loc_2EC7A
 		bsr.w	sub_2ECBC
 		bsr.w	sub_2ECA8
-		cmpi.b	#ChaosEmer_Count,(a1)
+		cmpi.b	#ChaosEmeralds_Count,(a1)
 		blo.s	loc_2EC7A
 		bsr.s	sub_2EC80
 		sub.w	d0,x_pos(a0)
@@ -354,7 +354,7 @@ Obj_2EBCC:
 		bne.s	loc_2EC7A
 		bsr.s	sub_2ECBC
 		bsr.s	sub_2ECA8
-		cmpi.b	#ChaosEmer_Count,(a1)
+		cmpi.b	#ChaosEmeralds_Count,(a1)
 		blo.s	loc_2EC7A
 		bra.w	loc_2EA50
 ; ---------------------------------------------------------------------------
@@ -448,7 +448,7 @@ loc_2EC44:
 
 ; =============== S U B R O U T I N E =======================================
 
-	if ChaosEmer_Count=7
+	if ChaosEmeralds_Count=7
 
 ObjArray_SSResults: specialresultsheader
 	specialresultsobjdata	Obj_2EA1E, 160, 1120, 128, $17, 192			; 1
@@ -472,7 +472,7 @@ ObjArray_SSResults: specialresultsheader
 	specialresultsobjdata	Obj_2EBCC, 152, 984, 48, $26, 32			; 19
 ObjArray_SSResults_end
 
-	elseif ChaosEmer_Count=6
+	elseif ChaosEmeralds_Count=6
 
 ObjArray_SSResults: specialresultsheader
 	specialresultsobjdata	Obj_2EA1E, 160, 1120, 128, $17, 192			; 1

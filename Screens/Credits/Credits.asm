@@ -201,7 +201,7 @@ Credits_Process_LoadText:
 
 		; load text
 		lea	Credits_TextEnd(pc),a1
-		cmpi.b	#ChaosEmer_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
 		beq.s	.loadtext									; if yes, branch
 		lea	Credits_TextTryAgain(pc),a1
 
@@ -381,7 +381,7 @@ Obj_CreditsRobotnik:
 		move.w	#(20*60)-1,objoff_2E(a0)
 
 		; END
-		cmpi.b	#ChaosEmer_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
 		beq.s	.defeated									; if yes, branch
 
 		; Try Again
@@ -462,7 +462,7 @@ CreditsRobotnik_LoadEmeralds:
 		lea	(Collected_emeralds_array).w,a2
 		moveq	#0,d1
 		moveq	#0,d2
-		moveq	#ChaosEmer_Count-1,d6
+		moveq	#ChaosEmeralds_Count-1,d6
 
 .loop
 		tst.b	(a2)+
@@ -614,7 +614,7 @@ Obj_CreditsEggRobo:
 
 		; Try Again
 		move.l	#AniRaw_CreditsEggRoboEnd,objoff_30(a0)
-		cmpi.b	#ChaosEmer_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
 		bne.s	.createemrl									; if not, branch
 
 		; END
@@ -689,7 +689,7 @@ CreditsEggRobo_LoadEmeralds:
 		bmi.s	.return										; branch, if object RAM slots ended
 
 		; calc pos
-		moveq	#ChaosEmer_Count,d6								; max emeralds
+		moveq	#ChaosEmeralds_Count,d6								; max emeralds
 		sub.b	(Chaos_emerald_count).w,d6
 		blo.s	.return
 		move.l	#256,d4										; 360 degrees = 256
@@ -701,7 +701,7 @@ CreditsEggRobo_LoadEmeralds:
 		moveq	#0,d1
 		moveq	#0,d2
 		moveq	#0,d3
-		moveq	#ChaosEmer_Count-1,d6
+		moveq	#ChaosEmeralds_Count-1,d6
 
 .loop
 		tst.b	(a2)+
@@ -808,7 +808,7 @@ Obj_CreditsEggRobo_Eyes:
 		movem.l	ObjDat_CreditsEggRobo_Eyes(pc),d0-d3						; copy data to d0-d3
 		movem.l	d0-d3,address(a0)								; set data from d0-d3 to current object
 		move.b	#2,mapping_frame(a0)
-		cmpi.b	#ChaosEmer_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
 		bne.s	.setframe									; if not, branch
 		move.w	#(2*60)-1,objoff_2E(a0)
 		move.l	#.main,address(a0)
