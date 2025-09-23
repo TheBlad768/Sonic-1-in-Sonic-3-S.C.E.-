@@ -51,6 +51,8 @@ LoadPLC_Raw_KosPlus:
 ; =============== S U B R O U T I N E =======================================
 
 Process_KosPlus_Module_Queue:
+
+		; check
 		tst.w	(KosPlus_modules_left).w
 		beq.s	.Done
 		bmi.s	.DecompressionStarted
