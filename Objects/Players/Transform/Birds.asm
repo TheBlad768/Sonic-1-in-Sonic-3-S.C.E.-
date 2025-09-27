@@ -338,8 +338,8 @@ loc_1A3E2:
 Obj_SuperTailsBirds_FindTarget:
 		moveq	#0,d1
 		lea	(Collision_response_list).w,a4
-		move.w	(a4)+,d6
-		beq.s	.return
+		move.w	(a4)+,d6							; get number of objects queued
+		beq.s	.return								; if there are none, return
 		moveq	#0,d0
 		addq.b	#2,(_unkF66C).w
 		cmp.b	(_unkF66C).w,d6
@@ -352,14 +352,16 @@ Obj_SuperTailsBirds_FindTarget:
 		adda.w	d0,a4
 
 .loop
-		movea.w	(a4)+,a1
-		move.b	collision_flags(a1),d0
-		beq.s	.ignore_object
+		movea.w	(a4)+,a1							; get address of first object's RAM
+		tst.b	render_flags(a1)						; is the object visible on the screen?
+		bpl.s	.ignore_object							; if not, branch
+		move.b	collision_flags(a1),d0						; get its collision flags
+		beq.s	.ignore_object							; if there is no collision here, branch
 		bsr.s	.check_if_object_valid
 
 .ignore_object
-		subq.w	#2,d6
-		bne.s	.loop
+		subq.w	#2,d6								; count the object as done
+		bne.s	.loop								; if there are still objects left, loop
 
 .return
 		rts

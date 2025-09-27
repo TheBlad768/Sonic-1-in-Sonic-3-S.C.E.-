@@ -444,6 +444,8 @@ Obj74_MakeFlame:
 		move.w	x_pos(a0),objoff_30(a0)
 		move.w	y_pos(a0),objoff_38(a0)
 		move.b	#3,objoff_3F(a0)
+
+		; create flame
 		jsr	(Create_New_Sprite3).w
 		bne.s	.notfree
 		lea	(a1),a3

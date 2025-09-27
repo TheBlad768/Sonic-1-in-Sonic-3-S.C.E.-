@@ -60,10 +60,12 @@ TouchResponse:
 .Touch_Process
 		lea	(Collision_response_list).w,a4
 		move.w	(a4)+,d6							; get number of objects queued
-		beq.s	locret_FF1C							; if there are none, return
+		beq.s	Touch_Return							; if there are none, return
 
 Touch_Loop:
 		movea.w	(a4)+,a1							; get address of first object's RAM
+		tst.b	render_flags(a1)						; is the object visible on the screen?
+		bpl.s	Touch_NextObj							; if not, branch
 		move.b	collision_flags(a1),d0						; get its collision flags
 		bne.s	Touch_Width							; if it actually has collision, branch
 
@@ -72,7 +74,7 @@ Touch_NextObj:
 		bne.s	Touch_Loop							; if there are still objects left, loop
 		moveq	#0,d0
 
-locret_FF1C:
+Touch_Return:
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -744,6 +746,8 @@ ShieldTouchResponse:
 
 ShieldTouch_Loop:
 		movea.w	(a4)+,a1							; get address of first object's RAM
+		tst.b	render_flags(a1)						; is the object visible on the screen?
+		bpl.s	ShieldTouch_NextObj						; if not, branch
 		moveq	#signextendB($C0),d0						; get its collision flags
 		and.b	collision_flags(a1),d0						; get only collision type bits
 		cmpi.b	#$80,d0								; is only the high bit set ("harmful")?
@@ -832,6 +836,8 @@ HyperAttackTouchResponse:
 
 HyperTouch_Loop:
 		movea.w	(a4)+,a1							; get address of first object's RAM
+		tst.b	render_flags(a1)						; is the object visible on the screen?
+		bpl.s	HyperTouch_NextObj						; if not, branch
 		move.b	collision_flags(a1),d0						; get its collision_flags
 		beq.s	HyperTouch_NextObj						; if it doesn't have collision, branch
 		bsr.s	HyperTouch_ChkValue						; else, process object
