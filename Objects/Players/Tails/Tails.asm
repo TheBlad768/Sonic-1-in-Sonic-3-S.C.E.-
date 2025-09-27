@@ -3536,7 +3536,7 @@ Tails_Tail_Load_PLC:
 		cmp.b	(Player_prev_frame_P2_tail).w,d0
 		beq.s	loc_15A92.return
 		move.b	d0,(Player_prev_frame_P2_tail).w
-		add.w	d0,d0
+		add.w	d0,d0								; mapping frame * 2
 		lea	(DPLC_Tails_Tail).l,a2
 		adda.w	(a2,d0.w),a2
 		move.w	(a2)+,d5
@@ -3565,7 +3565,7 @@ Tails_Load_PLC2:
 		move.b	d0,(Player_prev_frame_P2).w
 
 		; load
-		add.w	d0,d0
+		add.w	d0,d0								; mapping frame * 2
 		lea	(DPLC_Tails).l,a2
 		adda.w	(a2,d0.w),a2
 		move.w	(a2)+,d5

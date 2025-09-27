@@ -46,9 +46,10 @@ Obj_Electro:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_Electro:		subObjData Map_Elec, $529, 0, FALSE, 32, 80, 1, 0, $24|collision_flags.npc.hurt
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Electrocuter/Object Data/Anim - Electrocuter.asm"
 		include "Objects/Environ/Electrocuter/Object Data/Map - Electrocuter.asm"

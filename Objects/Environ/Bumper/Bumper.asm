@@ -102,9 +102,10 @@ Obj_Bumper:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_Bumper:		subObjMainData Obj_Bumper.hit, setBit(render_flags.level), 0, 32, 32, 1, $372, 0, FALSE, Map_Bump
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Bumper/Object Data/Anim - Bumper.asm"
 		include "Objects/Environ/Bumper/Object Data/Map - Bumper.asm"

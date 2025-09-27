@@ -275,7 +275,7 @@ Obj_BigRing_Flash:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjSlot_BigRing:		subObjSlotData 1-1, ArtTile_Explosion, 1, FALSE, $40, 4, Map_BigRing, 64, 64, 5, 0, 0
 ObjSlot_BigRingFlash:		subObjSlotData 1-1, ArtTile_Player_1, 1, FALSE, $18, 6, Map_BigRingFlash, 64, 64, 4, 0, 0
 
@@ -292,6 +292,7 @@ BigRing_Range:
 		dc.w -40, 80	; ypos (40x40)
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Main/Big Ring/Object Data/Palette Script - Big Ring.asm"
 		include "Objects/Main/Big Ring/Object Data/Map - Big Ring.asm"
 		include "Objects/Main/Big Ring/Object Data/DPLC - Big Ring.asm"

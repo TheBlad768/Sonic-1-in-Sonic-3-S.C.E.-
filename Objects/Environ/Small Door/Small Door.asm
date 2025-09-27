@@ -78,5 +78,6 @@ Obj_AutoDoor:
 		rts
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Small Door/Object Data/Anim - Small Door.asm"
 		include "Objects/Environ/Small Door/Object Data/Map - Small Door.asm"

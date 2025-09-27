@@ -205,7 +205,7 @@ Obj_RobotnikShipPieces:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_RobotnikShip:		subObjData Map_RobotnikShip, $380, 0, FALSE, 64, 64, 4, $C, $F|collision_flags.npc.touch
 ObjDat_RobotnikShip_Glass:	subObjData Map_RobotnikShip, $380, 0, FALSE, 64, 64, 4, 7, $F|collision_flags.npc.touch
 ObjDat_RobotnikShip2:		subObjData Map_RobotnikShip, $380, 1, FALSE, 64, 64, 4, $C, $F|collision_flags.npc.touch
@@ -229,15 +229,15 @@ Child1_MakeRoboShipFlame:
 Child6_MakeRobotnikShipPieces:
 		dc.w 4-1
 		dc.l Obj_RobotnikShipPieces
-
-AngleLookup_1:	binclude "Objects/Bosses/Robotnik/Object Data/AngleLookup1.bin"
-	even
-AngleLookup_2:	binclude "Objects/Bosses/Robotnik/Object Data/AngleLookup2.bin"
-	even
-AngleLookup_3:	binclude "Objects/Bosses/Robotnik/Object Data/AngleLookup3.bin"
-	even
 ; ---------------------------------------------------------------------------
 
+		; data
+		incfile.b	AngleLookup_1, "Objects/Bosses/Robotnik/Object Data/AngleLookup1.bin"
+		incfile.b	AngleLookup_2, "Objects/Bosses/Robotnik/Object Data/AngleLookup2.bin"
+		incfile.b	AngleLookup_3, "Objects/Bosses/Robotnik/Object Data/AngleLookup3.bin"
+; ---------------------------------------------------------------------------
+
+		; mappings
 		include "Objects/Bosses/Robotnik/Object Data/Anim - Robotnik.asm"
 		include "Objects/Bosses/Robotnik/Object Data/Anim - Egg Robo.asm"
 		include "Objects/Bosses/Robotnik/Object Data/Map - Robotnik Ship.asm"

@@ -143,7 +143,7 @@ Obj_BallHog_Cannonball:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_BallHog:			subObjData Map_Hog, $2EC, 1, FALSE, 38, 16, 4, 0, 5|collision_flags.npc.touch
 ObjDat3_BallHog_Cannonball:	subObjData FALSE, FALSE, 0, FALSE, 16, 16, 3, 4, 7|collision_flags.npc.hurt
 
@@ -155,4 +155,5 @@ AniRaw_Hog:	dc.b 9, 0, 0, 2, 2, 3, 2, 0, 0, 2, 2, 3, 2, 0, 0, 2, 2, 3, 2, 0, 0, 
 	even
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Enemies/Ball Hog/Object Data/Map - Ball Hog.asm"

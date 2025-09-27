@@ -261,7 +261,7 @@ EggmanCylinder_Movement:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_BossCylinder:		subObjData Map_EggCyl, $300, 0, FALSE, 192, 64, 3, 0, 0
 
 Child6_EggmanCylinder:
@@ -275,4 +275,5 @@ EggmanCylinder_PosData:			; $2660 (xcam main), $510 (ycam main)
 		dc.w $B0, -$50		; C (up pos)
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Bosses/FZ/Object Data/Map - Cylinders.asm"

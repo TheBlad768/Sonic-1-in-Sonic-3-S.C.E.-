@@ -257,5 +257,6 @@ loc_125D4:
 		rts
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Labyrinth Conveyor/Object Data/Data - Labyrinth Conveyor.asm"
 		include "Objects/Environ/Labyrinth Conveyor/Object Data/Map - Labyrinth Conveyor Platform.asm"

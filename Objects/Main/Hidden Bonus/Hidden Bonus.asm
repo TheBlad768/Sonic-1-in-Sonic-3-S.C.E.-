@@ -65,8 +65,9 @@ Obj_HiddenBonus:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_HiddenBonus:	subObjData Map_HiddenBonus, $460, 0, TRUE, 32, 32, 1, 0, 0
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Main/Hidden Bonus/Object Data/Map - Hidden Bonus.asm"

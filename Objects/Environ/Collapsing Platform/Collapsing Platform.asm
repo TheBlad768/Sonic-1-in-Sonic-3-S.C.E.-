@@ -174,11 +174,11 @@ Obj_PlatformCollapseFall:
 
 .delete
 		jmp	(Delete_Current_Sprite).w
-
-; =============== S U B R O U T I N E =======================================
-
-CPlat_Data:		binclude "Objects/Environ/Collapsing Platform/Object Data/Heightmap.bin"
-	even
 ; ---------------------------------------------------------------------------
 
+		; data
+		incfile.b	CPlat_Data, "Objects/Environ/Collapsing Platform/Object Data/Heightmap.bin"
+; ---------------------------------------------------------------------------
+
+		; mappings
 		include "Objects/Environ/Collapsing Platform/Object Data/Map - Collapsing Platform.asm"

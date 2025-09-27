@@ -321,5 +321,6 @@ ObjArray_TtlCardBonus: titlecardresultsheader
 ObjArray_TtlCardBonus_end
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Main/Title Card/Text Data/VRAM - Text.asm"
 		include "Objects/Main/Title Card/Object Data/Map - Title Card.asm"

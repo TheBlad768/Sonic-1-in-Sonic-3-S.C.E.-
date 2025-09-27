@@ -2,199 +2,154 @@
 ; Palette Main data
 ; ===========================================================================
 
-Pal_Sonic:					bincludeEntry "Objects/Players/Sonic/Palettes/Sonic.pal"
-	even
-Pal_WaterSonic:					bincludeEntry "Objects/Players/Sonic/Palettes/Water Sonic.pal"
-	even
-Pal_WaterSonicLZ:				bincludeEntry "Objects/Players/Sonic/Palettes/Water Sonic(LZ).pal"
-	even
-Pal_WaterSonicSBZ:				bincludeEntry "Objects/Players/Sonic/Palettes/Water Sonic(SBZ).pal"
-	even
-Pal_Knuckles:					bincludeEntry "Objects/Players/Knuckles/Palettes/Knuckles.pal"
-	even
-Pal_WaterKnuckles:				bincludeEntry "Objects/Players/Knuckles/Palettes/Water Knuckles.pal"
-	even
-Pal_WaterKnucklesLZ:				bincludeEntry "Objects/Players/Knuckles/Palettes/Water Knuckles(LZ).pal"
-	even
-Pal_WaterKnucklesSBZ:				bincludeEntry "Objects/Players/Knuckles/Palettes/Water Knuckles(SBZ).pal"
-	even
-Pal_Robotnik:					bincludeEntry "Objects/Bosses/Robotnik/Palettes/1.pal"
-	even
-Pal_WaterRobotnik:				bincludeEntry "Objects/Bosses/Robotnik/Palettes/Water.pal"
-	even
-Pal_WaterRobotnikLZ:				bincludeEntry "Objects/Bosses/Robotnik/Palettes/Water(LZ).pal"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.be	Pal_Sonic, "Objects/Players/Sonic/Palettes/Sonic.pal"
+		incfile.be	Pal_WaterSonic, "Objects/Players/Sonic/Palettes/Water Sonic.pal"
+		incfile.be	Pal_WaterSonicLZ, "Objects/Players/Sonic/Palettes/Water Sonic(LZ).pal"
+		incfile.be	Pal_WaterSonicSBZ, "Objects/Players/Sonic/Palettes/Water Sonic(SBZ).pal"
+		incfile.be	Pal_Knuckles, "Objects/Players/Knuckles/Palettes/Knuckles.pal"
+		incfile.be	Pal_WaterKnuckles, "Objects/Players/Knuckles/Palettes/Water Knuckles.pal"
+		incfile.be	Pal_WaterKnucklesLZ, "Objects/Players/Knuckles/Palettes/Water Knuckles(LZ).pal"
+		incfile.be	Pal_WaterKnucklesSBZ, "Objects/Players/Knuckles/Palettes/Water Knuckles(SBZ).pal"
+		incfile.b	Pal_Robotnik, "Objects/Bosses/Robotnik/Palettes/1.pal"
+		incfile.b	Pal_WaterRobotnik, "Objects/Bosses/Robotnik/Palettes/Water.pal"
+		incfile.b	Pal_WaterRobotnikLZ, "Objects/Bosses/Robotnik/Palettes/Water(LZ).pal"
 
 ; ===========================================================================
 ; Palette Sega screen data
 ; ===========================================================================
 
+;		Attribute	| Filename	| Folder
+
 	if SegaVersion=1
-Pal_AniSega2_1:					bincludeEntry "Screens/Sega/S1/Palettes/Animated/1.pal"
-	even
-Pal_AniSega2_2:					bincludeEntry "Screens/Sega/S1/Palettes/Animated/2.pal"
-	even
+		incfile.b	Pal_AniSega2_1, "Screens/Sega/S1/Palettes/Animated/1.pal"
+		incfile.b	Pal_AniSega2_2, "Screens/Sega/S1/Palettes/Animated/2.pal"
 	else
-Pal_SegaProto:					bincludeEntry "Screens/Sega/Proto/Palettes/1.pal"
-	even
-Pal_AniSegaProto:				bincludeEntry "Screens/Sega/Proto/Palettes/Animated/1.pal"
-	even
+		incfile.b	Pal_SegaProto, "Screens/Sega/Proto/Palettes/1.pal"
+		incfile.b	Pal_AniSegaProto, "Screens/Sega/Proto/Palettes/Animated/1.pal"
 	endif
 
 ; ===========================================================================
 ; Palette Title screen data
 ; ===========================================================================
 
-Pal_Title:					bincludeEntry "Screens/Title/Palettes/1.pal"
-	even
-Pal_TitleLevelSelect:				bincludeEntry "Screens/Title/Palettes/2.pal"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.be	Pal_Title, "Screens/Title/Palettes/1.pal"
+		incfile.b	Pal_TitleLevelSelect, "Screens/Title/Palettes/2.pal"
 
 ; ===========================================================================
 ; Palette Options screen data
 ; ===========================================================================
 
-Pal_Options:					bincludeEntry "Screens/Options/Palettes/1.pal"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	Pal_Options, "Screens/Options/Palettes/1.pal"
 
 ; ===========================================================================
 ; Palette Level Select screen data
 ; ===========================================================================
 
-Pal_LevelSelect:				bincludeEntry "Screens/Level Select/SCE/Palettes/1.pal"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	Pal_LevelSelect, "Screens/Level Select/SCE/Palettes/1.pal"
 
 ; ===========================================================================
 ; Palette Level Select RSDK screen data
 ; ===========================================================================
 
-Pal_LevelSelectRSDK:				bincludeEntry "Screens/Level Select/RSDK/Palettes/1.pal"
-	even
-Pal_LevelSelectRSDKIcons:			bincludeEntry "Screens/Level Select/RSDK/Palettes/Icons.pal"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	Pal_LevelSelectRSDK, "Screens/Level Select/RSDK/Palettes/1.pal"
+		incfile.b	Pal_LevelSelectRSDKIcons, "Screens/Level Select/RSDK/Palettes/Icons.pal"
 
 ; ===========================================================================
 ; Palette Level screen data
 ; ===========================================================================
 
-Pal_GHZ:					bincludeEntry "Levels/GHZ/Palettes/Green Hill Zone.pal"
-	even
-Pal_WaterGHZ:					bincludeEntry "Levels/GHZ/Palettes/Water Green Hill Zone.pal"
-	even
-Pal_MZ:						bincludeEntry "Levels/MZ/Palettes/Marble Zone.pal"
-	even
-Pal_WaterMZ:					bincludeEntry "Levels/MZ/Palettes/Water Marble Zone.pal"
-	even
-Pal_SYZ:					bincludeEntry "Levels/SYZ/Palettes/Spring Yard Zone.pal"
-	even
-Pal_WaterSYZ:					bincludeEntry "Levels/SYZ/Palettes/Water Spring Yard Zone.pal"
-	even
-Pal_LZ:						bincludeEntry "Levels/LZ/Palettes/Labyrinth Zone.pal"
-	even
-Pal_WaterLZ:					bincludeEntry "Levels/LZ/Palettes/Water Labyrinth Zone.pal"
-	even
-Pal_SLZ:					bincludeEntry "Levels/SLZ/Palettes/Star Light Zone.pal"
-	even
-Pal_WaterSLZ:					bincludeEntry "Levels/SLZ/Palettes/Water Star Light Zone.pal"
-	even
-Pal_SBZ1:					bincludeEntry "Levels/SBZ/Palettes/Scrap Brain Zone Act 1.pal"
-	even
-Pal_SBZ2:					bincludeEntry "Levels/SBZ/Palettes/Scrap Brain Zone Act 2.pal"
-	even
-Pal_WaterSBZ:					bincludeEntry "Levels/SBZ/Palettes/Water Scrap Brain Zone.pal"
-	even
-Pal_SBZ3:					bincludeEntry "Levels/LZ/Palettes/Scrap Brain Zone Act 3.pal"
-	even
-Pal_WaterSBZ3:					bincludeEntry "Levels/LZ/Palettes/Water Scrap Brain Zone Act 3.pal"
-	even
-Pal_Ending:					bincludeEntry "Levels/GHZ/Palettes/Green Hill Zone Ending.pal"
-	even
-Pal_Credits:					bincludeEntry "Screens/Credits/Palettes/1.pal"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.be	Pal_GHZ, "Levels/GHZ/Palettes/Green Hill Zone.pal"
+		incfile.be	Pal_WaterGHZ, "Levels/GHZ/Palettes/Water Green Hill Zone.pal"
+		incfile.be	Pal_MZ, "Levels/MZ/Palettes/Marble Zone.pal"
+		incfile.be	Pal_WaterMZ, "Levels/MZ/Palettes/Water Marble Zone.pal"
+		incfile.be	Pal_SYZ, "Levels/SYZ/Palettes/Spring Yard Zone.pal"
+		incfile.be	Pal_WaterSYZ, "Levels/SYZ/Palettes/Water Spring Yard Zone.pal"
+		incfile.be	Pal_LZ, "Levels/LZ/Palettes/Labyrinth Zone.pal"
+		incfile.be	Pal_WaterLZ, "Levels/LZ/Palettes/Water Labyrinth Zone.pal"
+		incfile.be	Pal_SLZ, "Levels/SLZ/Palettes/Star Light Zone.pal"
+		incfile.be	Pal_WaterSLZ, "Levels/SLZ/Palettes/Water Star Light Zone.pal"
+		incfile.be	Pal_SBZ1, "Levels/SBZ/Palettes/Scrap Brain Zone Act 1.pal"
+		incfile.be	Pal_SBZ2, "Levels/SBZ/Palettes/Scrap Brain Zone Act 2.pal"
+		incfile.be	Pal_WaterSBZ, "Levels/SBZ/Palettes/Water Scrap Brain Zone.pal"
+		incfile.be	Pal_SBZ3, "Levels/LZ/Palettes/Scrap Brain Zone Act 3.pal"
+		incfile.be	Pal_WaterSBZ3, "Levels/LZ/Palettes/Water Scrap Brain Zone Act 3.pal"
+		incfile.be	Pal_Ending, "Levels/GHZ/Palettes/Green Hill Zone Ending.pal"
+		incfile.b	Pal_Credits, "Screens/Credits/Palettes/1.pal"
 
 ; ===========================================================================
 ; Palette Continue screen data
 ; ===========================================================================
 
-Pal_Continue:					bincludeEntry "Screens/Continue/Palettes/1.pal"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	Pal_Continue, "Screens/Continue/Palettes/1.pal"
 
 ; ===========================================================================
 ; Palette Special Stage screen data
 ; ===========================================================================
 
-Pal_SSSonic:					bincludeEntry "Screens/Special Stage/Palettes/Sonic.pal"
-	even
-Pal_SSKnuckles:					bincludeEntry "Screens/Special Stage/Palettes/Knuckles.pal"
-	even
-Pal_SpecialStage:				bincludeEntry "Screens/Special Stage/Palettes/Special Stage.pal"
-	even
-Pal_SpecialStageEmeralds:			bincludeEntry "Screens/Special Stage/Palettes/Special Stage Emeralds.pal"
-	even
-Pal_SpecialStageResults:			bincludeEntry "Screens/Special Stage/Palettes/Special Stage Results.pal"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	Pal_SSSonic, "Screens/Special Stage/Palettes/Sonic.pal"
+		incfile.b	Pal_SSKnuckles, "Screens/Special Stage/Palettes/Knuckles.pal"
+		incfile.b	Pal_SpecialStage, "Screens/Special Stage/Palettes/Special Stage.pal"
+		incfile.b	Pal_SpecialStageEmeralds, "Screens/Special Stage/Palettes/Special Stage Emeralds.pal"
+		incfile.b	Pal_SpecialStageResults, "Screens/Special Stage/Palettes/Special Stage Results.pal"
 
 ; ===========================================================================
 ; Animated palette player data
 ; ===========================================================================
 
-PalCycle_SuperSonic:				bincludeEntry "Objects/Players/Sonic/Palettes/Animated/Super.pal"
-	even
-PalCycle_HyperSonic:				bincludeEntry "Objects/Players/Sonic/Palettes/Animated/Hyper.pal"
-	even
-PalCycle_SuperSonicUnderwaterLZ:		bincludeEntry "Objects/Players/Sonic/Palettes/Animated/Underwater(LZ).pal"
-	even
-PalCycle_SuperTails:				bincludeEntry "Objects/Players/Tails/Palettes/Animated/Super.pal"
-	even
-PalCycle_SuperHyperKnuckles:			bincludeEntry "Objects/Players/Knuckles/Palettes/Animated/Super and Hyper.pal"
-	even
-PalCycle_SuperHyperKnucklesRevert:		bincludeEntry "Objects/Players/Knuckles/Palettes/Animated/Revert.pal"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.be	PalCycle_SuperSonic, "Objects/Players/Sonic/Palettes/Animated/Super.pal"
+		incfile.be	PalCycle_HyperSonic, "Objects/Players/Sonic/Palettes/Animated/Hyper.pal"
+		incfile.b	PalCycle_SuperSonicUnderwaterLZ, "Objects/Players/Sonic/Palettes/Animated/Underwater(LZ).pal"
+		incfile.be	PalCycle_SuperTails, "Objects/Players/Tails/Palettes/Animated/Super.pal"
+		incfile.be	PalCycle_SuperHyperKnuckles, "Objects/Players/Knuckles/Palettes/Animated/Super and Hyper.pal"
+		incfile.b	PalCycle_SuperHyperKnucklesRevert, "Objects/Players/Knuckles/Palettes/Animated/Revert.pal"
 
 ; ===========================================================================
 ; Animated palette Level screen data
 ; ===========================================================================
 
-Pal_SYZCyc1:					bincludeEntry "Levels/SYZ/Palettes/Animated/Palettes/1.pal"
-	even
-Pal_SYZCyc2:					bincludeEntry "Levels/SYZ/Palettes/Animated/Palettes/2.pal"
-	even
-Pal_LZCyc1:					bincludeEntry "Levels/LZ/Palettes/Animated/Palettes/Waterfall.pal"
-	even
-Pal_LZCyc2:					bincludeEntry "Levels/LZ/Palettes/Animated/Palettes/Conveyor Belt.pal"
-	even
-Pal_LZCyc3:					bincludeEntry "Levels/LZ/Palettes/Animated/Palettes/Conveyor Belt Underwater.pal"
-	even
-Pal_SLZCyc:					bincludeEntry "Levels/SLZ/Palettes/Animated/Palettes/1.pal"
-	even
-Pal_SBZCyc1:					bincludeEntry "Levels/SBZ/Palettes/Animated/Palettes/1.pal"
-	even
-Pal_SBZCyc2:					bincludeEntry "Levels/SBZ/Palettes/Animated/Palettes/2.pal"
-	even
-Pal_SBZCyc3:					bincludeEntry "Levels/SBZ/Palettes/Animated/Palettes/3.pal"
-	even
-Pal_SBZCyc4:					bincludeEntry "Levels/SBZ/Palettes/Animated/Palettes/4.pal"
-	even
-Pal_SBZCyc5:					bincludeEntry "Levels/SBZ/Palettes/Animated/Palettes/5.pal"
-	even
-Pal_SBZCyc6:					bincludeEntry "Levels/SBZ/Palettes/Animated/Palettes/6.pal"
-	even
-Pal_SBZCyc7:					bincludeEntry "Levels/SBZ/Palettes/Animated/Palettes/7.pal"
-	even
-Pal_SBZCyc8:					bincludeEntry "Levels/SBZ/Palettes/Animated/Palettes/8.pal"
-	even
-Pal_SBZCyc9:					bincludeEntry "Levels/SBZ/Palettes/Animated/Palettes/9.pal"
-	even
-Pal_SBZCyc10:					bincludeEntry "Levels/SBZ/Palettes/Animated/Palettes/10.pal"
-	even
-Pal_SBZ3Cyc:					bincludeEntry "Levels/SBZ/Palettes/Animated/Palettes/Waterfall.pal"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	Pal_SYZCyc1, "Levels/SYZ/Palettes/Animated/Palettes/1.pal"
+		incfile.b	Pal_SYZCyc2, "Levels/SYZ/Palettes/Animated/Palettes/2.pal"
+		incfile.b	Pal_LZCyc1, "Levels/LZ/Palettes/Animated/Palettes/Waterfall.pal"
+		incfile.b	Pal_LZCyc2, "Levels/LZ/Palettes/Animated/Palettes/Conveyor Belt.pal"
+		incfile.b	Pal_LZCyc3, "Levels/LZ/Palettes/Animated/Palettes/Conveyor Belt Underwater.pal"
+		incfile.b	Pal_SLZCyc, "Levels/SLZ/Palettes/Animated/Palettes/1.pal"
+		incfile.b	Pal_SBZCyc1, "Levels/SBZ/Palettes/Animated/Palettes/1.pal"
+		incfile.b	Pal_SBZCyc2, "Levels/SBZ/Palettes/Animated/Palettes/2.pal"
+		incfile.b	Pal_SBZCyc3, "Levels/SBZ/Palettes/Animated/Palettes/3.pal"
+		incfile.b	Pal_SBZCyc4, "Levels/SBZ/Palettes/Animated/Palettes/4.pal"
+		incfile.b	Pal_SBZCyc5, "Levels/SBZ/Palettes/Animated/Palettes/5.pal"
+		incfile.b	Pal_SBZCyc6, "Levels/SBZ/Palettes/Animated/Palettes/6.pal"
+		incfile.b	Pal_SBZCyc7, "Levels/SBZ/Palettes/Animated/Palettes/7.pal"
+		incfile.b	Pal_SBZCyc8, "Levels/SBZ/Palettes/Animated/Palettes/8.pal"
+		incfile.b	Pal_SBZCyc9, "Levels/SBZ/Palettes/Animated/Palettes/9.pal"
+		incfile.b	Pal_SBZCyc10, "Levels/SBZ/Palettes/Animated/Palettes/10.pal"
+		incfile.b	Pal_SBZ3Cyc, "Levels/SBZ/Palettes/Animated/Palettes/Waterfall.pal"
 
 ; ===========================================================================
 ; Animated palette Special Stage screen data
 ; ===========================================================================
 
-Pal_SSCyc1:					bincludeEntry "Screens/Special Stage/Palettes/Animated/Palettes/1.pal"
-	even
-Pal_SSCyc2:					bincludeEntry "Screens/Special Stage/Palettes/Animated/Palettes/2.pal"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	Pal_SSCyc1, "Screens/Special Stage/Palettes/Animated/Palettes/1.pal"
+		incfile.b	Pal_SSCyc2, "Screens/Special Stage/Palettes/Animated/Palettes/2.pal"

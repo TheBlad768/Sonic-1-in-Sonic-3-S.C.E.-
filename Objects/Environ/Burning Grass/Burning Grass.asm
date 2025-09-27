@@ -88,7 +88,7 @@ Obj_GrassFire_Fire:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_GrassFire:		subObjData Map_Fire, $298, 0, FALSE, 16, 16, 1, 0, $B|collision_flags.npc.hurt
 ObjDat3_GrassFire_Fire:		subObjData FALSE, FALSE, 0, FALSE, 16, 16, 1, 0, $B|collision_flags.npc.hurt
 

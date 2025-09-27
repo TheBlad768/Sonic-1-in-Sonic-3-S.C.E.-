@@ -113,7 +113,7 @@ SegaScreen:
 		; next
 		move.b	#VintID_Main,(V_int_routine).w
 		jsr	(Wait_VSync).w
-		music	mus_SEGA									; play SEGA sound
+		sfx	sfx_Sega									; play SEGA sound
 		move.w	#3*60,(Demo_timer).w								; set to wait for 3 seconds
 
 .loop
@@ -127,7 +127,7 @@ SegaScreen:
 		bne.s	.loop
 
 .exit
-		music	mus_StopSEGA									; stop SEGA sound
+		music	mus_Stop									; stop SEGA sound
 
 		; wait stop SEGA sound
 		move.b	#VintID_Main,(V_int_routine).w

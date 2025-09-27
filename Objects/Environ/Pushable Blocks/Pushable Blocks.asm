@@ -504,4 +504,5 @@ PushableBlock_MovePush:									; push block normal
 		rts
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Pushable Blocks/Object Data/Map - Pushable Blocks.asm"

@@ -62,5 +62,6 @@ Obj_FlapDoor:
 		jmp	(Sprite_OnScreen_Test).w
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Flapping Door/Object Data/Anim - Flapping Door.asm"
 		include "Objects/Environ/Flapping Door/Object Data/Map - Flapping Door.asm"

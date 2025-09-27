@@ -73,11 +73,14 @@ Gird_ChgMove:
 		rts
 ; ---------------------------------------------------------------------------
 
-.settings	; x-speed, y-speed, duration, unused
+.settings
+
+		; x-speed, y-speed, duration, unused
 		dc.w $100, 0, $60, 0			; right		; 0
 		dc.w 0, $100, $30, 0			; down		; 8
 		dc.w -$100, -$40, $60, 0		; up/left	; $10
 		dc.w 0, -$100, $18, 0			; up		; $18
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Girder Block/Object Data/Map - Girder Block.asm"

@@ -2,117 +2,98 @@
 ; Uncompressed Main graphics
 ; ===========================================================================
 
-ArtUnc_Ring:				binclude "Objects/Main/Rings/Uncompressed Art/Rings.unc"
-	even
-ArtUnc_HUDDigits:			binclude "Objects/Renders/HUD/Uncompressed Art/HUD Digits.unc"
-	even
-ArtUnc_LivesDigits:			binclude "Objects/Renders/HUD/Uncompressed Art/Lives Digits.unc"
-	even
-ArtUnc_DebugDigits:			binclude "Objects/Renders/HUD/Uncompressed Art/Debug Digits.unc"
-	even
-ArtUnc_EndSigns:			binclude "Objects/Main/Signpost/Uncompressed Art/End Signs.unc"
-	even
-ArtUnc_SignpostStub:			bincludeEntry "Objects/Main/Signpost/Uncompressed Art/Stub.unc"
-	even
-ArtUnc_BigRing:				binclude "Objects/Main/Big Ring/Uncompressed Art/Big Ring.unc"
-	even
-ArtUnc_BigRingFlash:			binclude "Objects/Main/Big Ring/Uncompressed Art/Big Ring Flash.unc"
-	even
-ArtUnc_RobotnikShip1:			bincludeEntry "Objects/Bosses/Robotnik/Uncompressed Art/Robotnik Ship 1.unc"
-	even
-ArtUnc_RobotnikShip2:			bincludeEntry "Objects/Bosses/Robotnik/Uncompressed Art/Robotnik Ship 2.unc"
-	even
-ArtUnc_AirCountDown:			binclude "Objects/Main/Count Down/Uncompressed Art/Air Countdown.unc"
-	even
-ArtUnc_WaterSplash:			binclude "Objects/Main/Water Splash/Uncompressed Art/Water Splash.unc"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	ArtUnc_Ring, "Objects/Main/Rings/Uncompressed Art/Rings.unc"
+		incfile.b	ArtUnc_HUDDigits, "Objects/Renders/HUD/Uncompressed Art/HUD Digits.unc"
+		incfile.b	ArtUnc_LivesDigits, "Objects/Renders/HUD/Uncompressed Art/Lives Digits.unc"
+		incfile.b	ArtUnc_DebugDigits, "Objects/Renders/HUD/Uncompressed Art/Debug Digits.unc"
+		incfile.b	ArtUnc_EndSigns, "Objects/Main/Signpost/Uncompressed Art/End Signs.unc"
+		incfile.be	ArtUnc_SignpostStub, "Objects/Main/Signpost/Uncompressed Art/Stub.unc"
+		incfile.b	ArtUnc_BigRing, "Objects/Main/Big Ring/Uncompressed Art/Big Ring.unc"
+		incfile.b	ArtUnc_BigRingFlash, "Objects/Main/Big Ring/Uncompressed Art/Big Ring Flash.unc"
+		incfile.be	ArtUnc_RobotnikShip1, "Objects/Bosses/Robotnik/Uncompressed Art/Robotnik Ship 1.unc"
+		incfile.be	ArtUnc_RobotnikShip2, "Objects/Bosses/Robotnik/Uncompressed Art/Robotnik Ship 2.unc"
+		incfile.b	ArtUnc_AirCountDown, "Objects/Main/Count Down/Uncompressed Art/Air Countdown.unc"
+		incfile.b	ArtUnc_WaterSplash, "Objects/Main/Water Splash/Uncompressed Art/Water Splash.unc"
 
 ; ===========================================================================
 ; Uncompressed Title Card graphics
 ; ===========================================================================
 
-ArtUnc_TitleCardLargeText:		bincludeEntry "Objects/Main/Title Card/Uncompressed Art/Large Text.unc"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.be	ArtUnc_TitleCardLargeText, "Objects/Main/Title Card/Uncompressed Art/Large Text.unc"
 
 ; ===========================================================================
 ; Uncompressed Title screen graphics
 ; ===========================================================================
 
-ArtUnc_TitleSonic:			binclude "Screens/Title/Uncompressed Art/Sonic.unc"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	ArtUnc_TitleSonic, "Screens/Title/Uncompressed Art/Sonic.unc"
 
 ; ===========================================================================
 ; Uncompressed Level Select RSDK screen graphics
 ; ===========================================================================
 
-ArtUnc_LevelSelectRSDKIcons:		binclude "Screens/Level Select/RSDK/Uncompressed Art/Zone Icons.unc"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	ArtUnc_LevelSelectRSDKIcons, "Screens/Level Select/RSDK/Uncompressed Art/Zone Icons.unc"
 
 ; ===========================================================================
 ; Uncompressed Level screen graphics
 ; ===========================================================================
 
-ArtUnc_ScrapEggman:			binclude "Objects/Bosses/Scrap Eggman/Uncompressed Art/Scrap Eggman.unc"
-	even
-ArtUnc_ScrapEggRobo:			binclude "Objects/Bosses/Scrap Eggman/Uncompressed Art/Scrap Egg Robo.unc"
-	even
-ArtUnc_GiantBall:			binclude "Objects/Bosses/GHZ3/Uncompressed Art/Giant Ball.unc"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	ArtUnc_ScrapEggman, "Objects/Bosses/Scrap Eggman/Uncompressed Art/Scrap Eggman.unc"
+		incfile.b	ArtUnc_ScrapEggRobo, "Objects/Bosses/Scrap Eggman/Uncompressed Art/Scrap Egg Robo.unc"
+		incfile.b	ArtUnc_GiantBall, "Objects/Bosses/GHZ3/Uncompressed Art/Giant Ball.unc"
 
 ; ===========================================================================
 ; Uncompressed Special Stage screen graphics
 ; ===========================================================================
 
-ArtUnc_SSRing:				binclude "Screens/Special Stage/Uncompressed Art/Rings.unc"
-	even
-ArtUnc_SSWalls:				binclude "Screens/Special Stage/Uncompressed Art/Walls.unc"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	ArtUnc_SSRing, "Screens/Special Stage/Uncompressed Art/Rings.unc"
+		incfile.b	ArtUnc_SSWalls, "Screens/Special Stage/Uncompressed Art/Walls.unc"
 
 ; ===========================================================================
 ; Uncompressed Ending screen graphics
 ; ===========================================================================
 
-ArtUnc_SonicEnding:			binclude "Screens/Ending/Uncompressed Art/Sonic Ending.unc"
-	even
-ArtUnc_TailsEnding:			binclude "Screens/Ending/Uncompressed Art/Tails Ending.unc"
-	even
-ArtUnc_KnucklesEnding:			binclude "Screens/Ending/Uncompressed Art/Knuckles Ending.unc"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	ArtUnc_SonicEnding, "Screens/Ending/Uncompressed Art/Sonic Ending.unc"
+		incfile.b	ArtUnc_TailsEnding, "Screens/Ending/Uncompressed Art/Tails Ending.unc"
+		incfile.b	ArtUnc_KnucklesEnding, "Screens/Ending/Uncompressed Art/Knuckles Ending.unc"
 
 ; ===========================================================================
 ; Uncompressed Scaled graphics
 ; ===========================================================================
 
-ArtScaled_RobotnikGHZ:			binclude "Objects/Bosses/Robotnik/Uncompressed Scaled Art/Robotnik Ship(GHZ).unc"
-	even
-ArtScaled_EggRoboGHZ:			binclude "Objects/Bosses/Robotnik/Uncompressed Scaled Art/Egg Robo Ship(GHZ).unc"
-	even
-ArtScaled_RobotnikMZ:			binclude "Objects/Bosses/Robotnik/Uncompressed Scaled Art/Robotnik Ship(MZ).unc"
-	even
-ArtScaled_EggRoboMZ:			binclude "Objects/Bosses/Robotnik/Uncompressed Scaled Art/Egg Robo Ship(MZ).unc"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	ArtScaled_RobotnikGHZ, "Objects/Bosses/Robotnik/Uncompressed Scaled Art/Robotnik Ship(GHZ).unc"
+		incfile.b	ArtScaled_EggRoboGHZ, "Objects/Bosses/Robotnik/Uncompressed Scaled Art/Egg Robo Ship(GHZ).unc"
+		incfile.b	ArtScaled_RobotnikMZ, "Objects/Bosses/Robotnik/Uncompressed Scaled Art/Robotnik Ship(MZ).unc"
+		incfile.b	ArtScaled_EggRoboMZ, "Objects/Bosses/Robotnik/Uncompressed Scaled Art/Egg Robo Ship(MZ).unc"
 
 ; ===========================================================================
 ; Animated uncompressed graphics
 ; ===========================================================================
 
-ArtUnc_GHZWater:			binclude "Levels/GHZ/Tiles/Animated/Uncompressed Art/Waterfall.unc"
-	even
-ArtUnc_GHZFlower1:			binclude "Levels/GHZ/Tiles/Animated/Uncompressed Art/Flower Large.unc"
-	even
-ArtUnc_GHZFlower2:			binclude "Levels/GHZ/Tiles/Animated/Uncompressed Art/Flower Small.unc"
-	even
-ArtUnc_MZLava1:				binclude "Levels/MZ/Tiles/Animated/Uncompressed Art/Lava Surface.unc"
-	even
-ArtUnc_MZLava2:				binclude "Levels/MZ/Tiles/Animated/Uncompressed Art/Lava.unc"
-	even
-ArtUnc_MZTorch:				binclude "Levels/MZ/Tiles/Animated/Uncompressed Art/Background Torch.unc"
-	even
-ArtUnc_SYZSpinLight:			binclude "Levels/SYZ/Tiles/Animated/Uncompressed Art/Spinning Light.unc"
-	even
-ArtUnc_LZConveyor:			binclude "Levels/LZ/Tiles/Animated/Uncompressed Art/Conveyor Wheel.unc"
-	even
-ArtUnc_SBZSmoke:			binclude "Levels/SBZ/Tiles/Animated/Uncompressed Art/Background Smoke.unc"
-	even
-ArtUnc_EndingFlowers:			binclude "Levels/GHZ/Tiles/Animated/Uncompressed Art/Ending Flowers.unc"
-	even
+;		Attribute	| Filename	| Folder
+
+		incfile.b	ArtUnc_GHZWater, "Levels/GHZ/Tiles/Animated/Uncompressed Art/Waterfall.unc"
+		incfile.b	ArtUnc_GHZFlower1, "Levels/GHZ/Tiles/Animated/Uncompressed Art/Flower Large.unc"
+		incfile.b	ArtUnc_GHZFlower2, "Levels/GHZ/Tiles/Animated/Uncompressed Art/Flower Small.unc"
+		incfile.b	ArtUnc_MZLava1, "Levels/MZ/Tiles/Animated/Uncompressed Art/Lava Surface.unc"
+		incfile.b	ArtUnc_MZLava2, "Levels/MZ/Tiles/Animated/Uncompressed Art/Lava.unc"
+		incfile.b	ArtUnc_MZTorch, "Levels/MZ/Tiles/Animated/Uncompressed Art/Background Torch.unc"
+		incfile.b	ArtUnc_SYZSpinLight, "Levels/SYZ/Tiles/Animated/Uncompressed Art/Spinning Light.unc"
+		incfile.b	ArtUnc_LZConveyor, "Levels/LZ/Tiles/Animated/Uncompressed Art/Conveyor Wheel.unc"
+		incfile.b	ArtUnc_SBZSmoke, "Levels/SBZ/Tiles/Animated/Uncompressed Art/Background Smoke.unc"
+		incfile.b	ArtUnc_EndingFlowers, "Levels/GHZ/Tiles/Animated/Uncompressed Art/Ending Flowers.unc"

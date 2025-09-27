@@ -46,4 +46,5 @@ Obj_StillSprite:
 		StillSpritesEntry	2, $42C, 2, FALSE, 32, 16
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Main/Still Sprites/Object Data/Map - Still Sprites.asm"

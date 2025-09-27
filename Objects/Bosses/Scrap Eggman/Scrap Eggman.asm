@@ -230,7 +230,7 @@ Obj_ScrapEggman_BlockPieces:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_ScrapEggman:			subObjData Map_ScrapEggman, $320, 0, TRUE, 56, 40, 4, 0, 0
 ObjDat_ScrapEggRobo:			subObjData Map_ScrapEggRobo, $320, 0, TRUE, 56, 32, 4, 0, 0
 ObjDat_ScrapEggman_ControlDesk:		subObjData Map_ScrapControlDesk, $340, 1, TRUE, 56, 32, 3, 0, 0
@@ -278,6 +278,7 @@ PLC_SE_ControlDesk: plrlistheader
 PLC_SE_ControlDesk_end
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Bosses/Scrap Eggman/Object Data/Map - Scrap Eggman.asm"
 		include "Objects/Bosses/Scrap Eggman/Object Data/DPLC - Scrap Eggman.asm"
 		include "Objects/Bosses/Scrap Eggman/Object Data/Map - Scrap Egg Robo.asm"

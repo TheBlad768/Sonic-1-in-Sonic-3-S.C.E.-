@@ -42,9 +42,10 @@ Obj_Chopper:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_Chopper:		subObjData Map_Chop, $4EC, 0, FALSE, 32, 32, 4, 0, 9|collision_flags.npc.touch
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Enemies/Chopper/Object Data/Anim - Chopper.asm"
 		include "Objects/Enemies/Chopper/Object Data/Map - Chopper.asm"

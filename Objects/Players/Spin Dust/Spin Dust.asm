@@ -223,7 +223,7 @@ Obj_DashDust_SkidDust:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_DashDust:	subObjMainData \
 			Obj_DashDust.main, \
 				setBit(render_flags.level), \
@@ -234,6 +234,7 @@ PLCPtr_DashDust:	DPLCEntry ArtUnc_DashDust, DPLC_DashSplashDrown
 PLCPtr_SplashDrown:	DPLCEntry ArtUnc_SplashDrown, DPLC_DashSplashDrown
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Players/Spin Dust/Object Data/Anim - Dash Splash Drown.asm"
 		include "Objects/Players/Spin Dust/Object Data/Map - Dash Dust.asm"
 		include "Objects/Players/Spin Dust/Object Data/DPLC - Dash Splash Drown.asm"

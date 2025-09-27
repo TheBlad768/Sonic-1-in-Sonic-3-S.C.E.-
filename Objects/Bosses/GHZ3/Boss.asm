@@ -501,7 +501,7 @@ Obj_BossBall_Scaled:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_BossBall_Crane:		subObjData Map_GiantBall_Crane, $494, 0, FALSE, 16, 16, 6, 0, 0
 ObjDat_BossBall_Chain:		subObjData Map_GiantBall_Crane, $498, 0, FALSE, 16, 16, 6, 0, 0
 ObjDat_BossBall_Ball:		subObjData Map_GiantBall, $49C, 2, FALSE, 64, 64, 5, 0, 0
@@ -523,6 +523,7 @@ PLC_BossBall: plrlistheader
 PLC_BossBall_end
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Bosses/GHZ3/Object Data/Map - Giant Ball Crane.asm"
 		include "Objects/Bosses/GHZ3/Object Data/Map - Giant Ball.asm"
 		include "Objects/Bosses/GHZ3/Object Data/DPLC - Giant Ball.asm"

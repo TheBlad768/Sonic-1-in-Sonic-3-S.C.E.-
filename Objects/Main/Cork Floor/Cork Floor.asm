@@ -188,8 +188,9 @@ CorkFloor_Speeds:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_CorkFloor:	subObjMainData Obj_CorkFloor.solid, setBit(render_flags.level), 0, 80, 32, 5, 1, 2, FALSE, Map_CorkFloor
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Main/Cork Floor/Object Data/Map - Cork Floor.asm"

@@ -186,7 +186,7 @@ loc_B5EE:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_GlassBlock:	subObjMainData \
 				Obj_GlassBlock.block012, \
 					setBit(render_flags.level) | \
@@ -194,4 +194,5 @@ ObjDat_GlassBlock:	subObjMainData \
 				0, 144, 64, 2, $300, 2, TRUE, Map_Glass
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Glass Block/Object Data/Map - Glass Block.asm"

@@ -364,7 +364,7 @@ BossWater_Defeated:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_BossWater_ShipGlass:	subObjData Map_RobotnikShip, $1F0, 1, FALSE, 64, 64, 4, 7, $F|collision_flags.npc.touch
 
 PLC_BossWater: plrlistheader

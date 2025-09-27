@@ -107,8 +107,9 @@ Obj_BigSpikeBall:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_BigSpikeBall:		subObjMainData Obj_BigSpikeBall.move, setBit(render_flags.level), 0, 48, 48, 4, $396, 0, FALSE, Map_BBall
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Big Spiked Ball/Object Data/Map - Big Spiked Ball.asm"

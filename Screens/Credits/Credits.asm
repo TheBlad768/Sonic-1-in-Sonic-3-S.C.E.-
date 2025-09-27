@@ -911,7 +911,7 @@ Credits_ScreenShake:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_CreditsRobotnik:			subObjMainData Obj_CreditsRobotnik.defeated, setBit(render_flags.level), 0, 64, 56, 3, $182, 0, FALSE, Map_CreditsRobotnik
 ObjDat_CreditsRobotnik_Emeralds:	subObjMainData Obj_CreditsRobotnik_Emeralds.main, setBit(render_flags.level), 0, 16, 16, 1, $2D3, 0, FALSE, Map_ECha
 ObjDat_CreditsEggRobo:			subObjMainData Obj_CreditsEggRobo.animate, setBit(render_flags.level), 0, 64, 56, 5, $232, 0, FALSE, Map_CreditsEggRobo
@@ -927,5 +927,6 @@ PLC_Credits: plrlistheader
 PLC_Credits_end
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Screens/Credits/Object Data/Map - Robotnik.asm"
 		include "Screens/Credits/Object Data/Map - Egg Robo.asm"

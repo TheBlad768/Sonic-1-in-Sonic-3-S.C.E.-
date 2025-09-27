@@ -385,7 +385,7 @@ Monitor_Give_SpeedShoes:
 		move.w	#$C00,Max_speed-Max_speed(a4)					; set max speed
 		move.w	#$18,Acceleration-Max_speed(a4)					; set acceleration
 		move.w	#$80,Deceleration-Max_speed(a4)					; set deceleration
-		music	mus_ExtraLife,1							; play the 1up song
+		music	mus_Speedup,1							; speed up the music
 ; ---------------------------------------------------------------------------
 
 Monitor_Give_Rings:
@@ -542,5 +542,6 @@ Monitor_Give_SuperSonic:
 	endif
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Main/Monitor/Object Data/Anim - Monitor.asm"
 		include "Objects/Main/Monitor/Object Data/Map - Monitor.asm"

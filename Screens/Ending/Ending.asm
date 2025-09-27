@@ -628,7 +628,7 @@ Redraw_EndingChunks:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_SonicEnding:	subObjData Map_SonicEnding, $3E1, 0, FALSE, 38, 18, 2, 0, 0
 			dc.l Ani_ESonic, PLCPtr_SonicEnding
 ObjDat_TailsEnding:	subObjData Map_TailsEnding, $3E1, 0, FALSE, 30, 18, 2, 0, 0
@@ -664,6 +664,7 @@ PLC_Ending: plrlistheader
 PLC_Ending_end
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Screens/Ending/Object Data/Anim - Sonic Ending.asm"
 		include "Screens/Ending/Object Data/Anim - Tails Ending.asm"
 		include "Screens/Ending/Object Data/Anim - Knuckles Ending.asm"

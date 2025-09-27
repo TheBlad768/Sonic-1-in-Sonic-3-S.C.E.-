@@ -291,5 +291,6 @@ MBlock_0F_End:
 		rts
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Moving Blocks/Object Data/Map - Moving Blocks (LZ).asm"
 		include "Objects/Environ/Moving Blocks/Object Data/Map - Moving Blocks (MZ and SBZ).asm"

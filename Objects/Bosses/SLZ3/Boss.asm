@@ -684,7 +684,7 @@ Obj_BossSpikeBall_SpikeBall_Shrapnel:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_BossSpikeBall_Ship:			subObjData Map_RobotnikShip, $3B0, 1, FALSE, 64, 64, 4, $C, $F|collision_flags.npc.touch
 ObjDat_BossSpikeBall_ShipTube:			subObjData Map_BossSpikeBall_Tube, $440, 1, FALSE, 8, 32, 3, 0, 0
 ObjDat_RobotnikShip_SpikeBall_Shrapnel:		subObjData Map_Bomb, $4C1, 0, TRUE, 8, 8, 2, $A, $18|collision_flags.npc.hurt
@@ -712,4 +712,5 @@ PLC_BossSpikeBall: plrlistheader
 PLC_BossSpikeBall_end
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Bosses/SLZ3/Object Data/Map - Tube.asm"

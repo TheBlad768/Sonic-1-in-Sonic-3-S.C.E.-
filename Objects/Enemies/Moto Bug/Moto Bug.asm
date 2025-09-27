@@ -110,7 +110,7 @@ Obj_MotoBug_Smoke:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_MotoBug:			subObjData Map_Moto, $561, 0, FALSE, 40, 40, 4, 0, $C|collision_flags.npc.touch
 ObjDat3_MotoBug_Smoke:		subObjData FALSE, FALSE, 0, FALSE, 8, 8, 4, 0, 0
 
@@ -119,5 +119,6 @@ Child6_MotoBug_Smoke:
 		dc.l Obj_MotoBug_Smoke
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Enemies/Moto Bug/Object Data/Anim - Moto Bug.asm"
 		include "Objects/Enemies/Moto Bug/Object Data/Map - Moto Bug.asm"

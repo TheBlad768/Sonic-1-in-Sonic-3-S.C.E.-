@@ -257,4 +257,5 @@ loc_273DE:
 		rts
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Teleporter/Object Data/Data - Teleporter.asm"

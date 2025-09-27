@@ -153,16 +153,15 @@ Obj_LargeGrass:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_LargeGrass:	subObjMainData Obj_LargeGrass.action, setBit(render_flags.level), 0, 128, 0, 5, 0, 2, FALSE, Map_LGrass
-
-; data
-LGrass_Data1:	binclude "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap1.bin"
-	even
-LGrass_Data2:	binclude "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap2.bin"
-	even
-LGrass_Data3:	binclude "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap3.bin"
-	even
 ; ---------------------------------------------------------------------------
 
+		; data
+		incfile.b	LGrass_Data1, "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap1.bin"
+		incfile.b	LGrass_Data2, "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap2.bin"
+		incfile.b	LGrass_Data3, "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap3.bin"
+; ---------------------------------------------------------------------------
+
+		; mappings
 		include "Objects/Environ/Large Grassy Platforms/Object Data/Map - Large Grassy Platforms.asm"

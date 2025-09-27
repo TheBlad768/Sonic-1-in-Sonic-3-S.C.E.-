@@ -178,7 +178,5 @@ LZ1_ApplyDeformWater:
 
 LZ1_DeformArray:		dc.w $7FFF	; FG and BG
 
-LZ1_FGDeformDelta:		binclude "Levels/LZ/Misc/LZ Scroll FG Data.bin"
-	even
-LZ1_BGDeformDelta:		binclude "Levels/LZ/Misc/LZ Scroll BG Data.bin"
-	even
+		incfile.b	LZ1_FGDeformDelta, "Levels/LZ/Misc/LZ Scroll FG Data.bin"
+		incfile.b	LZ1_BGDeformDelta, "Levels/LZ/Misc/LZ Scroll BG Data.bin"

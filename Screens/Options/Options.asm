@@ -311,6 +311,8 @@ Options_Controls:
 		moveq	#btnABC,d1
 		and.b	(Ctrl_1_pressed).w,d1
 		beq.s	Options_FindUpDownControls.returnup
+
+		; play sample
 		move.w	d3,d0
 		addq.w	#1,d0										; $00 is reserved for pause
 		jmp	(Play_Sample).w									; play sample

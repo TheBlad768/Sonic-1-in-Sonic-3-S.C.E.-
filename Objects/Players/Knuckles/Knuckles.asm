@@ -2913,7 +2913,7 @@ Knuckles_Load_PLC2:
 		move.b	d0,(Player_prev_frame).w
 
 		; load
-		add.w	d0,d0
+		add.w	d0,d0								; mapping frame * 2
 		lea	(DPLC_Knuckles).l,a2
 		adda.w	(a2,d0.w),a2
 		move.w	(a2)+,d5

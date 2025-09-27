@@ -291,4 +291,5 @@ locret_1D058:
 		rts
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Main/Path Swap/Object Data/Map - Path Swap.asm"

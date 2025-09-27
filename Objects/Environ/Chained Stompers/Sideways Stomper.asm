@@ -218,7 +218,7 @@ Obj_SideStomp_Spikes:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_SideStomp:	subObjMainData \
 				Obj_SideStomp.action, \
 					setBit(render_flags.level) | \
@@ -232,4 +232,5 @@ Child6_SideStomp_Spikes:
 		dc.l Obj_SideStomp_Spikes
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Chained Stompers/Object Data/Map - Sideways Stomp.asm"

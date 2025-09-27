@@ -91,7 +91,7 @@ Obj_SpikeBall_Child:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_SpikeBall:	subObjMainData \
 				Obj_SpikeBall.main, \
 					setBit(render_flags.level) | \
@@ -99,4 +99,5 @@ ObjDat_SpikeBall:	subObjMainData \
 				0, 16, 16, 4, $3BA, 0, FALSE, Map_SBall
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Spiked Ball and Chain/Object Data/Map - Spiked Ball and Chain (SYZ).asm"

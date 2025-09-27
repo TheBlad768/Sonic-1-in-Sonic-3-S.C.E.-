@@ -120,4 +120,5 @@ Fan_Check:
 		rts
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Fan/Object Data/Map - Fan.asm"

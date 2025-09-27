@@ -3,37 +3,37 @@
 ; ===========================================================================
 
 ; ---------------------------------------------------------------------------
-; Engine Definitions
+; Engine definitions (WARNING! DO NOT move this)
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Definitions.asm"
 
 ; ---------------------------------------------------------------------------
-; ROM Header Subroutine
+; ROM Header (WARNING! DO NOT move this)
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Header.asm"
 
 ; ---------------------------------------------------------------------------
-; VDP Subroutine
+; VDP modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/VDP.asm"
 
 ; ---------------------------------------------------------------------------
-; DMA Queue Subroutine
+; DMA Queue modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/DMA Queue.asm"
 
 ; ---------------------------------------------------------------------------
-; Plane Map To VRAM Subroutine
+; Plane mappings to VRAM modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Plane Map To VRAM.asm"
 
 ; ---------------------------------------------------------------------------
-; Decompression Subroutine
+; Decompression modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Decompression/Enigma Decompression.asm"
@@ -41,110 +41,110 @@
 		include "Engine/Decompression/Kosinski Plus Moduled Decompression.asm"
 
 ; ---------------------------------------------------------------------------
-; Clone Driver - Functions Subroutine
+; Clone Driver - Functions modules
 ; ---------------------------------------------------------------------------
 
 		include "Sound/Engine/Functions.asm"
 
 ; ---------------------------------------------------------------------------
-; Fading Palettes Subroutine
+; Fading palettes modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Fading Palette.asm"
 
 ; ---------------------------------------------------------------------------
-; Load Palettes Subroutine
+; Load palettes modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Load Palette.asm"
 
 ; ---------------------------------------------------------------------------
-; Wait VSync Subroutine
+; Wait VSync module
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Wait VSync.asm"
 
 ; ---------------------------------------------------------------------------
-; Pause Subroutine
+; Pause module
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Pause Game.asm"
 
 ; ---------------------------------------------------------------------------
-; Random Number Subroutine
+; Random number module
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Random Number.asm"
 
 ; ---------------------------------------------------------------------------
-; Oscillatory Subroutine
+; Oscillatory modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Oscillatory Routines.asm"
 
 ; ---------------------------------------------------------------------------
-; HUD Update Subroutine
+; HUD update modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/HUD Update.asm"
 
 ; ---------------------------------------------------------------------------
-; Load Text Subroutine
+; Load text on the plane module
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Load Text.asm"
 
 ; ---------------------------------------------------------------------------
-; Objects Process Subroutines
+; Objects process modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Objects/Process Sprites.asm"
 		include "Engine/Objects/Render Sprites.asm"
 
 ; ---------------------------------------------------------------------------
-; Load Objects Subroutine
+; Load level objects modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Load Objects.asm"
 
 ; ---------------------------------------------------------------------------
-; Load Rings Subroutine
+; Load level rings modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Load Rings.asm"
 
 ; ---------------------------------------------------------------------------
-; Draw Level Subroutine
+; Draw level tiles modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Draw Level.asm"
 
 ; ---------------------------------------------------------------------------
-; Load Level Subroutine
+; Load level modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Load Level.asm"
 
 ; ---------------------------------------------------------------------------
-; Deform Layer Subroutine
+; Deformation layer modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Move Camera.asm"
 
 ; ---------------------------------------------------------------------------
-; Parallax Engine Subroutine
+; Parallax engine modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Deformation Script.asm"
 
 ; ---------------------------------------------------------------------------
-; Shake Screen Subroutine
+; Shake screen modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Shake Screen.asm"
 
 ; ---------------------------------------------------------------------------
-; Objects Subroutines
+; Objects modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Objects/Animate Raw.asm"
@@ -169,68 +169,68 @@
 		include "Engine/Objects/Remember State.asm"
 
 ; ---------------------------------------------------------------------------
-; Objects Functions Subroutines
+; Objects functions modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Objects/Find Floor.asm"
 		include "Engine/Objects/Solid Object.asm"
 
 ; ---------------------------------------------------------------------------
-; Animate Palette Subroutine
+; Animate palette modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Animate Palette.asm"
 
 ; ---------------------------------------------------------------------------
-; Animate Level Graphics Subroutine
+; Animate level graphics modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Animate Tiles.asm"
 
 ; ---------------------------------------------------------------------------
-; Level Setup Subroutine
+; Level setup modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Level Setup.asm"
 
 ; ---------------------------------------------------------------------------
-; Special Events Subroutine
+; Special events modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Special Events.asm"
 
 ; ---------------------------------------------------------------------------
-; Get Level Size Subroutine
+; Get level size modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Level Start.asm"
 
 ; ---------------------------------------------------------------------------
-; Resize Events Subroutine
+; Resize events modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Level Events.asm"
 
 ; ---------------------------------------------------------------------------
-; Handle On screen Water Height Subroutine
+; Handle on screen water height modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Water Effects.asm"
 
 ; ---------------------------------------------------------------------------
-; Animate Player Palette Subroutine
+; Animate player palette modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Animate Player Palette.asm"
 
 ; ---------------------------------------------------------------------------
-; Touch Response Subroutine
+; Touch response modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Objects/Touch Response.asm"
 
 ; ---------------------------------------------------------------------------
-; Subroutine to load Sonic object
+; Player object (Sonic) modules
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Players/Sonic/Sonic.asm"
@@ -240,7 +240,7 @@
 		include "Objects/Players/Transform/Trail.asm"
 
 ; ---------------------------------------------------------------------------
-; Subroutine to load Tails object
+; Player object (Tails) modules
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Players/Tails/Tails.asm"
@@ -248,25 +248,25 @@
 		include "Objects/Players/Transform/Birds.asm"
 
 ; ---------------------------------------------------------------------------
-; Subroutine to load Knuckles object
+; Player object (Knuckles) modules
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Players/Knuckles/Knuckles.asm"
 
 ; ---------------------------------------------------------------------------
-; Subroutine to scaling object
+; Scaling object modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Objects/Scaling.asm"
 
 ; ---------------------------------------------------------------------------
-; Subroutine to load a objects
+; Objects data pointers
 ; ---------------------------------------------------------------------------
 
 		include "Data/Objects Data.asm"
 
 ; ---------------------------------------------------------------------------
-; Sega screen Subroutine
+; Sega screen modules
 ; ---------------------------------------------------------------------------
 
 	if SegaVersion=0
@@ -278,62 +278,62 @@
 	endif
 
 ; ---------------------------------------------------------------------------
-; Title screen subroutines
+; Title screen modules
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Title/Title.asm"
 		include "Screens/Title/Level Select.asm"
 
 ; ---------------------------------------------------------------------------
-; Options screen Subroutine
+; Options screen modules
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Options/Options.asm"
 
 ; ---------------------------------------------------------------------------
-; Level Select screen Subroutine
+; Level Select screen modules
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Level Select/SCE/Level Select.asm"
 
 ; ---------------------------------------------------------------------------
-; Level Select RSDK screen Subroutine
+; Level Select RSDK screen modules
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Level Select/RSDK/Level Select.asm"
 
 ; ---------------------------------------------------------------------------
-; Level screen Subroutine
+; Level screen modules
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Level/Level.asm"
 
 ; ---------------------------------------------------------------------------
-; Demo Subroutine
+; Demo modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Demo Play Record.asm"
 
 ; ---------------------------------------------------------------------------
-; Continue screen Subroutine
+; Continue screen modules
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Continue/Continue.asm"
 
 ; ---------------------------------------------------------------------------
-; Special Stage screen Subroutine
+; Special Stage screen modules
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Special Stage/Special Stage.asm"
 
 ; ---------------------------------------------------------------------------
-; Ending screen Subroutine
+; Ending screen modules
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Ending/Ending.asm"
 
 ; ---------------------------------------------------------------------------
-; Credits screen Subroutine
+; Credits screen modules
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Credits/Credits.asm"
@@ -341,7 +341,7 @@
 	if GameDebug
 
 ; ---------------------------------------------------------------------------
-; Debug Mode Subroutine
+; Debug Mode modules
 ; ---------------------------------------------------------------------------
 
 		if GameDebugAlt
@@ -354,20 +354,20 @@
 	endif
 
 ; ---------------------------------------------------------------------------
-; Security Subroutine
+; Security modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Security Startup 1.asm"
 		include "Engine/Core/Security Startup 2.asm"
 
 ; ---------------------------------------------------------------------------
-; Controllers Subroutine
+; Controllers modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Controllers.asm"
 
 ; ---------------------------------------------------------------------------
-; Interrupt Handler Subroutine
+; Interrupt Handler modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Interrupt Handler.asm"
@@ -375,7 +375,7 @@
 	if ChecksumCheck
 
 ; ---------------------------------------------------------------------------
-; Checksum Subroutine
+; Checksum modules
 ; ---------------------------------------------------------------------------
 
 		include "Engine/Core/Checksum.asm"
@@ -383,7 +383,7 @@
 	endif
 
 ; ---------------------------------------------------------------------------
-; Subroutine to load player object data
+; Player mappings data
 ; ---------------------------------------------------------------------------
 
 		; Sonic
@@ -406,7 +406,7 @@
 		include "Objects/Players/Knuckles/Object Data/DPLC - Knuckles.asm"
 
 ; ---------------------------------------------------------------------------
-; Subroutine to load level events
+; Levels events modules
 ; ---------------------------------------------------------------------------
 
 		include "Data/Levels Events.asm"
@@ -418,20 +418,20 @@
 		include "Data/Levels Data.asm"
 
 ; ---------------------------------------------------------------------------
-; Palette data
+; Palette data pointers
 ; ---------------------------------------------------------------------------
 
 		include "Data/Palette Pointers.asm"
 		include "Data/Palette Data.asm"
 
 ; ---------------------------------------------------------------------------
-; Object Pointers
+; Object pointers
 ; ---------------------------------------------------------------------------
 
 		include "Data/Object Pointers.asm"
 
 ; ---------------------------------------------------------------------------
-; Demo
+; Demo pointers
 ; ---------------------------------------------------------------------------
 
 		include "Data/Demo Data.asm"
@@ -479,7 +479,7 @@
 		include "Sound/Engine/MegaPCM.asm"
 
 ; ---------------------------------------------------------------------------
-; Clone sound driver Subroutine
+; Clone sound driver modules
 ; ---------------------------------------------------------------------------
 
 		include "Sound/Engine/Sonic 2 Clone Driver v2.asm"
@@ -487,7 +487,7 @@
 	if MSUMode
 
 ; ---------------------------------------------------------------------------
-; MegaCD Driver Subroutine
+; MegaCD Driver module
 ; ---------------------------------------------------------------------------
 
 		include "Sound/MSU/MSU.asm"
@@ -495,7 +495,7 @@
 	endif
 
 ; --------------------------------------------------------------
-; Debugging modules
+; Debugging modules (WARNING! DO NOT move this)
 ; --------------------------------------------------------------
 
 		include "Engine/Debugger/ErrorHandler/ErrorHandler.asm"

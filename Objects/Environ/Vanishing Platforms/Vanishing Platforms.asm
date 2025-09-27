@@ -91,5 +91,6 @@ Obj_VanishPlatform:
 		jmp	(Displace_PlayerOffObject).w					; release Sonic from object
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Vanishing Platforms/Object Data/Anim - Vanishing Platforms.asm"
 		include "Objects/Environ/Vanishing Platforms/Object Data/Map - Vanishing Platforms.asm"

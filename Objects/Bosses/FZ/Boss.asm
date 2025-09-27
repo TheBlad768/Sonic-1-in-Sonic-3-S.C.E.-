@@ -676,7 +676,7 @@ Obj_BossFinal_CheckPlayers:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_BossFZEggman:			subObjData Map_ScrapEggman, $2B0, 0, FALSE, 56, 56, 4, 0, 0
 ObjDat_BossFZEggRobo:			subObjData Map_ScrapEggRobo, $2B0, 0, FALSE, 56, 56, 4, 0, 0
 ObjDat_BossFZControlDesk:		subObjData Map_EggCyl, $300, 0, FALSE, 16, 32, 0, $B, 0
@@ -695,4 +695,5 @@ Child1_BossFinal_RobotnikShipStand:
 		dc.b 0, 20
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Bosses/FZ/Object Data/Anim - Eggman.asm"

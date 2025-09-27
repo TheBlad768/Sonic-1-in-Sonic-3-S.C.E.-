@@ -101,4 +101,5 @@ Render_GameOver:
 		jmp	(loc_1AF76).w							; draw
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Renders/Game Over/Object Data/Map - Game Over.asm"

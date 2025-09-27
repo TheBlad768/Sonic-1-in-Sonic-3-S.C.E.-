@@ -645,7 +645,7 @@ Obj_BossFire_Scaled:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_BossFire_Fire:			subObjData Map_Fire, $298, 0, FALSE, 16, 16, 5, 0, 0
 ObjDat_BossFire_ShipTube:		subObjData Map_BossFire_Tube, $420, 1, FALSE, 32, 48, 3, 0, 0
 ObjDat_BossFire_ShipTubeFlame:		subObjData Map_BossFire_Tube, $420, 1, FALSE, 8, 16, 5, 1, 0
@@ -665,5 +665,6 @@ PLC_BossFire: plrlistheader
 PLC_BossFire_end
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Bosses/MZ3/Object Data/Map - Tube.asm"
 		include "Objects/Bosses/MZ3/Object Data/Map - Pillar.asm"

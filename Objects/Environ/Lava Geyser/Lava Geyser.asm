@@ -262,7 +262,7 @@ Obj_LavaGeyser_Extra:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_GeyserMaker:		subObjData Map_Geyser, $36D, 3, TRUE, 112, 112, 1, 0, 0
 ObjDat_LavaGeyser:		subObjData Map_Geyser, $36D, 3, FALSE, 64, 64, 1, 0, 0
 ObjDat3_LavaGeyser:		subObjData FALSE, FALSE, 0, FALSE, 256, 64, 1, 0, $13|collision_flags.npc.hurt
@@ -279,5 +279,6 @@ Child6_LavaGeyser_Extra2:
 		dc.l Obj_LavaGeyser_Extra2
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Lava Geyser/Object Data/Anim - Lava Geyser.asm"
 		include "Objects/Environ/Lava Geyser/Object Data/Map - Lava Geyser.asm"

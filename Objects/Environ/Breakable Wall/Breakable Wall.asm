@@ -227,8 +227,9 @@ BreakableWall_FragSpd2:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_BreakableWall:	subObjMainData Obj_BreakableWall.main, setBit(render_flags.level), 0, 64, 32, 5, $398, 2, FALSE, Map_BreakableWall
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Breakable Wall/Object Data/Map - Breakable Wall.asm"

@@ -224,5 +224,6 @@ loc_19486:
 		jmp	(Delete_Current_Sprite).w
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Players/Transform/Object Data/Map - Super Sonic Stars.asm"
 		include "Objects/Players/Transform/Object Data/Map - Hyper Sonic Stars.asm"

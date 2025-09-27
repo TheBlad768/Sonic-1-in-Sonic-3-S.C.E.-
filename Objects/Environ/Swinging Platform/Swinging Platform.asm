@@ -219,6 +219,7 @@ SwingingPlatform_Move:
 		rts
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms(GHZ).asm"
 		include "Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms(SLZ).asm"
 		include "Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms(SBZ).asm"

@@ -227,4 +227,5 @@ Stair_Type03:
 		rts
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Staircase/Object Data/Map - Staircase.asm"

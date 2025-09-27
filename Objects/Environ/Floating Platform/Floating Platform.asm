@@ -326,6 +326,7 @@ FloatingPlatform_Large:									; type0A
 		rts
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Floating Platform/Object Data/Map - Floating Platform(GHZ).asm"
 		include "Objects/Environ/Floating Platform/Object Data/Map - Floating Platform(SYZ).asm"
 		include "Objects/Environ/Floating Platform/Object Data/Map - Floating Platform(SLZ).asm"

@@ -189,4 +189,5 @@ sub_2C37A:
 		jmp	(Sprite_OnScreen_Test2).w
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Main/Still Sprites/Object Data/Map - Still Sprites(Movement).asm"

@@ -650,6 +650,7 @@ Title_CopyrightText:
 
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Screens/Title/Object Data/Anim - Sonic.asm"
 		include "Screens/Title/Object Data/Map - Text.asm"
 		include "Screens/Title/Object Data/Map - Sonic.asm"

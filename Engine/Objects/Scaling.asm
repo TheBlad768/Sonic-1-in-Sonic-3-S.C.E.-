@@ -585,4 +585,5 @@ loc_24BD6:
 		rts
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Main/Scaling/Object Data/Map - Scaled Art.asm"

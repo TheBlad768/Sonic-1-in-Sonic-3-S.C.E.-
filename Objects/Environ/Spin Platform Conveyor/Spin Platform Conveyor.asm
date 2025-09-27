@@ -229,5 +229,6 @@ loc_16484:
 		jmp	(MoveSprite2).w
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Spin Platform Conveyor/Object Data/Data - Spin Platform Conveyor.asm"
 		include "Objects/Environ/Spin Platform Conveyor/Object Data/Anim - Spin Platform Conveyor.asm"

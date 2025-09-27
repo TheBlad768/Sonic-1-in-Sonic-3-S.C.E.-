@@ -47,10 +47,10 @@ SegaScreen:
 		move.b	d0,(Japan_credits_flag).w
 
 		; load main art
-		QueueKosPlusModule	ArtKosPM_Sega, 1
+		QueueKosPlusModule	ArtKosPM_Sega, 0
 
 		; load mapping
-		EniDecomp	MapEni_Sega, RAM_start, 1, 0, TRUE					; decompress Enigma mappings
+		EniDecomp	MapEni_Sega, RAM_start, 0, 0, FALSE					; decompress Enigma mappings
 
 		; check console region
 		tst.b	(Graphics_flags).w

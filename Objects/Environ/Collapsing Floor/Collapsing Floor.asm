@@ -121,4 +121,5 @@ CFlo_Data3:	; timer
 	even
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Collapsing Floor/Object Data/Map - Collapsing Floor.asm"

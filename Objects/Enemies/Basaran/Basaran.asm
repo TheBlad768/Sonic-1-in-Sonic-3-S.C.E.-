@@ -122,9 +122,10 @@ Obj_Basaran:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_Basaran:		subObjData Map_Bas, $529, 0, TRUE, 24, 32, 2, 0, $B|collision_flags.npc.touch
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Enemies/Basaran/Object Data/Anim - Basaran.asm"
 		include "Objects/Enemies/Basaran/Object Data/Map - Basaran.asm"

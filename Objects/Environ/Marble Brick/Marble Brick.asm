@@ -99,7 +99,7 @@ Obj_MarbleBrick:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_MarbleBrick:	subObjMainData \
 				Obj_MarbleBrick.action, \
 					setBit(render_flags.level) | \
@@ -107,4 +107,5 @@ ObjDat_MarbleBrick:	subObjMainData \
 				0, 32, 32, 1, 0, 2, FALSE, Map_Brick
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Marble Brick/Object Data/Map - Marble Brick.asm"

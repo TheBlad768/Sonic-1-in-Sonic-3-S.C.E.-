@@ -251,4 +251,5 @@ Elev_MakeMulti:
 		jmp	(Delete_Sprite_If_Not_In_Range).w
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Elevators/Object Data/Map - Elevators.asm"

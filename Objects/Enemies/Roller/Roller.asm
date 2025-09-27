@@ -130,9 +130,10 @@ Roll_Stop:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_Roller:		subObjData Map_Roll, $4F0, 0, FALSE, 28, 32, 4, 0, 0
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Enemies/Roller/Object Data/Anim - Roller.asm"
 		include "Objects/Enemies/Roller/Object Data/Map - Roller.asm"

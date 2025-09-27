@@ -331,7 +331,7 @@ Obj_ChainStomp_Spikes:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_ChainStomp:	subObjMainData \
 				Obj_ChainStomp.action, \
 					setBit(render_flags.level) | \
@@ -345,4 +345,5 @@ Child6_ChainStomp_Spikes:
 		dc.l Obj_ChainStomp_Spikes
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Chained Stompers/Object Data/Map - Chain Stomp.asm"

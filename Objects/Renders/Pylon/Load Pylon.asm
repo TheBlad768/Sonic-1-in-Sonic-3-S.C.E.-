@@ -25,4 +25,5 @@ Render_Pylon:
 		jmp	(loc_1AF76).w							; draw
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Renders/Pylon/Object Data/Map - Pylon.asm"

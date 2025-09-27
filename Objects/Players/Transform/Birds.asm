@@ -389,4 +389,5 @@ Obj_SuperTailsBirds_FindTarget:
 		rts
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Players/Transform/Object Data/Map - Super Tails birds.asm"

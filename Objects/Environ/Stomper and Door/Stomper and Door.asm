@@ -333,4 +333,5 @@ ScrapStomp_TypeIndex: offsetTable
 		sfx	sfx_Crash,1
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Stomper and Door/Object Data/Map - Stomper and Door.asm"

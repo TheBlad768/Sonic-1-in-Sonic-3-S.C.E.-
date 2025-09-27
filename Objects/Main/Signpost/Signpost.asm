@@ -424,7 +424,7 @@ EndSign_CheckWall:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjSlot_EndSigns:		subObjSlotData 1-1, $494, 0, 0, $18, 0, Map_EndSigns, 32, 48, 6, 0, 0
 ObjDat_SignpostStub:		subObjData Map_SignpostStub, $492, 0, FALSE, 16, 8, 6, 0, 0
 ObjDat_SignpostSparkle:		subObjData Map_Ring, ArtTile_Ring, 1, FALSE, 16, 16, 5, 4, 0
@@ -452,6 +452,7 @@ AniRaw_SignpostSparkle:		dc.b 1, 1, 2, 3, 4, arfEnd
 	even
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Main/Signpost/Object Data/Map - End Signs.asm"
 		include "Objects/Main/Signpost/Object Data/DPLC - End Signs.asm"
 		include "Objects/Main/Signpost/Object Data/Map - Signpost Stub.asm"

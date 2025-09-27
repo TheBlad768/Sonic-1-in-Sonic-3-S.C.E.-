@@ -434,10 +434,10 @@ locret_38D72:
 		rts
 ; ---------------------------------------------------------------------------
 
-BridgeDepression:	binclude "Objects/Environ/Bridge/Object Data/Depression.bin"
-	even
-BridgeBendData:		binclude "Objects/Environ/Bridge/Object Data/Bend.bin"
-	even
+		; data
+		incfile.b	BridgeDepression, "Objects/Environ/Bridge/Object Data/Depression.bin"
+		incfile.b	BridgeBendData, "Objects/Environ/Bridge/Object Data/Bend.bin"
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Bridge/Object Data/Map - Tension Bridge.asm"

@@ -31,4 +31,5 @@ Obj_EdgeWalls:
 		jmp	(Sprite_OnScreen_Test).w
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Environ/Edge Walls/Object Data/Map - Edge Walls.asm"

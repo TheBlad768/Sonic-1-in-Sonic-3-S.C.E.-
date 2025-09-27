@@ -633,7 +633,7 @@ BossBlock_BreakChunkBlock:
 
 ; =============== S U B R O U T I N E =======================================
 
-; mapping
+; init
 ObjDat_BossBlock_Spike:		subObjData Map_BossSYZBlockSpike, $400, 0, FALSE, 32, 32, 5, 0, 4|collision_flags.npc.hurt
 ObjDat_BossBlock_Block:		subObjData Map_BossSYZBlock, $406, 2, TRUE, 32, 32, 4, 0, 0
 
@@ -653,5 +653,6 @@ PLC_BossBlock: plrlistheader
 PLC_BossBlock_end
 ; ---------------------------------------------------------------------------
 
+		; mappings
 		include "Objects/Bosses/SYZ3/Object Data/Map - Boss Block.asm"
 		include "Objects/Bosses/SYZ3/Object Data/Map - Boss Block(Spike).asm"
