@@ -340,14 +340,17 @@ Obj_SuperTailsBirds_FindTarget:
 		lea	(Collision_response_list).w,a4
 		move.w	(a4)+,d6							; get number of objects queued
 		beq.s	.return								; if there are none, return
+
+		; check
 		moveq	#0,d0
-		addq.b	#2,(_unkF66C).w
-		cmp.b	(_unkF66C).w,d6
+		move.b	(_unkF66C).w,d0
+		addq.b	#2,d0
+		cmp.b	d0,d6
 		bhi.s	.noreset
-		clr.b	(_unkF66C).w
+		moveq	#0,d0
 
 .noreset
-		move.b	(_unkF66C).w,d0
+		move.b	d0,(_unkF66C).w
 		sub.w	d0,d6
 		adda.w	d0,a4
 
