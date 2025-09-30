@@ -196,7 +196,7 @@ WindTunnel_flag_P2:					ds.b 1
 Disable_death_plane:					ds.b 1						; if set, going below the screen wont kill the player
 Ctrl_1_locked:						ds.b 1
 Ctrl_2_locked:						ds.b 1
-Level_frame_counter:					ds.w 1						; the number of frames which have elapsed since the level started
+Level_frame_counter:					ds.l 1						; the number of frames which have elapsed since the level started
 Level_started_flag:					ds.b 1
 Game_paused:						ds.b 1
 Restart_level_flag:					ds.b 1

@@ -104,9 +104,7 @@ GHZ1_Deform:
 		add.l	d1,d4								; add 25% to d4 ($6000) ; v_bg3screenposx
 
 		; cloud 1
-		move.w	(Level_frame_counter).w,d2					; 100% to d2 ($1000)
-		swap	d2
-		clr.w	d2								; get 100% ($10000)
+		move.l	(Level_frame_counter).w,d2					; 100% to d2 ($10000)
 		move.l	d2,d1								; copy 100% to d1 ($10000)
 		add.l	d4,d1								; add 37.5% to d1 ($6000) ; v_bg3screenposx
 		swap	d1
