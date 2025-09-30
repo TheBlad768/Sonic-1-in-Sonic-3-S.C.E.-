@@ -299,10 +299,11 @@ Credits_DrawSmallText:
 ; ---------------------------------------------------------------------------
 
 .exit
-		move.l	a1,d0										; load ROM address
-		btst	#0,d0										; is this an even address?
-		beq.s	.return										; if yes, branch
-		addq.w	#1,a1										; skip odd address (even)
+
+		; fix odd address
+		move.w	a1,d0										; load ROM address (lower 16 bits)
+		andi.w	#1,d0										; (0 = even, 1 = odd)
+		adda.w	d0,a1										; add 1 if it was odd, else add 0
 
 .return
 		rts
