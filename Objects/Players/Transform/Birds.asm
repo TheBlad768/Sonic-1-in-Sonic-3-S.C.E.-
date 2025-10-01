@@ -372,8 +372,6 @@ Obj_SuperTailsBirds_FindTarget:
 ; =============== S U B R O U T I N E =======================================
 
 .check_if_object_valid
-		tst.b	render_flags(a1)						; object visible on the screen?
-		bpl.s	.invalid							; if not, branch
 		tst.b	objoff_2D(a1)
 		bne.s	.invalid
 		andi.b	#$C0,d0
