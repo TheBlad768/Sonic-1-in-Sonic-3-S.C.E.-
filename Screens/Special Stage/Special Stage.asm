@@ -472,7 +472,7 @@ loc_491C:
 		; load mappings for the clouds
 		EniDecomp	MapEni_SSBg2, RAM_start, ArtTile_SS_Background_Clouds, 2, FALSE		; decompress Enigma mappings
 		copyTilemap	VRAM_Plane_A_Name_Table, 512, 256
-		lea	(RAM_start).l,a1
+		lea	-VRAM_Plane_Table_Size(a1),a1
 		copyTilemap	(VRAM_Plane_A_Name_Table+$1000), 512, 512, 1
 
 ; ---------------------------------------------------------------------------
