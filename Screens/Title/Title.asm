@@ -250,7 +250,7 @@ TitleScreen:
 		move.b	d0,(Current_special_stage).w
 		move.w	d0,(Current_zone_and_act).w
 		move.w	d0,(Apparent_zone_and_act).w
-		clr.b	(Current_special_stage).w
+		move.b	d0,(Current_special_stage).w
 
 		; clear emeralds RAM
 		lea	(Collected_emeralds_array).w,a1
