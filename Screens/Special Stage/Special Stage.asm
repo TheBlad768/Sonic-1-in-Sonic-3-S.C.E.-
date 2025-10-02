@@ -497,26 +497,22 @@ loc_4BF6:
 		move.w	(Camera_Y_pos_BG_copy).w,(V_scroll_value_BG).w
 
 loc_4C10:
-		moveq	#0,d0
-		move.w	(Camera_X_pos_BG_copy).w,d0
-		neg.w	d0
-		swap	d0
 		lea	byte_4CCC(pc),a1
 		lea	(SStage_Scroll_Buffer2).l,a3
 		moveq	#10-1,d3
 
-loc_4C26:
+.loop
 		move.w	2(a3),d0
 		jsr	(GetSineCosine).w
-		moveq	#0,d2
-		move.b	(a1)+,d2
-		muls.w	d2,d0
-		asr.l	#8,d0
-		move.w	d0,(a3)+
-		move.b	(a1)+,d2
-		ext.w	d2
+		move.w	(a1)+,d2
+		muls.w	d0,d2
+		swap	d2
+		move.w	d2,(a3)+
+		move.w	(a1)+,d2
 		add.w	d2,(a3)+
-		dbf	d3,loc_4C26
+		dbf	d3,.loop
+
+		; next
 		lea	(SStage_Scroll_Buffer2).l,a3
 		lea	byte_4CB8(pc),a2
 		bra.s	loc_4C7E
@@ -583,16 +579,16 @@ byte_4CC4:				; SStage_Scroll_Buffer
 		dc.b $28, $18
 		dc.b $18, $18
 byte_4CCC:
-		dc.b 8, 2		; sin, cos
-		dc.b 4, -1
-		dc.b 2, 3
-		dc.b 8, -1
-		dc.b 4, 2
-		dc.b 2, 3
-		dc.b 8, -3
-		dc.b 4, 2
-		dc.b 2, 3
-		dc.b 2, -1
+		dc.w $800, 2		; sin, cos
+		dc.w $400, -1
+		dc.w $200, 3
+		dc.w $800, -1
+		dc.w $400, 2
+		dc.w $200, 3
+		dc.w $800, -3
+		dc.w $400, 2
+		dc.w $200, 3
+		dc.w $200, -1
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to show the Special Stage layout
