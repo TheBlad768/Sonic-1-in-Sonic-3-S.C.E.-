@@ -26,6 +26,9 @@ PushableBlock_Var:
 
 Obj_PushableBlock:
 
+		; wait
+		jsr	(Obj_WaitOffscreen).w
+
 		; init
 		move.l	#Map_Push,mappings(a0)
 		move.w	#make_art_tile($562,2,FALSE),d0					; MZ specific code

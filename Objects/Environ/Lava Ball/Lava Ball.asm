@@ -12,6 +12,9 @@ LavaM_Rates:	dc.b 30, 60, 90, 120, 150, 180
 
 Obj_LavaMaker:
 
+		; wait
+		jsr	(Obj_WaitOffscreen).w
+
 		; set
 		move.b	subtype(a0),d0
 		lsr.w	#4,d0

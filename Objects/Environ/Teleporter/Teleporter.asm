@@ -41,6 +41,11 @@ tele_player2_attached		= *
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Teleport:
+
+		; wait
+		jsr	(Obj_WaitOffscreen).w
+
+		; set
 		move.l	#.main,address(a0)
 
 		; init

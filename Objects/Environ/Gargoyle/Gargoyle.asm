@@ -14,6 +14,9 @@ Gar_SpitRate:	dc.b 30, 60, 90, 120, 150, 180, 210, 240
 
 Obj_Gargoyle:
 
+		; wait
+		jsr	(Obj_WaitOffscreen).w
+
 		; init
 		lea	ObjDat_Gargoyle(pc),a1
 		jsr	(SetUp_ObjAttributes).w

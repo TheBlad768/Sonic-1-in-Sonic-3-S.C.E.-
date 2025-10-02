@@ -10,6 +10,9 @@ conv_speed				= objoff_40	; (2 bytes)
 
 Obj_Conveyor:
 
+		; wait
+		jsr	(Obj_WaitOffscreen).w
+
 		; init
 		move.l	#.action,address(a0)
 		move.b	#128,conv_width(a0)						; set width to 128 pixels

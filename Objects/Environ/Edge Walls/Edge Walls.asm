@@ -6,6 +6,9 @@
 
 Obj_EdgeWalls:
 
+		; wait
+		jsr	(Obj_WaitOffscreen).w
+
 		; init
 		move.l	#Map_EdgeWalls,mappings(a0)
 		move.w	#make_art_tile($3A4,2,FALSE),art_tile(a0)

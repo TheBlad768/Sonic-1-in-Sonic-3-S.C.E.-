@@ -9,6 +9,9 @@ obStatusTron		= objoff_32
 
 Obj_Newtron:
 
+		; wait
+		jsr	(Obj_WaitOffscreen).w
+
 		; init
 		lea	ObjDat_Newtron(pc),a1
 		jsr	(SetUp_ObjAttributes).w
