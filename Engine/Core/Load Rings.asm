@@ -239,8 +239,7 @@ Test_Ring_Collisions:
 
 .consume
 		move.w	#bytes_to_word(6,(CMap_Ring_Spark-CMap_Ring)/2),(a4)
-		moveq	#1,d0								; add 1 ring
-		bsr.s	AddRings
+		bsr.s	GiveRing
 		lea	(Ring_consumption_list).w,a3
 
 .find
@@ -279,17 +278,17 @@ Test_Ring_Collisions_AttractRing:
 		bra.s	Test_Ring_Collisions.consume
 
 ; ---------------------------------------------------------------------------
-; Add ring to player
+; Give ring to player
 ; ---------------------------------------------------------------------------
 
 ; =============== S U B R O U T I N E =======================================
 
-AddRings:
-		move.w	#999,d1								; max rings
-		add.w	d0,(Ring_count).w						; add to rings
-		cmp.w	(Ring_count).w,d1						; does the player 1 have 999 or less rings?
+GiveRing:
+		move.w	#999,d0								; max rings
+		addq.w	#1,(Ring_count).w						; add 1 to rings
+		cmp.w	(Ring_count).w,d0						; does the player 1 have 999 or less rings?
 		bhs.s	.skip								; if yes, branch
-		move.w	d1,(Ring_count).w						; set max rings
+		move.w	d0,(Ring_count).w						; set max rings
 
 .skip
 		ori.b	#1,(Update_HUD_ring_count).w					; update the rings counter
@@ -310,6 +309,35 @@ AddRings:
 
 .sfx
 		sfx	sfx_RingRight,1							; play ring sound
+
+; ---------------------------------------------------------------------------
+; Add ring to player
+; ---------------------------------------------------------------------------
+
+; =============== S U B R O U T I N E =======================================
+
+AddRings:
+		move.w	#999,d1								; max rings
+		add.w	d0,(Ring_count).w						; add to rings
+		cmp.w	(Ring_count).w,d1						; does the player 1 have 999 or less rings?
+		bhs.s	.skip								; if yes, branch
+		move.w	d1,(Ring_count).w						; set max rings
+
+.skip
+		ori.b	#1,(Update_HUD_ring_count).w					; update the rings counter
+		cmpi.w	#100,(Ring_count).w						; does the player 1 have less than 100 rings?
+		blo.s	GiveRing.sfx							; if yes, play the ring sound
+		bset	#1,(Extra_life_flags).w						; test and set the flag for the first extra life
+		beq.s	.add								; if it was clear before, branch
+		cmpi.w	#200,(Ring_count).w						; does the player 1 have less than 200 rings?
+		blo.s	GiveRing.sfx							; if yes, play the ring sound
+		bset	#2,(Extra_life_flags).w						; test and set the flag for the second extra life
+		bne.s	GiveRing.sfx							; if it was set before, play the ring sound
+
+.add
+		addq.b	#1,(Life_count).w						; add 1 to the life count
+		addq.b	#1,(Update_HUD_life_count).w					; add 1 to the displayed life count
+		music	mus_ExtraLife,1							; play the 1up song
 
 ; ---------------------------------------------------------------------------
 ; Render rings
