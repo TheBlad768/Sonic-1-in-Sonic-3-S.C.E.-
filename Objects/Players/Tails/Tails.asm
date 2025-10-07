@@ -1430,7 +1430,11 @@ Tails_MdNormal:
 		clr.w	(Flying_carrying_Sonic_flag).w
 
 loc_14760:
+
+	if ~~OriginalMode
 		bsr.w	Tails_Spindash
+	endif
+
 		bsr.w	Tails_Jump
 		bsr.w	Player_SlopeResist
 		bsr.w	Tails_InputAcceleration_Path

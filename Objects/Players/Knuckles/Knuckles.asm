@@ -342,7 +342,11 @@ loc_167EA:
 ; =============== S U B R O U T I N E =======================================
 
 Knux_MdNormal:
+
+	if ~~OriginalMode
 		bsr.w	SonicKnux_Spindash
+	endif
+
 		bsr.w	Knux_Jump
 		bsr.w	Player_SlopeResist
 		bsr.w	Knux_InputAcceleration_Path

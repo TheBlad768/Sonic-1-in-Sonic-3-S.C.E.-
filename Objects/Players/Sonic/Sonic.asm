@@ -404,7 +404,11 @@ loc_10F22:
 ; =============== S U B R O U T I N E =======================================
 
 Sonic_MdNormal:
+
+	if ~~OriginalMode
 		bsr.w	SonicKnux_Spindash
+	endif
+
 		bsr.w	Sonic_Jump
 		bsr.w	Player_SlopeResist
 		bsr.w	Sonic_Move
@@ -1646,12 +1650,15 @@ Sonic_CheckTransform:
 		endif
 
 Sonic_InstaShield:
+
+	if ~~OriginalMode
 		btst	#status_secondary.shield,status_secondary(a0)			; does Sonic have an S2 shield (The Elementals were already filtered out at this point)?
 		bne.s	locret_11A14							; if yes, branch
 		move.b	#1,(Shield+anim).w
 		move.b	#1,double_jump_flag(a0)
 		sfx	sfx_InstaAttack,1						; play Insta-Shield sound
 ; ---------------------------------------------------------------------------
+	endif
 
 locret_11A14:
 		rts
