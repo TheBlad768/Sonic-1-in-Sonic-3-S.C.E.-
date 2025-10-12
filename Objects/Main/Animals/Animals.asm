@@ -44,10 +44,10 @@ Obj_Animal:
 
 		; init
 		jsr	(Random_Number).w
-		move.w	#make_art_tile($580,0,FALSE),d1						; animal 1 (VRAM)
+		move.w	#make_art_tile($580,0,FALSE),d1					; animal 1 (VRAM)
 		andi.w	#1,d0
 		beq.s	.rskip
-		move.w	#make_art_tile($592,0,FALSE),d1						; animal 2 (VRAM)
+		move.w	#make_art_tile($592,0,FALSE),d1					; animal 2 (VRAM)
 
 .rskip
 		move.w	d1,art_tile(a0)
@@ -57,7 +57,7 @@ Obj_Animal:
 		add.w	d0,d1
 		lea	Obj_Animal_ZoneAnimals(pc),a1
 		move.b	(a1,d1.w),d0
-		lea	Obj_Animal_Properties(pc),a1						; $C size data
+		lea	Obj_Animal_Properties(pc),a1					; $C size data
 		adda.w	d0,a1
 		move.l	(a1)+,mappings(a0)
 		move.l	(a1)+,animal_ground_pointer(a0)
@@ -68,26 +68,26 @@ Obj_Animal:
 			setBit(status.npc.x_flip) \
 		),render_flags(a0)
 
-		move.l	#bytes_word_to_long(24/2,16/2,priority_6),height_pixels(a0)		; set height, width and priority
-		move.b	#24/2,y_radius(a0)							; set y_radius
+		move.l	#bytes_word_to_long(24/2,16/2,priority_6),height_pixels(a0)	; set height, width and priority
+		move.b	#24/2,y_radius(a0)						; set y_radius
 		move.b	#2,mapping_frame(a0)
 		move.b	#7,anim_frame_timer(a0)
 		move.w	#-$400,y_vel(a0)
-		move.l	#.main,address(a0)							; Go to "Obj_Animal_Main"
+		move.l	#.main,address(a0)						; Go to "Obj_Animal_Main"
 
 		; draw score
 		lea	Child6_EndSignScore(pc),a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.draw
 		move.w	objoff_3E(a0),d0
-		lsr.w	d0									; division by 2
+		lsr.w	d0								; division by 2
 		move.b	d0,mapping_frame(a1)
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
 
 .main
-		tst.b	render_flags(a0)							; object visible on the screen?
-		bpl.s	.delete									; if not, branch
+		tst.b	render_flags(a0)						; object visible on the screen?
+		bpl.s	.delete								; if not, branch
 		MoveSprite a0
 		tst.w	y_vel(a0)
 		bmi.s	.draw
@@ -121,8 +121,8 @@ Obj_Animal_Walk:
 		move.w	animal_ground_y_vel(a0),y_vel(a0)
 
 .notfloor
-		tst.b	render_flags(a0)							; object visible on the screen?
-		bpl.s	Obj_Animal.delete							; if not, branch
+		tst.b	render_flags(a0)						; object visible on the screen?
+		bpl.s	Obj_Animal.delete						; if not, branch
 		jmp	(Draw_Sprite).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -138,14 +138,14 @@ Obj_Animal_Fly:
 		move.w	animal_ground_y_vel(a0),y_vel(a0)
 
 .anim
-		subq.b	#1,anim_frame_timer(a0)							; decrement timer
-		bpl.s	.skipanim								; if time remains, branch
-		addq.b	#1+1,anim_frame_timer(a0)						; reset timer to 1 frames
-		bchg	#0,mapping_frame(a0)							; change frame
+		subq.b	#1,anim_frame_timer(a0)						; decrement timer
+		bpl.s	.skipanim							; if time remains, branch
+		addq.b	#1+1,anim_frame_timer(a0)					; reset timer to 1 frames
+		bchg	#0,mapping_frame(a0)						; change frame
 
 .skipanim
-		tst.b	render_flags(a0)							; object visible on the screen?
-		bpl.w	Obj_Animal.delete							; if not, branch
+		tst.b	render_flags(a0)						; object visible on the screen?
+		bpl.w	Obj_Animal.delete						; if not, branch
 		jmp	(Draw_Sprite).w
 
 ; ---------------------------------------------------------------------------
@@ -159,21 +159,21 @@ Obj_Animal_Ending:
 		; these are the S1 ending actions
 		moveq	#0,d0
 		move.b	subtype(a0),d0
-		lsl.w	#4,d0									; multiply by $10
-		lea	Animal_Ending_Index(pc,d0.w),a1						; $E size data
-		move.l	(a1)+,address(a0)							; Go to "NEXT"
+		lsl.w	#4,d0								; multiply by $10
+		lea	Animal_Ending_Index(pc,d0.w),a1					; $E size data
+		move.l	(a1)+,address(a0)						; Go to "NEXT"
 		move.l	(a1)+,mappings(a0)
 		move.w	(a1)+,art_tile(a0)
-		move.l	(a1),x_vel(a0)								; load horizontal and vertical speed
-		move.l	(a1),animal_ground_x_vel(a0)						; copy horizontal and vertical speed
+		move.l	(a1),x_vel(a0)							; load horizontal and vertical speed
+		move.l	(a1),animal_ground_x_vel(a0)					; copy horizontal and vertical speed
 
 		move.b	#( \
 			setBit(render_flags.level) | \
 			setBit(status.npc.x_flip) \
 		),render_flags(a0)
 
-		move.l	#bytes_word_to_long(24/2,16/2,priority_6),height_pixels(a0)		; set height, width and priority
-		move.b	#24/2,y_radius(a0)							; set y_radius
+		move.l	#bytes_word_to_long(24/2,16/2,priority_6),height_pixels(a0)	; set height, width and priority
+		move.b	#24/2,y_radius(a0)						; set y_radius
 		move.b	#7,anim_frame_timer(a0)
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
@@ -199,8 +199,8 @@ Animal_Ending_Index:
 
 Obj_Animal_FlickyWait:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(320/2)+24,d2								; is Sonic within $B8 pixels (x-axis)?
-		bhs.s	.chkdel									; if not, branch
+		cmpi.w	#(320/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		bhs.s	.chkdel								; if not, branch
 		move.l	animal_ground_x_vel(a0),x_vel(a0)
 		move.l	#.fly,address(a0)
 
@@ -219,10 +219,10 @@ Obj_Animal_FlickyWait:
 		bchg	#render_flags.x_flip,render_flags(a0)
 
 .anim
-		subq.b	#1,anim_frame_timer(a0)							; decrement timer
-		bpl.s	.chkdel									; if time remains, branch
-		addq.b	#1+1,anim_frame_timer(a0)						; reset timer to 1 frames
-		bchg	#0,mapping_frame(a0)							; change frame
+		subq.b	#1,anim_frame_timer(a0)						; decrement timer
+		bpl.s	.chkdel								; if time remains, branch
+		addq.b	#1+1,anim_frame_timer(a0)					; reset timer to 1 frames
+		bchg	#0,mapping_frame(a0)						; change frame
 
 .chkdel
 		bra.w	Obj_Animal_ChkDel
@@ -231,8 +231,8 @@ Obj_Animal_FlickyWait:
 
 Obj_Animal_FlickyJump:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(320/2)+24,d2								; is Sonic within $B8 pixels (x-axis)?
-		bhs.s	.chkdel									; if not, branch
+		cmpi.w	#(320/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		bhs.s	.chkdel								; if not, branch
 		clr.w	x_vel(a0)
 		clr.w	animal_ground_x_vel(a0)
 		move.l	#.jump,address(a0)
@@ -244,10 +244,10 @@ Obj_Animal_FlickyJump:
 		jsr	(Change_FlipX2).w
 
 		; anim
-		subq.b	#1,anim_frame_timer(a0)							; decrement timer
-		bpl.s	.chkdel									; if time remains, branch
-		addq.b	#1+1,anim_frame_timer(a0)						; reset timer to 1 frames
-		bchg	#0,mapping_frame(a0)							; change frame
+		subq.b	#1,anim_frame_timer(a0)						; decrement timer
+		bpl.s	.chkdel								; if time remains, branch
+		addq.b	#1+1,anim_frame_timer(a0)					; reset timer to 1 frames
+		bchg	#0,mapping_frame(a0)						; change frame
 
 .chkdel
 		bra.w	Obj_Animal_ChkDel
@@ -256,8 +256,8 @@ Obj_Animal_FlickyJump:
 
 Obj_Animal_RabbitWait:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(320/2)+24,d2								; is Sonic within $B8 pixels (x-axis)?
-		bhs.s	.chkdel									; if not, branch
+		cmpi.w	#(320/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		bhs.s	.chkdel								; if not, branch
 		move.l	animal_ground_x_vel(a0),x_vel(a0)
 		move.l	#.walk,address(a0)
 
@@ -303,8 +303,8 @@ Obj_Animal_DoubleBounce:
 
 Obj_Animal_LandJump:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(320/2)+24,d2								; is Sonic within $B8 pixels (x-axis)?
-		bhs.s	.chkdel									; if not, branch
+		cmpi.w	#(320/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		bhs.s	.chkdel								; if not, branch
 		clr.w	x_vel(a0)
 		clr.w	animal_ground_x_vel(a0)
 		move.l	#.jump,address(a0)
@@ -322,8 +322,8 @@ Obj_Animal_LandJump:
 
 Obj_Animal_SingleBounce:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(320/2)+24,d2								; is Sonic within $B8 pixels (x-axis)?
-		bhs.s	.chkdel									; if not, branch
+		cmpi.w	#(320/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		bhs.s	.chkdel								; if not, branch
 		move.l	#.bounce,address(a0)
 
 .bounce
@@ -347,8 +347,8 @@ Obj_Animal_SingleBounce:
 
 Obj_Animal_FlyBounce:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(320/2)+24,d2								; is Sonic within $B8 pixels (x-axis)?
-		bhs.s	Obj_Animal_ChkDel							; if not, branch
+		cmpi.w	#(320/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		bhs.s	Obj_Animal_ChkDel						; if not, branch
 		move.l	#.bounce,address(a0)
 
 .bounce
@@ -368,10 +368,10 @@ Obj_Animal_FlyBounce:
 		move.w	animal_ground_y_vel(a0),y_vel(a0)
 
 .anim
-		subq.b	#1,anim_frame_timer(a0)							; decrement timer
-		bpl.s	Obj_Animal_ChkDel							; if time remains, branch
-		addq.b	#1+1,anim_frame_timer(a0)						; reset timer to 1 frames
-		bchg	#0,mapping_frame(a0)							; change frame
+		subq.b	#1,anim_frame_timer(a0)						; decrement timer
+		bpl.s	Obj_Animal_ChkDel						; if time remains, branch
+		addq.b	#1+1,anim_frame_timer(a0)					; reset timer to 1 frames
+		bchg	#0,mapping_frame(a0)						; change frame
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -381,17 +381,17 @@ Obj_Animal_ChkDel:
 		blo.s	.draw
 		subi.w	#(512/2)+128,d0
 		bpl.s	.draw
-		tst.b	render_flags(a0)							; object visible on the screen?
-		bpl.s	.offscreen								; if not, branch
+		tst.b	render_flags(a0)						; object visible on the screen?
+		bpl.s	.offscreen							; if not, branch
 
 .draw
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
 
 .offscreen
-		move.w	respawn_addr(a0),d0							; get address in respawn table
-		beq.s	.delete									; if it's zero, it isn't remembered
-		movea.w	d0,a2									; load address into a2
+		move.w	respawn_addr(a0),d0						; get address in respawn table
+		beq.s	.delete								; if it's zero, it isn't remembered
+		movea.w	d0,a2								; load address into a2
 		bclr	#respawn_addr.state,(a2)					; turn on the slot
 
 .delete
