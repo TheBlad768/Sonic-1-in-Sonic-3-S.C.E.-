@@ -639,9 +639,9 @@ AddToDMAQueue macro art,vram,size,terminate
 out_of_xrange macro exit,xpos
 	moveq	#-$80,d0								; round down to nearest $80
     ifnb xpos
-	and.w	xpos,d0								; get object position (if specified as not x_pos)
+	and.w	xpos,d0									; get object position (if specified as not x_pos)
     else
-	and.w	x_pos(a0),d0							; get object position
+	and.w	x_pos(a0),d0								; get object position
     endif
 	out_of_xrange2.ATTRIBUTE	exit
     endm
@@ -660,9 +660,9 @@ out_of_xrange2 macro exit
 out_of_yrange macro exit,ypos
 	moveq	#-$80,d0								; round down to nearest $80
     ifnb ypos
-	and.w	ypos,d0								; get object position (if specified as not y_pos)
+	and.w	ypos,d0									; get object position (if specified as not y_pos)
     else
-	and.w	y_pos(a0),d0							; get object position
+	and.w	y_pos(a0),d0								; get object position
     endif
 	out_of_yrange2.ATTRIBUTE	exit
     endm
@@ -681,7 +681,7 @@ respawn_delete macro terminate
 	move.w	respawn_addr(a0),d0							; get address in respawn table
 	beq.s	.delete									; if it's zero, it isn't remembered
 	movea.w	d0,a2									; load address into a2
-	bclr	#7,(a2)
+	bclr	#respawn_addr.state,(a2)						; turn on the slot
 
 .delete
     if ("terminate"="0") <> ("terminate"="")

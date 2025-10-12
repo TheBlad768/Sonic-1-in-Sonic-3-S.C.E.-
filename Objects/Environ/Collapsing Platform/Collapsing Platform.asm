@@ -144,8 +144,8 @@ ObjPlatformCollapse_SmashObject:
 		move.w	respawn_addr(a0),d0						; get address in respawn table
 		beq.s	.playsfx							; if it's zero, it isn't remembered
 		movea.w	d0,a1								; load address into a1
-		bclr	#7,(a1)
-		clr.w	respawn_addr(a0)
+		bclr	#respawn_addr.state,(a1)					; turn on the slot
+		clr.w	respawn_addr(a0)				; clear the object respawn address (do not create this object again)
 
 .playsfx
 		sfx	sfx_Collapse,1

@@ -86,9 +86,11 @@ Obj_Bumper:
 		move.w	respawn_addr(a0),d0						; get address in respawn table
 		beq.s	.addscore							; if it's zero, it isn't remembered
 		movea.w	d0,a2								; load address into a2
-		cmpi.b	#10+$80,(a2)							; has bumper been hit 10 times? ($80(bit 7) = draw flag)
+
+		; check
+		cmpi.b	#10+setBit(respawn_addr.state),(a2)				; has bumper been hit 10 times? (bit 7 = remember flag)
 		bhs.s	.return								; if yes, Sonic gets no points
-		addq.b	#1,(a2)
+		addq.b	#1,(a2)								; add 1 hit
 
 .addscore
 		moveq	#1,d0

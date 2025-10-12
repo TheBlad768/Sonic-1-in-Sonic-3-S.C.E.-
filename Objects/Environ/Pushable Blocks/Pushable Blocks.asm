@@ -128,7 +128,7 @@ Obj_PushableBlock:
 		clr.w	(Push_block_addr).w						; clear push block address
 
 .delete2
-		bclr	#7,(a2)
+		bclr	#respawn_addr.state,(a2)					; turn on the slot
 
 .delete
 		jmp	(Delete_Current_Sprite).w
