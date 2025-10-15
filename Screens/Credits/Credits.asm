@@ -55,6 +55,9 @@ CreditsScreen:
 		; clear
 		move.b	d0,(Water_full_screen_flag).w
 		move.b	d0,(Water_flag).w
+		move.b	d0,(HUD_RAM.status).w
+		move.b	d0,(Extra_life_flags).w								; reset extra life ring flag
+		move.b	d0,(Update_HUD_timer).w								; clear time counter update flag
 		move.b	d0,(Last_star_post_hit).w
 		move.b	d0,(Special_bonus_entry_flag).w
 		move.b	d0,(Intro_flag).w

@@ -369,7 +369,7 @@ Obj_BossFire_ShipTubeFlame:
 		bne.s	.setf
 		tst.w	x_vel(a1)
 		beq.s	.setf
-		addq.b	#1,d0
+		moveq	#2,d0
 
 .setf
 		move.b	d0,mapping_frame(a0)
@@ -568,8 +568,10 @@ loc_18886:
 .anim
 		lea	Ani_Fire(pc),a1
 		jsr	(Animate_Sprite).w
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	Obj74_Delete
+
+		; draw
 		jmp	(Draw_And_Touch_Sprite).w
 
 ; ---------------------------------------------------------------------------

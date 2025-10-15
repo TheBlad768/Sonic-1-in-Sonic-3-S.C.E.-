@@ -12,7 +12,7 @@ sEggman_Frame				= objoff_3A	; .b ; reset DPLC frame
 
 Obj_ScrapEggman:
 
-		; load control desk palette
+		; set control desk palette
 		lea	(Normal_palette_line_2+$14).w,a1
 		move.l	#words_to_long($CAA,$A88),(a1)+
 		move.l	#words_to_long($866,$644),(a1)+
@@ -120,7 +120,7 @@ Obj_ScrapEggman_Block:
 		add.w	d0,x_pos(a0)							; +32 pixels
 
 		; set wait
-		lsl.w	#3,d1
+		lsl.w	#3,d1								; multiply by 8
 		move.w	d1,objoff_2E(a0)
 
 		; init
@@ -218,7 +218,7 @@ Obj_ScrapEggman_BlockPieces:
 		move.w	.speed(pc,d0.w),y_vel(a0)
 
 		; set frame
-		lsr.b	d0
+		lsr.b	d0								; division by 2
 		move.b	d0,mapping_frame(a0)
 
 .fall
