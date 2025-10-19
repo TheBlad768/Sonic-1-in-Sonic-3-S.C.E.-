@@ -215,8 +215,8 @@ sub_2FBA8:
 
 .p2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)
-		beq.s	.return
+		tst.l	address(a1)							; is the player RAM empty?
+		beq.s	.return								; if yes, branch
 
 .main
 		tst.b	object_control(a1)
