@@ -311,17 +311,17 @@ AddRings:
 		move.w	.table(pc,d0.w),d0
 		bmi.s	.sfx								; if negative, branch
 		cmp.w	(Ring_count).w,d0
-		bhi.s	.sfx
+		bls.s	.add
 
-		; add
+.sfx
+		sfx	sfx_RingRight,1							; play ring sound
+; ---------------------------------------------------------------------------
+
+.add
 		addq.b	#2,(Extra_life_flags).w						; set next ring bonus
 		addq.b	#1,(Life_count).w						; add 1 to the life count
 		addq.b	#1,(Update_HUD_life_count).w					; add 1 to the displayed life count
 		music	mus_ExtraLife,1							; play the 1up song
-; ---------------------------------------------------------------------------
-
-.sfx
-		sfx	sfx_RingRight,1							; play ring sound
 ; ---------------------------------------------------------------------------
 
 .table	dc.w 100, 200, 300, -1
