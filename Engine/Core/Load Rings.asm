@@ -207,7 +207,7 @@ Test_Ring_Collisions:
 		bne.s	.next								; if it has, branch
 
 		; RaiseError is only available in DEBUG builds
-		ifdebug	jsr	(Test_Ring_Collisions_RaiseError).l				; raise an error if there is ring is corrupted
+		ifdebug	jsr	(Test_Ring_Collisions_RaiseError).l			; raise an error if there is ring is corrupted
 
 		; check
 		move.w	(a1),d0								; get ring's x_pos
