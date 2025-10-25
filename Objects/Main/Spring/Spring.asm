@@ -655,6 +655,8 @@ loc_23660:
 		bclr	#status.player.on_object,status(a1)
 		clr.b	jumping(a1)
 		move.b	#PlayerID_Control,routine(a1)
+
+		; check
 		move.b	subtype(a0),d0
 		btst	#0,d0
 		beq.s	loc_236BA
