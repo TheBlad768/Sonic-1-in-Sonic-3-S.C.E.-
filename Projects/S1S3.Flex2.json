@@ -349,7 +349,8 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": false
+            "expanded": false,
+            "uuid": "01f36d87-21e4-484e-ade3-a4aeaa0ed102"
         },
         {
             "name": "Robotnik",
@@ -468,7 +469,7 @@
             "children": [
                 {
                     "format": "Sonic 3&K Object.js",
-                    "name": "Diagonal Spring",
+                    "name": "Diagonal Spring (Red)",
                     "palettes": [
                         {
                             "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
@@ -482,6 +483,31 @@
                     },
                     "mappings": {
                         "path": "../Objects/Main/Spring/Object Data/Map - Spring(Red).asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "4cbc8348-ec93-4380-85b7-fe11b3c04dca"
+                },
+                {
+                    "format": "Sonic 3&K Object.js",
+                    "name": "Diagonal Spring (Yellow)",
+                    "palettes": [
+                        {
+                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "../Objects/Main/Spring/KosinskiPM Art/Diagonal Spring.kospm",
+                        "compression": "KosinskiPlus-M",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "../Objects/Main/Spring/Object Data/Map - Spring(Yellow).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -692,7 +718,7 @@
                     "uuid": "f36355e6-cee3-483f-970d-6d9cd8865fb1"
                 },
                 {
-                    "name": "Spring",
+                    "name": "Spring (Red)",
                     "format": "Sonic 3&K Object.js",
                     "palettes": [
                         {
@@ -715,6 +741,31 @@
                         "label": ""
                     },
                     "uuid": "55e6cee3-a83f-470d-ad9c-d8865fb14792"
+                },
+                {
+                    "format": "Sonic 3&K Object.js",
+                    "name": "Spring (Yellow)",
+                    "palettes": [
+                        {
+                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "../Objects/Main/Spikes/KosinskiPM Art/SpikesSprings.kospm",
+                        "compression": "KosinskiPlus-M",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "../Objects/Main/Spring/Object Data/Map - Spring(Yellow).asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "da31e76d-9547-4a20-8415-411628875120"
                 },
                 {
                     "name": "StarPost",
@@ -740,6 +791,81 @@
                         "label": ""
                     },
                     "uuid": "a83fd70d-6d9c-4886-9fb1-47929999eaa2"
+                },
+                {
+                    "format": "Sonic 3&K Object.js",
+                    "name": "StarPost Stars 1",
+                    "palettes": [
+                        {
+                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "../Objects/Main/StarPost/KosinskiPM Art/StarPost Stars 1.kospm",
+                        "compression": "KosinskiPlus-M",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "../Objects/Main/StarPost/Object Data/Map - StarPost Stars.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "9e474cbc-8348-4c93-9380-85b7fe11b3c0"
+                },
+                {
+                    "format": "Sonic 3&K Object.js",
+                    "name": "StarPost Stars 2",
+                    "palettes": [
+                        {
+                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "../Objects/Main/StarPost/KosinskiPM Art/StarPost Stars 2.kospm",
+                        "compression": "KosinskiPlus-M",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "../Objects/Main/StarPost/Object Data/Map - StarPost Stars.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "474cbc83-48ec-43d3-8085-b7fe11b3c04d"
+                },
+                {
+                    "format": "Sonic 3&K Object.js",
+                    "name": "StarPost Stars 3",
+                    "palettes": [
+                        {
+                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "../Objects/Main/StarPost/KosinskiPM Art/StarPost Stars 3.kospm",
+                        "compression": "KosinskiPlus-M",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "../Objects/Main/StarPost/Object Data/Map - StarPost Stars.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "159e474c-bc83-48ec-93d3-8085b7fe11b3"
                 }
             ],
             "isDirectory": true,
