@@ -26,59 +26,35 @@ Please read the [license](LICENSE) before using this project.
 ## Screenshots
 
 <details>
-<summary>Screenshots</summary>
- 
-![1]
-![2]
-![3]
-![4]
-![5]
-![6]
-![7]
-![8]
-![9]
-![10]
-![11]
-![12]
-![13]
-![14]
-![15]
-![16]
-![17]
-![18]
-![19]
-![20]
-![21]
-![22]
-![23]
-![24]
-![25]
+<summary>Show screenshots</summary>
 
-[1]: https://i.imgur.com/EqCmjSK.png
-[2]: https://i.imgur.com/rtzOHYb.png
-[3]: https://i.imgur.com/6YTWpYb.png
-[4]: https://i.imgur.com/MLsX9YQ.png
-[5]: https://i.imgur.com/MlrJwEI.png
-[6]: https://i.imgur.com/l0QAfCO.png
-[7]: https://i.imgur.com/dRpyxOJ.png
-[8]: https://i.imgur.com/Ta9my76.png
-[9]: https://i.imgur.com/FtrAkRO.png
-[10]: https://i.imgur.com/6bGlgfN.png
-[11]: https://i.imgur.com/fn5ETM9.png
-[12]: https://i.imgur.com/K0HpIgu.png
-[13]: https://i.imgur.com/BD7Uuzq.png
-[14]: https://i.imgur.com/haLN95q.png
-[15]: https://i.imgur.com/JT05cue.png
-[16]: https://i.imgur.com/X1m8pXp.png
-[17]: https://i.imgur.com/V6AfKYw.png
-[18]: https://i.imgur.com/D0Eapq5.png
-[19]: https://i.imgur.com/QM5eUop.png
-[20]: https://i.imgur.com/82Rdk6v.png
-[21]: https://i.imgur.com/r6eKElG.png
-[22]: https://i.imgur.com/rmrbD5b.png
-[23]: https://i.imgur.com/g0tqv5L.png
-[24]: https://i.imgur.com/Xp8CwYa.png
-[25]: https://i.imgur.com/v39oNGQ.png
+<p align="center">
+  <img src="https://i.imgur.com/EqCmjSK.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/rtzOHYb.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/6YTWpYb.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/MLsX9YQ.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/MlrJwEI.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/l0QAfCO.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/dRpyxOJ.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/Ta9my76.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/FtrAkRO.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/6bGlgfN.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/fn5ETM9.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/K0HpIgu.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/BD7Uuzq.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/haLN95q.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/JT05cue.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/X1m8pXp.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/V6AfKYw.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/D0Eapq5.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/QM5eUop.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/82Rdk6v.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/r6eKElG.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/rmrbD5b.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/g0tqv5L.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/Xp8CwYa.png" style="max-width:100%;">
+  <img src="https://i.imgur.com/v39oNGQ.png" style="max-width:100%;">
+</p>
 
 </details>
 
