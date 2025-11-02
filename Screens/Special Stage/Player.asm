@@ -26,7 +26,7 @@ loc_4B97C:
 		move.b	#2,anim(a0)
 		bsr.s	sub_4B99E
 		moveq	#0,d0
-		lea	(Player_1).w,a1							; a1=character
+		movea.w	a0,a1								; a1=character
 		move.b	mapping_frame(a1),d0
 		jsr	(Perform_Player_DPLC).l
 		bsr.w	SS_FixCamera
@@ -298,6 +298,7 @@ loc_1BBF4:
 		move.w	(SStage_scalar_index_1).w,d0
 		add.w	d0,(SStage_scalar_index_0).w
 		rts
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj09_Fall:
@@ -597,7 +598,7 @@ Obj09_ChkBumper:
 		cmpi.b	#$25,d0								; is the item a bumper?
 		bne.s	Obj09_GOAL
 		move.l	objoff_32(a0),d1
-		subi.l	#$FF0001,d1
+		subi.l	#(SStage_Buffer1+1)&$FFFFFF,d1
 		move.w	d1,d2
 		andi.w	#$7F,d1
 		mulu.w	#$18,d1
