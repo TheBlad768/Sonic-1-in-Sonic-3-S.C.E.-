@@ -54,7 +54,6 @@ Obj09_Index: offsetTable
 		offsetTableEntry.w Obj09_Main						; 0
 		offsetTableEntry.w Obj09_ChkDebug					; 2
 		offsetTableEntry.w Obj09_ExitStage					; 4
-		offsetTableEntry.w Obj09_Exit2						; 6
 ; ---------------------------------------------------------------------------
 
 off_4B9C2:
@@ -296,30 +295,9 @@ Obj09_ExitStage:
 		st	(Special_stage_flag).w
 
 loc_1BBF4:
-		cmpi.w	#$3000,(SStage_scalar_index_1).w
-		blt.s	loc_1BC16
-		addq.b	#2,routine(a0)
-		clr.w	(SStage_scalar_index_1).w
-		move.w	#$4000,(SStage_scalar_index_0).w
-		move.w	#1*60,objoff_3C(a0)
-
-loc_1BC16:
 		move.w	(SStage_scalar_index_1).w,d0
 		add.w	d0,(SStage_scalar_index_0).w
 		rts
-; ---------------------------------------------------------------------------
-
-Obj09_Exit2:
-		addi.w	#$40,(SStage_scalar_index_1).w
-		move.w	(SStage_scalar_index_1).w,d0
-		add.w	d0,(SStage_scalar_index_0).w
-		subq.w	#1,objoff_3C(a0)
-		bne.s	loc_1BC40
-		move.l	#loc_4B97C,address(a0)
-
-loc_1BC40:
-		bra.w	loc_4B97C
-
 ; =============== S U B R O U T I N E =======================================
 
 Obj09_Fall:
