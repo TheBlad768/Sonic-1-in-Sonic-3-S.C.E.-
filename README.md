@@ -295,8 +295,6 @@ Try to keep 2 passes at all times. If you see 3, 4 or more passes, you should fi
 
 ## These projects are based on the Sonic Clean Engine (S.C.E.)
 
-## These projects are based on the Sonic Clean Engine (S.C.E.)
-
 <details>
 <summary><b>Sonic Vania (2025 Demo)</b> by JvneTh</summary>
 <p align="center">
