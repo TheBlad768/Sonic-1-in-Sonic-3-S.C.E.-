@@ -2775,14 +2775,14 @@ loc_153D6:
 		beq.w	loc_15538
 		cmpi.b	#$C0,d0
 		beq.w	loc_1559C
-		bsr.w	CheckLeftWallDist
+		jsr	(CheckLeftWallDist).w
 		tst.w	d1
 		bpl.s	loc_1541A
 		sub.w	d1,x_pos(a0)
 		clr.w	x_vel(a0)
 
 loc_1541A:
-		bsr.w	CheckRightWallDist
+		jsr	(CheckRightWallDist).w
 		tst.w	d1
 		bpl.s	loc_1542C
 		add.w	d1,x_pos(a0)
@@ -2844,7 +2844,7 @@ locret_154AA:
 ; ---------------------------------------------------------------------------
 
 loc_154AC:
-		bsr.w	CheckLeftWallDist
+		jsr	(CheckLeftWallDist).w
 		tst.w	d1
 		bpl.s	loc_154C4
 		sub.w	d1,x_pos(a0)
@@ -2873,7 +2873,7 @@ locret_154EC:
 ; ---------------------------------------------------------------------------
 
 loc_154EE:
-		bsr.w	CheckRightWallDist
+		jsr	(CheckRightWallDist).w
 		tst.w	d1
 		bpl.s	locret_15500
 		add.w	d1,x_pos(a0)
@@ -2906,14 +2906,14 @@ loc_1551E:
 ; ---------------------------------------------------------------------------
 
 loc_15538:
-		bsr.w	CheckLeftWallDist
+		jsr	(CheckLeftWallDist).w
 		tst.w	d1
 		bpl.s	loc_1554A
 		sub.w	d1,x_pos(a0)
 		clr.w	x_vel(a0)
 
 loc_1554A:
-		bsr.w	CheckRightWallDist
+		jsr	(CheckRightWallDist).w
 		tst.w	d1
 		bpl.s	loc_1555C
 		add.w	d1,x_pos(a0)
@@ -2950,7 +2950,7 @@ locret_1559A:
 ; ---------------------------------------------------------------------------
 
 loc_1559C:
-		bsr.w	CheckRightWallDist
+		jsr	(CheckRightWallDist).w
 		tst.w	d1
 		bpl.s	loc_155B4
 		add.w	d1,x_pos(a0)
