@@ -70,8 +70,10 @@ SegaScreen:
 		move.l	#words_to_long($EC8,$EA6),(a1)+
 		move.w	#$E60,(a1)
 
+		; set
+		move.l	#VInt_Fade,(V_int_ptr).w							; set VInt pointer
+
 .waitplc
-		move.b	#VintID_Fade,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_KosPlus_Module_Queue).w
@@ -79,15 +81,17 @@ SegaScreen:
 		bne.s	.waitplc									; wait for KosPlusM queue to clear
 
 		; next
-		move.b	#VintID_Main,(V_int_routine).w
+		move.l	#VInt_Main,(V_int_ptr).w							; set VInt pointer
 		jsr	(Wait_VSync).w
 		enableScreen
 		jsr	(Pal_FadeFromBlack).w
 		sfx	sfx_Sega									; play SEGA sound
+
+		; set
 		move.w	#3*60,(Demo_timer).w								; set to wait for 3 seconds
+		move.l	#VInt_Sega,(V_int_ptr).w							; set VInt pointer
 
 .loop
-		move.b	#VintID_Sega,(V_int_routine).w
 		jsr	(Wait_VSync).w
 
 		; check exit
@@ -100,7 +104,7 @@ SegaScreen:
 		music	mus_Stop									; stop SEGA sound
 
 		; wait stop SEGA sound
-		move.b	#VintID_Main,(V_int_routine).w
+		move.l	#VInt_Main,(V_int_ptr).w							; set VInt pointer
 		jsr	(Wait_VSync).w
 
 		; credits cheat

@@ -86,8 +86,10 @@ OptionsScreen:
 		lea	PLC_Options(pc),a5
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
+		; set
+		move.l	#VInt_Fade,(V_int_ptr).w							; set VInt pointer
+
 .waitplc
-		move.b	#VintID_Fade,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_KosPlus_Module_Queue).w
@@ -129,13 +131,12 @@ OptionsScreen:
 		move.w	d0,(Options_save_music).w							; save id music
 
 		; next
-		move.b	#VintID_LevelSelect,(V_int_routine).w
+		move.l	#VInt_LevelSelect,(V_int_ptr).w							; set VInt pointer
 		jsr	(Wait_VSync).w
 		enableScreen
 		jsr	(Pal_FadeFromBlack).w
 
 .loop
-		move.b	#VintID_LevelSelect,(V_int_routine).w
 		jsr	(Wait_VSync).w
 		moveq	#palette_line_0,d3
 		bsr.w	Options_MarkFields
@@ -317,7 +318,7 @@ Options_Controls:
 
 		; play sample
 		move.w	d3,d0
-		addq.w	#1,d0										; $00 is reserved for pause
+		addi.w	#dac__First,d0									; $00 is reserved for pause
 		jmp	(Play_Sample).w									; play sample
 
 ; ---------------------------------------------------------------------------

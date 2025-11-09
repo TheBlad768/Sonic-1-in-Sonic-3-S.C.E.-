@@ -92,15 +92,15 @@ LevelSelectScreen:
 		bsr.w	LevelSelect_LoadText
 		move.w	#palette_line_1+LevelSelect_VRAM,d3
 		bsr.w	LevelSelect_LoadHeaderText
-		move.w	#palette_line_0+LevelSelect_VRAM,d3
+		moveq	#palette_line_0+LevelSelect_VRAM,d3
 		bsr.w	LevelSelect_LoadSpecialStage
-		move.w	#palette_line_0+LevelSelect_VRAM,d3
+		moveq	#palette_line_0+LevelSelect_VRAM,d3
 		bsr.w	LevelSelect_LoadCharacter
-		move.w	#palette_line_0+LevelSelect_VRAM,d3
+		moveq	#palette_line_0+LevelSelect_VRAM,d3
 		bsr.w	LevelSelect_MarkFields.drawmusic
-		move.w	#palette_line_0+LevelSelect_VRAM,d3
+		moveq	#palette_line_0+LevelSelect_VRAM,d3
 		bsr.w	LevelSelect_MarkFields.drawsound
-		move.w	#palette_line_0+LevelSelect_VRAM,d3
+		moveq	#palette_line_0+LevelSelect_VRAM,d3
 		bsr.w	LevelSelect_MarkFields.drawsample
 		move.w	#palette_line_1,d3
 		bsr.w	LevelSelect_MarkFields
@@ -110,8 +110,10 @@ LevelSelectScreen:
 		lea	(Target_palette).w,a2
 		jsr	(PalLoad_Line32).w
 
+		; set
+		move.l	#VInt_Fade,(V_int_ptr).w							; set VInt pointer
+
 .waitplc
-		move.b	#VintID_Fade,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_KosPlus_Module_Queue).w
@@ -119,13 +121,12 @@ LevelSelectScreen:
 		bne.s	.waitplc									; wait for KosPlusM queue to clear
 
 		; next
-		move.b	#VintID_LevelSelect,(V_int_routine).w
+		move.l	#VInt_LevelSelect,(V_int_ptr).w							; set VInt pointer
 		jsr	(Wait_VSync).w
 		enableScreen
 		jsr	(Pal_FadeFromBlack).w
 
 .loop
-		move.b	#VintID_LevelSelect,(V_int_routine).w
 		jsr	(Wait_VSync).w
 		lea	LSScroll_Data(pc),a2
 		jsr	(HScroll_Deform).w

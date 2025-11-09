@@ -95,8 +95,10 @@ EndingScreen:
 		move.b	(a1),d0										; player palette
 		jsr	(LoadPalette).w									; load player's palette
 
+		; set
+		move.l	#VInt_Fade,(V_int_ptr).w							; set VInt pointer
+
 .waitplc
-		move.b	#VintID_Fade,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_KosPlus_Module_Queue).w
@@ -187,7 +189,7 @@ EndingScreen:
 		music	mus_Ending									; play music
 
 		; next
-		move.b	#VintID_Menu,(V_int_routine).w
+		move.l	#VInt_Menu,(V_int_ptr).w							; set VInt pointer
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_Sprites).w
@@ -196,9 +198,11 @@ EndingScreen:
 		enableScreen
 		jsr	(Pal_FadeFromBlack).w
 
+		; set
+		move.l	#VInt_Level,(V_int_ptr).w							; set VInt pointer
+
 .loop
 		jsr	(Pause_Game.ending).w
-		move.b	#VintID_Level,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		addq.w	#1,(Level_frame_counter).w
@@ -224,7 +228,6 @@ EndingScreen:
 
 .allemlds_loop
 		jsr	(Pause_Game.ending).w
-		move.b	#VintID_Level,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		addq.w	#1,(Level_frame_counter).w

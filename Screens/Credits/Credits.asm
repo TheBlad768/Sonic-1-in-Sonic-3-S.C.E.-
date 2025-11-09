@@ -78,8 +78,10 @@ CreditsScreen:
 		lea	(Target_palette).w,a2
 		jsr	(PalLoad_Line32).w
 
+		; set
+		move.l	#VInt_Fade,(V_int_ptr).w							; set VInt pointer
+
 .waitplc
-		move.b	#VintID_Fade,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_KosPlus_Module_Queue).w
@@ -98,13 +100,12 @@ CreditsScreen:
 		music	mus_S3Credits
 		move.w	#3*60,(Credits_process_time).w
 		move.l	#Credits_Process_LoadText,(Credits_process).w
-		move.b	#VintID_Main,(V_int_routine).w
+		move.l	#VInt_Main,(V_int_ptr).w							; set VInt pointer
 		jsr	(Wait_VSync).w
 		enableScreen
 		jsr	(Pal_FadeFromBlack).w
 
 .loopt
-		move.b	#VintID_Main,(V_int_routine).w
 		jsr	(Wait_VSync).w
 
 		; load process
@@ -139,7 +140,6 @@ CreditsScreen:
 		jsr	(Pal_FadeFromBlack).w
 
 .loope
-		move.b	#VintID_Main,(V_int_routine).w
 		jsr	(Wait_VSync).w
 		addq.w	#1,(Level_frame_counter).w
 

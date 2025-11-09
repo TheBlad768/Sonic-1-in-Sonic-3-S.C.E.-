@@ -67,8 +67,10 @@ SegaScreen:
 		lea	(Normal_palette).w,a2
 		jsr	(PalLoad_Line16).w
 
+		; set
+		move.l	#VInt_Fade,(V_int_ptr).w							; set VInt pointer
+
 .waitplc
-		move.b	#VintID_Fade,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_KosPlus_Module_Queue).w
@@ -76,14 +78,15 @@ SegaScreen:
 		bne.s	.waitplc									; wait for KosPlusM queue to clear
 
 		; next
-		move.b	#VintID_Main,(V_int_routine).w
+		move.l	#VInt_Main,(V_int_ptr).w							; set VInt pointer
 		jsr	(Wait_VSync).w
 		enableScreen
+
+		; set
 		move.w	#$28,(Palette_cycle_counters+2).w
 		move.w	#3*60,(Demo_timer).w								; set to wait for 3 seconds
 
 .loop
-		move.b	#VintID_Main,(V_int_routine).w
 		jsr	(Wait_VSync).w
 		bsr.s	AnPal_SegaProto
 

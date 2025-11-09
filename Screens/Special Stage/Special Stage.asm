@@ -188,8 +188,10 @@ SpecialStageScreen:
 		move.l	(a1)+,(a2)+
 		move.w	(a1),(a2)
 
+		; set
+		move.l	#VInt_Fade,(V_int_ptr).w							; set VInt pointer
+
 .waitplc
-		move.b	#VintID_Fade,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_KosPlus_Module_Queue).w
@@ -239,15 +241,17 @@ SpecialStageScreen:
 	endif
 
 		music	mus_SpecialStage								; play Special Stage BG music
-		move.b	#VintID_Main,(V_int_routine).w
+		move.l	#VInt_Main,(V_int_ptr).w							; set VInt pointer
 		jsr	(Wait_VSync).w
 		bsr.w	GetDemoPtr
 		enableScreen
 		jsr	(Pal_FadeFromWhite).w
 
+		; set
+		move.l	#VInt_SpecialStage,(V_int_ptr).w						; set VInt pointer
+
 .loop
 		jsr	(Pause_Game).w
-		move.b	#VintID_SpecialStage,(V_int_routine).w
 		jsr	(Wait_VSync).w
 		bsr.w	Demo_PlayRecord
 		bsr.w	Process_SSSprites
@@ -280,12 +284,14 @@ SpecialStageScreen:
 ; ---------------------------------------------------------------------------
 
 .fin
+
+		; set
+		move.l	#VInt_Menu,(V_int_ptr).w							; set VInt pointer
 		move.w	#1*60,(Demo_timer).w								; set delay time to 1 second
 		move.w	#bytes_to_word((palette_line_0>>8),64-1),(Palette_fade_info).w			; set fade info and fade count
 		clr.w	(Pal_fade_delay).w
 
 .finloop
-		move.b	#VintID_Menu,(V_int_routine).w
 		jsr	(Wait_VSync).w
 		bsr.w	Process_SSSprites
 		move.w	(Camera_X_pos).w,(Camera_X_pos_copy).w
@@ -391,8 +397,10 @@ SpecialStageScreen:
 		move.l	#Obj_SpecialStage_Results,(Dynamic_object_RAM+(object_size*29)+address).w	; load results screen object
 		jsr	(Pal_FadeFromWhite).w
 
+		; set
+		move.l	#VInt_SpecialStageResults,(V_int_ptr).w						; set VInt pointer
+
 .results
-		move.b	#VintID_SpecialStageResults,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		addq.w	#1,(Level_frame_counter).w

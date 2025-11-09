@@ -76,8 +76,10 @@ TitleScreen:
 		move.l	#words_to_long($C66,$E88),(a1)+
 		move.w	#cWhite,(a1)
 
+		; set
+		move.l	#VInt_Fade,(V_int_ptr).w							; set VInt pointer
+
 .waitplc
-		move.b	#VintID_Fade,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_KosPlus_Module_Queue).w
@@ -106,7 +108,7 @@ TitleScreen:
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
 		; fade from
-		move.b	#VintID_Menu,(V_int_routine).w
+		move.l	#VInt_Menu,(V_int_ptr).w							; set VInt pointer
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_Sprites).w
@@ -116,7 +118,6 @@ TitleScreen:
 		jsr	(Pal_FadeFromBlack).w
 
 .tloop
-		move.b	#VintID_Menu,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_Sprites).w
@@ -193,7 +194,6 @@ TitleScreen:
 		move.w	#(9*60)+16,(Demo_timer).w							; set to wait for 9 seconds
 
 		; next
-		move.b	#VintID_Menu,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_Sprites).w
@@ -202,8 +202,10 @@ TitleScreen:
 		enableScreen
 		jsr	(Pal_FadeFromBlack).w
 
+		; set
+		move.l	#VInt_Level,(V_int_ptr).w							; set VInt pointer
+
 .loop
-		move.b	#VintID_Level,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		addq.w	#1,(Level_frame_counter).w

@@ -65,8 +65,10 @@ ContinueScreen:
 		; load text art
 		QueueStaticDMA ArtUnc_TitleCardLargeText,.artsize,tiles_to_bytes($347)
 
+		; set
+		move.l	#VInt_Fade,(V_int_ptr).w							; set VInt pointer
+
 .waitplc
-		move.b	#VintID_Fade,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_KosPlus_Module_Queue).w
@@ -133,13 +135,12 @@ ContinueScreen:
 		jsr	(Process_Sprites).w
 		jsr	(Render_Sprites).w
 		music	mus_Continue
-		move.b	#VintID_Continue,(V_int_routine).w
+		move.l	#VInt_Continue,(V_int_ptr).w							; set VInt pointer
 		jsr	(Wait_VSync).w
 		enableScreen
 		jsr	(Pal_FadeFromBlack).w
 
 .loop
-		move.b	#VintID_Continue,(V_int_routine).w
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync).w
 		jsr	(Process_Sprites).w

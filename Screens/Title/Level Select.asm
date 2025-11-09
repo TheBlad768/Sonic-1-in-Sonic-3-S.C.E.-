@@ -91,8 +91,10 @@ TitleLevelSelectScreen:
 		lea	(Normal_palette).w,a2
 		jsr	(PalLoad_Line64).w
 
+		; set
+		move.l	#VInt_LevelSelect,(V_int_ptr).w							; set VInt pointer
+
 .loop
-		move.b	#VintID_LevelSelect,(V_int_routine).w
 		jsr	(Wait_VSync).w
 		moveq	#palette_line_0,d3
 		bsr.w	TitleLevelSelect_MarkFields
