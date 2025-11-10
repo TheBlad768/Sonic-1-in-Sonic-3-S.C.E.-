@@ -58,7 +58,7 @@ VInt_Done:
 ; =============== S U B R O U T I N E =======================================
 
 VInt_Lag:
-		addq.w	#4,sp								; do not execute "VInt_Done" twice
+		addq.w	#4,sp								; do not execute "VInt_Music" and "VInt_Done" twice
 
 VInt_Lag_Main:
 		addq.w	#1,(Lag_frame_count).w
