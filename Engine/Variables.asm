@@ -581,4 +581,4 @@ H_int_addr:						ds.l 1
 	endif
 
 	dephase		; stop pretending
-	!org	0	; reset the program counter
+	!org 0		; reset the program counter
