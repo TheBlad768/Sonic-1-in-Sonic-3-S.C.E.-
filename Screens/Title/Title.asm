@@ -18,9 +18,9 @@ Title_end:				ds.b 1
 ; =============== S U B R O U T I N E =======================================
 
 TitleScreen:
-		music	mus_Stop									; stop music
-		jsr	(Clear_KosPlus_Module_Queue).w							; clear KosPlusM PLCs
-		ResetDMAQueue										; clear DMA queue
+		music	mus_Stop							; stop music
+		jsr	(Clear_KosPlus_Module_Queue).w					; clear KosPlusM PLCs
+		ResetDMAQueue								; clear DMA queue
 		jsr	(Pal_FadeToBlack).w
 		disableInts
 		move.l	#VInt,(V_int_addr).w
@@ -30,17 +30,17 @@ TitleScreen:
 		lea	Level_VDP(pc),a1
 		jsr	(Load_VDP).w
 		jsr	(Clear_Palette).w
-		clearRAM Object_RAM, Object_RAM_end							; clear the object RAM
-		clearRAM Lag_frame_count, Lag_frame_count_end						; clear variables
-		clearRAM Camera_RAM, Camera_RAM_end							; clear the camera RAM
-		clearRAM Oscillating_variables, Oscillating_variables_end				; clear variables
+		clearRAM Object_RAM, Object_RAM_end					; clear the object RAM
+		clearRAM Lag_frame_count, Lag_frame_count_end				; clear variables
+		clearRAM Camera_RAM, Camera_RAM_end					; clear the camera RAM
+		clearRAM Oscillating_variables, Oscillating_variables_end		; clear variables
 
 		; clear
 		move.b	d0,(Water_full_screen_flag).w
 		move.b	d0,(Water_flag).w
 		move.b	d0,(HUD_RAM.status).w
-		move.b	d0,(Extra_life_flags).w								; reset extra life ring flag
-		move.b	d0,(Update_HUD_timer).w								; clear time counter update flag
+		move.b	d0,(Extra_life_flags).w						; reset extra life ring flag
+		move.b	d0,(Update_HUD_timer).w						; clear time counter update flag
 		move.w	d0,(Current_zone_and_act).w
 		move.w	d0,(Apparent_zone_and_act).w
 		move.b	d0,(Last_star_post_hit).w
@@ -56,11 +56,11 @@ TitleScreen:
 
 		; load text art
 		lea	(ArtKosPM_TitleText).l,a1
-		tst.b	(Japan_credits_flag).w								; check cheat
+		tst.b	(Japan_credits_flag).w						; check cheat
 		beq.s	.notcheat
 
 		; load mapping
-		EniDecomp	MapEni_TitleCredits, RAM_start, $540, 0, TRUE				; decompress Enigma mappings
+		EniDecomp	MapEni_TitleCredits, RAM_start, $540, 0, TRUE		; decompress Enigma mappings
 		copyTilemap	VRAM_Plane_B_Name_Table, 320, 224
 
 		; load credits text art
@@ -77,21 +77,22 @@ TitleScreen:
 		move.w	#cWhite,(a1)
 
 		; set
-		move.l	#VInt_Fade,(V_int_ptr).w							; set VInt pointer
+		move.l	#VInt_Fade,(V_int_ptr).w					; set VInt pointer
 
 .waitplc
+		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
-		jsr	(Wait_VSync).w
+		jsr	(Wait_VSync.skip).w
 		jsr	(Process_KosPlus_Module_Queue).w
 		tst.w	(KosPlus_modules_left).w
-		bne.s	.waitplc									; wait for KosPlusM queue to clear
+		bne.s	.waitplc							; wait for KosPlusM queue to clear
 
 		; check cheat
 		tst.b	(Japan_credits_flag).w
 		bne.s	.skiptext
 
 		; create
-		lea	(Reserved_object_3).w,a1							; load "SONIC TEAM PRESENTS" object
+		lea	(Reserved_object_3).w,a1					; load "SONIC TEAM PRESENTS" object
 		move.l	#Draw_Sprite,address(a1)
 		move.l	#Map_TText,mappings(a1)
 		move.w	#make_art_tile($540,0,FALSE),art_tile(a1)
@@ -101,16 +102,17 @@ TitleScreen:
 .skiptext
 
 		; set wait
-		move.w	#1*60,(Demo_timer).w								; set to wait for 1 seconds
+		move.w	#1*60,(Demo_timer).w						; set to wait for 1 seconds
 
 		; load main art
 		lea	PLC_Title(pc),a5
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
 		; fade from
-		move.l	#VInt_Menu,(V_int_ptr).w							; set VInt pointer
+		move.l	#VInt_Menu,(V_int_ptr).w					; set VInt pointer
+		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
-		jsr	(Wait_VSync).w
+		jsr	(Wait_VSync.skip).w
 		jsr	(Process_Sprites).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
@@ -118,15 +120,16 @@ TitleScreen:
 		jsr	(Pal_FadeFromBlack).w
 
 .tloop
+		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
-		jsr	(Wait_VSync).w
+		jsr	(Wait_VSync.skip).w
 		jsr	(Process_Sprites).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
 		tst.w	(KosPlus_modules_left).w
-		bne.s	.tloop										; wait for KosPlusM queue to clear
-		tst.b	(Ctrl_1_pressed).w								; is Start pressed?
-		bmi.s	.tnext										; if yes, branch
+		bne.s	.tloop								; wait for KosPlusM queue to clear
+		tst.b	(Ctrl_1_pressed).w						; is Start pressed?
+		bmi.s	.tnext								; if yes, branch
 		tst.w	(Demo_timer).w
 		bne.s	.tloop
 
@@ -140,13 +143,13 @@ TitleScreen:
 		bne.s	.skiptext2
 
 		; delete
-		lea	(Reserved_object_3).w,a1							; remove "SONIC TEAM PRESENTS" object
+		lea	(Reserved_object_3).w,a1					; remove "SONIC TEAM PRESENTS" object
 		jsr	(Delete_Referenced_Sprite).w
 
 .skiptext2
 
 		; load mapping
-		EniDecomp	MapEni_TitleFG, RAM_start, $200, 0, FALSE				; decompress Enigma mappings
+		EniDecomp	MapEni_TitleFG, RAM_start, $200, 0, FALSE		; decompress Enigma mappings
 		copyTilemap	(VRAM_Plane_A_Name_Table+$208), 272, 176
 
 		; load ©1991 text
@@ -169,67 +172,69 @@ TitleScreen:
 		move.l	(Level_data_addr_RAM.AnimateTilesInit).w,d0
 		beq.s	.askip
 		movea.l	d0,a0
-		jsr	(a0)										; animate art init
+		jsr	(a0)								; animate art init
 
 .askip
 
 		; set
-		move.l	#Obj_TitleSonic,(Player_2+address).w						; load big Sonic object
-		move.l	#Obj_TitlePSB,(Reserved_object_3+address).w					; load "PRESS START BUTTON" object
+		move.l	#Obj_TitleSonic,(Player_2+address).w				; load big Sonic object
+		move.l	#Obj_TitlePSB,(Reserved_object_3+address).w			; load "PRESS START BUTTON" object
 
 		; check console region
 		tst.b	(Graphics_flags).w
-		bpl.s	.skipTM										; remove the TM from the title logo if on a japan console
+		bpl.s	.skipTM								; remove the TM from the title logo if on a japan console
 
 		; create "TM" object
 		lea	(Breathing_bubbles+address).w,a1
 		move.l	#Map_TTM,mappings(a1)
-		move.b	#setBit(render_flags.static_mappings),render_flags(a1)				; set static mapping
+		move.b	#setBit(render_flags.static_mappings),render_flags(a1)		; set static mapping
 		move.w	#$178,x_pos(a1)
 		move.w	#$F8,y_pos(a1)
 		move.l	#Draw_Sprite,address(a1)
 
 .skipTM
 		music	mus_Title
-		move.w	#(9*60)+16,(Demo_timer).w							; set to wait for 9 seconds
+		move.w	#(9*60)+16,(Demo_timer).w					; set to wait for 9 seconds
 
 		; next
+		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
-		jsr	(Wait_VSync).w
+		jsr	(Wait_VSync.skip).w
 		jsr	(Process_Sprites).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
+
+		; set
+		move.l	#VInt_Level,(V_int_ptr).w					; set VInt pointer
 		enableScreen
 		jsr	(Pal_FadeFromBlack).w
 
-		; set
-		move.l	#VInt_Level,(V_int_ptr).w							; set VInt pointer
-
 .loop
+		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
-		jsr	(Wait_VSync).w
+		jsr	(Wait_VSync.skip).w
 		addq.w	#1,(Level_frame_counter).w
 		jsr	(Process_Sprites).w
 
 		; move background
 		move.w	(Player_1+x_pos).w,d0
 		addq.w	#2,d0
-		move.w	d0,(Player_1+x_pos).w								; move Sonic to the right
-		cmpi.w	#$1C00,d0									; has Sonic object passed $1C00 on x-axis?
-		bhs.w	.demo										; if yes, branch
+		move.w	d0,(Player_1+x_pos).w						; move Sonic to the right
+		cmpi.w	#$1C00,d0							; has Sonic object passed $1C00 on x-axis?
+		bhs.w	.demo								; if yes, branch
 
 		; check exit
 		tst.w	(Demo_timer).w
 		beq.w	.demo
 		tst.b	(Title_end).w
 		beq.s	.notexit
-		tst.b	(Ctrl_1_pressed).w								; is Start pressed?
-		bmi.s	.exit										; if yes, branch
+		tst.b	(Ctrl_1_pressed).w						; is Start pressed?
+		bmi.s	.exit								; if yes, branch
 
 .notexit
 		bsr.w	Title_Code
 		jsr	(DeformBgLayer).w
-		jsr	(Screen_Events).w
+		jsr	(Level_Events).w
 		jsr	(Animate_Palette).w
 		jsr	(Process_KosPlus_Module_Queue).w
 		jsr	(Render_Sprites).w
@@ -241,8 +246,8 @@ TitleScreen:
 		bne.s	.options
 
 		; set
-		move.w	(Player_option).w,(Player_mode).w						; move selected character to active character
-		move.b	(Game_mode).w,(Game_mode_last).w						; save current Game mode
+		move.w	(Player_option).w,(Player_mode).w				; move selected character to active character
+		move.b	(Game_mode).w,(Game_mode_last).w				; save current Game mode
 		move.b	#3,(Life_count).w
 		move.l	#5000,(Next_extra_life_score).w
 
@@ -263,25 +268,25 @@ TitleScreen:
 		clr.l	(a1)+
 
 		; load
-		move.b	#GameModeID_LevelScreen,(Game_mode).w						; set screen mode to Level
+		move.b	#GameModeID_LevelScreen,(Game_mode).w				; set screen mode to Level
 
 	if LevelSelectCheat
 		ifndef __DEBUG__
 			; check cheat
-			tst.b	(Level_select_flag).w							; check if level select code is on
-			beq.s	.return									; if not, play level
+			tst.b	(Level_select_flag).w					; check if level select code is on
+			beq.s	.return							; if not, play level
 		endif
 	endif
 
-		moveq	#btnDir+btnABC,d0								; don't check Start
+		moveq	#btnDir+btnABC,d0						; don't check Start
 		and.b	(Ctrl_1_held).w,d0
-		cmpi.b	#btnAC,d0									; is button A and C held?
-		beq.s	.levelselect									; if yes, branch
-		btst	#button_A,d0									; is A button held?
-		beq.s	.return										; if not, branch
+		cmpi.b	#btnAC,d0							; is button A and C held?
+		beq.s	.levelselect							; if yes, branch
+		btst	#button_A,d0							; is A button held?
+		beq.s	.return								; if not, branch
 
 	if LevelSelectVer
-		move.b	#GameModeID_LevelSelectRSDKScreen,(Game_mode).w					; set screen mode to Level Select RSDK
+		move.b	#GameModeID_LevelSelectRSDKScreen,(Game_mode).w			; set screen mode to Level Select RSDK
 		rts
 	else
 		; load original Level Select
@@ -291,23 +296,23 @@ TitleScreen:
 ; ---------------------------------------------------------------------------
 
 .levelselect
-		move.b	#GameModeID_LevelSelectScreen,(Game_mode).w					; set screen mode to Level Select
+		move.b	#GameModeID_LevelSelectScreen,(Game_mode).w			; set screen mode to Level Select
 
 .return
 		rts
 ; ---------------------------------------------------------------------------
 
 .options
-		move.b	#GameModeID_OptionsScreen,(Game_mode).w						; set screen mode to Options
+		move.b	#GameModeID_OptionsScreen,(Game_mode).w				; set screen mode to Options
 		rts
 ; ---------------------------------------------------------------------------
 
 .demo
 
 		; set
-		st	(Demo_mode_flag).w								; enable demo mode
-		move.w	(Player_option).w,(Player_mode).w						; move selected character to active character
-		move.b	#3,(Life_count).w								; set life count
+		st	(Demo_mode_flag).w						; enable demo mode
+		move.w	(Player_option).w,(Player_mode).w				; move selected character to active character
+		move.b	#3,(Life_count).w						; set life count
 		move.l	#5000,(Next_extra_life_score).w
 
 		; clear
@@ -318,12 +323,12 @@ TitleScreen:
 		move.b	d0,(Continue_count).w
 
 		; get demo
-		move.w	(Next_demo_number).w,d0								; get index of current demo to run
+		move.w	(Next_demo_number).w,d0						; get index of current demo to run
 		move.w	d0,(Demo_number).w
 		andi.w	#3,d0
 		add.w	d0,d0
 		move.w	DemoLevels(pc,d0.w),d0
-		move.w	d0,(Current_zone_and_act).w							; load level index to the appropriate variables
+		move.w	d0,(Current_zone_and_act).w					; load level index to the appropriate variables
 		move.w	d0,(Apparent_zone_and_act).w
 		move.w	d0,(Saved_zone_and_act).w
 
@@ -337,10 +342,10 @@ TitleScreen:
 .dnotreset
 		move.w	d1,(Next_demo_number).w
 		tst.w	d0
-		bpl.s	.demolevel									; branch if we are indeed playing a level
+		bpl.s	.demolevel							; branch if we are indeed playing a level
 
 		; load special stage
-		move.b	#GameModeID_SpecialStageScreen,(Game_mode).w					; set screen mode to Special Stage
+		move.b	#GameModeID_SpecialStageScreen,(Game_mode).w			; set screen mode to Special Stage
 		clr.b	(Current_special_stage).w
 
 		; clear emeralds RAM
@@ -351,7 +356,7 @@ TitleScreen:
 ; ---------------------------------------------------------------------------
 
 .demolevel
-		move.b	#GameModeID_DemoScreen,(Game_mode).w						; set screen mode to Demo
+		move.b	#GameModeID_DemoScreen,(Game_mode).w				; set screen mode to Demo
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -382,10 +387,10 @@ Obj_TitleSonic:
 			make_art_tile($300,1,FALSE) \
 		),priority(a0)
 
-		st	objoff_3A(a0)									; reset DPLC frame
+		st	objoff_3A(a0)							; reset DPLC frame
 		move.w	#$80+120,x_pos(a0)
-		move.w	#$80+94,y_pos(a0)								; position is fixed to screen
-		move.w	#30-1,objoff_2E(a0)								; set time delay to 0.5 seconds
+		move.w	#$80+94,y_pos(a0)						; position is fixed to screen
+		move.w	#30-1,objoff_2E(a0)						; set time delay to 0.5 seconds
 		move.l	#.wait,address(a0)
 
 		; create sprite mask
@@ -402,11 +407,11 @@ Obj_TitleSonic:
 			1 \
 		),subtype(a1)
 
-		move.w	a0,parent3(a1)									; save parent
+		move.w	a0,parent3(a1)							; save parent
 
 .wait
-		subq.w	#1,objoff_2E(a0)								; subtract 1 from time delay
-		bpl.s	.return										; if time remains, branch
+		subq.w	#1,objoff_2E(a0)						; subtract 1 from time delay
+		bpl.s	.return								; if time remains, branch
 		move.l	#.move,address(a0)
 
 .return
@@ -414,9 +419,9 @@ Obj_TitleSonic:
 ; ---------------------------------------------------------------------------
 
 .move
-		subq.w	#8,y_pos(a0)									; move Sonic up
-		cmpi.w	#$80+22,y_pos(a0)								; has Sonic reached final position?
-		bne.s	.dplc										; if not, branch
+		subq.w	#8,y_pos(a0)							; move Sonic up
+		cmpi.w	#$80+22,y_pos(a0)						; has Sonic reached final position?
+		bne.s	.dplc								; if not, branch
 		move.l	#.anim,address(a0)
 
 .anim
@@ -448,20 +453,20 @@ Obj_TitlePSB:
 		move.w	#make_art_tile($200,0,FALSE),art_tile(a0)
 		move.w	#$D8,x_pos(a0)
 		move.w	#$130,y_pos(a0)
-		move.w	#(1<<5)-1,tpsb_timer(a0)							; set wait
+		move.w	#(1<<5)-1,tpsb_timer(a0)					; set wait
 		move.l	#.main,address(a0)
 
 .main
-		subq.w	#1,tpsb_timer(a0)								; wait
+		subq.w	#1,tpsb_timer(a0)						; wait
 		bpl.s	.anim
 		move.l	#.cstart,address(a0)
 
 .cstart
-		bclr	#button_start,(Ctrl_1_pressed).w						; is Start pressed? ; clear Start button so we don't exit the title screen early
-		bne.s	.soptions									; if yes, branch
+		bclr	#button_start,(Ctrl_1_pressed).w				; is Start pressed? ; clear Start button so we don't exit the title screen early
+		bne.s	.soptions							; if yes, branch
 
 .anim
-		addq.w	#1,tpsb_counter(a0)								; alternative for "Level_frame_counter"
+		addq.w	#1,tpsb_counter(a0)						; alternative for "Level_frame_counter"
 		btst	#5,tpsb_counter+1(a0)
 		beq.s	.return
 
@@ -476,39 +481,39 @@ Obj_TitlePSB:
 .soptions
 
 		; fix options xpos
-		moveq	#4+8,d0										; set FG line pos
+		moveq	#4+8,d0								; set FG line pos
 		lea	(H_scroll_buffer+(192*4)).w,a1
 
 	rept 7
-		move.w	d0,(a1)										; set FG line pos
-		addq.w	#4,a1										; next FG line
+		move.w	d0,(a1)								; set FG line pos
+		addq.w	#4,a1								; next FG line
 	endr
 
 		; last FG line
-		move.w	d0,(a1)										; set FG line pos
+		move.w	d0,(a1)								; set FG line pos
 
 		; next
 		sfx	sfx_StarPost
-		move.w	#(1<<4)-1,tpsb_timer(a0)							; set wait
+		move.w	#(1<<4)-1,tpsb_timer(a0)					; set wait
 		move.l	#.woptions,address(a0)
 		bra.s	.options2
 ; ---------------------------------------------------------------------------
 
 .woptions
-		subq.w	#1,tpsb_timer(a0)								; wait
+		subq.w	#1,tpsb_timer(a0)						; wait
 		bpl.s	.return
 		move.l	#.options,address(a0)
-		st	(Title_end).w									; set exit flag from current screen
+		st	(Title_end).w							; set exit flag from current screen
 
 .options
 		moveq	#btnUD,d1
 		and.b	(Ctrl_1_pressed).w,d1
 		beq.s	.return
-		not.b	(Title_control).w								; 0 or -1
+		not.b	(Title_control).w						; 0 or -1
 		sfx	sfx_Switch
 
 .options2
-		move.w	#(9*60)+16,(Demo_timer).w							; set to wait for 9 seconds
+		move.w	#(9*60)+16,(Demo_timer).w					; set to wait for 9 seconds
 
 		; draw icon
 		moveq	#1,d0
@@ -552,15 +557,15 @@ Obj_TitlePSB:
 
 Title_DrawVIcon:
 		disableIntsSave
-		lea	(VDP_data_port).l,a6								; load VDP data address to a6
-		lea	VDP_control_port-VDP_data_port(a6),a5						; load VDP control address to a5
+		lea	(VDP_data_port).l,a6						; load VDP data address to a6
+		lea	VDP_control_port-VDP_data_port(a6),a5				; load VDP control address to a5
 
 .next
 		move.l	d1,VDP_control_port-VDP_control_port(a5)
-		moveq	#0,d3										; space
+		moveq	#0,d3								; space
 		cmp.w	d0,d6
 		bne.s	.skip
-		move.l	#$053B053C,d3									; icon
+		move.l	#$053B053C,d3							; icon
 
 .skip
 		move.l	d3,VDP_data_port-VDP_data_port(a6)
@@ -592,7 +597,7 @@ Title_Code:
 		tst.b	(a1)
 		bne.s	.return
 		st	(Level_select_flag).w
-		sfx	sfx_RingRight									; play ring sound
+		sfx	sfx_RingRight							; play ring sound
 
 .fail
 		clr.b	(a2)
@@ -601,8 +606,8 @@ Title_Code:
 		rts
 ; ---------------------------------------------------------------------------
 
-.codedat	dc.b btnUp, btnDn, btnL, btnR								; buttons
-		dc.b 0											; stop
+.codedat	dc.b btnUp, btnDn, btnL, btnR						; buttons
+		dc.b 0									; stop
 	even
 
 ; =============== S U B R O U T I N E =======================================

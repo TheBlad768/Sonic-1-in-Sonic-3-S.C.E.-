@@ -257,16 +257,16 @@ Touch_Monitor:
 .monitorfall
 
 		; fun fact: In S3, like the games before it, hitting a monitor from below would make it fall
-		; in S&K, that was removed, and they are destroyed as normal.
+		; in S&K, that was removed, and they are destroyed as normal
 		; however, according to this code, if a monitor is upside down, and player is in reverse gravity,
-		; hitting the monitor from below will still make it fall.
-		; playing with Debug Mode confirms this.
+		; hitting the monitor from below will still make it fall
+		; playing with Debug Mode confirms this
 
 		neg.w	y_vel(a0)							; reverse Sonic's y-motion
 		move.w	#-$180,y_vel(a1)
 		tst.b	routine_secondary(a1)
 		bne.s	.locret
-		move.b	#4,routine_secondary(a1)					; set the monitor's routine_secondary counter
+		st	routine_secondary(a1)						; set the monitor's routine_secondary counter
 
 .locret
 		rts
@@ -926,4 +926,14 @@ HyperTouch_Special:
 .SonicorTails
 		move.b	#AniIDSonAni_Roll,(Player_2+anim).w				; put sidekick in his rolling animation
 		bset	#status.player.in_air,(Player_2+status).w
+		rts
+
+; ---------------------------------------------------------------------------
+; Reset collision (Object)
+; ---------------------------------------------------------------------------
+
+; =============== S U B R O U T I N E =======================================
+
+Obj_ResetCollisionResponseList:
+		clr.w	(Collision_response_list).w
 		rts

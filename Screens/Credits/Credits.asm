@@ -20,24 +20,24 @@ Credits_end:				ds.b 1
 ; ---------------------------------------------------------------------------
 
 Credits_VDP:
-		dc.w $8004										; disable HInt, HV counter, 8-colour mode
-		dc.w $8200+(VRAM_Plane_A_Name_Table>>10)						; set foreground nametable address
-		dc.w $8300+(VRAM_Plane_B_Name_Table>>10)						; set window nametable address
-		dc.w $8400+(VRAM_Plane_B_Name_Table>>13)						; set background nametable address
-		dc.w $8700+(0<<4)									; set background colour (line 3; colour 0)
-		dc.w $8B00										; full-screen horizontal and vertical scrolling
-		dc.w $8C81										; set 40cell screen size, no interlacing, no s/h
-		dc.w $9001										; 64x32 cell nametable area
-		dc.w $9100										; set window H position at default
-		dc.w $9200										; set window V position at default
-		dc.w 0											; end marker
+		dc.w $8004								; disable HInt, HV counter, 8-colour mode
+		dc.w $8200+(VRAM_Plane_A_Name_Table>>10)				; set foreground nametable address
+		dc.w $8300+(VRAM_Plane_B_Name_Table>>10)				; set window nametable address
+		dc.w $8400+(VRAM_Plane_B_Name_Table>>13)				; set background nametable address
+		dc.w $8700+(0<<4)							; set background colour (line 3; colour 0)
+		dc.w $8B00								; full-screen horizontal and vertical scrolling
+		dc.w $8C81								; set 40cell screen size, no interlacing, no s/h
+		dc.w $9001								; 64x32 cell nametable area
+		dc.w $9100								; set window H position at default
+		dc.w $9200								; set window V position at default
+		dc.w 0									; end marker
 
 ; =============== S U B R O U T I N E =======================================
 
 CreditsScreen:
-		music	mus_Stop									; stop music
-		jsr	(Clear_KosPlus_Module_Queue).w							; clear KosPlusM PLCs
-		ResetDMAQueue										; clear DMA queue
+		music	mus_Stop							; stop music
+		jsr	(Clear_KosPlus_Module_Queue).w					; clear KosPlusM PLCs
+		ResetDMAQueue								; clear DMA queue
 		jsr	(Pal_FadeToBlack).w
 		disableInts
 		move.l	#VInt,(V_int_addr).w
@@ -47,17 +47,17 @@ CreditsScreen:
 		lea	Credits_VDP(pc),a1
 		jsr	(Load_VDP).w
 		jsr	(Clear_Palette).w
-		clearRAM Object_RAM, Object_RAM_end							; clear the object RAM
-		clearRAM Lag_frame_count, Lag_frame_count_end						; clear variables
-		clearRAM Camera_RAM, Camera_RAM_end							; clear the camera RAM
-		clearRAM Oscillating_variables, Oscillating_variables_end				; clear variables
+		clearRAM Object_RAM, Object_RAM_end					; clear the object RAM
+		clearRAM Lag_frame_count, Lag_frame_count_end				; clear variables
+		clearRAM Camera_RAM, Camera_RAM_end					; clear the camera RAM
+		clearRAM Oscillating_variables, Oscillating_variables_end		; clear variables
 
 		; clear
 		move.b	d0,(Water_full_screen_flag).w
 		move.b	d0,(Water_flag).w
 		move.b	d0,(HUD_RAM.status).w
-		move.b	d0,(Extra_life_flags).w								; reset extra life ring flag
-		move.b	d0,(Update_HUD_timer).w								; clear time counter update flag
+		move.b	d0,(Extra_life_flags).w						; reset extra life ring flag
+		move.b	d0,(Update_HUD_timer).w						; clear time counter update flag
 		move.b	d0,(Last_star_post_hit).w
 		move.b	d0,(Special_bonus_entry_flag).w
 		move.b	d0,(Intro_flag).w
@@ -79,28 +79,29 @@ CreditsScreen:
 		jsr	(PalLoad_Line32).w
 
 		; set
-		move.l	#VInt_Fade,(V_int_ptr).w							; set VInt pointer
+		move.l	#VInt_Fade,(V_int_ptr).w					; set VInt pointer
 
 .waitplc
+		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
-		jsr	(Wait_VSync).w
+		jsr	(Wait_VSync.skip).w
 		jsr	(Process_KosPlus_Module_Queue).w
 		tst.w	(KosPlus_modules_left).w
-		bne.s	.waitplc									; wait for KosPlusM queue to clear
+		bne.s	.waitplc							; wait for KosPlusM queue to clear
 
 		; load text
 		move.w	(Credits_routine).w,d0
 		addq.w	#2,(Credits_routine).w
 		lea	CreditsText_Index(pc),a1
 		adda.w	(a1,d0.w),a1
-		move.l	#$A0018100,d5									; VRAM shift (font pos in VRAM) ; large and small font
+		move.l	#$A0018100,d5							; VRAM shift (font pos in VRAM) ; large and small font
 		bsr.w	Credits_LoadText
 
 		; set
 		music	mus_S3Credits
 		move.w	#3*60,(Credits_process_time).w
 		move.l	#Credits_Process_LoadText,(Credits_process).w
-		move.l	#VInt_Main,(V_int_ptr).w							; set VInt pointer
+		move.l	#VInt_Main,(V_int_ptr).w					; set VInt pointer
 		jsr	(Wait_VSync).w
 		enableScreen
 		jsr	(Pal_FadeFromBlack).w
@@ -157,9 +158,9 @@ Credits_Process_LoadText:
 
 		; check buttons
 		move.b	(Ctrl_1_pressed).w,d0
-		bmi.s	.skipcredits									; if start was pressed, skip ahead
-		andi.b	#btnABC,d0									; are buttons A, B, or C being pressed?
-		bne.s	.skipt										; if yes, branch
+		bmi.s	.skipcredits							; if start was pressed, skip ahead
+		andi.b	#btnABC,d0							; are buttons A, B, or C being pressed?
+		bne.s	.skipt								; if yes, branch
 
 		; wait
 		subq.w	#1,(Credits_process_time).w
@@ -171,7 +172,7 @@ Credits_Process_LoadText:
 		; fade and clear plane
 		jsr	(Pal_FadeToBlack).w
 		stopZ80
-		dmaFillVRAM 0, VRAM_Plane_A_Name_Table, VRAM_Plane_Table_Size				; clear plane A PNT
+		dmaFillVRAM 0, VRAM_Plane_A_Name_Table, VRAM_Plane_Table_Size		; clear plane A PNT
 		startZ80
 
 		; load text
@@ -179,9 +180,9 @@ Credits_Process_LoadText:
 		addq.w	#2,(Credits_routine).w
 		lea	CreditsText_Index(pc),a1
 		move.w	(a1,d0.w),d0
-		beq.s	.loadtextend									; if zero, branch
+		beq.s	.loadtextend							; if zero, branch
 		adda.w	d0,a1
-		move.l	#$A0018100,d5									; VRAM shift (font pos in VRAM) ; large and small font
+		move.l	#$A0018100,d5							; VRAM shift (font pos in VRAM) ; large and small font
 		bsr.s	Credits_LoadText
 		jmp	(Pal_FadeFromBlack).w
 ; ---------------------------------------------------------------------------
@@ -195,7 +196,7 @@ Credits_Process_LoadText:
 		; fade and clear plane
 		jsr	(Pal_FadeToBlack).w
 		stopZ80
-		dmaFillVRAM 0, VRAM_Plane_A_Name_Table, VRAM_Plane_Table_Size				; clear plane A PNT
+		dmaFillVRAM 0, VRAM_Plane_A_Name_Table, VRAM_Plane_Table_Size		; clear plane A PNT
 		startZ80
 
 .loadtextend
@@ -204,22 +205,22 @@ Credits_Process_LoadText:
 
 		; load text
 		lea	Credits_TextEnd(pc),a1
-		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
-		beq.s	.loadtext									; if yes, branch
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
+		beq.s	.loadtext							; if yes, branch
 		lea	Credits_TextTryAgain(pc),a1
 
 .loadtext
-		move.l	#$80018100,d5									; VRAM shift (font pos in VRAM) ; large and small font
+		move.l	#$80018100,d5							; VRAM shift (font pos in VRAM) ; large and small font
 		bsr.s	Credits_LoadText
 
 		; load player palette
 		moveq	#PalID_Sonic,d0
-		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w						; is Knuckles?
-		blo.s	.notKnux									; if not, branch
+		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w				; is Knuckles?
+		blo.s	.notKnux							; if not, branch
 		moveq	#PalID_Knuckles,d0
 
 .notKnux
-		jsr	(LoadPalette).w									; load player's palette
+		jsr	(LoadPalette).w							; load player's palette
 		moveq	#PalID_Ending,d0
 		jmp	(LoadPalette).w
 
@@ -231,20 +232,20 @@ Credits_Process_LoadText:
 
 Credits_LoadText:
 		disableIntsSave
-		lea	(VDP_data_port).l,a6								; load VDP data address to a6
-		lea	VDP_control_port-VDP_data_port(a6),a5						; load VDP control address to a5
-		move.w	#$8F80,VDP_control_port-VDP_control_port(a5)					; VRAM increment at $80 bytes (vertical write)
-		move.l	#vdpCommDelta(planeLoc(64,1,0)),d4						; row increment value
+		lea	(VDP_data_port).l,a6						; load VDP data address to a6
+		lea	VDP_control_port-VDP_data_port(a6),a5				; load VDP control address to a5
+		move.w	#$8F80,VDP_control_port-VDP_control_port(a5)			; VRAM increment at $80 bytes (vertical write)
+		move.l	#vdpCommDelta(planeLoc(64,1,0)),d4				; row increment value
 
 .loop
 		move.l	d5,d3
-		moveq	#(Credits_DrawSmallText-Credits_DrawSmallText),d0				; small text
+		moveq	#(Credits_DrawSmallText-Credits_DrawSmallText),d0		; small text
 		moveq	#0,d1
-		move.w	(a1)+,d1									; get plane pos
-		beq.s	.exit										; if zero, end queue
+		move.w	(a1)+,d1							; get plane pos
+		beq.s	.exit								; if zero, end queue
 		bpl.s	.normal
 		andi.w	#$FFF,d1
-		moveq	#(Credits_DrawLargeText-Credits_DrawSmallText),d0				; large text
+		moveq	#(Credits_DrawLargeText-Credits_DrawSmallText),d0		; large text
 		swap	d3
 
 .normal
@@ -258,7 +259,7 @@ Credits_LoadText:
 ; ---------------------------------------------------------------------------
 
 .exit
-		move.w	#$8F02,VDP_control_port-VDP_control_port(a5)					; VRAM increment at 2 bytes (horizontal write)
+		move.w	#$8F02,VDP_control_port-VDP_control_port(a5)			; VRAM increment at 2 bytes (horizontal write)
 		enableIntsSave
 		rts
 
@@ -271,7 +272,7 @@ Credits_LoadText:
 Credits_DrawSmallText:
 		moveq	#0,d0
 		move.b	(a1)+,d0
-		beq.s	.exit										; if zero, exit
+		beq.s	.exit								; if zero, exit
 
 		; load small letter (8x16)
 		cmpi.b	#' ',d0
@@ -281,13 +282,13 @@ Credits_DrawSmallText:
 ; ---------------------------------------------------------------------------
 
 .calc
-		subq.w	#1,d0										; -1
+		subq.w	#1,d0								; -1
 		add.w	d0,d0
 		move.w	d0,d2
 		addq.w	#1,d2
 		swap	d0
 		move.w	d2,d0
-		move.w	d3,d2										; VRAM shift (font pos in VRAM)
+		move.w	d3,d2								; VRAM shift (font pos in VRAM)
 		swap	d2
 		move.w	d3,d2
 		add.l	d2,d0
@@ -304,9 +305,9 @@ Credits_DrawSmallText:
 .exit
 
 		; fix odd address
-		move.w	a1,d0										; load ROM address (lower 16 bits)
-		andi.w	#1,d0										; (0 = even, 1 = odd)
-		adda.w	d0,a1										; add 1 if it was odd, else add 0
+		move.w	a1,d0								; load ROM address (lower 16 bits)
+		andi.w	#1,d0								; (0 = even, 1 = odd)
+		adda.w	d0,a1								; add 1 if it was odd, else add 0
 
 .return
 		rts
@@ -319,31 +320,31 @@ Credits_DrawSmallText:
 Credits_DrawLargeText:
 		moveq	#0,d0
 		move.b	(a1)+,d0
-		beq.s	Credits_DrawSmallText.exit							; if zero, exit
+		beq.s	Credits_DrawSmallText.exit					; if zero, exit
 
 		; load large letter
 		cmpi.b	#' ',d0
 		bne.s	.calc
 		moveq	#0,d0
-		moveq	#0,d2										; set next tiles
-		moveq	#1-1,d6										; 8x24
+		moveq	#0,d2								; set next tiles
+		moveq	#1-1,d6								; 8x24
 		bra.s	.setpos
 ; ---------------------------------------------------------------------------
 
 .calc
-		subq.b	#1,d0										; -1
+		subq.b	#1,d0								; -1
 		add.w	d0,d0
 		add.w	d0,d0
-		movem.w	.letters(pc,d0.w),d0/d6								; get id letter and size
+		movem.w	.letters(pc,d0.w),d0/d6						; get id letter and size
 		move.w	d0,d2
 		addq.w	#1,d2
 		swap	d0
 		move.w	d2,d0
-		move.w	d3,d2										; VRAM shift (font pos in VRAM)
+		move.w	d3,d2								; VRAM shift (font pos in VRAM)
 		swap	d2
 		move.w	d3,d2
 		add.l	d2,d0
-		move.l	#$10001,d2									; set next tiles
+		move.l	#$10001,d2							; set next tiles
 
 .setpos
 		move.l	d1,VDP_control_port-VDP_control_port(a5)
@@ -378,15 +379,15 @@ crdre_drop		= objoff_39 ; (1 byte)
 Obj_CreditsRobotnik:
 
 		; init
-		movem.l	ObjDat_CreditsRobotnik(pc),d0-d3						; copy data to d0-d3
-		movem.l	d0-d3,address(a0)								; set data from d0-d3 to current object
+		movem.l	ObjDat_CreditsRobotnik(pc),d0-d3				; copy data to d0-d3
+		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 		move.w	#320/2,x_pos(a0)
 		move.w	#224/2,y_pos(a0)
 		move.w	#(20*60)-1,objoff_2E(a0)
 
 		; END
-		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
-		beq.s	.defeated									; if yes, branch
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
+		beq.s	.defeated							; if yes, branch
 
 		; Try Again
 		move.b	#5,anim_frame_timer(a0)
@@ -411,7 +412,7 @@ Obj_CreditsRobotnik:
 
 		; set frame
 		clr.b	mapping_frame(a0)
-		bchg	#0,prev_anim(a0)								; prev frame
+		bchg	#0,prev_anim(a0)						; prev frame
 		bne.s	.draw
 		addq.b	#2,mapping_frame(a0)
 
@@ -420,7 +421,7 @@ Obj_CreditsRobotnik:
 		; check
 		move.b	(Ctrl_1_pressed).w,d0
 		or.b	(Ctrl_2_pressed).w,d0
-		bmi.s	.finish										; if start was pressed, skip ahead
+		bmi.s	.finish								; if start was pressed, skip ahead
 
 		; wait
 		subq.w	#1,objoff_2E(a0)
@@ -441,8 +442,8 @@ Obj_CreditsRobotnik:
 ; ---------------------------------------------------------------------------
 
 .finish
-		move.b	#GameModeID_SegaScreen,(Game_mode).w						; set screen mode to Sega
-		addq.w	#4*2,sp										; exit from object and current screen
+		move.b	#GameModeID_SegaScreen,(Game_mode).w				; set screen mode to Sega
+		addq.w	#4*2,sp								; exit from object and current screen
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -459,10 +460,10 @@ CreditsRobotnik_LoadEmeralds:
 
 		; get RAM slot
 		getobjectRAMslot a3
-		bmi.s	.return										; branch, if object RAM slots ended
+		bmi.s	.return								; branch, if object RAM slots ended
 
 		; load emeralds
-		movea.w	a0,a1										; load current object to a1
+		movea.w	a0,a1								; load current object to a1
 		lea	(Collected_emeralds_array).w,a2
 		moveq	#0,d1
 		moveq	#0,d2
@@ -475,15 +476,15 @@ CreditsRobotnik_LoadEmeralds:
 		; create emerald object
 
 .find
-		lea	next_object(a1),a1								; goto next object RAM slot
-		tst.l	address(a1)									; is object RAM slot empty?
-		dbeq	d0,.find									; if not, branch
-		bne.s	.return										; branch, if object RAM slot is not empty
-		subq.w	#1,d0										; dbeq didn't subtract sprite table so we'll do it ourselves
+		lea	next_object(a1),a1						; goto next object RAM slot
+		tst.l	address(a1)							; is object RAM slot empty?
+		dbeq	d0,.find							; if not, branch
+		bne.s	.return								; branch, if object RAM slot is not empty
+		subq.w	#1,d0								; dbeq didn't subtract sprite table so we'll do it ourselves
 
 		; load object
 		move.l	#Obj_CreditsRobotnik_Emeralds,address(a1)
-		move.w	a0,parent3(a1)									; save Robotnik address to emeralds
+		move.w	a0,parent3(a1)							; save Robotnik address to emeralds
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		move.b	d1,mapping_frame(a1)
@@ -491,9 +492,9 @@ CreditsRobotnik_LoadEmeralds:
 		addq.b	#2,d2
 
 .next
-		addq.b	#1,d1										; next emerald frame
-		tst.w	d0										; object RAM slots ended?
-		dbmi	d6,.loop									; if not, loop
+		addq.b	#1,d1								; next emerald frame
+		tst.w	d0								; object RAM slots ended?
+		dbmi	d6,.loop							; if not, loop
 
 .return
 		rts
@@ -518,7 +519,7 @@ Obj_CreditsRobotnik_Emeralds:
 		; set wait
 		moveq	#0,d0
 		move.b	subtype(a0),d0
-		move.w	d0,d1										; multiply by $0A
+		move.w	d0,d1								; multiply by $0A
 		add.w	d0,d0
 		add.w	d0,d0
 		add.w	d1,d0
@@ -526,8 +527,8 @@ Obj_CreditsRobotnik_Emeralds:
 		move.w	d0,credre_btimer(a0)
 
 		; init
-		movem.l	ObjDat_CreditsRobotnik_Emeralds(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)								; set data from d0-d3 to current object
+		movem.l	ObjDat_CreditsRobotnik_Emeralds(pc),d0-d3			; copy data to d0-d3
+		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 		move.w	x_pos(a0),credre_origX(a0)
 		moveq	#-12,d0
 		add.w	y_pos(a0),d0
@@ -538,14 +539,14 @@ Obj_CreditsRobotnik_Emeralds:
 .main
 
 		; check flag
-		movea.w	parent3(a0),a1									; load Robotnik address
+		movea.w	parent3(a0),a1							; load Robotnik address
 		tst.b	crdre_drop(a1)
 		beq.s	.circular
 		move.l	#.move,address(a0)
 
 		; set move
 		moveq	#2,d0
-		btst	#0,prev_anim(a1)								; check Robotnik prev frame
+		btst	#0,prev_anim(a1)						; check Robotnik prev frame
 		beq.s	.mset
 		neg.w	d0
 
@@ -566,9 +567,9 @@ Obj_CreditsRobotnik_Emeralds:
 
 .cangle
 		move.b	angle(a0),d0
-		beq.s	.clrs										; branch, if it's right side
-		cmpi.b	#$80,d0										; is it left side?
-		bne.s	.circular									; if not, branch
+		beq.s	.clrs								; branch, if it's right side
+		cmpi.b	#$80,d0								; is it left side?
+		bne.s	.circular							; if not, branch
 
 .clrs
 		clr.b	credre_speed(a0)
@@ -576,11 +577,11 @@ Obj_CreditsRobotnik_Emeralds:
 		move.l	#.main,address(a0)
 
 		; check
-		tst.b	subtype(a0)									; is first emerald?
-		bne.s	.circular									; if not, branch
+		tst.b	subtype(a0)							; is first emerald?
+		bne.s	.circular							; if not, branch
 
 		; clear flag
-		movea.w	parent3(a0),a1									; load Robotnik address
+		movea.w	parent3(a0),a1							; load Robotnik address
 		clr.b	crdre_drop(a1)
 
 .circular
@@ -594,7 +595,7 @@ Obj_CreditsRobotnik_Emeralds:
 		swap	d3
 		move.w	credre_origY(a0),d0
 		add.w	d2,d0
-		move.w	d0,y_pos(a0)									; move object circularly
+		move.w	d0,y_pos(a0)							; move object circularly
 		move.w	credre_origX(a0),d1
 		add.w	d3,d1
 		move.w	d1,x_pos(a0)
@@ -611,15 +612,15 @@ Obj_CreditsRobotnik_Emeralds:
 Obj_CreditsEggRobo:
 
 		; init
-		movem.l	ObjDat_CreditsEggRobo(pc),d0-d3							; copy data to d0-d3
-		movem.l	d0-d3,address(a0)								; set data from d0-d3 to current object
+		movem.l	ObjDat_CreditsEggRobo(pc),d0-d3					; copy data to d0-d3
+		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 		move.w	#320/2,x_pos(a0)
 		move.w	#(224/2),y_pos(a0)
 
 		; Try Again
 		move.l	#AniRaw_CreditsEggRoboEnd,objoff_30(a0)
-		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
-		bne.s	.createemrl									; if not, branch
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
+		bne.s	.createemrl							; if not, branch
 
 		; END
 		move.l	#AniRaw_CreditsEggRobo,objoff_30(a0)
@@ -649,7 +650,7 @@ Obj_CreditsEggRobo:
 		; check
 		move.b	(Ctrl_1_pressed).w,d0
 		or.b	(Ctrl_2_pressed).w,d0
-		bmi.s	.finish										; if start was pressed, skip ahead
+		bmi.s	.finish								; if start was pressed, skip ahead
 
 		; wait
 		subq.w	#1,objoff_2E(a0)
@@ -660,8 +661,8 @@ Obj_CreditsEggRobo:
 ; ---------------------------------------------------------------------------
 
 .finish
-		move.b	#GameModeID_SegaScreen,(Game_mode).w						; set screen mode to Sega
-		addq.w	#4*2,sp										; exit from object and current screen
+		move.b	#GameModeID_SegaScreen,(Game_mode).w				; set screen mode to Sega
+		addq.w	#4*2,sp								; exit from object and current screen
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -690,17 +691,17 @@ CreditsEggRobo_LoadEmeralds:
 
 		; get RAM slot
 		getobjectRAMslot a3
-		bmi.s	.return										; branch, if object RAM slots ended
+		bmi.s	.return								; branch, if object RAM slots ended
 
 		; calc pos
-		moveq	#ChaosEmeralds_Count,d6								; max emeralds
+		moveq	#ChaosEmeralds_Count,d6						; max emeralds
 		sub.b	(Chaos_emerald_count).w,d6
 		blo.s	.return
-		move.l	#256,d4										; 360 degrees = 256
+		move.l	#256,d4								; 360 degrees = 256
 		divu.w	d6,d4
 
 		; load emeralds
-		movea.w	a0,a1										; load current object to a1
+		movea.w	a0,a1								; load current object to a1
 		lea	(Collected_emeralds_array).w,a2
 		moveq	#0,d1
 		moveq	#0,d2
@@ -714,15 +715,15 @@ CreditsEggRobo_LoadEmeralds:
 		; create emerald object
 
 .find
-		lea	next_object(a1),a1								; goto next object RAM slot
-		tst.l	address(a1)									; is object RAM slot empty?
-		dbeq	d0,.find									; if not, branch
-		bne.s	.return										; branch, if object RAM slot is not empty
-		subq.w	#1,d0										; dbeq didn't subtract sprite table so we'll do it ourselves
+		lea	next_object(a1),a1						; goto next object RAM slot
+		tst.l	address(a1)							; is object RAM slot empty?
+		dbeq	d0,.find							; if not, branch
+		bne.s	.return								; branch, if object RAM slot is not empty
+		subq.w	#1,d0								; dbeq didn't subtract sprite table so we'll do it ourselves
 
 		; load object
 		move.l	#Obj_CreditsEggRobo_Emeralds,address(a1)
-		move.w	a0,parent3(a1)									; save Egg Robo address to emeralds
+		move.w	a0,parent3(a1)							; save Egg Robo address to emeralds
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		move.b	d1,mapping_frame(a1)
@@ -732,9 +733,9 @@ CreditsEggRobo_LoadEmeralds:
 		add.b	d4,d3
 
 .next
-		addq.b	#1,d1										; next emerald frame
-		tst.w	d0										; object RAM slots ended?
-		dbmi	d6,.loop									; if not, loop
+		addq.b	#1,d1								; next emerald frame
+		tst.w	d0								; object RAM slots ended?
+		dbmi	d6,.loop							; if not, loop
 
 .return
 		rts
@@ -756,8 +757,8 @@ cere_speed		= objoff_40 ; speed (2 bytes)
 Obj_CreditsEggRobo_Emeralds:
 
 		; init
-		movem.l	ObjDat_CreditsEggRobo_Emeralds(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)								; set data from d0-d3 to current object
+		movem.l	ObjDat_CreditsEggRobo_Emeralds(pc),d0-d3			; copy data to d0-d3
+		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 		move.w	x_pos(a0),cere_origX(a0)
 		moveq	#-72,d0
 		add.w	y_pos(a0),d0
@@ -776,7 +777,7 @@ Obj_CreditsEggRobo_Emeralds:
 		swap	d3
 		move.w	cere_origY(a0),d0
 		add.w	d2,d0
-		move.w	d0,y_pos(a0)									; move object circularly
+		move.w	d0,y_pos(a0)							; move object circularly
 		move.w	cere_origX(a0),d1
 		add.w	d3,d1
 		move.w	d1,x_pos(a0)
@@ -793,8 +794,8 @@ Obj_CreditsEggRobo_Emeralds:
 Obj_CreditsEggRobo_ScrapMetal:
 
 		; init
-		movem.l	ObjDat_CreditsEggRobo_ScrapMetal(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)								; set data from d0-d3 to current object
+		movem.l	ObjDat_CreditsEggRobo_ScrapMetal(pc),d0-d3			; copy data to d0-d3
+		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 		move.b	#4,mapping_frame(a0)
 
 		; draw
@@ -809,11 +810,11 @@ Obj_CreditsEggRobo_ScrapMetal:
 Obj_CreditsEggRobo_Eyes:
 
 		; init
-		movem.l	ObjDat_CreditsEggRobo_Eyes(pc),d0-d3						; copy data to d0-d3
-		movem.l	d0-d3,address(a0)								; set data from d0-d3 to current object
+		movem.l	ObjDat_CreditsEggRobo_Eyes(pc),d0-d3				; copy data to d0-d3
+		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 		move.b	#2,mapping_frame(a0)
-		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; do you have all the emeralds?
-		bne.s	.setframe									; if not, branch
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
+		bne.s	.setframe							; if not, branch
 		move.w	#(2*60)-1,objoff_2E(a0)
 		move.l	#.main,address(a0)
 
@@ -835,7 +836,7 @@ Obj_CreditsEggRobo_Eyes:
 
 .setf
 		move.l	#.refresh,address(a0)
-		movea.w	parent3(a0),a1									; a1=parent object
+		movea.w	parent3(a0),a1							; a1=parent object
 		bset	#2,objoff_38(a1)
 		rts
 ; ---------------------------------------------------------------------------
@@ -845,7 +846,7 @@ Obj_CreditsEggRobo_Eyes:
 
 .refresh
 		moveq	#-20,d0
-		movea.w	parent3(a0),a1									; a1=parent object
+		movea.w	parent3(a0),a1							; a1=parent object
 		tst.b	mapping_frame(a1)
 		beq.s	.refreshs
 		addq.b	#1,d0
@@ -892,7 +893,7 @@ AniRaw_CreditsEggRobo_Eyes:
 
 Credits_ScreenShake:
 		tst.w	(Screen_shaking_flag).w
-		beq.s	.return										; if timer has run out, don't do anything
+		beq.s	.return								; if timer has run out, don't do anything
 		subq.w	#1,(Screen_shaking_flag).w
 
 		; start shake

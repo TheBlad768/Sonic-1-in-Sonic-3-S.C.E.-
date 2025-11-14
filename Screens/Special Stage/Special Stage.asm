@@ -39,23 +39,23 @@ ArtTile_SS_Ring_Sparks			= ArtTile_SS_Ring+4
 ; RAM
 	phase ramaddr(RAM_start)
 
-SStage_Buffer1:				ds.b $4000							; S1: $0000-$3FFF
-SStage_Buffer1_end			= *								; S1: ($4000 bytes)
-SStage_BlockBuffer:			= SStage_Buffer1+$1020						; S1: $1020-$31FF
-SStage_BlockBuffer_end			= SStage_BlockBuffer+$80*$40					; S1: ($2000 bytes)
+SStage_Buffer1:				ds.b $4000					; S1: $0000-$3FFF
+SStage_Buffer1_end			= *						; S1: ($4000 bytes)
+SStage_BlockBuffer:			= SStage_Buffer1+$1020				; S1: $1020-$31FF
+SStage_BlockBuffer_end			= SStage_BlockBuffer+$80*$40			; S1: ($2000 bytes)
 
 
-SStage_Buffer2:				ds.b $1000							; S1: layout data ; ($1000 bytes)
-SStage_BlockTypes:			= SStage_Buffer2						; S1: $4000-$43FF ; ($400 bytes)
-SStage_ItemBuffer:			= SStage_Buffer2+$400						; S1: $4400-$44FF ; ($100 bytes)
+SStage_Buffer2:				ds.b $1000					; S1: layout data ; ($1000 bytes)
+SStage_BlockTypes:			= SStage_Buffer2				; S1: $4000-$43FF ; ($400 bytes)
+SStage_ItemBuffer:			= SStage_Buffer2+$400				; S1: $4400-$44FF ; ($100 bytes)
 SStage_ItemBuffer_end			= SStage_Buffer2+$500
 
-SStage_Buffer3:				ds.b $400							; S1: $5000-$53FF ; item xypos ; ($400 bytes)
+SStage_Buffer3:				ds.b $400					; S1: $5000-$53FF ; item xypos ; ($400 bytes)
 
-SStage_Scroll_Buffer:			ds.b $100							; S1: $1C bytes used?
-SStage_Scroll_Buffer2:			ds.b $100							; S1: $28 bytes used?
+SStage_Scroll_Buffer:			ds.b $100					; S1: $1C bytes used?
+SStage_Scroll_Buffer2:			ds.b $100					; S1: $28 bytes used?
 
-SStage_Ghost_Buffer:			ds.w 14+2							; max ghost solids + header
+SStage_Ghost_Buffer:			ds.w 14+2					; max ghost solids + header
 
 	dephase
 
@@ -90,30 +90,30 @@ Saved_special_stage:			ds.b 1
 ; ---------------------------------------------------------------------------
 
 SpecialStage_VDP:
-		dc.w $8004										; disable HInt, HV counter, 8-colour mode
-		dc.w $8200+(VRAM_Plane_A_Name_Table>>10)						; set foreground nametable address
-		dc.w $8300+(VRAM_Plane_B_Name_Table>>10)						; set window nametable address
-		dc.w $8400+(VRAM_Plane_B_Name_Table>>13)						; set background nametable address
-		dc.w $8700+(2<<4)									; set background colour (line 3; colour 0)
-		dc.w $8B03										; line scroll mode
-		dc.w $8C81										; set 40cell screen size, no interlacing, no s/h
-		dc.w $9011										; 64x64 cell nametable area
-		dc.w $9100										; set window H position at default
-		dc.w $9200										; set window V position at default
-		dc.w 0											; end marker
+		dc.w $8004								; disable HInt, HV counter, 8-colour mode
+		dc.w $8200+(VRAM_Plane_A_Name_Table>>10)				; set foreground nametable address
+		dc.w $8300+(VRAM_Plane_B_Name_Table>>10)				; set window nametable address
+		dc.w $8400+(VRAM_Plane_B_Name_Table>>13)				; set background nametable address
+		dc.w $8700+(2<<4)							; set background colour (line 3; colour 0)
+		dc.w $8B03								; line scroll mode
+		dc.w $8C81								; set 40cell screen size, no interlacing, no s/h
+		dc.w $9011								; 64x64 cell nametable area
+		dc.w $9100								; set window H position at default
+		dc.w $9200								; set window V position at default
+		dc.w 0									; end marker
 SpecialStage_VDP2:
-		dc.w $8200+(VRAM_Plane_A_Name_Table>>10)						; set foreground nametable address
-		dc.w $8400+(VRAM_Plane_B_Name_Table>>13)						; set background nametable address
-		dc.w $9001										; 64x32 cell nametable area
-		dc.w 0											; end marker
+		dc.w $8200+(VRAM_Plane_A_Name_Table>>10)				; set foreground nametable address
+		dc.w $8400+(VRAM_Plane_B_Name_Table>>13)				; set background nametable address
+		dc.w $9001								; 64x32 cell nametable area
+		dc.w 0									; end marker
 
 ; =============== S U B R O U T I N E =======================================
 
 SpecialStageScreen:
-		music	mus_Stop									; stop music
-		sfx	sfx_EnterSS									; play special stage entry sound
-		jsr	(Clear_KosPlus_Module_Queue).w							; clear KosPlusM PLCs
-		ResetDMAQueue										; clear DMA queue
+		music	mus_Stop							; stop music
+		sfx	sfx_EnterSS							; play special stage entry sound
+		jsr	(Clear_KosPlus_Module_Queue).w					; clear KosPlusM PLCs
+		ResetDMAQueue								; clear DMA queue
 		jsr	(Pal_FadeToWhite).w
 		disableInts
 		move.l	#VInt,(V_int_addr).w
@@ -122,32 +122,32 @@ SpecialStageScreen:
 		jsr	(Clear_DisplayData).w
 		lea	SpecialStage_VDP(pc),a1
 		jsr	(Load_VDP).w
-		clearRAM Object_RAM, Object_RAM_end							; clear the object RAM
-		clearRAM Lag_frame_count, Lag_frame_count_end						; clear variables
-		clearRAM Camera_RAM, Camera_RAM_end							; clear the camera RAM
-		clearRAM Oscillating_variables, Oscillating_variables_end				; clear variables
+		clearRAM Object_RAM, Object_RAM_end					; clear the object RAM
+		clearRAM Lag_frame_count, Lag_frame_count_end				; clear variables
+		clearRAM Camera_RAM, Camera_RAM_end					; clear the camera RAM
+		clearRAM Oscillating_variables, Oscillating_variables_end		; clear variables
 
 		; clear
 		move.b	d0,(Water_full_screen_flag).w
 		move.b	d0,(Water_flag).w
 		move.b	d0,(HUD_RAM.status).w
-		move.b	d0,(Extra_life_flags).w								; reset extra life ring flag
-		move.b	d0,(Update_HUD_timer).w								; clear time counter update flag
-		move.w	d0,(Camera_min_Y_pos).w								; set level size for debug mode
+		move.b	d0,(Extra_life_flags).w						; reset extra life ring flag
+		move.b	d0,(Update_HUD_timer).w						; clear time counter update flag
+		move.w	d0,(Camera_min_Y_pos).w						; set level size for debug mode
 
 		; set
 		moveq	#-1,d0
-		move.w	d0,(Anim_Counters).w								; reset block frame
-		move.w	d0,(Special_stage_spheres_left).w						; set -1 (0 = Got)
+		move.w	d0,(Anim_Counters).w						; reset block frame
+		move.w	d0,(Special_stage_spheres_left).w				; set -1 (0 = Got)
 		move.w	#$7FF,(Screen_Y_wrap_value).w
 		move.w	#$7F0,(Camera_Y_pos_mask).w
-		move.w	#$7F0,(Camera_target_max_Y_pos).w						; set level size for debug mode
+		move.w	#$7F0,(Camera_target_max_Y_pos).w				; set level size for debug mode
 		moveq	#1,d0
-		move.b	d0,(Update_HUD_ring_count).w							; update rings counter
+		move.b	d0,(Update_HUD_ring_count).w					; update rings counter
 		move.b	d0,(Level_started_flag).w
 
 	if (GameDebug)&&(~~GameDebugAlt)
-		move.l	#Debug_Special,(Level_data_addr_RAM.Debug).w					; set debug mode items
+		move.l	#Debug_Special,(Level_data_addr_RAM.Debug).w			; set debug mode items
 	endif
 
 		; load BG
@@ -155,16 +155,16 @@ SpecialStageScreen:
 
 		; load art
 		lea	PLC_SpecialStage(pc),a5
-		jsr	(LoadPLC_Raw_KosPlusM).w							; load special stage patterns
+		jsr	(LoadPLC_Raw_KosPlusM).w					; load special stage patterns
 
 		; load special stage palette
 		lea	(Pal_SSSonic).l,a1
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
 		blo.s	.notKnux
 
-.palssk		:= Pal_SSKnuckles-Pal_SSSonic								; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+.palssk		:= Pal_SSKnuckles-Pal_SSSonic						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
 
-		lea	(.palssk)(a1),a1								; Pal_SSKnuckles
+		lea	(.palssk)(a1),a1						; Pal_SSKnuckles
 
 .notKnux
 		lea	(Target_palette_line_1).w,a2
@@ -179,7 +179,7 @@ SpecialStageScreen:
 		moveq	#0,d0
 		lea	(Pal_SpecialStageEmeralds).l,a1
 		move.b	(Current_special_stage).w,d0
-		add.w	d0,d0										; multiply by 6
+		add.w	d0,d0								; multiply by 6
 		move.w	d0,d1
 		add.w	d0,d0
 		add.w	d1,d0
@@ -189,32 +189,33 @@ SpecialStageScreen:
 		move.w	(a1),(a2)
 
 		; set
-		move.l	#VInt_Fade,(V_int_ptr).w							; set VInt pointer
+		move.l	#VInt_Fade,(V_int_ptr).w					; set VInt pointer
 
 .waitplc
+		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
-		jsr	(Wait_VSync).w
+		jsr	(Wait_VSync.skip).w
 		jsr	(Process_KosPlus_Module_Queue).w
 		tst.w	(KosPlus_modules_left).w
-		bne.s	.waitplc									; wait for KosPlusM queue to clear
+		bne.s	.waitplc							; wait for KosPlusM queue to clear
 
 		; load layout
-		bsr.w	SS_Load										; load SS layout data
+		bsr.w	SS_Load								; load SS layout data
 
 		; load character
-		move.l	#Obj_PlayerSpecial,(Player_1+address).w						; load special stage player object
+		move.l	#Obj_PlayerSpecial,(Player_1+address).w				; load special stage player object
 
 		; update palette
-		lea	(VDP_data_port).l,a6								; load VDP data address to a6
-		lea	VDP_control_port-VDP_data_port(a6),a5						; load VDP control address to a5
+		lea	(VDP_data_port).l,a6						; load VDP data address to a6
+		lea	VDP_control_port-VDP_data_port(a6),a5				; load VDP control address to a5
 		bsr.w	PalCycle_SS
 
 		; set
 		moveq	#0,d0
 		move.w	d0,(Ring_count).w
-		move.w	d0,(SStage_scalar_index_0).w							; set stage angle to "upright"
-		move.w	#$40,(SStage_scalar_index_1).w							; set stage rotation speed
-		move.b	#1,(HUD_RAM.status).w								; load HUD
+		move.w	d0,(SStage_scalar_index_0).w					; set stage angle to "upright"
+		move.w	#$40,(SStage_scalar_index_1).w					; set stage rotation speed
+		move.b	#1,(HUD_RAM.status).w						; load HUD
 		lea	SSExtraRender_Data(pc),a1
 		jsr	(Load_ExtraRender).w
 
@@ -228,27 +229,27 @@ SpecialStageScreen:
 			endif
 		endif
 
-		btst	#button_C,(Ctrl_1_held).w							; is C button held?
-		beq.s	.cnotheld									; if not, branch
-		move.w	#$8C89,VDP_control_port-VDP_control_port(a5)					; set shadow/highlight mode
+		btst	#button_C,(Ctrl_1_held).w					; is C button held?
+		beq.s	.cnotheld							; if not, branch
+		move.w	#$8C89,VDP_control_port-VDP_control_port(a5)			; set shadow/highlight mode
 
 .cnotheld
-		btst	#button_A,(Ctrl_1_held).w							; is A button held?
-		beq.s	.anotheld									; if not, branch
-		st	(Debug_mode_flag).w								; enable debug mode
+		btst	#button_A,(Ctrl_1_held).w					; is A button held?
+		beq.s	.anotheld							; if not, branch
+		st	(Debug_mode_flag).w						; enable debug mode
 
 .anotheld
 	endif
 
-		music	mus_SpecialStage								; play Special Stage BG music
-		move.l	#VInt_Main,(V_int_ptr).w							; set VInt pointer
+		music	mus_SpecialStage						; play Special Stage BG music
+		move.l	#VInt_Main,(V_int_ptr).w					; set VInt pointer
 		jsr	(Wait_VSync).w
 		bsr.w	GetDemoPtr
-		enableScreen
-		jsr	(Pal_FadeFromWhite).w
 
 		; set
-		move.l	#VInt_SpecialStage,(V_int_ptr).w						; set VInt pointer
+		move.l	#VInt_SpecialStage,(V_int_ptr).w				; set VInt pointer
+		enableScreen
+		jsr	(Pal_FadeFromWhite).w
 
 .loop
 		jsr	(Pause_Game).w
@@ -279,16 +280,16 @@ SpecialStageScreen:
 .exit
 
 		; exit from demo
-		move.b	#GameModeID_SegaScreen,(Game_mode).w						; set screen mode to Sega
+		move.b	#GameModeID_SegaScreen,(Game_mode).w				; set screen mode to Sega
 		rts
 ; ---------------------------------------------------------------------------
 
 .fin
 
 		; set
-		move.l	#VInt_Menu,(V_int_ptr).w							; set VInt pointer
-		move.w	#1*60,(Demo_timer).w								; set delay time to 1 second
-		move.w	#bytes_to_word((palette_line_0>>8),64-1),(Palette_fade_info).w			; set fade info and fade count
+		move.l	#VInt_Menu,(V_int_ptr).w					; set VInt pointer
+		move.w	#1*60,(Demo_timer).w						; set delay time to 1 second
+		move.w	#bytes_to_word((palette_line_0>>8),64-1),(Palette_fade_info).w	; set fade info and fade count
 		clr.w	(Pal_fade_delay).w
 
 .finloop
@@ -301,9 +302,9 @@ SpecialStageScreen:
 		bsr.w	SS_BGAnimate
 
 		; fade to white
-		subq.w	#1,(Pal_fade_delay).w								; decrement timer
-		bpl.s	.skippal									; if time remains, branch
-		addq.w	#2+1,(Pal_fade_delay).w								; reset timer to 2 frames
+		subq.w	#1,(Pal_fade_delay).w						; decrement timer
+		bpl.s	.skippal							; if time remains, branch
+		addq.w	#2+1,(Pal_fade_delay).w						; reset timer to 2 frames
 		jsr	(Pal_ToWhite).w
 
 .skippal
@@ -311,29 +312,29 @@ SpecialStageScreen:
 		bne.s	.finloop
 
 		; next
-		music	mus_FadeOut									; fade out music
-		ResetDMAQueue										; clear DMA queue
+		music	mus_FadeOut							; fade out music
+		ResetDMAQueue								; clear DMA queue
 		disableInts
 		lea	SpecialStage_VDP2(pc),a1
 		jsr	(Load_VDP).w
 		jsr	(Clear_DisplayData).w
-		clearRAM Object_RAM, Object_RAM_end							; clear object RAM
+		clearRAM Object_RAM, Object_RAM_end					; clear object RAM
 		jsr	(HUD_DrawInitial).w
 		move.b	#1,(Update_HUD_score).w
 		clr.b	(HUD_RAM.status).w
 		clr.b	(Level_started_flag).w
 
 		; remove HUD
-		moveq	#0,d1										; current slot
+		moveq	#0,d1								; current slot
 		jsr	(DeleteSlot_ExtraRender).w
 		enableInts
 
 		; check restore
 		tst.b	(Special_bonus_entry_flag).w
 		beq.s	.skip
-		clr.b	(Special_bonus_entry_flag).w							; clear Special Stage flag
+		clr.b	(Special_bonus_entry_flag).w					; clear Special Stage flag
 		move.w	(Saved2_zone_and_act).w,(Current_zone_and_act).w
-		ori.b	#$80,(Last_star_post_hit).w							; flag for restore starpost data
+		ori.b	#$80,(Last_star_post_hit).w					; flag for restore starpost data
 
 .skip
 
@@ -342,9 +343,9 @@ SpecialStageScreen:
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
 		blo.s	.notKnux2
 
-.palk		:= Pal_Knuckles-Pal_Sonic								; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+.palk		:= Pal_Knuckles-Pal_Sonic						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
 
-		lea	(.palk)(a1),a1									; Pal_Knuckles
+		lea	(.palk)(a1),a1							; Pal_Knuckles
 
 .notKnux2
 		lea	(Target_palette_line_1).w,a2
@@ -362,13 +363,13 @@ SpecialStageScreen:
 		move.w	(Player_mode).w,d0
 		add.w	d0,d0
 		add.w	d0,d0
-		lea	(PlayerResults_Index).l,a1							; select character name to use based on character of course
+		lea	(PlayerResults_Index).l,a1					; select character name to use based on character of course
 		movea.l	(a1,d0.w),a1
 
 		; check Miles
 		cmpi.w	#PlayerModeID_Tails*4,d0
 		bne.s	.notMiles
-		tst.b	(Graphics_flags).w								; check console region
+		tst.b	(Graphics_flags).w						; check console region
 		bmi.s	.notMiles
 		lea	(ArtKosPM_ResultsMILES).l,a1
 
@@ -378,10 +379,10 @@ SpecialStageScreen:
 
 	if SuperHyperSonKnux
 		lea	(ArtKosPM_SSResultsHYPER).l,a1
-		cmpi.w	#PlayerModeID_Tails,(Player_mode).w						; is Tails?
-		bne.s	.notTails									; if not, branch
+		cmpi.w	#PlayerModeID_Tails,(Player_mode).w				; is Tails?
+		bne.s	.notTails							; if not, branch
 
-.artss		:= ArtKosPM_SSResultsSUPER-ArtKosPM_SSResultsHYPER					; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+.artss		:= ArtKosPM_SSResultsSUPER-ArtKosPM_SSResultsHYPER			; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
 
 		lea	(.artss)(a1),a1
 
@@ -393,16 +394,17 @@ SpecialStageScreen:
 		move.w	#tiles_to_bytes($4E0),d2
 		jsr	(Queue_KosPlus_Module).w
 
+		; set
+		move.l	#VInt_SpecialStageResults,(V_int_ptr).w				; set VInt pointer
+
 		; load object
 		move.l	#Obj_SpecialStage_Results,(Dynamic_object_RAM+(object_size*29)+address).w	; load results screen object
 		jsr	(Pal_FadeFromWhite).w
 
-		; set
-		move.l	#VInt_SpecialStageResults,(V_int_ptr).w						; set VInt pointer
-
 .results
+		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
-		jsr	(Wait_VSync).w
+		jsr	(Wait_VSync.skip).w
 		addq.w	#1,(Level_frame_counter).w
 		move.w	(Emerald_flicker_flag).w,d1
 		addq.w	#1,d1
@@ -564,7 +566,7 @@ loc_4C9A:
 		addq.w	#4,a3
 		moveq	#0,d1
 		move.b	(a2)+,d1
-		subq.w	#1,d1										; dbf fix
+		subq.w	#1,d1								; dbf fix
 
 loc_4CA4:
 		move.l	d0,(a1,d2.w)
@@ -612,9 +614,9 @@ SS_ShowLayout:
 
 	if ~~SpecialStageRotation
 		moveq	#-4,d0
-		and.b	(SStage_scalar_index_0).w,d0							; original rotation
+		and.b	(SStage_scalar_index_0).w,d0					; original rotation
 	else
-		move.b	(SStage_scalar_index_0).w,d0							; smooth rotation
+		move.b	(SStage_scalar_index_0).w,d0					; smooth rotation
 	endif
 
 		jsr	(GetSineCosine).w
@@ -677,29 +679,29 @@ loc_1B1C0:
 		adda.w	d0,a0
 
 ; Render_Sprites:
-		lea	(SStage_Buffer2).l,a2								; load layout
-		lea	SStage_Buffer3-SStage_Buffer2(a2),a1						; load object xypos
-		lea	(Sprite_table_buffer).w,a6							; set address for sprite table
-		moveq	#80-1,d7									; max sprites
+		lea	(SStage_Buffer2).l,a2						; load layout
+		lea	SStage_Buffer3-SStage_Buffer2(a2),a1				; load object xypos
+		lea	(Sprite_table_buffer).w,a6					; set address for sprite table
+		moveq	#80-1,d7							; max sprites
 		moveq	#0,d6
-		move.b	(Sprites_drawn).w,d6								; load sprite count
+		move.b	(Sprites_drawn).w,d6						; load sprite count
 		sub.b	d6,d7
-		lsl.w	#3,d6										; 1=8
+		lsl.w	#3,d6								; 1=8
 		adda.w	d6,a6
 		moveq	#16-1,d2
 
 .levelloop
-		moveq	#16-1,d3									; set objects count
+		moveq	#16-1,d3							; set objects count
 
 .objloop
 		moveq	#0,d0
-		move.b	(a0)+,d0									; load mapping ID
-		beq.s	.nextlevel									; if null, branch
-		cmpi.b	#(SS_MapIndex_end-SS_MapIndex)/6,d0						; is last mapping?
-		bhi.s	.nextlevel									; if yes, branch
+		move.b	(a0)+,d0							; load mapping ID
+		beq.s	.nextlevel							; if null, branch
+		cmpi.b	#(SS_MapIndex_end-SS_MapIndex)/6,d0				; is last mapping?
+		bhi.s	.nextlevel							; if yes, branch
 
 		; check xpos
-		move.w	(a1),d4										; get xpos
+		move.w	(a1),d4								; get xpos
 		addi.w	#288,d4
 		cmpi.w	#112,d4
 		blo.s	.nextlevel
@@ -707,7 +709,7 @@ loc_1B1C0:
 		bhs.s	.nextlevel
 
 		; check ypos
-		move.w	2(a1),d5									; get ypos
+		move.w	2(a1),d5							; get ypos
 		addi.w	#240,d5
 		cmpi.w	#112,d5
 		blo.s	.nextlevel
@@ -715,41 +717,41 @@ loc_1B1C0:
 		bhs.s	.nextlevel
 
 		; load mapping
-		lsl.w	#3,d0										; 1=8
+		lsl.w	#3,d0								; 1=8
 		lea	(a2,d0.w),a4
-		movea.l	(a4)+,a3									; address of mappings
-		move.w	(a4)+,d6									; frame number
-		add.w	d6,d6										; 1+1
-		adda.w	(a3,d6.w),a3									; get mappings frame address
-		move.w	(a4),d6										; VRAM
-		move.w	(a3)+,d1									; number of sprite pieces
-		subq.w	#1,d1										; "
-		bmi.s	.nextlevel									; if there are 0 pieces, branch
+		movea.l	(a4)+,a3							; address of mappings
+		move.w	(a4)+,d6							; frame number
+		add.w	d6,d6								; 1+1
+		adda.w	(a3,d6.w),a3							; get mappings frame address
+		move.w	(a4),d6								; VRAM
+		move.w	(a3)+,d1							; number of sprite pieces
+		subq.w	#1,d1								; "
+		bmi.s	.nextlevel							; if there are 0 pieces, branch
 
 .setmap
-		move.b	(a3)+,d0									; get y-offset
-		ext.w	d0										; byte to word
-		add.w	d5,d0										; add y-position
-		move.w	d0,(a6)+									; write to buffer
-		move.b	(a3)+,(a6)+									; write sprite size
-		addq.w	#1,a6										; skip sprite link
-		move.w	(a3)+,d0									; get art tile
-		add.w	d6,d0										; add art tile offset
-		move.w	d0,(a6)+									; write to buffer
-		move.w	(a3)+,d0									; get x-offset
-		add.w	d4,d0										; add x-position
-		andi.w	#$1FF,d0									; keep within 512px
+		move.b	(a3)+,d0							; get y-offset
+		ext.w	d0								; byte to word
+		add.w	d5,d0								; add y-position
+		move.w	d0,(a6)+							; write to buffer
+		move.b	(a3)+,(a6)+							; write sprite size
+		addq.w	#1,a6								; skip sprite link
+		move.w	(a3)+,d0							; get art tile
+		add.w	d6,d0								; add art tile offset
+		move.w	d0,(a6)+							; write to buffer
+		move.w	(a3)+,d0							; get x-offset
+		add.w	d4,d0								; add x-position
+		andi.w	#$1FF,d0							; keep within 512px
 		bne.s	.writeX
 		addq.w	#1,d0
 
 .writeX
-		move.w	d0,(a6)+									; write to buffer
-		subq.w	#1,d7										; decrease sprite counter
-		dbmi	d1,.setmap									; process next sprite piece
+		move.w	d0,(a6)+							; write to buffer
+		subq.w	#1,d7								; decrease sprite counter
+		dbmi	d1,.setmap							; process next sprite piece
 		bmi.s	.finish
 
 .nextlevel
-		addq.w	#4,a1										; next object xypos
+		addq.w	#4,a1								; next object xypos
 		dbf	d3,.objloop
 		lea	$70(a0),a0
 		dbf	d2,.levelloop
@@ -782,19 +784,19 @@ SS_AniWallsRings:
 .size		= ($200/$20)>>2		; art size (32x32) ; rotation in 16 frames(&$FC00)
 
 		; dynamic blocks graphics
-		moveq	#0,d1										; VRAM
+		moveq	#0,d1								; VRAM
 		move.w	(SStage_scalar_index_0).w,d1
-		andi.w	#(((.frames-1)*(.size))<<8)&$FC00,d1						; calc frames and art size
+		andi.w	#(((.frames-1)*(.size))<<8)&$FC00,d1				; calc frames and art size
 
 		; check frame
 		cmp.w	(Anim_Counters).w,d1
 		beq.s	.ranim
-		move.w	d1,(Anim_Counters).w								; set prev_anim	; save art pos
+		move.w	d1,(Anim_Counters).w						; set prev_anim	; save art pos
 
 		; load art
-		lsr.w	#2,d1										; /2 = $0100 (AssumeSourceAddressIsRAMSafe) ; $400>>1
-		addi.l	#dmaSource(ArtUnc_SSWalls),d1							; get next frame
-		move.w	#tiles_to_bytes(ArtTile_SS_Wall),d2						; load art destination
+		lsr.w	#2,d1								; /2 = $0100 (AssumeSourceAddressIsRAMSafe) ; $400>>1
+		addi.l	#dmaSource(ArtUnc_SSWalls),d1					; get next frame
+		move.w	#tiles_to_bytes(ArtTile_SS_Wall),d2				; load art destination
 
 		; size of art (in words) ; we only need one frame
 		move.w	#tiles_to_bytes( \
@@ -816,8 +818,8 @@ SS_AniWallsRings:
 		moveq	#0,d1
 		move.b	(Rings_frame).w,d1
 		lsl.w	#6,d1
-		add.l	#dmaSource(ArtUnc_SSRing),d1							; get next frame
-		move.w	#tiles_to_bytes($7B2),d2							; load art destination
+		add.l	#dmaSource(ArtUnc_SSRing),d1					; get next frame
+		move.w	#tiles_to_bytes($7B2),d2					; load art destination
 
 		; size of art (in words) ; we only need one frame
 		moveq	#tiles_to_bytes( \
@@ -836,17 +838,17 @@ loc_1B2C8:
 
 loc_1B2E4:
 		move.b	(v_ani2_frame).w,d0
-		move.b	d0,$27*8(a1)									; goal ($27)
-		move.b	d0,$29*8(a1)									; up/down ($29)	; (up)
-		move.b	d0,$2A*8(a1)									; up/down ($2A)	; (down)
-		move.b	d0,$2C*8(a1)									; white block ($2C)
-		move.b	d0,$3B*8(a1)									; emerald 1 ($3B)
-		move.b	d0,$3C*8(a1)									; emerald 2 ($3C)
-		move.b	d0,$3D*8(a1)									; emerald 3 ($3D)
-		move.b	d0,$3E*8(a1)									; emerald 4 ($3E)
-		move.b	d0,$3F*8(a1)									; emerald 5 ($3F)
-		move.b	d0,$40*8(a1)									; emerald 6 ($40)
-		move.b	d0,$4F*8(a1)									; emerald 7 ($4F)
+		move.b	d0,$27*8(a1)							; goal ($27)
+		move.b	d0,$29*8(a1)							; up/down ($29)	; (up)
+		move.b	d0,$2A*8(a1)							; up/down ($2A)	; (down)
+		move.b	d0,$2C*8(a1)							; white block ($2C)
+		move.b	d0,$3B*8(a1)							; emerald 1 ($3B)
+		move.b	d0,$3C*8(a1)							; emerald 2 ($3C)
+		move.b	d0,$3D*8(a1)							; emerald 3 ($3D)
+		move.b	d0,$3E*8(a1)							; emerald 4 ($3E)
+		move.b	d0,$3F*8(a1)							; emerald 5 ($3F)
+		move.b	d0,$40*8(a1)							; emerald 6 ($40)
+		move.b	d0,$4F*8(a1)							; emerald 7 ($4F)
 
 		; next anim
 		subq.b	#1,(v_ani3_time).w
@@ -857,10 +859,10 @@ loc_1B2E4:
 
 loc_1B326:
 		move.b	(v_ani3_frame).w,d0
-		move.b	d0,$2D*8(a1)									; glass ($2D)
-		move.b	d0,$2E*8(a1)									; glass ($2E)
-		move.b	d0,$2F*8(a1)									; glass ($2F)
-		move.b	d0,$30*8(a1)									; glass ($30)
+		move.b	d0,$2D*8(a1)							; glass ($2D)
+		move.b	d0,$2E*8(a1)							; glass ($2E)
+		move.b	d0,$2F*8(a1)							; glass ($2F)
+		move.b	d0,$30*8(a1)							; glass ($30)
 
 		; next anim
 		subq.b	#1,(v_ani0_time).w
@@ -882,27 +884,27 @@ loc_1B350:
 		set	.a,0
 
 	rept 3
-		move.w	(a0)+,.a(a1)									; 1 ; 0
-		move.w	(a0)+,.a+(1*8)(a1)								; 2 ; 2
-		move.w	(a0)+,.a+(2*8)(a1)								; 3 ; 4
-		move.w	(a0)+,.a+(3*8)(a1)								; 4 ; 6
-		move.w	(a0)+,.a+(4*8)(a1)								; 5 ; 8
-		move.w	(a0)+,.a+(5*8)(a1)								; 6 ; A
-		move.w	(a0)+,.a+(6*8)(a1)								; 7 ; C
-		move.w	(a0),.a+(7*8)(a1)								; 8 ; E
-		lea	$12(a0),a0									; $10+2
-		set	.a,.a + 9*8									; next wall
+		move.w	(a0)+,.a(a1)							; 1 ; 0
+		move.w	(a0)+,.a+(1*8)(a1)						; 2 ; 2
+		move.w	(a0)+,.a+(2*8)(a1)						; 3 ; 4
+		move.w	(a0)+,.a+(3*8)(a1)						; 4 ; 6
+		move.w	(a0)+,.a+(4*8)(a1)						; 5 ; 8
+		move.w	(a0)+,.a+(5*8)(a1)						; 6 ; A
+		move.w	(a0)+,.a+(6*8)(a1)						; 7 ; C
+		move.w	(a0),.a+(7*8)(a1)						; 8 ; E
+		lea	$12(a0),a0							; $10+2
+		set	.a,.a + 9*8							; next wall
 	endr
 
 		; last (green)
-		move.w	(a0)+,.a(a1)									; 1 ; 0
-		move.w	(a0)+,.a+(1*8)(a1)								; 2 ; 2
-		move.w	(a0)+,.a+(2*8)(a1)								; 3 ; 4
-		move.w	(a0)+,.a+(3*8)(a1)								; 4 ; 6
-		move.w	(a0)+,.a+(4*8)(a1)								; 5 ; 8
-		move.w	(a0)+,.a+(5*8)(a1)								; 6 ; A
-		move.w	(a0)+,.a+(6*8)(a1)								; 7 ; C
-		move.w	(a0),.a+(7*8)(a1)								; 8 ; E
+		move.w	(a0)+,.a(a1)							; 1 ; 0
+		move.w	(a0)+,.a+(1*8)(a1)						; 2 ; 2
+		move.w	(a0)+,.a+(2*8)(a1)						; 3 ; 4
+		move.w	(a0)+,.a+(3*8)(a1)						; 4 ; 6
+		move.w	(a0)+,.a+(4*8)(a1)						; 5 ; 8
+		move.w	(a0)+,.a+(5*8)(a1)						; 6 ; A
+		move.w	(a0)+,.a+(6*8)(a1)						; 7 ; C
+		move.w	(a0),.a+(7*8)(a1)						; 8 ; E
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -940,12 +942,12 @@ Process_SSSprites:
 
 SS_RemoveCollectedItem:
 		lea	(SStage_ItemBuffer).l,a2
-		moveq	#bytesToXcnt((SStage_ItemBuffer_end-SStage_ItemBuffer),8),d0			; check $100 bytes
+		moveq	#bytesToXcnt((SStage_ItemBuffer_end-SStage_ItemBuffer),8),d0	; check $100 bytes
 
 .loop
 		tst.b	(a2)
 		beq.s	.return
-		addq.w	#8,a2										; next
+		addq.w	#8,a2								; next
 		dbf	d0,.loop
 
 .return
@@ -959,7 +961,7 @@ SS_RemoveCollectedItem:
 
 SS_AniItems:
 		lea	(SStage_ItemBuffer).l,a0
-		moveq	#bytesToXcnt((SStage_ItemBuffer_end-SStage_ItemBuffer),8),d7			; check $100 bytes
+		moveq	#bytesToXcnt((SStage_ItemBuffer_end-SStage_ItemBuffer),8),d7	; check $100 bytes
 
 .loop
 		moveq	#0,d0
@@ -970,26 +972,26 @@ SS_AniItems:
 		jsr	SS_AniItems_Index(pc,d0.w)
 
 .next
-		addq.w	#8,a0										; next
+		addq.w	#8,a0								; next
 		dbf	d7,.loop
 		rts
 ; ---------------------------------------------------------------------------
 
 SS_AniItems_Index: offsetTable
-		offsetTableEntry.w SS_AniRingSparks							; 1
-		offsetTableEntry.w SS_AniBumper								; 2
-		offsetTableEntry.w SS_Ani1Up								; 3 (unused)
-		offsetTableEntry.w SS_AniReverse							; 4
-		offsetTableEntry.w SS_AniEmeraldSparks							; 5
-		offsetTableEntry.w SS_AniGlassBlock							; 6
+		offsetTableEntry.w SS_AniRingSparks					; 1
+		offsetTableEntry.w SS_AniBumper						; 2
+		offsetTableEntry.w SS_Ani1Up						; 3 (unused)
+		offsetTableEntry.w SS_AniReverse					; 4
+		offsetTableEntry.w SS_AniEmeraldSparks					; 5
+		offsetTableEntry.w SS_AniGlassBlock					; 6
 ; ---------------------------------------------------------------------------
 
 SS_AniRingSparks:
 
 		; wait
-		subq.b	#1,2(a0)									; decrement timer
-		bpl.s	.return										; if time remains, branch
-		addq.b	#5+1,2(a0)									; reset timer to 5+1 frames
+		subq.b	#1,2(a0)							; decrement timer
+		bpl.s	.return								; if time remains, branch
+		addq.b	#5+1,2(a0)							; reset timer to 5+1 frames
 
 		moveq	#0,d0
 		move.b	3(a0),d0
@@ -1005,21 +1007,21 @@ SS_AniRingSparks:
 		rts
 ; ---------------------------------------------------------------------------
 
-.anim													; MapIndex
+.anim											; MapIndex
 		dc.b $42
 		dc.b $43
 		dc.b $44
 		dc.b $45
-		dc.b 0											; reset
+		dc.b 0									; reset
 	even
 ; ---------------------------------------------------------------------------
 
 SS_AniBumper:
 
 		; wait
-		subq.b	#1,2(a0)									; decrement timer
-		bpl.s	.return										; if time remains, branch
-		addq.b	#7+1,2(a0)									; reset timer to 7+1 frames
+		subq.b	#1,2(a0)							; decrement timer
+		bpl.s	.return								; if time remains, branch
+		addq.b	#7+1,2(a0)							; reset timer to 7+1 frames
 
 		; anim
 		moveq	#0,d0
@@ -1041,21 +1043,21 @@ SS_AniBumper:
 		rts
 ; ---------------------------------------------------------------------------
 
-.anim													; MapIndex
+.anim											; MapIndex
 		dc.b $32
 		dc.b $33
 		dc.b $32
 		dc.b $33
-		dc.b 0											; reset
+		dc.b 0									; reset
 	even
 ; ---------------------------------------------------------------------------
 
 SS_Ani1Up:
 
 		; wait
-		subq.b	#1,2(a0)									; decrement timer
-		bpl.s	.return										; if time remains, branch
-		addq.b	#5+1,2(a0)									; reset timer to 5+1 frames
+		subq.b	#1,2(a0)							; decrement timer
+		bpl.s	.return								; if time remains, branch
+		addq.b	#5+1,2(a0)							; reset timer to 5+1 frames
 
 		; anim
 		moveq	#0,d0
@@ -1072,21 +1074,21 @@ SS_Ani1Up:
 		rts
 ; ---------------------------------------------------------------------------
 
-.anim													; MapIndex
+.anim											; MapIndex
 		dc.b $46
 		dc.b $47
 		dc.b $48
 		dc.b $49
-		dc.b 0											; reset
+		dc.b 0									; reset
 	even
 ; ---------------------------------------------------------------------------
 
 SS_AniReverse:
 
 		; wait
-		subq.b	#1,2(a0)									; decrement timer
-		bpl.s	.return										; if time remains, branch
-		addq.b	#7+1,2(a0)									; reset timer to 7+1 frames
+		subq.b	#1,2(a0)							; decrement timer
+		bpl.s	.return								; if time remains, branch
+		addq.b	#7+1,2(a0)							; reset timer to 7+1 frames
 
 		; anim
 		moveq	#0,d0
@@ -1108,21 +1110,21 @@ SS_AniReverse:
 		rts
 ; ---------------------------------------------------------------------------
 
-.anim													; MapIndex
+.anim											; MapIndex
 		dc.b $2B
 		dc.b $31
 		dc.b $2B
 		dc.b $31
-		dc.b 0											; reset
+		dc.b 0									; reset
 	even
 ; ---------------------------------------------------------------------------
 
 SS_AniEmeraldSparks:
 
 		; wait
-		subq.b	#1,2(a0)									; decrement timer
-		bpl.s	SS_AniReverse.return								; if time remains, branch
-		addq.b	#5+1,2(a0)									; reset timer to 5+1 frames
+		subq.b	#1,2(a0)							; decrement timer
+		bpl.s	SS_AniReverse.return						; if time remains, branch
+		addq.b	#5+1,2(a0)							; reset timer to 5+1 frames
 
 		; anim
 		moveq	#0,d0
@@ -1135,24 +1137,24 @@ SS_AniEmeraldSparks:
 		clr.l	(a0)
 		clr.l	4(a0)
 		move.b	#4,(Player_1+routine).w
-		sfx	sfx_SSGoal,1									; play Special Stage GOAL sound
+		sfx	sfx_SSGoal,1							; play Special Stage GOAL sound
 ; ---------------------------------------------------------------------------
 
-.anim													; MapIndex
+.anim											; MapIndex
 		dc.b $46
 		dc.b $47
 		dc.b $48
 		dc.b $49
-		dc.b 0											; reset
+		dc.b 0									; reset
 	even
 ; ---------------------------------------------------------------------------
 
 SS_AniGlassBlock:
 
 		; wait
-		subq.b	#1,2(a0)									; decrement timer
-		bpl.s	.return										; if time remains, branch
-		addq.b	#1+1,2(a0)									; reset timer to 1+1 frames
+		subq.b	#1,2(a0)							; decrement timer
+		bpl.s	.return								; if time remains, branch
+		addq.b	#1+1,2(a0)							; reset timer to 1+1 frames
 
 		; anim
 		moveq	#0,d0
@@ -1170,7 +1172,7 @@ SS_AniGlassBlock:
 		rts
 ; ---------------------------------------------------------------------------
 
-.anim													; MapIndex
+.anim											; MapIndex
 		dc.b $4B
 		dc.b $4C
 		dc.b $4D
@@ -1179,7 +1181,7 @@ SS_AniGlassBlock:
 		dc.b $4C
 		dc.b $4D
 		dc.b $4E
-		dc.b 0											; reset
+		dc.b 0									; reset
 	even
 
 ; ---------------------------------------------------------------------------
@@ -1196,21 +1198,21 @@ SS_AniGlassBlock:
 
 SS_Load:
 		moveq	#0,d0
-		move.b	(Current_special_stage).w,d0							; load number of last Special Stage entered
+		move.b	(Current_special_stage).w,d0					; load number of last Special Stage entered
 		move.b	d0,(Saved_special_stage).w
 		addq.b	#1,(Current_special_stage).w
 		cmpi.b	#ChaosEmeralds_Count,(Current_special_stage).w
 		blo.s	SS_ChkEmldNum
-		clr.b	(Current_special_stage).w							; reset if higher than 6/7
+		clr.b	(Current_special_stage).w					; reset if higher than 6/7
 
 SS_ChkEmldNum:
-		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w					; do you have all emeralds?
-		beq.s	SS_LoadData									; if yes, branch
+		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all emeralds?
+		beq.s	SS_LoadData							; if yes, branch
 		moveq	#0,d1
 		move.b	(Chaos_emerald_count).w,d1
 		subq.b	#1,d1
 		blo.s	SS_LoadData
-		lea	(Collected_emeralds_array).w,a3							; check which emeralds you have
+		lea	(Collected_emeralds_array).w,a3					; check which emeralds you have
 
 SS_ChkEmldLoop:
 		cmpi.b	#1,(a3,d0.w)
@@ -1227,9 +1229,9 @@ SS_ChkEmldRepeat:
 SS_LoadData:
 		add.w	d0,d0
 		add.w	d0,d0
-		lea	SS_StartLoc(pc,d0.w),a1								; load player's start location
-		move.w	(a1)+,(Player_1+x_pos).w							; set player's position on x-axis
-		move.w	(a1)+,(Player_1+y_pos).w							; set player's position on y-axis
+		lea	SS_StartLoc(pc,d0.w),a1						; load player's start location
+		move.w	(a1)+,(Player_1+x_pos).w					; set player's position on x-axis
+		move.w	(a1)+,(Player_1+y_pos).w					; set player's position on y-axis
 
 		; load layout
 		movea.l	SS_LayoutIndex(pc,d0.w),a0
@@ -1250,19 +1252,19 @@ SS_LoadData:
 		move.l	(a0)+,(a1)+
 	endr
 
-		lea	$40(a1),a1									; next
+		lea	$40(a1),a1							; next
 		dbf	d1,.nexti
 
 		; load mapping
 		lea	(SStage_Buffer2+8).l,a1
 		lea	SS_MapIndex(pc),a0
-		moveq	#(SS_MapIndex_end-SS_MapIndex)/6-1,d1						; number of objects
+		moveq	#(SS_MapIndex_end-SS_MapIndex)/6-1,d1				; number of objects
 
 .loadm
-		move.l	(a0)+,(a1)+									; address of mappings
+		move.l	(a0)+,(a1)+							; address of mappings
 		clr.w	(a1)+
-		move.b	-4(a0),-1(a1)									; frame
-		move.w	(a0)+,(a1)+									; VRAM
+		move.b	-4(a0),-1(a1)							; frame
+		move.w	(a0)+,(a1)+							; VRAM
 		dbf	d1,.loadm
 
 		; find all ghost solids and rings
@@ -1274,14 +1276,14 @@ SS_LoadData:
 		moveq	#$40-1,d2
 
 .gloop
-		cmpi.b	#$41,(a0)									; is the item a	ghost block?
-		bne.s	.gring										; if not, branch
-		move.w	a0,(a1)+									; save address ghost block
+		cmpi.b	#$41,(a0)							; is the item a	ghost block?
+		bne.s	.gring								; if not, branch
+		move.w	a0,(a1)+							; save address ghost block
 
 .gring
-		cmpi.b	#$3A,(a0)									; is the item a	ring?
-		bne.s	.notgb										; if not, branch
-		addq.w	#1,(Special_stage_rings_left).w							; add ring to counter
+		cmpi.b	#$3A,(a0)							; is the item a	ring?
+		bne.s	.notgb								; if not, branch
+		addq.w	#1,(Special_stage_rings_left).w					; add ring to counter
 
 .notgb
 		addq.w	#1,a0
