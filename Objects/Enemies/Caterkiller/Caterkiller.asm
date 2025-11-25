@@ -181,7 +181,7 @@ Obj_Caterkiller_BodySegments:
 
 		; calc count and xpos
 		moveq	#0,d0
-		movea.w	objoff_44(a0),a1						; head address
+		movea.w	parent4(a0),a1						; head address
 		move.w	x_pos(a1),d2
 		move.b	subtype(a0),d0
 		move.w	d0,d1
@@ -204,7 +204,7 @@ Obj_Caterkiller_BodySegments:
 		jsr	(SetUp_ObjAttributes3).w
 
 		; fix flip
-		movea.w	objoff_44(a0),a1						; head address
+		movea.w	parent4(a0),a1						; head address
 		move.b	status(a1),status(a0)
 		move.b	status(a1),render_flags(a0)
 		move.w	#bytes_to_word(14/2,16/2),y_radius(a0)				; set y_radius and x_radius
@@ -294,7 +294,7 @@ Cat_BodySeg1:
 		move.b	d1,cat_flag2(a0,d0.w)
 
 .loc_16C64
-		movea.w	objoff_44(a0),a2						; head address
+		movea.w	parent4(a0),a2						; head address
 		btst	#status.npc.touch,status(a2)
 		bne.s	Caterkiller_FragBody
 		jmp	(Child_DrawTouch_Sprite).w
