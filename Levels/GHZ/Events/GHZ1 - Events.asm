@@ -15,6 +15,8 @@ GHZ1_ScreenInit:
 GHZ1_BackgroundInit:
 		bsr.s	GHZ1_Deform
 
+.update
+
 		; update BG
 		jsr	(Reset_TileOffsetPositionEff).w
 		lea	GHZ1_BGDrawArray(pc),a4
@@ -43,6 +45,8 @@ GHZ1_BackgroundEvent:
 		tst.b	(Background_event_flag).w
 		bne.s	GHZ1_Transition
 		bsr.s	GHZ1_Deform
+
+.update
 
 		; update BG
 		lea	GHZ1_BGDrawArray(pc),a4

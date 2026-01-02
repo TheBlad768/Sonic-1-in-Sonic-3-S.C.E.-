@@ -60,7 +60,7 @@ TitleLevelSelectScreen:
 		move.w	#palette_line_0+TitleLevelSelect_VRAM,d3
 		bsr.w	TitleLevelSelect_MarkFields.drawplayer
 
-		; we need to switch plans
+		; we need to switch planes
 		disableInts
 		lea	(VDP_data_port).l,a6						; load VDP data address to a6
 		lea	VDP_control_port-VDP_data_port(a6),a5				; load VDP control address to a5

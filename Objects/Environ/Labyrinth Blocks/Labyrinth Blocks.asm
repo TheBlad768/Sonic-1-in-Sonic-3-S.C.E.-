@@ -9,7 +9,9 @@ lblk_time			= objoff_36	; time delay for block movement
 lblk_untouched			= objoff_38	; flag block as untouched
 ; ---------------------------------------------------------------------------
 
-LBlk_Var:	; width/2, height/2
+LBlk_Var:
+
+		; width/2, height/2
 		dc.b 32/2, 32/2
 		dc.b 24/2, 64/2
 		dc.b 32/2, 32/2
@@ -39,7 +41,7 @@ Obj_LabyrinthBlock:
 		beq.s	.action								; branch if 0
 		cmpi.b	#7,d0
 		beq.s	.action								; branch if 7
-		move.b	#1,lblk_untouched(a0)
+		st	lblk_untouched(a0)
 
 .action
 		move.w	x_pos(a0),-(sp)

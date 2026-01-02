@@ -321,7 +321,7 @@ ApplyTitleDeformation2:
 .loc_4F124
 		move.w	(a5)+,d3
 		neg.w	d3
-		addq.w	#2,a1
+		addq.w	#2,a1								; skip FG
 		move.w	d3,(a1)+
 		dbf	d0,.loc_4F11E
 		bra.s	.loc_4F140
