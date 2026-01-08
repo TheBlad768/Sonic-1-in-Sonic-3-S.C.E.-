@@ -766,8 +766,14 @@ DMA =								%100111
 ; Screen sizes
 ; ---------------------------------------------------------------------------
 
-screen_width =							320
-screen_height =							224
+tile_width =							8
+tile_height =							8
+block_width =							tile_width*2
+block_height =							tile_height*2
+chunk_width =							block_width*8
+chunk_height =							block_height*8
+screen_width =							tile_width*40					; H40 mode
+screen_height =							tile_height*28					; V28 mode
 
 ; ---------------------------------------------------------------------------
 ; VRAM and tile art base addresses
@@ -922,7 +928,7 @@ SingleObjLoad2 =						Create_New_Sprite3				; alias from Sonic 1 (Hivebrain)
 FindNextFreeObj =						Create_New_Sprite3				; alias from Sonic 1 (GitHub)
 AllocateObjectAfterCurrent =					Create_New_Sprite3				; alias from Sonic 2/3K (GitHub)
 Find_Sonic =							Find_SonicObject				; alias for SCE
-Obj_GetOrientationToPlayer =					Find_SonicTails				; alias from Sonic 2 (GitHub)
+Obj_GetOrientationToPlayer =					Find_SonicTails					; alias from Sonic 2 (GitHub)
 Shot_ObjectInSonic =						Shot_Object					; alias for SCE
 MarkObjGone =							Sprite_OnScreen_Test				; alias from Sonic 1/2 (Hivebrain/GitHub)
 RememberState =							Sprite_OnScreen_Test				; alias from Sonic 1 (GitHub)

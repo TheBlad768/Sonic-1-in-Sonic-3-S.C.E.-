@@ -8,6 +8,8 @@
 		incfile.b	ArtUnc_HUDDigits, "Objects/Renders/HUD/Uncompressed Art/HUD Digits.unc"
 		incfile.b	ArtUnc_LivesDigits, "Objects/Renders/HUD/Uncompressed Art/Lives Digits.unc"
 		incfile.b	ArtUnc_DebugDigits, "Objects/Renders/HUD/Uncompressed Art/Debug Digits.unc"
+		incfile.be	ArtUnc_SonicLifeIcon, "Objects/Renders/HUD/Uncompressed Art/Sonic Life Icon.unc"
+		incfile.be	ArtUnc_SuperSonicLifeIcon, "Objects/Renders/HUD/Uncompressed Art/Super Sonic Life Icon.unc"
 		incfile.b	ArtUnc_EndSigns, "Objects/Main/Signpost/Uncompressed Art/End Signs.unc"
 		incfile.be	ArtUnc_SignpostStub, "Objects/Main/Signpost/Uncompressed Art/Stub.unc"
 		incfile.b	ArtUnc_BigRing, "Objects/Main/Big Ring/Uncompressed Art/Big Ring.unc"
