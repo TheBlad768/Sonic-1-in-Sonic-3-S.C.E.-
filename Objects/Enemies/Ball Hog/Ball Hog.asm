@@ -57,14 +57,15 @@ Obj_BallHog:
 		lea	Child6_BallHog_Cannonball(pc),a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.fail
-		move.l	#words_to_long(-$100,0),x_vel(a1)				; cannonball bounces to the left
+		move.w	#-$100,d1							; cannonball bounces to the left
 		moveq	#-4,d0
 		btst	#render_flags.x_flip,render_flags(a0)				; is Ball Hog facing right?
 		beq.s	.noflip								; if not, branch
 		neg.w	d0
-		neg.w	x_vel(a1)							; cannonball bounces to the right
+		neg.w	d1								; cannonball bounces to the right
 
 .noflip
+		move.w	d1,x_vel(a1)
 		add.w	d0,x_pos(a1)
 		addi.w	#12,y_pos(a1)
 		move.b	subtype(a0),subtype(a1)						; copy object type from Ball Hog
