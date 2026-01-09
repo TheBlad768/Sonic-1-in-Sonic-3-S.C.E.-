@@ -1669,7 +1669,7 @@ Sonic_Transform:
 
 .artsize	:= (ArtUnc_SuperSonicLifeIcon_end-ArtUnc_SuperSonicLifeIcon)&$FFFF
 
-		; load spark art
+		; load Super Sonic life icon art
 		QueueStaticDMA ArtUnc_SuperSonicLifeIcon,.artsize,tiles_to_bytes(ArtTile_LifeIcon)
 
 		move.b	#1,(Super_palette_status).w					; set Super/Hyper palette status to 'fading'
@@ -1811,7 +1811,7 @@ SonicKnux_SuperHyper:
 
 .artsize	:= (ArtUnc_SonicLifeIcon_end-ArtUnc_SonicLifeIcon)&$FFFF
 
-		; load spark art
+		; load Sonic life icon art
 		QueueStaticDMA ArtUnc_SonicLifeIcon,.artsize,tiles_to_bytes(ArtTile_LifeIcon)
 
 .notSonic

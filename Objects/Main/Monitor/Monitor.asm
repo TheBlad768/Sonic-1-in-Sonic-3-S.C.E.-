@@ -516,7 +516,7 @@ Monitor_Give_SuperSonic:
 
 .artsize	:= (ArtUnc_SuperSonicLifeIcon_end-ArtUnc_SuperSonicLifeIcon)&$FFFF
 
-		; load spark art
+		; load Super Sonic life icon art
 		QueueStaticDMA ArtUnc_SuperSonicLifeIcon,.artsize,tiles_to_bytes(ArtTile_LifeIcon)
 
 		; set
