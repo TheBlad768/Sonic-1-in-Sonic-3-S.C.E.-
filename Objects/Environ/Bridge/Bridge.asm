@@ -74,7 +74,7 @@ sub_38756:
 .loop
 		move.w	d3,(a2)+							; xpos
 		move.w	d2,(a2)+							; ypos
-		clr.w	(a2)+								; mapping frame
+		addq.w	#next_subspr-4,a2						; mapping frame
 		addi.w	#16,d3								; width of a log, x_pos for next log
 		dbf	d1,.loop
 

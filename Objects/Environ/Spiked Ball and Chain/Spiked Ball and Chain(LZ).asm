@@ -56,9 +56,8 @@ Obj_SpikeBall2:
 		lea	sub2_x_pos(a1),a2
 
 .loop
-		move.w	d2,(a2)+
-		move.w	d3,(a2)+
-		clr.w	(a2)+
+		movem.w	d2-d3,(a2)
+		addq.w	#next_subspr,a2							; next subsprite
 		dbf	d1,.loop
 		move.b	#2,mapping_frame(a1)
 
