@@ -56,7 +56,7 @@ Obj_Basaran:
 ; ---------------------------------------------------------------------------
 
 .dropfly
-		MoveSpriteYOnly a0, $18							; make basaran fall
+		MoveSpriteYOnly , $18							; make basaran fall
 
 		; check players
 		jsr	(Find_SonicTails).w
@@ -90,7 +90,7 @@ Obj_Basaran:
 
 		; play continuous sfx
 		sfxcont	sfx_Basaran,$F							; play flapping sound every 16th frame
-		MoveSpriteXOnly a0
+		MoveSpriteXOnly
 
 		; check players
 		jsr	(Find_SonicTails).w
@@ -107,7 +107,7 @@ Obj_Basaran:
 ; ---------------------------------------------------------------------------
 
 .flyup
-		MoveSprite a0, -$18							; make basaran fly upwards
+		MoveSprite , -$18							; make basaran fly upwards
 		jsr	(ObjCheckCeilingDist).w
 		tst.w	d1								; has basaran hit the ceiling?
 		bpl.s	.noceiling							; if not, branch

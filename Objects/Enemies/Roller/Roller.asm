@@ -17,7 +17,7 @@ Obj_Roller:
 		move.l	#.checkfall,address(a0)
 
 .checkfall
-		MoveSpriteYOnly a0
+		MoveSpriteYOnly
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1
 		bpl.s	.floornotfound

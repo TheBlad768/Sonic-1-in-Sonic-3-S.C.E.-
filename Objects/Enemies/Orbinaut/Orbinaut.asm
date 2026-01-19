@@ -69,7 +69,7 @@ Obj_Orbinaut:
 ; ---------------------------------------------------------------------------
 
 .move
-		MoveSpriteXOnly a0
+		MoveSpriteXOnly
 
 .draw
 		lea	Ani_Orb(pc),a1
@@ -118,7 +118,7 @@ Obj_Orbinaut_Orb:
 		neg.w	x_vel(a0)
 
 .move
-		MoveSpriteXOnly a0
+		MoveSpriteXOnly
 
 		; draw
 		jmp	(Sprite_CheckDeleteTouchXY).w

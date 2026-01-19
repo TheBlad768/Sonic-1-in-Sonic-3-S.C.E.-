@@ -145,7 +145,7 @@ ObjPlatformCollapse_SmashObject:
 		beq.s	.playsfx							; if it's zero, it isn't remembered
 		movea.w	d0,a1								; load address into a1
 		bclr	#respawn_addr.state,(a1)					; turn on the slot
-		clr.w	respawn_addr(a0)				; clear the object respawn address (do not create this object again)
+		clr.w	respawn_addr(a0)						; clear the object respawn address (do not create this object again)
 
 .playsfx
 		sfx	sfx_Collapse,1
@@ -166,7 +166,7 @@ Obj_PlatformCollapseFall:
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bpl.s	.delete								; if not, branch
 
-		MoveSpriteYOnly a0							; make obj fall
+		MoveSpriteYOnly								; make obj fall
 
 		; draw
 		jmp	(Draw_Sprite).w

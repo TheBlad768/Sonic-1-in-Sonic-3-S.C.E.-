@@ -132,7 +132,7 @@ Obj_BreakableWallFall:
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bpl.s	.delete								; if not, branch
 
-		MoveSprite a0, $70							; make obj fall
+		MoveSprite , $70							; make obj fall
 
 		; draw
 		jmp	(Draw_Sprite).w

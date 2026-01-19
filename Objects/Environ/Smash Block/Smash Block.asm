@@ -127,7 +127,7 @@ Obj_SmashBlock:
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bpl.s	.delete								; if not, branch
 
-		MoveSprite a0, $18							; make obj fall
+		MoveSprite , $18							; make obj fall
 
 		; draw
 		jmp	(Draw_Sprite).w

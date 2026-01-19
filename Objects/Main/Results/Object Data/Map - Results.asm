@@ -14,7 +14,7 @@ Map_Results:
 		dc.w word_2F31A-Map_Results		; 8 (Number 7)
 		dc.w word_2F322-Map_Results		; 9 (Number 8)
 		dc.w word_2F32A-Map_Results		; A (Number 9)
-		dc.w word_2F332-Map_Results		; B
+		dc.w word_2F332-Map_Results		; B (Total)
 		dc.w word_2F346-Map_Results		; C (Bonus)
 		dc.w word_2F35A-Map_Results		; D (Ring)
 		dc.w word_2F362-Map_Results		; E (Time)
@@ -26,10 +26,10 @@ Map_Results:
 		dc.w word_2F3DA-Map_Results		; 14 (MILES)
 		dc.w word_2F3EE-Map_Results		; 15 (TAILS)
 		dc.w word_2F3FC-Map_Results		; 16 (KNUCKLES)
-		dc.w word_2F416-Map_Results		; 17
-		dc.w word_2F436-Map_Results		; 18
-		dc.w word_2F450-Map_Results		; 19
-		dc.w word_2F464-Map_Results		; 1A
+		dc.w word_2F416-Map_Results		; 17 (Score Special Stage)
+		dc.w word_2F436-Map_Results		; 18 (Bonus Special Stage)
+		dc.w word_2F450-Map_Results		; 19 (Perfect Special Stage)
+		dc.w word_2F464-Map_Results		; 1A (Continue Special Stage)
 		dc.w word_2F478-Map_Results		; 1B (Emerald 1 Art)
 		dc.w word_2F480-Map_Results		; 1C (Emerald 2 Art)
 		dc.w word_2F488-Map_Results		; 1D (Emerald 3 Art)
@@ -93,21 +93,21 @@ word_2F32A:
 		dc.w 1
 		dc.b 0, 1, $A0, $12, 0, 0
 word_2F332:
-		dc.w 3
+		dc.w 3					; Total
 		dc.b 0, 1, $A0, $24, 0, 0
 		dc.b 0, $D, $A0, $22, 0, 8
 		dc.b $F6, 6, $80, $14, 0, $24		; (Drop Art)
 word_2F346:						; Bonus
 		dc.w 3
 		dc.b 0, $D, $A0, $1A, $FF, $FF
-		dc.b 0, 1, $A1, $C4, 0, $20		; HUD address
+		dc.b 0, 1, $A1, $C8, 0, $20		; HUD address
 		dc.b $F6, 6, $80, $14, 0, $24		; (Drop Art)
 word_2F35A:
 		dc.w 1					; Ring
-		dc.b 0, $D, $A1, $CC, 0, 0		; HUD address
+		dc.b 0, $D, $A1, $CE, 0, 0		; HUD address
 word_2F362:
 		dc.w 1					; Time
-		dc.b 0, $D, $A1, $D4, 0, 0		; HUD address
+		dc.b 0, $D, $A1, $D6, 0, 0		; HUD address
 word_2F36A:						; ACT
 		dc.w 2
 		dc.b $10, 9, $80, $2A, 0, 0		; ACT
@@ -150,17 +150,17 @@ word_2F3FC:						; KNUCKLES
 		dc.b 0, $D, $80, $50, 0, $24
 		dc.b 0, $D, $80, $58, 0, $44
 		dc.b 0, 9, $80, $60, 0, $64
-word_2F416:	dc.w 5
-		dc.b 0, $D, $E1, $C4, $FF, $A0
-		dc.b 0, 1, $E1, $DA, $FF, $C0
+word_2F416:	dc.w 5						; Score (Special Stage)
+		dc.b 0, $D, $E1, $C8, $FF, $A0			; SCOR
+		dc.b 0, 1, $E1, $DC, $FF, $C0		; E
 		dc.b 0, 9, $A1, $DE, 0, $28
 		dc.b 0, $D, $A1, $E4, 0, $40
-		dc.b $F6, 6, $80, $14, $FF, $C4
+		dc.b $F6, 6, $80, $14, $FF, $C4		; (Drop Art)
 word_2F436:						; Bonus (Special Stage)
 		dc.w 4
-		dc.b 0, $D, $E1, $CC, 0, 0		; RING
+		dc.b 0, $D, $E1, $CE, 0, 0		; RING
 		dc.b 0, $D, $E0, $1A, 0, $28		; BONU
-		dc.b 0, 1, $E1, $C4, 0, $48		; S
+		dc.b 0, 1, $E1, $C8, 0, $48		; S
 		dc.b $F6, 6, $80, $14, 0, $4C		; (Drop Art)
 word_2F450:						; Perfect (Special Stage)
 		dc.w 3

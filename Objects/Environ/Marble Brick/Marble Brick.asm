@@ -81,7 +81,7 @@ Obj_MarbleBrick:
 ; ---------------------------------------------------------------------------
 
 .type03
-		MoveSpriteYOnly a0, $18							; increase falling speed
+		MoveSpriteYOnly , $18							; increase falling speed
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1								; has the block hit the floor?
 		bpl.s	.return								; if not, branch

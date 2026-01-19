@@ -20,7 +20,7 @@ Obj_Crabmeat:
 		move.l	#.checkfall,address(a0)
 
 .checkfall
-		MoveSpriteYOnly a0
+		MoveSpriteYOnly
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1
 		bpl.s	.floornotfound
@@ -86,7 +86,7 @@ Obj_Crabmeat:
 .walkonfloor
 		subq.w	#1,crab_timedelay(a0)
 		bmi.s	.chgdirection
-		MoveSpriteXOnly a0
+		MoveSpriteXOnly
 		bchg	#0,crab_mode(a0)
 		bne.s	.alt
 		move.b	x_radius(a0),d3
@@ -192,7 +192,7 @@ Obj_Crabmeat_Missile:
 		neg.w	x_vel(a0)
 
 .main
-		MoveSprite a0
+		MoveSprite
 
 		; animate
 		moveq	#8,d0

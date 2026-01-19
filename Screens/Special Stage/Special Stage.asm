@@ -32,9 +32,9 @@ ArtTile_SS_Zone_5:			= $7A0
 ArtTile_SS_Zone_6:			= $7A9
 
 ; Misc
-ArtTile_SS_HUD				= $260
-ArtTile_SS_Ring				= $7B2
-ArtTile_SS_Ring_Sparks			= ArtTile_SS_Ring+4
+ArtTile_SS_Ring				= $258
+ArtTile_SS_Ring_Sparks			= ArtTile_SS_Ring+8
+ArtTile_SS_HUD				= $264
 
 ; RAM
 	phase ramaddr(RAM_start)
@@ -819,7 +819,7 @@ SS_AniWallsRings:
 		move.b	(Rings_frame).w,d1
 		lsl.w	#6,d1
 		add.l	#dmaSource(ArtUnc_SSRing),d1					; get next frame
-		move.w	#tiles_to_bytes($7B2),d2					; load art destination
+		move.w	#tiles_to_bytes(ArtTile_SS_Ring),d2				; load art destination
 
 		; size of art (in words) ; we only need one frame
 		moveq	#tiles_to_bytes( \

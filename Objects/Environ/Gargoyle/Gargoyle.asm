@@ -79,7 +79,7 @@ Obj_Gargoyle_FireBall:
 		bchg	#0,mapping_frame(a0)						; change every 8 frames
 
 .nochg
-		MoveSpriteXOnly a0
+		MoveSpriteXOnly
 
 		; check wall
 		move.b	x_radius(a0),d3
