@@ -139,7 +139,7 @@ LabyrinthBlock_TypeIndex: offsetTable
 
 .type02
 .type06
-		MoveSpriteYOnly a0, 8							; make block fall
+		MoveSpriteYOnly , 8							; make block fall
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1								; has block hit the floor?
 		bpl.s	.nofloor02							; if not, branch
@@ -153,7 +153,7 @@ LabyrinthBlock_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .type04
-		MoveSpriteYOnly a0, -8							; make block rise
+		MoveSpriteYOnly , -8							; make block rise
 		jsr	(ObjCheckCeilingDist).w
 		tst.w	d1								; has block hit the ceiling?
 		bpl.s	.noceiling04							; if not, branch

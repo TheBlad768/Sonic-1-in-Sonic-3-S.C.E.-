@@ -48,7 +48,7 @@ UpdateHUD:
 		tst.b	(Update_HUD_score).w						; does the score need updating?
 		beq.s	.chkrings							; if not, branch
 		clr.b	(Update_HUD_score).w
-		locVRAM	tiles_to_bytes(ArtTile_HUD+$1A),d0				; set VRAM address
+		locVRAM	tiles_to_bytes(ArtTile_HUD+$16),d0				; set VRAM address
 		move.l	(Score).w,d1							; load score
 		bsr.w	DrawSixDigitNumber
 
@@ -60,7 +60,7 @@ UpdateHUD:
 
 .notzero
 		clr.b	(Update_HUD_ring_count).w
-		locVRAM	tiles_to_bytes(ArtTile_HUD+$36),d0				; set VRAM address
+		locVRAM	tiles_to_bytes(ArtTile_HUD+$32),d0				; set VRAM address
 		moveq	#0,d1
 		move.w	(Ring_count).w,d1						; load number of rings
 		bsr.w	DrawThreeDigitNumber
@@ -94,15 +94,15 @@ UpdateHUD:
 		move.b	#9,(a1)								; keep as 9
 
 .drawtimer
-		locVRAM	tiles_to_bytes(ArtTile_HUD+$28),d0
+		locVRAM	tiles_to_bytes(ArtTile_HUD+$24),d0
 		moveq	#0,d1
 		move.b	(Timer_minute).w,d1						; load minutes
 		bsr.w	DrawSingleDigitNumber
-		locVRAM	tiles_to_bytes(ArtTile_HUD+$2C),d0
+		locVRAM	tiles_to_bytes(ArtTile_HUD+$28),d0
 		moveq	#0,d1
 		move.b	(Timer_second).w,d1						; load seconds
 		bsr.w	DrawTwoDigitNumber
-		locVRAM	tiles_to_bytes(ArtTile_HUD+$32),d0
+		locVRAM	tiles_to_bytes(ArtTile_HUD+$2E),d0
 		moveq	#0,d1
 		move.b	(Timer_frame).w,d1						; load centiseconds
 		move.b	LUT_HUDCentiseconds(pc,d1.w),d1
@@ -163,17 +163,17 @@ HUDDebug:
 
 .notzero
 		clr.b	(Update_HUD_ring_count).w
-		locVRAM	tiles_to_bytes(ArtTile_HUD+$36),d0				; set VRAM address
+		locVRAM	tiles_to_bytes(ArtTile_HUD+$32),d0				; set VRAM address
 		moveq	#0,d1
 		move.w	(Ring_count).w,d1						; load number of rings
 		bsr.w	DrawThreeDigitNumber
 
 .objcounter
-		locVRAM	tiles_to_bytes(ArtTile_HUD+$28),d0				; set VRAM address
+		locVRAM	tiles_to_bytes(ArtTile_HUD+$24),d0				; set VRAM address
 		moveq	#0,d1
 		move.w	(Lag_frame_count).w,d1
 		bsr.w	DrawSingleDigitNumber
-		locVRAM	tiles_to_bytes(ArtTile_HUD+$2C),d0				; set VRAM address
+		locVRAM	tiles_to_bytes(ArtTile_HUD+$28),d0				; set VRAM address
 		moveq	#0,d1
 		move.b	(Sprites_drawn).w,d1						; load "number of objects" counter
 		bsr.w	DrawTwoDigitNumber
@@ -213,7 +213,7 @@ HUDDebug:
 HUD_DrawZeroRings:
 
 		; init
-		locVRAM	tiles_to_bytes(ArtTile_HUD+$36),VDP_control_port-VDP_control_port(a5)
+		locVRAM	tiles_to_bytes(ArtTile_HUD+$32),VDP_control_port-VDP_control_port(a5)
 		lea	HUD_Zero_Rings(pc),a2
 		moveq	#3-1,d2
 		bra.s	HUD_DrawInitial.main
@@ -231,7 +231,7 @@ HUD_DrawZeroRingsSS:
 HUD_DrawZeroRingsSS2:
 
 		; init
-		locVRAM	tiles_to_bytes(ArtTile_SS_HUD+$18),VDP_control_port-VDP_control_port(a5)
+		locVRAM	tiles_to_bytes(ArtTile_SS_HUD+$14),VDP_control_port-VDP_control_port(a5)
 		lea	HUD_Zero_Rings(pc),a2
 		moveq	#3-1,d2
 		bra.s	HUD_DrawInitial.main
@@ -250,7 +250,7 @@ HUD_DrawInitial:
 		bsr.w	HUD_Lives
 
 		; init
-		locVRAM	tiles_to_bytes(ArtTile_HUD+$18),VDP_control_port-VDP_control_port(a5)
+		locVRAM	tiles_to_bytes(ArtTile_HUD+$14),VDP_control_port-VDP_control_port(a5)
 		lea	HUD_Initial_Parts(pc),a2
 		moveq	#(HUD_Initial_Parts_end-HUD_Initial_Parts)-1,d2
 
@@ -306,14 +306,14 @@ HUD_Initial_Parts_end
 ; =============== S U B R O U T I N E =======================================
 
 HUD_Debug:
-		locVRAM	tiles_to_bytes(ArtTile_HUD+$18),VDP_control_port-VDP_control_port(a5)	; set VRAM address
-		move.w	(Camera_X_pos).w,d1	; load camera x-position
+		locVRAM	tiles_to_bytes(ArtTile_HUD+$14),VDP_control_port-VDP_control_port(a5)	; set VRAM address
+		move.w	(Camera_X_pos).w,d1						; load camera x-position
 		swap	d1
-		move.w	(Player_1+x_pos).w,d1	; load Sonic's x-position
+		move.w	(Player_1+x_pos).w,d1						; load Sonic's x-position
 		bsr.s	.main
-		move.w	(Camera_Y_pos).w,d1	; load camera y-position
+		move.w	(Camera_Y_pos).w,d1						; load camera y-position
 		swap	d1
-		move.w	(Player_1+y_pos).w,d1	; load Sonic's y-position
+		move.w	(Player_1+y_pos).w,d1						; load Sonic's y-position
 
 .main
 		moveq	#8-1,d6
@@ -526,7 +526,7 @@ UpdateHUD_SS:
 
 .notzero
 		clr.b	(Update_HUD_ring_count).w
-		locVRAM	tiles_to_bytes(ArtTile_SS_HUD+$18),d0				; set VRAM address
+		locVRAM	tiles_to_bytes(ArtTile_SS_HUD+$14),d0				; set VRAM address
 		moveq	#0,d1
 		move.w	(Special_stage_rings_left).w,d1					; load number of rings
 		bra.w	DrawThreeDigitNumber

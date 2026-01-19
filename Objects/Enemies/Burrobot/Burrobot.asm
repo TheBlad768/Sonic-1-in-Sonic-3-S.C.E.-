@@ -54,7 +54,7 @@ Obj_Burrobot:
 .Burro_Move
 		subq.w	#1,burro_timedelay(a0)
 		bmi.s	.loc_AD84
-		MoveSpriteXOnly a0
+		MoveSpriteXOnly
 		bchg	#0,burro_flag(a0)
 		bne.s	.loc_AD78
 		move.b	x_radius(a0),d3
@@ -95,7 +95,7 @@ Obj_Burrobot:
 ; ---------------------------------------------------------------------------
 
 .Burro_Jump
-		MoveSprite a0, $18							; make obj fall
+		MoveSprite , $18							; make obj fall
 
 		; check jump
 		tst.w	y_vel(a0)

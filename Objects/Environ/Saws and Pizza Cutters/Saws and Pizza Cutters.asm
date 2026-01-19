@@ -139,7 +139,7 @@ Saws_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .here03
-		MoveSpriteXOnly a0
+		MoveSpriteXOnly
 		move.w	x_pos(a0),saw_origX(a0)
 
 		; wait
@@ -184,7 +184,7 @@ Saws_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .here04
-		MoveSpriteXOnly a0
+		MoveSpriteXOnly
 		move.w	x_pos(a0),saw_origX(a0)
 
 		; wait

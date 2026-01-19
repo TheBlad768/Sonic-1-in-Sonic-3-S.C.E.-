@@ -670,7 +670,7 @@ Obj_BossSpikeBall_SpikeBall_Shrapnel:
 		bset	#render_flags.on_screen,render_flags(a0)
 
 .action
-		MoveSprite a0, $18							; make obj fall
+		MoveSprite , $18							; make obj fall
 
 		; animate
 		moveq	#$A,d0

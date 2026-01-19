@@ -28,7 +28,7 @@ Obj_Caterkiller:
 		move.l	#.checkfall,address(a0)
 
 .checkfall
-		MoveSpriteYOnly a0
+		MoveSpriteYOnly
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1
 		bpl.s	.floornotfound
@@ -324,7 +324,7 @@ Caterkiller_FragHead:									; head
 		move.l	#.main,address(a0)
 
 .main
-		MoveSprite a0
+		MoveSprite
 		tst.w	y_vel(a0)
 		bmi.s	.draw
 		jsr	(ObjCheckFloorDist).w

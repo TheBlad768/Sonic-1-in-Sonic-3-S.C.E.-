@@ -162,7 +162,7 @@ Obj_LavaGeyser:
 		and.b	subtype(a0),d0							; get object type
 		add.w	d0,d0
 		jsr	.index(pc,d0.w)
-		MoveSprite2YOnly a0
+		MoveSprite2YOnly
 		lea	Ani_Geyser(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Child_Draw_Sprite).w

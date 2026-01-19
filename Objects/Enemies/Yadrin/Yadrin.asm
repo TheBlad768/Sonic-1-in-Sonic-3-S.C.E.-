@@ -16,7 +16,7 @@ Obj_Yadrin:
 		move.l	#.checkfall,address(a0)
 
 .checkfall
-		MoveSpriteYOnly a0
+		MoveSpriteYOnly
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1
 		bpl.s	.floornotfound
@@ -54,7 +54,7 @@ Obj_Yadrin:
 ; ---------------------------------------------------------------------------
 
 .fixtofloor
-		MoveSpriteXOnly a0
+		MoveSpriteXOnly
 		jsr	(ObjCheckFloorDist).w
 		cmpi.w	#-8,d1
 		blt.s	.pause

@@ -48,7 +48,7 @@ Obj_Jaws:
 		bge.s	.delete								; if yes, branch
 	endif
 
-		MoveSpriteXOnly a0
+		MoveSpriteXOnly
 
 		; wait
 		subq.b	#1,anim_frame_timer(a0)						; decrement timer

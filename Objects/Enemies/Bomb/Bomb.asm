@@ -45,7 +45,7 @@ Obj_BombBadnik:
 		bsr.s	.chksonic
 		subq.w	#1,bom_time(a0)							; subtract 1 from time delay
 		bmi.s	.stopwalking							; if time expires, branch
-		MoveSpriteXOnly a0
+		MoveSpriteXOnly
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -132,7 +132,7 @@ Obj_BombBadnik_Fuse:
 .wait
 		subq.w	#1,bom_time(a0)
 		bmi.s	.create
-		MoveSprite2YOnly a0
+		MoveSprite2YOnly
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -176,7 +176,7 @@ Obj_BombBadnik_Shrapnel:
 		bset	#render_flags.on_screen,render_flags(a0)
 
 .action
-		MoveSprite a0, $18							; make obj fall
+		MoveSprite , $18							; make obj fall
 
 		; animate
 		moveq	#$A,d0

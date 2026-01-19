@@ -19,7 +19,7 @@ Obj_BallHog:
 		move.l	#.checkfall,address(a0)
 
 .checkfall
-		MoveSpriteYOnly a0
+		MoveSpriteYOnly
 		jsr	(ObjCheckFloorDist).w						; find floor
 		tst.w	d1
 		bpl.s	.floornotfound

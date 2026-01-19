@@ -852,15 +852,15 @@ Continue_Icons_GetPos:
 ; ---------------------------------------------------------------------------
 
 .xpos
-		dc.w $80+160	; 1
-		dc.w $80+184	; 2
-		dc.w $80+136	; 3
-		dc.w $80+208	; 4
-		dc.w $80+112	; 5
-		dc.w $80+232	; 6
-		dc.w $80+88	; 7
-		dc.w $80+256	; 8
-		dc.w $80+64	; 9
+		dc.w spriteScreenPositionXCentered(0)		; 1
+		dc.w spriteScreenPositionXCentered((16*1)+8)	; 2
+		dc.w spriteScreenPositionXCentered((-16*2)+8)	; 3
+		dc.w spriteScreenPositionXCentered(16*3)	; 4
+		dc.w spriteScreenPositionXCentered(-16*3)	; 5
+		dc.w spriteScreenPositionXCentered((16*4)+8)	; 6
+		dc.w spriteScreenPositionXCentered((-16*5)+8)	; 7
+		dc.w spriteScreenPositionXCentered(16*6)	; 8
+		dc.w spriteScreenPositionXCentered(-16*6)	; 9
 
 ; =============== S U B R O U T I N E =======================================
 

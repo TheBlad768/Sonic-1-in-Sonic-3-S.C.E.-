@@ -169,7 +169,7 @@ MBlock_05_End:
 ; ---------------------------------------------------------------------------
 
 MBlock_Type06:
-		MoveSpriteYOnly a0, $18							; make the platform fall
+		MoveSpriteYOnly , $18							; make the platform fall
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1								; has platform hit the floor?
 		bpl.s	locret_FFA0							; if not, branch
