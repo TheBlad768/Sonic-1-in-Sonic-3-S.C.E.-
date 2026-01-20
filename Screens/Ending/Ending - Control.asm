@@ -30,7 +30,7 @@ End_MoveSonic:
 		move.b	(a0),d0								; check routine
 		bne.s	.movep2
 		move.w	#-$600,ground_vel(a1)
-		cmpi.w	#(screen_width/2)-block_width,x_pos(a1)						; has player passed $90 on x-axis?
+		cmpi.w	#(screen_width/2)-block_width,x_pos(a1)				; has player passed $90 on x-axis?
 		bhs.s	.return								; if not, branch
 		addq.b	#2,(a0)								; next routine
 		st	(a3)								; set ctrl locked
@@ -45,10 +45,10 @@ End_MoveSonic:
 		bne.s	.movep3
 
 		; check
-		move.w	#screen_width/2,d2							; p1
+		move.w	#screen_width/2,d2						; p1
 		tst.b	d5								; is player 1?
 		beq.s	.p11								; if yes, branch
-		move.w	#(screen_width/2)+64,d2							; p2
+		move.w	#(screen_width/2)+64,d2						; p2
 
 .p11
 		move.w	(Camera_min_X_pos).w,d0
@@ -103,10 +103,10 @@ End_MoveSonic:
 		bne.s	.return3
 		addq.b	#2,(a0)								; next routine
 		bset	#status.player.x_flip,status(a1)				; left side
-		move.w	#(screen_width/2)+64,x_pos(a1)						; p2
+		move.w	#(screen_width/2)+64,x_pos(a1)					; p2
 		tst.b	d5								; is player 1?
 		bne.s	.return3							; if not, branch
-		move.w	#screen_width/2,x_pos(a1)						; p1
+		move.w	#screen_width/2,x_pos(a1)					; p1
 		move.l	#Obj_Sonic_Ending,(Player_1+address).w
 
 .return3

@@ -18,9 +18,9 @@ animal_ground_pointer				= objoff_34	; .l
 Obj_Animal_ZoneAnimals:
 		zoneanimals.b Rabbit, Flicky	; GHZ
 		zoneanimals.b Squirrel, Seal	; MZ
-		zoneanimals.b Pig, Chicken		; SYZ
+		zoneanimals.b Pig, Chicken	; SYZ
 		zoneanimals.b Penguin, Seal	; LZ
-		zoneanimals.b Pig, Flicky		; SLZ
+		zoneanimals.b Pig, Flicky	; SLZ
 		zoneanimals.b Rabbit, Chicken	; SBZ
 
 		zonewarning Obj_Animal_ZoneAnimals,(1*2)
@@ -199,7 +199,7 @@ Animal_Ending_Index:
 
 Obj_Animal_FlickyWait:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(screen_width/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		cmpi.w	#(screen_width/2)+24,d2						; is Sonic within $B8 pixels (x-axis)?
 		bhs.s	.chkdel								; if not, branch
 		move.l	animal_ground_x_vel(a0),x_vel(a0)
 		move.l	#.fly,address(a0)
@@ -231,7 +231,7 @@ Obj_Animal_FlickyWait:
 
 Obj_Animal_FlickyJump:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(screen_width/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		cmpi.w	#(screen_width/2)+24,d2						; is Sonic within $B8 pixels (x-axis)?
 		bhs.s	.chkdel								; if not, branch
 		clr.w	x_vel(a0)
 		clr.w	animal_ground_x_vel(a0)
@@ -256,7 +256,7 @@ Obj_Animal_FlickyJump:
 
 Obj_Animal_RabbitWait:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(screen_width/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		cmpi.w	#(screen_width/2)+24,d2						; is Sonic within $B8 pixels (x-axis)?
 		bhs.s	.chkdel								; if not, branch
 		move.l	animal_ground_x_vel(a0),x_vel(a0)
 		move.l	#.walk,address(a0)
@@ -303,7 +303,7 @@ Obj_Animal_DoubleBounce:
 
 Obj_Animal_LandJump:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(screen_width/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		cmpi.w	#(screen_width/2)+24,d2						; is Sonic within $B8 pixels (x-axis)?
 		bhs.s	.chkdel								; if not, branch
 		clr.w	x_vel(a0)
 		clr.w	animal_ground_x_vel(a0)
@@ -322,7 +322,7 @@ Obj_Animal_LandJump:
 
 Obj_Animal_SingleBounce:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(screen_width/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		cmpi.w	#(screen_width/2)+24,d2						; is Sonic within $B8 pixels (x-axis)?
 		bhs.s	.chkdel								; if not, branch
 		move.l	#.bounce,address(a0)
 
@@ -347,7 +347,7 @@ Obj_Animal_SingleBounce:
 
 Obj_Animal_FlyBounce:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(screen_width/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		cmpi.w	#(screen_width/2)+24,d2						; is Sonic within $B8 pixels (x-axis)?
 		bhs.s	Obj_Animal_ChkDel						; if not, branch
 		move.l	#.bounce,address(a0)
 

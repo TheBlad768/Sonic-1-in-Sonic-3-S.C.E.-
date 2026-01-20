@@ -152,7 +152,7 @@ LZ1_ApplyDeformWater:
 		; foreground deformation
 		lea	(H_scroll_table).w,a1						; load water buffer
 		lea	LZ1_FGDeformDelta(pc),a6
-		move.w	#screen_height-1,d1							; set screen size
+		move.w	#screen_height-1,d1						; set screen size
 		move.w	(Level_frame_counter).w,d2
 		add.w	d0,d2
 		add.w	d0,d2

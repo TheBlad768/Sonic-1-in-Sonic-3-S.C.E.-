@@ -25,7 +25,7 @@ SBZ1_BackgroundInit:
 		lea	SBZ1_BGDrawArray(pc),a4
 		lea	(H_scroll_table+$100).w,a5
 		clr.l	(a5)								; update clouds (draw the starting position)
-		moveq	#-block_width,d3								; set align (16 pixels)
+		moveq	#-block_width,d3						; set align (16 pixels)
 		move.w	-$F8(a5),d4
 		move.w	d4,4(a5)							; update distant brown buildings
 		and.w	d3,d4								; align
