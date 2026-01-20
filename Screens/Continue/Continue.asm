@@ -225,8 +225,8 @@ Obj_Continue_SonicWTails:
 		; init
 		movem.l	ObjDat_Continue_SonicWTails(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.w	#$80+((320/2)-8),x_pos(a0)
-		move.w	#$80+((224/2)+48),y_pos(a0)
+		move.w	#$80+((screen_width/2)-8),x_pos(a0)
+		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
 .main
 		movea.w	(Continue_countdown).w,a1
@@ -332,8 +332,8 @@ Obj_Continue_SonicAlone:
 		; init
 		movem.l	ObjDat_Continue_SonicAlone(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.w	#$80+(320/2),x_pos(a0)
-		move.w	#$80+((224/2)+48),y_pos(a0)
+		move.w	#$80+(screen_width/2),x_pos(a0)
+		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
 .main
 		movea.w	(Continue_countdown).w,a1
@@ -388,8 +388,8 @@ Obj_Continue_TailsWSonic:
 		; init
 		movem.l	ObjDat_Continue_TailsWSonic(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.w	#$80+((320/2)+12),x_pos(a0)
-		move.w	#$80+((224/2)+48),y_pos(a0)
+		move.w	#$80+((screen_width/2)+12),x_pos(a0)
+		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
 .waitstart
 		movea.w	(Continue_countdown).w,a1
@@ -487,7 +487,7 @@ Obj_Continue_Knuckles:
 
 		; for Sonic and Tails
 		move.w	#$80-64,x_pos(a0)
-		move.w	#$80+((224/2)+48),y_pos(a0)
+		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
 		; next
 		move.l	#.main,address(a0)
@@ -499,8 +499,8 @@ Obj_Continue_Knuckles:
 		; init
 		movem.l	ObjDat_Continue_Knuckles(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.w	#$80+((320/2)-4),x_pos(a0)
-		move.w	#$80+((224/2)+48),y_pos(a0)
+		move.w	#$80+((screen_width/2)-4),x_pos(a0)
+		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
 .waitstart
 		move.w	#$2F,objoff_2E(a0)						; set wait
@@ -552,7 +552,7 @@ Obj_Continue_Knuckles:
 		addq.w	#6,d0
 		move.w	d0,x_pos(a0)
 		movea.w	(Continue_countdown).w,a1
-		cmpi.w	#$80+(320/2),d0
+		cmpi.w	#$80+(screen_width/2),d0
 		blo.s	.checkpos
 		bset	#2,objoff_38(a1)						; set Knuckles in the middle of the screen flag
 
@@ -628,7 +628,7 @@ Obj_Continue_EggRobo:
 		move.b	#render_flags.y_flip,render_flags(a0)				; flipx
 		move.l	#.main,address(a0)
 		move.w	#$80-32,x_pos(a0)
-		move.w	#$80+(224/2),y_pos(a0)
+		move.w	#$80+(screen_height/2),y_pos(a0)
 		move.w	#$600,x_vel(a0)
 		jsr	(Swing_Setup1).w
 		lea	Child1_EggRobo_Misc(pc),a2
@@ -756,8 +756,8 @@ Obj_Continue_Stars:
 		movem.l	ObjDat_Continue_Stars(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 		move.b	#7,mapping_frame(a0)
-		move.w	#$80+(320/2),x_pos(a0)
-		move.w	#($80+(224/2))+5,y_pos(a0)
+		move.w	#$80+(screen_width/2),x_pos(a0)
+		move.w	#($80+(screen_height/2))+5,y_pos(a0)
 
 		; draw
 		jmp	(Draw_Sprite).w
@@ -828,7 +828,7 @@ Obj_Continue_Icons:
 
 .notKnux
 		bsr.s	Continue_Icons_GetPos
-		move.w	#$80+((224/2)-24),y_pos(a0)
+		move.w	#$80+((screen_height/2)-24),y_pos(a0)
 		bsr.s	Continue_Icons_LoadAnim
 
 .main

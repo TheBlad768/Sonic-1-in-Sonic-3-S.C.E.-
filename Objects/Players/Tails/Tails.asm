@@ -3102,7 +3102,7 @@ sub_15716:
 		tst.b	(Reverse_gravity_flag).w
 		bne.s	loc_15734
 		move.w	(Camera_max_Y_pos).w,d0
-		addi.w	#224,d0
+		addi.w	#screen_height,d0
 		cmp.w	y_pos(a0),d0
 		blt.s	loc_15788
 		bra.s	loc_15742

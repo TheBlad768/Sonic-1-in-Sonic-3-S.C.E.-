@@ -58,14 +58,14 @@ sub_2C26A:
 sub_2C270:
 		move.w	objoff_30(a0),d1
 		move.w	d1,d2
-		subi.w	#320/2,d1
+		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
 		asr.w	#4,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
 		move.w	objoff_32(a0),d1
 		move.w	d1,d2
-		subi.w	#224/2,d1
+		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
 		asr.w	#4,d1
 		add.w	d2,d1
@@ -81,14 +81,14 @@ sub_2C270:
 sub_2C2A6:
 		move.w	objoff_30(a0),d1
 		move.w	d1,d2
-		subi.w	#320/2,d1
+		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
 		asr.w	#3,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
 		move.w	objoff_32(a0),d1
 		move.w	d1,d2
-		subi.w	#224/2,d1
+		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
 		asr.w	#3,d1
 		add.w	d2,d1
@@ -104,14 +104,14 @@ sub_2C2A6:
 sub_2C2DC:
 		move.w	objoff_30(a0),d1
 		move.w	d1,d2
-		subi.w	#320/2,d1
+		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
 		asr.w	#2,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
 		move.w	objoff_32(a0),d1
 		move.w	d1,d2
-		subi.w	#224/2,d1
+		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
 		asr.w	#2,d1
 		add.w	d2,d1
@@ -127,14 +127,14 @@ sub_2C2DC:
 sub_2C312:
 		move.w	objoff_30(a0),d1
 		move.w	d1,d2
-		subi.w	#320/2,d1
+		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
 		asr.w	#1,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
 		move.w	objoff_32(a0),d1
 		move.w	d1,d2
-		subi.w	#224/2,d1
+		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
 		asr.w	#1,d1
 		add.w	d2,d1
@@ -150,13 +150,13 @@ sub_2C312:
 sub_2C348:
 		move.w	objoff_30(a0),d1
 		move.w	d1,d2
-		subi.w	#320/2,d1
+		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
 		move.w	objoff_32(a0),d1
 		move.w	d1,d2
-		subi.w	#224/2,d1
+		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
 		add.w	d2,d1
 		move.w	d1,y_pos(a0)
@@ -171,14 +171,14 @@ sub_2C348:
 sub_2C37A:
 		move.w	objoff_30(a0),d1
 		move.w	d1,d2
-		subi.w	#320/2,d1
+		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
 		add.w	d1,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
 		move.w	objoff_32(a0),d1
 		move.w	d1,d2
-		subi.w	#224/2,d1
+		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
 		add.w	d2,d1
 		move.w	d1,y_pos(a0)

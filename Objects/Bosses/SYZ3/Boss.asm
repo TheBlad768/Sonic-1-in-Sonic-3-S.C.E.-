@@ -252,7 +252,7 @@ BossBlock_Restart:
 ; ---------------------------------------------------------------------------
 
 .right
-		addi.w	#320-8,d0
+		addi.w	#screen_width-8,d0
 		cmp.w	x_pos(a0),d0
 		bgt.s	.return
 
@@ -282,7 +282,7 @@ BossBlock_Setup4:
 ; ---------------------------------------------------------------------------
 
 .right
-		addi.w	#320-8,d0
+		addi.w	#screen_width-8,d0
 		cmp.w	x_pos(a0),d0
 		bgt.s	BossBlock_Setup3
 		neg.w	x_vel(a0)

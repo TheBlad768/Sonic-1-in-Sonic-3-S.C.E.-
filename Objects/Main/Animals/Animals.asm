@@ -199,7 +199,7 @@ Animal_Ending_Index:
 
 Obj_Animal_FlickyWait:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(320/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		cmpi.w	#(screen_width/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
 		bhs.s	.chkdel								; if not, branch
 		move.l	animal_ground_x_vel(a0),x_vel(a0)
 		move.l	#.fly,address(a0)
@@ -231,7 +231,7 @@ Obj_Animal_FlickyWait:
 
 Obj_Animal_FlickyJump:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(320/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		cmpi.w	#(screen_width/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
 		bhs.s	.chkdel								; if not, branch
 		clr.w	x_vel(a0)
 		clr.w	animal_ground_x_vel(a0)
@@ -256,7 +256,7 @@ Obj_Animal_FlickyJump:
 
 Obj_Animal_RabbitWait:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(320/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		cmpi.w	#(screen_width/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
 		bhs.s	.chkdel								; if not, branch
 		move.l	animal_ground_x_vel(a0),x_vel(a0)
 		move.l	#.walk,address(a0)
@@ -303,7 +303,7 @@ Obj_Animal_DoubleBounce:
 
 Obj_Animal_LandJump:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(320/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		cmpi.w	#(screen_width/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
 		bhs.s	.chkdel								; if not, branch
 		clr.w	x_vel(a0)
 		clr.w	animal_ground_x_vel(a0)
@@ -322,7 +322,7 @@ Obj_Animal_LandJump:
 
 Obj_Animal_SingleBounce:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(320/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		cmpi.w	#(screen_width/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
 		bhs.s	.chkdel								; if not, branch
 		move.l	#.bounce,address(a0)
 
@@ -347,7 +347,7 @@ Obj_Animal_SingleBounce:
 
 Obj_Animal_FlyBounce:
 		jsr	(Find_SonicObject).w
-		cmpi.w	#(320/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
+		cmpi.w	#(screen_width/2)+24,d2							; is Sonic within $B8 pixels (x-axis)?
 		bhs.s	Obj_Animal_ChkDel						; if not, branch
 		move.l	#.bounce,address(a0)
 
@@ -379,7 +379,7 @@ Obj_Animal_ChkDel:
 		move.w	x_pos(a0),d0
 		sub.w	(Player_1+x_pos).w,d0
 		blo.s	.draw
-		subi.w	#(512/2)+128,d0
+		subi.w	#(gameplay_plane_width/2)+128,d0
 		bpl.s	.draw
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bpl.s	.offscreen							; if not, branch

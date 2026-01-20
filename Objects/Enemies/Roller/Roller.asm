@@ -41,7 +41,7 @@ Obj_Roller:
 
 .rollchk
 		move.w	(Player_1+x_pos).w,d0
-		subi.w	#512/2,d0
+		subi.w	#gameplay_plane_width/2,d0
 		blo.s	.skip
 		sub.w	x_pos(a0),d0							; check distance between Roller and Sonic
 		blo.s	.skip

@@ -23,7 +23,7 @@ LZ1_Resize:
 		bne.s	.checkxpos
 		move.l	#Obj_EndSign,address(a1)
 		move.w	(Camera_max_X_pos).w,d2
-		addi.w	#320/2,d2
+		addi.w	#screen_width/2,d2
 		move.w	d2,x_pos(a1)
 		move.w	#$40+$A0,y_pos(a1)
 		st	subtype(a1)							; flag for the standing signpost

@@ -69,7 +69,7 @@ BossSpikeBall_MoveLeftRight:
 		bra.s	.setflipx
 
 .notflipx
-		addi.w	#320-8,d0
+		addi.w	#screen_width-8,d0
 		cmp.w	x_pos(a0),d0
 		bgt.s	.exit
 

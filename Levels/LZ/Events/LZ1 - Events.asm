@@ -57,7 +57,7 @@ LZ1_BackgroundEvent:
 		lea	(Camera_Y_pos_BG_copy).w,a6
 		lea	(Camera_Y_pos_BG_rounded).w,a5
 		moveq	#0,d1								; Camera_X_pos_BG_copy
-		moveq	#512/16,d6
+		moveq	#gameplay_plane_width/block_width,d6
 		jsr	(Draw_TileRow).w
 		bsr.s	LZ1_ApplyDeformWater
 		jmp	(ShakeScreen_Setup).w
@@ -97,7 +97,7 @@ LZ1_ApplyDeformWater:
 		move.w	(Water_level).w,d1
 		sub.w	d0,d1
 		bls.s	.waterfull							; if completely underwater, only do water deformation
-		cmpi.w	#224,d1
+		cmpi.w	#screen_height,d1
 		blt.s	.water
 
 .normal
@@ -119,7 +119,7 @@ LZ1_ApplyDeformWater:
 		lea	(H_scroll_table).w,a1						; load water buffer
 		lea	LZ1_FGDeformDelta(pc),a6
 		move.w	(Water_level).w,d0
-		subi.w	#224-2,d1
+		subi.w	#screen_height-2,d1
 		neg.w	d1
 		move.w	(Level_frame_counter).w,d2
 		add.w	d0,d2
@@ -152,7 +152,7 @@ LZ1_ApplyDeformWater:
 		; foreground deformation
 		lea	(H_scroll_table).w,a1						; load water buffer
 		lea	LZ1_FGDeformDelta(pc),a6
-		move.w	#224-1,d1							; set screen size
+		move.w	#screen_height-1,d1							; set screen size
 		move.w	(Level_frame_counter).w,d2
 		add.w	d0,d2
 		add.w	d0,d2

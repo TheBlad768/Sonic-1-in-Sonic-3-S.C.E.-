@@ -54,7 +54,7 @@ SYZ1_BackgroundEvent:
 		lea	(Camera_Y_pos_BG_copy).w,a6
 		lea	(Camera_Y_pos_BG_rounded).w,a5
 		moveq	#0,d1								; Camera_X_pos_BG_copy
-		moveq	#512/16,d6
+		moveq	#gameplay_plane_width/block_width,d6
 		jsr	(Draw_TileRow).w
 
 		; deform

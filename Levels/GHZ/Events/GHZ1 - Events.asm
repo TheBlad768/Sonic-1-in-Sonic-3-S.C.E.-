@@ -22,7 +22,7 @@ GHZ1_BackgroundInit:
 		lea	GHZ1_BGDrawArray(pc),a4
 		lea	(H_scroll_table+$100).w,a5
 		clr.l	(a5)								; update clouds (draw the starting position)
-		moveq	#-16,d3								; set align (16 pixels)
+		moveq	#-block_width,d3								; set align (16 pixels)
 		move.w	-$FA(a5),d4
 		move.w	d4,4(a5)							; update mountains 1
 		and.w	d3,d4								; align

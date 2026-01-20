@@ -43,7 +43,7 @@ Obj_BossFinal:
 
 		; set xypos
 		move.w	(Camera_max_X_pos).w,d0
-		addi.w	#320-24,d0
+		addi.w	#screen_width-24,d0
 		move.w	d0,x_pos(a1)
 		moveq	#44,d0
 		add.w	(Camera_min_Y_pos).w,d0
