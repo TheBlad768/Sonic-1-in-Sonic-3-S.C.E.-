@@ -122,7 +122,7 @@ loc_1845C:
 		move.w	(Camera_max_X_pos).w,d0
 		btst	#render_flags.x_flip,render_flags(a0)
 		beq.s	loc_18474
-		addi.w	#320-48,d0
+		addi.w	#screen_width-48,d0
 		cmp.w	x_pos(a0),d0
 		bgt.s	locret_1849C
 		move.w	d0,x_pos(a0)
@@ -479,7 +479,7 @@ Obj74_Duplicate:
 		bpl.s	loc_18826
 		move.w	x_pos(a0),d0
 		move.w	(Camera_saved_min_X_pos).w,d1
-		addi.w	#320,d1
+		addi.w	#screen_width,d1
 		cmp.w	d1,d0
 		bgt.s	loc_1882C
 		move.w	objoff_30(a0),d1

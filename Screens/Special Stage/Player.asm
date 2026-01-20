@@ -271,14 +271,14 @@ SS_FixCamera:
 		move.w	y_pos(a0),d2
 		move.w	x_pos(a0),d3
 		move.w	(Camera_X_pos).w,d0
-		subi.w	#320/2,d3
+		subi.w	#screen_width/2,d3
 		blo.s	loc_1BBCE
 		sub.w	d3,d0
 		sub.w	d0,(Camera_X_pos).w
 
 loc_1BBCE:
 		move.w	(Camera_Y_pos).w,d0
-		subi.w	#224/2,d2
+		subi.w	#screen_height/2,d2
 		blo.s	locret_1BBDE
 		sub.w	d2,d0
 		sub.w	d0,(Camera_Y_pos).w

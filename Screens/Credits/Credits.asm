@@ -381,8 +381,8 @@ Obj_CreditsRobotnik:
 		; init
 		movem.l	ObjDat_CreditsRobotnik(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.w	#320/2,x_pos(a0)
-		move.w	#224/2,y_pos(a0)
+		move.w	#screen_width/2,x_pos(a0)
+		move.w	#screen_height/2,y_pos(a0)
 		move.w	#(20*60)-1,objoff_2E(a0)
 
 		; END
@@ -614,8 +614,8 @@ Obj_CreditsEggRobo:
 		; init
 		movem.l	ObjDat_CreditsEggRobo(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.w	#320/2,x_pos(a0)
-		move.w	#(224/2),y_pos(a0)
+		move.w	#screen_width/2,x_pos(a0)
+		move.w	#screen_height/2,y_pos(a0)
 
 		; Try Again
 		move.l	#AniRaw_CreditsEggRoboEnd,objoff_30(a0)
@@ -624,7 +624,7 @@ Obj_CreditsEggRobo:
 
 		; END
 		move.l	#AniRaw_CreditsEggRobo,objoff_30(a0)
-		move.w	#(224/2)+32,y_pos(a0)
+		move.w	#(screen_height/2)+32,y_pos(a0)
 		move.l	#.wait,address(a0)
 		lea	Child1_CreditsEggRobo_Misc(pc),a2
 		jsr	(CreateChild1_Normal).w

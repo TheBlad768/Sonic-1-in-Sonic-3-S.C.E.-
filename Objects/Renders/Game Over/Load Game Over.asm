@@ -21,7 +21,7 @@ Render_GameOver:
 
 		; 1
 		move.w	#$80-48,GameOver_RAM.xpos-GameOver_RAM(a4)
-		move.w	#$80+(224/2),GameOver_RAM.ypos-GameOver_RAM(a4)
+		move.w	#$80+(screen_height/2),GameOver_RAM.ypos-GameOver_RAM(a4)
 
 		; 2
 		move.w	#$80+(320+48),GameOver_RAM.xpos2-GameOver_RAM(a4)

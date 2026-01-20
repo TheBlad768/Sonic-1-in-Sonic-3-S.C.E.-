@@ -20,7 +20,7 @@ MZ1_BackgroundInit:
 		lea	MZ1_BGDrawArray(pc),a4
 		lea	(H_scroll_table+$100).w,a5
 		clr.l	(a5)								; sky, clouds (draw the starting position)
-		moveq	#-16,d3								; set align (16 pixels)
+		moveq	#-block_width,d3								; set align (16 pixels)
 		move.w	-$EA(a5),d4
 		move.w	d4,4(a5)							; update mountains
 		and.w	d3,d4								; align
@@ -54,7 +54,7 @@ MZ1_BackgroundEvent:
 		move.w	-$EA(a5),4(a5)							; update mountains
 		move.w	-$E8(a5),8(a5)							; update bushes
 		move.w	-$E6(a5),$C(a5)							; update wall
-		moveq	#512/16,d6
+		moveq	#gameplay_plane_width/block_width,d6
 		moveq	#(MZ1_BGDrawArray_end-MZ1_BGDrawArray)/2,d5
 		jsr	(Draw_BG).w
 

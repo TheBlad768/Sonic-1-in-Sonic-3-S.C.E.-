@@ -25,7 +25,7 @@ SBZ1_BackgroundInit:
 		lea	SBZ1_BGDrawArray(pc),a4
 		lea	(H_scroll_table+$100).w,a5
 		clr.l	(a5)								; update clouds (draw the starting position)
-		moveq	#-16,d3								; set align (16 pixels)
+		moveq	#-block_width,d3								; set align (16 pixels)
 		move.w	-$F8(a5),d4
 		move.w	d4,4(a5)							; update distant brown buildings
 		and.w	d3,d4								; align
@@ -59,7 +59,7 @@ SBZ1_BackgroundEvent:
 		move.w	-$F8(a5),4(a5)							; update distant brown buildings
 		move.w	-$F6(a5),8(a5)							; update upper black buildings
 		move.w	-$F4(a5),$C(a5)							; update lower black buildings
-		moveq	#512/16,d6
+		moveq	#gameplay_plane_width/block_width,d6
 		moveq	#(SBZ1_BGDrawArray_end-SBZ1_BGDrawArray)/2,d5
 		jsr	(Draw_BG).w
 

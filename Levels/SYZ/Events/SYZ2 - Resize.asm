@@ -36,7 +36,7 @@ SYZ2_Resize:
 		bne.s	.checkxpos
 		move.l	#Obj_EndSign,address(a1)
 		move.w	(Camera_max_X_pos).w,d2
-		addi.w	#320/2,d2
+		addi.w	#screen_width/2,d2
 		move.w	d2,x_pos(a1)
 		move.w	(Camera_target_max_Y_pos).w,d2
 		addi.w	#$91,d2

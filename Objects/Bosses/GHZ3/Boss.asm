@@ -60,7 +60,7 @@ BossBall_MoveDown:
 
 		; check
 		move.w	(Camera_max_X_pos).w,d0
-		addi.w	#320/2,d0
+		addi.w	#screen_width/2,d0
 		cmp.w	x_pos(a0),d0
 		bne.s	.return
 
