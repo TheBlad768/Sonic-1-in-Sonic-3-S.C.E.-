@@ -43,8 +43,7 @@ Obj_HyperSonicKnux_Trail:
 		move.w	(Player_1+priority).w,priority(a0)				; use player's current priority
 
 		; draw
-		lea	(Sprite_table_input+priority_2).w,a1
-		jmp	(Draw_Sprite.find).w
+		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
 
 .return
@@ -60,4 +59,4 @@ Obj_HyperSonicKnux_Trail:
 ObjDat_HyperSonicKnux_Trail:		subObjMainData \
 					Obj_HyperSonicKnux_Trail.main, \
 						setBit(render_flags.level), \
-					0, 48, 48, 0, ArtTile_Player_1, 0, FALSE, Map_Knuckles
+					0, 48, 48, 2, ArtTile_Player_1, 0, FALSE, Map_Knuckles
