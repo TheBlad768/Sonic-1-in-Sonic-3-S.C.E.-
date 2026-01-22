@@ -336,7 +336,7 @@ Touch_Enemy:
 		neg.w	ground_vel(a0)
 		move.b	collision_flags(a1),boss_saved_collision(a1)			; save current collision
 		move.w	a0,d0								; save value of RAM address of which player hit the boss
-		move.b	d0,objoff_1C(a1)						; $00 for main character, $4A for sidekick
+		move.b	d0,boss_saved_player(a1)					; $00 for main character, $4A for sidekick
 		clr.b	collision_flags(a1)
 
 	if BossDebug
