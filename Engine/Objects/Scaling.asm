@@ -1,5 +1,5 @@
 ; ---------------------------------------------------------------------------
-; Object scaling subroutine
+; Object art scaling subroutine
 ; ---------------------------------------------------------------------------
 
 ; RAM
@@ -59,7 +59,7 @@ word_2464A:
 
 Process_ArtScaling:
 		moveq	#0,d1
-		move.b	objoff_40(a0),d1
+		move.b	scaling_scale_factor(a0),d1
 		cmpi.b	#28,d1
 		blo.s	loc_2469A
 		moveq	#28,d1								; maximum 28 different "scales"
@@ -93,10 +93,10 @@ loc_246D2:
 
 sub_246DA:
 		moveq	#0,d0
-		move.b	objoff_40(a0),d0						; scale factor
+		move.b	scaling_scale_factor(a0),d0					; scale factor
 		moveq	#0,d1
-		move.b	objoff_20(a0),d1						; next frame (address shift)
-		movea.l	objoff_42(a0),a1						; scaled art address
+		move.b	scaling_frame(a0),d1						; next frame (address shift)
+		movea.l	scaling_art_address(a0),a1					; scaled art address
 		ror.w	#4,d1								; 1 to $1000 (max 16 frames?)
 		adda.l	d1,a1
 		lea	(a1),a0
