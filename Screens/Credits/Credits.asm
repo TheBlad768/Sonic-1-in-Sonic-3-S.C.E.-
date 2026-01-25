@@ -822,7 +822,7 @@ Obj_CreditsEggRobo_Eyes:
 		subq.w	#1,objoff_2E(a0)
 		bpl.s	.return
 		move.l	#.animate,address(a0)
-		move.l	#.setf,objoff_34(a0)
+		move.l	#.setf,jump_ptr(a0)
 
 .return
 		rts

@@ -171,7 +171,7 @@ Obj_BigRing_Flash:
 		lea	ObjSlot_BigRingFlash(pc),a1
 		jsr	(SetUp_ObjAttributesSlotted).w
 		move.l	#.main,address(a0)
-		move.l	#.finished,objoff_34(a0)
+		move.l	#.finished,jump_ptr(a0)
 		move.l	#AniRaw_BigRingFlash,objoff_30(a0)
 
 		; copy
@@ -207,7 +207,7 @@ Obj_BigRing_Flash:
 .finished
 		move.l	#Obj_Wait,address(a0)						; this is performed when animation is finished
 		move.w	#$20,objoff_2E(a0)
-		move.l	#.goSS,objoff_34(a0)
+		move.l	#.goSS,jump_ptr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 

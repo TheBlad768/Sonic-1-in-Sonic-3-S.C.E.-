@@ -19,7 +19,7 @@ Obj_Splats:
 		bpl.s	.floornotfound
 		add.w	d1,y_pos(a0)
 		move.w	#-$400,y_vel(a0)
-		move.l	#.floor,objoff_34(a0)
+		move.l	#.floor,jump_ptr(a0)
 		move.l	#.action,address(a0)
 
 .action

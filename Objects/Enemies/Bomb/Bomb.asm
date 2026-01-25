@@ -15,7 +15,7 @@ Obj_BombBadnik:
 		jsr	(SetUp_ObjAttributes).w
 		bchg	#status.npc.x_flip,status(a0)
 		move.l	#.action,address(a0)
-		move.l	#.walk,objoff_34(a0)
+		move.l	#.walk,jump_ptr(a0)
 
 .action
 		jsr	(Obj_Wait).w
@@ -29,7 +29,7 @@ Obj_BombBadnik:
 		bsr.s	.chksonic
 		subq.w	#1,bom_time(a0)							; subtract 1 from time delay
 		bpl.s	.noflip								; if time remains, branch
-		move.l	#.wait,objoff_34(a0)
+		move.l	#.wait,jump_ptr(a0)
 		move.w	#((25*60)+36)-1,bom_time(a0)					; set time delay to 25 seconds
 		move.w	#$10,x_vel(a0)
 		move.b	#1,anim(a0)							; use walking animation
@@ -50,7 +50,7 @@ Obj_BombBadnik:
 ; ---------------------------------------------------------------------------
 
 .stopwalking
-		move.l	#.walk,objoff_34(a0)
+		move.l	#.walk,jump_ptr(a0)
 		move.w	#180-1,bom_time(a0)						; set time delay to 3 seconds
 		clr.w	x_vel(a0)							; stop walking
 		clr.b	anim(a0)							; use waiting animation
@@ -68,7 +68,7 @@ Obj_BombBadnik:
 		bne.s	.outofrange							; if yes, branch
 
 		; set explode
-		move.l	#.explode,objoff_34(a0)						; goto .explode next
+		move.l	#.explode,jump_ptr(a0)						; goto .explode next
 		move.w	#143,bom_time(a0)						; set fuse time
 		clr.w	x_vel(a0)
 		move.b	#2,anim(a0)							; use activated animation

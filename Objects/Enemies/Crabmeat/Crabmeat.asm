@@ -27,7 +27,7 @@ Obj_Crabmeat:
 		add.w	d1,y_pos(a0)
 		move.b	d3,angle(a0)
 		clr.w	y_vel(a0)
-		move.l	#.waittofire,objoff_34(a0)
+		move.l	#.waittofire,jump_ptr(a0)
 		move.l	#.action,address(a0)
 
 .action
@@ -52,7 +52,7 @@ Obj_Crabmeat:
 		bne.s	.fire
 
 .movecrab
-		move.l	#.walkonfloor,objoff_34(a0)
+		move.l	#.walkonfloor,jump_ptr(a0)
 		move.w	#128-1,crab_timedelay(a0)					; set time delay to approx 2 seconds
 		move.w	#$80,x_vel(a0)							; move Crabmeat to the right
 
@@ -122,7 +122,7 @@ Obj_Crabmeat:
 ; ---------------------------------------------------------------------------
 
 .chgdirection
-		move.l	#.waittofire,objoff_34(a0)
+		move.l	#.waittofire,jump_ptr(a0)
 		move.w	#60-1,crab_timedelay(a0)
 		clr.w	x_vel(a0)
 

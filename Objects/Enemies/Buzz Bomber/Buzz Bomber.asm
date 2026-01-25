@@ -16,7 +16,7 @@ Obj_BuzzBomber:
 		; init
 		lea	ObjDat_BuzzBomber(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.move,objoff_34(a0)
+		move.l	#.move,jump_ptr(a0)
 		move.l	#.action,address(a0)
 
 .action
@@ -33,7 +33,7 @@ Obj_BuzzBomber:
 		bpl.s	.noflip								; if time remains, branch
 		btst	#1,buzz_buzzstatus(a0)						; is Buzz Bomber near Sonic?
 		bne.s	.fire								; if yes, branch
-		move.l	#.chknearsonic,objoff_34(a0)
+		move.l	#.chknearsonic,jump_ptr(a0)
 		move.w	#128-1,buzz_timedelay(a0)					; set time delay to just over 2 seconds
 		move.w	#$400,x_vel(a0)							; move Buzz Bomber to the right
 		move.b	#1,anim(a0)							; use "flying" animation
@@ -95,7 +95,7 @@ Obj_BuzzBomber:
 		move.w	#60-1,buzz_timedelay(a0)
 
 .stop
-		move.l	#.move,objoff_34(a0)
+		move.l	#.move,jump_ptr(a0)
 		clr.w	x_vel(a0)							; stop Buzz Bomber moving
 		clr.b	anim(a0)							; use "hovering" animation
 

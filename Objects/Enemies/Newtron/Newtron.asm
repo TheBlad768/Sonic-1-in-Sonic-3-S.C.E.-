@@ -17,7 +17,7 @@ Obj_Newtron:
 		jsr	(SetUp_ObjAttributes).w
 		clr.b	routine(a0)
 		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
-		move.l	#.chkdistance,objoff_34(a0)
+		move.l	#.chkdistance,jump_ptr(a0)
 		move.l	#.action,address(a0)
 
 .action
@@ -46,12 +46,12 @@ Obj_Newtron:
 .Sonicisright
 		cmpi.w	#128,d2								; is Sonic within $80 pixels of the newtron?
 		bhs.s	.outofrange							; if not, branch
-		move.l	#.type00,objoff_34(a0)						; goto .type00 next
+		move.l	#.type00,jump_ptr(a0)						; goto .type00 next
 		move.b	#1,anim(a0)
 		tst.b	subtype(a0)							; check object type
 		beq.s	.istype00							; if type is 00, branch
 		ori.w	#palette_line_1,art_tile(a0)
-		move.l	#.type01,objoff_34(a0)						; goto .type01 next
+		move.l	#.type01,jump_ptr(a0)						; goto .type01 next
 		move.b	#4,anim(a0)							; use different	animation
 
 .outofrange
@@ -84,7 +84,7 @@ Obj_Newtron:
 		bpl.s	.keepfalling							; if not, branch
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)							; stop newtron falling
-		move.l	#.matchfloor,objoff_34(a0)
+		move.l	#.matchfloor,jump_ptr(a0)
 		move.b	#2,anim(a0)
 		btst	#5,art_tile(a0)							; palette_line_1
 		beq.s	.notgreen
@@ -131,7 +131,7 @@ Obj_Newtron:
 		st	obStatusTron(a0)
 
 		; set delete
-		move.l	#.delete,objoff_34(a0)
+		move.l	#.delete,jump_ptr(a0)
 
 		; create missile
 		jsr	(Create_New_Sprite3).w
