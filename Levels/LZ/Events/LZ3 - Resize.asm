@@ -42,7 +42,7 @@ LZ3_Resize:
 		; create boss
 		music	mus_ZoneBoss
 		move.b	d0,(Current_music+1).w						; save music
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.return
 		move.l	#Obj_BossWater,address(a1)
 		move.w	#$2010,x_pos(a1)

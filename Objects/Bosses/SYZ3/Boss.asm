@@ -405,7 +405,7 @@ BossBlock_Defeated:
 		st	(Level_results_flag).w
 
 		; create
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.notfree2
 		move.l	#Obj_EggCapsule,address(a1)
 		move.w	(Camera_stored_max_X_pos).w,d0
@@ -434,7 +434,7 @@ BossBlock_Defeated:
 		clr.b	(Boss_flag).w
 
 		; delete
-		jmp	(Go_Delete_Sprite_3).w
+		jmp	(Go_Delete_Object_3).w
 
 ; ---------------------------------------------------------------------------
 ; Spike
@@ -522,7 +522,7 @@ Obj_SYZBlock:
 		sfx	sfx_BossHit
 		lea	Child6_BossSYZBlock_FlickerMove(pc),a2
 		jsr	(CreateChild6_Simple).w
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 ; ---------------------------------------------------------------------------
 
 .solid
@@ -617,7 +617,7 @@ BossBlock_BreakChunkBlock:
 		st	(Screen_event_flag).w						; set redraw flag
 
 		; create sprite boss block
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.return
 		move.l	#Obj_SYZBlock,address(a1)
 		moveq	#32/2,d1

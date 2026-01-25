@@ -251,7 +251,7 @@ BossSpikeBall_Defeated:
 		st	(Level_results_flag).w
 
 		; create
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.notfree2
 		move.l	#Obj_EggCapsule,address(a1)
 		move.w	(Camera_stored_max_X_pos).w,d0
@@ -279,7 +279,7 @@ BossSpikeBall_Defeated:
 		clr.b	(Boss_flag).w
 
 		; delete
-		jmp	(Go_Delete_Sprite_3).w
+		jmp	(Go_Delete_Object_3).w
 
 ; ---------------------------------------------------------------------------
 ; Boss SpikeBall tube (Object)
@@ -313,7 +313,7 @@ Obj_BossSpikeBall_ShipTube:
 		jsr	(CreateChild6_Simple).w
 
 		; delete
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Boss SpikeBall tube pieces (Object)
@@ -623,7 +623,7 @@ BossSpikeBall_SpikeBall_Explode:
 		bset	#7,(a1)								; enable seesaw address
 
 		; remove
-		jsr	(Go_Delete_Sprite).w
+		jsr	(Go_Delete_Object).w
 
 		; explosion
 		lea	(Child6_MakeBossExplosion1).l,a2

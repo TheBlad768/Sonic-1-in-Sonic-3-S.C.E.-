@@ -134,7 +134,7 @@ Obj_Newtron:
 		move.l	#.delete,jump_ptr(a0)
 
 		; create missile
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.fail
 		move.l	#Obj_Missile,address(a1)					; load missile object
 		move.w	x_pos(a0),x_pos(a1)
@@ -160,7 +160,7 @@ Obj_Newtron:
 .delete
 		tst.b	routine(a0)
 		beq.s	.fail
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

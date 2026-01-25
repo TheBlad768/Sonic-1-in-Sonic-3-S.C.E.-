@@ -264,9 +264,9 @@ Check_SonicEndPose:
 		bne.s	.return								; if yes, branch
 		cmpi.b	#PlayerID_Death,routine(a1)					; has player just died?
 		bhs.s	.return								; if yes, branch
-		move.l	d0,jump_ptr(a0)						; set routine
+		move.l	d0,jump_ptr(a0)							; set routine
 		jsr	(Set_PlayerEndingPose).w
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.return
 		move.l	#Obj_LevelResults,address(a1)
 
@@ -311,8 +311,8 @@ Check_SonicEndPose_MGZ:
 
 .lresults
 		move.w	#-$100,x_vel(a0)						; left move
-		move.l	d0,jump_ptr(a0)						; set routine
-		jsr	(Create_New_Sprite).w
+		move.l	d0,jump_ptr(a0)							; set routine
+		jsr	(Create_New_Object).w
 		bne.s	.return
 		move.l	#Obj_LevelResults,address(a1)
 

@@ -38,7 +38,7 @@ Obj_LavaMaker:
 		bpl.s	.draw								; if not, branch
 
 		; create lava ball object
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.draw
 		move.l	#Obj_LavaBall,address(a1)					; load lava ball object
 		move.w	x_pos(a0),x_pos(a1)
@@ -113,7 +113,7 @@ Obj_LavaBall:
 ; ---------------------------------------------------------------------------
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 LBall_TypeIndex: offsetTable
@@ -134,7 +134,7 @@ LBall_Type00:
 		move.w	objoff_30(a0),d0
 		cmp.w	y_pos(a0),d0							; has object fallen back to its original position?
 		bhs.s	.loc_E41E							; if not, branch
-		move.l	#Delete_Current_Sprite,address(a0)				; goto "LBall_Delete" routine
+		move.l	#Delete_Current_Object,address(a0)				; goto "LBall_Delete" routine
 
 .loc_E41E
 		bclr	#status.npc.y_flip,status(a0)

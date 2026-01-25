@@ -159,7 +159,7 @@ DashDust_CheckSkid:
 		bne.s	.dplc								; if yes, branch
 
 		; create dust clouds
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.dplc
 		move.l	#Obj_DashDust_SkidDust,address(a1)
 		move.w	x_pos(a2),x_pos(a1)
@@ -219,7 +219,7 @@ Obj_DashDust_SkidDust:
 ; ---------------------------------------------------------------------------
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

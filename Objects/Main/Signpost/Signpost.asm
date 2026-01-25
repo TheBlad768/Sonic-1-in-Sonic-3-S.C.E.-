@@ -43,7 +43,7 @@ Obj_EndSignControlDoStart:
 		tst.b	(End_of_level_flag).w						; wait for title card to finish
 		beq.s	Obj_EndSignControl.return
 		jsr	(Change_ActSizes).w						; set level size
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Signpost (Object)
@@ -217,7 +217,7 @@ Obj_EndSign:
 		move.l	#.signafter,address(a0)
 		st	(Ctrl_1_locked).w						; null Sonic's input
 		jsr	(Set_PlayerEndingPose).w
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.draw2
 		move.l	#Obj_LevelResults,address(a1)
 		bra.s	.draw2
@@ -254,7 +254,7 @@ Obj_EndSign:
 
 		; delete
 		clr.w	(Signpost_addr).w						; clear RAM address
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Signpost (Sparkle)
@@ -282,7 +282,7 @@ Obj_SignpostSparkle:
 		move.w	x_pos(a0),objoff_3A(a0)
 		move.w	#$1000,x_vel(a0)
 		move.w	#32,objoff_2E(a0)
-		move.l	#Go_Delete_Sprite,jump_ptr(a0)
+		move.l	#Go_Delete_Object,jump_ptr(a0)
 
 .main
 		move.w	#$400,d0							; right

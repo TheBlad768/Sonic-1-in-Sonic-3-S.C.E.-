@@ -146,7 +146,7 @@ Obj_BombBadnik_Fuse:
 		jsr	(CreateChild6_Simple).w
 
 		; delete
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Object 5F - walking bomb enemy (shrapnel)

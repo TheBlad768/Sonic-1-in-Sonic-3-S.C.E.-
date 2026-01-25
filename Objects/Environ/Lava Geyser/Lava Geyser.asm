@@ -180,7 +180,7 @@ Obj_LavaGeyser:
 		bhs.s	.return
 		movea.w	parent3(a0),a1							; a1=parent object
 		move.b	#1,anim(a1)							; bubble2 anim
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 ; ---------------------------------------------------------------------------
 
 .type00
@@ -190,7 +190,7 @@ Obj_LavaGeyser:
 		bhs.s	.return
 		movea.w	parent3(a0),a1							; a1=parent object
 		move.b	#3,anim(a1)							; bubble3 anim
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 ; ---------------------------------------------------------------------------
 
 .return

@@ -19,7 +19,7 @@ SBZ2_Resize:
 		move.l	#.loadboss,(Level_data_addr_RAM.Resize).w
 
 		; create signpost
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.loadboss
 		move.l	#Obj_EndSign,address(a1)
 		move.w	(Camera_max_X_pos).w,d2
@@ -83,7 +83,7 @@ SBZ2_Resize:
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
 		; load SBZ2 Eggman intro object
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.addxcam
 		move.l	#Obj_ScrapEggman,address(a1)
 		move.w	#$2340,x_pos(a1)

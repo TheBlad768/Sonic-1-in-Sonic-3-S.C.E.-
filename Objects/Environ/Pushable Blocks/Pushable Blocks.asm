@@ -131,7 +131,7 @@ Obj_PushableBlock:
 		bclr	#respawn_addr.state,(a2)					; turn on the slot
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 .restore
@@ -290,7 +290,7 @@ PushableBlock_ChkLava:
 		bne.s	.return
 
 .createlava
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.return
 		move.l	#Obj_GeyserMaker,address(a1)					; load lava geyser object
 		move.w	a0,parent3(a1)							; save block address for geyser

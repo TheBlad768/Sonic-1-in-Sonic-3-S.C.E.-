@@ -277,7 +277,7 @@ BossWater_MoveUp6:
 		jsr	(BossFlash2).w
 
 		; delete
-		jmp	(Go_Delete_Sprite_3).w
+		jmp	(Go_Delete_Object_3).w
 
 ; ---------------------------------------------------------------------------
 ; Setup

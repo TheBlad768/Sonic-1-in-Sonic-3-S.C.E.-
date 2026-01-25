@@ -94,7 +94,7 @@ Obj_BigRing:
 .create
 
 		; create flash
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	BigRing_Display
 		move.l	#Obj_BigRing_Flash,address(a1)
 		move.w	a0,parent3(a1)							; set ring as parent

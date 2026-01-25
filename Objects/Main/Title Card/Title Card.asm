@@ -41,7 +41,7 @@ Obj_TitleCard:
 .create
 		tst.w	(KosPlus_modules_left).w
 		bne.s	.return								; don't load the objects until the art has been loaded
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.return
 		lea	ObjArray_TtlCard(pc),a2
 		move.w	(a2)+,d1							; make objects
@@ -60,7 +60,7 @@ Obj_TitleCard:
 		move.l	#Map_TitleCard,mappings(a1)
 		move.w	#make_art_tile($500,0,FALSE),art_tile(a1)
 		move.w	a0,parent2(a1)
-		jsr	(Create_New_Sprite4).w
+		jsr	(Create_New_Object_4).w
 		dbne	d1,.loop
 
 		; next
@@ -146,7 +146,7 @@ Obj_TitleCard:
 		clr.w	(Ctrl_1_locked).w						; unlock control 1 and control 2
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -157,7 +157,7 @@ Obj_TitleCardRedBanner:
 		tst.b	render_flags(a0)						; is the object visible on the screen?
 		bmi.s	.loc_2D8FC							; if yes, branch
 		subq.w	#1,objoff_30(a1)
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 .loc_2D8FC
@@ -205,7 +205,7 @@ Obj_TitleCardElement:
 		tst.b	render_flags(a0)						; is the object visible on the screen?
 		bmi.s	.loc_2D976							; if yes, branch
 		subq.w	#1,objoff_30(a1)
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 .loc_2D976
@@ -236,7 +236,7 @@ Obj_TitleCardAct:
 		; remove a number of the act, if not needed
 		movea.w	parent2(a0),a1							; a1=parent object
 		subq.w	#1,objoff_30(a1)
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Title Card load letters to VRAM

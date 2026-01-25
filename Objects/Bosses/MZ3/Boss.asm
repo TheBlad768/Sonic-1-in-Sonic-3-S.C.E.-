@@ -91,7 +91,7 @@ Obj73_MakeLava:
 		bhs.s	loc_1845C
 
 		; create
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	loc_1844A
 		move.l	#Obj_LavaBall,address(a1)					; load lava ball object
 		move.w	(Camera_max_Y_pos).w,d0
@@ -162,7 +162,7 @@ BossFire_AttackFire2:
 		bset	#6,state_flags(a0)						; set Robotnik laugh flag
 
 		; create
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.skip
 		move.l	#Obj_BossFire_Fire,address(a1)					; load lava ball object
 		move.w	x_pos(a0),d0
@@ -294,7 +294,7 @@ BossFire_Defeated:
 		st	(Level_results_flag).w
 
 		; create
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.notfree2
 		move.l	#Obj_EggCapsule,address(a1)
 		move.w	(Camera_stored_max_X_pos).w,d0
@@ -323,7 +323,7 @@ BossFire_Defeated:
 		clr.b	(Intro_flag).w
 
 		; delete
-		jmp	(Go_Delete_Sprite_3).w
+		jmp	(Go_Delete_Object_3).w
 
 ; ---------------------------------------------------------------------------
 ; Boss Fire tube (Object)
@@ -446,7 +446,7 @@ Obj74_MakeFlame:
 		move.b	#3,objoff_3F(a0)
 
 		; create flame
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.notfree
 		lea	(a1),a3
 		lea	(a0),a2
@@ -510,7 +510,7 @@ loc_1882C:
 ; =============== S U B R O U T I N E =======================================
 
 Obj74_Duplicate2:
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.return
 		move.l	#Obj_BossFire_Fire,address(a1)
 		move.w	x_pos(a0),x_pos(a1)
@@ -553,7 +553,7 @@ Obj74_FallEdge:
 ; ---------------------------------------------------------------------------
 
 Obj74_Delete:
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -600,7 +600,7 @@ Obj_BossFire_Scaled:
 		move.l	#.wait,address(a0)
 
 		; create decorative pillar
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.wait
 		move.l	#Child_Draw_Sprite,address(a1)
 		move.l	#Map_BossFire_Pillar,mappings(a1)
@@ -645,7 +645,7 @@ Obj_BossFire_Scaled:
 
 		; delete
 		move.l	#Load_MZ3Boss,(Level_data_addr_RAM.Resize).w
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

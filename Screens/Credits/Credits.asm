@@ -128,7 +128,7 @@ CreditsScreen:
 		move.l	#Credits_Process_LoadText.return,(Credits_process).w
 
 		; create objects
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.fadefrom
 		move.l	#Obj_CreditsRobotnik,address(a1)
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w

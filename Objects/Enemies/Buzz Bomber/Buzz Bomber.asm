@@ -46,7 +46,7 @@ Obj_BuzzBomber:
 ; ---------------------------------------------------------------------------
 
 .fire
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.fail
 		move.l	#Obj_Missile,address(a1)					; load missile object
 		moveq	#28,d0

@@ -298,7 +298,7 @@ Obj_Sonic_Ending:
 
 		; remove Tails tails
 		lea	(Tails_tails).w,a1
-		jsr	(Delete_Referenced_Sprite).w
+		jsr	(Delete_Referenced_Object).w
 
 		; init
 		lea	ObjDat_TailsEnding(pc),a1					; load Tails data
@@ -329,7 +329,7 @@ Obj_Sonic_Ending:
 		move.w	#bytes_to_word(0,1),anim(a0)					; use "radiance" animation and reset animate
 
 		; load chaos emeralds objects
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.w	.draw
 		move.w	a0,parent3(a1)
 		move.l	#Obj_EndChaos,address(a1)
@@ -370,7 +370,7 @@ Obj_Sonic_Ending:
 
 		; delete chaos emeralds objects
 		movea.w	parent3(a0),a1							; a1=parent object
-		move.l	#Go_Delete_Sprite,address(a1)
+		move.l	#Go_Delete_Object,address(a1)
 		st	(Restart_level_flag).w						; set level to restart
 		move.w	#1*60,eson_time(a0)
 		move.b	#1,anim(a0)							; use "looks left/right" animation
@@ -413,7 +413,7 @@ Obj_Sonic_Ending:
 .notp22
 
 		; load "SONIC THE HEDGEHOG" object
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.w	.draw
 		move.l	#Obj_EndSTH,address(a1)
 
@@ -438,7 +438,7 @@ Obj_Sonic_Ending:
 
 		; remove Tails tails
 		lea	(Tails_tails).w,a1
-		jsr	(Delete_Referenced_Sprite).w
+		jsr	(Delete_Referenced_Object).w
 
 .map
 
@@ -473,7 +473,7 @@ Obj_Sonic_Ending:
 .notp222
 
 		; load "SONIC THE HEDGEHOG" object
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.anim
 		move.l	#Obj_EndSTH,address(a1)
 
@@ -517,7 +517,7 @@ Obj_EndChaos:
 		moveq	#0,d2								; mapping frame
 		moveq	#0,d3								; angle
 		moveq	#ChaosEmeralds_Count-1,d6
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.expand
 
 .cloop
@@ -533,7 +533,7 @@ Obj_EndChaos:
 		addq.b	#1,d2
 		move.b	d3,angle(a1)
 		addi.b	#256/ChaosEmeralds_Count,d3					; angle between each emerald
-		jsr	(Create_New_Sprite4).w						; find next free object slot
+		jsr	(Create_New_Object_4).w						; find next free object slot
 		dbne	d6,.cloop
 
 .expand
