@@ -20,7 +20,7 @@ Obj_BuzzBomber:
 		move.l	#.action,address(a0)
 
 .action
-		movea.l	objoff_34(a0),a1
+		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Buzz(pc),a1
 		jsr	(Animate_Sprite).w

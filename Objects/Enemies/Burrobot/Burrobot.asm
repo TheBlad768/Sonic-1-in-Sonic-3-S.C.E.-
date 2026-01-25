@@ -28,7 +28,7 @@ Obj_Burrobot:
 		and.w	d0,y_pos(a0)							; perform wrapping of Burrobot's y position
 
 .notwrapping
-		movea.l	objoff_34(a0),a1
+		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Burro(pc),a1
 		jsr	(Animate_Sprite).w
