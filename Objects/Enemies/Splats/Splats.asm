@@ -23,7 +23,7 @@ Obj_Splats:
 		move.l	#.action,address(a0)
 
 .action
-		movea.l	objoff_34(a0),a1
+		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		jmp	(Sprite_CheckDeleteTouch).w
 ; ---------------------------------------------------------------------------

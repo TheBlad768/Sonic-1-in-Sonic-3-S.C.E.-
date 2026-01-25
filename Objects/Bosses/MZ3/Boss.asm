@@ -3,16 +3,14 @@
 ; Object 73 - Eggman (MZ)
 ; ---------------------------------------------------------------------------
 
-; Hits
-BossFire_Hits				= 8
-
-; Dynamic object variables
-obBF_Timer				= objoff_2E	; .w
-obBF_Jump				= objoff_34	; .l
+; dynamic object variables
+bossball_crane.timer			= objoff_3E	; (1 byte)
 
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossFire:
+
+.hitcount	= 8
 
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
@@ -23,9 +21,9 @@ Obj_BossFire:
 		lea	ObjDat_RobotnikShip2(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		st	(Boss_flag).w
-		move.b	#BossFire_Hits,collision_property(a0)				; set hits
+		move.b	#.hitcount,collision_property(a0)				; set hits
 		move.w	#-$100,x_vel(a0)						; set move left
-		move.l	#BossFire_MoveLeft,obBF_Jump(a0)
+		move.l	#BossFire_MoveLeft,jump_ptr(a0)
 
 		; create
 		lea	Child1_MakeRoboHead4(pc),a2
@@ -44,7 +42,7 @@ BossFire_MoveLeft:
 
 		; fireball timer
 		jsr	(Random_Number).w
-		move.b	d0,objoff_39(a0)
+		move.b	d0,count(a0)
 
 		; check xcam
 		move.w	(Camera_max_X_pos).w,d0
@@ -54,7 +52,7 @@ BossFire_MoveLeft:
 
 		; next
 		move.l	#BossFire_Setup2,address(a0)
-		move.l	#BossFire_MoveCircle,obBF_Jump(a0)
+		move.l	#BossFire_MoveCircle,jump_ptr(a0)
 		clr.l	x_vel(a0)
 
 .return
@@ -89,7 +87,7 @@ loc_183FE:
 		subq.w	#4,y_vel(a0)
 
 Obj73_MakeLava:
-		subq.b	#1,objoff_39(a0)
+		subq.b	#1,count(a0)
 		bhs.s	loc_1845C
 
 		; create
@@ -116,7 +114,7 @@ loc_1844A:
 		jsr	(Random_Number).w
 		andi.b	#$1F,d0
 		addi.b	#$40,d0
-		move.b	d0,objoff_39(a0)
+		move.b	d0,count(a0)
 
 loc_1845C:
 		move.w	(Camera_max_X_pos).w,d0
@@ -145,7 +143,7 @@ loc_18482:
 		neg.w	y_vel(a0)
 
 loc_18498:
-		move.l	#BossFire_AttackFire2,obBF_Jump(a0)
+		move.l	#BossFire_AttackFire2,jump_ptr(a0)
 
 locret_1849C:
 		rts
@@ -159,9 +157,9 @@ BossFire_AttackFire2:
 		tst.w	y_vel(a0)
 		beq.s	.skip
 		clr.w	y_vel(a0)
-		move.w	#$50,objoff_3E(a0)						; set wait
+		move.w	#$50,bossball_crane.timer(a0)					; set wait
 		bchg	#render_flags.x_flip,render_flags(a0)
-		bset	#6,objoff_38(a0)						; set laugh flag
+		bset	#6,state_flags(a0)						; set Robotnik laugh flag
 
 		; create
 		jsr	(Create_New_Sprite3).w
@@ -182,10 +180,10 @@ BossFire_AttackFire2:
 		st	subtype(a1)
 
 .skip
-		subq.w	#1,objoff_3E(a0)
+		subq.w	#1,bossball_crane.timer(a0)
 		bne.s	.return
-		move.l	#BossFire_MoveCircle,obBF_Jump(a0)
-		bclr	#6,objoff_38(a0)						; clear laugh flag
+		move.l	#BossFire_MoveCircle,jump_ptr(a0)
+		bclr	#6,state_flags(a0)						; clear Robotnik laugh flag
 
 .return
 		rts
@@ -205,7 +203,7 @@ BossFire_Setup2:
 		jsr	(MoveSprite2).w
 
 BossFire_Setup:
-		movea.l	obBF_Jump(a0),a1
+		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 
 ; ---------------------------------------------------------------------------
@@ -258,7 +256,7 @@ BossFire_MainProcess:
 
 BossFire_Defeated:
 		move.l	#Wait_FadeToLevelMusic,address(a0)
-		move.l	#.explosion,obBF_Jump(a0)
+		move.l	#.explosion,jump_ptr(a0)
 		clr.l	x_vel(a0)
 		lea	Child1_MakeRoboShipFlame(pc),a2
 		jsr	(CreateChild1_Normal).w
@@ -320,7 +318,7 @@ BossFire_Defeated:
 ; ---------------------------------------------------------------------------
 
 .delete
-		bset	#5,objoff_38(a0)						; remove Robotnik head and fire
+		bset	#5,state_flags(a0)						; remove Robotnik head and fire
 		clr.b	(Boss_flag).w
 		clr.b	(Intro_flag).w
 
@@ -381,9 +379,11 @@ Obj_BossFire_ShipTubeFlame:
 ; Object 74 - lava that Eggman drops (MZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
-obBFF_Timer				= objoff_2E	; .w
-obBFF_Jump				= objoff_34	; .l
+; dynamic object variables
+bossfire_fire.origX			= objoff_30	; original x-axis position (2 bytes)
+bossfire_fire.copyX			= objoff_32	; copy x-axis position (2 bytes)
+bossfire_fire.origY			= objoff_38	; original y-axis position (2 bytes)
+bossfire_fire.timer			= objoff_3F	; (1 byte)
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -396,7 +396,7 @@ Obj_BossFire_Fire:
 		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 		move.w	y_pos(a0),objoff_38(a0)
-		move.l	#Obj74_Drop,obBFF_Jump(a0)
+		move.l	#Obj74_Drop,jump_ptr(a0)
 		move.l	#Obj74_Action,address(a0)
 
 		; check
@@ -412,7 +412,7 @@ loc_1870A:
 		move.b	#30,objoff_3F(a0)
 
 Obj74_Action:
-		movea.l	obBFF_Jump(a0),a1
+		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		jsr	(MoveSprite2).w
 		lea	Ani_Fire(pc),a1
@@ -431,7 +431,7 @@ Obj74_Drop:
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1
 		bpl.s	.return
-		move.l	#Obj74_MakeFlame,obBFF_Jump(a0)
+		move.l	#Obj74_MakeFlame,jump_ptr(a0)
 
 .return
 		rts
@@ -466,10 +466,10 @@ Obj74_MakeFlame:
 	endr
 
 		neg.w	x_vel(a1)
-		move.l	#Obj74_Duplicate,obBFF_Jump(a1)
+		move.l	#Obj74_Duplicate,jump_ptr(a1)
 
 .notfree
-		move.l	#Obj74_Duplicate,obBFF_Jump(a0)
+		move.l	#Obj74_Duplicate,jump_ptr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -499,7 +499,7 @@ loc_1881E:
 ; ---------------------------------------------------------------------------
 
 loc_18826:
-		move.l	#Obj74_FallEdge,obBFF_Jump(a0)
+		move.l	#Obj74_FallEdge,jump_ptr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -545,7 +545,7 @@ Obj74_FallEdge:
 		clr.w	y_vel(a0)
 		move.w	objoff_32(a0),x_pos(a0)
 		move.w	objoff_38(a0),y_pos(a0)
-		move.l	#Obj74_Duplicate,obBFF_Jump(a0)
+		move.l	#Obj74_Duplicate,jump_ptr(a0)
 		bset	#high_priority_bit,art_tile(a0)					; high priority
 
 .return
@@ -586,17 +586,17 @@ Obj_BossFire_Scaled:
 		lea	ObjDat_BossFire_Scaled(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bset	#render_flags.x_flip,render_flags(a0)
-		move.b	#$18,objoff_40(a0)
-		move.w	#$3F,objoff_2E(a0)
+		move.b	#$18,scaling_scale_factor(a0)
+		move.w	#$3F,wait_timer(a0)
 		move.w	#$200,x_vel(a0)
-		move.w	#tiles_to_bytes($340),objoff_3A(a0)				; VRAM
+		move.w	#tiles_to_bytes($340),scaling_art_tile(a0)			; VRAM
 		move.l	#ArtScaled_RobotnikMZ,d0					; art pointer
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w				; is Knuckles?
 		blo.s	.artpointer							; if not, branch
 		move.l	#ArtScaled_EggRoboMZ,d0						; art pointer
 
 .artpointer
-		move.l	d0,objoff_42(a0)						; set art pointer
+		move.l	d0,scaling_art_address(a0)					; set art pointer
 		move.l	#.wait,address(a0)
 
 		; create decorative pillar
@@ -611,7 +611,7 @@ Obj_BossFire_Scaled:
 		move.w	a0,parent3(a1)							; parent RAM address into $46
 
 .wait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.scale
 		move.l	#.main,address(a0)
 
@@ -619,12 +619,12 @@ Obj_BossFire_Scaled:
 		moveq	#$6F,d0
 		and.b	(Level_frame_counter+1).w,d0
 		bne.s	.frame
-		cmpi.b	#$10,objoff_40(a0)
+		cmpi.b	#$10,scaling_scale_factor(a0)
 		beq.s	.frame
-		subq.b	#1,objoff_40(a0)
+		subq.b	#1,scaling_scale_factor(a0)
 
 .frame
-		bchg	#0,objoff_20(a0)
+		bchg	#0,scaling_frame(a0)
 
 .scale
 		jsr	(Perform_Art_Scaling).l
