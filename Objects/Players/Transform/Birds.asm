@@ -144,7 +144,7 @@ Obj_SuperTailsBirds_FlyAway:
 		bmi.s	Obj_SuperTailsBirds_Main.move					; if yes, branch
 
 		; if sprite is off-screen, delete it
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

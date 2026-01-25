@@ -105,7 +105,7 @@ Obj_Spawn_FinalZone:
 		clr.l	(Saved_timer).w
 
 		; delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 .checkfalling

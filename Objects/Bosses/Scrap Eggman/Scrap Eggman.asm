@@ -181,7 +181,7 @@ Obj_ScrapEggman_Block:
 		jsr	(CreateChild1_Normal).w
 
 		; delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 .solid

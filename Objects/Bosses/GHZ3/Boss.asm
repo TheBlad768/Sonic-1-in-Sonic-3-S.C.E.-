@@ -226,7 +226,7 @@ BossBall_Defeated:
 		st	(Level_results_flag).w
 
 		; create
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.notfree2
 		move.l	#Obj_EggCapsule,address(a1)
 		move.w	(Camera_stored_max_X_pos).w,d0
@@ -255,7 +255,7 @@ BossBall_Defeated:
 		clr.b	(Intro_flag).w
 
 		; delete
-		jmp	(Go_Delete_Sprite_3).w
+		jmp	(Go_Delete_Object_3).w
 
 ; ---------------------------------------------------------------------------
 ; Crane
@@ -502,7 +502,7 @@ Obj_BossBall_Scaled:
 
 		; delete
 		move.l	#Load_GHZ3Boss,(Level_data_addr_RAM.Resize).w
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

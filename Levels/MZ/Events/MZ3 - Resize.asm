@@ -43,7 +43,7 @@ MZ3_Resize:
 
 		; create intro
 		sfx	sfx_BossZoom
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.return
 		move.l	#Obj_BossFire_Scaled,address(a1)
 		moveq	#$40,d1
@@ -85,7 +85,7 @@ Load_MZ3Boss:
 		; create boss
 		music	mus_ZoneBoss
 		move.b	d0,(Current_music+1).w						; save music
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.return
 		move.l	#Obj_BossFire,address(a1)
 		move.w	(Camera_max_X_pos).w,d0

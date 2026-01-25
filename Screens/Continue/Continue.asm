@@ -119,13 +119,13 @@ ContinueScreen:
 		move.l	#Obj_Continue_Knuckles,(Reserved_object_3+address).w		; create Knuckles for Sonic and Tails
 
 		; create countdown object
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.notfree
 		move.l	#Obj_Continue_Countdown,address(a1)
 		move.w	a1,(Continue_countdown).w					; save parent
 
 		; create stars object
-		jsr	(Create_New_Sprite4).w
+		jsr	(Create_New_Object_4).w
 		bne.s	.notfree
 		move.l	#Obj_Continue_Stars,address(a1)
 
@@ -471,7 +471,7 @@ Obj_Continue_TailsWSonic:
 
 Obj_Continue_Tails_tails_Fix:
 		bclr	#2,(Tails_tails+render_flags).w
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Knuckles (Object)
@@ -510,7 +510,7 @@ Obj_Continue_Knuckles:
 		move.l	#.wait,address(a0)
 
 		; create egg robo
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.wait
 		move.l	#Obj_Continue_EggRobo,address(a1)
 
@@ -779,14 +779,14 @@ Continue_LoadIcons:
 .create
 		subq.w	#1,d6								; fix dbf
 		moveq	#0,d2
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.return
 
 .loop
 		move.l	#Obj_Continue_Icons,address(a1)
 		move.b	d2,subtype(a1)
 		addq.w	#2,d2
-		jsr	(Create_New_Sprite4).w						; find next free object slot
+		jsr	(Create_New_Object_4).w						; find next free object slot
 		dbne	d6,.loop
 
 .return

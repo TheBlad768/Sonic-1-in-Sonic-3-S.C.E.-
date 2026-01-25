@@ -205,7 +205,7 @@ Obj_MonitorSpawnIcon:
 		),status(a0)
 
 		clr.b	collision_flags(a0)
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.skipiconcreation
 		move.l	#Obj_MonitorContents,address(a1)
 		move.b	render_flags(a0),render_flags(a1)
@@ -216,7 +216,7 @@ Obj_MonitorSpawnIcon:
 		move.w	parent(a0),parent(a1)
 
 .skipiconcreation
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.skipexplosioncreation
 		move.l	#Obj_Explosion.skipanimal,address(a1)
 		move.w	x_pos(a0),x_pos(a1)						; set explosion's position
@@ -293,7 +293,7 @@ Obj_MonitorContents:
 ; ---------------------------------------------------------------------------
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

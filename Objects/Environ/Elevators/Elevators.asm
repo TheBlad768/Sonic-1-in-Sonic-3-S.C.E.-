@@ -240,7 +240,7 @@ Elev_MakeMulti:
 		move.w	objoff_3E(a0),elev_dist(a0)
 
 		; create
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.chkdel
 		move.l	#Obj_Elevator,address(a1)					; duplicate the object
 		move.w	x_pos(a0),x_pos(a1)

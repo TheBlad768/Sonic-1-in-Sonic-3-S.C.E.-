@@ -6,22 +6,22 @@ Obj_Index:
 		dc.l Obj_Ring						; $00
 		dc.l Obj_Monitor					; $01
 		dc.l Obj_PathSwap					; $02
-		dc.l Delete_Current_Sprite				; $03
-		dc.l Delete_Current_Sprite				; $04
-		dc.l Delete_Current_Sprite				; $05
-		dc.l Delete_Current_Sprite				; $06
+		dc.l Delete_Current_Object				; $03
+		dc.l Delete_Current_Object				; $04
+		dc.l Delete_Current_Object				; $05
+		dc.l Delete_Current_Object				; $06
 		dc.l Obj_Spring						; $07
 		dc.l Obj_Spikes						; $08
-		dc.l Delete_Current_Sprite				; $09
-		dc.l Delete_Current_Sprite				; $0A
+		dc.l Delete_Current_Object				; $09
+		dc.l Delete_Current_Object				; $0A
 		dc.l Obj_Pole						; $0B
 		dc.l Obj_FlapDoor					; $0C
 		dc.l Obj_EndSign					; $0D
 		dc.l Obj_TwistedRamp					; $0E
 		dc.l Obj_SinkingMud					; $0F
-		dc.l Delete_Current_Sprite				; $10
+		dc.l Delete_Current_Object				; $10
 		dc.l Obj_TensionBridge					; $11
-		dc.l Delete_Current_Sprite				; $12
+		dc.l Delete_Current_Object				; $12
 		dc.l Obj_LavaMaker					; $13
 		dc.l Obj_Updraft					; $14
 		dc.l Obj_SwingingPlatform				; $15
@@ -30,26 +30,26 @@ Obj_Index:
 		dc.l Obj_FloatingPlatform				; $18
 		dc.l Obj_CorkFloor					; $19
 		dc.l Obj_CollapsingPlatform				; $1A
-		dc.l Delete_Current_Sprite				; $1B
+		dc.l Delete_Current_Object				; $1B
 		dc.l Obj_StillSprite					; $1C
 		dc.l Obj_AnimatedStillSprite				; $1D
 		dc.l Obj_BallHog					; $1E
 		dc.l Obj_Crabmeat					; $1F
-		dc.l Delete_Current_Sprite				; $20
-		dc.l Delete_Current_Sprite				; $21
+		dc.l Delete_Current_Object				; $20
+		dc.l Delete_Current_Object				; $21
 		dc.l Obj_BuzzBomber					; $22
-		dc.l Delete_Current_Sprite				; $23
-		dc.l Delete_Current_Sprite				; $24
-		dc.l Delete_Current_Sprite				; $25
+		dc.l Delete_Current_Object				; $23
+		dc.l Delete_Current_Object				; $24
+		dc.l Delete_Current_Object				; $25
 		dc.l Obj_AutoSpin					; $26
-		dc.l Delete_Current_Sprite				; $27
+		dc.l Delete_Current_Object				; $27
 		dc.l Obj_Invisible_SolidBlock				; $28
-		dc.l Delete_Current_Sprite				; $29
+		dc.l Delete_Current_Object				; $29
 		dc.l Obj_AutoDoor					; $2A
 		dc.l Obj_Chopper					; $2B
 		dc.l Obj_Jaws						; $2C
 		dc.l Obj_Burrobot					; $2D
-		dc.l Delete_Current_Sprite				; $2E
+		dc.l Delete_Current_Object				; $2E
 		dc.l Obj_LargeGrass					; $2F
 		dc.l Obj_GlassBlock					; $30
 		dc.l Obj_ChainStomp					; $31
@@ -57,30 +57,30 @@ Obj_Index:
 		dc.l Obj_PushableBlock					; $33
 		dc.l Obj_StarPost					; $34
 		dc.l Obj_MovementStillSprite				; $35
-		dc.l Delete_Current_Sprite				; $36
+		dc.l Delete_Current_Object				; $36
 		dc.l Obj_SpikeBall2					; $37
 		dc.l Obj_Animal_Ending					; $38
-		dc.l Delete_Current_Sprite				; $39
-		dc.l Delete_Current_Sprite				; $3A
+		dc.l Delete_Current_Object				; $39
+		dc.l Delete_Current_Object				; $3A
 		dc.l Obj_PurpleRock					; $3B
 		dc.l Obj_BreakableWall					; $3C
 		dc.l Obj_RetractingSpring				; $3D
-		dc.l Delete_Current_Sprite				; $3E
-		dc.l Delete_Current_Sprite				; $3F
+		dc.l Delete_Current_Object				; $3E
+		dc.l Delete_Current_Object				; $3F
 		dc.l Obj_MotoBug					; $40
-		dc.l Delete_Current_Sprite				; $41
+		dc.l Delete_Current_Object				; $41
 		dc.l Obj_Newtron					; $42
 		dc.l Obj_Roller						; $43
 		dc.l Obj_EdgeWalls					; $44
 		dc.l Obj_SideStomp					; $45
 		dc.l Obj_MarbleBrick					; $46
 		dc.l Obj_Bumper						; $47
-		dc.l Delete_Current_Sprite				; $48
+		dc.l Delete_Current_Object				; $48
 		dc.l Obj_SoundStillSprite				; $49
-		dc.l Delete_Current_Sprite				; $4A
+		dc.l Delete_Current_Object				; $4A
 		dc.l Obj_BigRing					; $4B
 		dc.l Obj_GeyserMaker					; $4C
-		dc.l Delete_Current_Sprite				; $4D
+		dc.l Delete_Current_Object				; $4D
 		dc.l Obj_LavaWall					; $4E
 		dc.l Obj_Splats						; $4F
 		dc.l Obj_Yadrin						; $50
@@ -95,7 +95,7 @@ Obj_Index:
 		dc.l Obj_Elevator					; $59
 		dc.l Obj_CirclingPlatform				; $5A
 		dc.l Obj_Staircase					; $5B
-		dc.l Delete_Current_Sprite				; $5C
+		dc.l Delete_Current_Object				; $5C
 		dc.l Obj_Fan						; $5D
 		dc.l Obj_Seesaw						; $5E
 		dc.l Obj_BombBadnik					; $5F
@@ -116,146 +116,146 @@ Obj_Index:
 		dc.l Obj_Invisible_LavaBlock				; $6E
 		dc.l Obj_SpinConvey					; $6F
 		dc.l Obj_Girder						; $70
-		dc.l Delete_Current_Sprite				; $71
+		dc.l Delete_Current_Object				; $71
 		dc.l Obj_Teleport					; $72
 		dc.l Obj_Flamethrower					; $73
 		dc.l Obj_Electro					; $74
 		dc.l Obj_Saws						; $75
-		dc.l Delete_Current_Sprite				; $76
-		dc.l Delete_Current_Sprite				; $77
+		dc.l Delete_Current_Object				; $76
+		dc.l Delete_Current_Object				; $77
 		dc.l Obj_Caterkiller					; $78
-		dc.l Delete_Current_Sprite				; $79
-		dc.l Delete_Current_Sprite				; $7A
-		dc.l Delete_Current_Sprite				; $7B
-		dc.l Delete_Current_Sprite				; $7C
+		dc.l Delete_Current_Object				; $79
+		dc.l Delete_Current_Object				; $7A
+		dc.l Delete_Current_Object				; $7B
+		dc.l Delete_Current_Object				; $7C
 		dc.l Obj_HiddenBonus					; $7D
-		dc.l Delete_Current_Sprite				; $7E
-		dc.l Delete_Current_Sprite				; $7F
+		dc.l Delete_Current_Object				; $7E
+		dc.l Delete_Current_Object				; $7F
 		dc.l Obj_HiddenMonitor					; $80
 		dc.l Obj_EggCapsule					; $81
-		dc.l Delete_Current_Sprite				; $82
-		dc.l Delete_Current_Sprite				; $83
-		dc.l Delete_Current_Sprite				; $84
-		dc.l Delete_Current_Sprite				; $85
-		dc.l Delete_Current_Sprite				; $86
-		dc.l Delete_Current_Sprite				; $87
-		dc.l Delete_Current_Sprite				; $88
-		dc.l Delete_Current_Sprite				; $89
-		dc.l Delete_Current_Sprite				; $8A
+		dc.l Delete_Current_Object				; $82
+		dc.l Delete_Current_Object				; $83
+		dc.l Delete_Current_Object				; $84
+		dc.l Delete_Current_Object				; $85
+		dc.l Delete_Current_Object				; $86
+		dc.l Delete_Current_Object				; $87
+		dc.l Delete_Current_Object				; $88
+		dc.l Delete_Current_Object				; $89
+		dc.l Delete_Current_Object				; $8A
 		dc.l Obj_SpriteMask					; $8B
-		dc.l Delete_Current_Sprite				; $8C
-		dc.l Delete_Current_Sprite				; $8D
-		dc.l Delete_Current_Sprite				; $8E
-		dc.l Delete_Current_Sprite				; $8F
-		dc.l Delete_Current_Sprite				; $90
-		dc.l Delete_Current_Sprite				; $91
-		dc.l Delete_Current_Sprite				; $92
-		dc.l Delete_Current_Sprite				; $93
-		dc.l Delete_Current_Sprite				; $94
-		dc.l Delete_Current_Sprite				; $95
-		dc.l Delete_Current_Sprite				; $96
-		dc.l Delete_Current_Sprite				; $97
-		dc.l Delete_Current_Sprite				; $98
-		dc.l Delete_Current_Sprite				; $99
-		dc.l Delete_Current_Sprite				; $9A
-		dc.l Delete_Current_Sprite				; $9B
-		dc.l Delete_Current_Sprite				; $9C
-		dc.l Delete_Current_Sprite				; $9D
-		dc.l Delete_Current_Sprite				; $9E
-		dc.l Delete_Current_Sprite				; $9F
-		dc.l Delete_Current_Sprite				; $A0
-		dc.l Delete_Current_Sprite				; $A1
-		dc.l Delete_Current_Sprite				; $A2
-		dc.l Delete_Current_Sprite				; $A3
-		dc.l Delete_Current_Sprite				; $A4
-		dc.l Delete_Current_Sprite				; $A5
-		dc.l Delete_Current_Sprite				; $A6
-		dc.l Delete_Current_Sprite				; $A7
-		dc.l Delete_Current_Sprite				; $A8
-		dc.l Delete_Current_Sprite				; $A9
-		dc.l Delete_Current_Sprite				; $AA
-		dc.l Delete_Current_Sprite				; $AB
-		dc.l Delete_Current_Sprite				; $AC
-		dc.l Delete_Current_Sprite				; $AD
-		dc.l Delete_Current_Sprite				; $AE
-		dc.l Delete_Current_Sprite				; $AF
-		dc.l Delete_Current_Sprite				; $B0
-		dc.l Delete_Current_Sprite				; $B1
-		dc.l Delete_Current_Sprite				; $B2
+		dc.l Delete_Current_Object				; $8C
+		dc.l Delete_Current_Object				; $8D
+		dc.l Delete_Current_Object				; $8E
+		dc.l Delete_Current_Object				; $8F
+		dc.l Delete_Current_Object				; $90
+		dc.l Delete_Current_Object				; $91
+		dc.l Delete_Current_Object				; $92
+		dc.l Delete_Current_Object				; $93
+		dc.l Delete_Current_Object				; $94
+		dc.l Delete_Current_Object				; $95
+		dc.l Delete_Current_Object				; $96
+		dc.l Delete_Current_Object				; $97
+		dc.l Delete_Current_Object				; $98
+		dc.l Delete_Current_Object				; $99
+		dc.l Delete_Current_Object				; $9A
+		dc.l Delete_Current_Object				; $9B
+		dc.l Delete_Current_Object				; $9C
+		dc.l Delete_Current_Object				; $9D
+		dc.l Delete_Current_Object				; $9E
+		dc.l Delete_Current_Object				; $9F
+		dc.l Delete_Current_Object				; $A0
+		dc.l Delete_Current_Object				; $A1
+		dc.l Delete_Current_Object				; $A2
+		dc.l Delete_Current_Object				; $A3
+		dc.l Delete_Current_Object				; $A4
+		dc.l Delete_Current_Object				; $A5
+		dc.l Delete_Current_Object				; $A6
+		dc.l Delete_Current_Object				; $A7
+		dc.l Delete_Current_Object				; $A8
+		dc.l Delete_Current_Object				; $A9
+		dc.l Delete_Current_Object				; $AA
+		dc.l Delete_Current_Object				; $AB
+		dc.l Delete_Current_Object				; $AC
+		dc.l Delete_Current_Object				; $AD
+		dc.l Delete_Current_Object				; $AE
+		dc.l Delete_Current_Object				; $AF
+		dc.l Delete_Current_Object				; $B0
+		dc.l Delete_Current_Object				; $B1
+		dc.l Delete_Current_Object				; $B2
 		dc.l Obj_StartNewLevel					; $B3
-		dc.l Delete_Current_Sprite				; $B4
-		dc.l Delete_Current_Sprite				; $B5
-		dc.l Delete_Current_Sprite				; $B6
-		dc.l Delete_Current_Sprite				; $B7
-		dc.l Delete_Current_Sprite				; $B8
-		dc.l Delete_Current_Sprite				; $B9
-		dc.l Delete_Current_Sprite				; $BA
-		dc.l Delete_Current_Sprite				; $BB
-		dc.l Delete_Current_Sprite				; $BC
-		dc.l Delete_Current_Sprite				; $BD
-		dc.l Delete_Current_Sprite				; $BE
-		dc.l Delete_Current_Sprite				; $BF
-		dc.l Delete_Current_Sprite				; $C0
-		dc.l Delete_Current_Sprite				; $C1
-		dc.l Delete_Current_Sprite				; $C2
-		dc.l Delete_Current_Sprite				; $C3
-		dc.l Delete_Current_Sprite				; $C4
-		dc.l Delete_Current_Sprite				; $C5
-		dc.l Delete_Current_Sprite				; $C6
-		dc.l Delete_Current_Sprite				; $C7
-		dc.l Delete_Current_Sprite				; $C8
-		dc.l Delete_Current_Sprite				; $C9
-		dc.l Delete_Current_Sprite				; $CA
-		dc.l Delete_Current_Sprite				; $CB
-		dc.l Delete_Current_Sprite				; $CC
-		dc.l Delete_Current_Sprite				; $CD
-		dc.l Delete_Current_Sprite				; $CE
-		dc.l Delete_Current_Sprite				; $CF
-		dc.l Delete_Current_Sprite				; $D0
-		dc.l Delete_Current_Sprite				; $D1
-		dc.l Delete_Current_Sprite				; $D2
-		dc.l Delete_Current_Sprite				; $D3
-		dc.l Delete_Current_Sprite				; $D4
-		dc.l Delete_Current_Sprite				; $D5
-		dc.l Delete_Current_Sprite				; $D6
-		dc.l Delete_Current_Sprite				; $D7
-		dc.l Delete_Current_Sprite				; $D8
-		dc.l Delete_Current_Sprite				; $D9
-		dc.l Delete_Current_Sprite				; $DA
-		dc.l Delete_Current_Sprite				; $DB
-		dc.l Delete_Current_Sprite				; $DC
-		dc.l Delete_Current_Sprite				; $DD
-		dc.l Delete_Current_Sprite				; $DE
-		dc.l Delete_Current_Sprite				; $DF
-		dc.l Delete_Current_Sprite				; $E0
-		dc.l Delete_Current_Sprite				; $E1
-		dc.l Delete_Current_Sprite				; $E2
-		dc.l Delete_Current_Sprite				; $E3
-		dc.l Delete_Current_Sprite				; $E4
-		dc.l Delete_Current_Sprite				; $E5
-		dc.l Delete_Current_Sprite				; $E6
-		dc.l Delete_Current_Sprite				; $E7
-		dc.l Delete_Current_Sprite				; $E8
-		dc.l Delete_Current_Sprite				; $E9
-		dc.l Delete_Current_Sprite				; $EA
-		dc.l Delete_Current_Sprite				; $EB
-		dc.l Delete_Current_Sprite				; $EC
-		dc.l Delete_Current_Sprite				; $ED
-		dc.l Delete_Current_Sprite				; $EE
-		dc.l Delete_Current_Sprite				; $EF
-		dc.l Delete_Current_Sprite				; $F0
-		dc.l Delete_Current_Sprite				; $F1
-		dc.l Delete_Current_Sprite				; $F2
-		dc.l Delete_Current_Sprite				; $F3
-		dc.l Delete_Current_Sprite				; $F4
-		dc.l Delete_Current_Sprite				; $F5
-		dc.l Delete_Current_Sprite				; $F6
-		dc.l Delete_Current_Sprite				; $F7
-		dc.l Delete_Current_Sprite				; $F8
-		dc.l Delete_Current_Sprite				; $F9
-		dc.l Delete_Current_Sprite				; $FA
-		dc.l Delete_Current_Sprite				; $FB
-		dc.l Delete_Current_Sprite				; $FC
-		dc.l Delete_Current_Sprite				; $FD
-		dc.l Delete_Current_Sprite				; $FE
-		dc.l Delete_Current_Sprite				; $FF
+		dc.l Delete_Current_Object				; $B4
+		dc.l Delete_Current_Object				; $B5
+		dc.l Delete_Current_Object				; $B6
+		dc.l Delete_Current_Object				; $B7
+		dc.l Delete_Current_Object				; $B8
+		dc.l Delete_Current_Object				; $B9
+		dc.l Delete_Current_Object				; $BA
+		dc.l Delete_Current_Object				; $BB
+		dc.l Delete_Current_Object				; $BC
+		dc.l Delete_Current_Object				; $BD
+		dc.l Delete_Current_Object				; $BE
+		dc.l Delete_Current_Object				; $BF
+		dc.l Delete_Current_Object				; $C0
+		dc.l Delete_Current_Object				; $C1
+		dc.l Delete_Current_Object				; $C2
+		dc.l Delete_Current_Object				; $C3
+		dc.l Delete_Current_Object				; $C4
+		dc.l Delete_Current_Object				; $C5
+		dc.l Delete_Current_Object				; $C6
+		dc.l Delete_Current_Object				; $C7
+		dc.l Delete_Current_Object				; $C8
+		dc.l Delete_Current_Object				; $C9
+		dc.l Delete_Current_Object				; $CA
+		dc.l Delete_Current_Object				; $CB
+		dc.l Delete_Current_Object				; $CC
+		dc.l Delete_Current_Object				; $CD
+		dc.l Delete_Current_Object				; $CE
+		dc.l Delete_Current_Object				; $CF
+		dc.l Delete_Current_Object				; $D0
+		dc.l Delete_Current_Object				; $D1
+		dc.l Delete_Current_Object				; $D2
+		dc.l Delete_Current_Object				; $D3
+		dc.l Delete_Current_Object				; $D4
+		dc.l Delete_Current_Object				; $D5
+		dc.l Delete_Current_Object				; $D6
+		dc.l Delete_Current_Object				; $D7
+		dc.l Delete_Current_Object				; $D8
+		dc.l Delete_Current_Object				; $D9
+		dc.l Delete_Current_Object				; $DA
+		dc.l Delete_Current_Object				; $DB
+		dc.l Delete_Current_Object				; $DC
+		dc.l Delete_Current_Object				; $DD
+		dc.l Delete_Current_Object				; $DE
+		dc.l Delete_Current_Object				; $DF
+		dc.l Delete_Current_Object				; $E0
+		dc.l Delete_Current_Object				; $E1
+		dc.l Delete_Current_Object				; $E2
+		dc.l Delete_Current_Object				; $E3
+		dc.l Delete_Current_Object				; $E4
+		dc.l Delete_Current_Object				; $E5
+		dc.l Delete_Current_Object				; $E6
+		dc.l Delete_Current_Object				; $E7
+		dc.l Delete_Current_Object				; $E8
+		dc.l Delete_Current_Object				; $E9
+		dc.l Delete_Current_Object				; $EA
+		dc.l Delete_Current_Object				; $EB
+		dc.l Delete_Current_Object				; $EC
+		dc.l Delete_Current_Object				; $ED
+		dc.l Delete_Current_Object				; $EE
+		dc.l Delete_Current_Object				; $EF
+		dc.l Delete_Current_Object				; $F0
+		dc.l Delete_Current_Object				; $F1
+		dc.l Delete_Current_Object				; $F2
+		dc.l Delete_Current_Object				; $F3
+		dc.l Delete_Current_Object				; $F4
+		dc.l Delete_Current_Object				; $F5
+		dc.l Delete_Current_Object				; $F6
+		dc.l Delete_Current_Object				; $F7
+		dc.l Delete_Current_Object				; $F8
+		dc.l Delete_Current_Object				; $F9
+		dc.l Delete_Current_Object				; $FA
+		dc.l Delete_Current_Object				; $FB
+		dc.l Delete_Current_Object				; $FC
+		dc.l Delete_Current_Object				; $FD
+		dc.l Delete_Current_Object				; $FE
+		dc.l Delete_Current_Object				; $FF
