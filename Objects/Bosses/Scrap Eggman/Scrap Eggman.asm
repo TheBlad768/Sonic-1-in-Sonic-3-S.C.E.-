@@ -29,7 +29,7 @@ Obj_ScrapEggman:
 		st	objoff_3A(a0)							; reset DPLC frame
 		move.l	#.checkxcam,address(a0)
 		move.w	#$4F,objoff_2E(a0)
-		move.l	#.wait,objoff_34(a0)
+		move.l	#.wait,jump_ptr(a0)
 		move.l	#AniRaw_ScrapEggman_Stand,objoff_30(a0)
 
 		; load control desk
@@ -68,14 +68,14 @@ Obj_ScrapEggman:
 
 .wait
 		move.w	#$4F,objoff_2E(a0)
-		move.l	#.fset,objoff_34(a0)
+		move.l	#.fset,jump_ptr(a0)
 		lea	AniRaw_ScrapEggman_Laugh(pc),a1
 		jmp	(Set_Raw_Animation).w
 ; ---------------------------------------------------------------------------
 
 .fset
 		st	sEggman_Block(a0)
-		move.l	#.return,objoff_34(a0)
+		move.l	#.return,jump_ptr(a0)
 
 .return
 		rts

@@ -23,7 +23,7 @@ Obj_Yadrin:
 		add.w	d1,y_pos(a0)							; match object's position with the floor
 		clr.w	y_vel(a0)
 		bchg	#status.npc.x_flip,status(a0)
-		move.l	#.move,objoff_34(a0)
+		move.l	#.move,jump_ptr(a0)
 		move.l	#.action,address(a0)
 
 .action
@@ -42,7 +42,7 @@ Obj_Yadrin:
 .move
 		subq.w	#1,yad_timedelay(a0)						; subtract 1 from pause time
 		bpl.s	.noflip								; if time remains, branch
-		move.l	#.fixtofloor,objoff_34(a0)
+		move.l	#.fixtofloor,jump_ptr(a0)
 		move.w	#-$100,x_vel(a0)						; move object
 		move.b	#1,anim(a0)
 		bchg	#status.npc.x_flip,status(a0)
@@ -67,7 +67,7 @@ Obj_Yadrin:
 ; ---------------------------------------------------------------------------
 
 .pause
-		move.l	#.move,objoff_34(a0)
+		move.l	#.move,jump_ptr(a0)
 		move.w	#60-1,yad_timedelay(a0)						; set pause time to 1 second
 		clr.w	x_vel(a0)
 		clr.b	anim(a0)
