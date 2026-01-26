@@ -2,7 +2,7 @@
 ; Object 66 - rotating disc junction that grabs Sonic (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 jun_save			= objoff_32	; save frame (1 byte)
 jun_frame			= objoff_34	; add or sub frame (1 byte)
 jun_reverse			= objoff_36	; flag set when switch is pressed (1 byte)

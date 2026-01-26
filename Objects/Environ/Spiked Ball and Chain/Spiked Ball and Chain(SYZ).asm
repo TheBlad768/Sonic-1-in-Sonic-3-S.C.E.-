@@ -2,7 +2,7 @@
 ; Object 57 - spiked balls (SYZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 sball_angle			= objoff_3C	; angle (1 byte)
 sball_speed			= objoff_3E	; rate of spin (2 bytes)
 
@@ -77,6 +77,8 @@ Obj_SpikeBall:
 ; ---------------------------------------------------------------------------
 ; Spiked ball (child)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

@@ -2,6 +2,8 @@
 ; Object XX - movement scenery
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_MovementStillSprite:

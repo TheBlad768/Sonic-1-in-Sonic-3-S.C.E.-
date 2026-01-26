@@ -203,6 +203,8 @@ BossFire_Setup2:
 		jsr	(MoveSprite2).w
 
 BossFire_Setup:
+
+		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 
@@ -382,7 +384,7 @@ Obj_BossFire_ShipTubeFlame:
 ; dynamic object variables
 bossfire_fire.origX			= objoff_30	; original x-axis position (2 bytes)
 bossfire_fire.copyX			= objoff_32	; copy x-axis position (2 bytes)
-bossfire_fire.origY			= objoff_38	; original y-axis position (2 bytes)
+bossfire_fire.origY			= objoff_34	; original y-axis position (2 bytes)
 bossfire_fire.timer			= objoff_3F	; (1 byte)
 
 ; =============== S U B R O U T I N E =======================================
@@ -395,7 +397,7 @@ Obj_BossFire_Fire:
 		clr.b	routine(a0)
 		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
-		move.w	y_pos(a0),objoff_38(a0)
+		move.w	y_pos(a0),bossfire_fire.origY(a0)
 		move.l	#Obj74_Drop,jump_ptr(a0)
 		move.l	#Obj74_Action,address(a0)
 
@@ -409,9 +411,11 @@ Obj_BossFire_Fire:
 
 loc_1870A:
 		sfx	sfx_Fireball							; play lava ball sound
-		move.b	#30,objoff_3F(a0)
+		move.b	#30,bossfire_fire.timer(a0)					; set wait
 
 Obj74_Action:
+
+		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		jsr	(MoveSprite2).w
@@ -422,7 +426,9 @@ Obj74_Action:
 
 Obj74_Drop:
 		bset	#status.npc.y_flip,status(a0)
-		subq.b	#1,objoff_3F(a0)
+
+		; check
+		subq.b	#1,bossfire_fire.timer(a0)
 		bpl.s	.return
 		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
 		clr.b	subtype(a0)
@@ -441,9 +447,9 @@ Obj74_MakeFlame:
 		subq.w	#2,y_pos(a0)
 		bset	#high_priority_bit,art_tile(a0)					; high priority
 		move.l	#words_to_long($A0,0),x_vel(a0)
-		move.w	x_pos(a0),objoff_30(a0)
-		move.w	y_pos(a0),objoff_38(a0)
-		move.b	#3,objoff_3F(a0)
+		move.w	x_pos(a0),bossfire_fire.origX(a0)
+		move.w	y_pos(a0),bossfire_fire.origY(a0)
+		move.b	#3,bossfire_fire.timer(a0)					; set wait
 
 		; create flame
 		jsr	(Create_New_Object_3).w
@@ -482,7 +488,7 @@ Obj74_Duplicate:
 		addi.w	#screen_width,d1
 		cmp.w	d1,d0
 		bgt.s	loc_1882C
-		move.w	objoff_30(a0),d1
+		move.w	bossfire_fire.origX(a0),d1
 		cmp.w	d0,d1
 		beq.s	loc_1881E
 		moveq	#$10,d2
@@ -491,10 +497,10 @@ Obj74_Duplicate:
 		cmp.w	d0,d1
 		beq.s	loc_1881E
 		bsr.s	Obj74_Duplicate2
-		move.w	x_pos(a0),objoff_32(a0)
+		move.w	x_pos(a0),bossfire_fire.copyX(a0)
 
 loc_1881E:
-		move.w	x_pos(a0),objoff_30(a0)
+		move.w	x_pos(a0),bossfire_fire.origX(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -515,7 +521,7 @@ Obj74_Duplicate2:
 		move.l	#Obj_BossFire_Fire,address(a1)
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
-		move.b	#$67,objoff_3F(a1)
+		move.b	#$67,bossfire_fire.timer(a1)					; set wait
 		clr.b	subtype(a1)
 
 .return
@@ -527,7 +533,7 @@ Obj74_FallEdge:
 		bclr	#status.npc.y_flip,status(a0)
 		addi.w	#$24,y_vel(a0)							; make flame fall
 		move.w	x_pos(a0),d0
-		sub.w	objoff_32(a0),d0
+		sub.w	bossfire_fire.copyX(a0),d0
 		bpl.s	.abs
 		neg.w	d0
 
@@ -540,11 +546,13 @@ Obj74_FallEdge:
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1
 		bpl.s	.return
-		subq.b	#1,objoff_3F(a0)
+
+		; check
+		subq.b	#1,bossfire_fire.timer(a0)
 		beq.s	Obj74_Delete
 		clr.w	y_vel(a0)
-		move.w	objoff_32(a0),x_pos(a0)
-		move.w	objoff_38(a0),y_pos(a0)
+		move.w	bossfire_fire.copyX(a0),x_pos(a0)
+		move.w	bossfire_fire.origY(a0),y_pos(a0)
 		move.l	#Obj74_Duplicate,jump_ptr(a0)
 		bset	#high_priority_bit,art_tile(a0)					; high priority
 
@@ -559,7 +567,9 @@ Obj74_Delete:
 
 loc_18886:
 		bset	#high_priority_bit,art_tile(a0)					; high priority
-		subq.b	#1,objoff_3F(a0)
+
+		; check
+		subq.b	#1,bossfire_fire.timer(a0)
 		bne.s	.anim
 		move.b	#1,anim(a0)
 		subq.w	#4,y_pos(a0)

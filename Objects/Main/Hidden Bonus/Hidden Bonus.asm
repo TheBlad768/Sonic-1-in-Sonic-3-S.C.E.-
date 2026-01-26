@@ -2,7 +2,7 @@
 ; Object 7D - hidden points at the end of a level
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 bonus_timelen		= objoff_2E ; length of time to display bonus sprites
 
 ; =============== S U B R O U T I N E =======================================

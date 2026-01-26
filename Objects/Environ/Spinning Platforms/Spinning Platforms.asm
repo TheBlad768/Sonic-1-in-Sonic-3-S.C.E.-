@@ -2,7 +2,7 @@
 ; Object 69 - spinning platforms and trapdoors (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 spin_timer			= objoff_30	; time counter until change (2 bytes)
 spin_timelen			= objoff_32	; time between changes (general) (2 bytes)
 spin_flag			= objoff_34	; (1 byte)

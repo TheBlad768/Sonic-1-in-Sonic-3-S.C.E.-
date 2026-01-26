@@ -2,6 +2,8 @@
 ; Object 51 - smashable green block (MZ)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SmashBlock:

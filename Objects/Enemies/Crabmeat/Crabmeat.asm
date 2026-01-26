@@ -5,7 +5,7 @@
 ; Options
 _CRABMEAT_SLOPE_		= 0	; if 1, enable slope animation
 
-; Dynamic object variables
+; dynamic object variables
 crab_timedelay			= objoff_30
 crab_mode			= objoff_32
 
@@ -31,6 +31,8 @@ Obj_Crabmeat:
 		move.l	#.action,address(a0)
 
 .action
+
+		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Crab(pc),a1
@@ -174,6 +176,8 @@ Crab_SetAni:
 ; ---------------------------------------------------------------------------
 ; Sub-object - missile that the Crabmeat throws
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

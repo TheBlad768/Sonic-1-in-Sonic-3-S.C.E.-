@@ -2,7 +2,7 @@
 ; Object 5E - seesaws (SLZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 see_origX			= objoff_30	; original x-axis position (2 bytes)
 see_origY			= objoff_34	; original y-axis position (2 bytes)
 see_speed			= objoff_38	; speed of collision (2 bytes)
@@ -171,6 +171,8 @@ See_ChgFrame:
 ; ---------------------------------------------------------------------------
 ; Object 5E - seesaws ball (SLZ)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

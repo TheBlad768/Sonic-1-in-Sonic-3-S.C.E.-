@@ -2,10 +2,10 @@
 ; Object 30 - large green glass blocks (MZ)
 ; ---------------------------------------------------------------------------
 
-; Options
+; options
 _GLASSBLOCK_YPOS_		= 1		; fixed version
 
-; Dynamic object variables
+; dynamic object variables
 glass_ypos			= objoff_30	; copy ypos
 glass_dist			= objoff_32	; distance block moves when switch is pressed
 

@@ -2,6 +2,8 @@
 ; Object 4F - Splats enemy from beta version (MZ)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Splats:
@@ -23,6 +25,8 @@ Obj_Splats:
 		move.l	#.action,address(a0)
 
 .action
+
+		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		jmp	(Sprite_CheckDeleteTouch).w
@@ -62,7 +66,7 @@ Obj_Splats:
 ; ---------------------------------------------------------------------------
 
 .wall
-		bsr.s	Splats_CheckWall
+		bsr.w	Yad_CheckWall
 		beq.s	.return
 		neg.w	x_vel(a0)
 		bchg	#render_flags.x_flip,render_flags(a0)
@@ -73,38 +77,6 @@ Obj_Splats:
 
 .destroy
 		jmp	(Sprite_CheckDelete.offscreen).w
-
-; =============== S U B R O U T I N E =======================================
-
-Splats_CheckWall:
-		move.b	(V_int_run_count+3).w,d0
-		add.b	d7,d0								; d7 - object count (Process_Sprites)
-		andi.b	#3,d0
-		bne.s	.nottouch
-
-		; check wall
-		move.b	x_radius(a0),d3
-		ext.w	d3
-		tst.w	x_vel(a0)
-		bmi.s	.left
-		jsr	(ObjCheckRightWallDist).w
-		tst.w	d1
-		bpl.s	.nottouch
-
-.settouch
-		moveq	#1,d0								; Splats has touched the wall
-		rts
-; ---------------------------------------------------------------------------
-
-.left
-		neg.w	d3
-		jsr	(ObjCheckLeftWallDist).w
-		tst.w	d1
-		bmi.s	.settouch
-
-.nottouch
-		moveq	#0,d0								; Splats didn't touch the wall
-		rts
 
 ; =============== S U B R O U T I N E =======================================
 

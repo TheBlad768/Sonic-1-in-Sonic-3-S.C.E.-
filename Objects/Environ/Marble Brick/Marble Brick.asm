@@ -2,7 +2,7 @@
 ; Object 46 - solid blocks and blocks that fall from the ceiling (MZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 origY2				= objoff_30
 
 ; =============== S U B R O U T I N E =======================================

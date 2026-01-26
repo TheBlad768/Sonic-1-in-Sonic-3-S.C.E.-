@@ -2,7 +2,7 @@
 ; Object 40 - Moto Bug enemy (GHZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 moto_time			= objoff_2E
 moto_smokedelay			= objoff_39
 
@@ -87,6 +87,8 @@ Obj_MotoBug:
 ; Object 40 - Moto Bug smoke
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_MotoBug_Smoke:
@@ -100,7 +102,7 @@ Obj_MotoBug_Smoke:
 .check
 		lea	Ani_Moto(pc),a1
 		jsr	(Animate_Sprite).w
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	.delete
 		jmp	(Sprite_CheckDeleteXY).w
 ; ---------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 ; Object 22 - Buzz Bomber enemy
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 buzz_timedelay			= objoff_32	; .w
 buzz_buzzstatus			= objoff_38	; .b
 
@@ -20,6 +20,8 @@ Obj_BuzzBomber:
 		move.l	#.action,address(a0)
 
 .action
+
+		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Buzz(pc),a1
@@ -106,6 +108,8 @@ Obj_BuzzBomber:
 ; Object 23 - missile that Buzz Bomber throws
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Missile:
@@ -128,6 +132,8 @@ Obj_Missile:
 		bpl.s	.notdraw
 		move.b	#7|collision_flags.npc.hurt,collision_flags(a0)
 		move.l	#.frombuzz,address(a0)
+
+		; check
 		tst.b	subtype(a0)							; was object created by	a Newtron?
 		beq.s	.animatebuzz							; if not, branch
 		sfx	sfx_Projectile
@@ -141,7 +147,7 @@ Obj_Missile:
 ; ---------------------------------------------------------------------------
 
 .frombuzz
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		beq.s	.animatebuzz_child
 		clr.b	routine(a0)
 		sfx	sfx_Projectile

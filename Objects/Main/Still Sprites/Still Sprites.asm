@@ -2,6 +2,8 @@
 ; Object 1C - scenery (GHZ bridge stump, MZ brick, SYZ siren, LZ wheel, SLZ lava thrower)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_StillSprite:

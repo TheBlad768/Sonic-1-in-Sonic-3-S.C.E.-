@@ -2,7 +2,7 @@
 ; Object 5F - walking bomb enemy (SLZ, SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 bombbadnik.time				= objoff_30 ; time of fuse
 bombbadnik.origY			= objoff_32 ; original y-axis position
 
@@ -18,6 +18,8 @@ Obj_BombBadnik:
 		move.l	#.walk,jump_ptr(a0)
 
 .action
+
+		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Bomb(pc),a1
@@ -107,6 +109,8 @@ Obj_BombBadnik:
 ; Object 5F - walking bomb enemy (fuse)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BombBadnik_Fuse:
@@ -151,6 +155,8 @@ Obj_BombBadnik_Fuse:
 ; ---------------------------------------------------------------------------
 ; Object 5F - walking bomb enemy (shrapnel)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

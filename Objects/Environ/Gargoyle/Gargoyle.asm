@@ -2,7 +2,7 @@
 ; Object 62 - gargoyle head (LZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 gar_time			= objoff_2E
 gar_stime			= objoff_30
 
@@ -55,6 +55,8 @@ Obj_Gargoyle:
 ; ---------------------------------------------------------------------------
 ; Gargoyle fire ball
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

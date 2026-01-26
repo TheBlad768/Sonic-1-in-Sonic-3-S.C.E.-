@@ -5,7 +5,7 @@
 ; Options
 _JAWSWATER_FIX_			= 1	; hide jaws if it is above water
 
-; Dynamic object variables
+; dynamic object variables
 jaws_timecount			= objoff_3A
 jaws_timedelay			= objoff_3C
 

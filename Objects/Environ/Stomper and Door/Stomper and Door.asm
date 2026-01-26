@@ -2,7 +2,7 @@
 ; Object 6B - stomper and sliding door (LZ4/SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 sto_origX			= objoff_34	; original x-axis position (2 bytes)
 sto_origY			= objoff_30	; original y-axis position (2 bytes)
 sto_time			= objoff_36	; time (2 bytes)

@@ -2,6 +2,8 @@
 ; Robotnik head 3
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_RobotnikHead3:
@@ -10,10 +12,10 @@ Obj_RobotnikHead3:
 		lea	ObjDat_RobotnikHead(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.main,address(a0)
-		move.l	#Ani_RobotnikHead,objoff_30(a0)
+		move.l	#Ani_RobotnikHead,aniraw_ptr(a0)
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w
 		bne.s	.notKnux
-		bsr.s	sub_67B14							; load Egg Robo art
+		bsr.s	Load_EggRoboHead						; load Egg Robo art
 
 .notKnux
 		movea.w	parent3(a0),a1							; a1=parent object
@@ -41,7 +43,7 @@ Obj_RobotnikHead3:
 
 		; check laugh flag
 		move.b	#1,anim(a0)							; laugh animate
-		btst	#6,objoff_38(a1)
+		btst	#6,state_flags(a1)
 		bne.s	.draw
 		moveq	#PlayerID_Hurt-1,d0
 		cmp.b	(Player_1+routine).w,d0
@@ -54,7 +56,7 @@ Obj_RobotnikHead3:
 
 .draw
 		jsr	(Refresh_ChildPositionAdjusted_Animate2).w
-		movea.l	objoff_30(a0),a1
+		movea.l	aniraw_ptr(a0),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Child_Draw_Sprite2).w
 ; ---------------------------------------------------------------------------
@@ -64,25 +66,31 @@ Obj_RobotnikHead3:
 		move.l	#.draw,address(a0)
 		bra.s	.draw
 
+; ---------------------------------------------------------------------------
+; Load Egg Robo head
+; ---------------------------------------------------------------------------
+
 ; =============== S U B R O U T I N E =======================================
 
-sub_67B14:
+Load_EggRoboHead:
 		move.l	#Map_EggRoboHead,mappings(a0)					; if player is Knuckles, use Egg Robo head
 
-loc_67B1C:
-		move.l	#Ani_EggRoboHead,objoff_30(a0)
+.skip
+		move.l	#Ani_EggRoboHead,aniraw_ptr(a0)
 
-		; load art
+		; load Egg Robo head art
 		movea.w	parent3(a0),a1							; a1=parent object
 		move.w	art_tile(a1),d2
 		andi.w	#$7FF,d2
-		lsl.w	#5,d2
+		lsl.w	#5,d2								; multiply by $20
 		lea	(ArtKosPM_EggRoboHead).l,a1
 		jmp	(Queue_KosPlus_Module).w
 
 ; ---------------------------------------------------------------------------
 ; Robotnik head 4
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -92,10 +100,10 @@ Obj_RobotnikHead4:
 		lea	ObjDat_RobotnikHead(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.main,address(a0)
-		move.l	#Ani_RobotnikHead,objoff_30(a0)
+		move.l	#Ani_RobotnikHead,aniraw_ptr(a0)
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w
 		bne.s	.notKnux
-		bsr.s	sub_67B14							; load Egg Robo art
+		bsr.s	Load_EggRoboHead						; load Egg Robo art
 
 .notKnux
 		movea.w	parent3(a0),a1							; a1=parent object
@@ -118,7 +126,7 @@ Obj_RobotnikHead4:
 
 		; check laugh flag
 		move.b	#1,anim(a0)							; laugh animate
-		btst	#6,objoff_38(a1)
+		btst	#6,state_flags(a1)
 		bne.s	.draw
 		moveq	#PlayerID_Hurt-1,d0
 		cmp.b	(Player_1+routine).w,d0
@@ -132,12 +140,12 @@ Obj_RobotnikHead4:
 .draw
 		jsr	(Refresh_ChildPositionAdjusted_Animate2).w
 		jsr	(Child_GetPriority.skipp).w
-		movea.l	objoff_30(a0),a1
+		movea.l	aniraw_ptr(a0),a1
 		jsr	(Animate_Sprite).w
 
 		; check delete flag
 		movea.w	parent3(a0),a1							; a1=parent object
-		btst	#5,objoff_38(a1)
+		btst	#5,state_flags(a1)
 		bne.s	.delete
 
 		; draw
@@ -157,6 +165,8 @@ Obj_RobotnikHead4:
 ; Robotnik ship flame
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_RobotnikShipFlame:
@@ -169,7 +179,7 @@ Obj_RobotnikShipFlame:
 
 .main
 		movea.w	parent3(a0),a1							; a1=parent object
-		btst	#5,objoff_38(a1)						; 4
+		btst	#5,state_flags(a1)						; 4
 		bne.s	Obj_RobotnikHead4.delete
 		jsr	(Refresh_ChildPositionAdjusted).w
 		btst	#0,(V_int_run_count+3).w
@@ -187,6 +197,8 @@ Obj_RobotnikShipFlame:
 ; ---------------------------------------------------------------------------
 ; Robotnik ship pieces
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

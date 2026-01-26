@@ -2,7 +2,7 @@
 ; Object 2B - Chopper enemy (GHZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 chop_origY			= objoff_32
 
 ; =============== S U B R O U T I N E =======================================

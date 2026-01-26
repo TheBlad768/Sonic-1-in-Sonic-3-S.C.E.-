@@ -2,7 +2,7 @@
 ; Super Birds (Object)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 superTailsBirds_target_found		= $30
 superTailsBirds_search_delay		= $32
 superTailsBirds_angle			= $34

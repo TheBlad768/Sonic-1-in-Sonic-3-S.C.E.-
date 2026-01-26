@@ -2,7 +2,7 @@
 ; Object 2D - Burrobot enemy (LZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 burro_flag			= objoff_39	; chg
 burro_timedelay			= objoff_3C	; time between direction changes
 
@@ -28,6 +28,8 @@ Obj_Burrobot:
 		and.w	d0,y_pos(a0)							; perform wrapping of Burrobot's y position
 
 .notwrapping
+
+		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Burro(pc),a1

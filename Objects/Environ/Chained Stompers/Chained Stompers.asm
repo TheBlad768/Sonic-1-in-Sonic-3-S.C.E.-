@@ -2,7 +2,7 @@
 ; Object 31 - stomping metal blocks on chains (MZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 CStom_ypos				= objoff_30	; .w ; copy ypos
 CStom_32				= objoff_32	; .w
 CStom_34				= objoff_34	; .w
@@ -286,6 +286,8 @@ loc_B996:
 ; ---------------------------------------------------------------------------
 ; Object 31 - stomping metal blocks on chains (MZ)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

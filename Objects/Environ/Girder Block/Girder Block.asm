@@ -3,7 +3,7 @@
 ; Don't forget to turn "Load at any Y position" flag on
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 gird_delay			= objoff_2E	; delay for movement
 gird_origX			= objoff_32	; original x-axis position
 gird_origY			= objoff_30	; original y-axis position

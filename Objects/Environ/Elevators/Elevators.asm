@@ -2,7 +2,7 @@
 ; Object 59 - platforms that move when you stand on them (SLZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 elev_origX			= objoff_32	; original x-axis position
 elev_origY			= objoff_30	; original y-axis position
 elev_dist			= objoff_3C	; distance to move (2 bytes)
@@ -229,6 +229,10 @@ loc_10CF0:
 
 locret_10CFA:
 		rts
+
+; ---------------------------------------------------------------------------
+; Make multiple platforms
+; ---------------------------------------------------------------------------
 
 ; =============== S U B R O U T I N E =======================================
 

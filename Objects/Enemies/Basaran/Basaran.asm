@@ -2,7 +2,7 @@
 ; Object 55 - Basaran enemy (MZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 bas_sypos			= objoff_30	; copy Sonic ypos
 
 ; =============== S U B R O U T I N E =======================================
@@ -19,6 +19,8 @@ Obj_Basaran:
 		move.l	#.action,address(a0)
 
 .action
+
+		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Bas(pc),a1
