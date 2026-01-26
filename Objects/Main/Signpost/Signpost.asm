@@ -2,6 +2,8 @@
 ; Load Signpost (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_EndSignControl:
@@ -49,7 +51,7 @@ Obj_EndSignControlDoStart:
 ; Signpost (Object)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 sign_timer			= objoff_2E	; .w
 sign_aniraw			= objoff_30	; .l
 
@@ -260,6 +262,8 @@ Obj_EndSign:
 ; Signpost (Sparkle)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SignpostSparkle:
@@ -308,6 +312,8 @@ Obj_SignpostSparkle:
 ; ---------------------------------------------------------------------------
 ; Signpost (Stub)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -387,8 +393,8 @@ EndSign_Range:
 
 EndSign_CheckWall:
 		move.w	(Camera_X_pos).w,d0
-		tst.w	x_vel(a0)
-		bmi.s	.leftside
+		tst.w	x_vel(a0)							; check x velocity
+		bmi.s	.leftside							; left move
 
 		; check right side
 		addi.w	#screen_width-24,d0

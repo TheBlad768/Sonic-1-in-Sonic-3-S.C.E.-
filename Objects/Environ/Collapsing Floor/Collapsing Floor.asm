@@ -2,7 +2,7 @@
 ; Object 53 - collapsing floors (MZ, SLZ, SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 cflo_timepointer			= objoff_30	; .l
 cflo_timedelay				= objoff_38	; .b
 cflo_collapse_flag			= objoff_3A	; .b

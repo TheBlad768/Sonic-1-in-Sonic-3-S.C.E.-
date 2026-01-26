@@ -2,7 +2,7 @@
 ; Object 2F - large grass-covered platforms (MZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 LGorigX:			= objoff_2E
 LGorigY:			= objoff_30
 

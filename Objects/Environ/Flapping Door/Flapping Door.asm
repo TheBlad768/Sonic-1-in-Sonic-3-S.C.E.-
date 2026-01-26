@@ -2,7 +2,7 @@
 ; Object 0C - flapping door (LZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 flap_time			= objoff_32	; time between opening/closing
 flap_wait			= objoff_30	; time until change
 

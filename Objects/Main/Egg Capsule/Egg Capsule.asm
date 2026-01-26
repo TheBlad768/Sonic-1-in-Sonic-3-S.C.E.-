@@ -2,7 +2,7 @@
 ; Egg Capsule (Object)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 ecap_timer				= objoff_2E	; .w
 
 ecap_jump				= objoff_34	; .l
@@ -64,6 +64,8 @@ Obj_EggCapsule:
 		jsr	(CreateChild1_Normal).w
 
 .main
+
+		; jump
 		movea.l	jump_ptr(a0),a1
 		move.w	x_pos(a0),-(sp)
 		jsr	(a1)
@@ -323,6 +325,8 @@ Check_SonicEndPose_MGZ:
 ; Egg Capsule button (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_EggCapsule_Button:
@@ -367,6 +371,8 @@ Obj_EggCapsule_Button:
 ; ---------------------------------------------------------------------------
 ; Egg Capsule flipped button (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -427,6 +433,8 @@ Obj_EggCapsule_FlippedButton:
 ; Egg Capsule flicker pieces (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_EggCapsule_Pieces:
@@ -457,6 +465,8 @@ Obj_EggCapsule_Pieces:
 ; Egg Capsule propeller (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_EggCapsule_Propeller:
@@ -480,7 +490,7 @@ AniRaw_Propeller:	dc.b 0, 6, 7, 8, 9, arfEnd
 ; Egg Capsule animals (Object)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 ecapa_timer				= objoff_2E	; .w
 
 ecapa_yvel				= objoff_3E	; .w
@@ -553,6 +563,8 @@ Obj_EggCapsule_Animals:
 ; ---------------------------------------------------------------------------
 ; Egg Capsule animals flipped (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

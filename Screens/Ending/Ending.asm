@@ -281,6 +281,7 @@ EndingScreen:
 ; Object 87 - Sonic on ending sequence
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
 eson_time		= objoff_2E ; time to wait between events
 eson_anim		= objoff_30
 eson_dplc		= objoff_34
@@ -342,7 +343,7 @@ Obj_Sonic_Ending:
 ; ---------------------------------------------------------------------------
 
 .waitradanim
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		beq.w	.anim
 		clr.b	routine(a0)
 
@@ -389,7 +390,7 @@ Obj_Sonic_Ending:
 ; ---------------------------------------------------------------------------
 
 .waitlooksanim
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		beq.w	.anim
 		clr.b	routine(a0)
 
@@ -492,7 +493,7 @@ Obj_Sonic_Ending:
 ; Object 88 - chaos emeralds on the ending sequence
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 echa_origX		= objoff_30 ; x-axis center of emerald circle (2 bytes)
 echa_origY		= objoff_32 ; y-axis center of emerald circle (2 bytes)
 echa_radius		= objoff_3A ; radius (2 bytes)
@@ -580,6 +581,8 @@ Obj_EndChaos:
 ; ---------------------------------------------------------------------------
 ; Object 89 - "SONIC THE HEDGEHOG" text on the ending sequence
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

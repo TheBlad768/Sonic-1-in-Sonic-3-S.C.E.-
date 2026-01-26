@@ -2,7 +2,7 @@
 ; Object 6A - ground saws and pizza cutters (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 saw_origX			= objoff_3A	; original x-axis position (2 bytes)
 saw_origY			= objoff_38	; original y-axis position (2 bytes)
 saw_here			= objoff_3D	; flag set when the ground saw appears (1 byte)

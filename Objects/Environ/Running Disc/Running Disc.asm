@@ -2,7 +2,7 @@
 ; Object 67 - disc that you run around (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 disc_origX			= objoff_32	; original x-axis position (2 bytes)
 disc_origY			= objoff_30	; original y-axis position (2 bytes)
 disc_radius			= objoff_34	; radius of circle (2 bytes)

@@ -2,7 +2,7 @@
 ; Object 43 - Roller enemy (SYZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 roller_timedelay		= objoff_30	; (2 bytes)
 roller_flag			= objoff_32	; (1 byte)
 
@@ -27,6 +27,8 @@ Obj_Roller:
 		move.l	#.action,address(a0)
 
 .action
+
+		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Roll(pc),a1

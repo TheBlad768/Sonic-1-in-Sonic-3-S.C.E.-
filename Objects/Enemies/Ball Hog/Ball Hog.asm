@@ -2,7 +2,7 @@
 ; Object 1E - Ball Hog enemy (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 hog_launchflag			= objoff_32	; 0 to launch a cannonball
 
 ; =============== S U B R O U T I N E =======================================
@@ -77,7 +77,7 @@ Obj_BallHog:
 ; Object 20 - cannonball that Ball Hog throws (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 cbal_time		= objoff_30 ; time until the cannonball explodes (2 bytes)
 
 ; =============== S U B R O U T I N E =======================================

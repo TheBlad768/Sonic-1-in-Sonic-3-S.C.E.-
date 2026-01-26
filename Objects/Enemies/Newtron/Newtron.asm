@@ -2,7 +2,7 @@
 ; Object 42 - Newtron enemy (GHZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 obStatusTron		= objoff_32
 
 ; =============== S U B R O U T I N E =======================================
@@ -21,6 +21,8 @@ Obj_Newtron:
 		move.l	#.action,address(a0)
 
 .action
+
+		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Newt(pc),a1
@@ -158,7 +160,7 @@ Obj_Newtron:
 ; ---------------------------------------------------------------------------
 
 .delete
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		beq.s	.fail
 		jmp	(Go_Delete_Object).w
 

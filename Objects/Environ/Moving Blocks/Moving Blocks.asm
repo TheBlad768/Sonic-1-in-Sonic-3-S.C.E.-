@@ -2,7 +2,7 @@
 ; Object 52 - moving platform blocks (MZ, LZ, SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 MBorigX:			= objoff_30	; .w
 MBorigY:			= objoff_32	; .w
 

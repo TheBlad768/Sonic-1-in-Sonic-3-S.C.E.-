@@ -2,11 +2,8 @@
 ; Object 82 - Eggman (SBZ2)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
-sEggman_AniRaw				= objoff_30	; .l ; animate raw pointer
-sEggman_Jump				= objoff_34	; .l ; wait
-sEggman_Block				= objoff_39	; .b ; flag
-sEggman_Frame				= objoff_3A	; .b ; reset DPLC frame
+; dynamic object variables
+scrapeggman.block			= objoff_39	; (1 byte)
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -26,11 +23,11 @@ Obj_ScrapEggman:
 
 .notKnux
 		jsr	(SetUp_ObjAttributes).w
-		st	objoff_3A(a0)							; reset DPLC frame
+		st	ros_prev_frame(a0)						; reset DPLC frame
 		move.l	#.checkxcam,address(a0)
-		move.w	#$4F,objoff_2E(a0)
+		move.w	#$4F,wait_timer(a0)
 		move.l	#.wait,jump_ptr(a0)
-		move.l	#AniRaw_ScrapEggman_Stand,objoff_30(a0)
+		move.l	#AniRaw_ScrapEggman_Stand,aniraw_ptr(a0)
 
 		; load control desk
 		lea	Child1_ScrapEggman_ControlDesk(pc),a2
@@ -67,14 +64,14 @@ Obj_ScrapEggman:
 ; ---------------------------------------------------------------------------
 
 .wait
-		move.w	#$4F,objoff_2E(a0)
+		move.w	#$4F,wait_timer(a0)
 		move.l	#.fset,jump_ptr(a0)
 		lea	AniRaw_ScrapEggman_Laugh(pc),a1
 		jmp	(Set_Raw_Animation).w
 ; ---------------------------------------------------------------------------
 
 .fset
-		st	sEggman_Block(a0)
+		st	scrapeggman.block(a0)
 		move.l	#.return,jump_ptr(a0)
 
 .return
@@ -83,6 +80,8 @@ Obj_ScrapEggman:
 ; ---------------------------------------------------------------------------
 ; Object 82 - control desk (SBZ2)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -100,6 +99,8 @@ Obj_ScrapEggman_ControlDesk:
 ; ---------------------------------------------------------------------------
 ; Object 83 - blocks that disintegrate Eggman presses a switch (SBZ2)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -121,7 +122,7 @@ Obj_ScrapEggman_Block:
 
 		; set wait
 		lsl.w	#3,d1								; multiply by 8
-		move.w	d1,objoff_2E(a0)
+		move.w	d1,wait_timer(a0)
 
 		; init
 		lea	ObjDat_ScrapEggman_Block(pc),a1
@@ -134,12 +135,12 @@ Obj_ScrapEggman_Block:
 
 		; check flag
 		movea.w	parent3(a0),a1							; a1=parent object
-		tst.b	sEggman_Block(a1)
+		tst.b	scrapeggman.block(a1)
 		beq.w	.solid
 		move.l	#.twait,address(a0)
 
 .twait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.solid
 
 		; release player from object

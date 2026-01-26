@@ -2,10 +2,10 @@
 ; Object 33 - pushable blocks (MZ, LZ)
 ; ---------------------------------------------------------------------------
 
-; Fixes
+; fixes
 _PUSHB_XPOS_			= $200	; add pixels
 
-; Dynamic object variables
+; dynamic object variables
 pushb_origXvel			= objoff_30	; (2 bytes)
 pushb_floatflag			= objoff_32	; (1 byte)
 pushb_sound			= objoff_33	; (1 byte)

@@ -371,7 +371,7 @@ DemoLevels_end
 ; Object 0E - Sonic on the title screen
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 ts_timer		= objoff_2E	; .w
 
 ; =============== S U B R O U T I N E =======================================
@@ -439,7 +439,7 @@ Obj_TitleSonic:
 ; Object 0F - "PRESS START BUTTON" from title screen
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 tpsb_timer		= objoff_2E	; .w
 
 tpsb_counter		= objoff_3E	; .w

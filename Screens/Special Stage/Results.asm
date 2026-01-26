@@ -2,6 +2,8 @@
 ; Object 7E - Special Stage results screen
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SpecialStage_Results:

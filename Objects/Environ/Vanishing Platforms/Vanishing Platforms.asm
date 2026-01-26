@@ -2,7 +2,7 @@
 ; Object 6C - vanishing platforms (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 vanp_timer			= objoff_30	; counter for time until event (2 bytes)
 vanp_timelen			= objoff_32	; time between events (general) (2 bytes)
 

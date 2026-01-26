@@ -2,7 +2,7 @@
 ; Object 60 - Orbinaut enemy (LZ, SLZ, SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 orb_count			= objoff_39
 orb_rotation			= objoff_40
 
@@ -80,7 +80,7 @@ Obj_Orbinaut:
 ; Orbinaut enemy (Orb)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 orbo_angle			= objoff_3C	; .b
 
 ; =============== S U B R O U T I N E =======================================

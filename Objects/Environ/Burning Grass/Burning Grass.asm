@@ -2,7 +2,7 @@
 ; Object 35 - fireball that sits on the floor (MZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 gfire_origX			= objoff_2E
 gfire_origY			= objoff_30
 
@@ -54,6 +54,8 @@ Obj_GrassFire:
 ; ---------------------------------------------------------------------------
 ; Additional grass fire
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

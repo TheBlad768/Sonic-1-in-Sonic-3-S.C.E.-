@@ -2,10 +2,10 @@
 ; Object 5A - platforms moving in circles (SLZ)
 ; ---------------------------------------------------------------------------
 
-; Options
+; options
 _CPLATFORM_VER_				= 0		; S1 or S2/S3K version
 
-; Dynamic object variables
+; dynamic object variables
 circ_origX				= objoff_32	; original x-axis position
 circ_origY				= objoff_30	; original y-axis position
 

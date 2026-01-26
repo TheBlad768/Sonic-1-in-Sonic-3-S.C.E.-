@@ -3,10 +3,10 @@
 ; - spiked ball on a chain (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Options
+; options
 _SPLATFORM_POS_			= 1		; sonic 1 version
 
-; Dynamic object variables
+; dynamic object variables
 swing_origX			= objoff_42	; original x-axis position (2 bytes)
 swing_origY			= objoff_44	; original y-axis position (2 bytes)
 

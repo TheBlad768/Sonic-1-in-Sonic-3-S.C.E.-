@@ -2,7 +2,7 @@
 ; Object 61 - blocks (LZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 lblk_origX			= objoff_34	; original x-axis position
 lblk_origY			= objoff_30	; original y-axis position
 lblk_time			= objoff_36	; time delay for block movement

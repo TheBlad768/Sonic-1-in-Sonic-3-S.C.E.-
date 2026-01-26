@@ -2,10 +2,10 @@
 ; Object 72 - teleporter (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Constants
+; constants
 Teleport_Offset:			= *
 
-; Dynamic object variables
+; dynamic object variables
 
 ; player 1
 	phase objoff_18	; $E bytes ($18-$26)

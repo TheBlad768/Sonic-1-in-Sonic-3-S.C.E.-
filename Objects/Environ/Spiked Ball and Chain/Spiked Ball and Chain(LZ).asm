@@ -2,7 +2,7 @@
 ; Object 57 - spiked balls (LZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 sball2_speed			= objoff_3E ; rate of spin (2 bytes)
 sball2_origX			= objoff_42 ; original x-axis position (2 bytes)
 sball2_origY			= objoff_44 ; original y-axis position (2 bytes)

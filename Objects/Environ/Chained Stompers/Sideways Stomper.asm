@@ -2,7 +2,7 @@
 ; Object 45 - spiked metal block from beta version (MZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 SStom_xpos				= objoff_30	; .w ; copy xpos
 SStom_32				= objoff_32	; .w
 SStom_34				= objoff_34	; .w
@@ -166,6 +166,8 @@ loc_BB3E:
 ; ---------------------------------------------------------------------------
 ; Object 45 - spiked metal block from beta version (MZ)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

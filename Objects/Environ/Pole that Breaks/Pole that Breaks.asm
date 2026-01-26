@@ -2,7 +2,7 @@
 ; Object 0B - pole that breaks (LZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 pole_time			= objoff_30	; time between grabbing the pole & breaking
 
 ; players

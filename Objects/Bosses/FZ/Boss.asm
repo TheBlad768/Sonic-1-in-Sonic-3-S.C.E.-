@@ -6,7 +6,7 @@
 ; Hits
 BossFinal_Hits				= 8
 
-; Dynamic object variables
+; dynamic object variables
 obBFZ_Timer				= objoff_2E	; .w
 
 obBFZ_Jump				= objoff_34	; .l
@@ -469,6 +469,8 @@ BossFinal_Defeated:
 ; Object 85 - control desk (Boss Final)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossFinal_ControlDesk:
@@ -489,6 +491,8 @@ Obj_BossFinal_ControlDesk:
 ; ---------------------------------------------------------------------------
 ; Object 85 - robotnik ship (Boss Final)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -581,6 +585,8 @@ Obj_BossFinal_RobotnikShip:
 ; Object 85 - robotnik ship (Boss Final)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossFinal_RobotnikShipStand:
@@ -620,6 +626,8 @@ Obj_BossFinal_RobotnikShipStand:
 ; ---------------------------------------------------------------------------
 ; Object 85 - check players (Boss Final)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

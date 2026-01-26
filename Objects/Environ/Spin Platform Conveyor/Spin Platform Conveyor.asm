@@ -2,7 +2,7 @@
 ; Object 6F - spinning platforms that move around a conveyor belt (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 scon_subtype			= objoff_2F	; save subtype (1 byte)
 scon_origX			= objoff_30	; original x-axis position (2 bytes)
 

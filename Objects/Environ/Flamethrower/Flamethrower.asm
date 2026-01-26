@@ -2,7 +2,7 @@
 ; Object 6D - flame thrower (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 flame_time			= objoff_30	; .w
 flame_savetime			= objoff_32	; .w
 flame_pausetime			= objoff_34	; .w

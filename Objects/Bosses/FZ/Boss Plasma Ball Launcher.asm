@@ -2,7 +2,7 @@
 ; Object 86 - energy balls (FZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 obBFZBP_Enable				= objoff_2D	; .b
 obBFZBP_Timer				= objoff_2E	; .w
 obBFZBP_Count				= objoff_30	; .b
@@ -95,6 +95,7 @@ Obj_BossPlasma:
 ; Object 86 - energy balls (FZ)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
 obBFZBPB_Timer				= objoff_2E ; .w
 obBFZBPB_Xpos				= objoff_30 ; .w
 

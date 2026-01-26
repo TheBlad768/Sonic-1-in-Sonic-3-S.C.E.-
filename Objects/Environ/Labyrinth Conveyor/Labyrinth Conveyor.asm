@@ -2,7 +2,7 @@
 ; Object 63 - platforms on a conveyor belt (LZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 conv_subtype			= objoff_2F	; .b ; save subtype
 conv_origX			= objoff_30	; .w ; original x-axis position
 

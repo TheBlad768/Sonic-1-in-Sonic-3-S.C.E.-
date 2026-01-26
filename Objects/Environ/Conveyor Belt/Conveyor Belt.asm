@@ -2,7 +2,7 @@
 ; Object 68 - conveyor belts (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 conv_width				= objoff_39	; (1 byte)
 conv_speed				= objoff_40	; (2 bytes)
 

@@ -2,6 +2,8 @@
 ; Object 18 - platforms (GHZ, SYZ, SLZ)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_FloatingPlatform:

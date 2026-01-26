@@ -2,6 +2,8 @@
 ; Object 4B - big ring for entry to special stage
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BigRing:
@@ -13,14 +15,14 @@ Obj_BigRing:
 		lea	ObjSlot_BigRing(pc),a1
 		jsr	(SetUp_ObjAttributesSlotted).w					; only one special stage ring can be loaded at one time, period
 		move.l	#.main,address(a0)
-		move.l	#AniRaw_BigRing,objoff_30(a0)
+		move.l	#AniRaw_BigRing,aniraw_ptr(a0)
 
 		; check
 		tst.b	subtype(a0)
 		bpl.s	.main								; if positive, then ALWAYS make this a normal Emerald ring
 
 		; set cycle
-		bset	#6,objoff_38(a0)						; make this a Super Emerald ring
+		bset	#6,state_flags(a0)						; make this a Super Emerald ring
 		lea	PalSPtr_BigRing(pc),a1
 		lea	(Palette_rotation_data).w,a2
 		move.l	(a1)+,(a2)+
@@ -105,7 +107,7 @@ Obj_BigRing:
 
 .alt
 		sfx	sfx_BigRing
-		bset	#5,objoff_38(a0)						; set delete
+		bset	#5,state_flags(a0)						; set delete
 		moveq	#50,d0								; add 50 rings
 		jsr	(AddRings).w
 
@@ -121,11 +123,11 @@ BigRing_Animate:
 BigRing_Display:
 
 		; check
-		btst	#5,objoff_38(a0)
+		btst	#5,state_flags(a0)
 		bne.s	.delete
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bpl.s	.offscreen							; if not, branch
-		btst	#6,objoff_38(a0)						; is Super Emerald ring?
+		btst	#6,state_flags(a0)						; is Super Emerald ring?
 		beq.s	.draw								; if not, branch
 		jsr	(Run_PalRotationScript).w					; only run the rotation script if this is a Super Emerald ring
 
@@ -172,7 +174,7 @@ Obj_BigRing_Flash:
 		jsr	(SetUp_ObjAttributesSlotted).w
 		move.l	#.main,address(a0)
 		move.l	#.finished,jump_ptr(a0)
-		move.l	#AniRaw_BigRingFlash,objoff_30(a0)
+		move.l	#AniRaw_BigRingFlash,aniraw_ptr(a0)
 
 		; copy
 		movea.w	parent3(a0),a1							; a1=parent object
@@ -196,7 +198,7 @@ Obj_BigRing_Flash:
 		cmpi.b	#3,anim_frame(a0)
 		bne.s	.draw
 		movea.w	parent3(a0),a1							; set parent to be deleted in the middle of the animation
-		bset	#5,objoff_38(a1)
+		bset	#5,state_flags(a1)
 
 .draw
 		lea	DPLCPtr_BigRingFlash(pc),a2
@@ -206,7 +208,7 @@ Obj_BigRing_Flash:
 
 .finished
 		move.l	#Obj_Wait,address(a0)						; this is performed when animation is finished
-		move.w	#$20,objoff_2E(a0)
+		move.w	#$20,wait_timer(a0)
 		move.l	#.goSS,jump_ptr(a0)
 		rts
 ; ---------------------------------------------------------------------------
