@@ -13,8 +13,8 @@ Obj_RobotnikHead3:
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.main,address(a0)
 		move.l	#Ani_RobotnikHead,aniraw_ptr(a0)
-		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w
-		bne.s	.notKnux
+		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w			; is player Knuckles?
+		bne.s	.notKnux							; if not, branch
 		bsr.s	Load_EggRoboHead						; load Egg Robo art
 
 .notKnux
@@ -101,8 +101,8 @@ Obj_RobotnikHead4:
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.main,address(a0)
 		move.l	#Ani_RobotnikHead,aniraw_ptr(a0)
-		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w
-		bne.s	.notKnux
+		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w			; is player Knuckles?
+		bne.s	.notKnux							; if not, branch
 		bsr.s	Load_EggRoboHead						; load Egg Robo art
 
 .notKnux
