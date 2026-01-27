@@ -19,7 +19,7 @@ SYZ1_Resize:
 		QueueKosPlusModule	ArtKosPM_HiddenBonus, $460
 
 		; create signpost
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.checkxpos
 		move.l	#Obj_EndSign,address(a1)
 		move.w	(Camera_max_X_pos).w,d2

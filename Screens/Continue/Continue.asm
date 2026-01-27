@@ -119,13 +119,13 @@ ContinueScreen:
 		move.l	#Obj_Continue_Knuckles,(Reserved_object_3+address).w		; create Knuckles for Sonic and Tails
 
 		; create countdown object
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.notfree
 		move.l	#Obj_Continue_Countdown,address(a1)
 		move.w	a1,(Continue_countdown).w					; save parent
 
 		; create stars object
-		jsr	(Create_New_Sprite4).w
+		jsr	(Create_New_Object_4).w
 		bne.s	.notfree
 		move.l	#Obj_Continue_Stars,address(a1)
 
@@ -177,6 +177,8 @@ ContinueScreen:
 ; Countdown (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Continue_Countdown:
@@ -217,6 +219,8 @@ Obj_Continue_Countdown:
 ; ---------------------------------------------------------------------------
 ; Sonic (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -325,6 +329,8 @@ Obj_Continue_SonicWTails:
 ; Sonic Alone (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Continue_SonicAlone:
@@ -380,6 +386,8 @@ Obj_Continue_SonicAlone:
 ; ---------------------------------------------------------------------------
 ; Tails (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -467,15 +475,19 @@ Obj_Continue_TailsWSonic:
 ; Tails tails fix (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Continue_Tails_tails_Fix:
 		bclr	#2,(Tails_tails+render_flags).w
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Knuckles (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -510,7 +522,7 @@ Obj_Continue_Knuckles:
 		move.l	#.wait,address(a0)
 
 		; create egg robo
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.wait
 		move.l	#Obj_Continue_EggRobo,address(a1)
 
@@ -618,6 +630,8 @@ Knuckles_Load_PLC_Continue:
 ; Egg Robo (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Continue_EggRobo:
@@ -657,6 +671,8 @@ Obj_Continue_EggRobo:
 ; Egg Robo legs (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Continue_EggRobo_Legs:
@@ -689,6 +705,8 @@ Obj_Continue_EggRobo_Legs:
 ; ---------------------------------------------------------------------------
 ; Egg Robo gun (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -748,6 +766,8 @@ Refresh_ChildPositionAdjusted_Continue:
 ; Stars (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Continue_Stars:
@@ -779,14 +799,14 @@ Continue_LoadIcons:
 .create
 		subq.w	#1,d6								; fix dbf
 		moveq	#0,d2
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.return
 
 .loop
 		move.l	#Obj_Continue_Icons,address(a1)
 		move.b	d2,subtype(a1)
 		addq.w	#2,d2
-		jsr	(Create_New_Sprite4).w						; find next free object slot
+		jsr	(Create_New_Object_4).w						; find next free object slot
 		dbne	d6,.loop
 
 .return
@@ -795,6 +815,8 @@ Continue_LoadIcons:
 ; ---------------------------------------------------------------------------
 ; Tails tails icons (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -812,6 +834,8 @@ Obj_Continue_Tails_tails_Icons:
 ; ---------------------------------------------------------------------------
 ; Icons (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

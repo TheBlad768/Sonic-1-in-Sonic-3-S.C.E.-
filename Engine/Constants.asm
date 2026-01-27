@@ -438,11 +438,6 @@ ros_prev_frame =						objoff_3A					; byte
 ros_bit =							objoff_3B					; byte ; the bit to be cleared when an object is destroyed if the ROS flag is set
 ros_addr =							objoff_3C					; word ; the RAM address whose bit to clear when an object is destroyed if the ROS flag is set
 routine_secondary =						objoff_3C					; byte ; used by monitors for this purpose at least
-scaling_frame =							objoff_20					; byte
-scaling_art_tile =						objoff_3A					; word
-scaling_scale_factor =						objoff_40					; byte
-scaling_scale_prev_factor =					objoff_41					; byte
-scaling_art_address =						objoff_42					; long
 child_dx =							objoff_48					; byte ; X offset of child relative to parent
 child_dy =							objoff_49					; byte ; Y offset of child relative to parent
 parent =							objoff_48					; word ; address of the object that owns or spawned this one, if applicable
@@ -484,6 +479,16 @@ default_y_radius =						objoff_44					; byte ; default value of y_radius
 default_x_radius =						objoff_45					; byte ; default value of x_radius
 top_solid_bit =							objoff_46					; byte ; the bit to check for top solidity (either $C or $E)
 lrb_solid_bit =							objoff_47					; byte ; the bit to check for left/right/bottom solidity (either $D or $F)
+
+; ---------------------------------------------------------------------------
+; Conventions followed by art scaling subroutine
+; ---------------------------------------------------------------------------
+
+scaling_frame =							objoff_20					; byte
+scaling_art_tile =						objoff_3A					; word
+scaling_scale_factor =						objoff_40					; byte
+scaling_scale_prev_factor =					objoff_41					; byte
+scaling_art_address =						objoff_42					; long
 
 ; ---------------------------------------------------------------------------
 ; Conventions followed by some/most bosses
@@ -938,15 +943,23 @@ ObjectMoveAndFall =						MoveSprite					; alias from Sonic 2 (GitHub)
 SpeedToPos =							MoveSprite2					; alias from Sonic 1 (Hivebrain)
 ObjectMove =							MoveSprite2					; alias from Sonic 2 (GitHub)
 DisplaySprite =							Draw_Sprite					; alias from Sonic 1/2 (Hivebrain/GitHub)
-DeleteObject =							Delete_Current_Sprite				; alias from Sonic 1/2 (Hivebrain/GitHub)
-DeleteChild =							Delete_Referenced_Sprite			; alias from Sonic 1 (GitHub)
-DeleteObject2 =							Delete_Referenced_Sprite			; alias from Sonic 1/2 (Hivebrain/GitHub)
-SingleObjLoad =							Create_New_Sprite				; alias from Sonic 1 (Hivebrain)
-AllocateObject =						Create_New_Sprite				; alias from Sonic 2/3K (GitHub)
-FindFreeObj =							Create_New_Sprite				; alias from Sonic 1 (GitHub)
-SingleObjLoad2 =						Create_New_Sprite3				; alias from Sonic 1 (Hivebrain)
-FindNextFreeObj =						Create_New_Sprite3				; alias from Sonic 1 (GitHub)
-AllocateObjectAfterCurrent =					Create_New_Sprite3				; alias from Sonic 2/3K (GitHub)
+DeleteObject =							Delete_Current_Object				; alias from Sonic 1/2 (Hivebrain/GitHub)
+DeleteObject2 =							Delete_Referenced_Object			; alias from Sonic 1/2 (Hivebrain/GitHub)
+DeleteChild =							Delete_Referenced_Object			; alias from Sonic 1 (GitHub)
+Delete_Current_Sprite =						Delete_Current_Object				; alias from Sonic 3K (GitHub)
+Delete_Referenced_Sprite =					Delete_Referenced_Object			; alias from Sonic 3K (GitHub)
+Go_Delete_Sprite =						Go_Delete_Object				; alias from Sonic 3K (GitHub)
+Go_Delete_Sprite_2 =						Go_Delete_Object_2				; alias from Sonic 3K (GitHub)
+Go_Delete_Sprite_3 =						Go_Delete_Object_3				; alias from Sonic 3K (GitHub)
+SingleObjLoad =							Create_New_Object				; alias from Sonic 1 (Hivebrain)
+SingleObjLoad2 =						Create_New_Object_3				; alias from Sonic 1 (Hivebrain)
+FindFreeObj =							Create_New_Object				; alias from Sonic 1 (GitHub)
+FindNextFreeObj =						Create_New_Object_3				; alias from Sonic 1 (GitHub)
+Create_New_Sprite =						Create_New_Object				; alias from Sonic 3K (GitHub)
+Create_New_Sprite3 =						Create_New_Object_3				; alias from Sonic 3K (GitHub)
+Create_New_Sprite4 =						Create_New_Object_4				; alias from Sonic 3K (GitHub)
+AllocateObject =						Create_New_Object				; alias from Sonic 2/3K (GitHub)
+AllocateObjectAfterCurrent =					Create_New_Object_3				; alias from Sonic 2/3K (GitHub)
 Find_Sonic =							Find_SonicObject				; alias for SCE
 Obj_GetOrientationToPlayer =					Find_SonicTails					; alias from Sonic 2 (GitHub)
 Shot_ObjectInSonic =						Shot_Object					; alias for SCE

@@ -3,10 +3,10 @@
 ; - spiked ball on a chain (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Options
+; options
 _SPLATFORM_POS_			= 1		; sonic 1 version
 
-; Dynamic object variables
+; dynamic object variables
 swing_origX			= objoff_42	; original x-axis position (2 bytes)
 swing_origY			= objoff_44	; original y-axis position (2 bytes)
 
@@ -52,7 +52,7 @@ Obj_SwingingPlatform:
 		move.l	d1,mappings(a0)
 
 		; create chain
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.w	.offscreen
 		move.l	#Draw_Sprite,address(a1)
 		move.l	mappings(a0),mappings(a1)
@@ -124,8 +124,8 @@ Obj_SwingingPlatform:
 
 .delete
 		movea.w	parent3(a0),a1							; load chain address into a1
-		jsr	(Delete_Referenced_Sprite).w
-		jmp	(Delete_Current_Sprite).w
+		jsr	(Delete_Referenced_Object).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 .mainsbz

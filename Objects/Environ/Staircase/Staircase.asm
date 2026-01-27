@@ -2,7 +2,7 @@
 ; Object 5B - blocks that form a staircase (SLZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 stair_parent			= objoff_3E ; address of parent object (2 bytes)
 
 stair_origX			= objoff_44 ; original x-axis position (2 bytes)

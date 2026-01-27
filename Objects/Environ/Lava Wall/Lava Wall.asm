@@ -2,7 +2,7 @@
 ; Object 4E - advancing wall of lava (MZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 lwall_x_vel			= objoff_30	; .w
 lwall_child_dx			= objoff_32	; .w
 

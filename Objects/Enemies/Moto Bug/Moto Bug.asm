@@ -2,7 +2,7 @@
 ; Object 40 - Moto Bug enemy (GHZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 moto_time			= objoff_2E
 moto_smokedelay			= objoff_39
 
@@ -24,7 +24,7 @@ Obj_MotoBug:
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)
 		bchg	#status.npc.x_flip,status(a0)
-		move.l	#.move,objoff_34(a0)
+		move.l	#.move,jump_ptr(a0)
 		move.l	#.action,address(a0)
 
 .action
@@ -40,7 +40,7 @@ Obj_MotoBug:
 ; =============== S U B R O U T I N E =======================================
 
 .move
-		move.l	#.findfloor,objoff_34(a0)
+		move.l	#.findfloor,jump_ptr(a0)
 		move.b	#1,anim(a0)
 		move.w	#-$100,x_vel(a0)						; move object to the left
 		bchg	#status.npc.x_flip,status(a0)
@@ -78,7 +78,7 @@ Obj_MotoBug:
 
 .pause
 		move.w	#60-1,moto_time(a0)						; set pause time to 1 second
-		move.l	#.move,objoff_34(a0)
+		move.l	#.move,jump_ptr(a0)
 		clr.w	x_vel(a0)							; stop the object moving
 		clr.b	anim(a0)
 		rts
@@ -86,6 +86,8 @@ Obj_MotoBug:
 ; ---------------------------------------------------------------------------
 ; Object 40 - Moto Bug smoke
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -100,13 +102,13 @@ Obj_MotoBug_Smoke:
 .check
 		lea	Ani_Moto(pc),a1
 		jsr	(Animate_Sprite).w
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	.delete
 		jmp	(Sprite_CheckDeleteXY).w
 ; ---------------------------------------------------------------------------
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

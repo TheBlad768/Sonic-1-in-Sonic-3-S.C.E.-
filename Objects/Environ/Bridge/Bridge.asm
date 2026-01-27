@@ -2,6 +2,8 @@
 ; Object 11 - GHZ bridge
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_TensionBridge:
@@ -56,7 +58,7 @@ loc_38752:
 ; =============== S U B R O U T I N E =======================================
 
 sub_38756:
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.return
 		move.l	#Draw_Sprite,address(a1)
 		move.w	x_pos(a0),x_pos(a1)
@@ -152,11 +154,11 @@ loc_38822:
 
 .chkdel
 		movea.w	objoff_30(a0),a1						; a1=object
-		jsr	(Delete_Referenced_Sprite).w
+		jsr	(Delete_Referenced_Object).w
 		cmpi.b	#8,subtype(a0)
 		bls.s	.offscreen							; if bridge has more than 8 logs, delete second subsprite object
 		movea.w	objoff_34(a0),a1						; a1=object
-		jsr	(Delete_Referenced_Sprite).w
+		jsr	(Delete_Referenced_Object).w
 
 .offscreen
 		move.w	respawn_addr(a0),d0						; get address in respawn table
@@ -165,7 +167,7 @@ loc_38822:
 		bclr	#respawn_addr.state,(a2)					; turn on the slot
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 loc_388E4:
@@ -183,7 +185,7 @@ loc_388F4:
 ; ---------------------------------------------------------------------------
 
 loc_38906:
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 loc_3890C:
@@ -201,7 +203,7 @@ loc_38918:
 		jsr	(Displace_PlayerOffObject).w					; release Sonic from object
 
 		; delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -223,7 +225,7 @@ sub_389DE:
 ; ---------------------------------------------------------------------------
 
 loc_389F8:
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	loc_38A64
 
 loc_38A00:
@@ -241,7 +243,7 @@ loc_38A00:
 		movea.w	a1,a5								; load object to a5
 
 		; create
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	loc_38A64
 		move.l	#Obj_TensionBridge_Explosion,address(a1)			; explosion
 		move.w	x_pos(a5),x_pos(a1)

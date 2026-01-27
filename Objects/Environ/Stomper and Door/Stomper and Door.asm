@@ -2,7 +2,7 @@
 ; Object 6B - stomper and sliding door (LZ4/SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 sto_origX			= objoff_34	; original x-axis position (2 bytes)
 sto_origY			= objoff_30	; original y-axis position (2 bytes)
 sto_time			= objoff_36	; time (2 bytes)
@@ -62,7 +62,7 @@ Obj_ScrapStomp:
 
 		; delete
 		bclr	#respawn_addr.state,(a2)					; turn on the slot
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 .isSBZ12
@@ -124,7 +124,7 @@ Obj_ScrapStomp:
 		bclr	#respawn_addr.state,(a2)					; turn on the slot
 
 .delete2
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

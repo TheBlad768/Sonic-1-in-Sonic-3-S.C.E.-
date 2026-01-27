@@ -2,7 +2,7 @@
 ; Object 5D - fans (SLZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 fan_time			= objoff_30	; time between switching on/off
 fan_switch			= objoff_32	; on/off switch
 

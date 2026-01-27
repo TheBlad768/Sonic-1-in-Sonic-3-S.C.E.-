@@ -2,7 +2,7 @@
 ; Object 78 - Caterkiller enemy (MZ, SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 cat_count:			= objoff_2E	; byte
 cat_timer:			= objoff_2F	; byte
 cat_flag:			= objoff_30	; byte
@@ -174,6 +174,8 @@ Obj_Caterkiller:
 ; ---------------------------------------------------------------------------
 ; Body segments
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

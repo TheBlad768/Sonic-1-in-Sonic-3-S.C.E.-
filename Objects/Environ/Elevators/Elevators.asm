@@ -2,7 +2,7 @@
 ; Object 59 - platforms that move when you stand on them (SLZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 elev_origX			= objoff_32	; original x-axis position
 elev_origY			= objoff_30	; original y-axis position
 elev_dist			= objoff_3C	; distance to move (2 bytes)
@@ -230,6 +230,10 @@ loc_10CF0:
 locret_10CFA:
 		rts
 
+; ---------------------------------------------------------------------------
+; Make multiple platforms
+; ---------------------------------------------------------------------------
+
 ; =============== S U B R O U T I N E =======================================
 
 Elev_MakeMulti:
@@ -240,7 +244,7 @@ Elev_MakeMulti:
 		move.w	objoff_3E(a0),elev_dist(a0)
 
 		; create
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.chkdel
 		move.l	#Obj_Elevator,address(a1)					; duplicate the object
 		move.w	x_pos(a0),x_pos(a1)

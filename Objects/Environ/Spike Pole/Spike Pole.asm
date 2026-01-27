@@ -2,6 +2,8 @@
 ; Object 17 - helix of spikes on a pole (GHZ)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SpikePole:

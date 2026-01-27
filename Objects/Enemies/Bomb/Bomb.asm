@@ -2,9 +2,9 @@
 ; Object 5F - walking bomb enemy (SLZ, SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
-bom_time			= objoff_3C ; time of fuse
-bom_origY			= objoff_32 ; original y-axis position
+; dynamic object variables
+bombbadnik.time				= objoff_30 ; time of fuse
+bombbadnik.origY			= objoff_32 ; original y-axis position
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -15,10 +15,13 @@ Obj_BombBadnik:
 		jsr	(SetUp_ObjAttributes).w
 		bchg	#status.npc.x_flip,status(a0)
 		move.l	#.action,address(a0)
-		move.l	#.walk,objoff_34(a0)
+		move.l	#.walk,jump_ptr(a0)
 
 .action
-		jsr	(Obj_Wait).w
+
+		; jump
+		movea.l	jump_ptr(a0),a1
+		jsr	(a1)
 		lea	Ani_Bomb(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
@@ -27,10 +30,10 @@ Obj_BombBadnik:
 
 .walk
 		bsr.s	.chksonic
-		subq.w	#1,bom_time(a0)							; subtract 1 from time delay
+		subq.w	#1,bombbadnik.time(a0)						; subtract 1 from time delay
 		bpl.s	.noflip								; if time remains, branch
-		move.l	#.wait,objoff_34(a0)
-		move.w	#((25*60)+36)-1,bom_time(a0)					; set time delay to 25 seconds
+		move.l	#.wait,jump_ptr(a0)
+		move.w	#((25*60)+36)-1,bombbadnik.time(a0)				; set time delay to 25 seconds
 		move.w	#$10,x_vel(a0)
 		move.b	#1,anim(a0)							; use walking animation
 		bchg	#status.npc.x_flip,status(a0)
@@ -43,15 +46,15 @@ Obj_BombBadnik:
 
 .wait
 		bsr.s	.chksonic
-		subq.w	#1,bom_time(a0)							; subtract 1 from time delay
+		subq.w	#1,bombbadnik.time(a0)						; subtract 1 from time delay
 		bmi.s	.stopwalking							; if time expires, branch
 		MoveSpriteXOnly
 		rts
 ; ---------------------------------------------------------------------------
 
 .stopwalking
-		move.l	#.walk,objoff_34(a0)
-		move.w	#180-1,bom_time(a0)						; set time delay to 3 seconds
+		move.l	#.walk,jump_ptr(a0)
+		move.w	#180-1,bombbadnik.time(a0)					; set time delay to 3 seconds
 		clr.w	x_vel(a0)							; stop walking
 		clr.b	anim(a0)							; use waiting animation
 		rts
@@ -68,8 +71,8 @@ Obj_BombBadnik:
 		bne.s	.outofrange							; if yes, branch
 
 		; set explode
-		move.l	#.explode,objoff_34(a0)						; goto .explode next
-		move.w	#143,bom_time(a0)						; set fuse time
+		move.l	#.explode,jump_ptr(a0)						; goto .explode next
+		move.w	#143,bombbadnik.time(a0)					; set fuse time
 		clr.w	x_vel(a0)
 		move.b	#2,anim(a0)							; use activated animation
 
@@ -77,9 +80,9 @@ Obj_BombBadnik:
 		lea	Child6_BombBadnik_Fuse(pc),a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.outofrange
-		move.w	y_pos(a0),bom_origY(a1)
+		move.w	y_pos(a0),bombbadnik.origY(a1)
 		move.b	render_flags(a0),render_flags(a1)
-		move.w	bom_time(a0),bom_time(a1)					; set fuse time
+		move.w	bombbadnik.time(a0),bombbadnik.time(a1)				; set fuse time
 
 		; set y_vel
 		move.w	#$10,y_vel(a1)
@@ -92,7 +95,7 @@ Obj_BombBadnik:
 ; ---------------------------------------------------------------------------
 
 .explode
-		subq.w	#1,bom_time(a0)							; subtract 1 from time delay
+		subq.w	#1,bombbadnik.time(a0)						; subtract 1 from time delay
 		bpl.s	.noexplode							; if time remains, branch
 
 		; remove
@@ -105,6 +108,8 @@ Obj_BombBadnik:
 ; ---------------------------------------------------------------------------
 ; Object 5F - walking bomb enemy (fuse)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -130,26 +135,28 @@ Obj_BombBadnik_Fuse:
 ; ---------------------------------------------------------------------------
 
 .wait
-		subq.w	#1,bom_time(a0)
+		subq.w	#1,bombbadnik.time(a0)
 		bmi.s	.create
 		MoveSprite2YOnly
 		rts
 ; ---------------------------------------------------------------------------
 
 .create
-		clr.w	bom_time(a0)
-		move.w	bom_origY(a0),y_pos(a0)
+		clr.w	bombbadnik.time(a0)
+		move.w	bombbadnik.origY(a0),y_pos(a0)
 
 		; create shrapnel objects
 		lea	Child6_BombBadnik_Shrapnel(pc),a2
 		jsr	(CreateChild6_Simple).w
 
 		; delete
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Object 5F - walking bomb enemy (shrapnel)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

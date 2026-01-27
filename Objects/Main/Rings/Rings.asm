@@ -2,6 +2,8 @@
 ; Ring (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Ring:
@@ -13,6 +15,12 @@ Obj_Ring:
 
 		; draw
 		jmp	(Sprite_OnScreen_Test_Collision).w
+
+; ---------------------------------------------------------------------------
+; Ring collect (Object)
+; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -51,11 +59,13 @@ Obj_Ring_Collect:
 ; ---------------------------------------------------------------------------
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Bouncing ring (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -193,7 +203,7 @@ Obj_Bouncing_Ring_Normal:
 ; ---------------------------------------------------------------------------
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -274,11 +284,13 @@ Obj_Bouncing_Ring_TestGravity:
 ; ---------------------------------------------------------------------------
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Attracted ring (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -371,7 +383,7 @@ Obj_Attracted_Ring:
 		clr.w	(a2)								; clear slot
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

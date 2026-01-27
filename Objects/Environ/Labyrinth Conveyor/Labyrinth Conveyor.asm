@@ -2,7 +2,7 @@
 ; Object 63 - platforms on a conveyor belt (LZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 conv_subtype			= objoff_2F	; .b ; save subtype
 conv_origX			= objoff_30	; .w ; original x-axis position
 
@@ -155,7 +155,7 @@ LCon_CheckDelete:
 		bclr	#respawn_addr.state,(a2)					; turn on the slot
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

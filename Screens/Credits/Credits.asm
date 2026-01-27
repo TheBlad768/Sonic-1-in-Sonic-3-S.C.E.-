@@ -128,7 +128,7 @@ CreditsScreen:
 		move.l	#Credits_Process_LoadText.return,(Credits_process).w
 
 		; create objects
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.fadefrom
 		move.l	#Obj_CreditsRobotnik,address(a1)
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
@@ -369,7 +369,7 @@ Credits_DrawLargeText:
 ; Object 8B - Eggman on "TRY AGAIN" and "END" screens (Credits)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 crdre_timer		= objoff_2E ; (2 bytes)
 
 crdre_drop		= objoff_39 ; (1 byte)
@@ -503,7 +503,7 @@ CreditsRobotnik_LoadEmeralds:
 ; Object 8C - chaos emeralds on the "TRY AGAIN" screen (Credits)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 credre_timer		= objoff_2E ; (2 bytes)
 credre_origX		= objoff_32 ; original x-axis position (2 bytes)
 credre_origY		= objoff_30 ; original y-axis position (2 bytes)
@@ -606,6 +606,8 @@ Obj_CreditsRobotnik_Emeralds:
 ; ---------------------------------------------------------------------------
 ; Egg Robo (Credits)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -744,7 +746,7 @@ CreditsEggRobo_LoadEmeralds:
 ; Egg Robo emeralds (Credits)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 cere_timer		= objoff_2E ; (2 bytes)
 cere_origX		= objoff_32 ; original x-axis position (2 bytes)
 cere_origY		= objoff_30 ; original y-axis position (2 bytes)
@@ -789,6 +791,8 @@ Obj_CreditsEggRobo_Emeralds:
 ; Egg Robo scrap metal (Credits)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_CreditsEggRobo_ScrapMetal:
@@ -804,6 +808,8 @@ Obj_CreditsEggRobo_ScrapMetal:
 ; ---------------------------------------------------------------------------
 ; Egg Robo eyes (Credits)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -822,7 +828,7 @@ Obj_CreditsEggRobo_Eyes:
 		subq.w	#1,objoff_2E(a0)
 		bpl.s	.return
 		move.l	#.animate,address(a0)
-		move.l	#.setf,objoff_34(a0)
+		move.l	#.setf,jump_ptr(a0)
 
 .return
 		rts

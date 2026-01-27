@@ -2,6 +2,8 @@
 ; Smooth Palette (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SmoothPalette:
@@ -24,11 +26,17 @@ Obj_SmoothPalette:
 		subq.b	#1,objoff_39(a0)
 		bpl.s	.return
 		clr.b	(Palette_rotation_disable).w
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 ; ---------------------------------------------------------------------------
 
 .return
 		rts
+
+; ---------------------------------------------------------------------------
+; Smooth Palette 2 (Object)
+; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -57,7 +65,7 @@ Obj_SmoothPalette2:
 		subq.b	#1,objoff_39(a0)
 		bpl.s	.return
 		clr.b	(Palette_rotation_disable).w
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 ; ---------------------------------------------------------------------------
 
 .return
@@ -74,6 +82,8 @@ Child6_SmoothPalette2:
 ; ---------------------------------------------------------------------------
 ; Fade selected to black (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -103,11 +113,13 @@ Obj_FadeSelectedToBlack:
 		subq.b	#1,objoff_39(a0)
 		bpl.s	Obj_SmoothPalette2.return
 		clr.b	(Palette_rotation_disable).w
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Fade selected from black (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -138,7 +150,13 @@ Obj_FadeSelectedFromBlack:
 		subq.b	#1,objoff_39(a0)
 		bpl.s	Obj_FadeToWhite.return
 		clr.b	(Palette_rotation_disable).w
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
+
+; ---------------------------------------------------------------------------
+; Fade selected to white (Object)
+; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -176,7 +194,13 @@ Obj_FadeToWhite:
 
 .delete
 		clr.b	(Palette_rotation_disable).w
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
+
+; ---------------------------------------------------------------------------
+; Fade selected from white (Object)
+; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -205,4 +229,4 @@ Obj_FadeFromWhite:
 		subq.b	#1,objoff_39(a0)
 		bpl.s	Obj_FadeToWhite.return
 		clr.b	(Palette_rotation_disable).w
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w

@@ -2,6 +2,8 @@
 ; Object 7E - Special Stage results screen
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SpecialStage_Results:
@@ -115,7 +117,7 @@ Obj_SpecialStage_Results:
 .continue
 
 		; create continue player icon
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.setend
 		move.l	#Obj_2EBE8,address(a1)
 
@@ -360,7 +362,7 @@ Obj_2EBCC:
 ; ---------------------------------------------------------------------------
 
 loc_2EC7A:
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -437,7 +439,7 @@ loc_2EC2A:
 		bmi.s	loc_2EC3E							; if yes, branch
 		movea.w	parent2(a0),a1							; a1=parent object
 		subq.w	#1,objoff_30(a1)						; if offscreen, subtract from number of elements and delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 loc_2EC3E:

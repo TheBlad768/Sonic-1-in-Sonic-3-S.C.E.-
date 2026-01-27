@@ -3,24 +3,21 @@
 ; Object 77 - Eggman (LZ)
 ; ---------------------------------------------------------------------------
 
-; Hits
-BossWater_Hits				= 8
+; xypos
+bosswater.xpos				= $1FE0
+bosswater.ypos				= $C0
 
-; XYpos
-BossWater_Xpos				= $1FE0
-BossWater_Ypos				= $C0
-
-; Dynamic object variables
-obBW_Timer				= objoff_2E	; .w
-obBW_Xpos				= objoff_30	; .l
-obBW_Jump				= objoff_34	; .l
-obBW_Counter				= objoff_39	; .b
-obBW_Timer2				= objoff_3E	; .w
-obBW_Ypos				= objoff_40	; .l
+; dynamic object variables
+bosswater.counter			= objoff_39	; (1 byte)
+bosswater.timer				= objoff_3E	; (2 bytes)
+bosswater.origX				= objoff_40	; original x-axis position (2 bytes)
+bosswater.origY				= objoff_44	; original y-axis position (2 bytes)
 
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossWater:
+
+.hitcount	= 8
 
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
@@ -30,13 +27,13 @@ Obj_BossWater:
 		; init
 		lea	ObjDat_BossWater_ShipGlass(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		st	(Boss_flag).w
-		move.w	x_pos(a0),obBW_Xpos(a0)
-		move.w	y_pos(a0),obBW_Ypos(a0)
-		move.b	#BossWater_Hits,collision_property(a0)				; set hits
-		move.l	#BossWater_MoveUp,obBW_Jump(a0)
-		move.w	#BossWater_Xpos,(Camera_saved_min_X_pos).w
-		move.w	#BossWater_Ypos,(Camera_saved_min_Y_pos).w
+		st	(Boss_flag).w							; set boss flag
+		move.w	x_pos(a0),bosswater.origX(a0)
+		move.w	y_pos(a0),bosswater.origY(a0)
+		move.b	#.hitcount,collision_property(a0)				; set hits
+		move.l	#BossWater_MoveUp,jump_ptr(a0)
+		move.w	#bosswater.xpos,(Camera_saved_min_X_pos).w
+		move.w	#bosswater.ypos,(Camera_saved_min_Y_pos).w
 
 		; create
 		lea	Child1_MakeRoboShipFlame(pc),a2
@@ -57,7 +54,7 @@ BossWater_MoveUp:
 		cmp.w	d1,d0
 		blo.s	.return
 		move.l	#words_to_long($60,-$180),x_vel(a0)
-		move.l	#BossWater_MoveRight,obBW_Jump(a0)
+		move.l	#BossWater_MoveRight,jump_ptr(a0)
 
 .return
 		rts
@@ -67,25 +64,25 @@ BossWater_MoveRight:
 		moveq	#-2,d0
 		moveq	#$68,d1
 		add.w	(Camera_saved_min_X_pos).w,d1
-		cmp.w	obBW_Xpos(a0),d1
+		cmp.w	bosswater.origX(a0),d1
 		bhs.s	.loc_17FB6
-		move.w	d1,obBW_Xpos(a0)
+		move.w	d1,bosswater.origX(a0)
 		clr.w	x_vel(a0)
 		addq.w	#1,d0
 
 .loc_17FB6
 		move.w	(Camera_saved_min_Y_pos).w,d1
 		addi.w	#$440,d1
-		cmp.w	obBW_Ypos(a0),d1
+		cmp.w	bosswater.origY(a0),d1
 		blt.s	.loc_17FCA
-		move.w	d1,obBW_Ypos(a0)
+		move.w	d1,bosswater.origY(a0)
 		clr.w	y_vel(a0)
 		addq.w	#1,d0
 
 .loc_17FCA
 		bne.s	.return
 		move.l	#words_to_long($140,-$200),x_vel(a0)
-		move.l	#BossWater_MoveUp2,obBW_Jump(a0)
+		move.l	#BossWater_MoveUp2,jump_ptr(a0)
 
 .return
 		rts
@@ -95,18 +92,18 @@ BossWater_MoveUp2:
 		moveq	#-2,d0
 		move.w	(Camera_saved_min_X_pos).w,d1
 		addi.w	#$90,d1
-		cmp.w	obBW_Xpos(a0),d1
+		cmp.w	bosswater.origX(a0),d1
 		bhs.s	.loc_17FF6
-		move.w	d1,obBW_Xpos(a0)
+		move.w	d1,bosswater.origX(a0)
 		clr.w	x_vel(a0)
 		addq.w	#1,d0
 
 .loc_17FF6
 		move.w	(Camera_saved_min_Y_pos).w,d1
 		addi.w	#$400,d1
-		cmp.w	obBW_Ypos(a0),d1
+		cmp.w	bosswater.origY(a0),d1
 		blt.s	.loc_1800A
-		move.w	d1,obBW_Ypos(a0)
+		move.w	d1,bosswater.origY(a0)
 		clr.w	y_vel(a0)
 		addq.w	#1,d0
 
@@ -114,7 +111,7 @@ BossWater_MoveUp2:
 		bne.s	.return
 		move.w	#-$180,y_vel(a0)
 		move.l	#BossWater_Setup,address(a0)
-		move.l	#BossWater_MoveSwing,obBW_Jump(a0)
+		move.l	#BossWater_MoveSwing,jump_ptr(a0)
 		clr.b	angle(a0)
 
 .return
@@ -124,17 +121,17 @@ BossWater_MoveUp2:
 BossWater_MoveSwing:
 		moveq	#$40,d1
 		add.w	(Camera_saved_min_Y_pos).w,d1
-		cmp.w	obBW_Ypos(a0),d1
+		cmp.w	bosswater.origY(a0),d1
 		blt.s	.loc_1804E
-		move.w	d1,obBW_Ypos(a0)
+		move.w	d1,bosswater.origY(a0)
 		move.l	#words_to_long($140,-$80),x_vel(a0)
-		tst.b	obBW_Counter(a0)
+		tst.b	bosswater.counter(a0)
 		beq.s	.loc_18046
 		asl.w	x_vel(a0)
 		asl.w	y_vel(a0)
 
 .loc_18046
-		move.l	#BossWater_MoveUp3,obBW_Jump(a0)
+		move.l	#BossWater_MoveUp3,jump_ptr(a0)
 		move.l	#BossWater_Setup2,address(a0)
 		rts
 ; ---------------------------------------------------------------------------
@@ -152,9 +149,11 @@ BossWater_MoveSwing:
 		asr.w	#4,d0
 		swap	d0
 		clr.w	d0
-		add.l	obBW_Xpos(a0),d0
+		add.l	bosswater.origX(a0),d0
 		swap	d0
 		move.w	d0,x_pos(a0)
+
+		; check
 		move.w	y_vel(a0),d0
 		move.w	y_pos(a2),d1
 		sub.w	y_pos(a0),d1
@@ -172,13 +171,13 @@ BossWater_MoveSwing:
 .loc_180A2
 		ext.l	d0
 		asl.l	#8,d0
-		tst.b	obBW_Counter(a0)
+		tst.b	bosswater.counter(a0)
 		beq.s	.loc_180AE
 		add.l	d0,d0
 
 .loc_180AE
-		add.l	d0,obBW_Ypos(a0)
-		move.w	obBW_Ypos(a0),y_pos(a0)
+		add.l	d0,bosswater.origY(a0)
+		move.w	bosswater.origY(a0),y_pos(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -186,23 +185,23 @@ BossWater_MoveUp3:
 		moveq	#-2,d0
 		move.w	(Camera_saved_min_X_pos).w,d1
 		addi.w	#$16C,d1
-		cmp.w	obBW_Xpos(a0),d1
+		cmp.w	bosswater.origX(a0),d1
 		bhs.s	.loc_180D2
-		move.w	d1,obBW_Xpos(a0)
+		move.w	d1,bosswater.origX(a0)
 		clr.w	x_vel(a0)
 		addq.w	#1,d0
 
 .loc_180D2
 		move.w	(Camera_saved_min_Y_pos).w,d1
-		cmp.w	obBW_Ypos(a0),d1
+		cmp.w	bosswater.origY(a0),d1
 		blt.s	.loc_180E6
-		move.w	d1,obBW_Ypos(a0)
+		move.w	d1,bosswater.origY(a0)
 		clr.w	y_vel(a0)
 		addq.w	#1,d0
 
 .loc_180E6
 		bne.s	.return
-		move.l	#BossWater_MoveUp4,obBW_Jump(a0)
+		move.l	#BossWater_MoveUp4,jump_ptr(a0)
 		bclr	#render_flags.x_flip,render_flags(a0)
 
 .return
@@ -210,7 +209,7 @@ BossWater_MoveUp3:
 ; ---------------------------------------------------------------------------
 
 BossWater_MoveUp4:
-		tst.b	obBW_Counter(a0)
+		tst.b	bosswater.counter(a0)
 		bne.s	.loc_18112
 		move.w	(Camera_saved_min_X_pos).w,d1
 		addi.w	#$E8,d1
@@ -220,12 +219,12 @@ BossWater_MoveUp4:
 		add.w	(Camera_saved_min_Y_pos).w,d1
 		cmp.w	y_pos(a2),d1
 		blt.s	.return
-		move.b	#50,obBW_Timer2(a0)
+		move.b	#50,bosswater.timer(a0)
 
 .loc_18112
 		music	mus_LZ								; play LZ music
 		bset	#render_flags.x_flip,render_flags(a0)
-		move.l	#BossWater_MoveUp5,obBW_Jump(a0)
+		move.l	#BossWater_MoveUp5,jump_ptr(a0)
 
 		; flags
 		st	(Last_act_end_flag).w
@@ -241,15 +240,15 @@ BossWater_MoveUp4:
 ; ---------------------------------------------------------------------------
 
 BossWater_MoveUp5:
-		tst.b	obBW_Counter(a0)
+		tst.b	bosswater.counter(a0)
 		bne.s	.loc_18136
-		subq.b	#1,obBW_Timer2(a0)
+		subq.b	#1,bosswater.timer(a0)
 		bne.s	.return
 
 .loc_18136
-		clr.b	obBW_Timer2(a0)
+		clr.b	bosswater.timer(a0)
 		move.l	#words_to_long($400,-$40),x_vel(a0)
-		move.l	#BossWater_MoveUp6,obBW_Jump(a0)
+		move.l	#BossWater_MoveUp6,jump_ptr(a0)
 
 .return
 		rts
@@ -269,7 +268,7 @@ BossWater_MoveUp6:
 		move.l	#End_LZ3Boss,(Level_data_addr_RAM.Resize).w
 
 		; remove Robotnik head and fire
-		bset	#5,objoff_38(a0)
+		bset	#5,state_flags(a0)
 		clr.b	(Boss_flag).w
 
 		; fix palette
@@ -277,7 +276,7 @@ BossWater_MoveUp6:
 		jsr	(BossFlash2).w
 
 		; delete
-		jmp	(Go_Delete_Sprite_3).w
+		jmp	(Go_Delete_Object_3).w
 
 ; ---------------------------------------------------------------------------
 ; Setup
@@ -289,14 +288,16 @@ BossWater_Setup2:
 		movem.w	x_vel(a0),d0-d1							; load xy speed
 		asl.l	#8,d0								; shift velocity to line up with the middle 16 bits of the 32-bit position
 		asl.l	#8,d1								; shift velocity to line up with the middle 16 bits of the 32-bit position
-		add.l	d0,obBW_Xpos(a0)						; add to x-axis position ; note this affects the subpixel position x_sub(a0) = 2+x_pos(a0)
-		add.l	d1,obBW_Ypos(a0)						; add to y-axis position ; note this affects the subpixel position y_sub(a0) = 2+y_pos(a0)
-		move.w	obBW_Xpos(a0),x_pos(a0)
-		move.w	obBW_Ypos(a0),y_pos(a0)
+		add.l	d0,bosswater.origX(a0)						; add to x-axis position ; note this affects the subpixel position x_sub(a0) = 2+x_pos(a0)
+		add.l	d1,bosswater.origY(a0)						; add to y-axis position ; note this affects the subpixel position y_sub(a0) = 2+y_pos(a0)
+		move.w	bosswater.origX(a0),x_pos(a0)
+		move.w	bosswater.origY(a0),y_pos(a0)
 
 BossWater_Setup:
 		lea	(Player_1).w,a2							; a2=character
-		movea.l	obBW_Jump(a0),a1
+
+		; jump
+		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 
 ; ---------------------------------------------------------------------------
@@ -315,7 +316,7 @@ BossWater_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 		; check touch
-		tst.b	obBW_Counter(a0)
+		tst.b	bosswater.counter(a0)
 		bne.s	.return
 		tst.b	status(a0)							; bit 7
 		bmi.s	BossWater_Defeated						; branch, if boss is defeated
@@ -350,7 +351,7 @@ BossWater_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 BossWater_Defeated:
-		st	obBW_Counter(a0)						; don't touch the boss anymore
+		st	bosswater.counter(a0)						; don't touch the boss anymore
 
 		; create explosion
 		lea	(Child6_CreateBossExplosion).l,a2

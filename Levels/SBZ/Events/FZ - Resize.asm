@@ -15,7 +15,7 @@ FZ_Resize:
 		clr.b	(Disable_wall_grab).w						; enable Knuckles wall grab
 
 		; create boss
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.return
 		move.l	#Obj_BossFinal,address(a1)
 		move.w	#$100,x_pos(a1)

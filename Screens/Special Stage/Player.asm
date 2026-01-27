@@ -2,6 +2,8 @@
 ; Object 09 - Player (Special Stage)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_PlayerSpecial:

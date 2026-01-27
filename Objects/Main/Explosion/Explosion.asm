@@ -2,12 +2,14 @@
 ; Explosion (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Explosion:
 
 		; create animal
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.skipanimal
 		move.l	#Obj_Animal,address(a1)
 		move.w	x_pos(a0),x_pos(a1)
@@ -51,6 +53,8 @@ Obj_Explosion:
 ; FireShield dissipate (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_FireShield_Dissipate:
@@ -80,6 +84,8 @@ Obj_FireShield_Dissipate:
 ; ---------------------------------------------------------------------------
 ; Tension Bridge explosion (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -118,11 +124,13 @@ Obj_TensionBridge_Explosion:
 ; ---------------------------------------------------------------------------
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Enemy score (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

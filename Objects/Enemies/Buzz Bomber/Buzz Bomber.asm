@@ -2,7 +2,7 @@
 ; Object 22 - Buzz Bomber enemy
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 buzz_timedelay			= objoff_32	; .w
 buzz_buzzstatus			= objoff_38	; .b
 
@@ -16,11 +16,13 @@ Obj_BuzzBomber:
 		; init
 		lea	ObjDat_BuzzBomber(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.move,objoff_34(a0)
+		move.l	#.move,jump_ptr(a0)
 		move.l	#.action,address(a0)
 
 .action
-		movea.l	objoff_34(a0),a1
+
+		; jump
+		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Buzz(pc),a1
 		jsr	(Animate_Sprite).w
@@ -33,7 +35,7 @@ Obj_BuzzBomber:
 		bpl.s	.noflip								; if time remains, branch
 		btst	#1,buzz_buzzstatus(a0)						; is Buzz Bomber near Sonic?
 		bne.s	.fire								; if yes, branch
-		move.l	#.chknearsonic,objoff_34(a0)
+		move.l	#.chknearsonic,jump_ptr(a0)
 		move.w	#128-1,buzz_timedelay(a0)					; set time delay to just over 2 seconds
 		move.w	#$400,x_vel(a0)							; move Buzz Bomber to the right
 		move.b	#1,anim(a0)							; use "flying" animation
@@ -46,7 +48,7 @@ Obj_BuzzBomber:
 ; ---------------------------------------------------------------------------
 
 .fire
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.fail
 		move.l	#Obj_Missile,address(a1)					; load missile object
 		moveq	#28,d0
@@ -95,7 +97,7 @@ Obj_BuzzBomber:
 		move.w	#60-1,buzz_timedelay(a0)
 
 .stop
-		move.l	#.move,objoff_34(a0)
+		move.l	#.move,jump_ptr(a0)
 		clr.w	x_vel(a0)							; stop Buzz Bomber moving
 		clr.b	anim(a0)							; use "hovering" animation
 
@@ -105,6 +107,8 @@ Obj_BuzzBomber:
 ; ---------------------------------------------------------------------------
 ; Object 23 - missile that Buzz Bomber throws
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -128,6 +132,8 @@ Obj_Missile:
 		bpl.s	.notdraw
 		move.b	#7|collision_flags.npc.hurt,collision_flags(a0)
 		move.l	#.frombuzz,address(a0)
+
+		; check
 		tst.b	subtype(a0)							; was object created by	a Newtron?
 		beq.s	.animatebuzz							; if not, branch
 		sfx	sfx_Projectile
@@ -141,7 +147,7 @@ Obj_Missile:
 ; ---------------------------------------------------------------------------
 
 .frombuzz
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		beq.s	.animatebuzz_child
 		clr.b	routine(a0)
 		sfx	sfx_Projectile

@@ -2,6 +2,8 @@
 ; Object 51 - smashable green block (MZ)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SmashBlock:
@@ -134,7 +136,7 @@ Obj_SmashBlock:
 ; ---------------------------------------------------------------------------
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 Smab_Speeds:

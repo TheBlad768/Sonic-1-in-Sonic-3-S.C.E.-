@@ -2,8 +2,10 @@
 ; Object 3C - smashable wall (GHZ, SLZ)
 ; ---------------------------------------------------------------------------
 
-; Options
+; options
 _BWALL_KNUX_			= 0	; if 1, change the animation of Knuckles after breaking the wall
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -139,7 +141,7 @@ Obj_BreakableWallFall:
 ; ---------------------------------------------------------------------------
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

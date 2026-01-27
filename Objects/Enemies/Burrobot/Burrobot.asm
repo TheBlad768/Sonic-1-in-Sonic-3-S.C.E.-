@@ -2,7 +2,7 @@
 ; Object 2D - Burrobot enemy (LZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 burro_flag			= objoff_39	; chg
 burro_timedelay			= objoff_3C	; time between direction changes
 
@@ -18,7 +18,7 @@ Obj_Burrobot:
 		jsr	(SetUp_ObjAttributes).w
 		move.w	#bytes_to_word(38/2,16/2),y_radius(a0)				; set y_radius and x_radius
 		move.b	#2,anim(a0)
-		move.l	#.Burro_ChkSonic,objoff_34(a0)
+		move.l	#.Burro_ChkSonic,jump_ptr(a0)
 		move.l	#.action,address(a0)
 
 .action
@@ -28,7 +28,9 @@ Obj_Burrobot:
 		and.w	d0,y_pos(a0)							; perform wrapping of Burrobot's y position
 
 .notwrapping
-		movea.l	objoff_34(a0),a1
+
+		; jump
+		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Burro(pc),a1
 		jsr	(Animate_Sprite).w
@@ -39,7 +41,7 @@ Obj_Burrobot:
 .changedir
 		subq.w	#1,burro_timedelay(a0)
 		bpl.s	.nochg
-		move.l	#.Burro_Move,objoff_34(a0)
+		move.l	#.Burro_Move,jump_ptr(a0)
 		move.w	#256-1,burro_timedelay(a0)
 		move.w	#$80,x_vel(a0)
 		move.b	#1,anim(a0)
@@ -80,7 +82,7 @@ Obj_Burrobot:
 .loc_AD84
 		btst	#2,(V_int_run_count+3).w
 		beq.s	.loc_ADA4
-		move.l	#.changedir,objoff_34(a0)
+		move.l	#.changedir,jump_ptr(a0)
 		move.w	#60-1,burro_timedelay(a0)
 		clr.w	x_vel(a0)
 		clr.b	anim(a0)
@@ -88,7 +90,7 @@ Obj_Burrobot:
 ; ---------------------------------------------------------------------------
 
 .loc_ADA4
-		move.l	#.Burro_Jump,objoff_34(a0)
+		move.l	#.Burro_Jump,jump_ptr(a0)
 		move.w	#-$400,y_vel(a0)
 		move.b	#2,anim(a0)
 		rts
@@ -108,7 +110,7 @@ Obj_Burrobot:
 		clr.w	y_vel(a0)
 		move.b	#1,anim(a0)
 		move.w	#256-1,burro_timedelay(a0)
-		move.l	#.Burro_Move,objoff_34(a0)
+		move.l	#.Burro_Move,jump_ptr(a0)
 		jsr	(Find_SonicTails).w
 		jsr	(Change_FlipX).w
 		move.b	render_flags(a0),status(a0)
@@ -131,7 +133,7 @@ Obj_Burrobot:
 		; check debug mode
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.s	.return								; if yes, branch
-		move.l	#.Burro_Jump,objoff_34(a0)
+		move.l	#.Burro_Jump,jump_ptr(a0)
 		move.w	#-$400,y_vel(a0)
 		moveq	#-$80,d0
 		jmp	(Change_VelocityWithFlipX).w

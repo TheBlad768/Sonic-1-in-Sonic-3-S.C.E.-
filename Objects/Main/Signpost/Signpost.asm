@@ -2,13 +2,15 @@
 ; Load Signpost (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_EndSignControl:
 		move.l	#Obj_Wait,address(a0)
 		st	(Level_results_flag).w						; end of level is in effect
 		move.w	#(2*60)-1,objoff_2E(a0)
-		move.l	#Obj_EndSignControlDoSign,objoff_34(a0)
+		move.l	#Obj_EndSignControlDoSign,jump_ptr(a0)
 
 .return
 		rts
@@ -43,13 +45,13 @@ Obj_EndSignControlDoStart:
 		tst.b	(End_of_level_flag).w						; wait for title card to finish
 		beq.s	Obj_EndSignControl.return
 		jsr	(Change_ActSizes).w						; set level size
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Signpost (Object)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 sign_timer			= objoff_2E	; .w
 sign_aniraw			= objoff_30	; .l
 
@@ -217,7 +219,7 @@ Obj_EndSign:
 		move.l	#.signafter,address(a0)
 		st	(Ctrl_1_locked).w						; null Sonic's input
 		jsr	(Set_PlayerEndingPose).w
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.draw2
 		move.l	#Obj_LevelResults,address(a1)
 		bra.s	.draw2
@@ -254,11 +256,13 @@ Obj_EndSign:
 
 		; delete
 		clr.w	(Signpost_addr).w						; clear RAM address
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Signpost (Sparkle)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -282,7 +286,7 @@ Obj_SignpostSparkle:
 		move.w	x_pos(a0),objoff_3A(a0)
 		move.w	#$1000,x_vel(a0)
 		move.w	#32,objoff_2E(a0)
-		move.l	#Go_Delete_Sprite,objoff_34(a0)
+		move.l	#Go_Delete_Object,jump_ptr(a0)
 
 .main
 		move.w	#$400,d0							; right
@@ -308,6 +312,8 @@ Obj_SignpostSparkle:
 ; ---------------------------------------------------------------------------
 ; Signpost (Stub)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -387,8 +393,8 @@ EndSign_Range:
 
 EndSign_CheckWall:
 		move.w	(Camera_X_pos).w,d0
-		tst.w	x_vel(a0)
-		bmi.s	.leftside
+		tst.w	x_vel(a0)							; check x velocity
+		bmi.s	.leftside							; left move
 
 		; check right side
 		addi.w	#screen_width-24,d0

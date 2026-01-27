@@ -2,7 +2,7 @@
 ; Object 42 - Newtron enemy (GHZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 obStatusTron		= objoff_32
 
 ; =============== S U B R O U T I N E =======================================
@@ -17,11 +17,13 @@ Obj_Newtron:
 		jsr	(SetUp_ObjAttributes).w
 		clr.b	routine(a0)
 		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
-		move.l	#.chkdistance,objoff_34(a0)
+		move.l	#.chkdistance,jump_ptr(a0)
 		move.l	#.action,address(a0)
 
 .action
-		movea.l	objoff_34(a0),a1
+
+		; jump
+		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Newt(pc),a1
 		jsr	(Animate_Sprite).w
@@ -46,12 +48,12 @@ Obj_Newtron:
 .Sonicisright
 		cmpi.w	#128,d2								; is Sonic within $80 pixels of the newtron?
 		bhs.s	.outofrange							; if not, branch
-		move.l	#.type00,objoff_34(a0)						; goto .type00 next
+		move.l	#.type00,jump_ptr(a0)						; goto .type00 next
 		move.b	#1,anim(a0)
 		tst.b	subtype(a0)							; check object type
 		beq.s	.istype00							; if type is 00, branch
 		ori.w	#palette_line_1,art_tile(a0)
-		move.l	#.type01,objoff_34(a0)						; goto .type01 next
+		move.l	#.type01,jump_ptr(a0)						; goto .type01 next
 		move.b	#4,anim(a0)							; use different	animation
 
 .outofrange
@@ -84,7 +86,7 @@ Obj_Newtron:
 		bpl.s	.keepfalling							; if not, branch
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)							; stop newtron falling
-		move.l	#.matchfloor,objoff_34(a0)
+		move.l	#.matchfloor,jump_ptr(a0)
 		move.b	#2,anim(a0)
 		btst	#5,art_tile(a0)							; palette_line_1
 		beq.s	.notgreen
@@ -131,10 +133,10 @@ Obj_Newtron:
 		st	obStatusTron(a0)
 
 		; set delete
-		move.l	#.delete,objoff_34(a0)
+		move.l	#.delete,jump_ptr(a0)
 
 		; create missile
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.fail
 		move.l	#Obj_Missile,address(a1)					; load missile object
 		move.w	x_pos(a0),x_pos(a1)
@@ -158,9 +160,9 @@ Obj_Newtron:
 ; ---------------------------------------------------------------------------
 
 .delete
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		beq.s	.fail
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

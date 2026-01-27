@@ -144,7 +144,7 @@ TitleScreen:
 
 		; delete
 		lea	(Reserved_object_3).w,a1					; remove "SONIC TEAM PRESENTS" object
-		jsr	(Delete_Referenced_Sprite).w
+		jsr	(Delete_Referenced_Object).w
 
 .skiptext2
 
@@ -371,7 +371,7 @@ DemoLevels_end
 ; Object 0E - Sonic on the title screen
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 ts_timer		= objoff_2E	; .w
 
 ; =============== S U B R O U T I N E =======================================
@@ -394,7 +394,7 @@ Obj_TitleSonic:
 		move.l	#.wait,address(a0)
 
 		; create sprite mask
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.wait
 		move.l	#Obj_SpriteMask2,address(a1)
 		move.w	x_pos(a0),x_pos(a1)
@@ -439,7 +439,7 @@ Obj_TitleSonic:
 ; Object 0F - "PRESS START BUTTON" from title screen
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 tpsb_timer		= objoff_2E	; .w
 
 tpsb_counter		= objoff_3E	; .w

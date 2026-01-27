@@ -3,6 +3,8 @@
 ; set flipx to horizontal range
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; levels list (subtype)
 ; $00	= $000 (GHZ1)
 ; $01	= $001 (GHZ2)
@@ -85,7 +87,7 @@ Obj_StartNewLevel:
 		bclr	#respawn_addr.state,(a2)					; turn on the slot
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 .vertical

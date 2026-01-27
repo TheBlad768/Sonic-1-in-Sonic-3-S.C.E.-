@@ -2,7 +2,7 @@
 ; Object 2A - small vertical door (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

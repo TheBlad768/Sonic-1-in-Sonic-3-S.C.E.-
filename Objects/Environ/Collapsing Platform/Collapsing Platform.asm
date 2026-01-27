@@ -2,7 +2,7 @@
 ; Object 1A - GHZ collapsing ledge
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 cplat_timepointer			= objoff_30	; .l
 cplat_timedelay				= objoff_38	; .b
 cplat_collapse_flag			= objoff_3A	; .b
@@ -173,7 +173,7 @@ Obj_PlatformCollapseFall:
 ; ---------------------------------------------------------------------------
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 		; data

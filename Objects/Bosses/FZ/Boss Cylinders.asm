@@ -2,7 +2,7 @@
 ; Object 84 - cylinder Eggman hides in (FZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 obBFZEC_Enable				= objoff_2D	; .b ; move cylinder
 obBFZEC_Timer				= objoff_2E	; .w
 obBFZEC_OrigY				= objoff_30	; .l ; original y-axis position
@@ -268,7 +268,7 @@ Child6_EggmanCylinder:
 		dc.w 4-1
 		dc.l Obj_EggmanCylinder
 
-EggmanCylinder_PosData:			; $2660 (xcam main), $510 (ycam main)
+EggmanCylinder_PosData:			; xcam main, ycam main
 		dc.w $70, $110		; 0 (down pos)
 		dc.w $F0, $110		; 4 (down pos)
 		dc.w $30, -$50		; 8 (up pos)

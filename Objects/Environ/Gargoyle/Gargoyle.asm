@@ -2,7 +2,7 @@
 ; Object 62 - gargoyle head (LZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 gar_time			= objoff_2E
 gar_stime			= objoff_30
 
@@ -39,7 +39,7 @@ Obj_Gargoyle:
 		bpl.s	.draw								; if not, branch
 
 		; create
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.draw
 		move.l	#Obj_Gargoyle_FireBall,address(a1)				; load fireball object
 		move.w	x_pos(a0),x_pos(a1)
@@ -55,6 +55,8 @@ Obj_Gargoyle:
 ; ---------------------------------------------------------------------------
 ; Gargoyle fire ball
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -101,7 +103,7 @@ Obj_Gargoyle_FireBall:
 		bpl.s	.draw
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

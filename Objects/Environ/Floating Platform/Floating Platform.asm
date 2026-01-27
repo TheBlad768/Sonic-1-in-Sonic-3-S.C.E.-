@@ -2,6 +2,8 @@
 ; Object 18 - platforms (GHZ, SYZ, SLZ)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_FloatingPlatform:
@@ -72,7 +74,7 @@ loc_25642:
 		bclr	#respawn_addr.state,(a2)					; turn on the slot
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

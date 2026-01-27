@@ -2,7 +2,7 @@
 ; Object 58 - giant spiked balls (SYZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 bball_origX			= objoff_32	; original x-axis position (2 bytes)
 bball_origY			= objoff_30	; original y-axis position (2 bytes)
 bball_radius			= objoff_3A	; radius of circle (2 bytes)

@@ -2,7 +2,7 @@
 ; Object 4C - lava geyser / lavafall producer (MZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 gmake_timer			= objoff_32 ; current time remaining (2 bytes)
 gmake_time			= objoff_34 ; time delay (2 bytes)
 
@@ -45,7 +45,7 @@ Obj_GeyserMaker:
 ; ---------------------------------------------------------------------------
 
 .checkanim
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		beq.s	.draw
 		clr.b	routine(a0)
 
@@ -70,7 +70,7 @@ Obj_GeyserMaker:
 		move.w	#-$580,y_vel(a1)
 
 .checkdelete
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		beq.s	.draw
 		clr.b	routine(a0)
 		move.l	#.delete,address(a0)
@@ -96,7 +96,7 @@ Obj_GeyserMaker:
 ; Object 4D - lava geyser / lavafall (MZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 lgeyser_ypos			= objoff_30
 
 ; =============== S U B R O U T I N E =======================================
@@ -180,7 +180,7 @@ Obj_LavaGeyser:
 		bhs.s	.return
 		movea.w	parent3(a0),a1							; a1=parent object
 		move.b	#1,anim(a1)							; bubble2 anim
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 ; ---------------------------------------------------------------------------
 
 .type00
@@ -190,7 +190,7 @@ Obj_LavaGeyser:
 		bhs.s	.return
 		movea.w	parent3(a0),a1							; a1=parent object
 		move.b	#3,anim(a1)							; bubble3 anim
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 ; ---------------------------------------------------------------------------
 
 .return
@@ -199,6 +199,8 @@ Obj_LavaGeyser:
 ; ---------------------------------------------------------------------------
 ; Object 4D - lava geyser / lavafall (MZ) (Extra2)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -213,6 +215,8 @@ Obj_LavaGeyser_Extra2:
 ; ---------------------------------------------------------------------------
 ; Object 4D - lava geyser / lavafall (MZ) (Extra)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

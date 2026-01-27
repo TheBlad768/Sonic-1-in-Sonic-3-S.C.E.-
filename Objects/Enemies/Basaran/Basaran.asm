@@ -2,7 +2,7 @@
 ; Object 55 - Basaran enemy (MZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 bas_sypos			= objoff_30	; copy Sonic ypos
 
 ; =============== S U B R O U T I N E =======================================
@@ -15,11 +15,13 @@ Obj_Basaran:
 		; init
 		lea	ObjDat_Basaran(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.dropcheck,objoff_34(a0)
+		move.l	#.dropcheck,jump_ptr(a0)
 		move.l	#.action,address(a0)
 
 .action
-		movea.l	objoff_34(a0),a1
+
+		; jump
+		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Bas(pc),a1
 		jsr	(Animate_Sprite).w
@@ -49,7 +51,7 @@ Obj_Basaran:
 		andi.b	#7,d0
 		bne.s	.nodrop
 		move.b	#1,anim(a0)
-		move.l	#.dropfly,objoff_34(a0)
+		move.l	#.dropfly,jump_ptr(a0)
 
 .nodrop
 		rts
@@ -71,7 +73,7 @@ Obj_Basaran:
 		jsr	(Change_VelocityWithFlipX).w
 		clr.w	y_vel(a0)							; stop basaran falling
 		move.b	#2,anim(a0)
-		move.l	#.flapsound,objoff_34(a0)
+		move.l	#.flapsound,jump_ptr(a0)
 
 .dropmore
 		rts
@@ -100,7 +102,7 @@ Obj_Basaran:
 		add.b	d7,d0								; d7 - object count (Process_Sprites)
 		andi.b	#7,d0
 		bne.s	.dontflyup
-		move.l	#.flyup,objoff_34(a0)
+		move.l	#.flyup,jump_ptr(a0)
 
 .dontflyup
 		rts
@@ -115,7 +117,7 @@ Obj_Basaran:
 		andi.w	#-8,x_pos(a0)							; align xpos (8 pixels)
 		clr.l	x_vel(a0)							; stop basaran moving
 		clr.b	anim(a0)
-		move.l	#.dropcheck,objoff_34(a0)
+		move.l	#.dropcheck,jump_ptr(a0)
 
 .noceiling
 		rts

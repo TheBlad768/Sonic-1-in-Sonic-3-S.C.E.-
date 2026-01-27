@@ -2,7 +2,7 @@
 ; Object 2F - large grass-covered platforms (MZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 LGorigX:			= objoff_2E
 LGorigY:			= objoff_30
 
@@ -136,7 +136,7 @@ Obj_LargeGrass:
 		st	objoff_3A(a0)
 
 		; create fire
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	.return
 		move.l	#Obj_GrassFire,address(a1)
 		move.w	x_pos(a0),x_pos(a1)

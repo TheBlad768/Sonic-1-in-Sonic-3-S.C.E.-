@@ -77,7 +77,7 @@ Check_GHZ3boss:
 		clr.b	(Update_HUD_timer).w
 
 		; create intro
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.return
 		move.l	#Obj_BossBall_Scaled,address(a1)
 		moveq	#-$20,d0
@@ -114,7 +114,7 @@ Load_GHZ3Boss:
 		; create boss
 		music	mus_ZoneBoss
 		move.b	d0,(Current_music+1).w						; save music
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.return
 		move.l	#Obj_BossBall,address(a1)
 		move.w	(Camera_max_X_pos).w,d0

@@ -3,16 +3,13 @@
 ; Object 7A - Eggman (SLZ)
 ; ---------------------------------------------------------------------------
 
-; Hits
-BossSpikeBall_Hits			= 8
-
-; Dynamic object variables
-obBSB_Timer				= objoff_2E	; .w
-obBSB_Jump				= objoff_34	; .l
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossSpikeBall:
+
+.hitcount	= 8
 
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
@@ -22,10 +19,10 @@ Obj_BossSpikeBall:
 		; init
 		lea	ObjDat_BossSpikeBall_Ship(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		st	(Boss_flag).w
-		move.b	#BossSpikeBall_Hits,collision_property(a0)			; set hits
+		st	(Boss_flag).w							; set boss flag
+		move.b	#.hitcount,collision_property(a0)				; set hits
 		move.w	#-$100,x_vel(a0)						; set move left
-		move.l	#BossSpikeBall_MoveLeft,obBSB_Jump(a0)
+		move.l	#BossSpikeBall_MoveLeft,jump_ptr(a0)
 
 		; create
 		lea	Child1_MakeRoboHead4(pc),a2
@@ -47,7 +44,7 @@ BossSpikeBall_MoveLeft:
 		addi.w	#$120+1,d0
 		cmp.w	x_pos(a0),d0
 		bne.s	.return
-		move.l	#BossSpikeBall_MoveLeftRight,obBSB_Jump(a0)
+		move.l	#BossSpikeBall_MoveLeftRight,jump_ptr(a0)
 
 .return
 		rts
@@ -55,7 +52,7 @@ BossSpikeBall_MoveLeft:
 
 BossSpikeBall_MoveRestore:
 		move.l	#BossSpikeBall_Setup3,address(a0)
-		move.l	#BossSpikeBall_MoveLeftRight,obBSB_Jump(a0)
+		move.l	#BossSpikeBall_MoveLeftRight,jump_ptr(a0)
 
 BossSpikeBall_MoveLeftRight:
 		move.w	(Camera_max_X_pos).w,d0
@@ -118,7 +115,7 @@ BossSpikeBall_MoveLeftRight:
 		move.w	a1,parent2(a0)							; save seesaw address buffer
 		move.w	a2,parent3(a0)							; save found seesaw address
 		move.l	#BossSpikeBall_Setup,address(a0)
-		move.l	#BossSpikeBall_MakeBall,obBSB_Jump(a0)
+		move.l	#BossSpikeBall_MakeBall,jump_ptr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -138,10 +135,10 @@ BossSpikeBall_MakeBall:
 .nofree
 
 		; wait
-		move.w	#40-1,obBSB_Timer(a0)						; set wait
+		move.w	#40-1,wait_timer(a0)						; set wait
 
 		; back
-		move.l	#BossSpikeBall_MoveRestore,obBSB_Jump(a0)
+		move.l	#BossSpikeBall_MoveRestore,jump_ptr(a0)
 		rts
 
 ; ---------------------------------------------------------------------------
@@ -209,7 +206,7 @@ BossSpikeBall_MainProcess:
 
 BossSpikeBall_Defeated:
 		move.l	#Wait_FadeToLevelMusic,address(a0)
-		move.l	#.explosion,obBSB_Jump(a0)
+		move.l	#.explosion,jump_ptr(a0)
 		clr.l	x_vel(a0)
 		move.b	#$F,mapping_frame(a0)						; set the broken frame
 
@@ -251,7 +248,7 @@ BossSpikeBall_Defeated:
 		st	(Level_results_flag).w
 
 		; create
-		jsr	(Create_New_Sprite).w
+		jsr	(Create_New_Object).w
 		bne.s	.notfree2
 		move.l	#Obj_EggCapsule,address(a1)
 		move.w	(Camera_stored_max_X_pos).w,d0
@@ -275,15 +272,17 @@ BossSpikeBall_Defeated:
 ; ---------------------------------------------------------------------------
 
 .delete
-		bset	#5,objoff_38(a0)						; remove Robotnik head and fire
+		bset	#5,state_flags(a0)						; remove Robotnik head and fire
 		clr.b	(Boss_flag).w
 
 		; delete
-		jmp	(Go_Delete_Sprite_3).w
+		jmp	(Go_Delete_Object_3).w
 
 ; ---------------------------------------------------------------------------
 ; Boss SpikeBall tube (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -313,11 +312,13 @@ Obj_BossSpikeBall_ShipTube:
 		jsr	(CreateChild6_Simple).w
 
 		; delete
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Boss SpikeBall tube pieces (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -339,6 +340,8 @@ Obj_BossSpikeBall_ShipTubePieces:
 ; ---------------------------------------------------------------------------
 ; Object 7B - exploding spikeys that Eggman drops (SLZ)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -387,7 +390,7 @@ Obj_BossSpikeBall_SpikeBall:
 		moveq	#0,d1
 
 .notflipx
-		move.w	#$F0,objoff_2E(a0)						; timer
+		move.w	#$F0,wait_timer(a0)						; timer
 		move.b	#10,anim_frame(a0)						; set frame duration to 10 frames
 		move.b	anim_frame(a0),anim_frame_timer(a0)
 		bra.w	.spring
@@ -420,7 +423,7 @@ Obj_BossSpikeBall_SpikeBall:
 
 .leftside1
 		move.b	#1,mapping_frame(a0)
-		move.w	#$20,objoff_2E(a0)						; timer
+		move.w	#$20,wait_timer(a0)						; timer
 		move.l	#.loc_18EAA,address(a0)
 		bra.w	.loc_18EAA
 ; ---------------------------------------------------------------------------
@@ -445,21 +448,25 @@ Obj_BossSpikeBall_SpikeBall:
 		move.w	d2,x_pos(a0)
 		clr.w	y_pos+2(a0)
 		clr.w	x_pos+2(a0)
-		subq.w	#1,objoff_2E(a0)
+
+		; check
+		subq.w	#1,wait_timer(a0)
 		bne.s	.loc_18E7A
-		move.w	#$20,objoff_2E(a0)						; timer
+		move.w	#$20,wait_timer(a0)						; timer
 		move.l	#BossSpikeBall_SpikeBall_Explode,address(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
 .loc_18E7A
 		pea	.draw(pc)
-		cmpi.w	#2*60,objoff_2E(a0)
+
+		; check
+		cmpi.w	#2*60,wait_timer(a0)
 		bne.s	.loc_18E88
 		move.b	#5,anim_frame(a0)						; set frame duration to 5 frames
 
 .loc_18E88
-		cmpi.w	#1*60,objoff_2E(a0)
+		cmpi.w	#1*60,wait_timer(a0)
 		bne.s	.loc_18E96
 		move.b	#2,anim_frame(a0)						; set frame duration to 2 frames
 
@@ -495,7 +502,7 @@ Obj_BossSpikeBall_SpikeBall:
 		jsr	(Check_InTheirRange).w
 		beq.s	.loc_18F38
 		move.l	#BossSpikeBall_SpikeBall_Explode,address(a0)
-		clr.w	objoff_2E(a0)							; timer
+		clr.w	wait_timer(a0)							; timer
 		move.b	collision_flags(a1),boss_saved_collision(a1)
 		clr.b	collision_flags(a1)
 		subq.b	#1,collision_property(a1)
@@ -541,7 +548,7 @@ Obj_BossSpikeBall_SpikeBall:
 		moveq	#0,d1
 
 .loc_18F9C
-		clr.w	objoff_2E(a0)							; timer
+		clr.w	wait_timer(a0)							; timer
 
 .spring
 		move.b	d1,see_frame(a1)
@@ -623,14 +630,14 @@ BossSpikeBall_SpikeBall_Explode:
 		bset	#7,(a1)								; enable seesaw address
 
 		; remove
-		jsr	(Go_Delete_Sprite).w
+		jsr	(Go_Delete_Object).w
 
 		; explosion
 		lea	(Child6_MakeBossExplosion1).l,a2
 		jsr	(CreateChild6_Simple).w
 
 		; check
-		cmpi.w	#32,objoff_2E(a0)						; timer
+		cmpi.w	#32,wait_timer(a0)						; timer
 		beq.s	.makefrag
 		rts
 ; ---------------------------------------------------------------------------
@@ -646,13 +653,16 @@ BossSpikeBall_SpikeBall_Explode:
 ; Object 7B - shrapnel from spikeball (SLZ)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
+; =============== S U B R O U T I N E =======================================
+
 BossSpikeBall_FragSpeed:		; xyvel
 		dc.w -$100, -$340	; 0
 		dc.w -$A0, -$240	; 4
 		dc.w $100, -$340	; 8
 		dc.w $A0, -$240		; C
-
-; =============== S U B R O U T I N E =======================================
+; ---------------------------------------------------------------------------
 
 Obj_BossSpikeBall_SpikeBall_Shrapnel:
 

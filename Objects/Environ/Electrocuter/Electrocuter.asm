@@ -2,7 +2,7 @@
 ; Object 6E - electrocution orbs (SBZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 elec_freq			= objoff_2E	; frequency
 
 ; =============== S U B R O U T I N E =======================================

@@ -2,7 +2,7 @@
 ; Object 16 - harpoon (LZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 harp_time			= objoff_2E	; time between stabbing/retracting
 
 ; =============== S U B R O U T I N E =======================================

@@ -2,6 +2,8 @@
 ; Bubbler (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Bubbler:
@@ -64,7 +66,7 @@ loc_2FABA:
 		move.w	d0,objoff_38(a0)
 
 		; create bubbles
-		jsr	(Create_New_Sprite3).w
+		jsr	(Create_New_Object_3).w
 		bne.s	loc_2FB34
 		move.l	#Obj_Bubbler_Bubbles,address(a1)
 		move.l	mappings(a0),mappings(a1)
@@ -131,11 +133,13 @@ loc_2FB5C:
 		bclr	#respawn_addr.state,(a2)					; turn on the slot
 
 Bubbler_Delete:
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Bubbler (Object)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -157,7 +161,7 @@ Obj_Bubbler_Bubbles:
 .animate
 		lea	Ani_Bubbler(pc),a1
 		jsr	(Animate_Sprite).w
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		beq.s	.rskip
 		clr.b	routine(a0)
 		move.l	#.chkwater,address(a0)
@@ -179,7 +183,7 @@ Obj_Bubbler_Bubbles:
 Bubbler_Bubbles_Display:
 		lea	Ani_Bubbler(pc),a1
 		jsr	(Animate_Sprite).w
-		tst.b	routine(a0)
+		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	Bubbler_Delete
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bpl.s	Bubbler_Delete							; if not, branch

@@ -6,7 +6,7 @@
 ; Hits
 BossFinal_Hits				= 8
 
-; Dynamic object variables
+; dynamic object variables
 obBFZ_Timer				= objoff_2E	; .w
 
 obBFZ_Jump				= objoff_34	; .l
@@ -440,7 +440,7 @@ BossFinal_Defeated:
 		bne.s	.draw
 
 		; delete Eggman
-		move.l	#Delete_Current_Sprite,address(a0)
+		move.l	#Delete_Current_Object,address(a0)
 
 		; load robotnik ship address
 		movea.w	parent2(a0),a1
@@ -469,6 +469,8 @@ BossFinal_Defeated:
 ; Object 85 - control desk (Boss Final)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossFinal_ControlDesk:
@@ -489,6 +491,8 @@ Obj_BossFinal_ControlDesk:
 ; ---------------------------------------------------------------------------
 ; Object 85 - robotnik ship (Boss Final)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -575,11 +579,13 @@ Obj_BossFinal_RobotnikShip:
 
 .delete
 		move.l	#FZ_Resize.endboss,(Level_data_addr_RAM.Resize).w
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Object 85 - robotnik ship (Boss Final)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -615,11 +621,13 @@ Obj_BossFinal_RobotnikShipStand:
 ; ---------------------------------------------------------------------------
 
 .delete
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; ---------------------------------------------------------------------------
 ; Object 85 - check players (Boss Final)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

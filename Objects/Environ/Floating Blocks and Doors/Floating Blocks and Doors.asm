@@ -2,7 +2,7 @@
 ; Object 56 - floating blocks (SYZ/SLZ), large doors (LZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 fb_origX			= objoff_34	; original x-axis position
 fb_origY			= objoff_30	; original y-axis position
 fb_height			= objoff_3A	; total object height
@@ -141,7 +141,7 @@ Obj_FloatingBlock:
 		bclr	#respawn_addr.state,(a2)					; turn on the slot
 
 .delete2
-		jmp	(Delete_Current_Sprite).w
+		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 

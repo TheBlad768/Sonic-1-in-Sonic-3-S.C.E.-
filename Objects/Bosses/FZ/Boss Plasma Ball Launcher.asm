@@ -2,7 +2,7 @@
 ; Object 86 - energy balls (FZ)
 ; ---------------------------------------------------------------------------
 
-; Dynamic object variables
+; dynamic object variables
 obBFZBP_Enable				= objoff_2D	; .b
 obBFZBP_Timer				= objoff_2E	; .w
 obBFZBP_Count				= objoff_30	; .b
@@ -89,12 +89,13 @@ Obj_BossPlasma:
 		jsr	(sub_83E84).l
 
 		; delete
-		jmp	(Go_Delete_Sprite_2).w
+		jmp	(Go_Delete_Object_2).w
 
 ; ---------------------------------------------------------------------------
 ; Object 86 - energy balls (FZ)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
 obBFZBPB_Timer				= objoff_2E ; .w
 obBFZBPB_Xpos				= objoff_30 ; .w
 
@@ -189,7 +190,7 @@ Obj_BossPlasma_Ball:
 		subq.b	#1,obBFZBP_Count2(a1)
 
 		; delete
-		jmp	(Go_Delete_Sprite).w
+		jmp	(Go_Delete_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 
