@@ -153,9 +153,9 @@ TitleScreen:
 		copyTilemap	(VRAM_Plane_A_Name_Table+$208), 272, 176
 
 		; load ©1991 text
-		lea	Title_CopyrightText(pc),a1
-		locVRAM	(VRAM_Plane_A_Name_Table+$D38),d1
-		move.w	#$250F,d3
+		lea	Title_CopyrightText(pc),a1					; text address
+		locVRAM	(VRAM_Plane_A_Name_Table+$D38),d1				; plane address
+		move.w	#$250F,d3							; VRAM
 		jsr	(Load_PlaneText).w
 
 		; set level size
@@ -518,7 +518,7 @@ Obj_TitlePSB:
 		; draw icon
 		moveq	#1,d0
 		and.b	(Title_control).w,d0
-		locVRAM	(VRAM_Plane_A_Name_Table+$C1A),d1
+		locVRAM	(VRAM_Plane_A_Name_Table+$C1A),d1				; plane address
 		move.l	#vdpCommDelta(planeLoc(64,1,2)),d2
 		tst.w	(Current_zone_and_act).w
 		beq.s	.drawicon
@@ -529,24 +529,24 @@ Obj_TitlePSB:
 		bsr.s	Title_DrawVIcon
 
 		; draw text
-		lea	Title_StartGameText(pc),a1
+		lea	Title_StartGameText(pc),a1					; text address
 		tst.b	(Title_control).w
 		beq.s	.skip
-		lea	Title_StartGameText2(pc),a1
+		lea	Title_StartGameText2(pc),a1					; text address
 
 .skip
 		tst.w	(Current_zone_and_act).w
 		beq.s	.drawtext
 
 		; draw text
-		lea	Title_ContinueText(pc),a1
+		lea	Title_ContinueText(pc),a1					; text address
 		tst.b	(Title_control).w
 		beq.s	.drawtext
-		lea	Title_ContinueText2(pc),a1
+		lea	Title_ContinueText2(pc),a1					; text address
 
 .drawtext
-		locVRAM	(VRAM_Plane_A_Name_Table+$B1E),d1
-		move.w	#$50F,d3
+		locVRAM	(VRAM_Plane_A_Name_Table+$B1E),d1				; plane address
+		move.w	#$50F,d3							; VRAM
 		jmp	(Load_PlaneText).w
 
 ; ---------------------------------------------------------------------------
