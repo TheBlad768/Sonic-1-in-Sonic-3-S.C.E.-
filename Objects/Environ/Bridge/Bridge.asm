@@ -253,7 +253,7 @@ loc_38A00:
 
 loc_38A64:
 		clr.l	x_vel(a3)
-		sfx	sfx_BridgeCollapse,1
+		sfx	sfx_BridgeCollapse, 1
 ; ---------------------------------------------------------------------------
 
 byte_38A78:

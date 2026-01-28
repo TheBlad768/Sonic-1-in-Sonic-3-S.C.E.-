@@ -335,7 +335,7 @@ LevelSelectRSDK_SwitchSide:
 		beq.s	.return
 		move.w	(LevelSelectRSDK_vertical_count).w,d0
 		move.b	.table(pc,d0.w),(LevelSelectRSDK_vertical_count+1).w
-		sfx	sfx_Switch,1
+		sfx	sfx_Switch, 1
 ; ---------------------------------------------------------------------------
 
 .return

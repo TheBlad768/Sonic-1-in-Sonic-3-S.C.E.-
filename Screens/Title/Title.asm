@@ -153,10 +153,7 @@ TitleScreen:
 		copyTilemap	(VRAM_Plane_A_Name_Table+$208), 272, 176
 
 		; load ©1991 text
-		lea	Title_CopyrightText(pc),a1					; text address
-		locVRAM	(VRAM_Plane_A_Name_Table+$D38),d1				; plane address
-		move.w	#$250F,d3							; VRAM
-		jsr	(Load_PlaneText).w
+		DrawPlaneText	Title_CopyrightText, (VRAM_Plane_A_Name_Table+$D38), $50F, 1, FALSE
 
 		; set level size
 		jsr	(Get_LevelSizeStart).w
@@ -545,9 +542,7 @@ Obj_TitlePSB:
 		lea	Title_ContinueText2(pc),a1					; text address
 
 .drawtext
-		locVRAM	(VRAM_Plane_A_Name_Table+$B1E),d1				; plane address
-		move.w	#$50F,d3							; VRAM
-		jmp	(Load_PlaneText).w
+		DrawPlaneText	, (VRAM_Plane_A_Name_Table+$B1E), $50F, 0, FALSE, 1
 
 ; ---------------------------------------------------------------------------
 ; Draw icon
