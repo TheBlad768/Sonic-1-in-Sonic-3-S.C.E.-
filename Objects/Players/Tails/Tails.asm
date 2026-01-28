@@ -1608,7 +1608,7 @@ loc_148CC:
 		addq.b	#8,d0
 		andi.b	#$F,d0
 		bne.s	locret_148F2
-		sfx	sfx_FlyTired,1
+		sfx	sfx_FlyTired, 1
 ; ---------------------------------------------------------------------------
 
 locret_148F2:
@@ -1623,7 +1623,7 @@ loc_148F4:
 		addq.b	#8,d0
 		andi.b	#$F,d0
 		bne.s	locret_148F2
-		sfx	sfx_Flying,1
+		sfx	sfx_Flying, 1
 ; ---------------------------------------------------------------------------
 
 loc_14914:

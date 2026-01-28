@@ -319,7 +319,7 @@ ScrapStomp_TypeIndex: offsetTable
 		subq.w	#1,d0
 		andi.w	#$F,d0
 		bne.s	.locret_15F5C
-		sfx	sfx_Rumble2,1
+		sfx	sfx_Rumble2, 1
 ; ---------------------------------------------------------------------------
 
 .locret_15F5C
@@ -330,7 +330,7 @@ ScrapStomp_TypeIndex: offsetTable
 		clr.b	subtype(a0)
 		clr.b	sto_active(a0)
 		move.w	#$14,(Screen_shaking_flag).w
-		sfx	sfx_Crash,1
+		sfx	sfx_Crash, 1
 ; ---------------------------------------------------------------------------
 
 		; mappings
