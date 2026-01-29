@@ -19,11 +19,11 @@ Continue_countdown_update:		ds.b 1
 	!org	Continue_Offset
 
 Continue_VDP:
-		dc.w $8004								; disable HInt, HV counter, 8-colour mode
+		dc.w $8004								; disable HInt, HV counter, 8-color mode
 		dc.w $8200+(VRAM_Plane_A_Name_Table>>10)				; set foreground nametable address
 		dc.w $8300+(VRAM_Plane_B_Name_Table>>10)				; set window nametable address
 		dc.w $8400+(VRAM_Plane_B_Name_Table>>13)				; set background nametable address
-		dc.w $8700+(0<<4)							; set background colour (line 3; colour 0)
+		dc.w $8700+(0<<4)							; set background color (line 3; color 0)
 		dc.w $8B00								; full-screen horizontal and vertical scrolling
 		dc.w $8C81								; set 40cell screen size, no interlacing, no s/h
 		dc.w $9001								; 64x32 cell nametable area
