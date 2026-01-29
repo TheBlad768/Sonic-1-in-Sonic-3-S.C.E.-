@@ -427,9 +427,6 @@ collision_flags =						objoff_28					; byte ; TT SSSSSS ; TT = collision type, S
 collision_property =						objoff_29					; byte ; usage varies, bosses use it as a hit counter
 shield_reaction =						objoff_2B					; byte ; bit 3 = bounces off shield, bit 4 = negated by fire shield, bit 5 = negated by lightning shield, bit 6 = negated by bubble shield
 subtype =							objoff_2C					; byte
-wait_timer =							objoff_2E					; word
-aniraw_ptr =							objoff_30					; long
-jump_ptr =							objoff_34					; long
 state_flags =							objoff_38					; byte
 count =								objoff_39					; byte
 circular_radius =						objoff_3A					; word
@@ -479,6 +476,21 @@ default_y_radius =						objoff_44					; byte ; default value of y_radius
 default_x_radius =						objoff_45					; byte ; default value of x_radius
 top_solid_bit =							objoff_46					; byte ; the bit to check for top solidity (either $C or $E)
 lrb_solid_bit =							objoff_47					; byte ; the bit to check for left/right/bottom solidity (either $D or $F)
+
+; ---------------------------------------------------------------------------
+; Conventions followed by animate raw subroutine
+; ---------------------------------------------------------------------------
+
+aniraw_frame_timer =						objoff_2E					; byte ; used by Animate_RawGetFaster and Animate_RawGetSlower
+aniraw_wait_timer =						objoff_2F					; byte ; used by Animate_RawGetFaster and Animate_RawGetSlower
+aniraw_ptr =							objoff_30					; long
+
+; ---------------------------------------------------------------------------
+; Conventions followed by object wait subroutine
+; ---------------------------------------------------------------------------
+
+wait_timer =							objoff_2E					; word
+jump_ptr =							objoff_34					; long
 
 ; ---------------------------------------------------------------------------
 ; Conventions followed by art scaling subroutine
