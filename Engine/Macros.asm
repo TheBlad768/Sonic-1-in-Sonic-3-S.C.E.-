@@ -219,8 +219,8 @@ __LABEL__ label *
 	dc.w ((__LABEL___end-__LABEL__-2)/8)-1
     endm
 
-mSBZp macro duration,colours,paladdress,ramaddress
-	dc.b duration,colours
+mSBZp macro duration,colors,paladdress,ramaddress
+	dc.b duration,colors
 	dc.l (paladdress)
 	dc.w ((ramaddress)&$FFFF)
     endm

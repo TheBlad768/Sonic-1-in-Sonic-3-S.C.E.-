@@ -55,7 +55,7 @@ LevelSelectRSDKScreen:
 		jsr	(Clear_DisplayData).w
 		lea	Level_VDP(pc),a1
 		jsr	(Load_VDP).w
-		move.w	#$8700+(0<<4),VDP_control_port-VDP_control_port(a6)		; set background colour (line 0; colour 0)
+		move.w	#$8700+(0<<4),VDP_control_port-VDP_control_port(a6)		; set background color (line 0; color 0)
 		jsr	(Clear_Palette).w
 		clearRAM RAM_start, (RAM_start+$2000)					; clear foreground buffers
 		clearRAM Object_RAM, Object_RAM_end					; clear the object RAM

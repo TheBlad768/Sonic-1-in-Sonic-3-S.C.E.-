@@ -96,7 +96,7 @@ locret_1B64:
 ; Scrap Brain Zone palette cycling script
 ; ---------------------------------------------------------------------------
 
-; duration in frames, number of colours, palette address, RAM address
+; duration in frames, number of colors, palette address, RAM address
 
 Pal_SBZCycList1: mSBZh
 	mSBZp 7, 8, Pal_SBZCyc1, Normal_palette_line_3+$10
