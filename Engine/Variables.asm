@@ -46,9 +46,9 @@ Collision_response_list:				ds.w $80/2			; only objects in this list are process
 Stat_table:						 = *				; used by Tails' AI in a Sonic and Tails game
 Pos_table_P2:						ds.l 64				; recorded player xy position buffer
 Pos_table:						ds.l 64				; recorded player xy position buffer
-Ring_status_table:					ds.w RingsTable_Size		; ring status table(1 word)
+Ring_status_table:					ds.w RingsTable_Size		; ring status table (1 word)
 Ring_status_table_end					= *
-Object_respawn_table:					ds.b ObjectsTable_Size		; object respawn table(1 byte)
+Object_respawn_table:					ds.b ObjectsTable_Size		; object respawn table (1 byte)
 Object_respawn_table_end				= *
 Sprite_table_buffer:					ds.b 80*8
 Sprite_table_buffer_end					= *

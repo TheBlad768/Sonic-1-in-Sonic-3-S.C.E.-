@@ -631,24 +631,29 @@ PLC_Title_end
 
 Title_StartGameText:
 		dc.b "Start Game"
-		dc.b $81, $F3		; next line, select palette line
-		dc.b "Options",-1
+		dc.b draw_planetext.nextline|1, draw_planetext.palette_line_1		; next line, select palette line
+		dc.b "Options"
+		dc.b draw_planetext.end							; stop loading characters
 Title_StartGameText2:
-		dc.b $F3		; select palette line
+		dc.b draw_planetext.palette_line_1					; select palette line
 		dc.b "Start Game"
-		dc.b $81, $F2		; next line, select palette line
-		dc.b "Options",-1
+		dc.b draw_planetext.nextline|1, draw_planetext.palette_line_0		; next line, select palette line
+		dc.b "Options"
+		dc.b draw_planetext.end							; stop loading characters
 Title_ContinueText:
 		dc.b " Continue"
-		dc.b $81, $F3		; next line, select palette line
-		dc.b "Options",-1
+		dc.b draw_planetext.nextline|1, draw_planetext.palette_line_1		; next line, select palette line
+		dc.b "Options"
+		dc.b draw_planetext.end							; stop loading characters
 Title_ContinueText2:
-		dc.b $F3		; select palette line
+		dc.b draw_planetext.palette_line_1					; select palette line
 		dc.b " Continue"
-		dc.b $81, $F2		; next line, select palette line
-		dc.b "Options",-1
+		dc.b draw_planetext.nextline|1, draw_planetext.palette_line_0		; next line, select palette line
+		dc.b "Options"
+		dc.b draw_planetext.end							; stop loading characters
 Title_CopyrightText:
-		dc.b "@ 1991 SEGA",-1
+		dc.b "@ 1991 SEGA"
+		dc.b draw_planetext.end							; stop loading characters
 	even
 
 		restore	; reset character set
