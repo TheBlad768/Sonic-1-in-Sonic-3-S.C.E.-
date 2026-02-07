@@ -12,9 +12,9 @@
 		dc.l 0									; Animate palette scripts
 
 		; Level setup
-		dc.l MZ1_ScreenInit							; Screen init
+		dc.l MZ1_ForegroundInit							; Foreground init
 		dc.l MZ1_BackgroundInit							; Background init
-		dc.l Draw_FGAsYouMove							; Screen event
+		dc.l Draw_FGAsYouMove							; Foreground event
 		dc.l MZ1_BackgroundEvent						; Background event
 
 		; Animate tiles

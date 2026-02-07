@@ -12,9 +12,9 @@
 		dc.l AniPalette_SLZ							; Animate palette scripts
 
 		; Level setup
-		dc.l SLZ1_ScreenInit							; Screen init
+		dc.l SLZ1_ForegroundInit						; Foreground init
 		dc.l SLZ1_BackgroundInit						; Background init
-		dc.l Draw_FGAsYouMove							; Screen event
+		dc.l Draw_FGAsYouMove							; Foreground event
 		dc.l SLZ1_BackgroundEvent						; Background event
 
 		; Animate tiles

@@ -4,7 +4,7 @@
 
 ; =============== S U B R O U T I N E =======================================
 
-SBZ2_ScreenInit:
+SBZ2_ForegroundInit:
 
 		; set
 		move.w	#$7FF,(Screen_Y_wrap_value).w
@@ -17,7 +17,7 @@ SBZ2_ScreenInit:
 
 ; =============== S U B R O U T I N E =======================================
 
-SBZ2_ScreenEvent:
+SBZ2_ForegroundEvent:
 		move.w	(Screen_shaking_offset).w,d0					; shake foreground
 		add.w	d0,(Camera_Y_pos_copy).w
 

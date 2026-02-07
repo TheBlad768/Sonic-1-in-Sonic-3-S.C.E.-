@@ -38,7 +38,7 @@ SYZ3_Resize:
 
 		; load boss
 		clr.l	(Level_data_addr_RAM.Resize).w					; set return for resize
-		move.l	#SYZ3_ScreenEvent,(Level_data_addr_RAM.ScreenEvent).w
+		move.l	#SYZ3_ForegroundEvent,(Level_data_addr_RAM.ScreenEvent).w
 
 		; load art
 		lea	(PLC_BossBlock).l,a5
