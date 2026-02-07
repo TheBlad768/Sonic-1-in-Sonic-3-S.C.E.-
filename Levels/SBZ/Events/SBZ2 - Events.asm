@@ -22,7 +22,7 @@ SBZ2_ScreenEvent:
 		add.w	d0,(Camera_Y_pos_copy).w
 
 		; update FG
-		jmp	(DrawTilesAsYouMove).w
+		jmp	(Draw_FGAsYouMove).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -51,7 +51,7 @@ SBZ2_BackgroundEvent:
 		bsr.s	SBZ2_Deform
 
 		; update BG
-		jsr	(DrawBGAsYouMove).w
+		jsr	(Draw_BGAsYouMove).w
 
 		; deform
 		jsr	(PlainDeformation).w
