@@ -4,7 +4,7 @@
 
 ; =============== S U B R O U T I N E =======================================
 
-LZ3_ScreenInit:
+LZ3_ForegroundInit:
 
 		; restore wave splash object
 		tst.b	(Last_star_post_hit).w						; have any starpost been hit?
@@ -18,7 +18,7 @@ LZ3_ScreenInit:
 		move.w	#$7F0,(Camera_Y_pos_mask).w
 		move.w	#$3C,(Layout_row_index_mask).w					; set level y size: $7FF
 
-LZ1_ScreenInit:
+LZ1_ForegroundInit:
 
 		; update FG
 		jsr	(Reset_TileOffsetPositionActual).w
@@ -26,7 +26,7 @@ LZ1_ScreenInit:
 
 ; =============== S U B R O U T I N E =======================================
 
-LZ1_ScreenEvent:
+LZ1_ForegroundEvent:
 		move.w	(Screen_shaking_offset).w,d0					; shake foreground
 		add.w	d0,(Camera_Y_pos_copy).w
 

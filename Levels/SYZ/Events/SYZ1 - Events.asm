@@ -4,7 +4,7 @@
 
 ; =============== S U B R O U T I N E =======================================
 
-SYZ1_ScreenInit:
+SYZ1_ForegroundInit:
 
 		; update FG
 		jsr	(Reset_TileOffsetPositionActual).w
@@ -12,7 +12,7 @@ SYZ1_ScreenInit:
 
 ; =============== S U B R O U T I N E =======================================
 
-SYZ3_ScreenEvent:
+SYZ3_ForegroundEvent:
 		tst.b	(Screen_event_flag).w
 		beq.s	.draw
 

@@ -4,7 +4,7 @@
 
 ; =============== S U B R O U T I N E =======================================
 
-MZ1_ScreenInit:
+MZ1_ForegroundInit:
 
 		; update FG
 		jsr	(Reset_TileOffsetPositionActual).w

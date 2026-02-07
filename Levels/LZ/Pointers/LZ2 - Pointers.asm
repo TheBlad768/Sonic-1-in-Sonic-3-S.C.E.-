@@ -12,9 +12,9 @@
 		dc.l 0									; Animate palette scripts
 
 		; Level setup
-		dc.l LZ1_ScreenInit							; Screen init
+		dc.l LZ1_ForegroundInit							; Foreground init
 		dc.l LZ1_BackgroundInit							; Background init
-		dc.l LZ1_ScreenEvent							; Screen event
+		dc.l LZ1_ForegroundEvent						; Foreground event
 		dc.l LZ1_BackgroundEvent						; Background event
 
 		; Animate tiles

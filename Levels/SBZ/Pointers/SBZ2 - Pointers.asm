@@ -12,9 +12,9 @@
 		dc.l 0									; Animate palette scripts
 
 		; Level setup
-		dc.l SBZ2_ScreenInit							; Screen init
+		dc.l SBZ2_ForegroundInit						; Foreground init
 		dc.l SBZ2_BackgroundInit						; Background init
-		dc.l SBZ2_ScreenEvent							; Screen event
+		dc.l SBZ2_ForegroundEvent						; Foreground event
 		dc.l SBZ2_BackgroundEvent						; Background event
 
 		; Animate tiles
