@@ -31,7 +31,7 @@ LZ1_ScreenEvent:
 		add.w	d0,(Camera_Y_pos_copy).w
 
 		; update FG
-		jmp	(DrawTilesAsYouMove).w
+		jmp	(Draw_FGAsYouMove).w
 
 ; =============== S U B R O U T I N E =======================================
 

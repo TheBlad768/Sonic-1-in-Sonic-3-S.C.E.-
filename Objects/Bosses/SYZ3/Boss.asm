@@ -396,7 +396,7 @@ BossBlock_Defeated:
 
 		; return
 		move.l	#End_SYZ3Boss,(Level_data_addr_RAM.Resize).w
-		move.l	#DrawTilesAsYouMove,(Level_data_addr_RAM.ScreenEvent).w
+		move.l	#Draw_FGAsYouMove,(Level_data_addr_RAM.ScreenEvent).w
 
 		; flags
 		st	(Last_act_end_flag).w

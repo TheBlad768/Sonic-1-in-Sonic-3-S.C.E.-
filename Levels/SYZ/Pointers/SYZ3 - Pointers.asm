@@ -14,7 +14,7 @@
 		; Level setup
 		dc.l SYZ1_ScreenInit							; Screen init
 		dc.l SYZ1_BackgroundInit						; Background init
-		dc.l DrawTilesAsYouMove							; Screen event
+		dc.l Draw_FGAsYouMove							; Screen event
 		dc.l SYZ1_BackgroundEvent						; Background event
 
 		; Animate tiles

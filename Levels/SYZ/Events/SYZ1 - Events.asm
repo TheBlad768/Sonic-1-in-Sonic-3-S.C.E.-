@@ -26,7 +26,7 @@ SYZ3_ScreenEvent:
 .draw
 
 		; update FG
-		jmp	(DrawTilesAsYouMove).w
+		jmp	(Draw_FGAsYouMove).w
 
 ; =============== S U B R O U T I N E =======================================
 
