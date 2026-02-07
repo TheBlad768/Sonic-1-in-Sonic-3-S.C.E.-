@@ -52,7 +52,7 @@ SegaScreen:
 		; load main art
 		QueueKosPlusModule	ArtKosPM_Sega, 0
 
-		; load mapping
+		; load main mapping
 		EniDecomp	MapEni_Sega, RAM_start, 0, 0, FALSE			; decompress Enigma mappings
 
 		; check console region
@@ -63,7 +63,7 @@ SegaScreen:
 .skipTM
 		copyTilemap	VRAM_Plane_A_Name_Table, 320, 224
 
-		; load palette
+		; load main palette
 		lea	(Target_palette).w,a1
 		move.l	#words_to_long(cWhite,cWhite),(a1)+
 		move.l	#words_to_long($ECC,$ECA),(a1)+

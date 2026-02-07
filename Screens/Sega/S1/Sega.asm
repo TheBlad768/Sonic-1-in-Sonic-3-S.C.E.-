@@ -52,7 +52,7 @@ SegaScreen:
 		; load main art
 		QueueKosPlusModule	ArtKosPM_Sega, 0
 
-		; load mapping
+		; load main mapping
 		EniDecomp	MapEni_Sega, RAM_start, 0, 0, FALSE			; decompress Enigma mappings
 
 		; check console region
