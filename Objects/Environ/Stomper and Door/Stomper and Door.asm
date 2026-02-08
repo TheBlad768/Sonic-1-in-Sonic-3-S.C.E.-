@@ -329,7 +329,7 @@ ScrapStomp_TypeIndex: offsetTable
 .loc_15F5E
 		clr.b	subtype(a0)
 		clr.b	sto_active(a0)
-		move.w	#$14,(Screen_shaking_flag).w
+		move.w	#(ScreenShakeArray2-ScreenShakeArray),(Screen_shaking_flag).w
 		sfx	sfx_Crash, 1
 ; ---------------------------------------------------------------------------
 

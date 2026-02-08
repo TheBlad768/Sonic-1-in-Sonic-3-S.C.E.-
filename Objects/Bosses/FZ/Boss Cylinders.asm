@@ -195,7 +195,7 @@ EggmanCylinder_Movement:
 
 		; disable
 		clr.b	obBFZEC_Enable(a0)
-		move.w	#$14,(Screen_shaking_flag).w
+		move.w	#(ScreenShakeArray2-ScreenShakeArray),(Screen_shaking_flag).w
 
 .returnup2
 		rts
@@ -254,7 +254,7 @@ EggmanCylinder_Movement:
 
 		; disable
 		clr.b	obBFZEC_Enable(a0)
-		move.w	#$14,(Screen_shaking_flag).w
+		move.w	#(ScreenShakeArray2-ScreenShakeArray),(Screen_shaking_flag).w
 
 .returndown2
 		rts
