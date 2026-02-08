@@ -3,7 +3,6 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-SpecialStage_Offset:			= *
 
 ; Special Stage
 ArtTile_SS_Background_Clouds:		= 0
@@ -37,13 +36,13 @@ ArtTile_SS_Ring_Sparks			= ArtTile_SS_Ring+8
 ArtTile_SS_HUD				= $264
 
 ; RAM
-	phase ramaddr(RAM_start)
+
+	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
 SStage_Buffer1:				ds.b $4000					; S1: $0000-$3FFF
 SStage_Buffer1_end			= *						; S1: ($4000 bytes)
 SStage_BlockBuffer:			= SStage_Buffer1+$1020				; S1: $1020-$31FF
 SStage_BlockBuffer_end			= SStage_BlockBuffer+$80*$40			; S1: ($2000 bytes)
-
 
 SStage_Buffer2:				ds.b $1000					; S1: layout data ; ($1000 bytes)
 SStage_BlockTypes:			= SStage_Buffer2				; S1: $4000-$43FF ; ($400 bytes)
@@ -57,17 +56,15 @@ SStage_Scroll_Buffer2:			ds.b $100					; S1: $28 bytes used?
 
 SStage_Ghost_Buffer:			ds.w 14+2					; max ghost solids + header
 
-	dephase
+	dsreset										; stop pretending and reset the program counter
 
-
-	phase ramaddr(Palette_cycle_counters)
+	dsset ramaddr(Palette_cycle_counters)						; pretend we're in the RAM
 
 SStage_scalar_index_0:			ds.w 1
 SStage_scalar_index_1:			ds.w 1
 v_palss_num:				ds.w 1
 v_palss_time:				ds.w 1
 v_ssbganim:				ds.w 1
-
 
 v_bg3screenposx:			ds.l 1
 v_ani0_time:				ds.b 1
@@ -85,8 +82,8 @@ Special_stage_spheres_left:		ds.w 1
 Special_stage_rings_left:		ds.w 1
 Saved_special_stage:			ds.b 1
 
-	dephase
-	!org	SpecialStage_Offset
+	dsreset										; stop pretending and reset the program counter
+
 ; ---------------------------------------------------------------------------
 
 SpecialStage_VDP:

@@ -3,7 +3,6 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-TitleLevelSelect_Offset:		= *
 TitleLevelSelect_VRAM:			= $C50F
 
 ; Variables
@@ -14,15 +13,16 @@ TitleLevelSelect_MaxCharacters:		= 5
 TitleLevelSelect_MaxMusicNumber:	= ((mus__End-mus__First)-1) + ((sfx__End-sfx__First)-1)
 
 ; RAM
-	phase ramaddr(RAM_start)
+
+	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
 TitleLevelSelect_buffer:		ds.b $1000					; background buffer (copy)
 TitleLevelSelect_buffer2:		ds.b $1000					; background buffer (main)
 TitleLevelSelect_buffer3:		ds.b $1000
 
-	dephase
+	dsreset										; stop pretending and reset the program counter
 
-	phase ramaddr(Object_load_addr_front)
+	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
 TitleLevelSelect_music_count:		ds.w 1
 TitleLevelSelect_sound_count:		ds.w 1
@@ -33,8 +33,7 @@ TitleLevelSelect_cheat_counter:		ds.w 1						; debug mode
 TitleLevelSelect_cheat_counter2:	ds.w 1						; emeralds
 TitleLevelSelect_vertical_count:	ds.w 1
 
-	dephase
-	!org	TitleLevelSelect_Offset
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 

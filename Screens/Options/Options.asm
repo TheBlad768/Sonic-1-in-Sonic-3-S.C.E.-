@@ -3,7 +3,6 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-Options_Offset:				= *
 Options_VRAM:				= $50F
 
 ; Variables
@@ -16,14 +15,15 @@ Options_MaxSoundNumber:			= (sfx__End-sfx__First)-1
 Options_MaxSampleNumber:		= $10
 
 ; RAM
-	phase ramaddr(RAM_start)
+
+	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
 Options_buffer:				ds.b $1000					; foreground buffer (copy)
 Options_buffer2:			ds.b $1000					; foreground buffer (main)
 
-	dephase
+	dsreset										; stop pretending and reset the program counter
 
-	phase ramaddr(Object_load_addr_front)
+	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
 Options_music_count:			ds.w 1
 Options_sound_count:			ds.w 1
@@ -32,8 +32,8 @@ Options_save_music:			ds.w 1
 Options_control_timer:			ds.w 1
 Options_vertical_count:			ds.w 1
 
-	dephase
-	!org	Options_Offset
+	dsreset										; stop pretending and reset the program counter
+
 ; ---------------------------------------------------------------------------
 
 Options_VDP:

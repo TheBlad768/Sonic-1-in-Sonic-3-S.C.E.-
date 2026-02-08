@@ -3,20 +3,21 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-Continue_Offset:			= *
 
 ; Variables
 
 ; RAM
-	phase ramaddr(Palette_cycle_counters)
+
+	dsset ramaddr(Palette_cycle_counters)						; pretend we're in the RAM
 
 Continue_countdown:			ds.w 1
 Continue_routine:			ds.b 1
 Continue_countdown_numbers:		ds.b 1
 Continue_countdown_update:		ds.b 1
 
-	dephase
-	!org	Continue_Offset
+	dsreset										; stop pretending and reset the program counter
+
+; ---------------------------------------------------------------------------
 
 Continue_VDP:
 		dc.w $8004								; disable HInt, HV counter, 8-color mode

@@ -3,18 +3,16 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-Ending_Offset:				= *
 
 ; Variables
 
-
 ; RAM
-	phase ramaddr(Level_trigger_array)
+
+	dsset ramaddr(Level_trigger_array)						; pretend we're in the RAM
 
 Ending_player:				ds.w 1
 
-	dephase
-	!org	Ending_Offset
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
