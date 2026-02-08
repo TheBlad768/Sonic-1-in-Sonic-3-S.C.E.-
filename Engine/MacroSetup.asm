@@ -149,7 +149,7 @@ current_offset_rom := *
 ; similar function as rsreset from asm68k compiler
 dsreset macro
 	dephase
-	!org	current_offset_rom
+	!org current_offset_rom
     endm
 
 ; alias rsset from asm68k compiler
