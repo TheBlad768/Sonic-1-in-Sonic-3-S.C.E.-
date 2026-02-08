@@ -2,15 +2,12 @@
 ; Object 72 - teleporter (SBZ)
 ; ---------------------------------------------------------------------------
 
-; constants
-Teleport_Offset:			= *
-
 ; dynamic object variables
 
 ; player 1
-	phase objoff_18	; $E bytes ($18-$26)
+	dsset objoff_18				; pretend we're in the RAM
 
-tele_player1_attached		= *
+tele_player1_attached		= *		; $E bytes ($18-$26)
 
 .routine			ds.b 1	; 0
 .sine				ds.b 1	; 1
@@ -20,12 +17,12 @@ tele_player1_attached		= *
 .saveX				ds.w 1	; $A
 .saveY				ds.w 1	; $C
 
-	dephase
+	dsreset					; stop pretending and reset the program counter
 
 ; player 2
-	phase objoff_2E	; $E bytes ($2E-$3C)
+	dsset objoff_2E				; pretend we're in the RAM
 
-tele_player2_attached		= *
+tele_player2_attached		= *		; $E bytes ($2E-$3C)
 
 .routine			ds.b 1	; 0
 .sine				ds.b 1	; 1
@@ -35,8 +32,7 @@ tele_player2_attached		= *
 .saveX				ds.w 1	; $A
 .saveY				ds.w 1	; $C
 
-	dephase
-	!org	Teleport_Offset
+	dsreset					; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 

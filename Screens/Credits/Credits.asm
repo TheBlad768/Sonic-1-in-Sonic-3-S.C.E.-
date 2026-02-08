@@ -3,20 +3,20 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-Credits_Offset:				= *
 
 ; Variables
 
 ; RAM
-	phase ramaddr(Object_load_addr_front)
+
+	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
 Credits_routine:			ds.w 1
 Credits_process:			ds.l 1
 Credits_process_time:			ds.w 1
 Credits_end:				ds.b 1
 
-	dephase
-	!org	Credits_Offset
+	dsreset										; stop pretending and reset the program counter
+
 ; ---------------------------------------------------------------------------
 
 Credits_VDP:

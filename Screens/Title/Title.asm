@@ -2,18 +2,15 @@
 ; Title
 ; ---------------------------------------------------------------------------
 
-; Constants
-Title_Offset:				= *
-
 ; RAM
-	phase ramaddr(Boss_events)
+
+	dsset ramaddr(Boss_events)							; pretend we're in the RAM
 
 Title_cheat_counter:			ds.b 1
 Title_control:				ds.b 1
 Title_end:				ds.b 1
 
-	dephase
-	!org	Title_Offset
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
