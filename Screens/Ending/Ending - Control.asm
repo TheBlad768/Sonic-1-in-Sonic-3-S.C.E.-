@@ -8,7 +8,7 @@ End_MoveSonic:
 		move.w	(Camera_X_pos).w,(Camera_max_X_pos).w
 
 		; routine buffer
-		lea	(Ending_player).w,a0
+		lea	(Ending.player).w,a0
 
 		; p1
 		moveq	#0,d5

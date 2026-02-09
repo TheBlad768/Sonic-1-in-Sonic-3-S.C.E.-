@@ -3,49 +3,48 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-LevelSelect_VRAM:			= 0
+LevelSelect.VRAM:			= 0
 
-; Variables
-LevelSelect_ZoneCount:			= ZoneCount
-LevelSelect_ActGHZCount:		= 3	; GHZ
-LevelSelect_ActMZCount:			= 3	; MZ
-LevelSelect_ActSYZCount:		= 3	; SYZ
-LevelSelect_ActLZCount:			= 4	; LZ
-LevelSelect_ActSLZCount:		= 3	; SLZ
-LevelSelect_ActSBZCount:		= 3	; SBZ
+LevelSelect.ZoneCount:			= ZoneCount
+LevelSelect.ActGHZCount:		= 3						; GHZ
+LevelSelect.ActMZCount:			= 3						; MZ
+LevelSelect.ActSYZCount:		= 3						; SYZ
+LevelSelect.ActLZCount:			= 4						; LZ
+LevelSelect.ActSLZCount:		= 3						; SLZ
+LevelSelect.ActSBZCount:		= 3						; SBZ
 
-LevelSelect_SpecialStageCount:		= 6
-LevelSelect_CharacterCount:		= LevelSelect_SpecialStageCount+1
-LevelSelect_MusicTestCount:		= LevelSelect_CharacterCount+1
-LevelSelect_SoundTestCount:		= LevelSelect_MusicTestCount+1
-LevelSelect_SampleTestCount:		= LevelSelect_SoundTestCount+1
-LevelSelect_MaxCount:			= 11
-LevelSelect_MaxSpecialStages:		= ChaosEmeralds_Count
-LevelSelect_MaxCharacters:		= 5
-LevelSelect_MaxMusicNumber:		= (mus__End-mus__First)-1
-LevelSelect_MaxSoundNumber:		= (sfx__End-sfx__First)-1
-LevelSelect_MaxSampleNumber:		= $10
+LevelSelect.SpecialStageCount:		= 6
+LevelSelect.CharacterCount:		= LevelSelect.SpecialStageCount+1
+LevelSelect.MusicTestCount:		= LevelSelect.CharacterCount+1
+LevelSelect.SoundTestCount:		= LevelSelect.MusicTestCount+1
+LevelSelect.SampleTestCount:		= LevelSelect.SoundTestCount+1
+LevelSelect.MaxCount:			= 11
+LevelSelect.MaxSpecialStages:		= ChaosEmeralds_Count
+LevelSelect.MaxCharacters:		= 5
+LevelSelect.MaxMusicNumber:		= (mus__End-mus__First)-1
+LevelSelect.MaxSoundNumber:		= (sfx__End-sfx__First)-1
+LevelSelect.MaxSampleNumber:		= $10
 
 ; RAM
 
 	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
-LevelSelect_buffer:			ds.b $1000					; foreground buffer (copy)
-LevelSelect_buffer2:			ds.b $1000					; foreground buffer (main)
+LevelSelect.buffer:			ds.b $1000					; foreground buffer (copy)
+LevelSelect.buffer2:			ds.b $1000					; foreground buffer (main)
 
 	dsreset										; stop pretending and reset the program counter
 
 	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
-LevelSelect_music_count:		ds.w 1
-LevelSelect_sound_count:		ds.w 1
-LevelSelect_sample_count:		ds.w 1
-LevelSelect_control_timer:		ds.w 1
-LevelSelect_saved_act:			ds.w 1
-LevelSelect_cheat_counter:		ds.w 1						; debug mode
-LevelSelect_cheat_counter2:		ds.w 1						; emeralds
-LevelSelect_vertical_count:		ds.w 1
-LevelSelect_horizontal_count:		ds.w $10
+LevelSelect.music_count:		ds.w 1
+LevelSelect.sound_count:		ds.w 1
+LevelSelect.sample_count:		ds.w 1
+LevelSelect.control_timer:		ds.w 1
+LevelSelect.saved_act:			ds.w 1
+LevelSelect.cheat_counter:		ds.w 1						; debug mode
+LevelSelect.cheat_counter2:		ds.w 1						; emeralds
+LevelSelect.vertical_count:		ds.w 1
+LevelSelect.horizontal_count:		ds.w $10
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -89,17 +88,17 @@ LevelSelectScreen:
 
 		; load text
 		bsr.w	LevelSelect_LoadText
-		move.w	#palette_line_1+LevelSelect_VRAM,d3
+		move.w	#palette_line_1+LevelSelect.VRAM,d3
 		bsr.w	LevelSelect_LoadHeaderText
-		moveq	#palette_line_0+LevelSelect_VRAM,d3
+		moveq	#palette_line_0+LevelSelect.VRAM,d3
 		bsr.w	LevelSelect_LoadSpecialStage
-		moveq	#palette_line_0+LevelSelect_VRAM,d3
+		moveq	#palette_line_0+LevelSelect.VRAM,d3
 		bsr.w	LevelSelect_LoadCharacter
-		moveq	#palette_line_0+LevelSelect_VRAM,d3
+		moveq	#palette_line_0+LevelSelect.VRAM,d3
 		bsr.w	LevelSelect_MarkFields.drawmusic
-		moveq	#palette_line_0+LevelSelect_VRAM,d3
+		moveq	#palette_line_0+LevelSelect.VRAM,d3
 		bsr.w	LevelSelect_MarkFields.drawsound
-		moveq	#palette_line_0+LevelSelect_VRAM,d3
+		moveq	#palette_line_0+LevelSelect.VRAM,d3
 		bsr.w	LevelSelect_MarkFields.drawsample
 		move.w	#palette_line_1,d3
 		bsr.w	LevelSelect_MarkFields
@@ -137,7 +136,7 @@ LevelSelectScreen:
 		bsr.w	LevelSelect_MarkFields
 		tst.b	(Ctrl_1_pressed).w
 		bpl.s	.loop
-		cmpi.w	#LevelSelect_SpecialStageCount,(LevelSelect_vertical_count).w
+		cmpi.w	#LevelSelect.SpecialStageCount,(LevelSelect.vertical_count).w
 		bhi.s	.exit
 
 		; set
@@ -156,7 +155,7 @@ LevelSelectScreen:
 		move.w	d0,(Apparent_zone_and_act).w
 
 		; load
-		cmpi.w	#LevelSelect_SpecialStageCount,(LevelSelect_vertical_count).w
+		cmpi.w	#LevelSelect.SpecialStageCount,(LevelSelect.vertical_count).w
 		beq.s	.special
 
 		; clear
@@ -164,11 +163,11 @@ LevelSelectScreen:
 
 		; load zone and act
 		move.b	#GameModeID_LevelScreen,(Game_mode).w				; set screen mode to Level
-		move.w	(LevelSelect_vertical_count).w,d2
+		move.w	(LevelSelect.vertical_count).w,d2
 		move.b	d2,-(sp)							; multiply by $100
 		move.w	(sp)+,d2
 		clr.b	d2								; clear garbage data
-		add.w	(LevelSelect_saved_act).w,d2
+		add.w	(LevelSelect.saved_act).w,d2
 		move.w	d2,(Current_zone_and_act).w
 		move.w	d2,(Apparent_zone_and_act).w
 		clr.b	(Current_special_stage).w
@@ -203,16 +202,16 @@ LevelSelectScreen:
 LevelSelect_Controls:
 
 		; set vertical line
-		moveq	#LevelSelect_MaxCount-1,d2					; set max count
-		move.w	(LevelSelect_vertical_count).w,d3
-		lea	(LevelSelect_control_timer).w,a3
+		moveq	#LevelSelect.MaxCount-1,d2					; set max count
+		move.w	(LevelSelect.vertical_count).w,d3
+		lea	(LevelSelect.control_timer).w,a3
 		bsr.w	LevelSelect_FindUpDownControls
-		move.w	d3,(LevelSelect_vertical_count).w
+		move.w	d3,(LevelSelect.vertical_count).w
 
 		; check vertical line
-		cmpi.w	#LevelSelect_ZoneCount,d3
+		cmpi.w	#LevelSelect.ZoneCount,d3
 		blo.s	.getact
-		subq.w	#LevelSelect_SpecialStageCount,d3
+		subq.w	#LevelSelect.SpecialStageCount,d3
 		blo.s	.return
 		add.w	d3,d3
 		add.w	d3,d3
@@ -234,11 +233,11 @@ LevelSelect_Controls:
 ; ---------------------------------------------------------------------------
 
 		; get sample								; 10
-		moveq	#LevelSelect_MaxSampleNumber,d2					; set max count
-		move.w	(LevelSelect_sample_count).w,d3
-		lea	(LevelSelect_control_timer).w,a3
+		moveq	#LevelSelect.MaxSampleNumber,d2					; set max count
+		move.w	(LevelSelect.sample_count).w,d3
+		lea	(LevelSelect.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
-		move.w	d3,(LevelSelect_sample_count).w
+		move.w	d3,(LevelSelect.sample_count).w
 
 		; check ctrl
 		moveq	#btnABC,d1
@@ -255,25 +254,25 @@ LevelSelect_Controls:
 ; ---------------------------------------------------------------------------
 
 .getact
-		lea	(LevelSelect_horizontal_count).w,a0
-		move.w	(LevelSelect_vertical_count).w,d4
+		lea	(LevelSelect.horizontal_count).w,a0
+		move.w	(LevelSelect.vertical_count).w,d4
 		add.w	d4,d4
 		move.w	(a0,d4.w),d3
 		move.w	.maxacts(pc,d4.w),d2						; set max count
-		lea	(LevelSelect_control_timer).w,a3
+		lea	(LevelSelect.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
 		move.w	d3,(a0,d4.w)
-		move.w	d3,(LevelSelect_saved_act).w
+		move.w	d3,(LevelSelect.saved_act).w
 		rts
 ; ---------------------------------------------------------------------------
 
 .maxacts
-		dc.w LevelSelect_ActGHZCount-1	; GHZ
-		dc.w LevelSelect_ActMZCount-1	; MZ
-		dc.w LevelSelect_ActSYZCount-1	; SYZ
-		dc.w LevelSelect_ActLZCount-1	; LZ
-		dc.w LevelSelect_ActSLZCount-1	; SLZ
-		dc.w LevelSelect_ActSBZCount-1	; SBZ
+		dc.w LevelSelect.ActGHZCount-1	; GHZ
+		dc.w LevelSelect.ActMZCount-1	; MZ
+		dc.w LevelSelect.ActSYZCount-1	; SYZ
+		dc.w LevelSelect.ActLZCount-1	; LZ
+		dc.w LevelSelect.ActSLZCount-1	; SLZ
+		dc.w LevelSelect.ActSBZCount-1	; SBZ
 
 		zonewarning .maxacts,(2*1)
 
@@ -282,10 +281,10 @@ LevelSelect_Controls:
 ; ---------------------------------------------------------------------------
 
 .getspecialstage
-		moveq	#LevelSelect_MaxSpecialStages-1,d2				; set max count
+		moveq	#LevelSelect.MaxSpecialStages-1,d2				; set max count
 		moveq	#0,d3
 		move.b	(Current_special_stage).w,d3
-		lea	(LevelSelect_control_timer).w,a3
+		lea	(LevelSelect.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
 		move.b	d3,(Current_special_stage).w
 		rts
@@ -295,9 +294,9 @@ LevelSelect_Controls:
 ; ---------------------------------------------------------------------------
 
 .getcharacter
-		moveq	#LevelSelect_MaxCharacters-1,d2					; set max count
+		moveq	#LevelSelect.MaxCharacters-1,d2					; set max count
 		move.w	(Player_option).w,d3
-		lea	(LevelSelect_control_timer).w,a3
+		lea	(LevelSelect.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
 		move.w	d3,(Player_option).w
 
@@ -309,11 +308,11 @@ LevelSelect_Controls:
 ; ---------------------------------------------------------------------------
 
 .getmusic
-		moveq	#LevelSelect_MaxMusicNumber,d2					; set max count
-		move.w	(LevelSelect_music_count).w,d3
-		lea	(LevelSelect_control_timer).w,a3
+		moveq	#LevelSelect.MaxMusicNumber,d2					; set max count
+		move.w	(LevelSelect.music_count).w,d3
+		lea	(LevelSelect.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
-		move.w	d3,(LevelSelect_music_count).w
+		move.w	d3,(LevelSelect.music_count).w
 
 		; check ctrl
 		moveq	#btnABC,d1
@@ -334,13 +333,13 @@ LevelSelect_Controls:
 
 		; check debug mode cheat
 		lea	LevelSelect_Code.dcodedat(pc),a1				; load cheat code
-		lea	(LevelSelect_cheat_counter).w,a2				; load cheat counter
+		lea	(LevelSelect.cheat_counter).w,a2				; load cheat counter
 		lea	LevelSelect_Code.debugcheat(pc),a3				; jmp to activation
 		bsr.w	LevelSelect_Code						; branch to check cheat
 
 		; check emeralds cheat
 		lea	LevelSelect_Code.ecodedat(pc),a1				; load cheat code
-		lea	(LevelSelect_cheat_counter2).w,a2				; load cheat counter
+		lea	(LevelSelect.cheat_counter2).w,a2				; load cheat counter
 		lea	LevelSelect_Code.emeraldcheat(pc),a3				; jmp to activation
 		bra.w	LevelSelect_Code						; branch to check cheat
 ; --------------------------------------------------------------------------
@@ -353,11 +352,11 @@ LevelSelect_Controls:
 ; ---------------------------------------------------------------------------
 
 .getsound
-		moveq	#LevelSelect_MaxSoundNumber,d2					; set max count
-		move.w	(LevelSelect_sound_count).w,d3
-		lea	(LevelSelect_control_timer).w,a3
+		moveq	#LevelSelect.MaxSoundNumber,d2					; set max count
+		move.w	(LevelSelect.sound_count).w,d3
+		lea	(LevelSelect.control_timer).w,a3
 		bsr.s	LevelSelect_FindLeftRightControls
-		move.w	d3,(LevelSelect_sound_count).w
+		move.w	d3,(LevelSelect.sound_count).w
 
 		; check ctrl
 		moveq	#btnABC,d1
@@ -473,11 +472,11 @@ LevelSelect_MappingOffsets:
 ; =============== S U B R O U T I N E =======================================
 
 LevelSelect_MarkFields:
-		lea	(LevelSelect_buffer).l,a1
-		lea	LevelSelect_buffer2-LevelSelect_buffer(a1),a2
+		lea	(LevelSelect.buffer).l,a1
+		lea	LevelSelect.buffer2-LevelSelect.buffer(a1),a2
 
 		; get text pos
-		move.w	(LevelSelect_vertical_count).w,d0
+		move.w	(LevelSelect.vertical_count).w,d0
 		add.w	d0,d0
 		move.w	LevelSelect_MappingOffsets(pc,d0.w),d0
 
@@ -498,15 +497,15 @@ LevelSelect_MarkFields:
 
 		dbf	d2,.copy
 
-	if LevelSelect_VRAM<>0
-		ori.w	#LevelSelect_VRAM,d3
+	if LevelSelect.VRAM<>0
+		ori.w	#LevelSelect.VRAM,d3
 	endif
 
 		; check vertical line
-		move.w	(LevelSelect_vertical_count).w,d0
-		cmpi.w	#LevelSelect_ZoneCount,d0
+		move.w	(LevelSelect.vertical_count).w,d0
+		cmpi.w	#LevelSelect.ZoneCount,d0
 		blo.w	LevelSelect_LoadAct
-		subq.w	#LevelSelect_SpecialStageCount,d0
+		subq.w	#LevelSelect.SpecialStageCount,d0
 		blo.s	.return
 		add.w	d0,d0
 		add.w	d0,d0
@@ -530,8 +529,8 @@ LevelSelect_MarkFields:
 ; ---------------------------------------------------------------------------
 
 .drawsample										; 10
-		lea	(LevelSelect_buffer2+planeLoc(64,24,26)).l,a5
-		move.w	(LevelSelect_sample_count).w,d0
+		lea	(LevelSelect.buffer2+planeLoc(64,24,26)).l,a5
+		move.w	(LevelSelect.sample_count).w,d0
 		bra.s	.drawnumbers
 
 ; ---------------------------------------------------------------------------
@@ -539,8 +538,8 @@ LevelSelect_MarkFields:
 ; ---------------------------------------------------------------------------
 
 .drawsound
-		lea	(LevelSelect_buffer2+planeLoc(64,24,24)).l,a5
-		move.w	(LevelSelect_sound_count).w,d0
+		lea	(LevelSelect.buffer2+planeLoc(64,24,24)).l,a5
+		move.w	(LevelSelect.sound_count).w,d0
 		bra.s	.drawnumbers
 
 ; ---------------------------------------------------------------------------
@@ -548,8 +547,8 @@ LevelSelect_MarkFields:
 ; ---------------------------------------------------------------------------
 
 .drawmusic
-		lea	(LevelSelect_buffer2+planeLoc(64,24,22)).l,a5
-		move.w	(LevelSelect_music_count).w,d0
+		lea	(LevelSelect.buffer2+planeLoc(64,24,22)).l,a5
+		move.w	(LevelSelect.music_count).w,d0
 
 .drawnumbers
 		move.w	d0,d2
@@ -580,7 +579,7 @@ LevelSelect_MarkFields:
 ; =============== S U B R O U T I N E =======================================
 
 LevelSelect_LoadSpecialStage:
-		lea	(LevelSelect_buffer2+planeLoc(64,24,17)).l,a5
+		lea	(LevelSelect.buffer2+planeLoc(64,24,17)).l,a5
 		moveq	#0,d0
 		move.b	(Current_special_stage).w,d0
 		add.w	d0,d0
@@ -595,7 +594,7 @@ LevelSelect_LoadSpecialStage:
 ; =============== S U B R O U T I N E =======================================
 
 LevelSelect_LoadCharacter:
-		lea	(LevelSelect_buffer2+planeLoc(64,24,20)).l,a5
+		lea	(LevelSelect.buffer2+planeLoc(64,24,20)).l,a5
 		move.w	(Player_option).w,d0
 		add.w	d0,d0
 		lea	LevelSelect_LoadCharacterText1(pc),a0
@@ -614,9 +613,9 @@ LevelSelect_LoadCharacter:
 ; =============== S U B R O U T I N E =======================================
 
 LevelSelect_LoadAct:
-		lea	(LevelSelect_buffer2+planeLoc(64,24,5)).l,a5
-		lea	(LevelSelect_horizontal_count).w,a0
-		move.w	(LevelSelect_vertical_count).w,d0
+		lea	(LevelSelect.buffer2+planeLoc(64,24,5)).l,a5
+		lea	(LevelSelect.horizontal_count).w,a0
+		move.w	(LevelSelect.vertical_count).w,d0
 		move.w	d0,d1
 		move.b	d0,-(sp)							; multiply by $100
 		move.w	(sp)+,d0
@@ -646,7 +645,7 @@ LevelSelect_LoadAct:
 ; =============== S U B R O U T I N E =======================================
 
 LevelSelect_LoadHeaderText:
-		lea	(LevelSelect_buffer2+planeLoc(64,0,1)).l,a5
+		lea	(LevelSelect.buffer2+planeLoc(64,0,1)).l,a5
 		lea	LevelSelect_HeaderText(pc),a0
 		bra.s	LevelSelect_LoadAct.loadtext
 
@@ -661,16 +660,16 @@ LevelSelect_LoadHeaderText:
 
 LevelSelect_LoadText:
 		lea	LevelSelect_MappingOffsets(pc),a0
-		lea	(LevelSelect_buffer).l,a1
+		lea	(LevelSelect.buffer).l,a1
 		lea	LevelSelect_MainText(pc),a2
 
-	if LevelSelect_VRAM=0
+	if LevelSelect.VRAM=0
 		moveq	#0,d3
 	else
-		move.w	#LevelSelect_VRAM,d3
+		move.w	#LevelSelect.VRAM,d3
 	endif
 
-		moveq	#LevelSelect_MaxCount-1,d1
+		moveq	#LevelSelect.MaxCount-1,d1
 
 .load
 		moveq	#0,d2
@@ -701,8 +700,8 @@ LevelSelect_LoadText:
 		dbf	d1,.load
 
 		; copy buffer
-		lea	(LevelSelect_buffer).l,a1
-		lea	LevelSelect_buffer2-LevelSelect_buffer(a1),a2
+		lea	(LevelSelect.buffer).l,a1
+		lea	LevelSelect.buffer2-LevelSelect.buffer(a1),a2
 		moveq	#bytesToXcnt(($1000),8*4),d1
 
 .bcopy

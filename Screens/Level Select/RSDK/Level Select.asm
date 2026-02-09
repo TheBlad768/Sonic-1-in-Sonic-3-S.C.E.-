@@ -3,40 +3,40 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-LevelSelectRSDK_VRAM:			= 0
+LevelSelectRSDK.VRAM:			= 0
 
-LevelSelectRSDK_SpecialStageCount:	= 19
-LevelSelectRSDK_CharacterCount:		= LevelSelectRSDK_SpecialStageCount+1
-LevelSelectRSDK_MusicTestCount:		= LevelSelectRSDK_CharacterCount+1
-LevelSelectRSDK_SoundTestCount:		= LevelSelectRSDK_MusicTestCount+1
-LevelSelectRSDK_SampleTestCount:	= LevelSelectRSDK_SoundTestCount+1
+LevelSelectRSDK.SpecialStageCount:	= 19
+LevelSelectRSDK.CharacterCount:		= LevelSelectRSDK.SpecialStageCount+1
+LevelSelectRSDK.MusicTestCount:		= LevelSelectRSDK.CharacterCount+1
+LevelSelectRSDK.SoundTestCount:		= LevelSelectRSDK.MusicTestCount+1
+LevelSelectRSDK.SampleTestCount:	= LevelSelectRSDK.SoundTestCount+1
 
-LevelSelectRSDK_MaxCount:		= 12
-LevelSelectRSDK_MaxCharacters:		= 5
-LevelSelectRSDK_MaxMusicNumber:		= (mus__End-mus__First)-1
-LevelSelectRSDK_MaxSoundNumber:		= (sfx__End-sfx__First)-1
-LevelSelectRSDK_MaxSampleNumber:	= $10
+LevelSelectRSDK.MaxCount:		= 12
+LevelSelectRSDK.MaxCharacters:		= 5
+LevelSelectRSDK.MaxMusicNumber:		= (mus__End-mus__First)-1
+LevelSelectRSDK.MaxSoundNumber:		= (sfx__End-sfx__First)-1
+LevelSelectRSDK.MaxSampleNumber:	= $10
 
 ; RAM
 
 	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
-LevelSelectRSDK_buffer:			ds.b $1000					; foreground buffer (copy)
-LevelSelectRSDK_buffer2:		ds.b $1000					; foreground buffer (main)
+LevelSelectRSDK.buffer:			ds.b $1000					; foreground buffer (copy)
+LevelSelectRSDK.buffer2:		ds.b $1000					; foreground buffer (main)
 
 	dsreset										; stop pretending and reset the program counter
 
 	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
-LevelSelectRSDK_music_count:		ds.w 1
-LevelSelectRSDK_sound_count:		ds.w 1
-LevelSelectRSDK_sample_count:		ds.w 1
-LevelSelectRSDK_control_timer:		ds.w 1
-LevelSelectRSDK_saved_act:		ds.w 1
-LevelSelectRSDK_cheat_counter:		ds.w 1						; debug mode
-LevelSelectRSDK_cheat_counter2:		ds.w 1						; emeralds
-LevelSelectRSDK_vertical_count:		ds.w 1
-LevelSelectRSDK_vertical_count_prev:	ds.w 1
+LevelSelectRSDK.music_count:		ds.w 1
+LevelSelectRSDK.sound_count:		ds.w 1
+LevelSelectRSDK.sample_count:		ds.w 1
+LevelSelectRSDK.control_timer:		ds.w 1
+LevelSelectRSDK.saved_act:		ds.w 1
+LevelSelectRSDK.cheat_counter:		ds.w 1						; debug mode
+LevelSelectRSDK.cheat_counter2:		ds.w 1						; emeralds
+LevelSelectRSDK.vertical_count:		ds.w 1
+LevelSelectRSDK.vertical_count_prev:	ds.w 1
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -77,7 +77,7 @@ LevelSelectRSDKScreen:
 		move.b	d0,(Demo_mode_flag).w
 
 		; set
-		move.w	#-1,(LevelSelectRSDK_vertical_count_prev).w
+		move.w	#-1,(LevelSelectRSDK.vertical_count_prev).w
 
 		; load main art
 		lea	PLC_LevelSelectRSDK(pc),a5
@@ -91,20 +91,20 @@ LevelSelectRSDKScreen:
 		EniDecomp	MapEni_LevelSelectRSDKIcons, RAM_start+$2000, 0, 0, FALSE	; decompress Enigma mappings
 
 		; load icon
-		lea	(LevelSelectRSDK_buffer+$AB0).l,a2
+		lea	(LevelSelectRSDK.buffer+$AB0).l,a2
 		copyTilemapToRAM	80, 48, $80
 
 		; load text
 		bsr.w	LevelSelectRSDK_LoadText
 		move.w	#palette_line_1,d3
 		bsr.w	LevelSelectRSDK_MarkFields
-		moveq	#palette_line_0+LevelSelectRSDK_VRAM,d3
+		moveq	#palette_line_0+LevelSelectRSDK.VRAM,d3
 		bsr.w	LevelSelectRSDK_MarkFields.drawplayer
-		moveq	#palette_line_0+LevelSelectRSDK_VRAM,d3
+		moveq	#palette_line_0+LevelSelectRSDK.VRAM,d3
 		bsr.w	LevelSelectRSDK_MarkFields.drawmusic
-		moveq	#palette_line_0+LevelSelectRSDK_VRAM,d3
+		moveq	#palette_line_0+LevelSelectRSDK.VRAM,d3
 		bsr.w	LevelSelectRSDK_MarkFields.drawsound
-		moveq	#palette_line_0+LevelSelectRSDK_VRAM,d3
+		moveq	#palette_line_0+LevelSelectRSDK.VRAM,d3
 		bsr.w	LevelSelectRSDK_MarkFields.drawsample
 
 		; load main palette
@@ -147,7 +147,7 @@ LevelSelectRSDKScreen:
 		bsr.w	LevelSelectRSDK_UpdateIcons
 		tst.b	(Ctrl_1_pressed).w
 		bpl.s	.loop
-		cmpi.w	#LevelSelectRSDK_SpecialStageCount,(LevelSelectRSDK_vertical_count).w
+		cmpi.w	#LevelSelectRSDK.SpecialStageCount,(LevelSelectRSDK.vertical_count).w
 		bhi.s	.exit
 
 		; set
@@ -166,7 +166,7 @@ LevelSelectRSDKScreen:
 		move.w	d0,(Apparent_zone_and_act).w
 
 		; load
-		cmpi.w	#LevelSelectRSDK_SpecialStageCount,(LevelSelectRSDK_vertical_count).w
+		cmpi.w	#LevelSelectRSDK.SpecialStageCount,(LevelSelectRSDK.vertical_count).w
 		beq.s	.special
 
 		; clear
@@ -174,7 +174,7 @@ LevelSelectRSDKScreen:
 
 		; load zone and act
 		move.b	#GameModeID_LevelScreen,(Game_mode).w				; set screen mode to Level
-		move.w	(LevelSelectRSDK_vertical_count).w,d2
+		move.w	(LevelSelectRSDK.vertical_count).w,d2
 		add.w	d2,d2
 		lea	TitleLevelSelectScreen.index(pc),a0
 		move.w	(a0,d2.w),d2
@@ -209,13 +209,13 @@ LevelSelectRSDK_Controls:
 
 		; set vertical line
 		moveq	#24-1,d2							; set max count
-		move.w	(LevelSelectRSDK_vertical_count).w,d3
-		lea	(LevelSelectRSDK_control_timer).w,a3
+		move.w	(LevelSelectRSDK.vertical_count).w,d3
+		lea	(LevelSelectRSDK.control_timer).w,a3
 		bsr.w	Options_FindUpDownControls
-		move.w	d3,(LevelSelectRSDK_vertical_count).w
+		move.w	d3,(LevelSelectRSDK.vertical_count).w
 
 		; check vertical line
-		subi.w	#LevelSelectRSDK_SpecialStageCount+1,d3
+		subi.w	#LevelSelectRSDK.SpecialStageCount+1,d3
 		blo.w	LevelSelectRSDK_SwitchSide
 		add.w	d3,d3
 		jmp	.index(pc,d3.w)
@@ -231,11 +231,11 @@ LevelSelectRSDK_Controls:
 ; ---------------------------------------------------------------------------
 
 		; get sample								; 6
-		moveq	#LevelSelectRSDK_MaxSampleNumber,d2				; set max count
-		move.w	(LevelSelectRSDK_sample_count).w,d3
-		lea	(LevelSelectRSDK_control_timer).w,a3
+		moveq	#LevelSelectRSDK.MaxSampleNumber,d2				; set max count
+		move.w	(LevelSelectRSDK.sample_count).w,d3
+		lea	(LevelSelectRSDK.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
-		move.w	d3,(LevelSelectRSDK_sample_count).w
+		move.w	d3,(LevelSelectRSDK.sample_count).w
 
 		; check ctrl
 		moveq	#btnABC,d1
@@ -252,9 +252,9 @@ LevelSelectRSDK_Controls:
 ; ---------------------------------------------------------------------------
 
 .getcharacter
-		moveq	#LevelSelectRSDK_MaxCharacters-1,d2				; set max count
+		moveq	#LevelSelectRSDK.MaxCharacters-1,d2				; set max count
 		move.w	(Player_option).w,d3
-		lea	(LevelSelectRSDK_control_timer).w,a3
+		lea	(LevelSelectRSDK.control_timer).w,a3
 		bsr.w	Options_FindLeftRightControls
 		move.w	d3,(Player_option).w
 
@@ -266,11 +266,11 @@ LevelSelectRSDK_Controls:
 ; ---------------------------------------------------------------------------
 
 .getsound
-		moveq	#LevelSelectRSDK_MaxSoundNumber,d2				; set max count
-		move.w	(LevelSelectRSDK_sound_count).w,d3
-		lea	(LevelSelectRSDK_control_timer).w,a3
+		moveq	#LevelSelectRSDK.MaxSoundNumber,d2				; set max count
+		move.w	(LevelSelectRSDK.sound_count).w,d3
+		lea	(LevelSelectRSDK.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
-		move.w	d3,(LevelSelectRSDK_sound_count).w
+		move.w	d3,(LevelSelectRSDK.sound_count).w
 
 		; check ctrl
 		moveq	#btnABC,d1
@@ -287,11 +287,11 @@ LevelSelectRSDK_Controls:
 ; ---------------------------------------------------------------------------
 
 .getmusic
-		moveq	#LevelSelectRSDK_MaxMusicNumber,d2				; set max count
-		move.w	(LevelSelectRSDK_music_count).w,d3
-		lea	(LevelSelectRSDK_control_timer).w,a3
+		moveq	#LevelSelectRSDK.MaxMusicNumber,d2				; set max count
+		move.w	(LevelSelectRSDK.music_count).w,d3
+		lea	(LevelSelectRSDK.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
-		move.w	d3,(LevelSelectRSDK_music_count).w
+		move.w	d3,(LevelSelectRSDK.music_count).w
 
 		; check ctrl
 		moveq	#btnABC,d1
@@ -312,13 +312,13 @@ LevelSelectRSDK_Controls:
 
 		; check debug mode cheat
 		lea	LevelSelect_Code.dcodedat(pc),a1				; load cheat code
-		lea	(LevelSelectRSDK_cheat_counter).w,a2				; load cheat counter
+		lea	(LevelSelectRSDK.cheat_counter).w,a2				; load cheat counter
 		lea	LevelSelect_Code.debugcheat(pc),a3				; jmp to activation
 		bsr.w	LevelSelect_Code						; branch to check cheat
 
 		; check emeralds cheat
 		lea	LevelSelect_Code.ecodedat(pc),a1				; load cheat code
-		lea	(LevelSelectRSDK_cheat_counter2).w,a2				; load cheat counter
+		lea	(LevelSelectRSDK.cheat_counter2).w,a2				; load cheat counter
 		lea	LevelSelect_Code.emeraldcheat(pc),a3				; jmp to activation
 		bra.w	LevelSelect_Code						; branch to check cheat
 ; --------------------------------------------------------------------------
@@ -332,8 +332,8 @@ LevelSelectRSDK_SwitchSide:
 		moveq	#btnLR,d1
 		and.b	(Ctrl_1_pressed).w,d1
 		beq.s	.return
-		move.w	(LevelSelectRSDK_vertical_count).w,d0
-		move.b	.table(pc,d0.w),(LevelSelectRSDK_vertical_count+1).w
+		move.w	(LevelSelectRSDK.vertical_count).w,d0
+		move.b	.table(pc,d0.w),(LevelSelectRSDK.vertical_count+1).w
 		sfx	sfx_Switch, 1
 ; ---------------------------------------------------------------------------
 
@@ -378,10 +378,10 @@ LevelSelectRSDK_UpdateIcons:
 
 		; check
 		moveq	#0,d1								; is used to load art
-		move.w	(LevelSelectRSDK_vertical_count).w,d1
-		cmp.w	(LevelSelectRSDK_vertical_count_prev).w,d1
+		move.w	(LevelSelectRSDK.vertical_count).w,d1
+		cmp.w	(LevelSelectRSDK.vertical_count_prev).w,d1
 		beq.s	LevelSelectRSDK_SwitchSide.return
-		move.w	d1,(LevelSelectRSDK_vertical_count_prev).w
+		move.w	d1,(LevelSelectRSDK.vertical_count_prev).w
 
 		; load palette
 		add.w	d1,d1
@@ -466,12 +466,12 @@ LevelSelectRSDK_MappingOffsets2:
 LevelSelectRSDK_MarkFields:
 
 		; highlight name zone
-		lea	(LevelSelectRSDK_buffer).l,a1
-		lea	LevelSelectRSDK_buffer2-LevelSelectRSDK_buffer(a1),a2
-		lea	LevelSelectRSDK_buffer-LevelSelectRSDK_buffer(a1),a3
+		lea	(LevelSelectRSDK.buffer).l,a1
+		lea	LevelSelectRSDK.buffer2-LevelSelectRSDK.buffer(a1),a2
+		lea	LevelSelectRSDK.buffer-LevelSelectRSDK.buffer(a1),a3
 
 		; get text pos
-		move.w	(LevelSelectRSDK_vertical_count).w,d0
+		move.w	(LevelSelectRSDK.vertical_count).w,d0
 		move.w	d0,d4
 		add.w	d0,d0
 		add.w	d0,d0
@@ -507,8 +507,8 @@ LevelSelectRSDK_MarkFields:
 		bhs.s	.options							; if yes, branch
 
 		; highlight act number
-		lea	LevelSelectRSDK_buffer-LevelSelectRSDK_buffer(a3),a1
-		lea	LevelSelectRSDK_buffer2-LevelSelectRSDK_buffer(a1),a2
+		lea	LevelSelectRSDK.buffer-LevelSelectRSDK.buffer(a3),a1
+		lea	LevelSelectRSDK.buffer2-LevelSelectRSDK.buffer(a1),a2
 
 		; get text pos
 		move.w	(a1,d1.w),d0
@@ -517,13 +517,13 @@ LevelSelectRSDK_MarkFields:
 
 .options
 
-	if LevelSelectRSDK_VRAM<>0
-		ori.w	#LevelSelectRSDK_VRAM,d3
+	if LevelSelectRSDK.VRAM<>0
+		ori.w	#LevelSelectRSDK.VRAM,d3
 	endif
 
 		; check vertical line
-		moveq	#-(LevelSelectRSDK_SpecialStageCount+1),d0
-		add.w	(LevelSelectRSDK_vertical_count).w,d0
+		moveq	#-(LevelSelectRSDK.SpecialStageCount+1),d0
+		add.w	(LevelSelectRSDK.vertical_count).w,d0
 		bhs.s	.return
 		add.w	d0,d0
 		jmp	.index(pc,d0.w)
@@ -539,8 +539,8 @@ LevelSelectRSDK_MarkFields:
 ; ---------------------------------------------------------------------------
 
 .drawsample										; 6
-		lea	(LevelSelectRSDK_buffer2+planeLoc(64,34,18)).l,a5
-		move.w	(LevelSelectRSDK_sample_count).w,d0
+		lea	(LevelSelectRSDK.buffer2+planeLoc(64,34,18)).l,a5
+		move.w	(LevelSelectRSDK.sample_count).w,d0
 		bra.s	.drawnumbers
 
 ; ---------------------------------------------------------------------------
@@ -548,7 +548,7 @@ LevelSelectRSDK_MarkFields:
 ; ---------------------------------------------------------------------------
 
 .drawplayer
-		lea	(LevelSelectRSDK_buffer2+planeLoc(64,34,12)).l,a5
+		lea	(LevelSelectRSDK.buffer2+planeLoc(64,34,12)).l,a5
 		move.w	(Player_option).w,d0
 		bra.s	.drawnumbers
 
@@ -557,8 +557,8 @@ LevelSelectRSDK_MarkFields:
 ; ---------------------------------------------------------------------------
 
 .drawsound
-		lea	(LevelSelectRSDK_buffer2+planeLoc(64,34,16)).l,a5
-		move.w	(LevelSelectRSDK_sound_count).w,d0
+		lea	(LevelSelectRSDK.buffer2+planeLoc(64,34,16)).l,a5
+		move.w	(LevelSelectRSDK.sound_count).w,d0
 		bra.s	.drawnumbers
 
 ; ---------------------------------------------------------------------------
@@ -566,8 +566,8 @@ LevelSelectRSDK_MarkFields:
 ; ---------------------------------------------------------------------------
 
 .drawmusic
-		lea	(LevelSelectRSDK_buffer2+planeLoc(64,34,14)).l,a5
-		move.w	(LevelSelectRSDK_music_count).w,d0
+		lea	(LevelSelectRSDK.buffer2+planeLoc(64,34,14)).l,a5
+		move.w	(LevelSelectRSDK.music_count).w,d0
 
 .drawnumbers
 		move.b	d0,d2
@@ -614,16 +614,16 @@ LevelSelectRSDK_MappingOffsets:
 
 LevelSelectRSDK_LoadText:
 		lea	LevelSelectRSDK_MappingOffsets(pc),a0
-		lea	(LevelSelectRSDK_buffer).l,a1
+		lea	(LevelSelectRSDK.buffer).l,a1
 		lea	LevelSelectRSDK_MainText(pc),a2
 
-	if LevelSelectRSDK_VRAM=0
+	if LevelSelectRSDK.VRAM=0
 		moveq	#0,d3
 	else
-		move.w	#LevelSelectRSDK_VRAM,d3
+		move.w	#LevelSelectRSDK.VRAM,d3
 	endif
 
-		moveq	#LevelSelectRSDK_MaxCount-1,d1
+		moveq	#LevelSelectRSDK.MaxCount-1,d1
 
 .load
 		moveq	#0,d2
@@ -640,7 +640,7 @@ LevelSelectRSDK_LoadText:
 		dbf	d1,.load
 
 		; set act numbers
-		lea	(LevelSelectRSDK_buffer+$11E).l,a1
+		lea	(LevelSelectRSDK.buffer+$11E).l,a1
 		moveq	#5-1,d1								; (GHZ-SLZ)
 
 .nload
@@ -668,8 +668,8 @@ LevelSelectRSDK_LoadText:
 		move.w	d0,-$8D6(a1)
 
 		; copy buffer
-		lea	(LevelSelectRSDK_buffer).l,a1
-		lea	LevelSelectRSDK_buffer2-LevelSelectRSDK_buffer(a1),a2
+		lea	(LevelSelectRSDK.buffer).l,a1
+		lea	LevelSelectRSDK.buffer2-LevelSelectRSDK.buffer(a1),a2
 		moveq	#bytesToXcnt(($1000),8*4),d1
 
 .bcopy

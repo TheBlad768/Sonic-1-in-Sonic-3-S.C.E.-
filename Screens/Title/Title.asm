@@ -6,9 +6,9 @@
 
 	dsset ramaddr(Boss_events)							; pretend we're in the RAM
 
-Title_cheat_counter:			ds.b 1
-Title_control:				ds.b 1
-Title_end:				ds.b 1
+Title.cheat_counter:			ds.b 1
+Title.control:				ds.b 1
+Title.end:				ds.b 1
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -220,7 +220,7 @@ TitleScreen:
 		; check exit
 		tst.w	(Demo_timer).w
 		beq.w	.demo
-		tst.b	(Title_end).w
+		tst.b	(Title.end).w
 		beq.s	.notexit
 		tst.b	(Ctrl_1_pressed).w						; is Start pressed?
 		bmi.s	.exit								; if yes, branch
@@ -236,7 +236,7 @@ TitleScreen:
 ; ---------------------------------------------------------------------------
 
 .exit
-		tst.b	(Title_control).w
+		tst.b	(Title.control).w
 		bne.s	.options
 
 		; set
@@ -497,13 +497,13 @@ Obj_TitlePSB:
 		subq.w	#1,tpsb_timer(a0)						; wait
 		bpl.s	.return
 		move.l	#.options,address(a0)
-		st	(Title_end).w							; set exit flag from current screen
+		st	(Title.end).w							; set exit flag from current screen
 
 .options
 		moveq	#btnUD,d1
 		and.b	(Ctrl_1_pressed).w,d1
 		beq.s	.return
-		not.b	(Title_control).w						; 0 or -1
+		not.b	(Title.control).w						; 0 or -1
 		sfx	sfx_Switch
 
 .options2
@@ -511,7 +511,7 @@ Obj_TitlePSB:
 
 		; draw icon
 		moveq	#1,d0
-		and.b	(Title_control).w,d0
+		and.b	(Title.control).w,d0
 		locVRAM	(VRAM_Plane_A_Name_Table+$C1A),d1				; plane address
 		move.l	#vdpCommDelta(planeLoc(64,1,2)),d2
 		tst.w	(Current_zone_and_act).w
@@ -524,7 +524,7 @@ Obj_TitlePSB:
 
 		; draw text
 		lea	Title_StartGameText(pc),a1					; text address
-		tst.b	(Title_control).w
+		tst.b	(Title.control).w
 		beq.s	.skip
 		lea	Title_StartGameText2(pc),a1					; text address
 
@@ -534,7 +534,7 @@ Obj_TitlePSB:
 
 		; draw text
 		lea	Title_ContinueText(pc),a1					; text address
-		tst.b	(Title_control).w
+		tst.b	(Title.control).w
 		beq.s	.drawtext
 		lea	Title_ContinueText2(pc),a1					; text address
 
@@ -578,7 +578,7 @@ Title_Code:
 		moveq	#btnDir+btnABC,d0
 		and.b	(Ctrl_1_pressed).w,d0
 		beq.s	.return
-		lea	(Title_cheat_counter).w,a2
+		lea	(Title.cheat_counter).w,a2
 		moveq	#0,d0
 		move.b	(a2),d0
 		lea	.codedat(pc,d0.w),a1

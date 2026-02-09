@@ -3,35 +3,34 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-TitleLevelSelect_VRAM:			= $C50F
+TitleLevelSelect.VRAM:			= $C50F
 
-; Variables
-TitleLevelSelect_MaxCount:		= 22
-TitleLevelSelect_SpecialStageCount:	= 19
-TitleLevelSelect_MaxSpecialStages:	= ChaosEmeralds_Count
-TitleLevelSelect_MaxCharacters:		= 5
-TitleLevelSelect_MaxMusicNumber:	= ((mus__End-mus__First)-1) + ((sfx__End-sfx__First)-1)
+TitleLevelSelect.MaxCount:		= 22
+TitleLevelSelect.SpecialStageCount:	= 19
+TitleLevelSelect.MaxSpecialStages:	= ChaosEmeralds_Count
+TitleLevelSelect.MaxCharacters:		= 5
+TitleLevelSelect.MaxMusicNumber:	= ((mus__End-mus__First)-1) + ((sfx__End-sfx__First)-1)
 
 ; RAM
 
 	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
-TitleLevelSelect_buffer:		ds.b $1000					; background buffer (copy)
-TitleLevelSelect_buffer2:		ds.b $1000					; background buffer (main)
-TitleLevelSelect_buffer3:		ds.b $1000
+TitleLevelSelect.buffer:		ds.b $1000					; background buffer (copy)
+TitleLevelSelect.buffer2:		ds.b $1000					; background buffer (main)
+TitleLevelSelect.buffer3:		ds.b $1000
 
 	dsreset										; stop pretending and reset the program counter
 
 	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
-TitleLevelSelect_music_count:		ds.w 1
-TitleLevelSelect_sound_count:		ds.w 1
-TitleLevelSelect_sample_count:		ds.w 1
-TitleLevelSelect_control_timer:		ds.w 1
-TitleLevelSelect_saved_act:		ds.w 1
-TitleLevelSelect_cheat_counter:		ds.w 1						; debug mode
-TitleLevelSelect_cheat_counter2:	ds.w 1						; emeralds
-TitleLevelSelect_vertical_count:	ds.w 1
+TitleLevelSelect.music_count:		ds.w 1
+TitleLevelSelect.sound_count:		ds.w 1
+TitleLevelSelect.sample_count:		ds.w 1
+TitleLevelSelect.control_timer:		ds.w 1
+TitleLevelSelect.saved_act:		ds.w 1
+TitleLevelSelect.cheat_counter:		ds.w 1						; debug mode
+TitleLevelSelect.cheat_counter2:	ds.w 1						; emeralds
+TitleLevelSelect.vertical_count:	ds.w 1
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -52,11 +51,11 @@ TitleLevelSelectScreen:
 
 		; load text
 		bsr.w	TitleLevelSelect_LoadText
-		move.w	#palette_line_0+TitleLevelSelect_VRAM,d3
+		move.w	#palette_line_0+TitleLevelSelect.VRAM,d3
 		bsr.w	TitleLevelSelect_MarkFields.drawss
-		move.w	#palette_line_0+TitleLevelSelect_VRAM,d3
+		move.w	#palette_line_0+TitleLevelSelect.VRAM,d3
 		bsr.w	TitleLevelSelect_MarkFields.drawmusic
-		move.w	#palette_line_0+TitleLevelSelect_VRAM,d3
+		move.w	#palette_line_0+TitleLevelSelect.VRAM,d3
 		bsr.w	TitleLevelSelect_MarkFields.drawplayer
 
 		; we need to switch planes
@@ -65,7 +64,7 @@ TitleLevelSelectScreen:
 		lea	VDP_control_port-VDP_data_port(a6),a5				; load VDP control address to a5
 
 		; copy foreground buffer from VRAM to RAM
-		lea	(TitleLevelSelect_buffer3).l,a1
+		lea	(TitleLevelSelect.buffer3).l,a1
 		bsr.w	TitleLevelSelect_VRAMRead
 
 		; clear title text
@@ -102,7 +101,7 @@ TitleLevelSelectScreen:
 		bsr.w	TitleLevelSelect_MarkFields
 		tst.b	(Ctrl_1_pressed).w
 		bpl.s	.loop
-		cmpi.w	#TitleLevelSelect_SpecialStageCount,(TitleLevelSelect_vertical_count).w
+		cmpi.w	#TitleLevelSelect.SpecialStageCount,(TitleLevelSelect.vertical_count).w
 		bhi.s	.exit
 
 		; set
@@ -121,7 +120,7 @@ TitleLevelSelectScreen:
 		move.w	d0,(Apparent_zone_and_act).w
 
 		; load
-		cmpi.w	#TitleLevelSelect_SpecialStageCount,(TitleLevelSelect_vertical_count).w
+		cmpi.w	#TitleLevelSelect.SpecialStageCount,(TitleLevelSelect.vertical_count).w
 		beq.s	.special
 
 		; clear
@@ -129,7 +128,7 @@ TitleLevelSelectScreen:
 
 		; load zone and act
 		move.b	#GameModeID_LevelScreen,(Game_mode).w				; set screen mode to Level
-		move.w	(TitleLevelSelect_vertical_count).w,d2
+		move.w	(TitleLevelSelect.vertical_count).w,d2
 		add.w	d2,d2
 		move.w	.index(pc,d2.w),d2
 		move.w	d2,(Current_zone_and_act).w
@@ -188,14 +187,14 @@ TitleLevelSelectScreen:
 TitleLevelSelect_Controls:
 
 		; set vertical line
-		moveq	#TitleLevelSelect_MaxCount-1,d2
-		move.w	(TitleLevelSelect_vertical_count).w,d3
-		lea	(TitleLevelSelect_control_timer).w,a3
+		moveq	#TitleLevelSelect.MaxCount-1,d2
+		move.w	(TitleLevelSelect.vertical_count).w,d3
+		lea	(TitleLevelSelect.control_timer).w,a3
 		bsr.w	Options_FindUpDownControls
-		move.w	d3,(TitleLevelSelect_vertical_count).w
+		move.w	d3,(TitleLevelSelect.vertical_count).w
 
 		; check vertical line
-		subi.w	#TitleLevelSelect_SpecialStageCount,d3
+		subi.w	#TitleLevelSelect.SpecialStageCount,d3
 		blo.s	.return
 		add.w	d3,d3
 		jmp	.index(pc,d3.w)
@@ -211,9 +210,9 @@ TitleLevelSelect_Controls:
 ; ---------------------------------------------------------------------------
 
 .getcharacter
-		moveq	#TitleLevelSelect_MaxCharacters-1,d2				; set max count
+		moveq	#TitleLevelSelect.MaxCharacters-1,d2				; set max count
 		move.w	(Player_option).w,d3
-		lea	(TitleLevelSelect_control_timer).w,a3
+		lea	(TitleLevelSelect.control_timer).w,a3
 		bsr.w	Options_FindLeftRightControls
 		move.w	d3,(Player_option).w
 
@@ -225,10 +224,10 @@ TitleLevelSelect_Controls:
 ; ---------------------------------------------------------------------------
 
 .getss
-		moveq	#TitleLevelSelect_MaxSpecialStages-1,d2				; set max count
+		moveq	#TitleLevelSelect.MaxSpecialStages-1,d2				; set max count
 		moveq	#0,d3
 		move.b	(Current_special_stage).w,d3
-		lea	(TitleLevelSelect_control_timer).w,a3
+		lea	(TitleLevelSelect.control_timer).w,a3
 		bsr.w	Options_FindLeftRightControls
 		move.b	d3,(Current_special_stage).w
 		rts
@@ -238,11 +237,11 @@ TitleLevelSelect_Controls:
 ; ---------------------------------------------------------------------------
 
 .getmusic
-		moveq	#TitleLevelSelect_MaxMusicNumber,d2				; set max count
-		move.w	(TitleLevelSelect_music_count).w,d3
-		lea	(TitleLevelSelect_control_timer).w,a3
+		moveq	#TitleLevelSelect.MaxMusicNumber,d2				; set max count
+		move.w	(TitleLevelSelect.music_count).w,d3
+		lea	(TitleLevelSelect.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
-		move.w	d3,(TitleLevelSelect_music_count).w
+		move.w	d3,(TitleLevelSelect.music_count).w
 
 		; check ctrl
 		moveq	#btnABC,d1
@@ -272,13 +271,13 @@ TitleLevelSelect_Controls:
 
 		; check debug mode cheat
 		lea	LevelSelect_Code.dcodedat(pc),a1				; load cheat code
-		lea	(TitleLevelSelect_cheat_counter).w,a2				; load cheat counter
+		lea	(TitleLevelSelect.cheat_counter).w,a2				; load cheat counter
 		lea	LevelSelect_Code.debugcheat(pc),a3				; jmp to activation
 		bsr.w	LevelSelect_Code						; branch to check cheat
 
 		; check emeralds cheat
 		lea	LevelSelect_Code.ecodedat(pc),a1				; load cheat code
-		lea	(TitleLevelSelect_cheat_counter2).w,a2				; load cheat counter
+		lea	(TitleLevelSelect.cheat_counter2).w,a2				; load cheat counter
 		lea	LevelSelect_Code.emeraldcheat(pc),a3				; jmp to activation
 		bra.w	LevelSelect_Code						; branch to check cheat
 ; --------------------------------------------------------------------------
@@ -318,7 +317,7 @@ TitleLevelSelect_VRAMWrite:
 
 		; copy buffer to VRAM
 		stopZ80
-		dma68kToVDP (TitleLevelSelect_buffer3),VRAM_Plane_B_Name_Table,VRAM_Plane_Table_Size,VRAM	; foreground buffer to VRAM
+		dma68kToVDP (TitleLevelSelect.buffer3),VRAM_Plane_B_Name_Table,VRAM_Plane_Table_Size,VRAM	; foreground buffer to VRAM
 		startZ80
 		rts
 
@@ -355,13 +354,13 @@ TitleLevelSelect_MappingOffsets:
 TitleLevelSelect_MarkFields:
 
 		; get text pos
-		move.w	(TitleLevelSelect_vertical_count).w,d0
+		move.w	(TitleLevelSelect.vertical_count).w,d0
 		add.w	d0,d0
 		move.w	TitleLevelSelect_MappingOffsets(pc,d0.w),d0
 
 		; RAM shift
-		lea	(TitleLevelSelect_buffer).l,a1
-		lea	TitleLevelSelect_buffer2-TitleLevelSelect_buffer(a1),a2
+		lea	(TitleLevelSelect.buffer).l,a1
+		lea	TitleLevelSelect.buffer2-TitleLevelSelect.buffer(a1),a2
 		adda.w	d0,a1
 		adda.w	d0,a2
 
@@ -378,13 +377,13 @@ TitleLevelSelect_MarkFields:
 
 		dbf	d2,.copy
 
-	if TitleLevelSelect_VRAM<>0
-		ori.w	#TitleLevelSelect_VRAM,d3
+	if TitleLevelSelect.VRAM<>0
+		ori.w	#TitleLevelSelect.VRAM,d3
 	endif
 
 		; check vertical line
-		moveq	#-TitleLevelSelect_SpecialStageCount,d0
-		add.w	(TitleLevelSelect_vertical_count).w,d0
+		moveq	#-TitleLevelSelect.SpecialStageCount,d0
+		add.w	(TitleLevelSelect.vertical_count).w,d0
 		bhs.s	.return
 		add.w	d0,d0
 		jmp	.index(pc,d0.w)
@@ -399,8 +398,8 @@ TitleLevelSelect_MarkFields:
 ; ---------------------------------------------------------------------------
 
 .drawmusic										; 4
-		lea	(TitleLevelSelect_buffer2+planeLoc(64,25,25)).l,a5
-		move.w	(TitleLevelSelect_music_count).w,d0
+		lea	(TitleLevelSelect.buffer2+planeLoc(64,25,25)).l,a5
+		move.w	(TitleLevelSelect.music_count).w,d0
 		bra.s	.drawnumbers
 
 ; ---------------------------------------------------------------------------
@@ -408,7 +407,7 @@ TitleLevelSelect_MarkFields:
 ; ---------------------------------------------------------------------------
 
 .drawplayer
-		lea	(TitleLevelSelect_buffer2+planeLoc(64,25,24)).l,a5
+		lea	(TitleLevelSelect.buffer2+planeLoc(64,25,24)).l,a5
 		move.w	(Player_option).w,d0
 		bra.s	.drawnumbers
 
@@ -417,7 +416,7 @@ TitleLevelSelect_MarkFields:
 ; ---------------------------------------------------------------------------
 
 .drawss
-		lea	(TitleLevelSelect_buffer2+planeLoc(64,25,23)).l,a5
+		lea	(TitleLevelSelect.buffer2+planeLoc(64,25,23)).l,a5
 		moveq	#1,d0
 		add.b	(Current_special_stage).w,d0
 
@@ -476,16 +475,16 @@ TitleLevelSelect_MappingOffsets2:
 
 TitleLevelSelect_LoadText:
 		lea	TitleLevelSelect_MappingOffsets2(pc),a0
-		lea	(TitleLevelSelect_buffer).l,a1
+		lea	(TitleLevelSelect.buffer).l,a1
 		lea	TitleLevelSelect_Text(pc),a2
 
-	if TitleLevelSelect_VRAM=0
+	if TitleLevelSelect.VRAM=0
 		moveq	#0,d3
 	else
-		move.w	#TitleLevelSelect_VRAM,d3
+		move.w	#TitleLevelSelect.VRAM,d3
 	endif
 
-		moveq	#TitleLevelSelect_MaxCount-1,d1
+		moveq	#TitleLevelSelect.MaxCount-1,d1
 
 .load
 		moveq	#0,d2
@@ -502,8 +501,8 @@ TitleLevelSelect_LoadText:
 		dbf	d1,.load
 
 		; copy buffer
-		lea	(TitleLevelSelect_buffer).l,a1
-		lea	TitleLevelSelect_buffer2-TitleLevelSelect_buffer(a1),a2
+		lea	(TitleLevelSelect.buffer).l,a1
+		lea	TitleLevelSelect.buffer2-TitleLevelSelect.buffer(a1),a2
 		moveq	#bytesToXcnt(($1000),8*4),d1
 
 .bcopy

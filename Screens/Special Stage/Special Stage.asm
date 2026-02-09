@@ -4,7 +4,7 @@
 
 ; Constants
 
-; Special Stage
+; Background
 ArtTile_SS_Background_Clouds:		= 0
 ArtTile_SS_Background_Fish:		= $51
 

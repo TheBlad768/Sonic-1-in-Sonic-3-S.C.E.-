@@ -2,15 +2,11 @@
 ; Ending
 ; ---------------------------------------------------------------------------
 
-; Constants
-
-; Variables
-
 ; RAM
 
 	dsset ramaddr(Level_trigger_array)						; pretend we're in the RAM
 
-Ending_player:				ds.w 1
+Ending.player:				ds.w 1
 
 	dsreset										; stop pretending and reset the program counter
 
