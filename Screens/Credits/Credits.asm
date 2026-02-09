@@ -132,7 +132,7 @@ CreditsScreen:
 		move.l	#Obj_CreditsEggRobo,address(a1)
 
 .fadefrom
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		jsr	(Pal_FadeFromBlack).w
 
@@ -143,7 +143,7 @@ CreditsScreen:
 		; load process
 		movea.l	(Credits.process).w,a0
 		jsr	(a0)
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		bsr.w	Credits_ScreenShake
 		jsr	(Render_Sprites).w
 		bra.s	.loope
