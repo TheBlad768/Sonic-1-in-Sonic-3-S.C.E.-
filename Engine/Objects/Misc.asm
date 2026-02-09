@@ -770,7 +770,7 @@ Offset_ObjectsDuringTransition:
 		sub.w	d1,y_pos(a1)
 
 .nextobj
-		lea	next_object(a1),a1						; next slot
+		lea	next_object(a1),a1						; next object slot
 		dbf	d2,.check
 		rts
 
