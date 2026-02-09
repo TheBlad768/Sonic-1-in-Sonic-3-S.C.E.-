@@ -83,7 +83,7 @@ Obj_Yadrin:
 
 Yad_CheckWall:
 		move.w	(Level_frame_counter).w,d0
-		add.w	d7,d0								; d7 - object count (Process_Sprites)
+		add.w	d7,d0								; d7 - object count (Process_Objects)
 		andi.w	#3,d0
 		bne.s	.nottouch
 

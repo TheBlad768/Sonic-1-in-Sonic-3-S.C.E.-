@@ -130,7 +130,7 @@ ContinueScreen:
 
 		; load icons object
 		bsr.w	Continue_LoadIcons
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		music	mus_Continue
 		move.l	#VInt_Continue,(V_int_ptr).w					; set VInt pointer
@@ -142,7 +142,7 @@ ContinueScreen:
 		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync.skip).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
 		move.b	(Continue.routine).w,d0						; load Continue routine

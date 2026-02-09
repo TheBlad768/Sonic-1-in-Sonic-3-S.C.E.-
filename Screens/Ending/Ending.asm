@@ -176,7 +176,7 @@ EndingScreen:
 
 .notp2
 		jsr	(Load_Objects).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		jsr	(Animate_Tiles).w
 
@@ -188,7 +188,7 @@ EndingScreen:
 		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync.skip).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
 
@@ -205,7 +205,7 @@ EndingScreen:
 		addq.w	#1,(Level_frame_counter).w
 		bsr.w	End_MoveSonic
 		jsr	(Load_Objects).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(DeformBgLayer).w
 		jsr	(Level_Events).w
 		jsr	(Animate_Palette).w
@@ -231,7 +231,7 @@ EndingScreen:
 		addq.w	#1,(Level_frame_counter).w
 		bsr.s	End_MoveSonic
 		jsr	(Load_Objects).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(DeformBgLayer).w
 		jsr	(Level_Events).w
 		jsr	(Animate_Tiles).w

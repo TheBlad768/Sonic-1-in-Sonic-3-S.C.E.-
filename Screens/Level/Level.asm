@@ -134,7 +134,7 @@ LevelScreen:
 		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync.skip).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
 		tst.w	(Dynamic_object_RAM+(object_size*5)+objoff_48).w		; has title card sequence finished?
@@ -210,7 +210,7 @@ LevelScreen:
 		bsr.w	SpawnLevelMainSprites
 		jsr	(Load_Objects).w
 		jsr	(Load_Rings).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		jsr	(Animate_Tiles).w
 		bsr.w	GetDemoPtr
@@ -236,7 +236,7 @@ LevelScreen:
 		bsr.w	Demo_PlayRecord
 		jsr	(Special_Events).w
 		jsr	(Load_Objects).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 
 		; check restart
 		tst.b	(Restart_level_flag).w

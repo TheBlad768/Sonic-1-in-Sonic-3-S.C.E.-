@@ -110,7 +110,7 @@ TitleScreen:
 		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync.skip).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
 		enableScreen
@@ -120,7 +120,7 @@ TitleScreen:
 		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync.skip).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
 		tst.w	(KosPlus_modules_left).w
@@ -194,7 +194,7 @@ TitleScreen:
 		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync.skip).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
 
@@ -208,7 +208,7 @@ TitleScreen:
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync.skip).w
 		addq.w	#1,(Level_frame_counter).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 
 		; move background
 		move.w	(Player_1+x_pos).w,d0

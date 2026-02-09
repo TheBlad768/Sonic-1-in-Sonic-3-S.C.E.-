@@ -47,7 +47,7 @@ Obj_Basaran:
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.s	.nodrop								; if yes, branch
 		move.b	(V_int_run_count+3).w,d0
-		add.b	d7,d0								; d7 - object count (Process_Sprites)
+		add.b	d7,d0								; d7 - object count (Process_Objects)
 		andi.b	#7,d0
 		bne.s	.nodrop
 		move.b	#1,anim(a0)
@@ -99,7 +99,7 @@ Obj_Basaran:
 		cmpi.w	#128,d2								; is Basaran within $80 pixels of Sonic?
 		blo.s	.dontflyup							; if yes, branch
 		move.b	(V_int_run_count+3).w,d0
-		add.b	d7,d0								; d7 - object count (Process_Sprites)
+		add.b	d7,d0								; d7 - object count (Process_Objects)
 		andi.b	#7,d0
 		bne.s	.dontflyup
 		move.l	#.flyup,jump_ptr(a0)

@@ -411,7 +411,7 @@ SpecialStageScreen:
 
 .flicker
 		move.w	d1,(Emerald_flicker_flag).w
-		jsr	(Process_Sprites).w
+		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
 		bra.s	.results
