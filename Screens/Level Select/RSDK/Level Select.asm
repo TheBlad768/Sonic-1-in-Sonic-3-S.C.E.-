@@ -13,9 +13,9 @@ LevelSelectRSDK.SampleTestCount:	= LevelSelectRSDK.SoundTestCount+1
 
 LevelSelectRSDK.MaxCount:		= 12
 LevelSelectRSDK.MaxCharacters:		= 5
-LevelSelectRSDK.MaxMusicNumber:		= (mus__End-mus__First)-1
-LevelSelectRSDK.MaxSoundNumber:		= (sfx__End-sfx__First)-1
-LevelSelectRSDK.MaxSampleNumber:	= $10
+LevelSelectRSDK.MaxMusicNumber:		= (mus__Last-mus__First)
+LevelSelectRSDK.MaxSoundNumber:		= (sfx__Last-sfx__First)
+LevelSelectRSDK.MaxSampleNumber:	= (dac__Last-dac__First)
 
 ; RAM
 

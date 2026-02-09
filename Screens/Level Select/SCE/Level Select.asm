@@ -21,9 +21,9 @@ LevelSelect.SampleTestCount:		= LevelSelect.SoundTestCount+1
 LevelSelect.MaxCount:			= 11
 LevelSelect.MaxSpecialStages:		= ChaosEmeralds_Count
 LevelSelect.MaxCharacters:		= 5
-LevelSelect.MaxMusicNumber:		= (mus__End-mus__First)-1
-LevelSelect.MaxSoundNumber:		= (sfx__End-sfx__First)-1
-LevelSelect.MaxSampleNumber:		= $10
+LevelSelect.MaxMusicNumber:		= (mus__Last-mus__First)
+LevelSelect.MaxSoundNumber:		= (sfx__Last-sfx__First)
+LevelSelect.MaxSampleNumber:		= (dac__Last-dac__First)
 
 ; RAM
 

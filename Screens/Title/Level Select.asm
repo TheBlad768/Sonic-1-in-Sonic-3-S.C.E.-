@@ -9,7 +9,7 @@ TitleLevelSelect.MaxCount:		= 22
 TitleLevelSelect.SpecialStageCount:	= 19
 TitleLevelSelect.MaxSpecialStages:	= ChaosEmeralds_Count
 TitleLevelSelect.MaxCharacters:		= 5
-TitleLevelSelect.MaxMusicNumber:	= ((mus__End-mus__First)-1) + ((sfx__End-sfx__First)-1)
+TitleLevelSelect.MaxMusicNumber:	= ((mus__Last-mus__First)-1) + ((sfx__Last-sfx__First)-1)
 
 ; RAM
 

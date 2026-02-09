@@ -9,9 +9,9 @@ Options.MaxCount:			= 7
 Options.MaxCharacters:			= 5
 Options.MaxMusicOpt:			= 2						; on/off
 Options.MaxSoundOpt:			= 2						; on/off
-Options.MaxMusicNumber:			= (mus__End-mus__First)-1
-Options.MaxSoundNumber:			= (sfx__End-sfx__First)-1
-Options.MaxSampleNumber:		= $10
+Options.MaxMusicNumber:			= (mus__Last-mus__First)
+Options.MaxSoundNumber:			= (sfx__Last-sfx__First)
+Options.MaxSampleNumber:		= (dac__Last-dac__First)
 
 ; RAM
 
