@@ -2,18 +2,14 @@
 ; Continue
 ; ---------------------------------------------------------------------------
 
-; Constants
-
-; Variables
-
 ; RAM
 
 	dsset ramaddr(Palette_cycle_counters)						; pretend we're in the RAM
 
-Continue_countdown:			ds.w 1
-Continue_routine:			ds.b 1
-Continue_countdown_numbers:		ds.b 1
-Continue_countdown_update:		ds.b 1
+Continue.countdown:			ds.w 1
+Continue.routine:			ds.b 1
+Continue.countdown_numbers:		ds.b 1
+Continue.countdown_update:		ds.b 1
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -123,7 +119,7 @@ ContinueScreen:
 		jsr	(Create_New_Object).w
 		bne.s	.notfree
 		move.l	#Obj_Continue_Countdown,address(a1)
-		move.w	a1,(Continue_countdown).w					; save parent
+		move.w	a1,(Continue.countdown).w					; save parent
 
 		; create stars object
 		jsr	(Create_New_Object_4).w
@@ -149,7 +145,7 @@ ContinueScreen:
 		jsr	(Process_Sprites).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
-		move.b	(Continue_routine).w,d0						; load Continue routine
+		move.b	(Continue.routine).w,d0						; load Continue routine
 		beq.s	.loop
 		subq.b	#1,d0
 		beq.s	.back
@@ -183,7 +179,7 @@ ContinueScreen:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Continue_Countdown:
-		move.b	#9+1,(Continue_countdown_numbers).w				; set 10 seconds
+		move.b	#9+1,(Continue.countdown_numbers).w				; set 10 seconds
 		move.l	#.main,address(a0)
 
 .main
@@ -197,16 +193,16 @@ Obj_Continue_Countdown:
 		move.w	#60-1,objoff_2E(a0)
 
 		; sub and draw numbers
-		move.b	(Continue_countdown_numbers).w,d0
+		move.b	(Continue.countdown_numbers).w,d0
 		subq.b	#1,d0
 		bmi.s	.end
-		move.b	d0,(Continue_countdown_numbers).w
-		st	(Continue_countdown_update).w
+		move.b	d0,(Continue.countdown_numbers).w
+		st	(Continue.countdown_update).w
 		rts
 ; ---------------------------------------------------------------------------
 
 .end
-		move.b	#2,(Continue_routine).w
+		move.b	#2,(Continue.routine).w
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -234,7 +230,7 @@ Obj_Continue_SonicWTails:
 		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
 .main
-		movea.w	(Continue_countdown).w,a1
+		movea.w	(Continue.countdown).w,a1
 		btst	#3,objoff_38(a1)						; is Start was pressed?
 		bne.s	.pstart								; if yes, branch
 
@@ -343,7 +339,7 @@ Obj_Continue_SonicAlone:
 		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
 .main
-		movea.w	(Continue_countdown).w,a1
+		movea.w	(Continue.countdown).w,a1
 		btst	#2,objoff_38(a1)						; Knuckles run to the middle of the screen?
 		bne.s	.setrun								; if yes, branch
 		lea	AniRaw_5CBC5(pc),a1
@@ -380,7 +376,7 @@ Obj_Continue_SonicAlone:
 ; ---------------------------------------------------------------------------
 
 .stoprun
-		move.b	#1,(Continue_routine).w						; set screen routine
+		move.b	#1,(Continue.routine).w						; set screen routine
 		move.l	#.draw,address(a0)
 		bra.s	.draw
 
@@ -401,7 +397,7 @@ Obj_Continue_TailsWSonic:
 		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
 .waitstart
-		movea.w	(Continue_countdown).w,a1
+		movea.w	(Continue.countdown).w,a1
 		btst	#3,objoff_38(a1)						; is Start was pressed?
 		bne.s	.pstart								; if yes, branch
 
@@ -469,7 +465,7 @@ Obj_Continue_TailsWSonic:
 		addq.w	#6,x_pos(a0)
 		cmpi.w	#$80+(320+32),x_pos(a0)
 		blo.s	.anim
-		move.b	#1,(Continue_routine).w						; set screen routine
+		move.b	#1,(Continue.routine).w						; set screen routine
 		bra.s	.anim
 
 ; ---------------------------------------------------------------------------
@@ -517,7 +513,7 @@ Obj_Continue_Knuckles:
 
 .waitstart
 		move.w	#$2F,objoff_2E(a0)						; set wait
-		movea.w	(Continue_countdown).w,a1
+		movea.w	(Continue.countdown).w,a1
 		btst	#3,objoff_38(a1)						; is Start was pressed?
 		beq.s	.wait								; if not, branch
 		move.l	#.wait,address(a0)
@@ -548,7 +544,7 @@ Obj_Continue_Knuckles:
 ; ---------------------------------------------------------------------------
 
 .waitstart2
-		movea.w	(Continue_countdown).w,a1
+		movea.w	(Continue.countdown).w,a1
 		btst	#3,objoff_38(a1)						; is Start was pressed?
 		bne.s	.pstart								; if yes, branch
 
@@ -564,7 +560,7 @@ Obj_Continue_Knuckles:
 		move.w	x_pos(a0),d0
 		addq.w	#6,d0
 		move.w	d0,x_pos(a0)
-		movea.w	(Continue_countdown).w,a1
+		movea.w	(Continue.countdown).w,a1
 		cmpi.w	#$80+(screen_width/2),d0
 		blo.s	.checkpos
 		bset	#2,objoff_38(a1)						; set Knuckles in the middle of the screen flag
@@ -581,7 +577,7 @@ Obj_Continue_Knuckles:
 		move.l	#.draw,address(a0)
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w				; is Knuckles?
 		blo.s	.draw								; if not, branch
-		move.b	#1,(Continue_routine).w						; set screen routine
+		move.b	#1,(Continue.routine).w						; set screen routine
 		bra.s	.draw
 
 ; ---------------------------------------------------------------------------
@@ -923,12 +919,12 @@ byte_5CBB2:	dc.b 7, 8
 ; =============== S U B R O U T I N E =======================================
 
 Continue_LoadNumbers:
-		tst.b	(Continue_countdown_update).w					; does the numbers need updating?
+		tst.b	(Continue.countdown_update).w					; does the numbers need updating?
 		beq.s	.return								; if not, branch
-		clr.b	(Continue_countdown_update).w
+		clr.b	(Continue.countdown_update).w
 
 		; get countdown numbers
-		move.b	(Continue_countdown_numbers).w,d0
+		move.b	(Continue.countdown_numbers).w,d0
 		move.b	d0,d1								; copy numbers
 
 		; calc left number (0)

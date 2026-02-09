@@ -3,34 +3,33 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-Options_VRAM:				= $50F
+Options.VRAM:				= $50F
 
-; Variables
-Options_MaxCount:			= 7
-Options_MaxCharacters:			= 5
-Options_MaxMusicOpt:			= 2						; on/off
-Options_MaxSoundOpt:			= 2						; on/off
-Options_MaxMusicNumber:			= (mus__Last-mus__First)
-Options_MaxSoundNumber:			= (sfx__Last-sfx__First)
-Options_MaxSampleNumber:		= (dac__Last-dac__First)
+Options.MaxCount:			= 7
+Options.MaxCharacters:			= 5
+Options.MaxMusicOpt:			= 2						; on/off
+Options.MaxSoundOpt:			= 2						; on/off
+Options.MaxMusicNumber:			= (mus__End-mus__First)-1
+Options.MaxSoundNumber:			= (sfx__End-sfx__First)-1
+Options.MaxSampleNumber:		= $10
 
 ; RAM
 
 	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
-Options_buffer:				ds.b $1000					; foreground buffer (copy)
-Options_buffer2:			ds.b $1000					; foreground buffer (main)
+Options.buffer:				ds.b $1000					; foreground buffer (copy)
+Options.buffer2:			ds.b $1000					; foreground buffer (main)
 
 	dsreset										; stop pretending and reset the program counter
 
 	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
-Options_music_count:			ds.w 1
-Options_sound_count:			ds.w 1
-Options_sample_count:			ds.w 1
-Options_save_music:			ds.w 1
-Options_control_timer:			ds.w 1
-Options_vertical_count:			ds.w 1
+Options.music_count:			ds.w 1
+Options.sound_count:			ds.w 1
+Options.sample_count:			ds.w 1
+Options.save_music:			ds.w 1
+Options.control_timer:			ds.w 1
+Options.vertical_count:			ds.w 1
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -107,17 +106,17 @@ OptionsScreen:
 
 		; load text
 		bsr.w	Options_LoadText
-		move.w	#palette_line_0+Options_VRAM,d3
+		move.w	#palette_line_0+Options.VRAM,d3
 		bsr.w	Options_MarkFields.loadcharacter
-		move.w	#palette_line_0+Options_VRAM,d3
+		move.w	#palette_line_0+Options.VRAM,d3
 		bsr.w	Options_MarkFields.musicopt
-		move.w	#palette_line_0+Options_VRAM,d3
+		move.w	#palette_line_0+Options.VRAM,d3
 		bsr.w	Options_MarkFields.soundopt
-		move.w	#palette_line_0+Options_VRAM,d3
+		move.w	#palette_line_0+Options.VRAM,d3
 		bsr.w	Options_MarkFields.drawmusic
-		move.w	#palette_line_0+Options_VRAM,d3
+		move.w	#palette_line_0+Options.VRAM,d3
 		bsr.w	Options_MarkFields.drawsound
-		move.w	#palette_line_0+Options_VRAM,d3
+		move.w	#palette_line_0+Options.VRAM,d3
 		bsr.w	Options_MarkFields.drawsample
 		move.w	#palette_line_1,d3
 		bsr.w	Options_MarkFields
@@ -129,7 +128,7 @@ OptionsScreen:
 
 		; set
 		music	mus_Menu							; play music
-		move.w	d0,(Options_save_music).w					; save id music
+		move.w	d0,(Options.save_music).w					; save id music
 
 		; next
 		move.l	#VInt_LevelSelect,(V_int_ptr).w					; set VInt pointer
@@ -160,11 +159,11 @@ OptionsScreen:
 Options_Controls:
 
 		; set vertical line
-		moveq	#Options_MaxCount-1,d2
-		move.w	(Options_vertical_count).w,d3
-		lea	(Options_control_timer).w,a3
+		moveq	#Options.MaxCount-1,d2
+		move.w	(Options.vertical_count).w,d3
+		lea	(Options.control_timer).w,a3
 		bsr.w	Options_FindUpDownControls
-		move.w	d3,(Options_vertical_count).w
+		move.w	d3,(Options.vertical_count).w
 
 		; check vertical line
 		add.w	d3,d3
@@ -191,9 +190,9 @@ Options_Controls:
 ; ---------------------------------------------------------------------------
 
 .getcharacter
-		moveq	#Options_MaxCharacters-1,d2
+		moveq	#Options.MaxCharacters-1,d2
 		move.w	(Player_option).w,d3
-		lea	(Options_control_timer).w,a3
+		lea	(Options.control_timer).w,a3
 		bsr.w	Options_FindLeftRightControls
 		move.w	d3,(Player_option).w
 		rts
@@ -203,10 +202,10 @@ Options_Controls:
 ; ---------------------------------------------------------------------------
 
 .getmusicopt
-		moveq	#Options_MaxMusicOpt-1,d2
+		moveq	#Options.MaxMusicOpt-1,d2
 		moveq	#0,d3
 		move.b	(Music_disable_flag).w,d3
-		lea	(Options_control_timer).w,a3
+		lea	(Options.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
 		move.b	d3,(Music_disable_flag).w
 
@@ -216,7 +215,7 @@ Options_Controls:
 		beq.s	.return
 
 		; check disable music flag
-		move.w	(Options_save_music).w,d0
+		move.w	(Options.save_music).w,d0
 		tst.b	d3
 		beq.s	.play
 		moveq	#signextendB(mus_Stop),d0
@@ -229,10 +228,10 @@ Options_Controls:
 ; ---------------------------------------------------------------------------
 
 .getsoundopt
-		moveq	#Options_MaxSoundOpt-1,d2
+		moveq	#Options.MaxSoundOpt-1,d2
 		moveq	#0,d3
 		move.b	(Sound_disable_flag).w,d3
-		lea	(Options_control_timer).w,a3
+		lea	(Options.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
 		move.b	d3,(Sound_disable_flag).w
 
@@ -255,11 +254,11 @@ Options_Controls:
 ; ---------------------------------------------------------------------------
 
 .getmusic
-		moveq	#Options_MaxMusicNumber,d2
-		move.w	(Options_music_count).w,d3
-		lea	(Options_control_timer).w,a3
+		moveq	#Options.MaxMusicNumber,d2
+		move.w	(Options.music_count).w,d3
+		lea	(Options.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
-		move.w	d3,(Options_music_count).w
+		move.w	d3,(Options.music_count).w
 
 		; check ctrl
 		moveq	#btnABC,d1
@@ -273,7 +272,7 @@ Options_Controls:
 		; play music
 		move.w	d3,d0
 		addq.w	#mus__First,d0							; $00 is reserved for silence
-		move.w	d0,(Options_save_music).w					; save id music
+		move.w	d0,(Options.save_music).w					; save id music
 		jmp	(Play_Music).w							; play music
 ; --------------------------------------------------------------------------
 
@@ -285,11 +284,11 @@ Options_Controls:
 ; ---------------------------------------------------------------------------
 
 .getsound
-		moveq	#Options_MaxSoundNumber,d2
-		move.w	(Options_sound_count).w,d3
-		lea	(Options_control_timer).w,a3
+		moveq	#Options.MaxSoundNumber,d2
+		move.w	(Options.sound_count).w,d3
+		lea	(Options.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
-		move.w	d3,(Options_sound_count).w
+		move.w	d3,(Options.sound_count).w
 
 		; check ctrl
 		moveq	#btnABC,d1
@@ -306,11 +305,11 @@ Options_Controls:
 ; ---------------------------------------------------------------------------
 
 .getsample
-		moveq	#Options_MaxSampleNumber,d2
-		move.w	(Options_sample_count).w,d3
-		lea	(Options_control_timer).w,a3
+		moveq	#Options.MaxSampleNumber,d2
+		move.w	(Options.sample_count).w,d3
+		lea	(Options.control_timer).w,a3
 		bsr.w	LevelSelect_FindLeftRightControls
-		move.w	d3,(Options_sample_count).w
+		move.w	d3,(Options.sample_count).w
 
 		; check ctrl
 		moveq	#btnABC,d1
@@ -428,13 +427,13 @@ Options_MappingOffsets:
 Options_MarkFields:
 
 		; get text pos
-		move.w	(Options_vertical_count).w,d0
+		move.w	(Options.vertical_count).w,d0
 		add.w	d0,d0
 		move.w	Options_MappingOffsets(pc,d0.w),d0
 
 		; RAM shift
-		lea	(Options_buffer).l,a1
-		lea	Options_buffer2-Options_buffer(a1),a2
+		lea	(Options.buffer).l,a1
+		lea	Options.buffer2-Options.buffer(a1),a2
 		adda.w	d0,a1
 		adda.w	d0,a2
 
@@ -458,12 +457,12 @@ Options_MarkFields:
 
 .skipi
 
-	if Options_VRAM<>0
-		ori.w	#Options_VRAM,d3
+	if Options.VRAM<>0
+		ori.w	#Options.VRAM,d3
 	endif
 
 		; check vertical line
-		move.w	(Options_vertical_count).w,d0
+		move.w	(Options.vertical_count).w,d0
 		add.w	d0,d0
 		add.w	d0,d0
 		jmp	.index(pc,d0.w)
@@ -486,20 +485,20 @@ Options_MarkFields:
 ; ---------------------------------------------------------------------------
 
 .drawsample
-		lea	(Options_buffer2+planeLoc(64,23,19)).l,a5
-		move.w	(Options_sample_count).w,d0
+		lea	(Options.buffer2+planeLoc(64,23,19)).l,a5
+		move.w	(Options.sample_count).w,d0
 		bra.s	.drawnumbers
 ; ---------------------------------------------------------------------------
 
 .drawsound
-		lea	(Options_buffer2+planeLoc(64,23,16)).l,a5
-		move.w	(Options_sound_count).w,d0
+		lea	(Options.buffer2+planeLoc(64,23,16)).l,a5
+		move.w	(Options.sound_count).w,d0
 		bra.s	.drawnumbers
 ; ---------------------------------------------------------------------------
 
 .drawmusic
-		lea	(Options_buffer2+planeLoc(64,23,13)).l,a5
-		move.w	(Options_music_count).w,d0
+		lea	(Options.buffer2+planeLoc(64,23,13)).l,a5
+		move.w	(Options.music_count).w,d0
 
 .drawnumbers
 		move.w	d0,d2
@@ -532,7 +531,7 @@ Options_MarkFields:
 ; =============== S U B R O U T I N E =======================================
 
 .soundopt
-		lea	(Options_buffer2+planeLoc(64,23,10)).l,a5
+		lea	(Options.buffer2+planeLoc(64,23,10)).l,a5
 		lea	(Sound_disable_flag).w,a1
 		bra.s	.main
 
@@ -543,7 +542,7 @@ Options_MarkFields:
 ; =============== S U B R O U T I N E =======================================
 
 .musicopt
-		lea	(Options_buffer2+planeLoc(64,23,7)).l,a5
+		lea	(Options.buffer2+planeLoc(64,23,7)).l,a5
 		lea	(Music_disable_flag).w,a1
 
 .main
@@ -560,7 +559,7 @@ Options_MarkFields:
 ; =============== S U B R O U T I N E =======================================
 
 .loadcharacter
-		lea	(Options_buffer2+planeLoc(64,23,4)).l,a5
+		lea	(Options.buffer2+planeLoc(64,23,4)).l,a5
 		move.w	(Player_option).w,d0
 		add.w	d0,d0
 		lea	LevelSelect_LoadCharacterText1(pc),a0
@@ -594,16 +593,16 @@ Options_MarkFields:
 
 Options_LoadText:
 		lea	Options_MappingOffsets(pc),a0
-		lea	(Options_buffer).l,a1
+		lea	(Options.buffer).l,a1
 		lea	Options_Text(pc),a2
 
-	if Options_VRAM=0
+	if Options.VRAM=0
 		moveq	#0,d3
 	else
-		move.w	#Options_VRAM,d3
+		move.w	#Options.VRAM,d3
 	endif
 
-		moveq	#Options_MaxCount-1,d1
+		moveq	#Options.MaxCount-1,d1
 
 .load
 		moveq	#0,d2
@@ -620,8 +619,8 @@ Options_LoadText:
 		dbf	d1,.load
 
 		; copy buffer
-		lea	(Options_buffer).l,a1
-		lea	Options_buffer2-Options_buffer(a1),a2
+		lea	(Options.buffer).l,a1
+		lea	Options.buffer2-Options.buffer(a1),a2
 		moveq	#bytesToXcnt(($1000),8*4),d1
 
 .bcopy

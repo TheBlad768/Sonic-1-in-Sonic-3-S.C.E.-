@@ -2,18 +2,14 @@
 ; Credits
 ; ---------------------------------------------------------------------------
 
-; Constants
-
-; Variables
-
 ; RAM
 
 	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
-Credits_routine:			ds.w 1
-Credits_process:			ds.l 1
-Credits_process_time:			ds.w 1
-Credits_end:				ds.b 1
+Credits.routine:			ds.w 1
+Credits.process:			ds.l 1
+Credits.process_time:			ds.w 1
+Credits.end:				ds.b 1
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -90,8 +86,8 @@ CreditsScreen:
 		bne.s	.waitplc							; wait for KosPlusM queue to clear
 
 		; load text
-		move.w	(Credits_routine).w,d0
-		addq.w	#2,(Credits_routine).w
+		move.w	(Credits.routine).w,d0
+		addq.w	#2,(Credits.routine).w
 		lea	CreditsText_Index(pc),a1
 		adda.w	(a1,d0.w),a1
 		move.l	#$A0018100,d5							; VRAM shift (font pos in VRAM) ; large and small font
@@ -99,8 +95,8 @@ CreditsScreen:
 
 		; set
 		music	mus_S3Credits
-		move.w	#3*60,(Credits_process_time).w
-		move.l	#Credits_Process_LoadText,(Credits_process).w
+		move.w	#3*60,(Credits.process_time).w
+		move.l	#Credits_Process_LoadText,(Credits.process).w
 		move.l	#VInt_Main,(V_int_ptr).w					; set VInt pointer
 		jsr	(Wait_VSync).w
 		enableScreen
@@ -110,13 +106,13 @@ CreditsScreen:
 		jsr	(Wait_VSync).w
 
 		; load process
-		movea.l	(Credits_process).w,a0
+		movea.l	(Credits.process).w,a0
 		jsr	(a0)
 
 		; check end
-		tst.b	(Credits_end).w
+		tst.b	(Credits.end).w
 		beq.s	.loopt
-		clr.b	(Credits_end).w
+		clr.b	(Credits.end).w
 
 		; set
 		move.w	#$7FF,(Screen_Y_wrap_value).w
@@ -125,7 +121,7 @@ CreditsScreen:
 		move.w	#$7F0,(Camera_target_max_Y_pos).w
 
 		; set
-		move.l	#Credits_Process_LoadText.return,(Credits_process).w
+		move.l	#Credits_Process_LoadText.return,(Credits.process).w
 
 		; create objects
 		jsr	(Create_New_Object).w
@@ -145,7 +141,7 @@ CreditsScreen:
 		addq.w	#1,(Level_frame_counter).w
 
 		; load process
-		movea.l	(Credits_process).w,a0
+		movea.l	(Credits.process).w,a0
 		jsr	(a0)
 		jsr	(Process_Sprites).w
 		bsr.w	Credits_ScreenShake
@@ -163,11 +159,11 @@ Credits_Process_LoadText:
 		bne.s	.skipt								; if yes, branch
 
 		; wait
-		subq.w	#1,(Credits_process_time).w
+		subq.w	#1,(Credits.process_time).w
 		bpl.s	.return
 
 .skipt
-		move.w	#3*60,(Credits_process_time).w
+		move.w	#3*60,(Credits.process_time).w
 
 		; fade and clear plane
 		jsr	(Pal_FadeToBlack).w
@@ -176,8 +172,8 @@ Credits_Process_LoadText:
 		startZ80
 
 		; load text
-		move.w	(Credits_routine).w,d0
-		addq.w	#2,(Credits_routine).w
+		move.w	(Credits.routine).w,d0
+		addq.w	#2,(Credits.routine).w
 		lea	CreditsText_Index(pc),a1
 		move.w	(a1,d0.w),d0
 		beq.s	.loadtextend							; if zero, branch
@@ -200,8 +196,8 @@ Credits_Process_LoadText:
 		startZ80
 
 .loadtextend
-		move.l	#.return,(Credits_process).w
-		st	(Credits_end).w
+		move.l	#.return,(Credits.process).w
+		st	(Credits.end).w
 
 		; load text
 		lea	Credits_TextEnd(pc),a1
