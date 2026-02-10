@@ -14,14 +14,76 @@ Ani_EggmanFZ: offsetTable
 		offsetTableEntry.w .defrun2	; 8
 		offsetTableEntry.w .defjump	; 9
 
-.stand		dc.b 0, 7, 1, $17, 0, 7, 1, $F, 0, $3F, 1, 7, afEnd
-.laugh		dc.b 2, 6, 3, 6, afEnd
-.hurt		dc.b 4, 0, 5, 0, afEnd
-.defeated	dc.b 7, $7F, afEnd
-.run1		dc.b 8, $7F, afEnd
-.run2		dc.b 8, 5, 9, 5, $A, 5, 9, 5, afEnd
-.jump		dc.b $B, $7F, afEnd
-.defrun1	dc.b $C, $7F, afEnd
-.defrun2	dc.b $C, 5, $D, 5, $E, 5, $D, 5, afEnd
-.defjump	dc.b $F, $7F, afEnd
+.stand
+
+		; frame, timer
+		dc.b 0, 7
+		dc.b 1, $17
+		dc.b 0, 7
+		dc.b 1, $F
+		dc.b 0, $3F
+		dc.b 1, 7
+		dc.b afEnd
+
+.laugh
+
+		; frame, timer
+		dc.b 2, 6
+		dc.b 3, 6
+		dc.b afEnd
+
+.hurt
+
+		; frame, timer
+		dc.b 4, 0
+		dc.b 5, 0
+		dc.b afEnd
+
+.defeated
+
+		; frame, timer
+		dc.b 7, $7F
+		dc.b afEnd
+
+.run1
+
+		; frame, timer
+		dc.b 8, $7F
+		dc.b afEnd
+
+.run2
+
+		; frame, timer
+		dc.b 8, 5
+		dc.b 9, 5
+		dc.b $A, 5
+		dc.b 9, 5
+		dc.b afEnd
+
+.jump
+
+		; frame, timer
+		dc.b $B, $7F
+		dc.b afEnd
+
+.defrun1
+
+		; frame, timer
+		dc.b $C, $7F
+		dc.b afEnd
+
+.defrun2
+
+		; frame, timer
+		dc.b $C, 5
+		dc.b $D, 5
+		dc.b $E, 5
+		dc.b $D, 5
+		dc.b afEnd
+
+.defjump
+
+		; frame, timer
+		dc.b $F, $7F
+		dc.b afEnd
 	even
