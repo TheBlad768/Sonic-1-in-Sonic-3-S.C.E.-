@@ -13,11 +13,12 @@ TitleCardLetters_Index: offsetTable
 		zonewarning TitleCardLetters_Index,(1*2)
 
 ; find unique letters and load it to VRAM
-TitleCard_GHZ:		titlecardLetters TRUE, "GREEN HILL"
-TitleCard_MZ:		titlecardLetters TRUE, "MARBLE"
-TitleCard_SYZ:		titlecardLetters TRUE, "SPRING YARD"
-TitleCard_LZ:		titlecardLetters TRUE, "LABYRINTH"
-TitleCard_SLZ:		titlecardLetters TRUE, "STAR LIGHT"
-TitleCard_SBZ:		titlecardLetters TRUE, "SCRAP BRAIN"
-TitleCard_FZ:		titlecardLetters TRUE, "FINAL"
+TitleCard_ZONE:		titlecardLetters FALSE, TRUE, "ZONE"
+TitleCard_GHZ:		titlecardLetters TRUE, FALSE, "GREEN HILL"
+TitleCard_MZ:		titlecardLetters TRUE, FALSE, "MARBLE"
+TitleCard_SYZ:		titlecardLetters TRUE, FALSE, "SPRING YARD"
+TitleCard_LZ:		titlecardLetters TRUE, FALSE, "LABYRINTH"
+TitleCard_SLZ:		titlecardLetters TRUE, FALSE, "STAR LIGHT"
+TitleCard_SBZ:		titlecardLetters TRUE, FALSE, "SCRAP BRAIN"
+TitleCard_FZ:		titlecardLetters TRUE, FALSE, "FINAL"
 	even
