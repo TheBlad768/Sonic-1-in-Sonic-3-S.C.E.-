@@ -248,7 +248,7 @@ VInt_Continue:
 VInt_SpecialStage:
 		bsr.w	Do_ControllerPal
 		jsr	(PalCycle_SS).l
-		jsr	(UpdateHUD_SS).w
+		jsr	(HUD_UpdateSpecialStage).w
 		clr.w	(Lag_frame_count).w
 
 		; demo
@@ -267,7 +267,7 @@ VInt_SpecialStage:
 
 VInt_SpecialStageResults:
 		bsr.w	Do_ControllerPal
-		jsr	(UpdateHUD).w
+		jsr	(HUD_Update).w
 		clr.w	(Lag_frame_count).w
 
 		; demo
@@ -397,7 +397,7 @@ VInt_Level_Cont:
 ; =============== S U B R O U T I N E =======================================
 
 Do_Updates:
-		jsr	(UpdateHUD).w
+		jsr	(HUD_Update).w
 		clr.w	(Lag_frame_count).w
 
 		; demo
