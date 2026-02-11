@@ -137,9 +137,9 @@ Obj_TitleCard:
 		lea	(.kplc2)(a5),a5
 
 .notKnux
-		jsr	(LoadPLC_Raw_KosPlusM).w
-		movea.l	(Level_data_addr_RAM.PLC2).w,a5
 		jsr	(LoadPLC_Raw_KosPlusM).w					; load main art
+		movea.l	(Level_data_addr_RAM.PLC2).w,a5
+		jsr	(LoadPLC_Raw_KosPlusM).w					; load PLC2 art
 
 .skiplevel3
 		movea.l	(Level_data_addr_RAM.PLCAnimals).w,a5
