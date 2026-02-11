@@ -15,7 +15,13 @@ Obj_Tails_Tail:
 
 .notspecial
 		move.w	d0,art_tile(a0)
-		move.l	#bytes_to_long(setBit(render_flags.level),0,48/2,48/2),render_flags(a0)	; set screen coordinates flag and height and width
+
+		; set screen coordinates flag and height and width
+		move.l	#bytes_to_long( \
+			setBit(render_flags.level), \
+		0,48/2,48/2 \
+		),render_flags(a0)
+
 		move.l	#.main,address(a0)
 
 .main
