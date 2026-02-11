@@ -36,13 +36,13 @@ HUD_AddToScore:
 
 ; =============== S U B R O U T I N E =======================================
 
-UpdateHUD:
+HUD_Update:
 		lea	(VDP_data_port).l,a6						; load VDP data address to a6
 		lea	VDP_control_port-VDP_data_port(a6),a5				; load VDP control address to a5
 
 	if GameDebug
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
-		bne.w	HUDDebug							; if yes, branch
+		bne.w	HUD_Debug							; if yes, branch
 	endif
 
 		tst.b	(Update_HUD_score).w						; does the score need updating?
@@ -77,7 +77,7 @@ UpdateHUD:
 		tst.b	(Game_paused).w							; is the game paused?
 		bne.s	.chklives							; if yes, branch
 		lea	(Timer).w,a1
-		cmpi.l	#(9*$10000)+(59*$100)+59,(a1)+					; is the time 9:59:59?
+		cmpi.l	#bytes_to_long(0,9,59,59),(a1)+					; is the time 9:59:59?
 		beq.s	UpdateHUD_TimeOver						; if yes, branch
 
 		addq.b	#1,-(a1)							; increment 1/60s counter
@@ -106,8 +106,10 @@ UpdateHUD:
 		moveq	#0,d1
 		move.b	(Timer_frame).w,d1						; load centiseconds
 		move.b	LUT_HUDCentiseconds(pc,d1.w),d1
-		cmpi.l	#(9*$10000)+(59*$100)+59,(Timer).w
-		bne.s	.skipt
+
+		; check
+		cmpi.l	#bytes_to_long(0,9,59,59),(Timer).w				; is the time 9:59:59?
+		bne.s	.skipt								; if not, branch
 		moveq	#99,d1
 
 .skipt
@@ -154,8 +156,8 @@ LUT_HUDCentiseconds:
 
 ; =============== S U B R O U T I N E =======================================
 
-HUDDebug:
-		bsr.w	HUD_Debug
+HUD_Debug:
+		bsr.w	DrawHUDDebug
 		tst.b	(Update_HUD_ring_count).w					; does the ring counter need updating?
 		beq.s	.objcounter							; if not, branch
 		bpl.s	.notzero
@@ -305,7 +307,7 @@ HUD_Initial_Parts_end
 
 ; =============== S U B R O U T I N E =======================================
 
-HUD_Debug:
+DrawHUDDebug:
 		locVRAM	tiles_to_bytes(ArtTile_HUD+$14),VDP_control_port-VDP_control_port(a5)	; set VRAM address
 		move.w	(Camera_X_pos).w,d1						; load camera x-position
 		swap	d1
@@ -518,7 +520,7 @@ HUD_Lives:
 
 ; =============== S U B R O U T I N E =======================================
 
-UpdateHUD_SS:
+HUD_UpdateSpecialStage:
 		tst.b	(Update_HUD_ring_count).w					; does the ring counter	need updating?
 		beq.s	HUD_Lives.return						; if not, branch
 		bpl.s	.notzero
