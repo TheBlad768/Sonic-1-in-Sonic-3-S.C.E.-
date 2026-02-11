@@ -24,6 +24,8 @@ Obj_TitleCard:
 		add.w	d0,d0								; multiply by 4
 		add.w	d0,d0
 		movea.l	TitleCardAct_Index(pc,d0.w),a1
+
+		; check
 		cmpi.w	#bytes_to_word(LevelID_LZ,3),(Current_zone_and_act).w		; is level Labyrinth Zone 4?
 		bne.s	.notSBZ03							; if not, branch
 		lea	(ArtKosPM_TitleCardNum3).l,a1
@@ -158,6 +160,8 @@ Obj_TitleCardRedBanner:
 		beq.s	.loc_2D90A
 		tst.b	render_flags(a0)						; is the object visible on the screen?
 		bmi.s	.loc_2D8FC							; if yes, branch
+
+		; delete
 		subq.w	#1,objoff_30(a1)
 		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
@@ -206,6 +210,8 @@ Obj_TitleCardElement:
 		beq.s	.loc_2D984
 		tst.b	render_flags(a0)						; is the object visible on the screen?
 		bmi.s	.loc_2D976							; if yes, branch
+
+		; delete
 		subq.w	#1,objoff_30(a1)
 		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
@@ -232,6 +238,8 @@ Obj_TitleCardElement:
 
 Obj_TitleCardAct:
 		move.l	#Obj_TitleCardElement,address(a0)
+
+		; check
 		cmpi.w	#bytes_to_word(LevelID_SBZ,2),(Current_zone_and_act).w		; is level Final Zone?
 		bne.s	Obj_TitleCardElement						; if not, branch
 
@@ -239,6 +247,19 @@ Obj_TitleCardAct:
 		movea.w	parent2(a0),a1							; a1=parent object
 		subq.w	#1,objoff_30(a1)
 		jmp	(Delete_Current_Object).w
+; ---------------------------------------------------------------------------
+
+ObjArray_TtlCard: titlecardresultsheader
+	titlecardresultsobjdata	Obj_TitleCardName, 160, 480, 96, 4, 256, 3		; 1
+	titlecardresultsobjdata	Obj_TitleCardElement, 252, 636, 128, 3, 72, 5		; 2
+	titlecardresultsobjdata	Obj_TitleCardAct, 260, 708, 160, 2, 56, 7		; 3
+	titlecardresultsobjdata	Obj_TitleCardRedBanner, 64, 96, 16-128, 1, 0, 1		; 4
+ObjArray_TtlCard_end
+
+ObjArray_TtlCardBonus: titlecardresultsheader
+	titlecardresultsobjdata	Obj_TitleCardElement, 72, 264, 104, $13, 256, 1		; 1
+	titlecardresultsobjdata	Obj_TitleCardElement, 168, 360, 104, $14, 256, 1	; 2
+ObjArray_TtlCardBonus_end
 
 ; ---------------------------------------------------------------------------
 ; Title Card load letters to VRAM
@@ -251,7 +272,6 @@ TitleCard_LoadLetters:
 .decomp	= 0
 
 		lea	VDP_data_port-VDP_control_port(a5),a6				; load VDP data address to a6
-		locVRAM	tiles_to_bytes($54D),VDP_control_port-VDP_control_port(a5)
 
 	if .decomp
 		lea	(ArtKosP_TitleCardLargeText).l,a0
@@ -262,6 +282,14 @@ TitleCard_LoadLetters:
 	else
 		lea	(ArtUnc_TitleCardLargeText).l,a2
 	endif
+
+		locVRAM	tiles_to_bytes($522),VDP_control_port-VDP_control_port(a5)
+
+		; load "ZONE" art
+		lea	TitleCard_ZONE(pc),a1
+		bsr.s	.main
+
+		locVRAM	tiles_to_bytes($54D),VDP_control_port-VDP_control_port(a5)
 
 		; load zone name art
 		moveq	#0,d0
@@ -277,50 +305,37 @@ TitleCard_LoadLetters:
 
 .notSBZ3
 		cmpi.w	#bytes_to_word(LevelID_SBZ,2),(Current_zone_and_act).w
-		bne.s	.notFZ
+		bne.s	.main
 		lea	TitleCard_FZ(pc),a1
 
-.notFZ
+.main
 		lea	(Credits_DrawLargeText.letters).l,a3
 
 .find
 		moveq	#0,d0
-		move.b	(a1)+,d0
-		bmi.s	.exit								; if zero, exit
-		subq.b	#1,d0								; -1
+		move.b	(a1)+,d0							; get letter to d0
+		bmi.s	.exit								; if minus, branch
+		subq.b	#1,d0								; dbf fix
 		add.w	d0,d0								; multiply by 4
-		add.w	d0,d0
-		movem.w	(a3,d0.w),d0-d1							; get id letter and size
+		add.w	d0,d0								; "
+		movem.w	(a3,d0.w),d0-d1							; get id and size letter
 		lsl.w	#5,d0								; multiply by $20
-		lea	(a2,d0.w),a4
+		lea	(a2,d0.w),a4							; load art letter address to a4
 
 .copy
 
 	rept 8*3
-		move.l	(a4)+,VDP_data_port-VDP_data_port(a6)
+		move.l	(a4)+,VDP_data_port-VDP_data_port(a6)				; copy to VRAM
 	endr
 
-		dbf	d1,.copy
+		dbf	d1,.copy							; next data
 
-		; next
+		; next letter
 		bra.s	.find
 ; ---------------------------------------------------------------------------
 
 .exit
 		rts
-; ---------------------------------------------------------------------------
-
-ObjArray_TtlCard: titlecardresultsheader
-	titlecardresultsobjdata	Obj_TitleCardName, 160, 480, 96, 4, 256, 3		; 1
-	titlecardresultsobjdata	Obj_TitleCardElement, 252, 636, 128, 3, 72, 5		; 2
-	titlecardresultsobjdata	Obj_TitleCardAct, 260, 708, 160, 2, 56, 7		; 3
-	titlecardresultsobjdata	Obj_TitleCardRedBanner, 64, 96, 16-128, 1, 0, 1		; 4
-ObjArray_TtlCard_end
-
-ObjArray_TtlCardBonus: titlecardresultsheader
-	titlecardresultsobjdata	Obj_TitleCardElement, 72, 264, 104, $13, 256, 1		; 1
-	titlecardresultsobjdata	Obj_TitleCardElement, 168, 360, 104, $14, 256, 1	; 2
-ObjArray_TtlCardBonus_end
 ; ---------------------------------------------------------------------------
 
 		; mappings
