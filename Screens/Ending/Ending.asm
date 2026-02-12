@@ -668,7 +668,7 @@ PLC_Ending: plrlistheader
 		plreq $593, ArtKosPM_Pig
 		plreq $5A5, ArtKosPM_BlueFlicky
 		plreq $5B3, ArtKosPM_Squirrel
-PLC_Ending_end
+		plrlistend
 ; ---------------------------------------------------------------------------
 
 		; mappings

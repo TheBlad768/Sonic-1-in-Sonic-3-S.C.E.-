@@ -931,7 +931,7 @@ PLC_Credits: plrlistheader
 		plreq $182, ArtKosPM_RobotnikCredits
 		plreq $232, ArtKosPM_EggRoboCredits
 		plreq $2D3, ArtKosPM_EmeraldsEnding
-PLC_Credits_end
+		plrlistend
 ; ---------------------------------------------------------------------------
 
 		; mappings

@@ -719,7 +719,7 @@ PLC_BossSpikeBall: plrlistheader
 		plreq $440, ArtKosPM_BossSpikeBallTube
 		plreq $4C1, ArtKosPM_Bomb
 		plreq $500, ArtKosPM_BossExplosion
-PLC_BossSpikeBall_end
+		plrlistend
 ; ---------------------------------------------------------------------------
 
 		; mappings

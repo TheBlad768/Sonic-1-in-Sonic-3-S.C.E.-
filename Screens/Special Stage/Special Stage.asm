@@ -1311,14 +1311,14 @@ PLC_SpecialStage: plrlistheader
 		plreq ArtTile_SS_Glass, ArtKosPM_SSGlass
 		plreq ArtTile_SS_Emerald, ArtKosPM_SSEmerald
 		plreq ArtTile_SS_Ring_Sparks, ArtKosPM_Ring_Sparks
-PLC_SpecialStage_end
+		plrlistend
 
 PLC_SpecialStageResults: plrlistheader
 		plreq $500, ArtKosPM_ResultsGeneral
 		plreq $570, ArtKosPM_SSResults
 		plreq $680, ArtKosPM_SSResultsTKIcons
 		plreq ArtTile_HUD, ArtKosPM_HUD
-PLC_SpecialStageResults_end
+		plrlistend
 ; ---------------------------------------------------------------------------
 
 		; animate palette

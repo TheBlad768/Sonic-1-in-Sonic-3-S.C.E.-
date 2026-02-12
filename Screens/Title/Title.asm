@@ -619,7 +619,7 @@ PLC_Title: plrlistheader
 		plreq 0, GHZ_8x8_KosPM
 		plreq $200, ArtKosPM_TitleFG
 		plreq $510, ArtKosPM_OptionsText
-PLC_Title_end
+		plrlistend
 ; ---------------------------------------------------------------------------
 
 		; set the character

@@ -676,7 +676,7 @@ PLC_BossFire: plrlistheader
 		plreq $380, ArtKosPM_RobotnikShip2
 		plreq $420, ArtKosPM_BossFireTube
 		plreq $500, ArtKosPM_BossExplosion
-PLC_BossFire_end
+		plrlistend
 ; ---------------------------------------------------------------------------
 
 		; mappings

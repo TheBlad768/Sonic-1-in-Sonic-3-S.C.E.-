@@ -525,7 +525,7 @@ PLC_BossBall: plrlistheader
 		plreq $380, ArtKosPM_RobotnikShip2
 		plreq $494, ArtKosPM_BossCrane
 		plreq $500, ArtKosPM_BossExplosion
-PLC_BossBall_end
+		plrlistend
 ; ---------------------------------------------------------------------------
 
 		; mappings
