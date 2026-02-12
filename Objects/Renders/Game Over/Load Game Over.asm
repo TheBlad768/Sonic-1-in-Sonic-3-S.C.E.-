@@ -86,7 +86,7 @@ Render_GameOver:
 		st	(Restart_level_flag).w
 
 .draw
-		movem.w	GameOver_RAM.xpos-GameOver_RAM(a4),d0-d1					; xpos and ypos
+		movem.w	GameOver_RAM.xpos-GameOver_RAM(a4),d0-d1			; xpos and ypos
 		move.w	#make_art_tile(ArtTile_Shield,0,TRUE),d5			; VRAM
 		movea.l	GameOver_RAM.mappings-GameOver_RAM(a4),a1			; mappings
 
