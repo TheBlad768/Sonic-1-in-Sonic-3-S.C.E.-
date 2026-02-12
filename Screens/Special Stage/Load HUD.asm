@@ -35,8 +35,7 @@ Render_SSHUD:
 
 .process
 		moveq	#6*2,d4								; frame #6
-		move.w	HUD_RAM.xpos-HUD_RAM(a1),d0					; xpos
-		move.w	HUD_RAM.ypos-HUD_RAM(a1),d1					; ypos
+		movem.w	HUD_RAM.xpos-HUD_RAM(a1),d0-d1					; xpos and ypos
 		move.w	#make_art_tile(ArtTile_SS_HUD,0,TRUE),d5			; VRAM
 		lea	Map_HUD(pc),a1
 		adda.w	(a1,d4.w),a1
