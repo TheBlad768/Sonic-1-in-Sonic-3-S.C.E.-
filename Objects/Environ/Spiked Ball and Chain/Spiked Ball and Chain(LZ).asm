@@ -36,9 +36,10 @@ Obj_SpikeBall2:
 		move.l	#Draw_Sprite,address(a1)
 		move.l	mappings(a0),mappings(a1)
 		move.w	art_tile(a0),art_tile(a1)
-		move.b	render_flags(a0),render_flags(a1)
+		moveq	#setBit(render_flags.multi_sprite),d0				; set multi-draw flag
+		or.b	render_flags(a0),d0
+		move.b	d0,render_flags(a1)
 		move.w	#priority_5,priority(a1)
-		bset	#render_flags.multi_sprite,render_flags(a1)			; set multi-draw flag
 		move.w	a1,parent3(a0)							; save chain address
 		move.w	x_pos(a0),d2
 		move.w	d2,x_pos(a1)
