@@ -4,7 +4,6 @@
 
 ; dynamic object variables
 obBFZBP_Enable				= objoff_2D	; .b
-obBFZBP_Timer				= objoff_2E	; .w
 obBFZBP_Count				= objoff_30	; .b
 obBFZBP_Count2				= objoff_31	; .b
 
@@ -57,7 +56,7 @@ Obj_BossPlasma:
 
 		; load Eggman address
 		movea.w	parent3(a0),a1
-		subq.b	#1,obBFZ_Count(a1)
+		subq.b	#1,count(a1)
 
 .solid
 
@@ -77,16 +76,16 @@ Obj_BossPlasma:
 
 		; check draw
 		movea.w	parent3(a0),a1							; load Eggman address
-		btst	#4,objoff_38(a1)
+		btst	#4,state_flags(a1)
 		bne.s	.defeated
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
 
 .defeated
-		move.w	#bytes_to_word(16/2,16/2),objoff_3A(a0)				; set explosion radius
+		move.w	#bytes_to_word(16/2,16/2),objoff_3A(a0)				; set explosion xy radius
 
 		; create explosions
-		jsr	(sub_83E84).l
+		jsr	(CreateBossExplosion).l
 
 		; delete
 		jmp	(Go_Delete_Object_2).w
