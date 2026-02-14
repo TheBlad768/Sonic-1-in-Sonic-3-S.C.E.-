@@ -35,7 +35,7 @@ Obj_BossFinal_Cylinder:
 		lea	ObjDat_BossFinal_Cylinder(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bset	#status.npc.no_balancing,status(a0)				; disable player's balance animation
-		move.w	#bytes_to_word(64/2,128/2),objoff_3A(a0)			; set explosion xy radius
+		move.w	#bytes_to_word(64/2,128/2),objoff_3A(a0)			; set explosion xy offset range
 		move.l	#.main,address(a0)
 
 		; check flipy
