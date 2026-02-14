@@ -157,7 +157,7 @@ BossFire_AttackFire2:
 		tst.w	y_vel(a0)
 		beq.s	.skip
 		clr.w	y_vel(a0)
-		move.w	#$50,bossfire.timer(a0)					; set wait
+		move.w	#$50,bossfire.timer(a0)						; set wait
 		bchg	#render_flags.x_flip,render_flags(a0)
 		bset	#6,state_flags(a0)						; set Robotnik laugh flag
 
