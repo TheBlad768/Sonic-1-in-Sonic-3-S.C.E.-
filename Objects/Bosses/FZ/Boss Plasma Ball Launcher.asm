@@ -3,22 +3,22 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-obBFZBP_Enable				= objoff_2D	; .b
-obBFZBP_Count				= objoff_30	; .b
-obBFZBP_Count2				= objoff_31	; .b
+bossfinal_plasma.enable			= objoff_2D	; (1 byte)
+bossfinal_plasma.count			= objoff_30	; (1 byte)
+bossfinal_plasma.count2			= objoff_31	; (1 byte)
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_BossPlasma:
+Obj_BossFinal_Plasma:
 
 		; init
-		lea	ObjDat_BossPlasma(pc),a1
+		lea	ObjDat_BossFinal_Plasma(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.checkattack,address(a0)
 
 .checkattack
 		clr.b	anim(a0)
-		tst.b	obBFZBP_Enable(a0)
+		tst.b	bossfinal_plasma.enable(a0)
 		beq.s	.solid
 		addq.b	#1,anim(a0)
 		move.l	#.makeballs,address(a0)
@@ -26,20 +26,20 @@ Obj_BossPlasma:
 ; ---------------------------------------------------------------------------
 
 .makeballs
-		clr.b	obBFZBP_Enable(a0)
+		clr.b	bossfinal_plasma.enable(a0)
 		move.l	#.checkpend,address(a0)
 
 		; create plasma balls
-		lea	Child6_BossPlasmaBall(pc),a2
+		lea	Child6_BossFinal_PlasmaBall(pc),a2
 		jsr	(CreateChild6_Simple).w
 
 		; save plasma balls count
 		lsr.w	d2								; subtype
-		move.b	d2,obBFZBP_Count(a0)
-		move.b	d2,obBFZBP_Count2(a0)
+		move.b	d2,bossfinal_plasma.count(a0)
+		move.b	d2,bossfinal_plasma.count2(a0)
 
 .checkpend
-		tst.b	obBFZBP_Count(a0)						; plasma create wait
+		tst.b	bossfinal_plasma.count(a0)					; plasma create wait
 		bne.s	.solid
 		move.l	#.setanim,address(a0)
 		bra.s	.solid
@@ -50,9 +50,9 @@ Obj_BossPlasma:
 		move.l	#.checkpbend,address(a0)
 
 .checkpbend
-		tst.b	obBFZBP_Count2(a0)						; plasma ball wait
+		tst.b	bossfinal_plasma.count2(a0)					; plasma ball wait
 		bne.s	.solid
-		move.l	#Obj_BossPlasma.checkattack,address(a0)				; return
+		move.l	#Obj_BossFinal_Plasma.checkattack,address(a0)			; return
 
 		; load Eggman address
 		movea.w	parent3(a0),a1
@@ -95,12 +95,12 @@ Obj_BossPlasma:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-obBFZBPB_Timer				= objoff_2E ; .w
-obBFZBPB_Xpos				= objoff_30 ; .w
+bossfinal_plasmaball.timer		= wait_timer	; (2 bytes)
+bossfinal_plasmaball.xpos		= objoff_30	; (2 bytes)
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_BossPlasma_Ball:
+Obj_BossFinal_PlasmaBall:
 
 		; calc xpos
 		jsr	(Random_Number).w
@@ -114,15 +114,15 @@ Obj_BossPlasma_Ball:
 		andi.w	#$1F,d0
 		subi.w	#16,d0
 		add.w	d1,d0
-		move.w	d0,obBFZBPB_Xpos(a0)						; save x_pos
+		move.w	d0,bossfinal_plasmaball.xpos(a0)				; save x_pos
 		sub.w	x_pos(a0),d0
 		asl.w	#4,d0
 		move.w	d0,x_vel(a0)
 
 		; init
-		lea	ObjDat_BossPlasmaBall(pc),a1
+		lea	ObjDat_BossFinal_PlasmaBall(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.w	#3*60,obBFZBPB_Timer(a0)					; timer
+		move.w	#3*60,bossfinal_plasmaball.timer(a0)				; timer
 		move.l	#.main,address(a0)
 
 .main
@@ -131,22 +131,22 @@ Obj_BossPlasma_Ball:
 		jsr	(MoveSprite2).w
 
 		move.w	x_pos(a0),d0
-		sub.w	obBFZBPB_Xpos(a0),d0
+		sub.w	bossfinal_plasmaball.xpos(a0),d0
 		bhs.s	.skip
 		sub.w	d0,x_pos(a0)							; devon fix
 		clr.w	x_vel(a0)
 
 		; load Plasma address
 		movea.w	parent3(a0),a1
-		subq.b	#1,obBFZBP_Count(a1)
+		subq.b	#1,bossfinal_plasma.count(a1)
 
 .skip
 		clr.b	anim(a0)
-		subq.w	#1,obBFZBPB_Timer(a0)
+		subq.w	#1,bossfinal_plasmaball.timer(a0)
 		bne.s	.draw
 		addq.b	#1,anim(a0)
 
-		move.w	#3*60,obBFZBPB_Timer(a0)					; timer
+		move.w	#3*60,bossfinal_plasmaball.timer(a0)				; timer
 		move.l	#.chkdel,address(a0)
 
 		; set xyvel
@@ -171,7 +171,7 @@ Obj_BossPlasma_Ball:
 		addi.w	#$D0,d0
 		cmp.w	y_pos(a0),d0
 		blo.s	.delete
-		subq.w	#1,obBFZBPB_Timer(a0)						; timer
+		subq.w	#1,bossfinal_plasmaball.timer(a0)				; timer
 		beq.s	.delete
 
 		; draw
@@ -186,7 +186,7 @@ Obj_BossPlasma_Ball:
 
 		; load Plasma address
 		movea.w	parent3(a0),a1
-		subq.b	#1,obBFZBP_Count2(a1)
+		subq.b	#1,bossfinal_plasma.count2(a1)
 
 		; delete
 		jmp	(Go_Delete_Object).w
@@ -194,15 +194,15 @@ Obj_BossPlasma_Ball:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BossPlasma:		subObjData Map_PLaunch, $300, 0, FALSE, 16, 16, 3, 0, 0
-ObjDat_BossPlasmaBall:		subObjData Map_Plasma, $300, 1, FALSE, 24, 24, 3, 0, $1A|collision_flags.npc.hurt
+ObjDat_BossFinal_Plasma:	subObjData Map_PLaunch, $300, 0, FALSE, 16, 16, 3, 0, 0
+ObjDat_BossFinal_PlasmaBall:	subObjData Map_Plasma, $300, 1, FALSE, 24, 24, 3, 0, $1A|collision_flags.npc.hurt
 
-Child6_BossPlasma:
+Child6_BossFinal_Plasma:
 		dc.w 1-1
-		dc.l Obj_BossPlasma
-Child6_BossPlasmaBall:
+		dc.l Obj_BossFinal_Plasma
+Child6_BossFinal_PlasmaBall:
 		dc.w 4-1
-		dc.l Obj_BossPlasma_Ball
+		dc.l Obj_BossFinal_PlasmaBall
 ; ---------------------------------------------------------------------------
 
 		; mappings

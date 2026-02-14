@@ -3,19 +3,19 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-obBFZEC_Enable				= objoff_2D	; .b ; move cylinder
-obBFZEC_OrigY				= objoff_30	; .l ; original y-axis position
-obBFZEC_YVel				= objoff_34	; .l
-obBFZEC_Grab				= objoff_3C	; .b ; grab Eggman
+bossfinal_cylinder.enable		= objoff_2D	; move cylinder (1 byte)
+bossfinal_cylinder.origY		= objoff_30	; original y-axis position (4 bytes)
+bossfinal_cylinder.yvel			= objoff_34	; (4 bytes)
+bossfinal_cylinder.grab			= objoff_3C	; grab Eggman (1 byte)
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_EggmanCylinder:
+Obj_BossFinal_Cylinder:
 
 		; get boss data
 		moveq	#0,d0
 		lea	(Boss_events).w,a2
-		lea	EggmanCylinder_PosData(pc),a1
+		lea	BossFinal_Cylinder_PosData(pc),a1
 		move.b	subtype(a0),d0
 		adda.w	d0,a2
 		move.w	a0,(a2)								; save cylinder address for boss
@@ -29,10 +29,10 @@ Obj_EggmanCylinder:
 		move.w	(Camera_min_Y_pos).w,d0
 		add.w	(a1),d0
 		move.w	d0,y_pos(a0)
-		move.w	d0,obBFZEC_OrigY(a0)						; backup ypos
+		move.w	d0,bossfinal_cylinder.origY(a0)					; backup ypos
 
 		; init
-		lea	ObjDat_BossCylinder(pc),a1
+		lea	ObjDat_BossFinal_Cylinder(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bset	#status.npc.no_balancing,status(a0)				; disable player's balance animation
 		move.w	#bytes_to_word(64/2,128/2),objoff_3A(a0)			; set explosion xy radius
@@ -44,14 +44,14 @@ Obj_EggmanCylinder:
 		bset	#render_flags.y_flip,render_flags(a0)				; 4 and 6 only (flipy sprite)
 
 .main
-		clr.l	obBFZEC_YVel(a0)
-		tst.b	obBFZEC_Enable(a0)
+		clr.l	bossfinal_cylinder.yvel(a0)
+		tst.b	bossfinal_cylinder.enable(a0)
 		beq.s	.move
 		move.l	#EggmanCylinder_Movement,address(a0)
 
 .move
-		move.l	obBFZEC_YVel(a0),d0
-		move.l	obBFZEC_OrigY(a0),d1						; saved y_pos
+		move.l	bossfinal_cylinder.yvel(a0),d0
+		move.l	bossfinal_cylinder.origY(a0),d1					; saved y_pos
 		add.l	d0,d1
 		swap	d1
 		move.w	d1,y_pos(a0)
@@ -59,7 +59,7 @@ Obj_EggmanCylinder:
 		; check
 		cmpi.l	#EggmanCylinder_Movement,address(a0)				; check "EggmanCylinder_Movement"
 		bne.s	.solid
-		tst.b	obBFZEC_Grab(a0)						; check Eggman flag
+		tst.b	bossfinal_cylinder.grab(a0)					; check Eggman flag
 		beq.s	.solid
 
 		; load address
@@ -106,7 +106,7 @@ Obj_EggmanCylinder:
 		; set frame
 		moveq	#0,d0								; frame #0
 		moveq	#$27,d2
-		move.w	obBFZEC_YVel(a0),d1
+		move.w	bossfinal_cylinder.yvel(a0),d1
 		bpl.s	.abs
 		neg.w	d1								; absolute
 		moveq	#8,d2
@@ -138,7 +138,7 @@ EggmanCylinder_Movement:
 		jsr	(a1)
 
 		; return
-		bra.w	Obj_EggmanCylinder.move
+		bra.w	Obj_BossFinal_Cylinder.move
 ; ---------------------------------------------------------------------------
 
 .moveup
@@ -155,20 +155,20 @@ EggmanCylinder_Movement:
 		jsr	(CreateBossExplosion).l
 
 .movechkup
-		tst.b	obBFZEC_Enable(a0)						; 0 and 2
+		tst.b	bossfinal_cylinder.enable(a0)					; 0 and 2
 		bne.s	.enabledup
 
 		; check boss defeated
 		movea.w	parent3(a0),a1							; load Eggman address
 		btst	#status.npc.defeated,status(a1)
 		beq.s	.notdefeatedup
-		subq.w	#1,obBFZEC_YVel(a0)
+		subq.w	#1,bossfinal_cylinder.yvel(a0)
 
 .notdefeatedup
-		addq.w	#2,obBFZEC_YVel(a0)
+		addq.w	#2,bossfinal_cylinder.yvel(a0)
 		bhs.s	.returnup
-		clr.l	obBFZEC_YVel(a0)
-		move.l	#Obj_EggmanCylinder.main,address(a0)
+		clr.l	bossfinal_cylinder.yvel(a0)
+		move.l	#Obj_BossFinal_Cylinder.main,address(a0)
 
 		; load Eggman address
 		movea.w	parent3(a0),a1
@@ -181,19 +181,19 @@ EggmanCylinder_Movement:
 .enabledup
 
 		; enabled
-		cmpi.w	#-$10,obBFZEC_YVel(a0)
+		cmpi.w	#-$10,bossfinal_cylinder.yvel(a0)
 		bge.s	.skipup
-		subi.l	#$28000,obBFZEC_YVel(a0)
+		subi.l	#$28000,bossfinal_cylinder.yvel(a0)
 
 .skipup
-		subi.l	#$8000,obBFZEC_YVel(a0)
-		cmpi.w	#-$A0,obBFZEC_YVel(a0)
+		subi.l	#$8000,bossfinal_cylinder.yvel(a0)
+		cmpi.w	#-$A0,bossfinal_cylinder.yvel(a0)
 		bgt.s	.returnup2
-		clr.w	obBFZEC_YVel+2(a0)
-		move.w	#-$A0,obBFZEC_YVel(a0)
+		clr.w	bossfinal_cylinder.yvel+2(a0)
+		move.w	#-$A0,bossfinal_cylinder.yvel(a0)
 
 		; disable
-		clr.b	obBFZEC_Enable(a0)
+		clr.b	bossfinal_cylinder.enable(a0)
 		move.w	#(ScreenShakeArray2-ScreenShakeArray),(Screen_shaking_flag).w
 
 .returnup2
@@ -214,20 +214,20 @@ EggmanCylinder_Movement:
 		jsr	(CreateBossExplosion).l
 
 .movechkdown
-		tst.b	obBFZEC_Enable(a0)						; 4 and 6
+		tst.b	bossfinal_cylinder.enable(a0)					; 4 and 6
 		bne.s	.enableddown
 
 		; check boss defeated
 		movea.w	parent3(a0),a1							; load Eggman address
 		btst	#status.npc.defeated,status(a1)
 		beq.s	.notdefeateddown
-		addq.w	#1,obBFZEC_YVel(a0)
+		addq.w	#1,bossfinal_cylinder.yvel(a0)
 
 .notdefeateddown
-		subq.w	#2,obBFZEC_YVel(a0)
+		subq.w	#2,bossfinal_cylinder.yvel(a0)
 		bhs.s	.returndown
-		clr.l	obBFZEC_YVel(a0)
-		move.l	#Obj_EggmanCylinder.main,address(a0)
+		clr.l	bossfinal_cylinder.yvel(a0)
+		move.l	#Obj_BossFinal_Cylinder.main,address(a0)
 
 		; load Eggman address
 		movea.w	parent3(a0),a1
@@ -240,19 +240,19 @@ EggmanCylinder_Movement:
 .enableddown
 
 		; enabled
-		cmpi.w	#$10,obBFZEC_YVel(a0)
+		cmpi.w	#$10,bossfinal_cylinder.yvel(a0)
 		blt.s	.skipdown
-		addi.l	#$28000,obBFZEC_YVel(a0)
+		addi.l	#$28000,bossfinal_cylinder.yvel(a0)
 
 .skipdown
-		addi.l	#$8000,obBFZEC_YVel(a0)
-		cmpi.w	#$A0,obBFZEC_YVel(a0)
+		addi.l	#$8000,bossfinal_cylinder.yvel(a0)
+		cmpi.w	#$A0,bossfinal_cylinder.yvel(a0)
 		blt.s	.returndown2
-		clr.w	obBFZEC_YVel+2(a0)
-		move.w	#$A0,obBFZEC_YVel(a0)
+		clr.w	bossfinal_cylinder.yvel+2(a0)
+		move.w	#$A0,bossfinal_cylinder.yvel(a0)
 
 		; disable
-		clr.b	obBFZEC_Enable(a0)
+		clr.b	bossfinal_cylinder.enable(a0)
 		move.w	#(ScreenShakeArray2-ScreenShakeArray),(Screen_shaking_flag).w
 
 .returndown2
@@ -261,13 +261,13 @@ EggmanCylinder_Movement:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BossCylinder:		subObjData Map_EggCyl, $300, 0, FALSE, 192, 64, 3, 0, 0
+ObjDat_BossFinal_Cylinder:	subObjData Map_EggCyl, $300, 0, FALSE, 192, 64, 3, 0, 0
 
-Child6_EggmanCylinder:
+Child6_BossFinal_Cylinder:
 		dc.w 4-1
-		dc.l Obj_EggmanCylinder
+		dc.l Obj_BossFinal_Cylinder
 
-EggmanCylinder_PosData:			; xcam main, ycam main
+BossFinal_Cylinder_PosData:		; xcam main, ycam main
 		dc.w $70, $110		; 0 (down pos)
 		dc.w $F0, $110		; 4 (down pos)
 		dc.w $30, -$50		; 8 (up pos)
