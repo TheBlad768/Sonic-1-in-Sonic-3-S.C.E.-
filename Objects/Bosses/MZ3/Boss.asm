@@ -4,7 +4,7 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-bossball_crane.timer			= objoff_3E	; (1 byte)
+bossfire.timer				= objoff_3E	; (1 byte)
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -157,7 +157,7 @@ BossFire_AttackFire2:
 		tst.w	y_vel(a0)
 		beq.s	.skip
 		clr.w	y_vel(a0)
-		move.w	#$50,bossball_crane.timer(a0)					; set wait
+		move.w	#$50,bossfire.timer(a0)					; set wait
 		bchg	#render_flags.x_flip,render_flags(a0)
 		bset	#6,state_flags(a0)						; set Robotnik laugh flag
 
@@ -180,7 +180,7 @@ BossFire_AttackFire2:
 		st	subtype(a1)
 
 .skip
-		subq.w	#1,bossball_crane.timer(a0)
+		subq.w	#1,bossfire.timer(a0)
 		bne.s	.return
 		move.l	#BossFire_MoveCircle,jump_ptr(a0)
 		bclr	#6,state_flags(a0)						; clear Robotnik laugh flag
