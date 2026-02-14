@@ -12,10 +12,10 @@ Obj_BossFinal:
 .hitcount	= 8
 
 		; init
-		lea	ObjDat_BossFZEggman(pc),a1					; load Eggman data
+		lea	ObjDat_BossFinal_Eggman(pc),a1					; load Eggman data
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w			; is Knuckles?
 		bne.s	.notKnux							; if not, branch
-		lea	ObjDat_BossFZEggRobo(pc),a1					; load Egg Robo data
+		lea	ObjDat_BossFinal_EggRobo(pc),a1					; load Egg Robo data
 
 .notKnux
 		jsr	(SetUp_ObjAttributes).w
@@ -28,7 +28,7 @@ Obj_BossFinal:
 		move.b	#1,anim(a0)							; set laugh anim
 
 		; create plasma ball launcher
-		lea	Child6_BossPlasma(pc),a2
+		lea	Child6_BossFinal_Plasma(pc),a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	BossFinal_Setup
 		move.w	a1,parent2(a0)							; save Plasma address
@@ -42,7 +42,7 @@ Obj_BossFinal:
 		move.w	d0,y_pos(a1)
 
 		; create cylinders
-		lea	Child6_EggmanCylinder(pc),a2
+		lea	Child6_BossFinal_Cylinder(pc),a2
 		jsr	(CreateChild6_Simple).w
 
 BossFinal_Setup:
@@ -114,13 +114,13 @@ BossFinal_MoveCylinders:
 
 		; load cylinder #1
 		movea.w	(a2,d0.w),a1
-		st	obBFZEC_Enable(a1)
-		st	obBFZEC_Grab(a1)						; set grab Eggman
+		st	bossfinal_cylinder.enable(a1)
+		st	bossfinal_cylinder.grab(a1)					; set grab Eggman
 
 		; load cylinder #2
 		movea.w	(a2,d1.w),a1
-		st	obBFZEC_Enable(a1)
-		clr.b	obBFZEC_Grab(a1)						; set not grab Eggman
+		st	bossfinal_cylinder.enable(a1)
+		clr.b	bossfinal_cylinder.grab(a1)					; set not grab Eggman
 
 		; set
 		clr.b	boss_invulnerable_time(a0)
@@ -157,7 +157,7 @@ BossFinal_CreatePlasmaBalls:
 		; enable plasma ball launcher
 		sfx	sfx_Electric							; play sfx
 		movea.w	parent2(a0),a1							; load plasma ball launcher address
-		st	obBFZBP_Enable(a1)						; create plasma balls
+		st	bossfinal_plasma.enable(a1)					; create plasma balls
 		move.b	#1,count(a0)
 
 .waitpl
@@ -472,7 +472,7 @@ Obj_BossFinal_ControlDesk:
 		move.w	#$590,y_pos(a0)
 
 		; init
-		lea	ObjDat_BossFZControlDesk(pc),a1
+		lea	ObjDat_BossFinal_ControlDesk(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 
 		; draw
@@ -495,7 +495,7 @@ Obj_BossFinal_RobotnikShip:
 		move.w	#$5A0,y_pos(a0)
 
 		; init
-		lea	ObjDat_BossFZRobotnikShip(pc),a1
+		lea	ObjDat_BossFinal_RobotnikShip(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bset	#render_flags.x_flip,render_flags(a0)
 		move.b	#1,collision_property(a0)
@@ -584,7 +584,7 @@ Obj_BossFinal_RobotnikShip:
 Obj_BossFinal_RobotnikShipStand:
 
 		; init
-		lea	ObjDat_BossFZRobotnikShipStand(pc),a1
+		lea	ObjDat_BossFinal_RobotnikShipStand(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.main,address(a0)
 
@@ -677,11 +677,11 @@ Obj_BossFinal_CheckPlayers:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BossFZEggman:			subObjData Map_ScrapEggman, $2B0, 0, FALSE, 56, 56, 4, 0, 0
-ObjDat_BossFZEggRobo:			subObjData Map_ScrapEggRobo, $2B0, 0, FALSE, 56, 56, 4, 0, 0
-ObjDat_BossFZControlDesk:		subObjData Map_EggCyl, $300, 0, FALSE, 16, 32, 0, $B, 0
-ObjDat_BossFZRobotnikShip:		subObjData Map_RobotnikShip, $3A0, 0, FALSE, 64, 64, 4, $C, 0
-ObjDat_BossFZRobotnikShipStand:		subObjData Map_RobotnikShipStand, $420, 0, FALSE, 24, 56, 3, 0, 0
+ObjDat_BossFinal_Eggman:		subObjData Map_ScrapEggman, $2B0, 0, FALSE, 56, 56, 4, 0, 0
+ObjDat_BossFinal_EggRobo:		subObjData Map_ScrapEggRobo, $2B0, 0, FALSE, 56, 56, 4, 0, 0
+ObjDat_BossFinal_ControlDesk:		subObjData Map_EggCyl, $300, 0, FALSE, 16, 32, 0, $B, 0
+ObjDat_BossFinal_RobotnikShip:		subObjData Map_RobotnikShip, $3A0, 0, FALSE, 64, 64, 4, $C, 0
+ObjDat_BossFinal_RobotnikShipStand:	subObjData Map_RobotnikShipStand, $420, 0, FALSE, 24, 56, 3, 0, 0
 
 Child11_BossFinal_AfterBoss:
 		dc.w 3-1
