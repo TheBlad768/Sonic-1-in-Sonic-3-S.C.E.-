@@ -3,21 +3,13 @@
 ; Object 85 - Eggman (FZ)
 ; ---------------------------------------------------------------------------
 
-; Hits
-BossFinal_Hits				= 8
-
 ; dynamic object variables
-obBFZ_Timer				= objoff_2E	; .w
-
-obBFZ_Jump				= objoff_34	; .l
-obBFZ_Count				= objoff_39	; .w
-obBFZ_DPLC				= objoff_3A	; .b
-
-obBFZ_PlasmaBall			= objoff_48	; .w
 
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossFinal:
+
+.hitcount	= 8
 
 		; init
 		lea	ObjDat_BossFZEggman(pc),a1					; load Eggman data
@@ -27,15 +19,15 @@ Obj_BossFinal:
 
 .notKnux
 		jsr	(SetUp_ObjAttributes).w
-		st	obBFZ_DPLC(a0)							; reset DPLC frame
+		st	ros_prev_frame(a0)						; reset DPLC frame
 		st	(Boss_flag).w
 		move.l	(V_int_run_count).w,(RNG_seed).w				; set to RNG seed for more RNG
-		move.b	#BossFinal_Hits,collision_property(a0)				; set hits
+		move.b	#.hitcount,collision_property(a0)				; set hits
 		move.l	#BossFinal_Setup,address(a0)
-		move.l	#BossFinal_WaitXpos,obBFZ_Jump(a0)
+		move.l	#BossFinal_WaitXpos,jump_ptr(a0)
 		move.b	#1,anim(a0)							; set laugh anim
 
-		; load plasma ball launcher
+		; create plasma ball launcher
 		lea	Child6_BossPlasma(pc),a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	BossFinal_Setup
@@ -49,12 +41,12 @@ Obj_BossFinal:
 		add.w	(Camera_min_Y_pos).w,d0
 		move.w	d0,y_pos(a1)
 
-		; load cylinders
+		; create cylinders
 		lea	Child6_EggmanCylinder(pc),a2
 		jsr	(CreateChild6_Simple).w
 
 BossFinal_Setup:
-		movea.l	obBFZ_Jump(a0),a1
+		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		addq.w	#7,(RNG_seed).w
 		bra.w	BossFinal_MainProcess
@@ -70,7 +62,7 @@ BossFinal_WaitXpos:
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
 		bne.s	.return
-		move.l	#.checkxpos,obBFZ_Jump(a0)
+		move.l	#.checkxpos,jump_ptr(a0)
 
 .checkxpos
 
@@ -79,7 +71,7 @@ BossFinal_WaitXpos:
 		add.w	(Camera_max_X_pos).w,d0
 		cmp.w	(Camera_X_pos).w,d0
 		bhs.s	.return
-		move.l	#BossFinal_MoveCylinders,obBFZ_Jump(a0)
+		move.l	#BossFinal_MoveCylinders,jump_ptr(a0)
 
 .return
 		rts
@@ -102,7 +94,7 @@ BossFinal_Range:
 BossFinal_MoveCylinders:
 
 		; jmp
-		move.l	#.waitcyl,obBFZ_Jump(a0)
+		move.l	#.waitcyl,jump_ptr(a0)
 
 		; calc cylinders address
 		jsr	(Random_Number).w
@@ -133,13 +125,13 @@ BossFinal_MoveCylinders:
 		; set
 		clr.b	boss_invulnerable_time(a0)
 		st	collision_flags(a0)
-		move.b	#2,obBFZ_Count(a0)						; set 2 cylinders count
+		move.b	#2,count(a0)							; set 2 cylinders count
 		sfx	sfx_Rumbling
 
 .waitcyl
-		tst.b	obBFZ_Count(a0)							; wait end attack cylinders
+		tst.b	count(a0)							; wait end attack cylinders
 		bne.s	.flipx
-		move.l	#BossFinal_CreatePlasmaBalls,obBFZ_Jump(a0)
+		move.l	#BossFinal_CreatePlasmaBalls,jump_ptr(a0)
 
 .flipx
 
@@ -160,13 +152,13 @@ BossFinal_MoveCylinders:
 ; =============== S U B R O U T I N E =======================================
 
 BossFinal_CreatePlasmaBalls:
-		move.l	#.waitpl,obBFZ_Jump(a0)
+		move.l	#.waitpl,jump_ptr(a0)
 
 		; enable plasma ball launcher
 		sfx	sfx_Electric							; play sfx
 		movea.w	parent2(a0),a1							; load plasma ball launcher address
 		st	obBFZBP_Enable(a1)						; create plasma balls
-		move.b	#1,obBFZ_Count(a0)
+		move.b	#1,count(a0)
 
 .waitpl
 
@@ -174,9 +166,9 @@ BossFinal_CreatePlasmaBalls:
 		sfxcont	sfx_Electric,$F							; play electricity sound every 16th frame
 
 		; check end
-		tst.b	obBFZ_Count(a0)
+		tst.b	count(a0)
 		bne.s	.return
-		move.l	#BossFinal_MoveCylinders,obBFZ_Jump(a0)				; routine back
+		move.l	#BossFinal_MoveCylinders,jump_ptr(a0)				; routine back
 
 .return
 		rts
@@ -231,7 +223,7 @@ BossFinal_MainProcess:
 		move.l	(sp)+,d0							; restore players address
 
 .notp1
-		btst	#status.npc.touch,status(a0)							; Sonic hit the boss?
+		btst	#status.npc.touch,status(a0)					; Sonic hit the boss?
 		bne.s	.return								; if yes, branch
 		swap	d0								; get Tails address
 		tst.w	d0								; is Tails?
@@ -322,12 +314,12 @@ BossFinal_Defeated:
 .defeated
 
 		; wait end attack cylinders
-		tst.b	obBFZ_Count(a0)
+		tst.b	count(a0)
 		bne.w	.draw
 		move.l	#.defeatedfall,address(a0)
 		move.l	#FZ_Resize.afterboss,(Level_data_addr_RAM.Resize).w
 		bset	#status.npc.x_flip,status(a0)					; set flipx
-		bset	#4,objoff_38(a0)						; remove plasma ball launcher
+		bset	#4,state_flags(a0)						; remove plasma ball launcher
 		move.b	#9,anim(a0)							; set defeated jump anim
 
 		; set xypos

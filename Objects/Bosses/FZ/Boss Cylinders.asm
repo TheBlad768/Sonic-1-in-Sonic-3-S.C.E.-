@@ -4,7 +4,6 @@
 
 ; dynamic object variables
 obBFZEC_Enable				= objoff_2D	; .b ; move cylinder
-obBFZEC_Timer				= objoff_2E	; .w
 obBFZEC_OrigY				= objoff_30	; .l ; original y-axis position
 obBFZEC_YVel				= objoff_34	; .l
 obBFZEC_Grab				= objoff_3C	; .b ; grab Eggman
@@ -36,7 +35,7 @@ Obj_EggmanCylinder:
 		lea	ObjDat_BossCylinder(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bset	#status.npc.no_balancing,status(a0)				; disable player's balance animation
-		move.w	#bytes_to_word(64/2,128/2),objoff_3A(a0)			; set explosion radius
+		move.w	#bytes_to_word(64/2,128/2),objoff_3A(a0)			; set explosion xy radius
 		move.l	#.main,address(a0)
 
 		; check flipy
@@ -150,10 +149,10 @@ EggmanCylinder_Movement:
 		beq.s	.movechkup
 
 		; create explosions
-		subq.b	#1,objoff_39(a0)
+		subq.b	#1,count(a0)
 		bpl.s	.movechkup
-		move.b	#3,objoff_39(a0)
-		jsr	(sub_83E84).l
+		move.b	#3,count(a0)
+		jsr	(CreateBossExplosion).l
 
 .movechkup
 		tst.b	obBFZEC_Enable(a0)						; 0 and 2
@@ -173,7 +172,7 @@ EggmanCylinder_Movement:
 
 		; load Eggman address
 		movea.w	parent3(a0),a1
-		subq.b	#1,obBFZ_Count(a1)
+		subq.b	#1,count(a1)
 
 .returnup
 		rts
@@ -209,10 +208,10 @@ EggmanCylinder_Movement:
 		beq.s	.movechkdown
 
 		; create explosions
-		subq.b	#1,objoff_39(a0)
+		subq.b	#1,count(a0)
 		bpl.s	.movechkdown
-		move.b	#3,objoff_39(a0)
-		jsr	(sub_83E84).l
+		move.b	#3,count(a0)
+		jsr	(CreateBossExplosion).l
 
 .movechkdown
 		tst.b	obBFZEC_Enable(a0)						; 4 and 6
@@ -232,7 +231,7 @@ EggmanCylinder_Movement:
 
 		; load Eggman address
 		movea.w	parent3(a0),a1
-		subq.b	#1,obBFZ_Count(a1)
+		subq.b	#1,count(a1)
 
 .returndown
 		rts

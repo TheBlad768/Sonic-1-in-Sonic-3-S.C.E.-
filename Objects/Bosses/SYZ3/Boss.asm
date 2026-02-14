@@ -13,6 +13,9 @@ bossblock.timer				= objoff_3E	; (2 bytes)
 bossblock.spikeenable			= 2
 bossblock.spiketouch			= 3
 
+bossblock_block.grabblock		= 5
+bossblock_block.breakblock		= 6
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossBlock:
@@ -104,7 +107,7 @@ BossBlock_MoveDown:
 		move.w	parent3(a0),d0
 		beq.s	.set
 		movea.w	d0,a1
-		bset	#5,state_flags(a1)						; grab block
+		bset	#bossblock_block.grabblock,state_flags(a1)			; grab block
 		sfx	sfx_BossHitFloor
 		move.w	#50-30,wait_timer(a0)
 		move.w	#30,bossblock.timer(a0)
@@ -215,7 +218,7 @@ BossBlock_AirShaking:
 		move.w	parent3(a0),d0
 		beq.s	.return
 		movea.w	d0,a1
-		bset	#6,state_flags(a1)						; break block
+		bset	#bossblock_block.breakblock,state_flags(a1)			; break block
 
 .return
 		rts
@@ -291,10 +294,7 @@ BossBlock_Setup2:
 		jsr	(MoveSprite2).w
 
 BossBlock_Setup:
-
-		; jump
-		movea.l	jump_ptr(a0),a1
-		jsr	(a1)
+		jsr	(Obj_Wait).w
 
 ; ---------------------------------------------------------------------------
 ; Collision, Animate, Drawing
@@ -438,6 +438,9 @@ BossBlock_Defeated:
 ; Spike
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+bossblock_spike.ypos			= objoff_3C	; y-axis position (2 bytes)
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossBlock_Spike:
@@ -450,7 +453,7 @@ Obj_BossBlock_Spike:
 
 .main
 		jsr	(Refresh_ChildPosition).w
-		move.w	objoff_3C(a0),d0
+		move.w	bossblock_spike.ypos(a0),d0
 		btst	#bossblock.spikeenable,state_flags(a1)
 		beq.s	.suby
 
@@ -467,12 +470,12 @@ Obj_BossBlock_Spike:
 		subq.w	#5,d0
 
 .ypos
-		move.w	d0,objoff_3C(a0)
+		move.w	d0,bossblock_spike.ypos(a0)
 		asr.w	#2,d0
 		add.w	d0,y_pos(a0)
 
 		; check touch
-		tst.w	objoff_3C(a0)							; spike hidden?
+		tst.w	bossblock_spike.ypos(a0)					; spike hidden?
 		bmi.s	.draw								; if yes, branch
 		btst	#status.npc.touch,status(a1)					; boss flashing?
 		bne.s	.draw								; if yes, branch
@@ -487,24 +490,24 @@ Obj_BossBlock_Spike:
 		jmp	(Child_Draw_Sprite2).w
 
 ; ---------------------------------------------------------------------------
-; Block (SYZ)
 ; Object 76 - blocks that Eggman picks up (SYZ)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
-Obj_SYZBlock:
+Obj_BossBlock_Block:
 
 		; init
 		lea	ObjDat_BossBlock_Block(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.w	#bytes_to_word(0,36),child_dx(a0)				; set dxy
-		move.w	y_pos(a0),objoff_30(a0)
 		bset	#status.npc.no_balancing,status(a0)				; disable player's balance animation
 		move.l	#.check,address(a0)
 
 .check
-		btst	#5,state_flags(a0)
+		btst	#bossblock_block.grabblock,state_flags(a0)
 		beq.s	.solid
 		move.l	#.position,address(a0)
 		jsr	(Displace_PlayerOffObject).w					; release Sonic from object
@@ -513,7 +516,7 @@ Obj_SYZBlock:
 		jsr	(Refresh_ChildPosition).w
 		tst.b	collision_property(a1)
 		beq.s	.break
-		btst	#6,state_flags(a0)
+		btst	#bossblock_block.breakblock,state_flags(a0)
 		beq.s	.draw
 
 .break
@@ -539,6 +542,8 @@ Obj_SYZBlock:
 ; ---------------------------------------------------------------------------
 ; Block pieces
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -617,7 +622,7 @@ BossBlock_BreakChunkBlock:
 		; create sprite boss block
 		jsr	(Create_New_Object_3).w
 		bne.s	.return
-		move.l	#Obj_SYZBlock,address(a1)
+		move.l	#Obj_BossBlock_Block,address(a1)
 		moveq	#32/2,d1
 		add.w	d1,d2
 		add.w	d1,d3
