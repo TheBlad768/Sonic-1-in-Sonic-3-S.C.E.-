@@ -571,7 +571,7 @@ BossBlock_BreakChunkBlock:
 
 		; set boss block xypos
 		move.w	(Camera_Y_pos_copy).w,d2
-		addi.w	#224-32,d2
+		addi.w	#screen_height-32,d2
 		moveq	#-32,d3								; set align (32 pixels)
 		and.w	x_pos(a0),d3
 
@@ -614,7 +614,7 @@ BossBlock_BreakChunkBlock:
 
 .redraw
 		move.w	(Camera_Y_pos_copy).w,d0
-		addi.w	#224-16,d0
+		addi.w	#screen_height-16,d0
 		move.w	d0,(Draw_delayed_position).w					; set up redraw memory
 		move.w	#(32/16)-1,(Draw_delayed_rowcount).w				; redraw only 4 tiles 8x8
 		st	(Screen_event_flag).w						; set redraw flag
