@@ -13,9 +13,9 @@ bosswater.ypos			= $C0
 
 bosswater			= *
 
-.origX				ds.l 1							; original x-axis position (2 bytes)
+.origX				ds.l 1							; original x-axis position (4 bytes)
 				ds.b 6							; skip jump_ptr, state_flags and count (6 bytes)
-.origY				ds.l 1							; original y-axis position (2 bytes)
+.origY				ds.l 1							; original y-axis position (4 bytes)
 .timer				ds.b 1							; (1 byte)
 .counter			ds.b 1							; (1 byte)
 
