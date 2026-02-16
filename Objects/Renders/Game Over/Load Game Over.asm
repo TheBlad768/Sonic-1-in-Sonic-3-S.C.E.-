@@ -20,11 +20,11 @@ Render_GameOver:
 		addq.b	#1,GameOver_RAM.status-GameOver_RAM(a4)				; set 1
 
 		; 1
-		move.w	#$80-48,GameOver_RAM.xpos-GameOver_RAM(a4)
-		move.w	#$80+(screen_height/2),GameOver_RAM.ypos-GameOver_RAM(a4)
+		move.w	#spriteScreenPositionX(-48),GameOver_RAM.xpos-GameOver_RAM(a4)
+		move.w	#spriteScreenPositionY(screen_height/2),GameOver_RAM.ypos-GameOver_RAM(a4)
 
 		; 2
-		move.w	#$80+(320+48),GameOver_RAM.xpos2-GameOver_RAM(a4)
+		move.w	#spriteScreenPositionY(screen_width+48),GameOver_RAM.xpos2-GameOver_RAM(a4)
 
 		; set mapping
 		move.l	#Map_GameOver,d0
@@ -43,7 +43,7 @@ Render_GameOver:
 		beq.s	.settime							; if yes, branch
 
 		; move sprites
-		moveq	#16,d1
+		moveq	#block_width,d1
 		add.w	d1,GameOver_RAM.xpos-GameOver_RAM(a4)
 		sub.w	d1,GameOver_RAM.xpos2-GameOver_RAM(a4)
 

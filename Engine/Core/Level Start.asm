@@ -12,7 +12,7 @@ Get_LevelSizeStart:
 		movem.l	d0-d1,(Camera_min_X_pos).w
 
 		; set
-		moveq	#(screen_height/2)-16,d0
+		moveq	#(screen_height/2)-block_height,d0
 		move.w	d0,(Distance_from_top).w
 		move.w	d0,(Distance_from_top_P2).w
 
@@ -58,7 +58,7 @@ Get_LevelSizeStart:
 
 .withinright
 		move.w	d1,(Camera_X_pos).w						; set horizontal screen position
-		subi.w	#(screen_height/2)-16,d0					; is Sonic within 96px of upper edge?
+		subi.w	#(screen_height/2)-block_height,d0				; is Sonic within 96px of upper edge?
 		bhs.s	.withintop							; if yes, branch
 		moveq	#0,d0
 

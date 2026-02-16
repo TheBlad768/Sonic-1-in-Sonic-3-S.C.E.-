@@ -17,7 +17,7 @@ Render_Pylon:
 		swap	d1
 		andi.w	#$3F,d1
 		neg.w	d1
-		addi.w	#256,d1								; ypos
+		addi.w	#gameplay_plane_height,d1					; ypos
 
 		; draw pylon
 		moveq	#bytesToXcnt(Map_Pylon_end-Map_Pylon,6),d4			; tile count
