@@ -3,7 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-scrapeggman.block			= objoff_39	; (1 byte)
+
+	dsset count									; pretend we're in the RAM
+
+scrapeggman			= *
+
+.block				ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 

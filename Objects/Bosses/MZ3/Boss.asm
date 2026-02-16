@@ -4,7 +4,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-bossfire.timer				= objoff_3E	; (1 byte)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+bossfire			= *
+
+.timer				ds.w 1							; (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -382,10 +389,18 @@ Obj_BossFire_ShipTubeFlame:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-bossfire_fire.origX			= objoff_30	; original x-axis position (2 bytes)
-bossfire_fire.copyX			= objoff_32	; copy x-axis position (2 bytes)
-bossfire_fire.origY			= objoff_34	; original y-axis position (2 bytes)
-bossfire_fire.timer			= objoff_3F	; (1 byte)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+bossfire_fire			= *
+
+.origX				ds.w 1							; original x-axis position (2 bytes)
+.copyX				ds.w 1							; copy x-axis position (2 bytes)
+				ds.l 1							; skip jump_ptr (4 bytes)
+.origY				ds.w 1							; original y-axis position (2 bytes)
+.timer				ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 

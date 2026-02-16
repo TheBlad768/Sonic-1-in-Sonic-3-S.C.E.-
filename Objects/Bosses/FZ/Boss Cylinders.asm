@@ -3,10 +3,18 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-bossfinal_cylinder.enable		= objoff_2D	; move cylinder (1 byte)
-bossfinal_cylinder.origY		= objoff_30	; original y-axis position (4 bytes)
-bossfinal_cylinder.yvel			= objoff_34	; (4 bytes)
-bossfinal_cylinder.grab			= objoff_3C	; grab Eggman (1 byte)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+bossfinal_cylinder		= *
+
+.origY				ds.l 1							; original y-axis position (4 bytes)
+.yvel				ds.l 1							; (4 bytes)
+				ds.l 1							; skip state_flags, count and explosion xy offset range (4 bytes)
+.enable				ds.b 1							; move cylinder (1 byte)
+.grab				ds.b 1							; grab Eggman (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 

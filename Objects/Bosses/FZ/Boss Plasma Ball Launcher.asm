@@ -3,9 +3,16 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-bossfinal_plasma.enable			= objoff_2D	; (1 byte)
-bossfinal_plasma.count			= objoff_30	; (1 byte)
-bossfinal_plasma.count2			= objoff_31	; (1 byte)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+bossfinal_plasma		= *
+
+.count				ds.b 1							; (1 byte)
+.count2				ds.b 1							; (1 byte)
+.enable				ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -95,8 +102,14 @@ Obj_BossFinal_Plasma:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-bossfinal_plasmaball.timer		= wait_timer	; (2 bytes)
-bossfinal_plasmaball.xpos		= objoff_30	; (2 bytes)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+bossfinal_plasmaball		= *
+
+.xpos				ds.w 1							; (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -122,7 +135,7 @@ Obj_BossFinal_PlasmaBall:
 		; init
 		lea	ObjDat_BossFinal_PlasmaBall(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.w	#3*60,bossfinal_plasmaball.timer(a0)				; timer
+		move.w	#3*60,wait_timer(a0)						; timer
 		move.l	#.main,address(a0)
 
 .main
@@ -142,11 +155,11 @@ Obj_BossFinal_PlasmaBall:
 
 .skip
 		clr.b	anim(a0)
-		subq.w	#1,bossfinal_plasmaball.timer(a0)
+		subq.w	#1,wait_timer(a0)
 		bne.s	.draw
 		addq.b	#1,anim(a0)
 
-		move.w	#3*60,bossfinal_plasmaball.timer(a0)				; timer
+		move.w	#3*60,wait_timer(a0)						; timer
 		move.l	#.chkdel,address(a0)
 
 		; set xyvel
@@ -171,7 +184,7 @@ Obj_BossFinal_PlasmaBall:
 		addi.w	#$D0,d0
 		cmp.w	y_pos(a0),d0
 		blo.s	.delete
-		subq.w	#1,bossfinal_plasmaball.timer(a0)				; timer
+		subq.w	#1,wait_timer(a0)						; timer
 		beq.s	.delete
 
 		; draw

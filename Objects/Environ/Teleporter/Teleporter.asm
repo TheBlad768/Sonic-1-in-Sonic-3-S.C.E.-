@@ -5,34 +5,34 @@
 ; dynamic object variables
 
 ; player 1
-	dsset objoff_18				; pretend we're in the RAM
+	dsset x_vel									; pretend we're in the RAM
 
-tele_player1_attached		= *		; $E bytes ($18-$26)
+tele_player1_attached		= *							; $E bytes
 
-.routine			ds.b 1	; 0
-.sine				ds.b 1	; 1
-.timer				ds.w 1	; 2
-.size				ds.w 1	; 4
-.pointer			ds.l 1	; 6	; save address
-.saveX				ds.w 1	; $A
-.saveY				ds.w 1	; $C
+.routine			ds.b 1	; (1 byte)
+.sine				ds.b 1	; (1 byte)
+.timer				ds.w 1	; (2 bytes)
+.size				ds.w 1	; (2 bytes)
+.pointer			ds.l 1	; (4 bytes)					; save address
+.saveX				ds.w 1	; (2 bytes)
+.saveY				ds.w 1	; (2 bytes)
 
-	dsreset					; stop pretending and reset the program counter
+	dsreset										; stop pretending and reset the program counter
 
 ; player 2
-	dsset objoff_2E				; pretend we're in the RAM
+	dsset wait_timer								; pretend we're in the RAM
 
-tele_player2_attached		= *		; $E bytes ($2E-$3C)
+tele_player2_attached		= *							; $E bytes
 
-.routine			ds.b 1	; 0
-.sine				ds.b 1	; 1
-.timer				ds.w 1	; 2
-.size				ds.w 1	; 4
-.pointer			ds.l 1	; 6	; save address
-.saveX				ds.w 1	; $A
-.saveY				ds.w 1	; $C
+.routine			ds.b 1	; (1 byte)
+.sine				ds.b 1	; (1 byte)
+.timer				ds.w 1	; (2 bytes)
+.size				ds.w 1	; (2 bytes)
+.pointer			ds.l 1	; (4 bytes)					; save address
+.saveX				ds.w 1	; (2 bytes)
+.saveY				ds.w 1	; (2 bytes)
 
-	dsreset					; stop pretending and reset the program counter
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
