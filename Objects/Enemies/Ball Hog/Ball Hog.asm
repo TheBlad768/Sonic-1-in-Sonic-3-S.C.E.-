@@ -3,7 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-hog_launchflag			= objoff_32	; 0 to launch a cannonball
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+ballhog				= *
+
+.launchflag			ds.b 1							; 0 to launch a cannonball (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -34,13 +41,13 @@ Obj_BallHog:
 		; action
 		cmpi.b	#1,mapping_frame(a0)						; is final frame (01) displayed?
 		bne.s	.setlaunchflag							; if not, branch
-		tst.b	hog_launchflag(a0)						; is it set to launch cannonball?
+		tst.b	ballhog.launchflag(a0)						; is it set to launch cannonball?
 		beq.s	.makeball							; if yes, branch
 		bra.s	.remember
 ; ---------------------------------------------------------------------------
 
 .setlaunchflag
-		clr.b	hog_launchflag(a0)						; set to launch	cannonball
+		clr.b	ballhog.launchflag(a0)						; set to launch	cannonball
 
 .remember
 		jmp	(Sprite_CheckDeleteTouch).w
@@ -51,7 +58,7 @@ Obj_BallHog:
 ; ---------------------------------------------------------------------------
 
 .makeball
-		st	hog_launchflag(a0)
+		st	ballhog.launchflag(a0)
 
 		; create ball
 		lea	Child6_BallHog_Cannonball(pc),a2
@@ -78,7 +85,6 @@ Obj_BallHog:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-cbal_time		= objoff_30 ; time until the cannonball explodes (2 bytes)
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -92,7 +98,7 @@ Obj_BallHog_Cannonball:
 		move.w	d0,d1
 		lsl.w	#4,d0
 		sub.w	d1,d0
-		move.w	d0,cbal_time(a0)						; set explosion time
+		move.w	d0,wait_timer(a0)						; set explosion time
 
 		; init
 		lea	ObjDat3_BallHog_Cannonball(pc),a1
@@ -124,7 +130,7 @@ Obj_BallHog_Cannonball:
 		neg.w	x_vel(a0)
 
 .chkexplode
-		subq.w	#1,cbal_time(a0)						; subtract 1 from explosion time
+		subq.w	#1,wait_timer(a0)						; subtract 1 from explosion time
 		bpl.s	.animate							; if time is > 0, branch
 
 		; remove

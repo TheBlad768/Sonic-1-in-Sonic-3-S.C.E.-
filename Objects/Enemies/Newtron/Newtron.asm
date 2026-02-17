@@ -3,7 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-obStatusTron		= objoff_32
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+newtron				= *
+
+.state_flags			ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -48,6 +55,10 @@ Obj_Newtron:
 .Sonicisright
 		cmpi.w	#128,d2								; is Sonic within $80 pixels of the newtron?
 		bhs.s	.outofrange							; if not, branch
+
+		; check debug mode
+		tst.w	(Debug_placement_mode).w					; is debug mode on?
+		bne.s	.outofrange							; if yes, branch
 		move.l	#.type00,jump_ptr(a0)						; goto .type00 next
 		move.b	#1,anim(a0)
 		tst.b	subtype(a0)							; check object type
@@ -128,9 +139,9 @@ Obj_Newtron:
 .firemissile
 		cmpi.b	#2,mapping_frame(a0)
 		bne.s	.fail
-		tst.b	obStatusTron(a0)
+		tst.b	newtron.state_flags(a0)
 		bne.s	.fail
-		st	obStatusTron(a0)
+		st	newtron.state_flags(a0)
 
 		; set delete
 		move.l	#.delete,jump_ptr(a0)

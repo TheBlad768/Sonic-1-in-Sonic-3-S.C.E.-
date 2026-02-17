@@ -3,8 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-moto_time			= objoff_2E
-moto_smokedelay			= objoff_39
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+motobug				= *
+
+.delay				ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -61,9 +67,9 @@ Obj_MotoBug:
 		add.w	d1,y_pos(a0)							; match object's position with the floor
 
 		; wait
-		subq.b	#1,moto_smokedelay(a0)
+		subq.b	#1,motobug.delay(a0)
 		bpl.s	.nosmoke
-		move.b	#$F,moto_smokedelay(a0)
+		move.b	#$F,motobug.delay(a0)
 
 		; create smoke
 		lea	Child6_MotoBug_Smoke(pc),a2
@@ -77,7 +83,7 @@ Obj_MotoBug:
 ; ---------------------------------------------------------------------------
 
 .pause
-		move.w	#60-1,moto_time(a0)						; set pause time to 1 second
+		move.w	#60-1,wait_timer(a0)						; set pause time to 1 second
 		move.l	#.move,jump_ptr(a0)
 		clr.w	x_vel(a0)							; stop the object moving
 		clr.b	anim(a0)

@@ -3,8 +3,15 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-roller_timedelay		= objoff_30	; (2 bytes)
-roller_flag			= objoff_32	; (1 byte)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+roller				= *
+
+.timer				ds.w 1							; (2 bytes)
+.mode				ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -60,7 +67,7 @@ Obj_Roller:
 .rollnochk
 		cmpi.b	#2,anim(a0)
 		beq.s	.next
-		subq.w	#1,roller_timedelay(a0)
+		subq.w	#1,roller.timer(a0)
 		bpl.s	.return
 		move.b	#1,anim(a0)
 		move.w	#$700,x_vel(a0)
@@ -89,7 +96,7 @@ Obj_Roller:
 
 .jump
 		move.l	#.matchfloor,jump_ptr(a0)
-		bset	#0,roller_flag(a0)
+		bset	#0,roller.mode(a0)
 		beq.s	.return2
 		move.w	#-$600,y_vel(a0)						; move Roller vertically
 
@@ -114,7 +121,7 @@ Obj_Roller:
 ; =============== S U B R O U T I N E =======================================
 
 Roll_Stop:
-		tst.b	roller_flag(a0)
+		tst.b	roller.mode(a0)
 		bmi.s	.return
 		moveq	#-(96/2),d0
 		add.w	(Player_1+x_pos).w,d0
@@ -123,8 +130,8 @@ Roll_Stop:
 		clr.b	anim(a0)
 		move.b	#$E|collision_flags.npc.touch,collision_flags(a0)
 		clr.w	x_vel(a0)
-		move.w	#2*60,roller_timedelay(a0)					; set waiting time to 2 seconds
-		bset	#7,roller_flag(a0)
+		move.w	#2*60,roller.timer(a0)						; set waiting time to 2 seconds
+		bset	#7,roller.mode(a0)
 		move.l	#Obj_Roller.rollnochk,jump_ptr(a0)
 
 .return

@@ -2,12 +2,19 @@
 ; Object 2C - Jaws enemy (LZ)
 ; ---------------------------------------------------------------------------
 
-; Options
+; options
 _JAWSWATER_FIX_			= 1	; hide jaws if it is above water
 
 ; dynamic object variables
-jaws_timecount			= objoff_3A
-jaws_timedelay			= objoff_3C
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+jaws				= *
+
+.timer				ds.w 1							; (2 bytes)
+.delay				ds.w 1							; (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -26,17 +33,17 @@ Obj_Jaws:
 		move.b	subtype(a0),d0							; load object subtype number
 		lsl.w	#6,d0								; multiply d0 by 64
 		subq.w	#1,d0
-		move.w	d0,jaws_timecount(a0)						; set turn delay time
-		move.w	d0,jaws_timedelay(a0)
+		move.w	d0,jaws.timer(a0)						; set turn delay time
+		move.w	d0,jaws.delay(a0)
 		move.w	#-$40,x_vel(a0)							; move Jaws to the left
 		btst	#render_flags.x_flip,render_flags(a0)				; is Jaws facing left?
 		beq.s	.turn								; if yes, branch
 		neg.w	x_vel(a0)							; move Jaws to the right
 
 .turn
-		subq.w	#1,jaws_timecount(a0)						; subtract 1 from turn delay time
+		subq.w	#1,jaws.timer(a0)						; subtract 1 from turn delay time
 		bpl.s	.animate							; if time remains, branch
-		move.w	jaws_timedelay(a0),jaws_timecount(a0)				; reset turn delay time
+		move.w	jaws.delay(a0),jaws.timer(a0)					; reset turn delay time
 		neg.w	x_vel(a0)							; change speed direction
 		bchg	#render_flags.x_flip,render_flags(a0)				; change Jaws facing direction
 

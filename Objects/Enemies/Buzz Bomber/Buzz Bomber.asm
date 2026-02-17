@@ -3,8 +3,15 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-buzz_timedelay			= objoff_32	; .w
-buzz_buzzstatus			= objoff_38	; .b
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+buzzbomber			= *
+
+.timer				ds.w 1							; (2 bytes)
+.state_flags			ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -31,12 +38,12 @@ Obj_BuzzBomber:
 ; =============== S U B R O U T I N E =======================================
 
 .move
-		subq.w	#1,buzz_timedelay(a0)						; subtract 1 from time delay
+		subq.w	#1,buzzbomber.timer(a0)						; subtract 1 from time delay
 		bpl.s	.noflip								; if time remains, branch
-		btst	#1,buzz_buzzstatus(a0)						; is Buzz Bomber near Sonic?
+		btst	#1,buzzbomber.state_flags(a0)					; is Buzz Bomber near Sonic?
 		bne.s	.fire								; if yes, branch
 		move.l	#.chknearsonic,jump_ptr(a0)
-		move.w	#128-1,buzz_timedelay(a0)					; set time delay to just over 2 seconds
+		move.w	#128-1,buzzbomber.timer(a0)					; set time delay to just over 2 seconds
 		move.w	#$400,x_vel(a0)							; move Buzz Bomber to the right
 		move.b	#1,anim(a0)							; use "flying" animation
 		btst	#status.npc.x_flip,status(a0)					; is Buzz Bomber facing	left?
@@ -65,10 +72,10 @@ Obj_BuzzBomber:
 		add.w	x_pos(a0),d0
 		move.w	d0,x_pos(a1)
 		move.b	status(a0),status(a1)
-		move.w	#14,buzz_timedelay(a1)
+		move.w	#14,buzzbomber.timer(a1)
 		move.w	a0,parent3(a1)
-		move.b	#1,buzz_buzzstatus(a0)						; set to "already fired" to prevent refiring
-		move.w	#60-1,buzz_timedelay(a0)
+		move.b	#1,buzzbomber.state_flags(a0)					; set to "already fired" to prevent refiring
+		move.w	#60-1,buzzbomber.timer(a0)
 		move.b	#2,anim(a0)							; use "firing" animation
 
 .fail
@@ -76,25 +83,25 @@ Obj_BuzzBomber:
 ; ---------------------------------------------------------------------------
 
 .chknearsonic
-		subq.w	#1,buzz_timedelay(a0)						; subtract 1 from time delay
+		subq.w	#1,buzzbomber.timer(a0)						; subtract 1 from time delay
 		bmi.s	.chgdirection
 		MoveSpriteXOnly
-		tst.b	buzz_buzzstatus(a0)
+		tst.b	buzzbomber.state_flags(a0)
 		bne.s	.keepgoing
 		jsr	(Find_SonicTails).w
 		cmpi.w	#96,d2								; is Buzz Bomber within $60 pixels of Sonic?
 		bhs.s	.keepgoing							; if not, branch
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bpl.s	.keepgoing							; if not, branch
-		move.b	#2,buzz_buzzstatus(a0)						; set Buzz Bomber to "near Sonic"
-		move.w	#30-1,buzz_timedelay(a0)					; set time delay to half a second
+		move.b	#2,buzzbomber.state_flags(a0)					; set Buzz Bomber to "near Sonic"
+		move.w	#30-1,buzzbomber.timer(a0)					; set time delay to half a second
 		bra.s	.stop
 ; ---------------------------------------------------------------------------
 
 .chgdirection
-		clr.b	buzz_buzzstatus(a0)						; set Buzz Bomber to "normal"
+		clr.b	buzzbomber.state_flags(a0)					; set Buzz Bomber to "normal"
 		bchg	#status.npc.x_flip,status(a0)					; change direction
-		move.w	#60-1,buzz_timedelay(a0)
+		move.w	#60-1,buzzbomber.timer(a0)
 
 .stop
 		move.l	#.move,jump_ptr(a0)
@@ -128,7 +135,7 @@ Obj_Missile:
 		move.l	#.wait,address(a0)
 
 .wait
-		subq.w	#1,buzz_timedelay(a0)						; subtract 1 from time delay
+		subq.w	#1,buzzbomber.timer(a0)						; subtract 1 from time delay
 		bpl.s	.notdraw
 		move.b	#7|collision_flags.npc.hurt,collision_flags(a0)
 		move.l	#.frombuzz,address(a0)

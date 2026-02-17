@@ -3,7 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-bas_sypos			= objoff_30	; copy Sonic ypos
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+basaran				= *
+
+.sypos				ds.w 1							; copy Sonic ypos (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -39,7 +46,7 @@ Obj_Basaran:
 		bhs.s	.nodrop								; if not, branch
 		tst.w	d1								; is Sonic above?
 		beq.s	.nodrop								; if yes, branch
-		move.w	y_pos(a1),bas_sypos(a0)
+		move.w	y_pos(a1),basaran.sypos(a0)
 		cmpi.w	#128,d3								; is Basaran height $80 pixels of Sonic?
 		bhs.s	.nodrop								; if not, branch
 
@@ -64,7 +71,7 @@ Obj_Basaran:
 		jsr	(Find_SonicTails).w
 		jsr	(Change_FlipX).w
 		move.b	render_flags(a0),status(a0)
-		move.w	bas_sypos(a0),d3
+		move.w	basaran.sypos(a0),d3
 		sub.w	y_pos(a0),d3
 		blo.s	.chkdel
 		cmpi.w	#16,d3								; is basaran close to Sonic vertically?

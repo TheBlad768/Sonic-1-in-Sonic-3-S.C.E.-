@@ -3,7 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-chop_origY			= objoff_32
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+chopper				= *
+
+.origY				ds.w 1							; original y-axis position (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -13,11 +20,11 @@ Obj_Chopper:
 		lea	ObjDat_Chopper(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.w	#-$700,y_vel(a0)						; set vertical speed
-		move.w	y_pos(a0),chop_origY(a0)					; save original position
+		move.w	y_pos(a0),chopper.origY(a0)					; save original position
 		move.l	#.chgspeed,address(a0)
 
 .chgspeed
-		move.w	chop_origY(a0),d0
+		move.w	chopper.origY(a0),d0
 		cmp.w	y_pos(a0),d0							; has Chopper returned to its original position?
 		bhs.s	.chganimation							; if not, branch
 		move.w	d0,y_pos(a0)
