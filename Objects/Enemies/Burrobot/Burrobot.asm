@@ -3,8 +3,15 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-burro_flag			= objoff_39	; chg
-burro_timedelay			= objoff_3C	; time between direction changes
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+burrobot			= *
+
+.timer				ds.w 1							; time between direction changes (2 bytes)
+.mode				ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -39,10 +46,10 @@ Obj_Burrobot:
 ; =============== S U B R O U T I N E =======================================
 
 .changedir
-		subq.w	#1,burro_timedelay(a0)
+		subq.w	#1,burrobot.timer(a0)
 		bpl.s	.nochg
 		move.l	#.Burro_Move,jump_ptr(a0)
-		move.w	#256-1,burro_timedelay(a0)
+		move.w	#256-1,burrobot.timer(a0)
 		move.w	#$80,x_vel(a0)
 		move.b	#1,anim(a0)
 		bchg	#status.npc.x_flip,status(a0)					; change direction the Burrobot is facing
@@ -54,10 +61,10 @@ Obj_Burrobot:
 ; ---------------------------------------------------------------------------
 
 .Burro_Move
-		subq.w	#1,burro_timedelay(a0)
+		subq.w	#1,burrobot.timer(a0)
 		bmi.s	.loc_AD84
 		MoveSpriteXOnly
-		bchg	#0,burro_flag(a0)
+		bchg	#0,burrobot.mode(a0)
 		bne.s	.loc_AD78
 		move.b	x_radius(a0),d3
 		ext.w	d3
@@ -83,7 +90,7 @@ Obj_Burrobot:
 		btst	#2,(V_int_run_count+3).w
 		beq.s	.loc_ADA4
 		move.l	#.changedir,jump_ptr(a0)
-		move.w	#60-1,burro_timedelay(a0)
+		move.w	#60-1,burrobot.timer(a0)
 		clr.w	x_vel(a0)
 		clr.b	anim(a0)
 		rts
@@ -109,7 +116,7 @@ Obj_Burrobot:
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)
 		move.b	#1,anim(a0)
-		move.w	#256-1,burro_timedelay(a0)
+		move.w	#256-1,burrobot.timer(a0)
 		move.l	#.Burro_Move,jump_ptr(a0)
 		jsr	(Find_SonicTails).w
 		jsr	(Change_FlipX).w

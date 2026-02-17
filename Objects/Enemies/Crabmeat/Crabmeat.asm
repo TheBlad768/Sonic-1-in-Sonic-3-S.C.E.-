@@ -2,12 +2,19 @@
 ; Object 1F - Crabmeat enemy (GHZ, SYZ)
 ; ---------------------------------------------------------------------------
 
-; Options
+; options
 _CRABMEAT_SLOPE_		= 0	; if 1, enable slope animation
 
 ; dynamic object variables
-crab_timedelay			= objoff_30
-crab_mode			= objoff_32
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+crabmeat			= *
+
+.timer				ds.w 1							; (2 bytes)
+.mode				ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -46,16 +53,16 @@ Obj_Crabmeat:
 ; =============== S U B R O U T I N E =======================================
 
 .waittofire
-		subq.w	#1,crab_timedelay(a0)						; subtract 1 from time delay
+		subq.w	#1,crabmeat.timer(a0)						; subtract 1 from time delay
 		bpl.s	.dontmove
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bpl.s	.movecrab							; if not, branch
-		bchg	#1,crab_mode(a0)
+		bchg	#1,crabmeat.mode(a0)
 		bne.s	.fire
 
 .movecrab
 		move.l	#.walkonfloor,jump_ptr(a0)
-		move.w	#128-1,crab_timedelay(a0)					; set time delay to approx 2 seconds
+		move.w	#128-1,crabmeat.timer(a0)					; set time delay to approx 2 seconds
 		move.w	#$80,x_vel(a0)							; move Crabmeat to the right
 
 	if _CRABMEAT_SLOPE_
@@ -76,7 +83,7 @@ Obj_Crabmeat:
 ; ---------------------------------------------------------------------------
 
 .fire
-		move.w	#60-1,crab_timedelay(a0)
+		move.w	#60-1,crabmeat.timer(a0)
 		move.b	#6,anim(a0)							; use firing animation
 
 		; create
@@ -86,10 +93,10 @@ Obj_Crabmeat:
 ; ---------------------------------------------------------------------------
 
 .walkonfloor
-		subq.w	#1,crab_timedelay(a0)
+		subq.w	#1,crabmeat.timer(a0)
 		bmi.s	.chgdirection
 		MoveSpriteXOnly
-		bchg	#0,crab_mode(a0)
+		bchg	#0,crabmeat.mode(a0)
 		bne.s	.alt
 		move.b	x_radius(a0),d3
 		ext.w	d3
@@ -125,7 +132,7 @@ Obj_Crabmeat:
 
 .chgdirection
 		move.l	#.waittofire,jump_ptr(a0)
-		move.w	#60-1,crab_timedelay(a0)
+		move.w	#60-1,crabmeat.timer(a0)
 		clr.w	x_vel(a0)
 
 	if _CRABMEAT_SLOPE_

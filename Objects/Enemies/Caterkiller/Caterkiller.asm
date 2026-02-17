@@ -3,10 +3,17 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-cat_count:			= objoff_2E	; byte
-cat_timer:			= objoff_2F	; byte
-cat_flag:			= objoff_30	; byte
-cat_flag2:			= objoff_31	; byte ; $00-$0F bytes
+
+	dsset wait_timer								; pretend we're in the RAM
+
+caterkiller			= *
+
+.count				ds.b 1							; (1 byte)
+.timer				ds.b 1							; (1 byte)
+.flag				ds.b 1							; (1 byte)
+.flag2				ds.b $10						; ($10 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -34,7 +41,7 @@ Obj_Caterkiller:
 		bpl.s	.floornotfound
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)
-		move.b	#7,cat_timer(a0)
+		move.b	#7,caterkiller.timer(a0)
 		move.l	#.head,address(a0)
 
 		; create tail
@@ -57,7 +64,7 @@ Obj_Caterkiller:
 		jsr	(a1)
 
 		; anim
-		move.b	cat_flag(a0),d1
+		move.b	caterkiller.flag(a0),d1
 		bpl.s	.display
 		lea	Ani_Cat(pc),a1
 		moveq	#$7F,d0
@@ -65,7 +72,7 @@ Obj_Caterkiller:
 		addq.b	#4,angle(a0)
 		move.b	(a1,d0.w),d0
 		bpl.s	.animate
-		bclr	#7,cat_flag(a0)
+		bclr	#7,caterkiller.flag(a0)
 		bra.s	.display
 ; ---------------------------------------------------------------------------
 
@@ -88,26 +95,26 @@ Obj_Caterkiller:
 ; =============== S U B R O U T I N E =======================================
 
 .wait
-		subq.b	#1,cat_timer(a0)
+		subq.b	#1,caterkiller.timer(a0)
 		bmi.s	.move
 		rts
 ; ---------------------------------------------------------------------------
 
 .move
 		addq.b	#2,routine(a0)
-		move.b	#$10,cat_timer(a0)
+		move.b	#$10,caterkiller.timer(a0)
 		move.w	#-$C0,x_vel(a0)
 		move.w	#$40,ground_vel(a0)
-		bchg	#4,cat_flag(a0)
+		bchg	#4,caterkiller.flag(a0)
 		bne.s	.mset
 		clr.w	x_vel(a0)
 		neg.w	ground_vel(a0)
 
 .mset
-		bset	#7,cat_flag(a0)
+		bset	#7,caterkiller.flag(a0)
 
 .wait2
-		subq.b	#1,cat_timer(a0)
+		subq.b	#1,caterkiller.timer(a0)
 		bmi.s	.loc_16B5E
 		tst.w	x_vel(a0)
 		beq.s	.notmoving
@@ -133,10 +140,10 @@ Obj_Caterkiller:
 		bge.s	.loc_16B70
 		add.w	d1,y_pos(a0)
 		moveq	#0,d0
-		move.b	cat_count(a0),d0
-		addq.b	#1,cat_count(a0)
-		andi.b	#$F,cat_count(a0)
-		move.b	d1,cat_flag2(a0,d0.w)
+		move.b	caterkiller.count(a0),d0
+		addq.b	#1,caterkiller.count(a0)
+		andi.b	#$F,caterkiller.count(a0)
+		move.b	d1,caterkiller.flag2(a0,d0.w)
 
 .notmoving
 		rts
@@ -144,7 +151,7 @@ Obj_Caterkiller:
 
 .loc_16B5E
 		clr.b	routine(a0)
-		move.b	#7,cat_timer(a0)
+		move.b	#7,caterkiller.timer(a0)
 		clr.w	x_vel(a0)
 		clr.w	ground_vel(a0)
 		rts
@@ -152,23 +159,23 @@ Obj_Caterkiller:
 
 .loc_16B70
 		moveq	#0,d0
-		move.b	cat_count(a0),d0
-		move.b	#$80,cat_flag2(a0,d0.w)
+		move.b	caterkiller.count(a0),d0
+		move.b	#$80,caterkiller.flag2(a0,d0.w)
 		neg.w	x_pos+2(a0)
 		beq.s	.loc_1730A
 		btst	#status.npc.x_flip,status(a0)
 		beq.s	.loc_1730A
 		subq.w	#1,x_pos(a0)
-		addq.b	#1,cat_count(a0)
+		addq.b	#1,caterkiller.count(a0)
 		moveq	#0,d0
-		move.b	cat_count(a0),d0
-		clr.b	cat_flag2(a0,d0.w)
+		move.b	caterkiller.count(a0),d0
+		clr.b	caterkiller.flag2(a0,d0.w)
 
 .loc_1730A
 		bchg	#status.npc.x_flip,status(a0)
 		move.b	status(a0),render_flags(a0)
-		addq.b	#1,cat_count(a0)
-		andi.b	#$F,cat_count(a0)
+		addq.b	#1,caterkiller.count(a0)
+		andi.b	#$F,caterkiller.count(a0)
 		rts
 
 ; ---------------------------------------------------------------------------
@@ -177,18 +184,29 @@ Obj_Caterkiller:
 
 ; dynamic object variables
 
+	dsset wait_timer								; pretend we're in the RAM
+
+caterkiller_bodysegments	= *
+
+.count				ds.b 1							; (1 byte)
+.timer				ds.b 1							; (1 byte)
+.flag				ds.b 1							; (1 byte)
+.flag2				ds.b $10						; ($10 byte)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Caterkiller_BodySegments:
 
 		; calc count and xpos
 		moveq	#0,d0
-		movea.w	parent4(a0),a1						; head address
+		movea.w	parent4(a0),a1							; head address
 		move.w	x_pos(a1),d2
 		move.b	subtype(a0),d0
 		move.w	d0,d1
 		add.b	d0,d0
-		move.b	d0,cat_count(a0)
+		move.b	d0,caterkiller_bodysegments.count(a0)
 		add.w	d1,d1
 		move.w	d1,d0
 		add.w	d1,d1
@@ -206,7 +224,7 @@ Obj_Caterkiller_BodySegments:
 		jsr	(SetUp_ObjAttributes3).w
 
 		; fix flip
-		movea.w	parent4(a0),a1						; head address
+		movea.w	parent4(a0),a1							; head address
 		move.b	status(a1),status(a0)
 		move.b	status(a1),render_flags(a0)
 		move.w	#bytes_to_word(14/2,16/2),y_radius(a0)				; set y_radius and x_radius
@@ -219,7 +237,7 @@ Obj_Caterkiller_BodySegments:
 
 Cat_BodySeg2:
 		movea.w	parent3(a0),a1							; body address
-		move.b	cat_flag(a1),cat_flag(a0)
+		move.b	caterkiller_bodysegments.flag(a1),caterkiller_bodysegments.flag(a0)
 		bpl.s	Cat_BodySeg1
 		lea	Ani_Cat(pc),a1
 		moveq	#$7F,d0
@@ -240,7 +258,7 @@ Cat_BodySeg1:
 		movea.w	parent3(a0),a1							; body address
 		btst	#status.npc.touch,status(a0)
 		bne.w	Caterkiller_FragBody
-		move.b	cat_flag(a1),cat_flag(a0)
+		move.b	caterkiller_bodysegments.flag(a1),caterkiller_bodysegments.flag(a0)
 		move.b	routine(a1),routine(a0)
 		beq.w	.loc_16C64
 		move.w	ground_vel(a1),ground_vel(a0)
@@ -263,11 +281,11 @@ Cat_BodySeg1:
 		cmp.w	x_pos(a0),d3
 		beq.s	.loc_16C64
 		moveq	#0,d0
-		move.b	cat_count(a0),d0
-		move.b	cat_flag2(a1,d0.w),d1
+		move.b	caterkiller_bodysegments.count(a0),d0
+		move.b	caterkiller_bodysegments.flag2(a1,d0.w),d1
 		cmpi.b	#$80,d1
 		bne.s	.loc_16C50
-		move.b	d1,cat_flag2(a0,d0.w)
+		move.b	d1,caterkiller_bodysegments.flag2(a0,d0.w)
 		neg.w	x_pos+2(a0)
 		beq.s	.locj_173E4
 		btst	#status.npc.x_flip,status(a0)
@@ -275,28 +293,28 @@ Cat_BodySeg1:
 		cmpi.w	#-$C0,x_vel(a0)
 		bne.s	.locj_173E4
 		subq.w	#1,x_pos(a0)
-		addq.b	#1,cat_count(a0)
+		addq.b	#1,caterkiller_bodysegments.count(a0)
 		moveq	#0,d0
-		move.b	cat_count(a0),d0
-		clr.b	cat_flag2(a0,d0.w)
+		move.b	caterkiller_bodysegments.count(a0),d0
+		clr.b	caterkiller_bodysegments.flag2(a0,d0.w)
 
 .locj_173E4
 		bchg	#status.npc.x_flip,status(a0)
 		move.b	status(a0),render_flags(a0)
-		addq.b	#1,cat_count(a0)
-		andi.b	#$F,cat_count(a0)
+		addq.b	#1,caterkiller_bodysegments.count(a0)
+		andi.b	#$F,caterkiller_bodysegments.count(a0)
 		bra.s	.loc_16C64
 ; ---------------------------------------------------------------------------
 
 .loc_16C50
 		ext.w	d1
 		add.w	d1,y_pos(a0)
-		addq.b	#1,cat_count(a0)
-		andi.b	#$F,cat_count(a0)
-		move.b	d1,cat_flag2(a0,d0.w)
+		addq.b	#1,caterkiller_bodysegments.count(a0)
+		andi.b	#$F,caterkiller_bodysegments.count(a0)
+		move.b	d1,caterkiller_bodysegments.flag2(a0,d0.w)
 
 .loc_16C64
-		movea.w	parent4(a0),a2						; head address
+		movea.w	parent4(a0),a2							; head address
 		btst	#status.npc.touch,status(a2)
 		bne.s	Caterkiller_FragBody
 		jmp	(Child_DrawTouch_Sprite).w

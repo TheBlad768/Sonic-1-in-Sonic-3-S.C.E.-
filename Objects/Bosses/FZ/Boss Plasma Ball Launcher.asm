@@ -89,7 +89,7 @@ Obj_BossFinal_Plasma:
 ; ---------------------------------------------------------------------------
 
 .defeated
-		move.w	#bytes_to_word(16/2,16/2),objoff_3A(a0)				; set explosion xy offset range
+		move.w	#bytes_to_word(16/2,16/2),bossexplosion.xoffset(a0)		; set x offset range and y offset range
 
 		; create explosions
 		jsr	(CreateBossExplosion).l

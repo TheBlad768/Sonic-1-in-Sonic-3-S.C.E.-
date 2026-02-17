@@ -3,7 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-yad_timedelay			= objoff_3C
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+yadrin				= *
+
+.timer				ds.w 1							; time between direction changes (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -42,7 +49,7 @@ Obj_Yadrin:
 ; =============== S U B R O U T I N E =======================================
 
 .move
-		subq.w	#1,yad_timedelay(a0)						; subtract 1 from pause time
+		subq.w	#1,yadrin.timer(a0)						; subtract 1 from pause time
 		bpl.s	.noflip								; if time remains, branch
 		move.l	#.fixtofloor,jump_ptr(a0)
 		move.w	#-$100,x_vel(a0)						; move object
@@ -70,7 +77,7 @@ Obj_Yadrin:
 
 .pause
 		move.l	#.move,jump_ptr(a0)
-		move.w	#60-1,yad_timedelay(a0)						; set pause time to 1 second
+		move.w	#60-1,yadrin.timer(a0)						; set pause time to 1 second
 		clr.w	x_vel(a0)
 		clr.b	anim(a0)
 		rts

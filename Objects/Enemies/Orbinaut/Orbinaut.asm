@@ -3,8 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-orb_count			= objoff_39
-orb_rotation			= objoff_40
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+orbinaut			= *
+
+.rotation			ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -23,7 +29,7 @@ Obj_Orbinaut:
 		neg.b	d0
 
 .noflip
-		move.b	d0,orb_rotation(a0)
+		move.b	d0,orbinaut.rotation(a0)
 
 		; init
 		lea	ObjDat_Orbinaut(pc),a1						; LZ specific code
@@ -51,7 +57,7 @@ Obj_Orbinaut:
 
 .load
 		lea	Child6_Orbinaut_Orb(pc),a2
-		move.b	1(a2),orb_count(a0)						; set number of orbs
+		move.b	1(a2),count(a0)							; set number of orbs
 		jmp	(CreateChild6_Simple).w
 ; ---------------------------------------------------------------------------
 
@@ -81,7 +87,6 @@ Obj_Orbinaut:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-orbo_angle			= objoff_3C	; .b
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -90,7 +95,7 @@ Obj_Orbinaut_Orb:
 		; set pos
 		move.b	subtype(a0),d0
 		lsl.b	#5,d0								; multiply by $20
-		move.b	d0,orbo_angle(a0)
+		move.b	d0,circular_angle(a0)
 
 		; init
 		move.l	#Map_Orb_Orb,mappings(a0)
@@ -103,11 +108,11 @@ Obj_Orbinaut_Orb:
 		movea.w	parent3(a0),a1							; load orbinaut address
 		cmpi.b	#2,mapping_frame(a1)						; is orbinaut angry?
 		bne.s	.circle								; if not, branch
-		tst.b	orbo_angle(a0)							; is spikeorb directly under the orbinaut?
+		tst.b	circular_angle(a0)						; is spikeorb directly under the orbinaut?
 		bne.s	.circle								; if not, branch
 		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
 		move.l	#.move,address(a0)
-		subq.b	#1,orb_count(a1)
+		subq.b	#1,count(a1)
 		bpl.s	.fire
 		move.l	#Obj_Orbinaut.move,address(a1)
 
@@ -125,8 +130,8 @@ Obj_Orbinaut_Orb:
 ; ---------------------------------------------------------------------------
 
 .circle
-		move.b	orb_rotation(a1),d0						; angle
-		sub.b	d0,orbo_angle(a0)
+		move.b	orbinaut.rotation(a1),d0					; angle
+		sub.b	d0,circular_angle(a0)
 		moveq	#4,d2								; radius
 		jsr	(MoveSprite_CircularSimple).w
 
