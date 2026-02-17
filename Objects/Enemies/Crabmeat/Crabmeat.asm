@@ -32,7 +32,11 @@ Obj_Crabmeat:
 		tst.w	d1
 		bpl.s	.floornotfound
 		add.w	d1,y_pos(a0)
+
+	if _CRABMEAT_SLOPE_
 		move.b	d3,angle(a0)
+	endif
+
 		clr.w	y_vel(a0)
 		move.l	#.waittofire,jump_ptr(a0)
 		move.l	#.action,address(a0)
@@ -117,9 +121,9 @@ Obj_Crabmeat:
 .alt
 		jsr	(ObjCheckFloorDist).w
 		add.w	d1,y_pos(a0)
-		move.b	d3,angle(a0)
 
 	if _CRABMEAT_SLOPE_
+		move.b	d3,angle(a0)
 		bsr.s	Crab_SetAni
 		addq.b	#3,d0
 		move.b	d0,anim(a0)
