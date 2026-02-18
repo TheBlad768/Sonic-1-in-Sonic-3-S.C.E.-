@@ -292,7 +292,7 @@ _unkF74A:						ds.b 1
 _unkF74B:						ds.b 1
 _unkF74C:						ds.w 1
 Tails_CPU_star_post_flag:				ds.b 1				; copy of Last_star_post_hit, sets Tails' starting behavior in a Sonic and Tails game
-_unkF66C:						ds.b 1
+Super_Tails_birds_target_counter:			ds.b 1				; Super Tails birds find target
 Gliding_collision_flags:				ds.b 1
 Disable_wall_grab:					ds.b 1				; if set, disables Knuckles wall grab
 Lag_frame_count_end					= *
