@@ -24,7 +24,7 @@ Obj_SuperTailsBirds:
 		; load birds art
 		QueueStaticDMA ArtUnc_SuperTailsBirds,.artsize,tiles_to_bytes(ArtTile_Player_1)
 
-.bcount	:= 4										; number of birds
+.bcount	= 4										; number of birds
 
 		; load
 		lea	(a0),a1
