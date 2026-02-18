@@ -4,6 +4,15 @@
 
 ; dynamic object variables
 
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+superSonicKnux_stars		= *
+
+.flag1				ds.b 1							; (1 byte)
+.flag2				ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SuperSonicKnux_Stars:
@@ -38,64 +47,79 @@ Obj_SuperSonicKnux_Stars:
 
 .main
 
-		; check
+		; check Super Sonic
 		tst.b	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper?
-		beq.s	loc_19230							; if not, delete
-		tst.b	objoff_34(a0)
-		beq.s	loc_19200
+		beq.s	.delete								; if not, delete
+		tst.b	superSonicKnux_stars.flag1(a0)
+		beq.s	.checkspeed
 
 		; wait
-		subq.b	#1,anim_frame_timer(a0)
-		bpl.s	loc_191E8
-		addq.b	#1+1,anim_frame_timer(a0)
+		subq.b	#1,anim_frame_timer(a0)						; subtract 1 from frame duration
+		bpl.s	.check								; if time remains, branch
+		addq.b	#1+1,anim_frame_timer(a0)					; set frame duration
 
 		; next
 		addq.b	#1,mapping_frame(a0)
 		cmpi.b	#6,mapping_frame(a0)
-		blo.s	loc_191E8
-		clr.b	mapping_frame(a0)
+		blo.s	.check
 
 		; set
-		move.w	#bytes_to_word(0,1),objoff_34(a0)
+		clr.b	mapping_frame(a0)
+		move.w	#bytes_to_word(0,1),superSonicKnux_stars.flag1(a0)		; clear superSonicKnux_stars.flag1 and set superSonicKnux_stars.flag2
 		rts
 ; ---------------------------------------------------------------------------
 
-loc_191E8:
-		tst.b	objoff_35(a0)
-		bne.s	loc_191FA
+.check
+		tst.b	superSonicKnux_stars.flag2(a0)
+		bne.s	.draw
 
-loc_191EE:
+.copyxypos
+
+		; get xypos
 		move.w	(Player_1+x_pos).w,x_pos(a0)
 		move.w	(Player_1+y_pos).w,y_pos(a0)
 
-loc_191FA:
+.draw
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
 
-loc_19200:
-		tst.b	(Player_1+object_control).w
-		bne.s	loc_19222
-		mvabs.w	(Player_1+ground_vel).w,d0
-		cmpi.w	#$800,d0
-		blo.s	loc_19222
-		clr.b	mapping_frame(a0)
-		move.b	#1,objoff_34(a0)
-		bra.s	loc_191EE
-; ---------------------------------------------------------------------------
-
-loc_19222:
-		clr.w	objoff_34(a0)
-		rts
-; ---------------------------------------------------------------------------
-
-loc_19230:
+.delete
 		jmp	(Delete_Current_Object).w
+; ---------------------------------------------------------------------------
+
+.checkspeed
+
+		; check player move
+		tst.b	(Player_1+object_control).w
+		bne.s	.reset
+		mvabs.w	(Player_1+ground_vel).w,d0
+		cmpi.w	#$800,d0							; is the player moving slowly?
+		blo.s	.reset								; if he is, branch
+
+		; set
+		clr.b	mapping_frame(a0)
+		move.b	#1,superSonicKnux_stars.flag1(a0)				; set superSonicKnux_stars.flag1
+		bra.s	.copyxypos
+; ---------------------------------------------------------------------------
+
+.reset
+		clr.w	superSonicKnux_stars.flag1(a0)					; clear superSonicKnux_stars.flag1 and superSonicKnux_stars.flag2
+		rts
 
 ; ---------------------------------------------------------------------------
 ; Hyper Stars (Object)
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+hyperSonic_stars		= *
+
+.xdiff				ds.w 1							; (2 bytes)
+.ydiff				ds.w 1							; (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -106,27 +130,33 @@ Obj_HyperSonic_Stars:
 		; load stars art
 		QueueStaticDMA ArtUnc_HyperSonicStars,.artsize,tiles_to_bytes(ArtTile_Shield)
 
+.scount	= 4										; number of stars
+
 		; load
 		lea	(a0),a1
 		moveq	#0,d0
 		moveq	#0,d2
-		moveq	#4-1,d1
+		moveq	#.scount-1,d1
 
 .createObject
-		move.l	#Obj_HyperSonic_Stars_Init,address(a1)
+		move.l	#.init,address(a1)
 		move.b	d0,angle(a1)
-		addi.b	#256/4,d0							; 90 degrees
+		addi.b	#256/.scount,d0							; 90 degrees
 		addq.b	#1,d2
 		move.b	d2,anim_frame_timer(a1)
 		lea	next_object(a1),a1
 		dbf	d1,.createObject
 
-Obj_HyperSonic_Stars_Init:
+.init
 
 		; wait
-		subq.b	#1,anim_frame_timer(a0)
-		beq.s	.load
+		subq.b	#1,anim_frame_timer(a0)						; subtract 1 from frame duration
+		beq.s	.load								; if timer has run out, branch
 		rts
+; ---------------------------------------------------------------------------
+
+.delete
+		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 .load
@@ -147,79 +177,86 @@ Obj_HyperSonic_Stars_Init:
 		),render_flags(a0)
 
 		move.b	#6,mapping_frame(a0)
+
+		; check main object
+		move.l	#.child,address(a0)
 		cmpa.w	#Invincibility_stars,a0
-		beq.s	.isParent
-		move.l	#Obj_HyperSonic_Stars_Main.child,address(a0)
-		bra.s	Obj_HyperSonic_Stars_Main.child
-; ---------------------------------------------------------------------------
+		bne.s	.child
+		move.l	#.main,address(a0)
 
-.isParent
-		move.l	#Obj_HyperSonic_Stars_Main,address(a0)
+.main
 
-Obj_HyperSonic_Stars_Main:
-		tst.b	anim(a0)
-		beq.s	.child
+		; check Hyper Sonic Jump Dash
+		tst.b	anim(a0)							; did Sonic use a Jump Dash?
+		beq.s	.child								; if not, branch
 		clr.b	anim(a0)
+
+		; get xypos
 		move.w	(Player_1+x_pos).w,x_pos(a0)
 		move.w	(Player_1+y_pos).w,y_pos(a0)
 		moveq	#2,d2
 		bsr.w	Obj_LightningShield_Create_Spark.part2
-		move.b	#4,(Hyper_Sonic_flash_timer).w
+		move.b	#4,(Hyper_Sonic_flash_timer).w					; set screen flash time
 
 .child
+
+		; check Super Sonic
 		tst.b	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper?
-		beq.w	loc_19486							; if not, delete
+		beq.s	.delete								; if not, delete
 
 		; wait
-		subq.b	#1,anim_frame_timer(a0)
-		bpl.s	loc_1941C
-		addq.b	#1+1,anim_frame_timer(a0)
+		subq.b	#1,anim_frame_timer(a0)						; subtract 1 from frame duration
+		bpl.s	.move								; if time remains, branch
+		addq.b	#1+1,anim_frame_timer(a0)					; set frame duration
 
 		; next
 		addq.b	#1,mapping_frame(a0)
 		cmpi.b	#3,mapping_frame(a0)
-		blo.s	loc_1941C
+		blo.s	.move
+
+		; reset
 		moveq	#0,d0
 		move.b	d0,mapping_frame(a0)
-		move.w	d0,objoff_30(a0)
-		move.w	d0,objoff_34(a0)
+		move.w	d0,hyperSonic_stars.xdiff(a0)
+		move.w	d0,hyperSonic_stars.ydiff(a0)
 
-loc_1941C:
-		move.b	angle(a0),d0
+.move
+		move.b	angle(a0),d0							; angle
 		addi.b	#-$10,angle(a0)
 		jsr	(GetSineCosine).w
 		asl.w	#3,d0
 		asl.w	#3,d1
-		move.w	d0,x_vel(a0)
-		move.w	d1,y_vel(a0)
+		movem.w	d0-d1,x_vel(a0)							; set xvel and yvel
+
 		move.w	x_vel(a0),d0
-		add.w	d0,objoff_30(a0)
+		add.w	d0,hyperSonic_stars.xdiff(a0)
 		move.w	y_vel(a0),d1
-		add.w	d1,objoff_34(a0)
-		move.b	objoff_30(a0),d2
+		add.w	d1,hyperSonic_stars.ydiff(a0)
+
+		move.b	hyperSonic_stars.xdiff(a0),d2
 		ext.w	d2
+
+		; check player xflip
 		btst	#status.player.x_flip,(Player_1+status).w
-		beq.s	loc_19458
+		beq.s	.notxflip
 		neg.w	d2
 
-loc_19458:
-		move.b	objoff_34(a0),d3
+.notxflip
+		move.b	hyperSonic_stars.ydiff(a0),d3
 		ext.w	d3
 		add.w	(Player_1+x_pos).w,d2
 		add.w	(Player_1+y_pos).w,d3
 		move.w	d2,x_pos(a0)
 		move.w	d3,y_pos(a0)
+
+		; check
 		andi.w	#drawing_mask,art_tile(a0)
 		tst.b	(Player_1+art_tile).w
-		bpl.s	loc_19480
+		bpl.s	.draw
 		ori.w	#high_priority,art_tile(a0)
 
-loc_19480:
+.draw
 		jmp	(Draw_Sprite).w
-; ---------------------------------------------------------------------------
-
-loc_19486:
-		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
 		; mappings
