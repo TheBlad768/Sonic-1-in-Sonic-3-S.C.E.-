@@ -24,19 +24,21 @@ Obj_SuperTailsBirds:
 		; load birds art
 		QueueStaticDMA ArtUnc_SuperTailsBirds,.artsize,tiles_to_bytes(ArtTile_Player_1)
 
+.bcount	:= 4										; number of birds
+
 		; load
 		lea	(a0),a1
 		moveq	#0,d0
-		moveq	#4-1,d1
+		moveq	#.bcount-1,d1
 
-.loop
-		move.l	#Obj_SuperTailsBirds_Init,address(a1)
+.bloop
+		move.l	#.init,address(a1)
 		move.b	d0,superTailsBirds.angle(a1)
-		addi.b	#256/4,d0							; 90 degrees
+		addi.b	#256/.bcount,d0							; 90 degrees
 		lea	next_object(a1),a1
-		dbf	d1,.loop
+		dbf	d1,.bloop
 
-Obj_SuperTailsBirds_Init:
+.init
 
 		; init
 		move.l	#Map_SuperTails_Birds,mappings(a0)
@@ -53,18 +55,19 @@ Obj_SuperTailsBirds_Init:
 		0,16/2,16/2 \
 		),render_flags(a0)
 
+		; get xypos
 		move.w	(Player_1+x_pos).w,x_pos(a0)
 		move.w	(Player_1+y_pos).w,y_pos(a0)
-		subi.w	#$C0,x_pos(a0)
-		subi.w	#$C0,y_pos(a0)
-		clr.l	x_vel(a0)
-		move.l	#Obj_SuperTailsBirds_Main,address(a0)
+		subi.w	#384/2,x_pos(a0)
+		subi.w	#384/2,y_pos(a0)
+		clr.l	x_vel(a0)							; clear velocity
+		move.l	#.main,address(a0)
 
-Obj_SuperTailsBirds_Main:
+.main
 
-		; check
-		tst.b	(Super_Tails_flag).w
-		bne.s	.Tails_still_super
+		; check Super Tails
+		tst.b	(Super_Tails_flag).w						; is Tails Super?
+		bne.s	.still_super							; if so, branch
 
 		; Tails has returned to normal - make the birds fly away
 		moveq	#0,d0
@@ -81,13 +84,13 @@ Obj_SuperTailsBirds_Main:
 .no_target
 		move.b	d0,superTailsBirds.found(a0)
 		move.b	#2*60,superTailsBirds.timer(a0)					; only search for enemies every two seconds (probably to reduce lag)
-		move.l	#Obj_SuperTailsBirds_FlyAway,address(a0)
+		move.l	#SuperTailsBirds_FlyAway,address(a0)
 
-.Tails_still_super
-		bsr.s	Obj_SuperTailsBirds_GetDestination
+.still_super
+		bsr.s	SuperTailsBirds_GetDestination
 
 .move
-		bsr.w	Obj_SuperTailsBirds_Move
+		bsr.w	SuperTailsBirds_Move
 		addq.b	#2,superTailsBirds.angle(a0)
 
 		; update which way the sprite faces
@@ -119,35 +122,35 @@ Obj_SuperTailsBirds_Main:
 
 		; wait
 		subq.b	#1,anim_frame_timer(a0)
-		bpl.s	.timer_not_over
+		bpl.s	.draw
 		addq.b	#1+1,anim_frame_timer(a0)
 
 		; next
 		addq.b	#1,mapping_frame(a0)
 		andi.b	#1,mapping_frame(a0)
 
-.timer_not_over
+.draw
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
 
-Obj_SuperTailsBirds_FlyAway:
+SuperTailsBirds_FlyAway:
 
 		; set bird's destination to top-left of the screen
 		move.w	(Player_1+x_pos).w,d2
 		move.w	(Player_1+y_pos).w,d3
-		subi.w	#192,d2
-		subi.w	#192,d3
+		subi.w	#384/2,d2
+		subi.w	#384/2,d3
 
 		; check
 		tst.b	render_flags(a0)						; object visible on the screen?
-		bmi.s	Obj_SuperTailsBirds_Main.move					; if yes, branch
+		bmi.s	Obj_SuperTailsBirds.move					; if yes, branch
 
 		; if sprite is off-screen, delete it
 		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_SuperTailsBirds_GetDestination:
+SuperTailsBirds_GetDestination:
 		tst.b	superTailsBirds.found(a0)
 		bne.s	.fly_towards_enemy
 		tst.b	superTailsBirds.timer(a0)
@@ -157,12 +160,12 @@ Obj_SuperTailsBirds_GetDestination:
 ; ---------------------------------------------------------------------------
 
 .look_for_target
-		bsr.w	Obj_SuperTailsBirds_FindTarget
+		bsr.w	SuperTailsBirds_FindTarget
 		tst.w	d1
 		bne.s	.fly_towards_enemy
 
 .fly_around_tails
-		move.b	superTailsBirds.angle(a0),d0
+		move.b	superTailsBirds.angle(a0),d0					; angle
 		jsr	(GetSineCosine).w
 		asr.w	#3,d0
 		asr.w	#4,d1
@@ -183,25 +186,33 @@ Obj_SuperTailsBirds_GetDestination:
 		movea.w	parent(a0),a1							; a1=target object
 		move.w	x_pos(a1),d2
 		move.w	y_pos(a1),d3
+
+		; check
 		tst.b	render_flags(a1)						; object visible on the screen?
 		bpl.s	.enemy_off_screen						; if not, branch
+
+		; check xpos
 		move.w	x_pos(a0),d0
 		sub.w	d2,d0
 		addi.w	#12,d0
-		cmpi.w	#24,d0
+		cmpi.w	#12*2,d0
 		bhs.s	.enemy_out_of_range
+
+		; check ypos
 		move.w	y_pos(a0),d1
 		sub.w	d3,d1
 		addi.w	#12,d1
-		cmpi.w	#24,d1
+		cmpi.w	#12*2,d1
 		bhs.s	.enemy_out_of_range
 		bsr.s	.hit_enemy
 
 .enemy_off_screen
+
+		; reset
 		moveq	#0,d0
 		move.b	d0,superTailsBirds.locked(a1)
 		move.b	d0,superTailsBirds.found(a0)
-		move.b	#2*60,superTailsBirds.timer(a0)
+		move.b	#2*60,superTailsBirds.timer(a0)					; only search for enemies every two seconds (probably to reduce lag)
 
 .enemy_out_of_range
 		rts
@@ -257,7 +268,7 @@ Obj_SuperTailsBirds_GetDestination:
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_SuperTailsBirds_Move:
+SuperTailsBirds_Move:
 
 		; update the bird's x_vel
 		moveq	#32,d1
@@ -290,13 +301,13 @@ Obj_SuperTailsBirds_Move:
 		and.w	(Screen_Y_wrap_value).w,d3
 		moveq	#32,d1
 		sub.w	y_pos(a0),d3
-		bhs.s	.checkypos2
+		bhs.s	.checkrightypos
 
-		; check ypos
+		; check left ypos
 		cmpi.w	#-$500,d3
-		ble.s	.checkyvel2
+		ble.s	.checkrightyvel
 
-.checkyvel
+.checkleftyvel
 		cmpi.w	#-$1000,y_vel(a0)
 		ble.s	.moveup
 
@@ -313,11 +324,11 @@ Obj_SuperTailsBirds_Move:
 		bra.s	.applymovementy
 ; ---------------------------------------------------------------------------
 
-.checkypos2
+.checkrightypos
 		cmpi.w	#$500,d3
-		bge.s	.checkyvel
+		bge.s	.checkleftyvel
 
-.checkyvel2
+.checkrightyvel
 		cmpi.w	#$1000,y_vel(a0)
 		bge.s	.movedown
 
@@ -338,18 +349,21 @@ Obj_SuperTailsBirds_Move:
 		and.w	d0,y_pos(a0)
 		rts
 
+; ---------------------------------------------------------------------------
+; Subroutine to react to collision flags
+; ---------------------------------------------------------------------------
+
 ; =============== S U B R O U T I N E =======================================
 
-Obj_SuperTailsBirds_FindTarget:
+SuperTailsBirds_FindTarget:
 		moveq	#0,d1
 		lea	(Collision_response_list).w,a4
 		move.w	(a4)+,d6							; get number of objects queued
 		beq.s	.return								; if there are none, return
 
 		; check
-		moveq	#0,d0
-		move.b	(Super_Tails_birds_target_counter).w,d0
-		addq.b	#2,d0
+		moveq	#2,d0
+		add.b	(Super_Tails_birds_target_counter).w,d0
 		cmp.b	d0,d6
 		bhi.s	.noreset
 		moveq	#0,d0
@@ -378,22 +392,17 @@ Obj_SuperTailsBirds_FindTarget:
 
 .check_if_object_valid
 		tst.b	superTailsBirds.locked(a1)
-		bne.s	.invalid
+		bne.s	.return
 		andi.b	#$C0,d0
 		beq.s	.valid
 		cmpi.b	#$C0,d0
-		beq.s	.valid
-
-.invalid
-		rts
-; ---------------------------------------------------------------------------
+		bne.s	.return
 
 .valid
 		st	superTailsBirds.locked(a1)
 		move.w	a1,parent(a0)							; save target object
 		move.b	#1,superTailsBirds.found(a0)
 		moveq	#1,d1
-		moveq	#2,d6
 		rts
 ; ---------------------------------------------------------------------------
 
