@@ -3,10 +3,17 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-superTailsBirds_target_found		= $30
-superTailsBirds_search_delay		= $32
-superTailsBirds_angle			= $34
-superTailsBirds_target_address		= $42
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+superTailsBirds			= *
+
+.timer				ds.b 1							; (1 byte)
+.found				ds.b 1							; (1 byte)
+.locked				ds.b 1							; (1 byte)
+.angle				ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -24,20 +31,12 @@ Obj_SuperTailsBirds:
 
 .loop
 		move.l	#Obj_SuperTailsBirds_Init,address(a1)
-		move.b	d0,superTailsBirds_angle(a1)
+		move.b	d0,superTailsBirds.angle(a1)
 		addi.b	#256/4,d0							; 90 degrees
 		lea	next_object(a1),a1
 		dbf	d1,.loop
 
 Obj_SuperTailsBirds_Init:
-
-		; wait for art to finish loading before we display
-		tst.w	(KosPlus_modules_left).w
-		beq.s	.art_done_loading
-		rts
-; ---------------------------------------------------------------------------
-
-.art_done_loading
 
 		; init
 		move.l	#Map_SuperTails_Birds,mappings(a0)
@@ -74,14 +73,14 @@ Obj_SuperTailsBirds_Main:
 		move.b	d0,(Player_2+anim).w
 
 		; check
-		tst.b	superTailsBirds_target_found(a0)
+		tst.b	superTailsBirds.found(a0)
 		beq.s	.no_target
-		movea.w	superTailsBirds_target_address(a0),a1
-		move.b	d0,objoff_2D(a1)						; seems to be for indicating whether an object has been 'locked-onto' or not
+		movea.w	parent(a0),a1							; a1=target object
+		move.b	d0,superTailsBirds.locked(a1)					; seems to be for indicating whether an object has been 'locked-onto' or not
 
 .no_target
-		move.b	d0,superTailsBirds_target_found(a0)
-		move.b	#2*60,superTailsBirds_search_delay(a0)				; only search for enemies every two seconds (probably to reduce lag)
+		move.b	d0,superTailsBirds.found(a0)
+		move.b	#2*60,superTailsBirds.timer(a0)					; only search for enemies every two seconds (probably to reduce lag)
 		move.l	#Obj_SuperTailsBirds_FlyAway,address(a0)
 
 .Tails_still_super
@@ -89,7 +88,7 @@ Obj_SuperTailsBirds_Main:
 
 .move
 		bsr.w	Obj_SuperTailsBirds_Move
-		addq.b	#2,superTailsBirds_angle(a0)
+		addq.b	#2,superTailsBirds.angle(a0)
 
 		; update which way the sprite faces
 		tst.w	x_vel(a0)
@@ -149,11 +148,11 @@ Obj_SuperTailsBirds_FlyAway:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SuperTailsBirds_GetDestination:
-		tst.b	superTailsBirds_target_found(a0)
+		tst.b	superTailsBirds.found(a0)
 		bne.s	.fly_towards_enemy
-		tst.b	superTailsBirds_search_delay(a0)
+		tst.b	superTailsBirds.timer(a0)
 		beq.s	.look_for_target
-		subq.b	#1,superTailsBirds_search_delay(a0)
+		subq.b	#1,superTailsBirds.timer(a0)
 		bra.s	.fly_around_tails
 ; ---------------------------------------------------------------------------
 
@@ -163,7 +162,7 @@ Obj_SuperTailsBirds_GetDestination:
 		bne.s	.fly_towards_enemy
 
 .fly_around_tails
-		move.b	superTailsBirds_angle(a0),d0
+		move.b	superTailsBirds.angle(a0),d0
 		jsr	(GetSineCosine).w
 		asr.w	#3,d0
 		asr.w	#4,d1
@@ -181,7 +180,7 @@ Obj_SuperTailsBirds_GetDestination:
 ; ---------------------------------------------------------------------------
 
 .fly_towards_enemy
-		movea.w	superTailsBirds_target_address(a0),a1
+		movea.w	parent(a0),a1							; a1=target object
 		move.w	x_pos(a1),d2
 		move.w	y_pos(a1),d3
 		tst.b	render_flags(a1)						; object visible on the screen?
@@ -200,9 +199,9 @@ Obj_SuperTailsBirds_GetDestination:
 
 .enemy_off_screen
 		moveq	#0,d0
-		move.b	d0,objoff_2D(a1)
-		move.b	d0,superTailsBirds_target_found(a0)
-		move.b	#2*60,superTailsBirds_search_delay(a0)
+		move.b	d0,superTailsBirds.locked(a1)
+		move.b	d0,superTailsBirds.found(a0)
+		move.b	#2*60,superTailsBirds.timer(a0)
 
 .enemy_out_of_range
 		rts
@@ -227,7 +226,7 @@ Obj_SuperTailsBirds_GetDestination:
 		tst.b	collision_property(a1)
 		beq.s	.destroy_enemy
 		move.b	collision_flags(a1),boss_saved_collision(a1)			; save current collision
-		move.b	#Player_2&$FF,objoff_1C(a1)					; save value of RAM address of which player hit the boss
+		move.b	#Player_2&$FF,boss_saved_player(a1)				; save value of RAM address of which player hit the boss
 		clr.b	collision_flags(a1)
 
 	if BossDebug
@@ -237,7 +236,7 @@ Obj_SuperTailsBirds_GetDestination:
 		bne.s	.skip
 	endif
 
-		bset	#status.npc.defeated,status(a1)
+		bset	#status.npc.defeated,status(a1)					; set "boss defeated" flag
 
 .skip
 		bra.s	.done
@@ -263,70 +262,76 @@ Obj_SuperTailsBirds_Move:
 		; update the bird's x_vel
 		moveq	#32,d1
 		cmp.w	x_pos(a0),d2
-		bge.s	.go_right
+		bge.s	.moveright
+
+		; move left
 		neg.w	d1
 		tst.w	x_vel(a0)
-		bmi.s	.x_vel_done
+		bmi.s	.applymovementx
 
 		; going the wrong way - make it turn around faster
 		add.w	d1,d1
 		add.w	d1,d1
-		bra.s	.x_vel_done
+		bra.s	.applymovementx
 ; ---------------------------------------------------------------------------
 
-.go_right
+.moveright
 		tst.w	x_vel(a0)
-		bpl.s	.x_vel_done
+		bpl.s	.applymovementx
 
 		; going the wrong way - make it turn around faster
 		add.w	d1,d1
 		add.w	d1,d1
 
-.x_vel_done
+.applymovementx
 		add.w	d1,x_vel(a0)
 
 		; update the bird's y_vel
 		and.w	(Screen_Y_wrap_value).w,d3
 		moveq	#32,d1
 		sub.w	y_pos(a0),d3
-		bhs.s	loc_1A3CA
+		bhs.s	.checkypos2
+
+		; check ypos
 		cmpi.w	#-$500,d3
-		ble.s	loc_1A3D0
+		ble.s	.checkyvel2
 
-loc_1A3B4:
+.checkyvel
 		cmpi.w	#-$1000,y_vel(a0)
-		ble.s	loc_1A3D8
+		ble.s	.moveup
 
-loc_1A3BC:
+.movedown
+
+		; move down
 		neg.w	d1
 		tst.w	y_vel(a0)
-		bmi.s	loc_1A3E2
+		bmi.s	.applymovementy
 
 		; going the wrong way - make it turn around faster
 		add.w	d1,d1
 		add.w	d1,d1
-		bra.s	loc_1A3E2
+		bra.s	.applymovementy
 ; ---------------------------------------------------------------------------
 
-loc_1A3CA:
+.checkypos2
 		cmpi.w	#$500,d3
-		bge.s	loc_1A3B4
+		bge.s	.checkyvel
 
-loc_1A3D0:
+.checkyvel2
 		cmpi.w	#$1000,y_vel(a0)
-		bge.s	loc_1A3BC
+		bge.s	.movedown
 
-loc_1A3D8:
+.moveup
 		tst.w	y_vel(a0)
-		bpl.s	loc_1A3E2
+		bpl.s	.applymovementy
 
 		; going the wrong way - make it turn around faster
 		add.w	d1,d1
 		add.w	d1,d1
 
-loc_1A3E2:
+.applymovementy
 		add.w	d1,y_vel(a0)
-		jsr	(MoveSprite2).w
+		MoveSprite2
 		move.w	(Level_repeat_offset).w,d0
 		sub.w	d0,x_pos(a0)
 		move.w	(Screen_Y_wrap_value).w,d0
@@ -343,14 +348,14 @@ Obj_SuperTailsBirds_FindTarget:
 
 		; check
 		moveq	#0,d0
-		move.b	(_unkF66C).w,d0
+		move.b	(Super_Tails_birds_target_counter).w,d0
 		addq.b	#2,d0
 		cmp.b	d0,d6
 		bhi.s	.noreset
 		moveq	#0,d0
 
 .noreset
-		move.b	d0,(_unkF66C).w
+		move.b	d0,(Super_Tails_birds_target_counter).w
 		sub.w	d0,d6
 		adda.w	d0,a4
 
@@ -372,7 +377,7 @@ Obj_SuperTailsBirds_FindTarget:
 ; =============== S U B R O U T I N E =======================================
 
 .check_if_object_valid
-		tst.b	objoff_2D(a1)
+		tst.b	superTailsBirds.locked(a1)
 		bne.s	.invalid
 		andi.b	#$C0,d0
 		beq.s	.valid
@@ -384,9 +389,9 @@ Obj_SuperTailsBirds_FindTarget:
 ; ---------------------------------------------------------------------------
 
 .valid
-		st	objoff_2D(a1)
-		move.w	a1,superTailsBirds_target_address(a0)
-		move.b	#1,superTailsBirds_target_found(a0)
+		st	superTailsBirds.locked(a1)
+		move.w	a1,parent(a0)							; save target object
+		move.b	#1,superTailsBirds.found(a0)
 		moveq	#1,d1
 		moveq	#2,d6
 		rts

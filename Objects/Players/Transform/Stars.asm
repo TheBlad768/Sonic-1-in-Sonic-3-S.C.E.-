@@ -2,6 +2,8 @@
 ; Super Stars (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SuperSonicKnux_Stars:
@@ -37,8 +39,8 @@ Obj_SuperSonicKnux_Stars:
 .main
 
 		; check
-		tst.b	(Super_Sonic_Knux_flag).w
-		beq.s	loc_19230
+		tst.b	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper?
+		beq.s	loc_19230							; if not, delete
 		tst.b	objoff_34(a0)
 		beq.s	loc_19200
 
@@ -93,6 +95,8 @@ loc_19230:
 ; Hyper Stars (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_HyperSonic_Stars:
@@ -119,19 +123,13 @@ Obj_HyperSonic_Stars:
 
 Obj_HyperSonic_Stars_Init:
 
-		; wait for art to finish loading before we display
-		tst.w	(KosPlus_modules_left).w
-		beq.s	.artDoneLoading
-
-.return
+		; wait
+		subq.b	#1,anim_frame_timer(a0)
+		beq.s	.load
 		rts
 ; ---------------------------------------------------------------------------
 
-.artDoneLoading
-
-		; wait
-		subq.b	#1,anim_frame_timer(a0)
-		bne.s	.return
+.load
 
 		; init
 		move.l	#Map_HyperSonicStars,mappings(a0)
@@ -169,8 +167,8 @@ Obj_HyperSonic_Stars_Main:
 		move.b	#4,(Hyper_Sonic_flash_timer).w
 
 .child
-		tst.b	(Super_Sonic_Knux_flag).w
-		beq.w	loc_19486
+		tst.b	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper?
+		beq.w	loc_19486							; if not, delete
 
 		; wait
 		subq.b	#1,anim_frame_timer(a0)
