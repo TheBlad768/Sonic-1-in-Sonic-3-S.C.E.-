@@ -41,19 +41,8 @@ Obj_SuperTailsBirds:
 .init
 
 		; init
-		move.l	#Map_SuperTails_Birds,mappings(a0)
-
-		; set priority and art_tile
-		move.l	#words_to_long( \
-		priority_1, \
-			make_art_tile(ArtTile_Player_1,0,TRUE) \
-		),priority(a0)
-
-		; set screen coordinates flag and height and width
-		move.l	#bytes_to_long( \
-			setBit(render_flags.level), \
-		0,16/2,16/2 \
-		),render_flags(a0)
+		movem.l	ObjDat_SuperTailsBirds(pc),d0-d3				; copy data to d0-d3
+		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 
 		; get xypos
 		move.w	(Player_1+x_pos).w,x_pos(a0)
@@ -61,7 +50,6 @@ Obj_SuperTailsBirds:
 		subi.w	#384/2,x_pos(a0)
 		subi.w	#384/2,y_pos(a0)
 		clr.l	x_vel(a0)							; clear velocity
-		move.l	#.main,address(a0)
 
 .main
 
@@ -404,6 +392,14 @@ SuperTailsBirds_FindTarget:
 		move.b	#1,superTailsBirds.found(a0)
 		moveq	#1,d1
 		rts
+
+; =============== S U B R O U T I N E =======================================
+
+; init
+ObjDat_SuperTailsBirds:		subObjMainData \
+				Obj_SuperTailsBirds.main, \
+					setBit(render_flags.level), \
+				0, 16, 16, 1, ArtTile_Player_1, 0, TRUE, Map_SuperTails_Birds
 ; ---------------------------------------------------------------------------
 
 		; mappings

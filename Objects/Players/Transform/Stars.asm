@@ -23,27 +23,13 @@ Obj_SuperSonicKnux_Stars:
 		QueueStaticDMA ArtUnc_SuperSonic_Stars,.artsize,tiles_to_bytes(ArtTile_Shield)
 
 		; init
-		move.l	#Map_SuperSonic_Stars,mappings(a0)
-
-		; set priority and art_tile
-		move.l	#words_to_long( \
-		priority_1, \
-			make_art_tile(ArtTile_Shield,0,FALSE) \
-		),priority(a0)
-
-		; set screen coordinates flag and height and width
-		move.l	#bytes_to_long( \
-			setBit(render_flags.level), \
-		0,48/2,48/2 \
-		),render_flags(a0)
+		movem.l	ObjDat_SuperSonicKnux_Stars(pc),d0-d3			; copy data to d0-d3
+		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 
 		; check priority
 		btst	#high_priority_bit,(Player_1+art_tile).w			; is Sonic has high priority?
-		beq.s	.nothighpriority						; if not, branch
+		beq.s	.main							; if not, branch
 		bset	#high_priority_bit,art_tile(a0)					; stars have same priority as Sonic (high priority)
-
-.nothighpriority
-		move.l	#.main,address(a0)
 
 .main
 
@@ -162,24 +148,12 @@ Obj_HyperSonic_Stars:
 .load
 
 		; init
-		move.l	#Map_HyperSonicStars,mappings(a0)
-
-		; set priority and art_tile
-		move.l	#words_to_long( \
-		priority_1, \
-			make_art_tile(ArtTile_Shield,0,FALSE) \
-		),priority(a0)
-
-		; set screen coordinates flag and height and width
-		move.l	#bytes_to_long( \
-			setBit(render_flags.level), \
-		0,48/2,48/2 \
-		),render_flags(a0)
+		movem.l	ObjDat_HyperSonic_Stars(pc),d0-d3			; copy data to d0-d3
+		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 
 		move.b	#6,mapping_frame(a0)
 
 		; check main object
-		move.l	#.child,address(a0)
 		cmpa.w	#Invincibility_stars,a0
 		bne.s	.child
 		move.l	#.main,address(a0)
@@ -257,6 +231,19 @@ Obj_HyperSonic_Stars:
 
 .draw
 		jmp	(Draw_Sprite).w
+
+; =============== S U B R O U T I N E =======================================
+
+; init
+ObjDat_SuperSonicKnux_Stars:		subObjMainData \
+				Obj_SuperSonicKnux_Stars.main, \
+					setBit(render_flags.level), \
+				0, 48, 48, 1, ArtTile_Shield, 0, FALSE, Map_SuperSonic_Stars
+
+ObjDat_HyperSonic_Stars:		subObjMainData \
+				Obj_HyperSonic_Stars.child, \
+					setBit(render_flags.level), \
+				0, 48, 48, 1, ArtTile_Shield, 0, FALSE, Map_HyperSonicStars
 ; ---------------------------------------------------------------------------
 
 		; mappings
