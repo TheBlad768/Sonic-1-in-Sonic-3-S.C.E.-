@@ -1802,8 +1802,7 @@ SonicKnux_SuperHyper:
 .revertToNormal
 		move.b	#2,(Super_palette_status).w
 		move.w	#$1E,(Palette_frame).w
-		clr.b	(Super_Sonic_Knux_flag).w
-		clr.b	(Super_Tails_flag).w
+		clr.w	(Super_Sonic_Knux_flag).w					; clear Super/Hyper Sonic and Super Tails
 		st	(Player_prev_frame).w
 		tst.b	character_id(a0)						; is this Sonic?
 		bne.s	.notSonic

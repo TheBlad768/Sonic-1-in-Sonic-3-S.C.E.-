@@ -533,9 +533,7 @@ Obj_Invincibility:
 .main
 
 		; check
-		tst.b	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper?
-		bne.s	.delete								; if so, branch
-		tst.b	(Super_Tails_flag).w						; is Tails Super?
+		tst.w	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper or Tails Super?
 		bne.s	.delete								; if so, branch
 		movea.w	parent(a0),a1							; a1=character
 		btst	#status_secondary.invincible,status_secondary(a1)		; should the player still have a invincible?
@@ -599,9 +597,7 @@ Obj_Invincibility:
 Obj_Invincibility_Child:
 
 		; check
-		tst.b	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper?
-		bne.s	Obj_Invincibility.delete					; if so, branch
-		tst.b	(Super_Tails_flag).w						; is Tails Super?
+		tst.w	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper or Tails Super?
 		bne.s	Obj_Invincibility.delete					; if so, branch
 		movea.w	parent(a0),a1							; a1=character
 		btst	#status_secondary.invincible,status_secondary(a1)		; should the player still have a invincible?
