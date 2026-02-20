@@ -3,7 +3,6 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-harp_time			= objoff_2E	; time between stabbing/retracting
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -17,7 +16,7 @@ Obj_Harpoon:
 
 		; set
 		move.b	subtype(a0),anim(a0)						; get type (vert/horiz)
-		move.w	#1*60,harp_time(a0)						; set time to 1 second
+		move.w	#1*60,wait_timer(a0)						; set time to 1 second
 
 .move
 		lea	Ani_Harp(pc),a1
@@ -41,9 +40,9 @@ Obj_Harpoon:
 		move.l	#.wait,address(a0)
 
 .wait
-		subq.w	#1,harp_time(a0)						; decrement timer
+		subq.w	#1,wait_timer(a0)						; decrement timer
 		bpl.s	.chkdel								; branch if time remains
-		move.w	#1*60,harp_time(a0)						; reset timer
+		move.w	#1*60,wait_timer(a0)						; reset timer
 		move.l	#.move,address(a0)						; run "Harp_Move" subroutine
 		bchg	#0,anim(a0)							; extending/retracting harpoon
 		tst.b	render_flags(a0)						; object visible on the screen?

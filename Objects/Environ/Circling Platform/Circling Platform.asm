@@ -3,11 +3,18 @@
 ; ---------------------------------------------------------------------------
 
 ; options
-_CPLATFORM_VER_				= 0		; S1 or S2/S3K version
+_CPLATFORM_VER_			= 0							; S1 or S2/S3K version
 
 ; dynamic object variables
-circ_origX				= objoff_32	; original x-axis position
-circ_origY				= objoff_30	; original y-axis position
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+circlingplatform		= *
+
+.origX				ds.w 1							; original x-axis position (2 bytes)
+.origY				ds.w 1							; original y-axis position (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -16,8 +23,8 @@ Obj_CirclingPlatform:
 		; init
 		movem.l	ObjDat_CirclingPlatform(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.w	x_pos(a0),circ_origX(a0)
-		move.w	y_pos(a0),circ_origY(a0)
+		move.w	x_pos(a0),circlingplatform.origX(a0)
+		move.w	y_pos(a0),circlingplatform.origY(a0)
 
 .main
 		move.w	x_pos(a0),-(sp)
@@ -39,7 +46,7 @@ Obj_CirclingPlatform:
 
 .chkdel
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	circ_origX(a0),d0						; get object position
+		and.w	circlingplatform.origX(a0),d0					; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -79,9 +86,9 @@ Obj_CirclingPlatform:
 
 .noshift04b
 		neg.w	d1
-		add.w	circ_origX(a0),d1
+		add.w	circlingplatform.origX(a0),d1
 		move.w	d1,x_pos(a0)
-		add.w	circ_origY(a0),d2
+		add.w	circlingplatform.origY(a0),d2
 		move.w	d2,y_pos(a0)
 		rts
 ; ---------------------------------------------------------------------------
@@ -116,9 +123,9 @@ Obj_CirclingPlatform:
 		exg	d1,d2
 
 .noshift00b
-		add.w	circ_origX(a0),d1
+		add.w	circlingplatform.origX(a0),d1
 		move.w	d1,x_pos(a0)
-		add.w	circ_origY(a0),d2
+		add.w	circlingplatform.origY(a0),d2
 		move.w	d2,y_pos(a0)
 		rts
 
