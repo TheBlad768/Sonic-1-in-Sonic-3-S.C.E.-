@@ -3,8 +3,15 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-gar_time			= objoff_2E
-gar_stime			= objoff_30
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+gargoyle			= *
+
+.timer				ds.b 1							; (1 byte)
+.delay				ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -25,14 +32,14 @@ Obj_Gargoyle:
 		; set
 		moveq	#$F,d0								; read only the 2nd digit
 		and.b	subtype(a0),d0							; get object type
-		move.b	Gar_SpitRate(pc,d0.w),gar_stime(a0)				; set fireball spit rate
-		move.b	gar_stime(a0),gar_time(a0)
+		move.b	Gar_SpitRate(pc,d0.w),gargoyle.delay(a0)			; set fireball spit rate
+		move.b	gargoyle.delay(a0),gargoyle.timer(a0)
 		andi.b	#$F,subtype(a0)
 
 .makefire
-		subq.b	#1,gar_time(a0)							; decrement timer
+		subq.b	#1,gargoyle.timer(a0)						; decrement timer
 		bne.s	.draw								; if time remains, branch
-		move.b	gar_stime(a0),gar_time(a0)					; reset timer
+		move.b	gargoyle.delay(a0),gargoyle.timer(a0)				; reset timer
 
 		; check
 		tst.b	render_flags(a0)						; object visible on the screen?
@@ -66,7 +73,7 @@ Obj_Gargoyle_FireBall:
 		lea	ObjDat_Gargoyle_FireBall(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
-		move.w	#bytes_to_word(16/2,16/2),y_radius(a0)				; set y_radius and x_radius
+		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
 		sfx	sfx_Fireball							; play lava ball sound
 		move.l	#.anifire,address(a0)
 		move.w	#$200,x_vel(a0)
