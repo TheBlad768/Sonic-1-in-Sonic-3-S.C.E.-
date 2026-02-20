@@ -450,9 +450,7 @@ Monitor_Give_Bubble_Shield:
 ; ---------------------------------------------------------------------------
 
 Monitor_Give_Invincibility:
-		tst.b	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper?
-		bne.s	.return								; if so, branch
-		tst.b	(Super_Tails_flag).w						; is Tails Super?
+		tst.w	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper or Tails Super?
 		bne.s	.return								; if so, branch
 		bset	#status_secondary.invincible,status_secondary(a2)
 		move.b	#(20*60)/8,invincibility_timer(a2)
@@ -485,9 +483,7 @@ Monitor_Give_SuperSonic:
 		jsr	(AddRings).w
 
 		; check Super/Hyper
-		tst.b	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper?
-		bne.s	Monitor_Give_Invincibility.return				; if so, branch
-		tst.b	(Super_Tails_flag).w						; is Tails Super?
+		tst.w	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper or Tails Super?
 		bne.s	Monitor_Give_Invincibility.return				; if so, branch
 
 		; set
@@ -504,8 +500,7 @@ Monitor_Give_SuperSonic:
 		lea	(Max_speed_P2).w,a4
 
 		; Tails
-		clr.b	(Super_Sonic_Knux_flag).w
-		move.b	#1,(Super_Tails_flag).w
+		move.w	#bytes_to_word(0,1),(Super_Sonic_Knux_flag).w			; clear Super Sonic flag and set Super Tails flag
 		move.b	#AniIDTailsAni_Transform,anim(a2)				; enter 'transformation' animation
 		move.l	#Obj_SuperTailsBirds,(Invincibility_stars).w
 		bra.s	.speed

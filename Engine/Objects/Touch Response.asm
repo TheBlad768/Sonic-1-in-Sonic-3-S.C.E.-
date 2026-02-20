@@ -632,10 +632,8 @@ Kill_Character:
 		clr.w	priority(a0)
 
 		; check super
-		tst.b	(Super_Tails_flag).w
-		bne.s	.speed
-		tst.b	(Super_Sonic_Knux_flag).w
-		beq.s	.notp1
+		tst.w	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper or Tails Super?
+		beq.s	.notp1								; if not, branch
 
 .speed
 		pea	(a4)
