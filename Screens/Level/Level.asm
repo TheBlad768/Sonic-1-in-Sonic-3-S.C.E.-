@@ -111,7 +111,7 @@ LevelScreen:
 
 .notMiles
 		jsr	(LoadPLC_Raw_KosPlusM).w					; load HUD and ring art
-		jsr	(CheckLevelForWater).w
+		jsrb	CheckLevelForWater
 		clearRAM Water_palette_line_2, Normal_palette
 		tst.b	(Water_flag).w
 		beq.s	.notwater
