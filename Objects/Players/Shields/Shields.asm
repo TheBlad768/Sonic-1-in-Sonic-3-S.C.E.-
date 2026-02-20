@@ -249,6 +249,8 @@ Obj_LightningShield_Create_Spark:
 ; Lightning Shield (Spark)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_LightningShield_Spark:
