@@ -3,8 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-fan_time			= objoff_30	; time between switching on/off
-fan_switch			= objoff_32	; on/off switch
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+fan				= *
+
+.switch				ds.b 1							; on/off switch (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -22,16 +28,16 @@ Obj_Fan:
 		bne.s	.blow								; if yes, branch
 
 		; wait
-		subq.w	#1,fan_time(a0)							; subtract 1 from time delay
+		subq.w	#1,wait_timer(a0)						; subtract 1 from time delay
 		bpl.s	.blow								; if time remains, branch
-		move.w	#2*60,fan_time(a0)						; set delay to 2 seconds
+		move.w	#2*60,wait_timer(a0)						; set delay to 2 seconds
 
-		bchg	#0,fan_switch(a0)						; switch fan on/off
+		bchg	#0,fan.switch(a0)						; switch fan on/off
 		beq.s	.blow								; if fan is off, branch
-		move.w	#3*60,fan_time(a0)						; set delay to 3 seconds
+		move.w	#3*60,wait_timer(a0)						; set delay to 3 seconds
 
 .blow
-		tst.b	fan_switch(a0)							; is fan switched on?
+		tst.b	fan.switch(a0)							; is fan switched on?
 		bne.s	.chkdel								; if not, branch
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.s	.p2								; if yes, branch

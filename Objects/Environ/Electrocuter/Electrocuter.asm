@@ -3,7 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-elec_freq			= objoff_2E	; frequency
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+electro				= *
+
+.freq				ds.w 1							; frequency (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -14,7 +21,7 @@ Obj_Electro:
 		move.b	subtype(a0),d0							; read object type
 		lsl.w	#4,d0								; multiply by $10
 		subq.w	#1,d0
-		move.w	d0,elec_freq(a0)
+		move.w	d0,electro.freq(a0)
 
 		; init
 		lea	ObjDat_Electro(pc),a1
@@ -24,7 +31,7 @@ Obj_Electro:
 
 .shock
 		move.w	(Level_frame_counter).w,d0
-		and.w	elec_freq(a0),d0						; is it time to zap?
+		and.w	electro.freq(a0),d0						; is it time to zap?
 		bne.s	.animate							; if not, branch
 		move.b	#1,anim(a0)							; run "zap" animation
 		tst.b	render_flags(a0)						; object visible on the screen?

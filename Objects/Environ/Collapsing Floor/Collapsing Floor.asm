@@ -3,9 +3,16 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-cflo_timepointer			= objoff_30	; .l
-cflo_timedelay				= objoff_38	; .b
-cflo_collapse_flag			= objoff_3A	; .b
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+collapsefloor			= *
+
+.time_ptr			ds.l 1							; collapsing floor time (4 bytes)
+.delay				ds.b 1							; (1 byte)
+.flag				ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -18,7 +25,7 @@ Obj_CollapseFloor:
 		move.l	#CFlo_Data3,d0
 
 .set
-		move.l	d0,objoff_30(a0)
+		move.l	d0,collapsefloor.time_ptr(a0)
 		move.l	#Map_CFlo,mappings(a0)
 		move.w	#make_art_tile($562,2,FALSE),d0
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; is level Star Light Zone?
@@ -35,22 +42,22 @@ Obj_CollapseFloor:
 		move.w	d0,art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(48/2,64/2,priority_4),height_pixels(a0)	; set height, width and priority
-		move.b	#7,cflo_timedelay(a0)
+		move.b	#7,collapsefloor.delay(a0)
 		ori.b	#$80,status(a0)
 		move.l	#.check,address(a0)
 
 .check
-		tst.b	cflo_collapse_flag(a0)						; has Sonic touched the	object?
+		tst.b	collapsefloor.flag(a0)						; has Sonic touched the	object?
 		beq.s	.stand								; if not, branch
-		tst.b	cflo_timedelay(a0)						; has time delay reached zero?
+		tst.b	collapsefloor.delay(a0)						; has time delay reached zero?
 		beq.s	.collapse							; if yes, branch
-		subq.b	#1,cflo_timedelay(a0)						; subtract 1 from time
+		subq.b	#1,collapsefloor.delay(a0)					; subtract 1 from time
 
 .stand
 		moveq	#standing_mask,d0
 		and.b	status(a0),d0							; is Sonic or Tails standing on the object?
 		beq.s	.solid								; if not, branch
-		st	cflo_collapse_flag(a0)						; set object as	"touched"
+		st	collapsefloor.flag(a0)						; set object as	"touched"
 
 .solid
 		moveq	#0,d1
@@ -73,9 +80,9 @@ CollapseFloor_PlayerRelease:
 		bsr.s	Obj_CollapseFloor.solid
 
 		; check wait
-		tst.b	cflo_timedelay(a0)
+		tst.b	collapsefloor.delay(a0)
 		beq.s	.return
-		subq.b	#1,cflo_timedelay(a0)
+		subq.b	#1,collapsefloor.delay(a0)
 		bne.s	.return
 
 		; start fall
