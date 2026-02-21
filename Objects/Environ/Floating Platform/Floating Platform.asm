@@ -31,6 +31,8 @@ Obj_FloatingPlatform:
 		move.b	status(a0),objoff_2E(a0)
 		move.w	#$80+320+$40+$80,objoff_42(a0)					; out_of_xrange
 		move.w	x_pos(a0),objoff_44(a0)						; out_of_xrange
+
+		; check
 		moveq	#$F,d0
 		and.b	subtype(a0),d0
 		cmpi.b	#10,d0
@@ -280,9 +282,11 @@ FloatingPlatform_Button:								; type07
 		move.b	subtype(a0),d0
 		lsr.w	#4,d0
 		lea	(Level_trigger_array).w,a3
+
+		; check
 		tst.b	(a3,d0.w)
 		beq.s	.return
-		move.w	#60,objoff_3C(a0)
+		move.w	#1*60,objoff_3C(a0)
 
 .return
 		bra.w	FloatingPlatform_Nudge
