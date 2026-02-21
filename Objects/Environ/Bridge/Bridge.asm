@@ -4,24 +4,36 @@
 
 ; dynamic object variables
 
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+tensionbridge			= *
+
+.origY				ds.w 1							; original y-axis position (2 bytes)
+.wait				ds.b 1							; (1 byte)
+.bend				ds.b 1							; bridge bend (1 byte)
+.indexP1			ds.b 1							; (1 byte)
+.indexP2			ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_TensionBridge:
 
 		; init
-		move.l	#sub_387E0,address(a0)						; normal bridge
+		move.l	#TensionBridge_Nudge,address(a0)				; normal bridge
 		move.l	#Map_TensionBridge,mappings(a0)
 		move.w	#make_art_tile($33E,2,FALSE),art_tile(a0)
 		tst.b	subtype(a0)
 		bpl.s	.plus
-		move.l	#sub_387B6,address(a0)						; bridge explosion
+		move.l	#TensionBridge_CheckExplosion,address(a0)			; bridge explosion
 		andi.b	#$7F,subtype(a0)
 
 .plus
 		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(16/2,256/2,priority_3),height_pixels(a0)	; set height, width and priority
 		move.w	y_pos(a0),d2
-		move.w	d2,objoff_3C(a0)
+		move.w	d2,tensionbridge.origY(a0)
 		move.w	x_pos(a0),d3
 		lea	subtype(a0),a2							; copy bridge subtype to a2
 		moveq	#0,d1
@@ -32,19 +44,19 @@ Obj_TensionBridge:
 		sub.w	d0,d3								; x position of left half
 		swap	d1								; store subtype in high word for later
 		move.w	#8,d1
-		bsr.s	sub_38756
+		bsr.s	TensionBridge_CreateSegments
 		move.w	sub6_x_pos(a1),d0
 		subq.w	#8,d0
 		move.w	d0,x_pos(a1)							; center of first subsprite object
-		move.w	a1,objoff_30(a0)						; pointer to first subsprite object
+		move.w	a1,parent3(a0)							; pointer to first subsprite object
 		swap	d1								; retrieve subtype
 		subq.w	#8,d1
-		bls.s	loc_38752							; branch, if subtype <= 8 (bridge has no more than 8 logs)
+		bls.s	.next								; branch, if subtype <= 8 (bridge has no more than 8 logs)
 
 		; else, create a second subsprite object for the rest of the bridge
 		move.w	d1,d4
-		bsr.s	sub_38756
-		move.w	a1,objoff_34(a0)						; pointer to second subsprite object
+		bsr.s	TensionBridge_CreateSegments
+		move.w	a1,parent4(a0)							; pointer to second subsprite object
 		move.w	d4,d0
 		add.w	d0,d0
 		add.w	d4,d0								; d0*3
@@ -52,12 +64,12 @@ Obj_TensionBridge:
 		subq.w	#8,d0
 		move.w	d0,x_pos(a1)							; center of second subsprite object
 
-loc_38752:
-		bra.s	sub_387E0
+.next
+		bra.s	TensionBridge_Nudge
 
 ; =============== S U B R O U T I N E =======================================
 
-sub_38756:
+TensionBridge_CreateSegments:
 		jsr	(Create_New_Object_3).w
 		bne.s	.return
 		move.l	#Draw_Sprite,address(a1)
@@ -86,60 +98,45 @@ sub_38756:
 
 ; =============== S U B R O U T I N E =======================================
 
-sub_387B6:										; check bridge explosion
-		moveq	#$F,d0
-		and.b	subtype(a0),d0
-		lea	(Level_trigger_array).w,a3
-		tst.b	(a3,d0.w)
-		beq.s	sub_387E0							; bridge not explode
+TensionBridge_Nudge:
 
-loc_387BE:
-		move.l	#loc_388E4,d4
-		bsr.w	sub_389C8
-
-		; set wait
-		move.b	#$E,objoff_34(a0)
-
-		; next
-		lea	loc_3890C(pc),a1						; bridge explode
-		move.l	a1,address(a0)
-		jmp	(a1)
-
-; =============== S U B R O U T I N E =======================================
-
-sub_387E0:
+		; check standing
 		moveq	#standing_mask,d0
 		and.b	status(a0),d0							; is Sonic or Tails standing on the object?
-		bne.s	loc_387F6							; if yes, branch
-		tst.b	objoff_3E(a0)
-		beq.s	loc_38822
-		subq.b	#4,objoff_3E(a0)
-		bra.s	loc_3881E
+		bne.s	.stand								; if yes, branch
+
+		; check
+		tst.b	tensionbridge.bend(a0)
+		beq.s	.solid
+		subq.b	#4,tensionbridge.bend(a0)					; log up
+		bra.s	.bend
 ; ---------------------------------------------------------------------------
 
-loc_387F6:
-		andi.b	#p2_standing,d0
-		beq.s	loc_38812
-		move.b	objoff_3F(a0),d0						; Sonic
-		sub.b	objoff_3B(a0),d0						; Tails
-		beq.s	loc_38812
-		bhs.s	loc_3880E
-		addq.b	#1,objoff_3F(a0)
-		bra.s	loc_38812
+.stand
+		andi.b	#p2_standing,d0							; is Tails standing on the object?
+		beq.s	.down								; if not, branch
+
+		; check player
+		move.b	tensionbridge.indexP1(a0),d0					; Sonic log index
+		sub.b	tensionbridge.indexP2(a0),d0					; Tails log index
+		beq.s	.down
+		bhs.s	.prevlog
+		addq.b	#1,tensionbridge.indexP1(a0)					; next log index
+		bra.s	.down
 ; ---------------------------------------------------------------------------
 
-loc_3880E:
-		subq.b	#1,objoff_3F(a0)
+.prevlog
+		subq.b	#1,tensionbridge.indexP1(a0)					; prev log index
 
-loc_38812:
-		cmpi.b	#$40,objoff_3E(a0)
-		beq.s	loc_3881E
-		addq.b	#4,objoff_3E(a0)
+.down
+		cmpi.b	#$40,tensionbridge.bend(a0)
+		beq.s	.bend
+		addq.b	#4,tensionbridge.bend(a0)					; log down
 
-loc_3881E:
-		bsr.w	sub_38CC2
+.bend
+		bsr.w	TensionBridge_Bend
 
-loc_38822:
+.solid
 		moveq	#0,d1
 		move.b	subtype(a0),d1
 		lsl.w	#3,d1								; multiply by 8
@@ -154,11 +151,11 @@ loc_38822:
 ; ---------------------------------------------------------------------------
 
 .chkdel
-		movea.w	objoff_30(a0),a1						; a1=object
+		movea.w	parent3(a0),a1							; a1=object
 		jsr	(Delete_Referenced_Object).w
 		cmpi.b	#8,subtype(a0)
 		bls.s	.offscreen							; if bridge has more than 8 logs, delete second subsprite object
-		movea.w	objoff_34(a0),a1						; a1=object
+		movea.w	parent4(a0),a1							; a1=object
 		jsr	(Delete_Referenced_Object).w
 
 .offscreen
@@ -169,36 +166,60 @@ loc_38822:
 
 .delete
 		jmp	(Delete_Current_Object).w
-; ---------------------------------------------------------------------------
 
-loc_388E4:
-		tst.b	objoff_34(a0)
-		beq.s	loc_388F4
-		subq.b	#1,objoff_34(a0)
+; =============== S U B R O U T I N E =======================================
+
+Obj_TensionBridge_LogFall:
+
+		; wait
+		tst.b	tensionbridge.wait(a0)						; check timer
+		beq.s	.setfall							; if time is zero, branch
+		subq.b	#1,tensionbridge.wait(a0)					; subtract 1 from frame duration
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
 
-loc_388F4:
-		jsr	(MoveSprite).w
+.setfall
+		move.l	#.fall,address(a0)
+
+.fall
+		MoveSprite , $18
 		tst.b	render_flags(a0)						; object visible on the screen?
-		bpl.s	loc_38906							; if not, branch
+		bpl.s	TensionBridge_CheckExplosion.delete				; if not, branch
 		jmp	(Draw_Sprite).w
-; ---------------------------------------------------------------------------
 
-loc_38906:
-		jmp	(Delete_Current_Object).w
-; ---------------------------------------------------------------------------
+; =============== S U B R O U T I N E =======================================
 
-loc_3890C:
-		tst.b	objoff_34(a0)
-		beq.s	loc_38918
-		subq.b	#1,objoff_34(a0)
+TensionBridge_CheckExplosion:								; check bridge explosion
+		moveq	#$F,d0
+		and.b	subtype(a0),d0
+		lea	(Level_trigger_array).w,a3
 
-locret_38916:
+		; check
+		tst.b	(a3,d0.w)							; was the button pressed?
+		beq.w	TensionBridge_Nudge						; if not, branch
+
+		; set bridge explode
+		move.l	#Obj_TensionBridge_LogFall,d4
+		bsr.s	TensionBridge_BreakObjectToPieces
+
+		; set wait
+		move.b	#$E,tensionbridge.wait(a0)
+
+		; bridge explode
+		move.l	#.wait,address(a0)
+
+.wait
+
+		; wait
+		tst.b	tensionbridge.wait(a0)						; check timer
+		beq.s	.delete								; if time is zero, branch
+		subq.b	#1,tensionbridge.wait(a0)					; subtract 1 from frame duration
+
+.return
 		rts
 ; ---------------------------------------------------------------------------
 
-loc_38918:
+.delete
 
 		; clear player standing
 		jsr	(Displace_PlayerOffObject).w					; release Sonic from object
@@ -208,51 +229,50 @@ loc_38918:
 
 ; =============== S U B R O U T I N E =======================================
 
-sub_389C8:
-		movea.w	objoff_30(a0),a3						; a3=object
-		bsr.s	sub_389DE
+TensionBridge_BreakObjectToPieces:
+		movea.w	parent3(a0),a3							; a3=object
+		bsr.s	.main
 		cmpi.b	#8,subtype(a0)
-		bls.s	locret_38916
-		movea.w	objoff_34(a0),a3						; a3=object
+		bls.s	TensionBridge_CheckExplosion.return				; if bridge has more than 8 logs, create second subsprite object pieces
+		movea.w	parent4(a0),a3							; a3=object
 
-sub_389DE:
-		lea	byte_38A78(pc),a4
+.main
+		lea	byte_38A78(pc),a4						; load wait time
 		lea	sub2_x_pos(a3),a2
 		move.w	mainspr_childsprites(a3),d6
 		subq.w	#1,d6
 		bclr	#render_flags.multi_sprite,render_flags(a3)			; clear multi-draw flag
-		movea.w	a3,a1								; load object to a1
-		bra.s	loc_38A00
+		movea.w	a3,a1								; load object address to a1
+		bra.s	.load
 ; ---------------------------------------------------------------------------
 
-loc_389F8:
+.create
 		jsr	(Create_New_Object_3).w
-		bne.s	loc_38A64
+		bne.s	.notfree
 
-loc_38A00:
+.load
 		move.l	d4,address(a1)
 		move.l	mappings(a3),mappings(a1)
 		move.b	render_flags(a3),render_flags(a1)
 		move.w	art_tile(a3),art_tile(a1)
-		move.w	height_pixels(a3),height_pixels(a1)				; set height and width
-		move.w	priority(a3),priority(a1)
+		move.l	height_pixels(a3),height_pixels(a1)				; set height, width and priority
 		move.w	(a2)+,x_pos(a1)
 		move.w	(a2)+,y_pos(a1)
 		move.w	(a2)+,d0
 		move.b	d0,mapping_frame(a1)
-		move.b	(a4)+,objoff_34(a1)
-		movea.w	a1,a5								; load object to a5
+		move.b	(a4)+,tensionbridge.wait(a1)					; set wait time
+		movea.w	a1,a5								; load object address to a5
 
 		; create
 		jsr	(Create_New_Object_3).w
-		bne.s	loc_38A64
+		bne.s	.notfree
 		move.l	#Obj_TensionBridge_Explosion,address(a1)			; explosion
 		move.w	x_pos(a5),x_pos(a1)
 		move.w	y_pos(a5),y_pos(a1)
 		move.b	-1(a4),anim_frame_timer(a1)
-		dbf	d6,loc_389F8
+		dbf	d6,.create
 
-loc_38A64:
+.notfree
 		clr.l	x_vel(a3)
 		sfx	sfx_BridgeCollapse, 1
 ; ---------------------------------------------------------------------------
@@ -260,6 +280,7 @@ loc_38A64:
 byte_38A78:
 		dc.b 8, $10, $C, $E, 6, $A, 4, 2
 		dc.b 8, $10, $C, $E, 6, $A, 4, 2
+	even
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to check solid the tension bridge object
@@ -285,7 +306,7 @@ SolidObject_TensionBridge:
 		tst.l	address(a1)							; is the player RAM empty?
 		beq.s	.p1								; if yes, branch
 		moveq	#p2_standing_bit,d6
-		moveq	#objoff_3B,d5
+		moveq	#tensionbridge.indexP2,d5					; set RAM address
 		movem.l	d1-d4,-(sp)
 		bsr.s	.check
 		movem.l	(sp)+,d1-d4
@@ -295,7 +316,7 @@ SolidObject_TensionBridge:
 		; player 1
 		lea	(Player_1).w,a1							; a1=character
 		moveq	#p1_standing_bit,d6
-		moveq	#objoff_3F,d5
+		moveq	#tensionbridge.indexP1,d5					; set RAM address
 
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
@@ -319,16 +340,16 @@ SolidObject_TensionBridge:
 .stand
 
 		; inlined call to MvSonicOnPtfm
-		lsr.w	#4,d0
+		lsr.w	#4,d0								; divide by $10
 		move.b	d0,(a0,d5.w)
-		movea.w	objoff_30(a0),a2						; a2=object
+		movea.w	parent3(a0),a2							; a2=object
 		cmpi.w	#8,d0
 		blo.s	.skip
-		movea.w	objoff_34(a0),a2						; a2=object
+		movea.w	parent4(a0),a2							; a2=object
 		subq.w	#8,d0
 
 .skip
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 6
 		move.w	d0,d1
 		add.w	d0,d0
 		add.w	d1,d0
@@ -354,7 +375,7 @@ SolidObjCheck_TensionBridge:
 		move.w	x_pos(a1),d0
 		sub.w	x_pos(a0),d0
 		add.w	d1,d0
-		lsr.w	#4,d0
+		lsr.w	#4,d0								; divide by $10
 		move.b	d0,(a0,d5.w)
 
 .return
@@ -362,78 +383,82 @@ SolidObjCheck_TensionBridge:
 
 ; =============== S U B R O U T I N E =======================================
 
-sub_38CC2:
-		move.b	objoff_3E(a0),d0
+TensionBridge_Bend:
+		move.b	tensionbridge.bend(a0),d0
 		jsr	(GetSineCosine).w
 		move.w	d0,d4
 		lea	BridgeBendData(pc),a4
+
+		; first block
 		moveq	#0,d0
 		move.b	subtype(a0),d0
-		lsl.w	#4,d0
+		lsl.w	#4,d0								; multiply by $10
 		moveq	#0,d3
-		move.b	objoff_3F(a0),d3
+		move.b	tensionbridge.indexP1(a0),d3
 		move.w	d3,d2
 		add.w	d0,d3
 		moveq	#0,d5
 		lea	BridgeDepression(pc),a5
 		move.b	(a5,d3.w),d5
 		andi.w	#$F,d3
-		lsl.w	#4,d3
+		lsl.w	#4,d3								; multiply by $10
 		lea	(a4,d3.w),a3
-		movea.w	objoff_30(a0),a1						; a1=object
-		lea	next_object(a1),a2
+		movea.w	parent3(a0),a1							; a1=object
+		lea	next_object(a1),a2						; set end current object slot
 		lea	sub2_y_pos(a1),a1
 
-loc_38D08:
+.loop
 		moveq	#0,d0
 		move.b	(a3)+,d0
 		addq.w	#1,d0
 		mulu.w	d5,d0
 		mulu.w	d4,d0
 		swap	d0
-		add.w	objoff_3C(a0),d0
-		move.w	d0,(a1)
-		addq.w	#6,a1
-		cmpa.w	a2,a1
-		bne.s	loc_38D28
-		movea.w	objoff_34(a0),a1						; a1=object
-		lea	sub2_y_pos(a1),a1
+		add.w	tensionbridge.origY(a0),d0
+		move.w	d0,(a1)								; set sub_y_pos
+		addq.w	#next_subspr,a1							; next subsprite
+		cmpa.w	a2,a1								; is the current object slot ended?
+		bne.s	.next								; if not, branch
+		movea.w	parent4(a0),a1							; a1=object
+		lea	sub2_y_pos(a1),a1						; load next object
 
-loc_38D28:
-		dbf	d2,loc_38D08
+.next
+		dbf	d2,.loop
+
+		; second block
 		moveq	#0,d0
 		move.b	subtype(a0),d0
 		moveq	#1,d3
-		add.b	objoff_3F(a0),d3
+		add.b	tensionbridge.indexP1(a0),d3
 		sub.b	d0,d3
 		neg.b	d3
-		bmi.s	locret_38D72
+		bmi.s	.return
 		move.w	d3,d2
-		lsl.w	#4,d3
+		lsl.w	#4,d3								; multiply by $10
 		lea	(a4,d3.w),a3
 		adda.w	d2,a3
 		subq.w	#1,d2
-		blo.s	locret_38D72
+		blo.s	.return
 
-loc_38D4E:
+.loop2
 		moveq	#0,d0
 		move.b	-(a3),d0
 		addq.w	#1,d0
 		mulu.w	d5,d0
 		mulu.w	d4,d0
 		swap	d0
-		add.w	objoff_3C(a0),d0
-		move.w	d0,(a1)
-		addq.w	#6,a1
-		cmpa.w	a2,a1
-		bne.s	loc_38D6E
-		movea.w	objoff_34(a0),a1						; a1=object
-		lea	sub2_y_pos(a1),a1
+		add.w	tensionbridge.origY(a0),d0
+		move.w	d0,(a1)								; set sub_y_pos
+		addq.w	#next_subspr,a1							; next subsprite
+		cmpa.w	a2,a1								; is the current object slot ended?
+		bne.s	.next2								; if not, branch
+		movea.w	parent4(a0),a1							; a1=object
+		lea	sub2_y_pos(a1),a1						; load next object
 
-loc_38D6E:
-		dbf	d2,loc_38D4E
+.next2
+		dbf	d2,.loop2
 
-locret_38D72:
+.return
 		rts
 ; ---------------------------------------------------------------------------
 
