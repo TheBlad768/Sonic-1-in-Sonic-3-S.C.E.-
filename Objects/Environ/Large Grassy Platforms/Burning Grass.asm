@@ -3,8 +3,15 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-gfire_origX			= objoff_2E
-gfire_origY			= objoff_30
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+grassfire			= *
+
+.origX				ds.w 1							; original x-axis position (2 bytes)
+.origY				ds.w 1							; original y-axis position (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -15,22 +22,22 @@ Obj_GrassFire:
 		jsr	(SetUp_ObjAttributes).w
 		sfx	sfx_Burning
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
-		move.w	x_pos(a0),gfire_origX(a0)
+		move.w	x_pos(a0),grassfire.origX(a0)
 		move.l	#.main,address(a0)
 
 .main
 		movea.w	parent3(a0),a2							; a2=parent object (Large Grassy Platforms)
-		movea.l	objoff_3C(a0),a1						; LGrass data pointer
+		movea.l	largegrass.slope_ptr(a2),a1					; LGrass data pointer
 		move.w	x_pos(a0),d1
-		sub.w	gfire_origX(a0),d1
+		sub.w	grassfire.origX(a0),d1
 		addi.w	#12,d1
 		move.w	d1,d0
-		lsr.w	d0
+		lsr.w	d0								; division by 2
 		move.b	(a1,d0.w),d0
 		neg.w	d0
-		add.w	gfire_origY(a0),d0
+		add.w	grassfire.origY(a0),d0
 		move.w	d0,d3
-		add.w	objoff_32(a2),d0
+		add.w	largegrass.yoffset(a2),d0
 		move.w	d0,y_pos(a0)
 		cmpi.w	#$84,d1
 		bhs.s	Obj_GrassFire_Fire.anim
@@ -48,7 +55,7 @@ Obj_GrassFire:
 		bne.s	Obj_GrassFire_Fire.anim
 		move.b	shield_reaction(a0),shield_reaction(a1)
 		move.w	parent3(a0),parent3(a1)						; copy parent object
-		move.w	d3,gfire_origY(a1)
+		move.w	d3,grassfire.origY(a1)
 		bra.s	Obj_GrassFire_Fire.anim
 
 ; ---------------------------------------------------------------------------
@@ -68,8 +75,8 @@ Obj_GrassFire_Fire:
 
 .main
 		movea.w	parent3(a0),a1							; a1=parent object (Large Grassy Platforms)
-		move.w	gfire_origY(a0),d0
-		add.w	objoff_32(a1),d0
+		move.w	grassfire.origY(a0),d0
+		add.w	largegrass.yoffset(a1),d0
 		move.w	d0,y_pos(a0)
 
 .anim
