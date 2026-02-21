@@ -2,6 +2,9 @@
 ; Object 11 - GHZ bridge
 ; ---------------------------------------------------------------------------
 
+; constants
+tensionbridge.logcount		= 8							; number of logs
+
 ; dynamic object variables
 
 	dsset aniraw_ptr								; pretend we're in the RAM
@@ -9,10 +12,10 @@
 tensionbridge			= *
 
 .origY				ds.w 1							; original y-axis position (2 bytes)
-.wait				ds.b 1							; (1 byte)
+.wait				ds.b 1							; wait timer (1 byte)
 .bend				ds.b 1							; bridge bend (1 byte)
-.indexP1			ds.b 1							; (1 byte)
-.indexP2			ds.b 1							; (1 byte)
+.indexP1			ds.b 1							; Sonic log index (1 byte)
+.indexP2			ds.b 1							; Tails log index (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -24,16 +27,18 @@ Obj_TensionBridge:
 		move.l	#TensionBridge_Nudge,address(a0)				; normal bridge
 		move.l	#Map_TensionBridge,mappings(a0)
 		move.w	#make_art_tile($33E,2,FALSE),art_tile(a0)
-		tst.b	subtype(a0)
-		bpl.s	.plus
-		move.l	#TensionBridge_CheckExplosion,address(a0)			; bridge explosion
-		andi.b	#$7F,subtype(a0)
 
-.plus
+		; check
+		tst.b	subtype(a0)
+		bpl.s	.normal
+		andi.b	#$7F,subtype(a0)
+		move.l	#TensionBridge_CheckExplosion,address(a0)			; bridge explosion
+
+.normal
 		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(16/2,256/2,priority_3),height_pixels(a0)	; set height, width and priority
 		move.w	y_pos(a0),d2
-		move.w	d2,tensionbridge.origY(a0)
+		move.w	d2,tensionbridge.origY(a0)					; save ypos
 		move.w	x_pos(a0),d3
 		lea	subtype(a0),a2							; copy bridge subtype to a2
 		moveq	#0,d1
@@ -43,14 +48,14 @@ Obj_TensionBridge:
 		lsl.w	#4,d0								; (d0 div 2) * 16
 		sub.w	d0,d3								; x position of left half
 		swap	d1								; store subtype in high word for later
-		move.w	#8,d1
+		move.w	#tensionbridge.logcount,d1
 		bsr.s	TensionBridge_CreateSegments
 		move.w	sub6_x_pos(a1),d0
 		subq.w	#8,d0
 		move.w	d0,x_pos(a1)							; center of first subsprite object
 		move.w	a1,parent3(a0)							; pointer to first subsprite object
 		swap	d1								; retrieve subtype
-		subq.w	#8,d1
+		subq.w	#tensionbridge.logcount,d1
 		bls.s	.next								; branch, if subtype <= 8 (bridge has no more than 8 logs)
 
 		; else, create a second subsprite object for the rest of the bridge
@@ -70,6 +75,8 @@ Obj_TensionBridge:
 ; =============== S U B R O U T I N E =======================================
 
 TensionBridge_CreateSegments:
+
+		; create
 		jsr	(Create_New_Object_3).w
 		bne.s	.return
 		move.l	#Draw_Sprite,address(a1)
@@ -83,7 +90,7 @@ TensionBridge_CreateSegments:
 		move.w	priority(a0),priority(a1)
 		move.w	#bytes_to_word(16/2,128/2),height_pixels(a1)			; set height and width
 		move.w	d1,mainspr_childsprites(a1)
-		subq.b	#1,d1
+		subq.w	#1,d1								; fix dbf
 		lea	sub2_x_pos(a1),a2						; starting address for subsprite data
 
 .loop
@@ -153,7 +160,9 @@ TensionBridge_Nudge:
 .chkdel
 		movea.w	parent3(a0),a1							; a1=object
 		jsr	(Delete_Referenced_Object).w
-		cmpi.b	#8,subtype(a0)
+
+		; check second subsprite object
+		cmpi.b	#tensionbridge.logcount,subtype(a0)
 		bls.s	.offscreen							; if bridge has more than 8 logs, delete second subsprite object
 		movea.w	parent4(a0),a1							; a1=object
 		jsr	(Delete_Referenced_Object).w
@@ -232,15 +241,17 @@ TensionBridge_CheckExplosion:								; check bridge explosion
 TensionBridge_BreakObjectToPieces:
 		movea.w	parent3(a0),a3							; a3=object
 		bsr.s	.main
-		cmpi.b	#8,subtype(a0)
+
+		; check second subsprite object
+		cmpi.b	#tensionbridge.logcount,subtype(a0)
 		bls.s	TensionBridge_CheckExplosion.return				; if bridge has more than 8 logs, create second subsprite object pieces
 		movea.w	parent4(a0),a3							; a3=object
 
 .main
-		lea	byte_38A78(pc),a4						; load wait time
+		lea	TensionBridge_TimeData(pc),a4					; load wait time
 		lea	sub2_x_pos(a3),a2
 		move.w	mainspr_childsprites(a3),d6
-		subq.w	#1,d6
+		subq.w	#1,d6								; fix dbf
 		bclr	#render_flags.multi_sprite,render_flags(a3)			; clear multi-draw flag
 		movea.w	a3,a1								; load object address to a1
 		bra.s	.load
@@ -277,9 +288,9 @@ TensionBridge_BreakObjectToPieces:
 		sfx	sfx_BridgeCollapse, 1
 ; ---------------------------------------------------------------------------
 
-byte_38A78:
-		dc.b 8, $10, $C, $E, 6, $A, 4, 2
-		dc.b 8, $10, $C, $E, 6, $A, 4, 2
+TensionBridge_TimeData:
+		dc.b 8, $10, $C, $E, 6, $A, 4, 2	; 0
+		dc.b 8, $10, $C, $E, 6, $A, 4, 2	; 8
 	even
 
 ; ---------------------------------------------------------------------------
@@ -343,10 +354,12 @@ SolidObject_TensionBridge:
 		lsr.w	#4,d0								; divide by $10
 		move.b	d0,(a0,d5.w)
 		movea.w	parent3(a0),a2							; a2=object
-		cmpi.w	#8,d0
-		blo.s	.skip
+
+		; check second subsprite object
+		cmpi.w	#tensionbridge.logcount,d0
+		blo.s	.skip								; if bridge has more than 8 logs, check second subsprite object pieces
 		movea.w	parent4(a0),a2							; a2=object
-		subq.w	#8,d0
+		subq.w	#tensionbridge.logcount,d0
 
 .skip
 		add.w	d0,d0								; multiply by 6
@@ -437,7 +450,7 @@ TensionBridge_Bend:
 		lsl.w	#4,d3								; multiply by $10
 		lea	(a4,d3.w),a3
 		adda.w	d2,a3
-		subq.w	#1,d2
+		subq.w	#1,d2								; fix dbf
 		blo.s	.return
 
 .loop2

@@ -63,7 +63,7 @@
 		include "Objects/Environ/Edge Walls/Edge Walls.asm"
 		include "Objects/Environ/Bumper/Bumper.asm"
 		include "Objects/Environ/Large Grassy Platforms/Large Grassy Platforms.asm"
-		include "Objects/Environ/Burning Grass/Burning Grass.asm"
+		include "Objects/Environ/Large Grassy Platforms/Burning Grass.asm"
 		include "Objects/Environ/Lava Ball/Lava Ball.asm"
 		include "Objects/Environ/Lava Wall/Lava Wall.asm"
 		include "Objects/Environ/Moving Blocks/Moving Blocks.asm"
