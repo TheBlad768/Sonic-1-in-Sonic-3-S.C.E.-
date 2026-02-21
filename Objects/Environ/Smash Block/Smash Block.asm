@@ -4,6 +4,17 @@
 
 ; dynamic object variables
 
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+smashblock			= *
+
+.animp1				ds.b 1							; Sonic's animation (1 byte)
+.animp2				ds.b 1							; Tails's animation (1 byte)
+.bonus				ds.w 1							; bonus counter (2 bytes)
+.frag_ptr			ds.l 1							; (4 bytes)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SmashBlock:
@@ -14,13 +25,15 @@ Obj_SmashBlock:
 		; init
 		movem.l	ObjDat_SmashBlock(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.l	#Smab_Speeds,objoff_3C(a0)
+		move.l	#Smab_Speeds,smashblock.frag_ptr(a0)				; fragments that move
 		move.b	subtype(a0),mapping_frame(a0)
 
 .solid
-		move.w	(Chain_bonus_counter).w,objoff_38(a0)
-		move.b	(Player_1+anim).w,objoff_34(a0)
-		move.b	(Player_2+anim).w,objoff_36(a0)
+		move.w	(Chain_bonus_counter).w,smashblock.bonus(a0)			; load chain bonus counter
+		move.b	(Player_1+anim).w,smashblock.animp1(a0)				; load Sonic's animation
+		move.b	(Player_2+anim).w,smashblock.animp2(a0)				; load Tails's animation
+
+		; solid
 		moveq	#$B,d1
 		add.b	width_pixels(a0),d1
 		moveq	#0,d2
@@ -29,9 +42,11 @@ Obj_SmashBlock:
 		addq.w	#1,d3
 		move.w	x_pos(a0),d4
 		jsr	(SolidObjectFull).w
+
+		; check standing
 		moveq	#standing_mask,d0
-		and.b	status(a0),d0
-		bne.s	.smash
+		and.b	status(a0),d0							; is Sonic or Tails standing on the object?
+		bne.s	.smash								; if yes, branch
 
 .draw
 		jmp	(Sprite_OnScreen_Test).w
@@ -39,39 +54,39 @@ Obj_SmashBlock:
 
 .smash
 		cmpi.b	#standing_mask,d0						; is Sonic and Tails standing on the object?
-		bne.s	.checkroll2							; if not, branch
-		cmpi.b	#AniIDSonAni_Roll,objoff_34(a0)					; check player 1
-		beq.s	.checkroll
-		cmpi.b	#AniIDSonAni_Roll,objoff_36(a0)					; check player 2
-		bne.s	.draw
+		bne.s	.checkTails							; if not, branch
+		cmpi.b	#AniIDSonAni_Roll,smashblock.animp1(a0)				; is Sonic rolling?
+		beq.s	.checkroll							; if yes, branch
+		cmpi.b	#AniIDSonAni_Roll,smashblock.animp2(a0)				; is Tails rolling?
+		bne.s	.draw								; if not, branch
 
 .checkroll
 		lea	(Player_1).w,a1							; a1=character
-		move.b	objoff_34(a0),d0
-		bsr.s	.Sonicroll
+		move.b	smashblock.animp1(a0),d0
+		bsr.s	.checkroll2
 		lea	(Player_2).w,a1							; a1=character
-		move.b	objoff_36(a0),d0
-		bsr.s	.Sonicroll
+		move.b	smashblock.animp2(a0),d0
+		bsr.s	.checkroll2
 		bra.s	.getbonus
 ; ---------------------------------------------------------------------------
 
-.checkroll2
+.checkTails
 		move.b	d0,d1
 		andi.b	#p1_standing,d1
 		beq.s	.getbonus2
-		cmpi.b	#AniIDSonAni_Roll,objoff_34(a0)
-		bne.s	.draw
+		cmpi.b	#AniIDSonAni_Roll,smashblock.animp1(a0)				; is Tails rolling?
+		bne.s	.draw								; if not, branch
 		lea	(Player_1).w,a1							; a1=character
-		bsr.s	.Tailsroll
+		bsr.s	.setroll
 		bra.s	.getbonus
 
 ; =============== S U B R O U T I N E =======================================
 
-.Sonicroll
+.checkroll2
 		cmpi.b	#AniIDSonAni_Roll,d0
 		bne.s	.notroll
 
-.Tailsroll
+.setroll
 		bset	#status.player.rolling,status(a1)
 		move.w	#bytes_to_word(28/2,14/2),y_radius(a1)				; set y_radius and x_radius
 		move.b	#AniIDSonAni_Roll,anim(a1)
@@ -88,15 +103,15 @@ Obj_SmashBlock:
 .getbonus2
 		andi.b	#p2_standing,d0
 		beq.s	.draw
-		cmpi.b	#AniIDSonAni_Roll,objoff_36(a0)
+		cmpi.b	#AniIDSonAni_Roll,smashblock.animp2(a0)
 		bne.w	.draw
 		lea	(Player_2).w,a1							; a1=character
-		bsr.s	.Tailsroll
+		bsr.s	.setroll
 
 .getbonus
-		move.w	objoff_38(a0),(Chain_bonus_counter).w
+		move.w	smashblock.bonus(a0),(Chain_bonus_counter).w
 		andi.b	#~(standing_mask)&$FF,status(a0)
-		movea.l	objoff_3C(a0),a4						; Smab_Speeds
+		movea.l	smashblock.frag_ptr(a0),a4					; use fragments that move
 		addq.b	#1,mapping_frame(a0)
 		move.l	#.fall,address(a0)
 		jsr	(BreakObjectToPieces).l

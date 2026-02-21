@@ -3,9 +3,20 @@
 ; ---------------------------------------------------------------------------
 
 ; options
-_BWALL_KNUX_			= 0	; if 1, change the animation of Knuckles after breaking the wall
+_BWALL_KNUX_			= 0							; if 1, change the animation of Knuckles after breaking the wall
 
 ; dynamic object variables
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+breakablewall			= *
+
+.speedp1			ds.w 1							; Sonic's horizontal speed (2 bytes)
+.speedp2			ds.w 1							; Tails's horizontal speed (2 bytes)
+.fragright_ptr			ds.l 1							; fragments that move right (4 bytes)
+.fragleft_ptr			ds.l 1							; fragments that move left (4 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -20,12 +31,12 @@ Obj_BreakableWall:
 
 .notSLZ
 		move.b	subtype(a0),mapping_frame(a0)
-		move.l	#BreakableWall_FragSpd1,objoff_34(a0)				; right
-		move.l	#BreakableWall_FragSpd2,objoff_38(a0)				; left
+		move.l	#BreakableWall_FragSpd1,breakablewall.fragright_ptr(a0)		; fragments that move right
+		move.l	#BreakableWall_FragSpd2,breakablewall.fragleft_ptr(a0)		; fragments that move left
 
 .main
-		move.w	(Player_1+x_vel).w,objoff_30(a0)
-		move.w	(Player_2+x_vel).w,objoff_32(a0)
+		move.w	(Player_1+x_vel).w,breakablewall.speedp1(a0)			; load Sonic's horizontal speed
+		move.w	(Player_2+x_vel).w,breakablewall.speedp2(a0)			; load Tails's horizontal speed
 		moveq	#$B,d1
 		add.b	width_pixels(a0),d1
 		moveq	#0,d2
@@ -34,76 +45,82 @@ Obj_BreakableWall:
 		addq.w	#1,d3
 		move.w	x_pos(a0),d4
 		jsr	(SolidObjectFull).w
-		swap	d6
-		andi.w	#touch_side_mask,d6
-		bne.s	loc_215B2
+		swap	d6								; get touch status
+		andi.w	#touch_side_mask,d6						; are Sonic or Tails pushing against the wall?
+		bne.s	.checkplayer							; if yes, branch
 
-loc_215AC:
+.draw
 		jmp	(Sprite_OnScreen_Test).w
 ; ---------------------------------------------------------------------------
 
-loc_215B2:
+.checkplayer
 		lea	(Player_1).w,a1							; a1=character
-		move.w	objoff_30(a0),d1
-		move.w	d6,d0
+		move.w	breakablewall.speedp1(a0),d1					; get Sonic's horizontal speed to d1
+		move.w	d6,d0								; copy touch status to d0
 		andi.w	#p1_touch_side,d0
-		beq.s	loc_2162A
-		tst.b	(Super_Sonic_Knux_flag).w
-		bne.s	loc_215F4
+		beq.s	.checkTails
+
+		; check Super/Hyper
+		tst.b	(Super_Sonic_Knux_flag).w					; is Sonic Super/Hyper?
+		bne.s	.createfrag							; if so, branch
 		cmpi.b	#PlayerID_Knuckles,character_id(a1)				; is player Knuckles?
-		beq.s	loc_215F4							; if yes, branch
+		beq.s	.createfrag							; if yes, branch
 		btst	#shield_reaction.fire_shield,shield_reaction(a1)
-		bne.s	loc_215E0
+		bne.s	.chkroll
 		btst	#p1_pushing_bit,status(a0)
-		beq.s	loc_2162A
+		beq.s	.checkTails
 
-loc_215E0:
-		cmpi.b	#AniIDSonAni_Roll,anim(a1)
-		bne.s	loc_2162A
+.chkroll
+		cmpi.b	#AniIDSonAni_Roll,anim(a1)					; is Sonic rolling?
+		bne.s	.checkTails							; if not, branch
 		mvabs.w	d1,d0
-		cmpi.w	#$480,d0
-		blo.s	loc_2162A
+		cmpi.w	#$480,d0							; is Sonic's speed $480 or higher?
+		blo.s	.checkTails							; if not, branch
 
-loc_215F4:
+.createfrag
 		bclr	#p1_pushing_bit,status(a0)
-		bsr.s	Obj_BreakableWall_CreateFragments
+		bsr.s	BreakableWall_CreateFragments
+
+		; check Tails (p2)
 		btst	#p2_pushing_bit,status(a0)
-		beq.s	loc_215AC
+		beq.s	.draw
 		lea	(Player_2).w,a1							; a1=character
-		cmpi.b	#AniIDSonAni_Roll,anim(a1)
-		bne.s	loc_215AC
-		move.w	objoff_32(a0),x_vel(a1)
+		cmpi.b	#AniIDSonAni_Roll,anim(a1)					; is Tails rolling?
+		bne.s	.draw								; if not, branch
+		move.w	breakablewall.speedp2(a0),x_vel(a1)
 		move.w	x_vel(a1),ground_vel(a1)
 		bclr	#p2_pushing_bit,status(a0)
 		bclr	#status.player.pushing,status(a1)
-		bra.s	loc_215AC
+		bra.s	.draw
 ; ---------------------------------------------------------------------------
 
-loc_2162A:
+.checkTails
+
+		; check Tails (p2)
 		btst	#p2_pushing_bit,status(a0)
-		beq.w	loc_215AC
+		beq.w	.draw
 		lea	(Player_2).w,a1							; a1=character
-		move.w	objoff_32(a0),d1
-		cmpi.b	#AniIDSonAni_Roll,anim(a1)
-		bne.w	loc_215AC
+		move.w	breakablewall.speedp2(a0),d1					; get Tails's horizontal speed to d1
+		cmpi.b	#AniIDSonAni_Roll,anim(a1)					; is Tails rolling?
+		bne.w	.draw								; if not, branch
 		mvabs.w	d1,d0
-		cmpi.w	#$480,d0
-		blo.w	loc_215AC
+		cmpi.w	#$480,d0							; is Tails's speed $480 or higher?
+		blo.w	.draw								; if not, branch
 		bclr	#p2_pushing_bit,status(a0)
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_BreakableWall_CreateFragments:
+BreakableWall_CreateFragments:
 		move.w	d1,x_vel(a1)
 		addq.w	#4,x_pos(a1)
-		movea.l	objoff_34(a0),a4						; BreakableWall_FragSpd1 (right)
+		movea.l	breakablewall.fragright_ptr(a0),a4				; use fragments that move right
 		move.w	x_pos(a0),d0
-		cmp.w	x_pos(a1),d0
-		blo.s	.isleft								; if Sonic is left of the object, branch
+		cmp.w	x_pos(a1),d0							; is Sonic to the right of the block?
+		blo.s	.smash								; if yes, branch
 		subq.w	#4*2,x_pos(a1)
-		movea.l	objoff_38(a0),a4						; BreakableWall_FragSpd2 (left)
+		movea.l	breakablewall.fragleft_ptr(a0),a4				; use fragments that move left
 
-.isleft
+.smash
 		move.w	x_vel(a1),ground_vel(a1)
 		bclr	#status.player.pushing,status(a1)				; set sonic as not pushing an object
 
