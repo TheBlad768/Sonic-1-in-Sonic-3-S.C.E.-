@@ -47,7 +47,7 @@ Obj_Caterkiller:
 		; create tail
 		lea	Child8_Caterkiller_FragBody(pc),a2
 		moveq	#2,d2								; set subtype
-		jsr	(CreateChild8_TreeListRepeated2).w
+		jsr	(CreateChild8_TreeListRepeated.skip).w
 		bne.s	.fail
 
 .head
