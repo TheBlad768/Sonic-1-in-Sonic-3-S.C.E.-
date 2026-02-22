@@ -1322,7 +1322,7 @@ PLC_SpecialStageResults: plrlistheader
 ; ---------------------------------------------------------------------------
 
 		; animate palette
-		include "Screens/Special Stage/Palettes/Animated/Special Stage - Animate Palette.asm"
+		include "Screens/Special Stage/Palettes/Animated/Special Stage - Animate Palette Code.asm"
 
 		; objects
 		include "Screens/Special Stage/Player.asm"

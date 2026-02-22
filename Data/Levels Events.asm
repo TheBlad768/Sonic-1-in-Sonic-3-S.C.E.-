@@ -7,14 +7,14 @@
 
 		; GHZ
 		include "Levels/GHZ/Tiles/Animated/GHZ1 - Animation PLC Scripts.asm"
-		include "Levels/GHZ/Palettes/Animated/GHZ1 - Animate Palette.asm"
+		include "Levels/GHZ/Palettes/Animated/GHZ1 - Animate Palette Code.asm"
 		include "Levels/GHZ/Events/GHZ1 - Events.asm"
 		include "Levels/GHZ/Events/GHZ1 - Resize.asm"
 		include "Levels/GHZ/Events/GHZ2 - Resize.asm"
 		include "Levels/GHZ/Events/GHZ3 - Resize.asm"
 
 		; MZ
-		include "Levels/MZ/Tiles/Animated/MZ1 - Animation PLC.asm"
+		include "Levels/MZ/Tiles/Animated/MZ1 - Animation PLC Code.asm"
 		include "Levels/MZ/Tiles/Animated/MZ1 - Animation PLC Scripts.asm"
 		include "Levels/MZ/Events/MZ1 - Events.asm"
 		include "Levels/MZ/Events/MZ1 - Resize.asm"
@@ -30,8 +30,8 @@
 		include "Levels/SYZ/Events/SYZ3 - Resize.asm"
 
 		; LZ
-		include "Levels/LZ/Tiles/Animated/LZ1 - Animation PLC.asm"
-		include "Levels/LZ/Palettes/Animated/LZ1 - Animate Palette.asm"
+		include "Levels/LZ/Tiles/Animated/LZ1 - Animation PLC Code.asm"
+		include "Levels/LZ/Palettes/Animated/LZ1 - Animate Palette Code.asm"
 		include "Levels/LZ/Events/LZ1 - Events.asm"
 		include "Levels/LZ/Events/LZ1 - Resize.asm"
 		include "Levels/LZ/Events/LZ1 - Water Resize.asm"
@@ -51,7 +51,7 @@
 
 		; SBZ
 		include "Levels/SBZ/Tiles/Animated/SBZ1 - Animation PLC Scripts.asm"
-		include "Levels/SBZ/Palettes/Animated/SBZ1 - Animate Palette.asm"
+		include "Levels/SBZ/Palettes/Animated/SBZ1 - Animate Palette Code.asm"
 		include "Levels/SBZ/Events/SBZ1 - Events.asm"
 		include "Levels/SBZ/Events/SBZ2 - Events.asm"
 		include "Levels/SBZ/Events/SBZ1 - Resize.asm"
