@@ -395,12 +395,12 @@ Touch_EnemyNormal:
 		moveq	#6,d0								; max bonus is lvl6
 
 .notreachedlimit
-		move.w	d0,objoff_3E(a1)
+		move.w	d0,bonus_counter(a1)
 		move.w	Enemy_Points(pc,d0.w),d0
 		cmpi.w	#16*2,(Chain_bonus_counter).w					; have 16 enemies been destroyed?
 		blo.s	.notreachedlimit2						; if not, branch
 		move.w	#1000,d0							; fix bonus to 10000
-		move.w	#10,objoff_3E(a1)
+		move.w	#10,bonus_counter(a1)
 
 .notreachedlimit2
 		bsr.w	HUD_AddToScore
@@ -898,13 +898,13 @@ HyperTouch_DestroyEnemy:
 		moveq	#6,d0								; cap counter at 6
 
 .notreachedlimit
-		move.w	d0,objoff_3E(a1)
+		move.w	d0,bonus_counter(a1)
 		lea	Enemy_Points(pc),a2
 		move.w	(a2,d0.w),d0							; get appropriate number of points
 		cmpi.w	#16*2,(Chain_bonus_counter).w					; have 16 enemies been destroyed?
 		blo.s	.notreachedlimit2						; if not, branch
 		move.w	#1000,d0							; fix bonus to 10000 points
-		move.w	#10,objoff_3E(a1)
+		move.w	#10,bonus_counter(a1)
 
 .notreachedlimit2
 		move.l	#Obj_Explosion,address(a1)					; create enemy destruction explosion
