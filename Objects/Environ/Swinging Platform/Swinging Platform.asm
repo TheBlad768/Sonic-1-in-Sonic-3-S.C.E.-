@@ -4,11 +4,18 @@
 ; ---------------------------------------------------------------------------
 
 ; options
-_SPLATFORM_POS_			= 1		; sonic 1 version
+_SPLATFORM_POS_			= 1							; sonic 1 version
 
 ; dynamic object variables
-swing_origX			= objoff_42	; original x-axis position (2 bytes)
-swing_origY			= objoff_44	; original y-axis position (2 bytes)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+swingingplatform		= *
+
+.origX				ds.w 1							; original x-axis position (2 bytes)
+.origY				ds.w 1							; original y-axis position (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -26,8 +33,8 @@ Obj_SwingingPlatform:
 .notMZ
 		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(16/2,48/2,priority_4),height_pixels(a0)	; set height, width and priority
-		move.w	x_pos(a0),swing_origX(a0)
-		move.w	y_pos(a0),swing_origY(a0)
+		move.w	x_pos(a0),swingingplatform.origX(a0)
+		move.w	y_pos(a0),swingingplatform.origY(a0)
 
 		; check level
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; is level Star Light Zone?
@@ -112,7 +119,7 @@ Obj_SwingingPlatform:
 
 		; check delete
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	swing_origX(a0),d0						; get object position
+		and.w	swingingplatform.origX(a0),d0					; get object position
 		out_of_xrange2.s	.offscreen
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
@@ -134,7 +141,7 @@ Obj_SwingingPlatform:
 
 .checkdeletesbz
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	swing_origX(a0),d0						; get object position
+		and.w	swingingplatform.origX(a0),d0					; get object position
 		out_of_xrange2.s	.offscreen
 		jmp	(Draw_And_Touch_Sprite).w
 ; ---------------------------------------------------------------------------
@@ -171,8 +178,8 @@ SwingingPlatform_Move:
 
 .notflipy
 		jsr	(GetSineCosine).w
-		move.w	swing_origY(a0),d2
-		move.w	swing_origX(a0),d3
+		move.w	swingingplatform.origY(a0),d2
+		move.w	swingingplatform.origX(a0),d3
 		movea.w	parent3(a0),a1							; load chain address into a1
 		move.w	mainspr_childsprites(a1),d6
 		subq.w	#1,d6

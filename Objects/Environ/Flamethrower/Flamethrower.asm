@@ -3,10 +3,17 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-flame_time			= objoff_30	; .w
-flame_savetime			= objoff_32	; .w
-flame_pausetime			= objoff_34	; .w
-flame_frame			= objoff_36	; .b
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+flamethrower			= *
+
+.timer				ds.w 1							; (2 bytes)
+.delay				ds.w 1							; (2 bytes)
+.pause				ds.w 1							; (2 bytes)
+.frame				ds.b 1							; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -17,32 +24,32 @@ Obj_Flamethrower:
 		move.b	d0,d1
 		andi.w	#$F0,d0								; read 1st digit of object type
 		add.w	d0,d0								; multiply by 2
-		move.w	d0,flame_time(a0)
-		move.w	d0,flame_savetime(a0)						; set flaming time
+		move.w	d0,flamethrower.timer(a0)
+		move.w	d0,flamethrower.delay(a0)					; set flaming time
 
 		; pause time
 		andi.w	#$F,d1								; read 2nd digit of object type
 		lsl.w	#5,d1								; multiply by $20
-		move.w	d1,flame_pausetime(a0)						; set pause time
+		move.w	d1,flamethrower.pause(a0)					; set pause time
 
 		; init
 		lea	ObjDat_Flamethrower(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 		move.l	#.action,address(a0)
-		move.b	#10,flame_frame(a0)
+		move.b	#10,flamethrower.frame(a0)
 		btst	#status.npc.y_flip,status(a0)					; is flipy?
 		beq.s	.action								; if not, branch
-		move.b	#21,flame_frame(a0)
+		move.b	#21,flamethrower.frame(a0)
 		move.b	#2,anim(a0)
 
 .action
-		subq.w	#1,flame_time(a0)						; subtract 1 from time
+		subq.w	#1,flamethrower.timer(a0)					; subtract 1 from time
 		bpl.s	.animate							; if time remains, branch
-		move.w	flame_pausetime(a0),flame_time(a0)				; begin pause time
+		move.w	flamethrower.pause(a0),flamethrower.timer(a0)			; begin pause time
 		bchg	#0,anim(a0)
 		beq.s	.animate
-		move.w	flame_savetime(a0),flame_time(a0)				; begin flaming time
+		move.w	flamethrower.delay(a0),flamethrower.timer(a0)			; begin flaming time
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bpl.s	.animate							; if not, branch
 		sfx	sfx_Flamethrower						; play flame sound
@@ -50,7 +57,7 @@ Obj_Flamethrower:
 .animate
 		lea	Ani_Flame(pc),a1
 		jsr	(Animate_Sprite).w
-		move.b	flame_frame(a0),d0
+		move.b	flamethrower.frame(a0),d0
 		cmp.b	mapping_frame(a0),d0
 		beq.s	.col
 

@@ -119,7 +119,7 @@ Obj_Index:
 		dc.l Delete_Current_Object				; $71
 		dc.l Obj_Teleport					; $72
 		dc.l Obj_Flamethrower					; $73
-		dc.l Obj_Electro					; $74
+		dc.l Obj_Electrocuter					; $74
 		dc.l Obj_Saws						; $75
 		dc.l Delete_Current_Object				; $76
 		dc.l Delete_Current_Object				; $77

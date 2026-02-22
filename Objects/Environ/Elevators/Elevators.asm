@@ -3,9 +3,22 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-elev_origX			= objoff_32	; original x-axis position
-elev_origY			= objoff_30	; original y-axis position
-elev_dist			= objoff_3C	; distance to move (2 bytes)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+elevator			= *
+
+.origX				ds.w 1							; original x-axis position (2 bytes)
+.origY				ds.w 1							; original y-axis position (2 bytes)
+.copyY				ds.l 1							; copy y-axis position (2 bytes)
+.velocity			ds.w 1							; (2 bytes)
+.flag				ds.b 1							; (1 byte)
+				ds.b 1							; (1 byte)
+.dist				= *							; (2 bytes)
+.timer				ds.w 1							; (2 bytes)
+.delay				ds.w 1							; (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -21,15 +34,15 @@ Obj_Elevator:
 		move.w	d0,d1
 		add.w	d0,d0
 		add.w	d1,d0
-		move.w	d0,elev_dist(a0)
-		move.w	d0,objoff_3E(a0)
-		move.l	#Elev_MakeMulti,address(a0)					; goto Elev_MakeMulti next
+		move.w	d0,elevator.timer(a0)						; set wait time
+		move.w	d0,elevator.delay(a0)
+		move.l	#Elevator_MakeMulti,address(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
-.Elev_Var1
+.var1
 		dc.b 80/2, 0		; width, frame number
-.Elev_Var2
+.var2
 		dc.b $10, 1	; 0	; distance to move, action type
 		dc.b $20, 1	; 1
 		dc.b $34, 1	; 2
@@ -52,18 +65,18 @@ Obj_Elevator:
 		; set
 		lsr.w	#3,d0
 		andi.w	#$1E,d0
-		lea	.Elev_Var1(pc,d0.w),a2
+		lea	.var1(pc,d0.w),a2
 		move.b	(a2),height_pixels(a0)						; set height
 		move.b	(a2)+,width_pixels(a0)						; set width
 		move.b	(a2)+,mapping_frame(a0)						; set frame
 		move.b	subtype(a0),d0
 		add.w	d0,d0
 		andi.w	#$1E,d0
-		lea	.Elev_Var2(pc,d0.w),a2
+		lea	.var2(pc,d0.w),a2
 		move.b	(a2)+,d0
+		add.w	d0,d0								; multiply by 4
 		add.w	d0,d0
-		add.w	d0,d0
-		move.w	d0,elev_dist(a0)						; set distance to move
+		move.w	d0,elevator.dist(a0)						; set distance to move
 		move.b	(a2)+,subtype(a0)						; set type
 
 		; init
@@ -76,9 +89,9 @@ Obj_Elevator:
 			make_art_tile(0,2,FALSE) \
 		),priority(a0)
 
-		move.w	x_pos(a0),elev_origX(a0)
-		move.w	y_pos(a0),elev_origY(a0)
-		move.l	#.main,address(a0)						; goto Elev_Platform next
+		move.w	x_pos(a0),elevator.origX(a0)
+		move.w	y_pos(a0),elevator.origY(a0)
+		move.l	#.main,address(a0)
 
 .main
 		move.w	x_pos(a0),-(sp)
@@ -101,7 +114,7 @@ Obj_Elevator:
 
 .chkdel
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	elev_origX(a0),d0						; get object position
+		and.w	elevator.origX(a0),d0						; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -118,10 +131,10 @@ Obj_Elevator:
 ; ---------------------------------------------------------------------------
 
 		; type09								; 9
-		bsr.w	Elev_Move
-		move.w	objoff_34(a0),d0
+		bsr.w	Elevator_Move
+		move.w	elevator.copyY(a0),d0
 		neg.w	d0
-		add.w	elev_origY(a0),d0
+		add.w	elevator.origY(a0),d0
 		move.w	d0,y_pos(a0)
 		tst.b	subtype(a0)
 		beq.s	.typereset
@@ -139,44 +152,44 @@ Obj_Elevator:
 ; ---------------------------------------------------------------------------
 
 .type02
-		bsr.s	Elev_Move
-		move.w	objoff_34(a0),d0
+		bsr.s	Elevator_Move
+		move.w	elevator.copyY(a0),d0
 		neg.w	d0
-		add.w	elev_origY(a0),d0
+		add.w	elevator.origY(a0),d0
 		move.w	d0,y_pos(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
 .type04
-		bsr.s	Elev_Move
-		move.w	objoff_34(a0),d0
-		add.w	elev_origY(a0),d0
+		bsr.s	Elevator_Move
+		move.w	elevator.copyY(a0),d0
+		add.w	elevator.origY(a0),d0
 		move.w	d0,y_pos(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
 .type06
-		bsr.s	Elev_Move
-		move.w	objoff_34(a0),d0
+		bsr.s	Elevator_Move
+		move.w	elevator.copyY(a0),d0
 		asr.w	d0
 		neg.w	d0
-		add.w	elev_origY(a0),d0
+		add.w	elevator.origY(a0),d0
 		move.w	d0,y_pos(a0)
-		move.w	objoff_34(a0),d0
-		add.w	elev_origX(a0),d0
+		move.w	elevator.copyY(a0),d0
+		add.w	elevator.origX(a0),d0
 		move.w	d0,x_pos(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
 .type08
-		bsr.s	Elev_Move
-		move.w	objoff_34(a0),d0
+		bsr.s	Elevator_Move
+		move.w	elevator.copyY(a0),d0
 		asr.w	d0
-		add.w	elev_origY(a0),d0
+		add.w	elevator.origY(a0),d0
 		move.w	d0,y_pos(a0)
-		move.w	objoff_34(a0),d0
+		move.w	elevator.copyY(a0),d0
 		neg.w	d0
-		add.w	elev_origX(a0),d0
+		add.w	elevator.origX(a0),d0
 		move.w	d0,x_pos(a0)
 		rts
 ; ---------------------------------------------------------------------------
@@ -189,14 +202,14 @@ Obj_Elevator:
 		; delete object
 		move.w	#$7F00,d0
 		move.w	d0,x_pos(a0)
-		move.w	d0,elev_origX(a0)
+		move.w	d0,elevator.origX(a0)
 		rts
 
 ; =============== S U B R O U T I N E =======================================
 
-Elev_Move:
-		move.w	objoff_38(a0),d0
-		tst.b	objoff_3A(a0)
+Elevator_Move:
+		move.w	elevator.velocity(a0),d0
+		tst.b	elevator.flag(a0)
 		bne.s	loc_10CC8
 		cmpi.w	#$800,d0
 		bhs.s	loc_10CD0
@@ -210,16 +223,16 @@ loc_10CC8:
 		subi.w	#16,d0
 
 loc_10CD0:
-		move.w	d0,objoff_38(a0)
+		move.w	d0,elevator.velocity(a0)
 		ext.l	d0
-		asl.l	#8,d0
-		add.l	objoff_34(a0),d0
-		move.l	d0,objoff_34(a0)
+		asl.l	#8,d0								; shift velocity to line up with the middle 16 bits of the 32-bit position
+		add.l	elevator.copyY(a0),d0						; add speed to position
+		move.l	d0,elevator.copyY(a0)
 		swap	d0
-		move.w	elev_dist(a0),d2
+		move.w	elevator.dist(a0),d2
 		cmp.w	d2,d0
 		bls.s	loc_10CF0
-		move.b	#1,objoff_3A(a0)
+		st	elevator.flag(a0)
 
 loc_10CF0:
 		add.w	d2,d2
@@ -236,12 +249,12 @@ locret_10CFA:
 
 ; =============== S U B R O U T I N E =======================================
 
-Elev_MakeMulti:
+Elevator_MakeMulti:
 
 		; wait
-		subq.w	#1,elev_dist(a0)
+		subq.w	#1,elevator.timer(a0)
 		bne.s	.chkdel
-		move.w	objoff_3E(a0),elev_dist(a0)
+		move.w	elevator.delay(a0),elevator.timer(a0)
 
 		; create
 		jsr	(Create_New_Object_3).w

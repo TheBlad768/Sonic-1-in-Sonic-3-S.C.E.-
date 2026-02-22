@@ -3,8 +3,15 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-flap_time			= objoff_32	; time between opening/closing
-flap_wait			= objoff_30	; time until change
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+flapdoor			= *
+
+.timer				ds.w 1							; time until change (2 bytes)
+.delay				ds.w 1							; time between opening/closing (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -23,12 +30,12 @@ Obj_FlapDoor:
 		move.w	d0,d1
 		lsl.w	#4,d0
 		sub.w	d1,d0
-		move.w	d0,flap_time(a0)						; set flap delay time
+		move.w	d0,flapdoor.delay(a0)						; set flap delay time
 
 .openclose
-		subq.w	#1,flap_wait(a0)						; decrement time delay
+		subq.w	#1,flapdoor.timer(a0)						; decrement time delay
 		bpl.s	.wait								; if time remains, branch
-		move.w	flap_time(a0),flap_wait(a0)					; reset time delay
+		move.w	flapdoor.delay(a0),flapdoor.timer(a0)				; reset time delay
 		bchg	#0,anim(a0)							; open/close door
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bpl.s	.wait								; if not, branch
