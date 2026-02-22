@@ -52,7 +52,7 @@ Debug_SBZ1: dbglistheader
 	dbglistobj Obj_VanishPlatform, Map_VanP, 0, 0, $364, 2, FALSE
 	dbglistobj Obj_Flamethrower, Map_Flame, $64, 0, $562, 0, TRUE
 	dbglistobj Obj_Flamethrower, Map_Flame, $64, $B, $562, 0, TRUE
-	dbglistobj Obj_Electro, Map_Elec, 4, 0, $529, 0, FALSE
+	dbglistobj Obj_Electrocuter, Map_Elec, 4, 0, $529, 0, FALSE
 	dbglistobj Obj_Girder, Map_Gird, 4, 0, $2DA, 2, FALSE
 	dbglistobj Obj_Invisible_SolidBlock, Map_InvisibleBlock, 0, 0, ArtTile_Monitors, 0, TRUE
 	dbglistobj Obj_BallHog, Map_Hog, 0, 0, $2EC, 1, FALSE
