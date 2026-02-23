@@ -212,10 +212,10 @@ Obj_HyperSonic_Stars:
 
 		; check player xflip
 		btst	#status.player.x_flip,(Player_1+status).w
-		beq.s	.notxflip
+		beq.s	.notflipx
 		neg.w	d2
 
-.notxflip
+.notflipx
 		move.b	hyperSonic_stars.ydiff(a0),d3
 		ext.w	d3
 		add.w	(Player_1+x_pos).w,d2

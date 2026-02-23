@@ -577,10 +577,10 @@ Obj_Invincibility:
 		; check xflip
 		moveq	#2*9,d0
 		btst	#status.player.x_flip,status(a1)
-		beq.s	.notxflip
+		beq.s	.notflipx
 		neg.w	d0
 
-.notxflip
+.notflipx
 		add.b	d0,invincibility.offset(a0)
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
@@ -659,10 +659,10 @@ Obj_Invincibility_Child:
 		; check xflip
 		moveq	#2*1,d0
 		btst	#status.player.x_flip,status(a1)
-		beq.s	.notxflip
+		beq.s	.notflipx
 		neg.w	d0
 
-.notxflip
+.notflipx
 		add.b	d0,invincibility.offset(a0)
 		jmp	(Draw_Sprite).w
 
