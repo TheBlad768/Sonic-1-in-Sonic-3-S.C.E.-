@@ -113,10 +113,10 @@ FloatingPlatform_LeftRight:								; type01(Left/Right) and type05(Right/Left)
 .main
 		sub.w	d1,d0
 		btst	#status.npc.x_flip,status(a0)
-		beq.s	.notflip
+		beq.s	.notflipx
 		neg.w	d0
 
-.notflip
+.notflipx
 		move.w	objoff_30(a0),d1
 		add.w	d0,d1
 		move.w	d1,x_pos(a0)
@@ -156,10 +156,10 @@ FloatingPlatform_UpDown:								; type02(Up/Down) and type06(Down/Up)
 .main
 		sub.w	d1,d0
 		btst	#status.npc.x_flip,status(a0)
-		beq.s	.notflip
+		beq.s	.notflipx
 		neg.w	d0
 
-.notflip
+.notflipx
 		move.w	objoff_34(a0),d1
 		sub.w	d0,d1
 		move.w	d1,y_pos(a0)
@@ -320,10 +320,10 @@ FloatingPlatform_Large:									; type0A
 		move.b	(Oscillating_Data+$18).w,d0
 		sub.w	d1,d0
 		btst	#status.npc.x_flip,status(a0)
-		beq.s	.notflip
+		beq.s	.notflipx
 		neg.w	d0
 
-.notflip
+.notflipx
 		move.w	objoff_34(a0),d1
 		ext.w	d0
 		asr.w	d0
