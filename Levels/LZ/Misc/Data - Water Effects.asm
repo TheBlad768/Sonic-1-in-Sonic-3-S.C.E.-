@@ -2,10 +2,10 @@
 ; =============== S U B R O U T I N E =======================================
 
 LZ_WaterTunLocs_Index: offsetTable
-		offsetTableEntry.w LZ1_WaterTunLocs
-		offsetTableEntry.w LZ2_WaterTunLocs
-		offsetTableEntry.w LZ3_WaterTunLocs
-		offsetTableEntry.w SBZ3_WaterTunLocs
+		offsetTableEntry.w LZ1_WaterTunLocs					; 0
+		offsetTableEntry.w LZ2_WaterTunLocs					; 2
+		offsetTableEntry.w LZ3_WaterTunLocs					; 4
+		offsetTableEntry.w SBZ3_WaterTunLocs					; 6
 
 LZ1_WaterTunLocs:									; min x, min y, max x, max y, x velo, y velo, player can influence which axis flag (set = x, clear = y)
 		dc.w 2-1
@@ -31,10 +31,10 @@ SBZ3_WaterTunLocs_end
 ; =============== S U B R O U T I N E =======================================
 
 Slide_Speeds_Index: offsetTable
-		offsetTableEntry.w Slide_Speeds1					; act 1
-		offsetTableEntry.w Slide_Speeds2					; act 2
-		offsetTableEntry.w Slide_Speeds3					; act 3
-		offsetTableEntry.w Slide_Speeds1					; act 4
+		offsetTableEntry.w Slide_Speeds1					; 0 ; act 1
+		offsetTableEntry.w Slide_Speeds2					; 2 ; act 2
+		offsetTableEntry.w Slide_Speeds3					; 4 ; act 3
+		offsetTableEntry.w Slide_Speeds1					; 6 ; act 4
 
 Slide_Speeds1:
 		dc.b $A, $A								; right

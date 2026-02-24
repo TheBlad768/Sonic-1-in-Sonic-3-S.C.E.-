@@ -7,7 +7,7 @@
 ; player 1
 	dsset x_vel									; pretend we're in the RAM
 
-tele_player1_attached		= *							; $E bytes
+tele_player1_attached =		*
 
 .routine			ds.b 1	; (1 byte)
 .sine				ds.b 1	; (1 byte)
@@ -22,7 +22,7 @@ tele_player1_attached		= *							; $E bytes
 ; player 2
 	dsset wait_timer								; pretend we're in the RAM
 
-tele_player2_attached		= *							; $E bytes
+tele_player2_attached =		*
 
 .routine			ds.b 1	; (1 byte)
 .sine				ds.b 1	; (1 byte)

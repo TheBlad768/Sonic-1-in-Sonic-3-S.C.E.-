@@ -3,48 +3,48 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-LevelSelect.VRAM:			= 0
+LevelSelect.VRAM =					0
 
-LevelSelect.ZoneCount:			= ZoneCount
-LevelSelect.ActGHZCount:		= 3						; GHZ
-LevelSelect.ActMZCount:			= 3						; MZ
-LevelSelect.ActSYZCount:		= 3						; SYZ
-LevelSelect.ActLZCount:			= 4						; LZ
-LevelSelect.ActSLZCount:		= 3						; SLZ
-LevelSelect.ActSBZCount:		= 3						; SBZ
+LevelSelect.ZoneCount =					ZoneCount
+LevelSelect.ActGHZCount =				3				; GHZ
+LevelSelect.ActMZCount =				3				; MZ
+LevelSelect.ActSYZCount =				3				; SYZ
+LevelSelect.ActLZCount =				4				; LZ
+LevelSelect.ActSLZCount =				3				; SLZ
+LevelSelect.ActSBZCount =				3				; SBZ
 
-LevelSelect.SpecialStageCount:		= 6
-LevelSelect.CharacterCount:		= LevelSelect.SpecialStageCount+1
-LevelSelect.MusicTestCount:		= LevelSelect.CharacterCount+1
-LevelSelect.SoundTestCount:		= LevelSelect.MusicTestCount+1
-LevelSelect.SampleTestCount:		= LevelSelect.SoundTestCount+1
-LevelSelect.MaxCount:			= 11
-LevelSelect.MaxSpecialStages:		= ChaosEmeralds_Count
-LevelSelect.MaxCharacters:		= 5
-LevelSelect.MaxMusicNumber:		= (mus__End-mus__First)-1
-LevelSelect.MaxSoundNumber:		= (sfx__End-sfx__First)-1
-LevelSelect.MaxSampleNumber:		= $10
+LevelSelect.SpecialStageCount =				6
+LevelSelect.CharacterCount =				LevelSelect.SpecialStageCount+1
+LevelSelect.MusicTestCount =				LevelSelect.CharacterCount+1
+LevelSelect.SoundTestCount =				LevelSelect.MusicTestCount+1
+LevelSelect.SampleTestCount =				LevelSelect.SoundTestCount+1
+LevelSelect.MaxCount =					11
+LevelSelect.MaxSpecialStages =				ChaosEmeralds_Count
+LevelSelect.MaxCharacters =				5
+LevelSelect.MaxMusicNumber =				(mus__End-mus__First)-1
+LevelSelect.MaxSoundNumber =				(sfx__End-sfx__First)-1
+LevelSelect.MaxSampleNumber =				$10
 
 ; RAM
 
 	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
-LevelSelect.buffer:			ds.b $1000					; foreground buffer (copy)
-LevelSelect.buffer2:			ds.b $1000					; foreground buffer (main)
+LevelSelect.buffer					ds.b $1000			; foreground buffer (copy)
+LevelSelect.buffer2					ds.b $1000			; foreground buffer (main)
 
 	dsreset										; stop pretending and reset the program counter
 
 	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
-LevelSelect.music_count:		ds.w 1
-LevelSelect.sound_count:		ds.w 1
-LevelSelect.sample_count:		ds.w 1
-LevelSelect.control_timer:		ds.w 1
-LevelSelect.saved_act:			ds.w 1
-LevelSelect.cheat_counter:		ds.w 1						; debug mode
-LevelSelect.cheat_counter2:		ds.w 1						; emeralds
-LevelSelect.vertical_count:		ds.w 1
-LevelSelect.horizontal_count:		ds.w $10
+LevelSelect.music_count					ds.w 1
+LevelSelect.sound_count					ds.w 1
+LevelSelect.sample_count				ds.w 1
+LevelSelect.control_timer				ds.w 1
+LevelSelect.saved_act					ds.w 1
+LevelSelect.cheat_counter				ds.w 1				; debug mode
+LevelSelect.cheat_counter2				ds.w 1				; emeralds
+LevelSelect.vertical_count				ds.w 1
+LevelSelect.horizontal_count				ds.w $10
 
 	dsreset										; stop pretending and reset the program counter
 

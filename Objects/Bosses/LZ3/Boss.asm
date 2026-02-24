@@ -4,14 +4,14 @@
 ; ---------------------------------------------------------------------------
 
 ; xypos
-bosswater.xpos			= $1FE0
-bosswater.ypos			= $C0
+bosswater.xpos =		$1FE0
+bosswater.ypos =		$C0
 
 ; dynamic object variables
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bosswater			= *
+bosswater =			*
 
 .origX				ds.l 1							; original x-axis position (4 bytes)
 				ds.b 6							; skip jump_ptr, state_flags and count (6 bytes)
@@ -25,7 +25,7 @@ bosswater			= *
 
 Obj_BossWater:
 
-.hitcount	= 8
+.hitcount =	8
 
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w

@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-sidestomp			= *
+sidestomp =			*
 
 .origX				ds.w 1							; original x-axis position (2 bytes)
 .xoffset			ds.w 1							; (2 bytes)

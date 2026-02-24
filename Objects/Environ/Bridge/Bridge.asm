@@ -3,13 +3,13 @@
 ; ---------------------------------------------------------------------------
 
 ; constants
-tensionbridge.logcount		= 8							; number of logs
+tensionbridge.logcount =	8							; number of logs
 
 ; dynamic object variables
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-tensionbridge			= *
+tensionbridge =			*
 
 .origY				ds.w 1							; original y-axis position (2 bytes)
 .wait				ds.b 1							; wait timer (1 byte)

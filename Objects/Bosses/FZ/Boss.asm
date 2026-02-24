@@ -9,7 +9,7 @@
 
 Obj_BossFinal:
 
-.hitcount	= 8
+.hitcount =	8
 
 		; init
 		lea	ObjDat_BossFinal_Eggman(pc),a1					; load Eggman data

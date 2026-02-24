@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-gargoyle			= *
+gargoyle =			*
 
 .timer				ds.b 1							; (1 byte)
 .delay				ds.b 1							; (1 byte)

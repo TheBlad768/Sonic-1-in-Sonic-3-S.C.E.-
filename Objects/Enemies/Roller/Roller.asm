@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-roller				= *
+roller =			*
 
 .timer				ds.w 1							; (2 bytes)
 .mode				ds.b 1							; (1 byte)

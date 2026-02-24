@@ -73,7 +73,7 @@ GHZ1_Transition:
 
 GHZ1_Deform:
 
-.setBGy	= 1	; original or alt
+.setBGy =	1									; original or alt
 
 		; yscroll
 

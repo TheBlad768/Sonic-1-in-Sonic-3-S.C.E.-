@@ -7,7 +7,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossblock			= *
+bossblock =			*
 
 .origY				ds.w 1							; original y-axis position (2 bytes)
 .camxpos			ds.b 1							; (1 byte)
@@ -18,17 +18,17 @@ bossblock			= *
 	dsreset										; stop pretending and reset the program counter
 
 ; functions (state_flags)
-bossblock.spikeenable		= 2
-bossblock.spiketouch		= 3
+bossblock.spikeenable =		2
+bossblock.spiketouch =		3
 
-bossblock_block.grabblock	= 5
-bossblock_block.breakblock	= 6
+bossblock_block.grabblock =	5
+bossblock_block.breakblock =	6
 
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossBlock:
 
-.hitcount	= 8
+.hitcount =	8
 
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
@@ -367,7 +367,7 @@ BossBlock_Defeated:
 		; use the first line of the palette
 		andi.w	#$87FF,art_tile(a0)
 
-.artsize	:= (ArtUnc_RobotnikShip1_end-ArtUnc_RobotnikShip1)&$FFFF
+.artsize :=	(ArtUnc_RobotnikShip1_end-ArtUnc_RobotnikShip1)&$FFFF
 
 		; load alternative ship art
 		QueueStaticDMA ArtUnc_RobotnikShip1,.artsize,tiles_to_bytes($3B6)
@@ -450,7 +450,7 @@ BossBlock_Defeated:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossblock_spike			= *
+bossblock_spike =		*
 
 .ypos				ds.w 1							; y-axis position (2 bytes)
 

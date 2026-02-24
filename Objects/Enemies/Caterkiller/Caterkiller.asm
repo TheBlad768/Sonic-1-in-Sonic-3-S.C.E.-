@@ -6,7 +6,7 @@
 
 	dsset wait_timer								; pretend we're in the RAM
 
-caterkiller			= *
+caterkiller =			*
 
 .count				ds.b 1							; (1 byte)
 .timer				ds.b 1							; (1 byte)
@@ -186,7 +186,7 @@ Obj_Caterkiller:
 
 	dsset wait_timer								; pretend we're in the RAM
 
-caterkiller_bodysegments	= *
+caterkiller_bodysegments =	*
 
 .count				ds.b 1							; (1 byte)
 .timer				ds.b 1							; (1 byte)

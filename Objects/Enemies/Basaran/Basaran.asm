@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-basaran				= *
+basaran =			*
 
 .sypos				ds.w 1							; copy Sonic ypos (2 bytes)
 

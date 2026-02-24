@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-burrobot			= *
+burrobot =			*
 
 .timer				ds.w 1							; time between direction changes (2 bytes)
 .mode				ds.b 1							; (1 byte)

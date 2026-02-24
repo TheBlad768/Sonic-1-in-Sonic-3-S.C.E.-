@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-chopper				= *
+chopper =			*
 
 .origY				ds.w 1							; original y-axis position (2 bytes)
 

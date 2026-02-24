@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-fan				= *
+fan =				*
 
 .switch				ds.b 1							; on/off switch (1 byte)
 

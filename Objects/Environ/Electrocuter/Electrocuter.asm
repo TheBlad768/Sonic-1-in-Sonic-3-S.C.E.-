@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-electrocuter			= *
+electrocuter =			*
 
 .freq				ds.w 1							; frequency (2 bytes)
 

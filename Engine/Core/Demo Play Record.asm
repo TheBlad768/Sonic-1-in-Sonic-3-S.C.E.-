@@ -88,7 +88,7 @@ Demo_PlayRecord:
 ; Uses Sonic & Knuckles format
 ; ---------------------------------------------------------------------------
 
-.enable	= 0
+.enable =	0
 
 	if .enable
 

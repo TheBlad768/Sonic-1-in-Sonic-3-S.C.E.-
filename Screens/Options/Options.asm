@@ -3,33 +3,33 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-Options.VRAM:				= $50F
+Options.VRAM =						$50F
 
-Options.MaxCount:			= 7
-Options.MaxCharacters:			= 5
-Options.MaxMusicOpt:			= 2						; on/off
-Options.MaxSoundOpt:			= 2						; on/off
-Options.MaxMusicNumber:			= (mus__End-mus__First)-1
-Options.MaxSoundNumber:			= (sfx__End-sfx__First)-1
-Options.MaxSampleNumber:		= $10
+Options.MaxCount =					7
+Options.MaxCharacters =					5
+Options.MaxMusicOpt =					2				; on/off
+Options.MaxSoundOpt =					2				; on/off
+Options.MaxMusicNumber =				(mus__End-mus__First)-1
+Options.MaxSoundNumber =				(sfx__End-sfx__First)-1
+Options.MaxSampleNumber =				$10
 
 ; RAM
 
 	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
-Options.buffer:				ds.b $1000					; foreground buffer (copy)
-Options.buffer2:			ds.b $1000					; foreground buffer (main)
+Options.buffer						ds.b $1000			; foreground buffer (copy)
+Options.buffer2						ds.b $1000			; foreground buffer (main)
 
 	dsreset										; stop pretending and reset the program counter
 
 	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
-Options.music_count:			ds.w 1
-Options.sound_count:			ds.w 1
-Options.sample_count:			ds.w 1
-Options.save_music:			ds.w 1
-Options.control_timer:			ds.w 1
-Options.vertical_count:			ds.w 1
+Options.music_count					ds.w 1
+Options.sound_count					ds.w 1
+Options.sample_count					ds.w 1
+Options.save_music					ds.w 1
+Options.control_timer					ds.w 1
+Options.vertical_count					ds.w 1
 
 	dsreset										; stop pretending and reset the program counter
 

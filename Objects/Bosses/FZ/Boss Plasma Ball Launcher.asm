@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossfinal_plasma		= *
+bossfinal_plasma =		*
 
 .count				ds.b 1							; (1 byte)
 .count2				ds.b 1							; (1 byte)
@@ -105,7 +105,7 @@ Obj_BossFinal_Plasma:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossfinal_plasmaball		= *
+bossfinal_plasmaball =		*
 
 .xpos				ds.w 1							; (2 bytes)
 

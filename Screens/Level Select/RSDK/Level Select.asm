@@ -3,40 +3,40 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-LevelSelectRSDK.VRAM:			= 0
+LevelSelectRSDK.VRAM =					0
 
-LevelSelectRSDK.SpecialStageCount:	= 19
-LevelSelectRSDK.CharacterCount:		= LevelSelectRSDK.SpecialStageCount+1
-LevelSelectRSDK.MusicTestCount:		= LevelSelectRSDK.CharacterCount+1
-LevelSelectRSDK.SoundTestCount:		= LevelSelectRSDK.MusicTestCount+1
-LevelSelectRSDK.SampleTestCount:	= LevelSelectRSDK.SoundTestCount+1
+LevelSelectRSDK.SpecialStageCount =			19
+LevelSelectRSDK.CharacterCount =			LevelSelectRSDK.SpecialStageCount+1
+LevelSelectRSDK.MusicTestCount =			LevelSelectRSDK.CharacterCount+1
+LevelSelectRSDK.SoundTestCount =			LevelSelectRSDK.MusicTestCount+1
+LevelSelectRSDK.SampleTestCount =			LevelSelectRSDK.SoundTestCount+1
 
-LevelSelectRSDK.MaxCount:		= 12
-LevelSelectRSDK.MaxCharacters:		= 5
-LevelSelectRSDK.MaxMusicNumber:		= (mus__End-mus__First)-1
-LevelSelectRSDK.MaxSoundNumber:		= (sfx__End-sfx__First)-1
-LevelSelectRSDK.MaxSampleNumber:	= $10
+LevelSelectRSDK.MaxCount =				12
+LevelSelectRSDK.MaxCharacters =				5
+LevelSelectRSDK.MaxMusicNumber =			(mus__End-mus__First)-1
+LevelSelectRSDK.MaxSoundNumber =			(sfx__End-sfx__First)-1
+LevelSelectRSDK.MaxSampleNumber =			$10
 
 ; RAM
 
 	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
-LevelSelectRSDK.buffer:			ds.b $1000					; foreground buffer (copy)
-LevelSelectRSDK.buffer2:		ds.b $1000					; foreground buffer (main)
+LevelSelectRSDK.buffer					ds.b $1000			; foreground buffer (copy)
+LevelSelectRSDK.buffer2					ds.b $1000			; foreground buffer (main)
 
 	dsreset										; stop pretending and reset the program counter
 
 	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
-LevelSelectRSDK.music_count:		ds.w 1
-LevelSelectRSDK.sound_count:		ds.w 1
-LevelSelectRSDK.sample_count:		ds.w 1
-LevelSelectRSDK.control_timer:		ds.w 1
-LevelSelectRSDK.saved_act:		ds.w 1
-LevelSelectRSDK.cheat_counter:		ds.w 1						; debug mode
-LevelSelectRSDK.cheat_counter2:		ds.w 1						; emeralds
-LevelSelectRSDK.vertical_count:		ds.w 1
-LevelSelectRSDK.vertical_count_prev:	ds.w 1
+LevelSelectRSDK.music_count				ds.w 1
+LevelSelectRSDK.sound_count				ds.w 1
+LevelSelectRSDK.sample_count				ds.w 1
+LevelSelectRSDK.control_timer				ds.w 1
+LevelSelectRSDK.saved_act				ds.w 1
+LevelSelectRSDK.cheat_counter				ds.w 1				; debug mode
+LevelSelectRSDK.cheat_counter2				ds.w 1				; emeralds
+LevelSelectRSDK.vertical_count				ds.w 1
+LevelSelectRSDK.vertical_count_prev			ds.w 1
 
 	dsreset										; stop pretending and reset the program counter
 

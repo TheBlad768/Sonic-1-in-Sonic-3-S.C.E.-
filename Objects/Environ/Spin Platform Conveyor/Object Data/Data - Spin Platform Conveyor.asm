@@ -2,14 +2,14 @@
 ; =============== S U B R O U T I N E =======================================
 
 SCon_Data: offsetTable
-		offsetTableEntry.w word_164B2
-		offsetTableEntry.w word_164C6
-		offsetTableEntry.w word_164DA
-		offsetTableEntry.w word_164EE
-		offsetTableEntry.w word_16502
-		offsetTableEntry.w word_16516
+		offsetTableEntry.w word_164B2						; 0
+		offsetTableEntry.w word_164C6						; 2
+		offsetTableEntry.w word_164DA						; 4
+		offsetTableEntry.w word_164EE						; 6
+		offsetTableEntry.w word_16502						; 8
+		offsetTableEntry.w word_16516						; A
 
-setSBZPlatformPos	= 512
+setSBZPlatformPos =	512
 
 word_164B2:		; ypos, xpos, xpos, ypos, xpos, ypos, xpos, ypos, xpos, ypos
 		dc.w $10, $E80+setSBZPlatformPos, $E14+setSBZPlatformPos, $370, $EEF+setSBZPlatformPos, $302, $EEF+setSBZPlatformPos, $340, $E14+setSBZPlatformPos, $3AE
@@ -27,14 +27,14 @@ word_16516:
 ; =============== S U B R O U T I N E =======================================
 
 ObjPosSBZPlatform_Index: offsetTable
-		offsetTableEntry.w ObjPos_SBZ1pf1
-		offsetTableEntry.w ObjPos_SBZ1pf2
-		offsetTableEntry.w ObjPos_SBZ1pf3
-		offsetTableEntry.w ObjPos_SBZ1pf4
-		offsetTableEntry.w ObjPos_SBZ1pf5
-		offsetTableEntry.w ObjPos_SBZ1pf6
-		offsetTableEntry.w ObjPos_SBZ1pf1
-		offsetTableEntry.w ObjPos_SBZ1pf2
+		offsetTableEntry.w ObjPos_SBZ1pf1					; 0
+		offsetTableEntry.w ObjPos_SBZ1pf2					; 2
+		offsetTableEntry.w ObjPos_SBZ1pf3					; 4
+		offsetTableEntry.w ObjPos_SBZ1pf4					; 6
+		offsetTableEntry.w ObjPos_SBZ1pf5					; 8
+		offsetTableEntry.w ObjPos_SBZ1pf6					; A
+		offsetTableEntry.w ObjPos_SBZ1pf1					; C
+		offsetTableEntry.w ObjPos_SBZ1pf2					; E
 
 ObjPos_SBZ1pf1:		; xpos, ypos, subtype
 		dc.w 8-1

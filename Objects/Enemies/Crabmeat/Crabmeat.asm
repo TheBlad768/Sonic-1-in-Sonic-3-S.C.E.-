@@ -3,13 +3,13 @@
 ; ---------------------------------------------------------------------------
 
 ; options
-_CRABMEAT_SLOPE_		= 0	; if 1, enable slope animation
+_CRABMEAT_SLOPE_ =		0							; if 1, enable slope animation
 
 ; dynamic object variables
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-crabmeat			= *
+crabmeat =			*
 
 .timer				ds.w 1							; (2 bytes)
 .mode				ds.b 1							; (1 byte)

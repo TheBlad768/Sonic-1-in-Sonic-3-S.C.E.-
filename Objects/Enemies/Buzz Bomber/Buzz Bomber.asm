@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-buzzbomber			= *
+buzzbomber =			*
 
 .timer				ds.w 1							; (2 bytes)
 .state_flags			ds.b 1							; (1 byte)

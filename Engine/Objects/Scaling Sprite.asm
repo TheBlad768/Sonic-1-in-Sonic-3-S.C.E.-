@@ -3,8 +3,8 @@
 ; ---------------------------------------------------------------------------
 
 ; RAM
-vScaling_buffer			= RAM_start+$2000					; $2000 bytes (128x128)
-vScaling_buffer_end		= RAM_start+$4000					; $40 to $7F level chunks will be destroyed
+vScaling_buffer =			RAM_start+$2000					; $2000 bytes (128x128)
+vScaling_buffer_end =			RAM_start+$4000					; $40 to $7F level chunks will be destroyed
 
 ; =============== S U B R O U T I N E =======================================
 

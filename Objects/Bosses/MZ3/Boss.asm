@@ -7,7 +7,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossfire			= *
+bossfire =			*
 
 .timer				ds.w 1							; (2 bytes)
 
@@ -17,7 +17,7 @@ bossfire			= *
 
 Obj_BossFire:
 
-.hitcount	= 8
+.hitcount =	8
 
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
@@ -392,7 +392,7 @@ Obj_BossFire_ShipTubeFlame:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossfire_fire			= *
+bossfire_fire =			*
 
 .origX				ds.w 1							; original x-axis position (2 bytes)
 .copyX				ds.w 1							; copy x-axis position (2 bytes)
@@ -602,6 +602,8 @@ loc_18886:
 ; ---------------------------------------------------------------------------
 ; Scaled (Intro)
 ; ---------------------------------------------------------------------------
+
+; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 

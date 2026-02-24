@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-smashblock			= *
+smashblock =			*
 
 .animp1				ds.b 1							; Sonic's animation (1 byte)
 .animp2				ds.b 1							; Tails's animation (1 byte)

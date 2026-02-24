@@ -4,13 +4,13 @@
 ; ---------------------------------------------------------------------------
 
 ; options
-_SPLATFORM_POS_			= 1							; sonic 1 version
+_SPLATFORM_POS_ =		1							; sonic 1 version
 
 ; dynamic object variables
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-swingingplatform		= *
+swingingplatform =		*
 
 .origX				ds.w 1							; original x-axis position (2 bytes)
 .origY				ds.w 1							; original y-axis position (2 bytes)

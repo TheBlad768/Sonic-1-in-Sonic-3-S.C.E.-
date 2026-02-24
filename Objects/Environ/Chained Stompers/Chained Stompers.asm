@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-chainstomp			= *
+chainstomp =			*
 
 .origY				ds.w 1							; original y-axis position (2 bytes)
 .yoffset			ds.w 1							; (2 bytes)
@@ -299,7 +299,7 @@ loc_B996:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-chainstomp_spikes		= *
+chainstomp_spikes =		*
 
 .spike_yoffset			ds.w 1							; (2 bytes)
 
