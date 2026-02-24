@@ -6,9 +6,9 @@
 
 	dsset ramaddr(Boss_events)							; pretend we're in the RAM
 
-Title.cheat_counter:			ds.b 1
-Title.control:				ds.b 1
-Title.end:				ds.b 1
+Title.cheat_counter					ds.b 1
+Title.control						ds.b 1
+Title.end						ds.b 1
 
 	dsreset										; stop pretending and reset the program counter
 

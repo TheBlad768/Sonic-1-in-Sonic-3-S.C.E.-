@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-ballhog				= *
+ballhog =			*
 
 .launchflag			ds.b 1							; 0 to launch a cannonball (1 byte)
 

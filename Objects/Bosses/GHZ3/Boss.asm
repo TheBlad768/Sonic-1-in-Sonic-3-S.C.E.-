@@ -9,7 +9,7 @@
 
 Obj_BossBall:
 
-.hitcount	= 8
+.hitcount =	8
 
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
@@ -178,7 +178,7 @@ BossBall_Defeated:
 		; use the first line of the palette
 		andi.w	#$87FF,art_tile(a0)
 
-.artsize	:= (ArtUnc_RobotnikShip1_end-ArtUnc_RobotnikShip1)&$FFFF
+.artsize :=	(ArtUnc_RobotnikShip1_end-ArtUnc_RobotnikShip1)&$FFFF
 
 		; load alternative ship art
 		QueueStaticDMA ArtUnc_RobotnikShip1,.artsize,tiles_to_bytes($3B6)
@@ -265,7 +265,7 @@ BossBall_Defeated:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossball_crane			= *
+bossball_crane =		*
 
 .speed				ds.w 1							; (2 bytes)
 .moving				ds.b 1							; (1 byte)

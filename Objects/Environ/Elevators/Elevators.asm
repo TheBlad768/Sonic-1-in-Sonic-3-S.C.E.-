@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-elevator			= *
+elevator =			*
 
 .origX				ds.w 1							; original x-axis position (2 bytes)
 .origY				ds.w 1							; original y-axis position (2 bytes)
@@ -14,7 +14,7 @@ elevator			= *
 .velocity			ds.w 1							; (2 bytes)
 .flag				ds.b 1							; (1 byte)
 				ds.b 1							; (1 byte)
-.dist				= *							; (2 bytes)
+.dist =				*							; (2 bytes)
 .timer				ds.w 1							; (2 bytes)
 .delay				ds.w 1							; (2 bytes)
 

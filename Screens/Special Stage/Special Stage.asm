@@ -5,82 +5,82 @@
 ; Constants
 
 ; Background
-ArtTile_SS_Background_Clouds:		= 0
-ArtTile_SS_Background_Fish:		= $51
+ArtTile_SS_Background_Clouds =				0
+ArtTile_SS_Background_Fish =				$51
 
 ; Items
-ArtTile_SS_Wall:			= $142
-ArtTile_SS_Bumper:			= $152
-ArtTile_SS_Goal:			= $168
-ArtTile_SS_Up_Down:			= $17A
-ArtTile_SS_R_Block:			= $195
-ArtTile_SS_Emerald_Sparkle:		= $19E
-ArtTile_SS_Red_White_Block:		= $1A7
-ArtTile_SS_Ghost_Block:			= $1B0
-ArtTile_SS_Glass:			= $1B9
-ArtTile_SS_Emerald:			= $1C2
+ArtTile_SS_Wall =					$142
+ArtTile_SS_Bumper =					$152
+ArtTile_SS_Goal =					$168
+ArtTile_SS_Up_Down =					$17A
+ArtTile_SS_R_Block =					$195
+ArtTile_SS_Emerald_Sparkle =				$19E
+ArtTile_SS_Red_White_Block =				$1A7
+ArtTile_SS_Ghost_Block =				$1B0
+ArtTile_SS_Glass =					$1B9
+ArtTile_SS_Emerald =					$1C2
 
 ; Unused
-ArtTile_SS_Extra_Life:			= $370
-ArtTile_SS_W_Block:			= $570
-ArtTile_SS_Zone_1:			= $797
-ArtTile_SS_Zone_2:			= $7A0
-ArtTile_SS_Zone_3:			= $7A9
-ArtTile_SS_Zone_4:			= $797
-ArtTile_SS_Zone_5:			= $7A0
-ArtTile_SS_Zone_6:			= $7A9
+ArtTile_SS_Extra_Life =					$370
+ArtTile_SS_W_Block =					$570
+ArtTile_SS_Zone_1 =					$797
+ArtTile_SS_Zone_2 =					$7A0
+ArtTile_SS_Zone_3 =					$7A9
+ArtTile_SS_Zone_4 =					$797
+ArtTile_SS_Zone_5 =					$7A0
+ArtTile_SS_Zone_6 =					$7A9
 
 ; Misc
-ArtTile_SS_Ring				= $258
-ArtTile_SS_Ring_Sparks			= ArtTile_SS_Ring+8
-ArtTile_SS_HUD				= $264
+ArtTile_SS_Ring =					$258
+ArtTile_SS_Ring_Sparks =				ArtTile_SS_Ring+8
+ArtTile_SS_HUD =					$264
 
 ; RAM
 
 	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
-SStage_Buffer1:				ds.b $4000					; S1: $0000-$3FFF
-SStage_Buffer1_end			= *						; S1: ($4000 bytes)
-SStage_BlockBuffer:			= SStage_Buffer1+$1020				; S1: $1020-$31FF
-SStage_BlockBuffer_end			= SStage_BlockBuffer+$80*$40			; S1: ($2000 bytes)
+SStage_Buffer1						ds.b $4000			; S1: $0000-$3FFF
+SStage_Buffer1_end =					*				; S1: ($4000 bytes)
+SStage_BlockBuffer =					SStage_Buffer1+$1020		; S1: $1020-$31FF
+SStage_BlockBuffer_end =				SStage_BlockBuffer+$80*$40	; S1: ($2000 bytes)
 
-SStage_Buffer2:				ds.b $1000					; S1: layout data ; ($1000 bytes)
-SStage_BlockTypes:			= SStage_Buffer2				; S1: $4000-$43FF ; ($400 bytes)
-SStage_ItemBuffer:			= SStage_Buffer2+$400				; S1: $4400-$44FF ; ($100 bytes)
-SStage_ItemBuffer_end			= SStage_Buffer2+$500
+SStage_Buffer2						ds.b $1000			; S1: layout data ; ($1000 bytes)
+SStage_BlockTypes =					SStage_Buffer2			; S1: $4000-$43FF ; ($400 bytes)
+SStage_ItemBuffer =					SStage_Buffer2+$400		; S1: $4400-$44FF ; ($100 bytes)
+SStage_ItemBuffer_end =					SStage_Buffer2+$500
 
-SStage_Buffer3:				ds.b $400					; S1: $5000-$53FF ; item xypos ; ($400 bytes)
+SStage_Buffer3						ds.b $400			; S1: $5000-$53FF ; item xypos ; ($400 bytes)
 
-SStage_Scroll_Buffer:			ds.b $100					; S1: $1C bytes used?
-SStage_Scroll_Buffer2:			ds.b $100					; S1: $28 bytes used?
+SStage_Scroll_Buffer					ds.b $100			; S1: $1C bytes used?
+SStage_Scroll_Buffer2					ds.b $100			; S1: $28 bytes used?
 
-SStage_Ghost_Buffer:			ds.w 14+2					; max ghost solids + header
+SStage_Ghost_Buffer					ds.w 14+2			; max ghost solids + header
 
 	dsreset										; stop pretending and reset the program counter
 
 	dsset ramaddr(Palette_cycle_counters)						; pretend we're in the RAM
 
-SStage_scalar_index_0:			ds.w 1
-SStage_scalar_index_1:			ds.w 1
-v_palss_num:				ds.w 1
-v_palss_time:				ds.w 1
-v_ssbganim:				ds.w 1
+SStage_scalar_index_0					ds.w 1
+SStage_scalar_index_1					ds.w 1
+v_palss_num						ds.w 1
+v_palss_time						ds.w 1
+v_ssbganim						ds.w 1
 
-v_bg3screenposx:			ds.l 1
-v_ani0_time:				ds.b 1
-v_ani0_frame:				ds.b 1
-v_ani2_time:				ds.b 1
-v_ani2_frame:				ds.b 1
-v_ani3_time:				ds.b 1
-v_ani3_frame:				ds.b 1
-Special_stage_flag:			ds.b 1
-					ds.b 1	; even
+v_bg3screenposx						ds.l 1
+v_ani0_time						ds.b 1
+v_ani0_frame						ds.b 1
+v_ani2_time						ds.b 1
+v_ani2_frame						ds.b 1
+v_ani3_time						ds.b 1
+v_ani3_frame						ds.b 1
+Special_stage_flag					ds.b 1
+							ds.b 1				; even
 
-Special_stage_ring_count:		ds.w 1
-Emerald_flicker_flag:			ds.w 1
-Special_stage_spheres_left:		ds.w 1
-Special_stage_rings_left:		ds.w 1
-Saved_special_stage:			ds.b 1
+Special_stage_ring_count				ds.w 1
+Emerald_flicker_flag					ds.w 1
+Special_stage_spheres_left				ds.w 1
+Special_stage_rings_left				ds.w 1
+Saved_special_stage					ds.b 1
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -777,8 +777,8 @@ loc_1B1C0:
 
 SS_AniWallsRings:
 
-.frames	= 16				; walls frames
-.size		= ($200/$20)>>2		; art size (32x32) ; rotation in 16 frames(&$FC00)
+.frames =	16										; walls frames
+.size =	($200/$20)>>2								; art size (32x32) ; rotation in 16 frames(&$FC00)
 
 		; dynamic blocks graphics
 		moveq	#0,d1								; VRAM

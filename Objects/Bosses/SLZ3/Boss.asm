@@ -9,7 +9,7 @@
 
 Obj_BossSpikeBall:
 
-.hitcount	= 8
+.hitcount =	8
 
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w

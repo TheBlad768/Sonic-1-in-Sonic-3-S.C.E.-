@@ -6,10 +6,10 @@
 
 	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
-Credits.routine:			ds.w 1
-Credits.process:			ds.l 1
-Credits.process_time:			ds.w 1
-Credits.end:				ds.b 1
+Credits.routine						ds.w 1
+Credits.process						ds.l 1
+Credits.process_time					ds.w 1
+Credits.end						ds.b 1
 
 	dsreset										; stop pretending and reset the program counter
 

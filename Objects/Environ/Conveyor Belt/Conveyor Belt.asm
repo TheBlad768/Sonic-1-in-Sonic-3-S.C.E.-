@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-conveyor			= *
+conveyor =			*
 
 .speed				ds.w 1							; (2 bytes)
 .width				ds.b 1							; (1 byte)

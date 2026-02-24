@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bombbadnik			= *
+bombbadnik =			*
 
 .timer				ds.w 1							; time of fuse (2 bytes)
 .origY				ds.w 1							; original y-axis position (2 bytes)
@@ -120,7 +120,7 @@ Obj_BombBadnik:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bombbadnik_fuse			= *
+bombbadnik_fuse =		*
 
 .timer				ds.w 1							; time of fuse (2 bytes)
 .origY				ds.w 1							; original y-axis position (2 bytes)

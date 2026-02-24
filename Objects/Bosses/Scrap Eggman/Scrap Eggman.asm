@@ -6,7 +6,7 @@
 
 	dsset count									; pretend we're in the RAM
 
-scrapeggman			= *
+scrapeggman =		*
 
 .block				ds.b 1							; (1 byte)
 

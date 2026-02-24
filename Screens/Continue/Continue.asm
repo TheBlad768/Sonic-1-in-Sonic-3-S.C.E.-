@@ -6,10 +6,10 @@
 
 	dsset ramaddr(Palette_cycle_counters)						; pretend we're in the RAM
 
-Continue.countdown:			ds.w 1
-Continue.routine:			ds.b 1
-Continue.countdown_numbers:		ds.b 1
-Continue.countdown_update:		ds.b 1
+Continue.countdown					ds.w 1
+Continue.routine					ds.b 1
+Continue.countdown_numbers				ds.b 1
+Continue.countdown_update				ds.b 1
 
 	dsreset										; stop pretending and reset the program counter
 

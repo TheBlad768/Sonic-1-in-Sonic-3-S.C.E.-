@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-newtron				= *
+newtron =			*
 
 .state_flags			ds.b 1							; (1 byte)
 

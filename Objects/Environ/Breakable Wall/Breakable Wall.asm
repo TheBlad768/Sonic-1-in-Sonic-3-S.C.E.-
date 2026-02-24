@@ -3,13 +3,13 @@
 ; ---------------------------------------------------------------------------
 
 ; options
-_BWALL_KNUX_			= 0							; if 1, change the animation of Knuckles after breaking the wall
+_BWALL_KNUX_ =			0							; if 1, change the animation of Knuckles after breaking the wall
 
 ; dynamic object variables
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-breakablewall			= *
+breakablewall =			*
 
 .speedp1			ds.w 1							; Sonic's horizontal speed (2 bytes)
 .speedp2			ds.w 1							; Tails's horizontal speed (2 bytes)

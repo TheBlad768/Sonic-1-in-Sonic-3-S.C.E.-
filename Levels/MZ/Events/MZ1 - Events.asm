@@ -72,7 +72,7 @@ MZ1_Transition:
 
 MZ1_Deform:
 
-.setBG	= 1	; original or alt
+.setBG =	1									; original or alt
 
 		; yscroll
 		move.w	#512,d0								; start with 512px, ignoring 4 chunks

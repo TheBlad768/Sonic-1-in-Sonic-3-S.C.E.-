@@ -3,34 +3,34 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-TitleLevelSelect.VRAM:			= $C50F
+TitleLevelSelect.VRAM =					$C50F
 
-TitleLevelSelect.MaxCount:		= 22
-TitleLevelSelect.SpecialStageCount:	= 19
-TitleLevelSelect.MaxSpecialStages:	= ChaosEmeralds_Count
-TitleLevelSelect.MaxCharacters:		= 5
-TitleLevelSelect.MaxMusicNumber:	= ((mus__Last-mus__First)-1) + ((sfx__Last-sfx__First)-1)
+TitleLevelSelect.MaxCount =				22
+TitleLevelSelect.SpecialStageCount =			19
+TitleLevelSelect.MaxSpecialStages =			ChaosEmeralds_Count
+TitleLevelSelect.MaxCharacters =			5
+TitleLevelSelect.MaxMusicNumber =			((mus__Last-mus__First)-1) + ((sfx__Last-sfx__First)-1)
 
 ; RAM
 
 	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
-TitleLevelSelect.buffer:		ds.b $1000					; background buffer (copy)
-TitleLevelSelect.buffer2:		ds.b $1000					; background buffer (main)
-TitleLevelSelect.buffer3:		ds.b $1000
+TitleLevelSelect.buffer					ds.b $1000			; background buffer (copy)
+TitleLevelSelect.buffer2				ds.b $1000			; background buffer (main)
+TitleLevelSelect.buffer3				ds.b $1000
 
 	dsreset										; stop pretending and reset the program counter
 
 	dsset ramaddr(Object_load_addr_front)						; pretend we're in the RAM
 
-TitleLevelSelect.music_count:		ds.w 1
-TitleLevelSelect.sound_count:		ds.w 1
-TitleLevelSelect.sample_count:		ds.w 1
-TitleLevelSelect.control_timer:		ds.w 1
-TitleLevelSelect.saved_act:		ds.w 1
-TitleLevelSelect.cheat_counter:		ds.w 1						; debug mode
-TitleLevelSelect.cheat_counter2:	ds.w 1						; emeralds
-TitleLevelSelect.vertical_count:	ds.w 1
+TitleLevelSelect.music_count				ds.w 1
+TitleLevelSelect.sound_count				ds.w 1
+TitleLevelSelect.sample_count				ds.w 1
+TitleLevelSelect.control_timer				ds.w 1
+TitleLevelSelect.saved_act				ds.w 1
+TitleLevelSelect.cheat_counter				ds.w 1				; debug mode
+TitleLevelSelect.cheat_counter2				ds.w 1				; emeralds
+TitleLevelSelect.vertical_count				ds.w 1
 
 	dsreset										; stop pretending and reset the program counter
 

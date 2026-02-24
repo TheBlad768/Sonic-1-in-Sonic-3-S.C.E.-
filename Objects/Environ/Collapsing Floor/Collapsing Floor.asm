@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-collapsefloor			= *
+collapsefloor =			*
 
 .time_ptr			ds.l 1							; collapsing floor time (4 bytes)
 .delay				ds.b 1							; (1 byte)

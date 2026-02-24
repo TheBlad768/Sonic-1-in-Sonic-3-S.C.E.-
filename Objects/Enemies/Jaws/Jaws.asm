@@ -3,13 +3,13 @@
 ; ---------------------------------------------------------------------------
 
 ; options
-_JAWSWATER_FIX_			= 1	; hide jaws if it is above water
+_JAWSWATER_FIX_ =		1	; hide jaws if it is above water
 
 ; dynamic object variables
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-jaws				= *
+jaws =				*
 
 .timer				ds.w 1							; (2 bytes)
 .delay				ds.w 1							; (2 bytes)

@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-flamethrower			= *
+flamethrower =			*
 
 .timer				ds.w 1							; (2 bytes)
 .delay				ds.w 1							; (2 bytes)

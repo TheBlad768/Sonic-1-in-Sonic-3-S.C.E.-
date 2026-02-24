@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-orbinaut			= *
+orbinaut =			*
 
 .rotation			ds.b 1							; (1 byte)
 

@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossfinal_cylinder		= *
+bossfinal_cylinder =		*
 
 .origY				ds.l 1							; original y-axis position (4 bytes)
 .yvel				ds.l 1							; (4 bytes)

@@ -2,14 +2,14 @@
 ; =============== S U B R O U T I N E =======================================
 
 LCon_Data: offsetTable
-		offsetTableEntry.w word_125F4		; 0
-		offsetTableEntry.w word_12610		; 2
-		offsetTableEntry.w word_12628		; 4
-		offsetTableEntry.w word_1263C		; 6
-		offsetTableEntry.w word_12650		; 8
-		offsetTableEntry.w word_12668		; A
+		offsetTableEntry.w word_125F4						; 0
+		offsetTableEntry.w word_12610						; 2
+		offsetTableEntry.w word_12628						; 4
+		offsetTableEntry.w word_1263C						; 6
+		offsetTableEntry.w word_12650						; 8
+		offsetTableEntry.w word_12668						; A
 
-setLZPlatformPos		= 512
+setLZPlatformPos =	512
 
 word_125F4:		; ypos, xpos, xpos, ypos, xpos, ypos, xpos, ypos, xpos, ypos
 		dc.w $18, $1070+setLZPlatformPos, $1078+setLZPlatformPos, $21A, $10BE+setLZPlatformPos, $260, $10BE+setLZPlatformPos, $393
@@ -28,14 +28,14 @@ word_12668:
 ; =============== S U B R O U T I N E =======================================
 
 ObjPosLZPlatform_Index: offsetTable
-		offsetTableEntry.w ObjPos_LZ1pf1
-		offsetTableEntry.w ObjPos_LZ1pf2
-		offsetTableEntry.w ObjPos_LZ2pf1
-		offsetTableEntry.w ObjPos_LZ2pf2
-		offsetTableEntry.w ObjPos_LZ3pf1
-		offsetTableEntry.w ObjPos_LZ3pf2
-		offsetTableEntry.w ObjPos_LZ1pf1
-		offsetTableEntry.w ObjPos_LZ1pf2
+		offsetTableEntry.w ObjPos_LZ1pf1					; 0
+		offsetTableEntry.w ObjPos_LZ1pf2					; 2
+		offsetTableEntry.w ObjPos_LZ2pf1					; 4
+		offsetTableEntry.w ObjPos_LZ2pf2					; 6
+		offsetTableEntry.w ObjPos_LZ3pf1					; 8
+		offsetTableEntry.w ObjPos_LZ3pf2					; A
+		offsetTableEntry.w ObjPos_LZ1pf1					; C
+		offsetTableEntry.w ObjPos_LZ1pf2					; E
 
 ObjPos_LZ1pf1:		; xpos, ypos, subtype
 		dc.w 8-1

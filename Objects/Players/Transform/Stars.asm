@@ -6,7 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-superSonicKnux_stars		= *
+superSonicKnux_stars =			*
 
 .flag1				ds.b 1							; (1 byte)
 .flag2				ds.b 1							; (1 byte)
@@ -17,7 +17,7 @@ superSonicKnux_stars		= *
 
 Obj_SuperSonicKnux_Stars:
 
-.artsize	:= (ArtUnc_SuperSonic_Stars_end-ArtUnc_SuperSonic_Stars)&$FFFF
+.artsize :=	(ArtUnc_SuperSonic_Stars_end-ArtUnc_SuperSonic_Stars)&$FFFF
 
 		; load stars art
 		QueueStaticDMA ArtUnc_SuperSonic_Stars,.artsize,tiles_to_bytes(ArtTile_Shield)
@@ -100,7 +100,7 @@ Obj_SuperSonicKnux_Stars:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-hyperSonic_stars		= *
+hyperSonic_stars =			*
 
 .xdiff				ds.w 1							; (2 bytes)
 .ydiff				ds.w 1							; (2 bytes)
@@ -111,12 +111,12 @@ hyperSonic_stars		= *
 
 Obj_HyperSonic_Stars:
 
-.artsize	:= (ArtUnc_HyperSonicStars_end-ArtUnc_HyperSonicStars)&$FFFF
+.artsize :=	(ArtUnc_HyperSonicStars_end-ArtUnc_HyperSonicStars)&$FFFF
 
 		; load stars art
 		QueueStaticDMA ArtUnc_HyperSonicStars,.artsize,tiles_to_bytes(ArtTile_Shield)
 
-.scount	= 4										; number of stars
+.scount =	4										; number of stars
 
 		; load
 		lea	(a0),a1
