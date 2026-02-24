@@ -1,3 +1,6 @@
+; ---------------------------------------------------------------------------
+; Labyrinth Zone - Conveyor positions
+; ---------------------------------------------------------------------------
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -24,6 +27,10 @@ word_12650:
 		dc.w $14, $D00+setLZPlatformPos, $CAC+setLZPlatformPos, $242, $DDE+setLZPlatformPos, $242, $DDE+setLZPlatformPos, $3DE, $C52+setLZPlatformPos, $3DE, $C52+setLZPlatformPos, $29C
 word_12668:
 		dc.w $10, $1300+setLZPlatformPos, $1252+setLZPlatformPos, $20A, $13DE+setLZPlatformPos, $20A, $13DE+setLZPlatformPos, $2BE, $1252+setLZPlatformPos, $2BE
+
+; ---------------------------------------------------------------------------
+; Labyrinth Zone - Platform positions
+; ---------------------------------------------------------------------------
 
 ; =============== S U B R O U T I N E =======================================
 
