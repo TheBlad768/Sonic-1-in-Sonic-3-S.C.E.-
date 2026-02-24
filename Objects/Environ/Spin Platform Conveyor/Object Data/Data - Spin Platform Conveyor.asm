@@ -1,3 +1,6 @@
+; ---------------------------------------------------------------------------
+; Scrap Brain Zone - Conveyor positions
+; ---------------------------------------------------------------------------
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -23,6 +26,10 @@ word_16502:
 		dc.w $10, $1B80+setSBZPlatformPos, $1B14+setSBZPlatformPos, $670, $1BEF+setSBZPlatformPos, $602, $1BEF+setSBZPlatformPos, $640, $1B14+setSBZPlatformPos, $6AE
 word_16516:
 		dc.w $10, $1C80+setSBZPlatformPos, $1C14+setSBZPlatformPos, $5E0, $1CEF+setSBZPlatformPos, $572, $1CEF+setSBZPlatformPos, $5B0, $1C14+setSBZPlatformPos, $61E
+
+; ---------------------------------------------------------------------------
+; Scrap Brain Zone - Platform positions
+; ---------------------------------------------------------------------------
 
 ; =============== S U B R O U T I N E =======================================
 
