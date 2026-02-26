@@ -108,8 +108,7 @@ Pal_SBZCycList1: mSBZh
 	mSBZp 3, 3, Pal_SBZCyc8, Normal_palette_line_4+$18
 	mSBZp 3, 3, Pal_SBZCyc8+2, Normal_palette_line_4+$1A
 	mSBZp 3, 3, Pal_SBZCyc8+4, Normal_palette_line_4+$1C
-Pal_SBZCycList1_end
-	even
+	mSBZe
 
 Pal_SBZCycList2: mSBZh
 	mSBZp 7, 8, Pal_SBZCyc1, Normal_palette_line_3+$10
@@ -119,5 +118,4 @@ Pal_SBZCycList2: mSBZh
 	mSBZp 3, 3, Pal_SBZCyc8, Normal_palette_line_4+$18
 	mSBZp 3, 3, Pal_SBZCyc8+2, Normal_palette_line_4+$1A
 	mSBZp 3, 3, Pal_SBZCyc8+4, Normal_palette_line_4+$1C
-Pal_SBZCycList2_end
-	even
+	mSBZe
