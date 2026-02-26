@@ -16,4 +16,4 @@ Debug_Ending: dbglistheader
 	dbglistobj Obj_Animal_Ending, Map_Animals3, 8, 0, $593, 0, FALSE
 	dbglistobj Obj_Animal_Ending, Map_Animals1, 9, 0, $565, 0, FALSE
 	dbglistobj Obj_Animal_Ending, Map_Animals2, $A, 0, $5B3, 0, FALSE
-Debug_Ending_end
+	dbglistend

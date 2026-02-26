@@ -472,7 +472,7 @@ ObjArray_SSResults: specialresultsheader
 	specialresultsobjdata	Obj_2EB64, 160, 992, 48, $24, 200			; 17
 	specialresultsobjdata	Obj_2EBA4, 148, 852, 24, $25, 64			; 18
 	specialresultsobjdata	Obj_2EBCC, 152, 984, 48, $26, 32			; 19
-ObjArray_SSResults_end
+	specialresultsend
 
 	elseif ChaosEmeralds_Count=6
 
@@ -496,7 +496,7 @@ ObjArray_SSResults: specialresultsheader
 	specialresultsobjdata	Obj_2EB64, 160, 992, 48, $24, 200			; 17
 	specialresultsobjdata	Obj_2EBA4, 148, 852, 24, $25, 64			; 18
 	specialresultsobjdata	Obj_2EBCC, 152, 984, 48, $26, 32			; 19
-ObjArray_SSResults_end
+	specialresultsend
 
 	else
 		fatal "Warning! You need to set the location for the chaos emeralds!"
@@ -509,4 +509,4 @@ ObjArray_SSResults2: specialresultsheader
 	specialresultsobjdata	Obj_2EA10, 64, 960, 48, $28, 64				; 4
 	specialresultsobjdata	Obj_2EA10, 104, 1000, 48, $12, 160			; 5 (SUPER/HYPER)
 	specialresultsobjdata	Obj_2EAF6, 184, 1080, 48, $13, 144			; 6
-ObjArray_SSResults2_end
+	specialresultsend
