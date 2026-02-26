@@ -107,6 +107,19 @@ PLCKosPlus_Queues =					4				; maximum kosinski plus queues (affects RAM)
 PLCKosPlusM_Queues =					32				; maximum kosinski plus module queues (affects RAM)
 
 ; ---------------------------------------------------------------------------
+;  Title Card zone names
+; ---------------------------------------------------------------------------
+
+TitleCardName_ZONE =					"ZONE"
+TitleCardName_GHZ =					"GREEN HILL"
+TitleCardName_MZ =					"MARBLE"
+TitleCardName_SYZ =					"SPRING YARD"
+TitleCardName_LZ =					"LABYRINTH"
+TitleCardName_SLZ =					"STAR LIGHT"
+TitleCardName_SBZ =					"SCRAP BRAIN"
+TitleCardName_FZ =					"FINAL"
+
+; ---------------------------------------------------------------------------
 ; Game mode routines
 ; ---------------------------------------------------------------------------
 

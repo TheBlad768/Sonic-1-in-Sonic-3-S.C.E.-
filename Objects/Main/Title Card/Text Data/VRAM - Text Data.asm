@@ -13,12 +13,12 @@ TitleCardVRAMLetters_Index: offsetTable
 		zonewarning TitleCardVRAMLetters_Index,(1*2)
 
 ; find unique letters and load it to VRAM
-VRAM_TitleCard_ZONE:	titlecardVRAMLetters FALSE, TRUE, "ZONE"
-VRAM_TitleCard_GHZ:	titlecardVRAMLetters TRUE, FALSE, "GREEN HILL"
-VRAM_TitleCard_MZ:	titlecardVRAMLetters TRUE, FALSE, "MARBLE"
-VRAM_TitleCard_SYZ:	titlecardVRAMLetters TRUE, FALSE, "SPRING YARD"
-VRAM_TitleCard_LZ:	titlecardVRAMLetters TRUE, FALSE, "LABYRINTH"
-VRAM_TitleCard_SLZ:	titlecardVRAMLetters TRUE, FALSE, "STAR LIGHT"
-VRAM_TitleCard_SBZ:	titlecardVRAMLetters TRUE, FALSE, "SCRAP BRAIN"
-VRAM_TitleCard_FZ:	titlecardVRAMLetters TRUE, FALSE, "FINAL"
+VRAM_TitleCard_ZONE:	titlecardVRAMLetters FALSE, TRUE, TitleCardName_ZONE
+VRAM_TitleCard_GHZ:	titlecardVRAMLetters TRUE, FALSE, TitleCardName_GHZ
+VRAM_TitleCard_MZ:	titlecardVRAMLetters TRUE, FALSE, TitleCardName_MZ
+VRAM_TitleCard_SYZ:	titlecardVRAMLetters TRUE, FALSE, TitleCardName_SYZ
+VRAM_TitleCard_LZ:	titlecardVRAMLetters TRUE, FALSE, TitleCardName_LZ
+VRAM_TitleCard_SLZ:	titlecardVRAMLetters TRUE, FALSE, TitleCardName_SLZ
+VRAM_TitleCard_SBZ:	titlecardVRAMLetters TRUE, FALSE, TitleCardName_SBZ
+VRAM_TitleCard_FZ:	titlecardVRAMLetters TRUE, FALSE, TitleCardName_FZ
 	even
