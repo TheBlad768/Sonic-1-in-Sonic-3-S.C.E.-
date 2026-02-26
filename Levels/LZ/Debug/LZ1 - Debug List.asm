@@ -51,7 +51,7 @@ Debug_LZ1: dbglistheader
 	dbglistobj Obj_Waterfall, Map_WFall, 9, 9, $259, 2, FALSE
 	dbglistobj Obj_Pole, Map_Pole, 0, 0, $3DE, 2, FALSE
 	dbglistobj Obj_FlapDoor, Map_Flap, 2, 0, $328, 2, FALSE
-	dbglistobj Obj_SpikeBall2, Map_SBall2, $D5, 1, $310, 0, FALSE
+	dbglistobj Obj_SpikeBall_LZ, Map_SBall_LZ, $D5, 1, $310, 0, FALSE
 	dbglistobj Obj_Button, Map_Button, 0, 0, $47C, 0, FALSE
 	dbglistobj Obj_StarPost, Map_StarPost, 1, 0, ArtTile_StarPost, 0, FALSE
 	dbglistobj Obj_BigRing, Map_BigRing, 1, 0, ArtTile_Explosion, 1, FALSE

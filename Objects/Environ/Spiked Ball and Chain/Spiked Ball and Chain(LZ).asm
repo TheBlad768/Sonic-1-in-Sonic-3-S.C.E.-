@@ -3,28 +3,35 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-sball2_speed			= objoff_3E ; rate of spin (2 bytes)
-sball2_origX			= objoff_42 ; original x-axis position (2 bytes)
-sball2_origY			= objoff_44 ; original y-axis position (2 bytes)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+spikeball_lz =			*
+
+.origX				ds.w 1							; original x-axis position (2 bytes)
+.origY				ds.w 1							; original y-axis position (2 bytes)
+.speed				ds.w 1							; (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_SpikeBall2:
+Obj_SpikeBall_LZ:
 
 		; init
-		movem.l	ObjDat_SpikeBall2(pc),d0-d3					; copy data to d0-d3
+		movem.l	ObjDat_SpikeBall_LZ(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 		move.b	#1,mapping_frame(a0)
 		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
-		move.w	x_pos(a0),sball2_origX(a0)
-		move.w	y_pos(a0),sball2_origY(a0)
+		move.w	x_pos(a0),spikeball_lz.origX(a0)
+		move.w	y_pos(a0),spikeball_lz.origY(a0)
 
 		; subtype
 		moveq	#signextendB($F0),d1						; read only the 1st digit
 		and.b	subtype(a0),d1							; get object type
 		ext.w	d1
 		asl.w	#3,d1								; multiply by 8
-		move.w	d1,sball2_speed(a0)						; set object twirl speed
+		move.w	d1,spikeball_lz.speed(a0)					; set object twirl speed
 		move.b	status(a0),d0
 		ror.b	#2,d0
 		andi.b	#$C0,d0
@@ -63,11 +70,11 @@ Obj_SpikeBall2:
 		move.b	#2,mapping_frame(a1)
 
 .main
-		bsr.s	SpikeBall2_Move
+		bsr.s	SpikeBall_LZ_Move
 
 		; draw and delete
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	sball2_origX(a0),d0						; get object position
+		and.w	spikeball_lz.origX(a0),d0					; get object position
 		out_of_xrange2.s	.offscreen
 		jmp	(Draw_And_Touch_Sprite).w
 ; ---------------------------------------------------------------------------
@@ -85,13 +92,13 @@ Obj_SpikeBall2:
 
 ; =============== S U B R O U T I N E =======================================
 
-SpikeBall2_Move:
-		move.w	sball2_speed(a0),d0
+SpikeBall_LZ_Move:
+		move.w	spikeball_lz.speed(a0),d0
 		add.w	d0,angle(a0)
 		move.b	angle(a0),d0
 		jsr	(GetSineCosine).w
-		move.w	sball2_origY(a0),d2
-		move.w	sball2_origX(a0),d3
+		move.w	spikeball_lz.origY(a0),d2
+		move.w	spikeball_lz.origX(a0),d3
 		movea.w	parent3(a0),a1							; load chain address into a1
 		move.w	mainspr_childsprites(a1),d6
 		subq.w	#1,d6
@@ -132,7 +139,7 @@ SpikeBall2_Move:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_SpikeBall2:	subObjMainData Obj_SpikeBall2.main, setBit(render_flags.level), 0, 48, 48, 4, $310, 0, FALSE, Map_SBall2
+ObjDat_SpikeBall_LZ:	subObjMainData Obj_SpikeBall_LZ.main, setBit(render_flags.level), 0, 48, 48, 4, $310, 0, FALSE, Map_SBall_LZ
 ; ---------------------------------------------------------------------------
 
 		; mappings
