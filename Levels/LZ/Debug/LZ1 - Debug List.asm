@@ -44,13 +44,14 @@ Debug_LZ1: dbglistheader
 	dbglistobj Obj_Gargoyle, Map_Gar, 0, 0, $2E9, 2, FALSE
 	dbglistobj Obj_LabyrinthBlock, Map_LBlock, $27, 2, $3E6, 2, FALSE
 	dbglistobj Obj_LabyrinthBlock, Map_LBlock, $30, 3, $3E6, 2, FALSE
-	dbglistobj Obj_LabyrinthConvey, Map_Offscreen, $7F, 0, $3F6, 0, FALSE
+	dbglistobj Obj_StillSprite, Map_StillSprites, 3, 3, $3F6, 0, FALSE
 	dbglistobj Obj_Orbinaut, Map_Orb, 0, 0, $55B, 0, FALSE
 	dbglistobj Obj_Bubbler, Map_Bubbler, $84, $13, $348, 0, TRUE
 	dbglistobj Obj_Waterfall, Map_WFall, 2, 2, $259, 2, FALSE
 	dbglistobj Obj_Waterfall, Map_WFall, 9, 9, $259, 2, FALSE
 	dbglistobj Obj_Pole, Map_Pole, 0, 0, $3DE, 2, FALSE
 	dbglistobj Obj_FlapDoor, Map_Flap, 2, 0, $328, 2, FALSE
+	dbglistobj Obj_SpikeBall2, Map_SBall2, $D5, 1, $310, 0, FALSE
 	dbglistobj Obj_Button, Map_Button, 0, 0, $47C, 0, FALSE
 	dbglistobj Obj_StarPost, Map_StarPost, 1, 0, ArtTile_StarPost, 0, FALSE
 	dbglistobj Obj_BigRing, Map_BigRing, 1, 0, ArtTile_Explosion, 1, FALSE
