@@ -58,7 +58,7 @@ Obj_Index:
 		dc.l Obj_StarPost					; $34
 		dc.l Obj_MovementStillSprite				; $35
 		dc.l Delete_Current_Object				; $36
-		dc.l Obj_SpikeBall2					; $37
+		dc.l Obj_SpikeBall_LZ					; $37
 		dc.l Obj_Animal_Ending					; $38
 		dc.l Delete_Current_Object				; $39
 		dc.l Delete_Current_Object				; $3A
@@ -90,7 +90,7 @@ Obj_Index:
 		dc.l Obj_Bubbler					; $54
 		dc.l Obj_Basaran					; $55
 		dc.l Obj_FloatingBlock					; $56
-		dc.l Obj_SpikeBall					; $57
+		dc.l Obj_SpikeBall_SYZ					; $57
 		dc.l Obj_BigSpikeBall					; $58
 		dc.l Obj_Elevator					; $59
 		dc.l Obj_CirclingPlatform				; $5A

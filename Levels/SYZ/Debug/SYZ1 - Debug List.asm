@@ -40,6 +40,7 @@ Debug_SYZ1: dbglistheader
 	dbglistobj Obj_Animal, Map_Animals1, 0, 2, $592, 0, FALSE
 	dbglistobj Obj_FloatingPlatform, Map_Plat_SYZ, 0, 0, 0, 2, FALSE
 	dbglistobj Obj_FloatingBlock, Map_FBlock, 0, 0, 0, 2, FALSE
+	dbglistobj Obj_SpikeBall_SYZ, Map_Offscreen, $54, 0, $3BA, 0, FALSE
 	dbglistobj Obj_Button, Map_Button, 0, 0, $47C, 0, FALSE
 	dbglistobj Obj_StarPost, Map_StarPost, 1, 0, ArtTile_StarPost, 0, FALSE
 	dbglistobj Obj_BigRing, Map_BigRing, 1, 0, ArtTile_Explosion, 1, FALSE

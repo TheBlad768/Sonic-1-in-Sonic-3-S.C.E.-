@@ -3,15 +3,21 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-sball_angle			= objoff_3C	; angle (1 byte)
-sball_speed			= objoff_3E	; rate of spin (2 bytes)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+spikeball_syz =			*
+
+.speed				ds.w 1							; (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_SpikeBall:
+Obj_SpikeBall_SYZ:
 
 		; init
-		movem.l	ObjDat_SpikeBall(pc),d0-d3					; copy data to d0-d3
+		movem.l	ObjDat_SpikeBall_SYZ(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 
 		; subtype
@@ -19,11 +25,11 @@ Obj_SpikeBall:
 		and.b	subtype(a0),d1							; get object type
 		ext.w	d1
 		asl.w	#3,d1								; multiply by 8
-		move.w	d1,sball_speed(a0)						; set object twirl speed
+		move.w	d1,spikeball_syz.speed(a0)					; set object twirl speed
 		move.b	status(a0),d0
 		ror.b	#2,d0
 		andi.b	#$C0,d0
-		move.b	d0,sball_angle(a0)
+		move.b	d0,circular_angle(a0)
 
 		; get RAM slot
 		getobjectRAMslot a2
@@ -57,7 +63,7 @@ Obj_SpikeBall:
 		; load object
 		move.w	a3,parent3(a1)
 		movea.w	a1,a3
-		move.l	#Obj_SpikeBall_Child,address(a1)
+		move.l	#Obj_SpikeBall_SYZ_Child,address(a1)
 		move.l	mappings(a0),mappings(a1)
 		move.w	art_tile(a0),art_tile(a1)
 		move.b	render_flags(a0),render_flags(a1)
@@ -70,8 +76,8 @@ Obj_SpikeBall:
 		dbmi	d1,.makechain							; if not, repeat for length of chain
 
 .main
-		move.w	sball_speed(a0),d0
-		sub.w	d0,sball_angle(a0)
+		move.w	spikeball_syz.speed(a0),d0
+		sub.w	d0,circular_angle(a0)
 		jmp	(Sprite_CheckDelete).w
 
 ; ---------------------------------------------------------------------------
@@ -82,9 +88,9 @@ Obj_SpikeBall:
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_SpikeBall_Child:
+Obj_SpikeBall_SYZ_Child:
 		movea.w	parent3(a0),a1							; a1=parent object
-		move.b	sball_angle(a1),sball_angle(a0)					; angle
+		move.b	circular_angle(a1),circular_angle(a0)				; angle
 		moveq	#4,d2								; radius
 		jsr	(MoveSprite_CircularSimple).w
 
@@ -94,11 +100,11 @@ Obj_SpikeBall_Child:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_SpikeBall:	subObjMainData \
-				Obj_SpikeBall.main, \
+ObjDat_SpikeBall_SYZ:	subObjMainData \
+				Obj_SpikeBall_SYZ.main, \
 					setBit(render_flags.level) | \
 					setBit(render_flags.static_mappings), \
-				0, 16, 16, 4, $3BA, 0, FALSE, Map_SBall
+				0, 16, 16, 4, $3BA, 0, FALSE, Map_SBall_SYZ
 ; ---------------------------------------------------------------------------
 
 		; mappings
