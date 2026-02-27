@@ -328,7 +328,7 @@ Credits_DrawLargeText:
 ; ---------------------------------------------------------------------------
 
 .calc
-		subq.b	#1,d0								; -1
+		subq.w	#1,d0								; -1
 		add.w	d0,d0
 		add.w	d0,d0
 		movem.w	.letters(pc,d0.w),d0/d6						; get id letter and size

@@ -1207,7 +1207,7 @@ SS_ChkEmldNum:
 		beq.s	SS_LoadData							; if yes, branch
 		moveq	#0,d1
 		move.b	(Chaos_emerald_count).w,d1
-		subq.b	#1,d1
+		subq.w	#1,d1
 		blo.s	SS_LoadData
 		lea	(Collected_emeralds_array).w,a3					; check which emeralds you have
 
