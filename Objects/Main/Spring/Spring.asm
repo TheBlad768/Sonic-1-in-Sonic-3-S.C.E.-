@@ -226,10 +226,10 @@ Obj_Spring_Horizontal:
 		move.w	x_pos(a0),d0
 		sub.w	x_pos(a1),d0
 		blo.s	loc_23088
-		eori.b	#1,d1
+		eori.b	#setBit(status.npc.x_flip),d1
 
 loc_23088:
-		andi.b	#1,d1
+		andi.b	#setBit(status.npc.x_flip),d1
 		bne.s	loc_23092
 		bsr.s	sub_23190
 
@@ -247,10 +247,10 @@ loc_23092:
 		move.w	x_pos(a0),d0
 		sub.w	x_pos(a1),d0
 		blo.s	loc_230BA
-		eori.b	#1,d1
+		eori.b	#setBit(status.npc.x_flip),d1
 
 loc_230BA:
-		andi.b	#p1_touch_side,d1
+		andi.b	#setBit(status.npc.x_flip),d1
 		bne.s	loc_230C4
 		bsr.s	sub_23190
 
