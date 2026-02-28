@@ -98,7 +98,7 @@ sub_38534:
 		; check
 		move.b	render_flags(a0),d0
 		add.b	status(a1),d0
-		andi.b	#1,d0
+		andi.b	#setBit(status.npc.x_flip),d0
 		beq.s	.return
 		move.b	#5,sub3_mapframe-sub3_x_pos(a2)
 
