@@ -3,7 +3,7 @@
 ; ---------------------------------------------------------------------------
 
 ; options
-_CPLATFORM_VER_ =		0							; S1 or S2/S3K version
+_CPLATFORM_VER_ =			0						; S1 or S2/S3K version
 
 ; dynamic object variables
 
