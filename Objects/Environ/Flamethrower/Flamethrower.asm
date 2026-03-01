@@ -6,12 +6,10 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-flamethrower =			*
-
-.timer				ds.w 1							; (2 bytes)
-.delay				ds.w 1							; (2 bytes)
-.pause				ds.w 1							; (2 bytes)
-.frame				ds.b 1							; (1 byte)
+flamethrower.timer			ds.w 1						; (2 bytes)
+flamethrower.delay			ds.w 1						; (2 bytes)
+flamethrower.pause			ds.w 1						; (2 bytes)
+flamethrower.frame			ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -38,6 +36,8 @@ Obj_Flamethrower:
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 		move.l	#.action,address(a0)
 		move.b	#10,flamethrower.frame(a0)
+
+		; check
 		btst	#status.npc.y_flip,status(a0)					; is flipy?
 		beq.s	.action								; if not, branch
 		move.b	#21,flamethrower.frame(a0)

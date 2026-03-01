@@ -6,12 +6,10 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-collapsingplatform =		*
-
-.time_ptr			ds.l 1							; collapsing floor time (4 bytes)
-.delay				ds.b 1							; (1 byte)
-.flag				ds.b 1							; (1 byte)
-.slope_ptr			ds.l 1							; solid object slope pointer (4 bytes)
+collapsingplatform.time_ptr		ds.l 1						; collapsing floor time (4 bytes)
+collapsingplatform.delay		ds.b 1						; (1 byte)
+collapsingplatform.flag			ds.b 1						; (1 byte)
+collapsingplatform.slope_ptr		ds.l 1						; solid object slope pointer (4 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

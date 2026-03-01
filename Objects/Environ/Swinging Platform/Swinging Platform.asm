@@ -10,10 +10,8 @@ _SPLATFORM_POS_ =		1							; sonic 1 version
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-swingingplatform =		*
-
-.origX				ds.w 1							; original x-axis position (2 bytes)
-.origY				ds.w 1							; original y-axis position (2 bytes)
+swingingplatform.origX			ds.w 1						; original x-axis position (2 bytes)
+swingingplatform.origY			ds.w 1						; original y-axis position (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

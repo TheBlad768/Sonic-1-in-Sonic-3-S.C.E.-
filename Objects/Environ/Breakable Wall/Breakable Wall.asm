@@ -9,12 +9,10 @@ _BWALL_KNUX_ =			0							; if 1, change the animation of Knuckles after breaking
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-breakablewall =			*
-
-.speedp1			ds.w 1							; Sonic's horizontal speed (2 bytes)
-.speedp2			ds.w 1							; Tails's horizontal speed (2 bytes)
-.fragright_ptr			ds.l 1							; fragments that move right (4 bytes)
-.fragleft_ptr			ds.l 1							; fragments that move left (4 bytes)
+breakablewall.speedp1			ds.w 1						; Sonic's horizontal speed (2 bytes)
+breakablewall.speedp2			ds.w 1						; Tails's horizontal speed (2 bytes)
+breakablewall.fragright_ptr		ds.l 1						; fragments that move right (4 bytes)
+breakablewall.fragleft_ptr		ds.l 1						; fragments that move left (4 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

@@ -6,11 +6,9 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossfinal_plasma =		*
-
-.count				ds.b 1							; (1 byte)
-.count2				ds.b 1							; (1 byte)
-.enable				ds.b 1							; (1 byte)
+bossfinal_plasma.count			ds.b 1						; (1 byte)
+bossfinal_plasma.count2			ds.b 1						; (1 byte)
+bossfinal_plasma.enable			ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -105,9 +103,7 @@ Obj_BossFinal_Plasma:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossfinal_plasmaball =		*
-
-.xpos				ds.w 1							; (2 bytes)
+bossfinal_plasmaball.xpos		ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

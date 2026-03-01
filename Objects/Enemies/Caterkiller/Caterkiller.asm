@@ -6,12 +6,10 @@
 
 	dsset wait_timer								; pretend we're in the RAM
 
-caterkiller =			*
-
-.count				ds.b 1							; (1 byte)
-.timer				ds.b 1							; (1 byte)
-.flag				ds.b 1							; (1 byte)
-.flag2				ds.b $10						; ($10 byte)
+caterkiller.count			ds.b 1						; (1 byte)
+caterkiller.timer			ds.b 1						; (1 byte)
+caterkiller.flag			ds.b 1						; (1 byte)
+caterkiller.flag2			ds.b $10					; ($10 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -186,12 +184,10 @@ Obj_Caterkiller:
 
 	dsset wait_timer								; pretend we're in the RAM
 
-caterkiller_bodysegments =	*
-
-.count				ds.b 1							; (1 byte)
-.timer				ds.b 1							; (1 byte)
-.flag				ds.b 1							; (1 byte)
-.flag2				ds.b $10						; ($10 byte)
+caterkiller_bodysegments.count		ds.b 1						; (1 byte)
+caterkiller_bodysegments.timer		ds.b 1						; (1 byte)
+caterkiller_bodysegments.flag		ds.b 1						; (1 byte)
+caterkiller_bodysegments.flag2		ds.b $10					; ($10 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

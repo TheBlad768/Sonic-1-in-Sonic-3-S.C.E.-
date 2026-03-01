@@ -6,9 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-yadrin =			*
-
-.timer				ds.w 1							; time between direction changes (2 bytes)
+yadrin.timer				ds.w 1						; time between direction changes (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

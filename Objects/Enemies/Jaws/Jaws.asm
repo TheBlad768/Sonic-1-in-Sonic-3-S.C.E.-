@@ -9,10 +9,8 @@ _JAWSWATER_FIX_ =		1	; hide jaws if it is above water
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-jaws =				*
-
-.timer				ds.w 1							; (2 bytes)
-.delay				ds.w 1							; (2 bytes)
+jaws.timer				ds.w 1						; (2 bytes)
+jaws.delay				ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

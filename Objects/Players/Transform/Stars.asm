@@ -6,10 +6,8 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-superSonicKnux_stars =			*
-
-.flag1				ds.b 1							; (1 byte)
-.flag2				ds.b 1							; (1 byte)
+superSonicKnux_stars.flag1	ds.b 1							; (1 byte)
+superSonicKnux_stars.flag2	ds.b 1							; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -23,12 +21,12 @@ Obj_SuperSonicKnux_Stars:
 		QueueStaticDMA ArtUnc_SuperSonic_Stars,.artsize,tiles_to_bytes(ArtTile_Shield)
 
 		; init
-		movem.l	ObjDat_SuperSonicKnux_Stars(pc),d0-d3			; copy data to d0-d3
+		movem.l	ObjDat_SuperSonicKnux_Stars(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 
 		; check priority
 		btst	#high_priority_bit,(Player_1+art_tile).w			; is Sonic has high priority?
-		beq.s	.main							; if not, branch
+		beq.s	.main								; if not, branch
 		bset	#high_priority_bit,art_tile(a0)					; stars have same priority as Sonic (high priority)
 
 .main
@@ -100,10 +98,8 @@ Obj_SuperSonicKnux_Stars:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-hyperSonic_stars =			*
-
-.xdiff				ds.w 1							; (2 bytes)
-.ydiff				ds.w 1							; (2 bytes)
+hyperSonic_stars.xdiff		ds.w 1							; (2 bytes)
+hyperSonic_stars.ydiff		ds.w 1							; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -116,7 +112,7 @@ Obj_HyperSonic_Stars:
 		; load stars art
 		QueueStaticDMA ArtUnc_HyperSonicStars,.artsize,tiles_to_bytes(ArtTile_Shield)
 
-.scount =	4										; number of stars
+.scount =	4									; number of stars
 
 		; load
 		lea	(a0),a1
@@ -148,7 +144,7 @@ Obj_HyperSonic_Stars:
 .load
 
 		; init
-		movem.l	ObjDat_HyperSonic_Stars(pc),d0-d3			; copy data to d0-d3
+		movem.l	ObjDat_HyperSonic_Stars(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 
 		move.b	#6,mapping_frame(a0)

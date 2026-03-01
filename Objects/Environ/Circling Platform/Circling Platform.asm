@@ -9,10 +9,8 @@ _CPLATFORM_VER_ =		0							; S1 or S2/S3K version
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-circlingplatform =		*
-
-.origX				ds.w 1							; original x-axis position (2 bytes)
-.origY				ds.w 1							; original y-axis position (2 bytes)
+circlingplatform.origX			ds.w 1						; original x-axis position (2 bytes)
+circlingplatform.origY			ds.w 1						; original y-axis position (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

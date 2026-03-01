@@ -1,7 +1,10 @@
+; ---------------------------------------------------------------------------
+; Scrap Brain Zone - Teleport positions
+; ---------------------------------------------------------------------------
 
 ; =============== S U B R O U T I N E =======================================
 
-Tele_Data: offsetTable
+Teleport_Data: offsetTable
 		offsetTableEntry.w Tele_Type00
 		offsetTableEntry.w Tele_Type01
 		offsetTableEntry.w Tele_Type02

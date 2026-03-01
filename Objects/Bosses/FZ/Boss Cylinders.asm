@@ -6,13 +6,11 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossfinal_cylinder =		*
-
-.origY				ds.l 1							; original y-axis position (4 bytes)
-.yvel				ds.l 1							; (4 bytes)
-				ds.l 1							; skip state_flags, count and explosion xy offset range (4 bytes)
-.enable				ds.b 1							; move cylinder (1 byte)
-.grab				ds.b 1							; grab Eggman (1 byte)
+bossfinal_cylinder.origY		ds.l 1						; original y-axis position (4 bytes)
+bossfinal_cylinder.yvel			ds.l 1						; (4 bytes)
+					ds.l 1						; skip state_flags, count and explosion xy offset range (4 bytes)
+bossfinal_cylinder.enable		ds.b 1						; move cylinder (1 byte)
+bossfinal_cylinder.grab			ds.b 1						; grab Eggman (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

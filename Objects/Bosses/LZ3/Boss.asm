@@ -4,20 +4,18 @@
 ; ---------------------------------------------------------------------------
 
 ; xypos
-bosswater.xpos =		$1FE0
-bosswater.ypos =		$C0
+bosswater.xpos =			$1FE0
+bosswater.ypos =			$C0
 
 ; dynamic object variables
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bosswater =			*
-
-.origX				ds.l 1							; original x-axis position (4 bytes)
-				ds.b 6							; skip jump_ptr, state_flags and count (6 bytes)
-.origY				ds.l 1							; original y-axis position (4 bytes)
-.timer				ds.b 1							; (1 byte)
-.counter			ds.b 1							; (1 byte)
+bosswater.origX				ds.l 1						; original x-axis position (4 bytes)
+					ds.b 6						; skip jump_ptr, state_flags and count (6 bytes)
+bosswater.origY				ds.l 1						; original y-axis position (4 bytes)
+bosswater.timer				ds.b 1						; (1 byte)
+bosswater.counter			ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

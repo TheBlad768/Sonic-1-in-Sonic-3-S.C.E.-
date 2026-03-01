@@ -6,12 +6,10 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-superTailsBirds =			*
-
-.timer				ds.b 1							; (1 byte)
-.found				ds.b 1							; (1 byte)
-.locked				ds.b 1							; (1 byte)
-.angle				ds.b 1							; (1 byte)
+superTailsBirds.timer		ds.b 1							; (1 byte)
+superTailsBirds.found		ds.b 1							; (1 byte)
+superTailsBirds.locked		ds.b 1							; (1 byte)
+superTailsBirds.angle		ds.b 1							; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
