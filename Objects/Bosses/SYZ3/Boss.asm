@@ -8,7 +8,7 @@
 	dsset aniraw_ptr								; pretend we're in the RAM
 
 bossblock.origY				ds.w 1						; original y-axis position (2 bytes)
-bossblock.camxpos			ds.b 1						; (1 byte)
+bossblock.camXpos			ds.b 1						; (1 byte)
 bossblock.counter			ds.b 1						; (1 byte)
 					ds.b 6						; skip jump_ptr, state_flags and count (6 bytes)
 bossblock.timer				ds.w 1						; (2 bytes)
@@ -71,12 +71,12 @@ BossBlock_MoveLeftRight:
 		move.w	x_pos(a1),d1
 		sub.w	(Camera_min_X_pos).w,d1
 		asr.w	#5,d1
-		cmp.b	bossblock.camxpos(a0),d1
+		cmp.b	bossblock.camXpos(a0),d1
 		bne.s	.return
 
 		; fix boss position
 		moveq	#0,d0
-		move.b	bossblock.camxpos(a0),d0
+		move.b	bossblock.camXpos(a0),d0
 		asl.w	#5,d0
 		moveq	#16,d1
 		add.w	(Camera_min_X_pos).w,d1
@@ -315,7 +315,7 @@ BossBlock_MainProcess:
 		move.w	x_pos(a0),d0
 		sub.w	(Camera_min_X_pos).w,d0
 		lsr.w	#5,d0
-		move.b	d0,bossblock.camxpos(a0)
+		move.b	d0,bossblock.camXpos(a0)
 
 ; ---------------------------------------------------------------------------
 ; Test collision

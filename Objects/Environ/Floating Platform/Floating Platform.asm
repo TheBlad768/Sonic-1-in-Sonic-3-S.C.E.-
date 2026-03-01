@@ -4,6 +4,17 @@
 
 ; dynamic object variables
 
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+floatingplatform.origX			ds.w 1						; original x-axis position (2 bytes)
+floatingplatform.copyX			ds.w 1						; copy x-axis position (2 bytes)
+floatingplatform.rangeX			ds.w 1						; (2 bytes)
+floatingplatform.origY			ds.w 1						; original y-axis position (2 bytes)
+floatingplatform.timer			ds.w 1						; (2 bytes)
+floatingplatform.bend			ds.b 1						; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_FloatingPlatform:
@@ -25,12 +36,10 @@ Obj_FloatingPlatform:
 		move.l	d0,mappings(a0)
 		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(34/2,64/2,priority_4),height_pixels(a0)	; set height, width and priority
-		move.w	x_pos(a0),objoff_30(a0)
-		move.w	x_pos(a0),objoff_32(a0)
-		move.w	y_pos(a0),objoff_34(a0)
-		move.b	status(a0),objoff_2E(a0)
-		move.w	#$80+320+$40+$80,objoff_42(a0)					; out_of_xrange
-		move.w	x_pos(a0),objoff_44(a0)						; out_of_xrange
+		move.w	x_pos(a0),floatingplatform.origX(a0)
+		move.w	y_pos(a0),floatingplatform.origY(a0)
+		move.w	#$80+320+$40+$80,floatingplatform.rangeX(a0)			; out_of_xrange
+		move.w	x_pos(a0),floatingplatform.copyX(a0)				; out_of_xrange
 
 		; check
 		moveq	#$F,d0
@@ -62,9 +71,9 @@ loc_255F4:
 
 loc_25628:
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	objoff_44(a0),d0						; get object position
+		and.w	floatingplatform.copyX(a0),d0					; get object position
 		sub.w	(Camera_X_pos_coarse_back).w,d0
-		cmp.w	objoff_42(a0),d0
+		cmp.w	floatingplatform.rangeX(a0),d0
 		bhi.s	loc_25642
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
@@ -117,7 +126,7 @@ FloatingPlatform_LeftRight:								; type01(Left/Right) and type05(Right/Left)
 		neg.w	d0
 
 .notflipx
-		move.w	objoff_30(a0),d1
+		move.w	floatingplatform.origX(a0),d1
 		add.w	d0,d1
 		move.w	d1,x_pos(a0)
 
@@ -127,22 +136,22 @@ FloatingPlatform_Nudge:									; type00
 		moveq	#standing_mask,d0
 		and.b	status(a0),d0							; is Sonic or Tails standing on the object?
 		bne.s	loc_24FA6							; if yes, branch
-		tst.b	objoff_3A(a0)
+		tst.b	floatingplatform.bend(a0)
 		beq.s	loc_24FB2
-		subq.b	#4,objoff_3A(a0)
+		subq.b	#4,floatingplatform.bend(a0)					; platform up
 		bra.s	loc_24FB2
 ; ---------------------------------------------------------------------------
 
 loc_24FA6:
-		cmpi.b	#$40,objoff_3A(a0)
+		cmpi.b	#$40,floatingplatform.bend(a0)
 		beq.s	loc_24FB2
-		addq.b	#4,objoff_3A(a0)
+		addq.b	#4,floatingplatform.bend(a0)					; platform down
 
 loc_24FB2:
-		move.b	objoff_3A(a0),d0
+		move.b	floatingplatform.bend(a0),d0
 		jsr	(GetSineCosine).w
 		asr.w	#6,d0
-		add.w	objoff_34(a0),d0
+		add.w	floatingplatform.origY(a0),d0
 		move.w	d0,y_pos(a0)
 		rts
 
@@ -160,7 +169,7 @@ FloatingPlatform_UpDown:								; type02(Up/Down) and type06(Down/Up)
 		neg.w	d0
 
 .notflipx
-		move.w	objoff_34(a0),d1
+		move.w	floatingplatform.origY(a0),d1
 		sub.w	d0,d1
 		move.w	d1,y_pos(a0)
 		rts
@@ -168,29 +177,29 @@ FloatingPlatform_UpDown:								; type02(Up/Down) and type06(Down/Up)
 ; =============== S U B R O U T I N E =======================================
 
 FloatingPlatform_CheckFalling:								; type03
-		tst.w	objoff_3C(a0)
+		tst.w	floatingplatform.timer(a0)
 		bne.s	.wait
 		moveq	#standing_mask,d0
 		and.b	status(a0),d0							; check if players is standing on platform
 		beq.s	.return
-		move.w	#60/2,objoff_3C(a0)
+		move.w	#(1*60)/2,floatingplatform.timer(a0)
 
 .return
 		bra.s	FloatingPlatform_Nudge
 ; ---------------------------------------------------------------------------
 
 .wait
-		subq.w	#1,objoff_3C(a0)
+		subq.w	#1,floatingplatform.timer(a0)
 		bne.s	.return
-		move.w	#32,objoff_3C(a0)
+		move.w	#32,floatingplatform.timer(a0)
 		addq.b	#2,subtype(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
 FloatingPlatform_Falling:								; type04
-		tst.w	objoff_3C(a0)
+		tst.w	floatingplatform.timer(a0)
 		beq.s	.fall
-		subq.w	#1,objoff_3C(a0)
+		subq.w	#1,floatingplatform.timer(a0)
 		bne.s	.fall
 
 		; set player falling
@@ -224,7 +233,7 @@ FloatingPlatform_Falling:								; type04
 		; delete object
 		move.w	#$7F00,d0
 		move.w	d0,x_pos(a0)
-		move.w	d0,objoff_44(a0)
+		move.w	d0,floatingplatform.copyX(a0)
 
 .return
 		rts
@@ -268,7 +277,7 @@ Obj_FallingPlatformIntangible:
 		; delete object
 		move.w	#$7F00,d0
 		move.w	d0,x_pos(a0)
-		move.w	d0,objoff_44(a0)
+		move.w	d0,floatingplatform.copyX(a0)
 
 .draw
 		bra.w	loc_25628
@@ -276,7 +285,7 @@ Obj_FallingPlatformIntangible:
 ; =============== S U B R O U T I N E =======================================
 
 FloatingPlatform_Button:								; type07
-		tst.w	objoff_3C(a0)
+		tst.w	floatingplatform.timer(a0)
 		bne.s	.wait
 		moveq	#0,d0
 		move.b	subtype(a0),d0
@@ -286,14 +295,14 @@ FloatingPlatform_Button:								; type07
 		; check
 		tst.b	(a3,d0.w)
 		beq.s	.return
-		move.w	#1*60,objoff_3C(a0)
+		move.w	#1*60,floatingplatform.timer(a0)
 
 .return
 		bra.w	FloatingPlatform_Nudge
 ; ---------------------------------------------------------------------------
 
 .wait
-		subq.w	#1,objoff_3C(a0)
+		subq.w	#1,floatingplatform.timer(a0)
 		bne.s	.return
 		addq.b	#2,subtype(a0)
 		rts
@@ -302,11 +311,11 @@ FloatingPlatform_Button:								; type07
 
 FloatingPlatform_Raise:									; type08
 		subq.w	#2,y_pos(a0)
-		move.w	objoff_34(a0),d1
+		move.w	floatingplatform.origY(a0),d1
 		subi.w	#512,d1
 		cmp.w	y_pos(a0),d1
 		bne.s	.return
-		move.w	y_pos(a0),objoff_34(a0)
+		move.w	y_pos(a0),floatingplatform.origY(a0)
 		clr.b	subtype(a0)
 
 .return
@@ -324,7 +333,7 @@ FloatingPlatform_Large:									; type0A
 		neg.w	d0
 
 .notflipx
-		move.w	objoff_34(a0),d1
+		move.w	floatingplatform.origY(a0),d1
 		ext.w	d0
 		asr.w	d0
 		sub.w	d0,d1
