@@ -3,7 +3,7 @@
 ; ---------------------------------------------------------------------------
 
 ; options
-_JAWSWATER_FIX_ =		1	; hide jaws if it is above water
+_JAWSWATER_FIX_ =			1						; hide jaws if it is above water
 
 ; dynamic object variables
 

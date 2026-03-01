@@ -4,7 +4,7 @@
 ; ---------------------------------------------------------------------------
 
 ; options
-_SPLATFORM_POS_ =		1							; sonic 1 version
+_SPLATFORM_POS_ =			1						; if 1, enable S1 version
 
 ; dynamic object variables
 
@@ -193,17 +193,19 @@ SwingingPlatform_Move:
 		lea	sub2_x_pos(a1),a2
 
 .loop
-		movem.l	d4-d5,-(sp)
+		movea.l	d4,a4								; save the registers
+		movea.l	d5,a5
 		swap	d4
 		swap	d5
 		add.w	d2,d4
 		add.w	d3,d5
 		move.w	d5,(a2)+							; x_pos
 		move.w	d4,(a2)+							; y_pos
-		movem.l	(sp)+,d4-d5
+		addq.w	#next_subspr-4,a2						; skip mapping frame
+		move.l	a4,d4								; return saved registers
+		move.l	a5,d5
 		add.l	d0,d4
 		add.l	d1,d5
-		addq.w	#next_subspr-4,a2						; skip mapping frame
 		dbf	d6,.loop
 
 	if _SPLATFORM_POS_

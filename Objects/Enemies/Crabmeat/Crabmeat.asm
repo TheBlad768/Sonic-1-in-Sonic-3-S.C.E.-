@@ -3,7 +3,7 @@
 ; ---------------------------------------------------------------------------
 
 ; options
-_CRABMEAT_SLOPE_ =		0							; if 1, enable slope animation
+_CRABMEAT_SLOPE_ =			0						; if 1, enable slope animation
 
 ; dynamic object variables
 
