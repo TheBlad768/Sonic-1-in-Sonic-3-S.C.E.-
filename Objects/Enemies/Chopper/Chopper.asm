@@ -6,9 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-chopper =			*
-
-.origY				ds.w 1							; original y-axis position (2 bytes)
+chopper.origY				ds.w 1						; original y-axis position (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

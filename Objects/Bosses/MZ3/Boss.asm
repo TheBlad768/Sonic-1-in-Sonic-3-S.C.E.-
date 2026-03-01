@@ -7,9 +7,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossfire =			*
-
-.timer				ds.w 1							; (2 bytes)
+bossfire.timer				ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -392,13 +390,11 @@ Obj_BossFire_ShipTubeFlame:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossfire_fire =			*
-
-.origX				ds.w 1							; original x-axis position (2 bytes)
-.copyX				ds.w 1							; copy x-axis position (2 bytes)
-				ds.l 1							; skip jump_ptr (4 bytes)
-.origY				ds.w 1							; original y-axis position (2 bytes)
-.timer				ds.b 1							; (1 byte)
+bossfire_fire.origX			ds.w 1						; original x-axis position (2 bytes)
+bossfire_fire.copyX			ds.w 1						; copy x-axis position (2 bytes)
+					ds.l 1						; skip jump_ptr (4 bytes)
+bossfire_fire.origY			ds.w 1						; original y-axis position (2 bytes)
+bossfire_fire.timer			ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

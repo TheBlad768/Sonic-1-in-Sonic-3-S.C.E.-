@@ -5,6 +5,9 @@
 
 ; dynamic object variables
 
+; functions (state_flags)
+bossball.attack =			2
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossBall:
@@ -74,7 +77,7 @@ BossBall_MoveDown:
 		move.w	#(1<<7)-1,wait_timer(a0)					; set wait
 		move.w	#-$40,x_vel(a0)
 		move.l	#BossBall_Move.flipx,jump_ptr(a0)
-		bset	#2,state_flags(a0)
+		bset	#bossball.attack,state_flags(a0)
 		bclr	#6,state_flags(a0)						; clear Robotnik laugh flag
 
 .return
@@ -124,7 +127,7 @@ BossBall_Setup:
 ; =============== S U B R O U T I N E =======================================
 
 BossBall_MainProcess:
-		btst	#2,state_flags(a0)						; wait boss attack flag
+		btst	#bossball.attack,state_flags(a0)				; wait boss attack flag
 		beq.s	.draw
 		jsr	(Add_SpriteToCollisionResponseList).w
 
@@ -265,10 +268,8 @@ BossBall_Defeated:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossball_crane =		*
-
-.speed				ds.w 1							; (2 bytes)
-.moving				ds.b 1							; (1 byte)
+bossball_crane.speed			ds.w 1						; (2 bytes)
+bossball_crane.moving			ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -296,7 +297,7 @@ Obj_BossBall_Crane:
 
 .wait
 		movea.w	parent4(a0),a1							; load boss address
-		btst	#2,state_flags(a1)						; wait boss attack flag
+		btst	#bossball.attack,state_flags(a1)				; wait boss attack flag
 		beq.s	.refresh
 		move.l	#.circular,address(a0)
 		bra.s	.refresh

@@ -9,10 +9,8 @@ _CRABMEAT_SLOPE_ =		0							; if 1, enable slope animation
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-crabmeat =			*
-
-.timer				ds.w 1							; (2 bytes)
-.mode				ds.b 1							; (1 byte)
+crabmeat.timer				ds.w 1						; (2 bytes)
+crabmeat.mode				ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

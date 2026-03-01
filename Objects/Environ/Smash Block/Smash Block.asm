@@ -6,12 +6,10 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-smashblock =			*
-
-.animp1				ds.b 1							; Sonic's animation (1 byte)
-.animp2				ds.b 1							; Tails's animation (1 byte)
-.bonus				ds.w 1							; bonus counter (2 bytes)
-.frag_ptr			ds.l 1							; (4 bytes)
+smashblock.animp1			ds.b 1						; Sonic's animation (1 byte)
+smashblock.animp2			ds.b 1						; Tails's animation (1 byte)
+smashblock.bonus			ds.w 1						; bonus counter (2 bytes)
+smashblock.frag_ptr			ds.l 1						; (4 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

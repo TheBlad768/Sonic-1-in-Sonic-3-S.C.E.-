@@ -6,10 +6,8 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-flapdoor =			*
-
-.timer				ds.w 1							; time until change (2 bytes)
-.delay				ds.w 1							; time between opening/closing (2 bytes)
+flapdoor.timer				ds.w 1						; time until change (2 bytes)
+flapdoor.delay				ds.w 1						; time between opening/closing (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

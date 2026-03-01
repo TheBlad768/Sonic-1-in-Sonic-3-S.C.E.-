@@ -6,12 +6,10 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bigspikeball =			*
-
-.origX				ds.w 1							; original x-axis position (2 bytes)
-.origY				ds.w 1							; original y-axis position (2 bytes)
-.radius				ds.w 1							; radius of circular (2 bytes)
-.speed				ds.w 1							; rotation speed (2 bytes)
+bigspikeball.origX			ds.w 1						; original x-axis position (2 bytes)
+bigspikeball.origY			ds.w 1						; original y-axis position (2 bytes)
+bigspikeball.radius			ds.w 1						; radius of circular (2 bytes)
+bigspikeball.speed			ds.w 1						; rotation speed (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

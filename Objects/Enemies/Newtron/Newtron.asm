@@ -6,9 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-newtron =			*
-
-.state_flags			ds.b 1							; (1 byte)
+newtron.state_flags			ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

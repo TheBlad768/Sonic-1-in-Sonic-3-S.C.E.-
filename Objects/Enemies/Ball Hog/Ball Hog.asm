@@ -6,9 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-ballhog =			*
-
-.launchflag			ds.b 1							; 0 to launch a cannonball (1 byte)
+ballhog.launchflag			ds.b 1						; 0 to launch a cannonball (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

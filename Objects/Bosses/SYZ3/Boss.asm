@@ -7,22 +7,20 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossblock =			*
-
-.origY				ds.w 1							; original y-axis position (2 bytes)
-.camxpos			ds.b 1							; (1 byte)
-.counter			ds.b 1							; (1 byte)
-				ds.b 6							; skip jump_ptr, state_flags and count (6 bytes)
-.timer				ds.w 1							; (2 bytes)
+bossblock.origY				ds.w 1						; original y-axis position (2 bytes)
+bossblock.camxpos			ds.b 1						; (1 byte)
+bossblock.counter			ds.b 1						; (1 byte)
+					ds.b 6						; skip jump_ptr, state_flags and count (6 bytes)
+bossblock.timer				ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 
 ; functions (state_flags)
-bossblock.spikeenable =		2
-bossblock.spiketouch =		3
+bossblock.spikeenable =			2
+bossblock.spiketouch =			3
 
-bossblock_block.grabblock =	5
-bossblock_block.breakblock =	6
+bossblock_block.grabblock =		5
+bossblock_block.breakblock =		6
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -450,9 +448,7 @@ BossBlock_Defeated:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bossblock_spike =		*
-
-.ypos				ds.w 1							; y-axis position (2 bytes)
+bossblock_spike.ypos			ds.w 1						; y-axis position (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

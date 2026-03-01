@@ -6,14 +6,12 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-largegrass =			*
-
-.origX				ds.w 1							; original x-axis position (2 bytes)
-.origY				ds.w 1							; original y-axis position (2 bytes)
-.slope_ptr			ds.l 1							; solid object slope pointer (4 bytes)
-.yoffset			ds.w 1							; (2 bytes)
-.angle				ds.b 1							; (1 byte)
-.flag				ds.b 1							; (1 byte)
+largegrass.origX			ds.w 1						; original x-axis position (2 bytes)
+largegrass.origY			ds.w 1						; original y-axis position (2 bytes)
+largegrass.slope_ptr			ds.l 1						; solid object slope pointer (4 bytes)
+largegrass.yoffset			ds.w 1						; (2 bytes)
+largegrass.angle			ds.b 1						; (1 byte)
+largegrass.flag				ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

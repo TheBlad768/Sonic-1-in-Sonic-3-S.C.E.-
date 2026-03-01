@@ -6,18 +6,16 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-sidestomp =			*
-
-.origX				ds.w 1							; original x-axis position (2 bytes)
-.xoffset			ds.w 1							; (2 bytes)
-.length				ds.w 1							; (2 bytes)
-.delay_flag			ds.b 1							; (1 byte)
-.spike_flag			ds.b 1							; (1 byte)
-.wait				ds.w 1							; (2 bytes)
-.copyX				ds.w 1							; copy x-axis position (2 bytes)
-.xvel				ds.w 1							; (2 bytes)
-.pole_xoffset			ds.w 1							; (2 bytes)
-.spikes_xoffset			ds.w 1							; (2 bytes)
+sidestomp.origX				ds.w 1						; original x-axis position (2 bytes)
+sidestomp.xoffset			ds.w 1						; (2 bytes)
+sidestomp.length			ds.w 1						; (2 bytes)
+sidestomp.delay_flag			ds.b 1						; (1 byte)
+sidestomp.spike_flag			ds.b 1						; (1 byte)
+sidestomp.wait				ds.w 1						; (2 bytes)
+sidestomp.copyX				ds.w 1						; copy x-axis position (2 bytes)
+sidestomp.xvel				ds.w 1						; (2 bytes)
+sidestomp.pole_xoffset			ds.w 1						; (2 bytes)
+sidestomp.spikes_xoffset		ds.w 1						; (2 bytes)
 
 
 	dsreset										; stop pretending and reset the program counter

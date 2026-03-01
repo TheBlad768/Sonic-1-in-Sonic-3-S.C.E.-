@@ -6,10 +6,8 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-gargoyle =			*
-
-.timer				ds.b 1							; (1 byte)
-.delay				ds.b 1							; (1 byte)
+gargoyle.timer				ds.b 1						; (1 byte)
+gargoyle.delay				ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

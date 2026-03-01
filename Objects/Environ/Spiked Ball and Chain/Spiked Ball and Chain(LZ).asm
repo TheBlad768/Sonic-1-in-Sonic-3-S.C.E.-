@@ -6,11 +6,9 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-spikeball_lz =			*
-
-.origX				ds.w 1							; original x-axis position (2 bytes)
-.origY				ds.w 1							; original y-axis position (2 bytes)
-.speed				ds.w 1							; (2 bytes)
+spikeball_lz.origX			ds.w 1						; original x-axis position (2 bytes)
+spikeball_lz.origY			ds.w 1						; original y-axis position (2 bytes)
+spikeball_lz.speed			ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

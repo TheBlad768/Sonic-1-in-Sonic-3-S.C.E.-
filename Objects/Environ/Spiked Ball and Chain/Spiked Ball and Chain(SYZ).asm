@@ -6,9 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-spikeball_syz =			*
-
-.speed				ds.w 1							; (2 bytes)
+spikeball_syz.speed			ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

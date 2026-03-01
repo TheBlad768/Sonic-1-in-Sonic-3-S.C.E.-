@@ -6,10 +6,8 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-roller =			*
-
-.timer				ds.w 1							; (2 bytes)
-.mode				ds.b 1							; (1 byte)
+roller.timer				ds.w 1						; (2 bytes)
+roller.mode				ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

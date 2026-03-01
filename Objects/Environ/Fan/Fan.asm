@@ -6,9 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-fan =				*
-
-.switch				ds.b 1							; on/off switch (1 byte)
+fan.switch				ds.b 1						; on/off switch (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

@@ -6,18 +6,16 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-chainstomp =			*
-
-.origY				ds.w 1							; original y-axis position (2 bytes)
-.yoffset			ds.w 1							; (2 bytes)
-.length				ds.w 1							; (2 bytes)
-.delay_flag			ds.b 1							; (1 byte)
-.spike_flag			ds.b 1							; (1 byte)
-.wait				ds.b 1							; (1 byte)
-.switch				ds.b 1							; switch number for the current stomper (1 byte)
-.cap_yoffset			ds.w 1							; (2 bytes)
-.chain_yoffset			ds.w 1							; (2 bytes)
-.yvel				ds.w 1							; (2 bytes)
+chainstomp.origY			ds.w 1						; original y-axis position (2 bytes)
+chainstomp.yoffset			ds.w 1						; (2 bytes)
+chainstomp.length			ds.w 1						; (2 bytes)
+chainstomp.delay_flag			ds.b 1						; (1 byte)
+chainstomp.spike_flag			ds.b 1						; (1 byte)
+chainstomp.wait				ds.b 1						; (1 byte)
+chainstomp.switch			ds.b 1						; switch number for the current stomper (1 byte)
+chainstomp.cap_yoffset			ds.w 1						; (2 bytes)
+chainstomp.chain_yoffset		ds.w 1						; (2 bytes)
+chainstomp.yvel				ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -299,9 +297,7 @@ loc_B996:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-chainstomp_spikes =		*
-
-.spike_yoffset			ds.w 1							; (2 bytes)
+chainstomp_spikes.spike_yoffset		ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

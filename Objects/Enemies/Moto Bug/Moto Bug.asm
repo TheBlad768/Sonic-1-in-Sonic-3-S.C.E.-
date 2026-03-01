@@ -6,9 +6,7 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-motobug =			*
-
-.delay				ds.b 1							; (1 byte)
+motobug.delay				ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

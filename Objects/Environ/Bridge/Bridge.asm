@@ -9,13 +9,11 @@ tensionbridge.logcount =	8							; number of logs
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-tensionbridge =			*
-
-.origY				ds.w 1							; original y-axis position (2 bytes)
-.wait				ds.b 1							; wait timer (1 byte)
-.bend				ds.b 1							; bridge bend (1 byte)
-.indexP1			ds.b 1							; Sonic log index (1 byte)
-.indexP2			ds.b 1							; Tails log index (1 byte)
+tensionbridge.origY			ds.w 1						; original y-axis position (2 bytes)
+tensionbridge.wait			ds.b 1						; wait timer (1 byte)
+tensionbridge.bend			ds.b 1						; bridge bend (1 byte)
+tensionbridge.indexP1			ds.b 1						; Sonic log index (1 byte)
+tensionbridge.indexP2			ds.b 1						; Tails log index (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 

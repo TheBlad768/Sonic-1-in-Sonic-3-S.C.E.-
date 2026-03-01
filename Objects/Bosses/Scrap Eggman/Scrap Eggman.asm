@@ -6,9 +6,7 @@
 
 	dsset count									; pretend we're in the RAM
 
-scrapeggman =		*
-
-.block				ds.b 1							; (1 byte)
+scrapeggman.block			ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
