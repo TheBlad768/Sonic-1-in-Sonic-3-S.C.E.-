@@ -58,7 +58,7 @@ Obj_SwingingPlatform:
 
 		; create chain
 		jsr	(Create_New_Object_3).w
-		bne.w	.offscreen
+		bne.w	.chkdel
 		move.l	#Draw_Sprite,address(a1)
 		move.l	mappings(a0),mappings(a1)
 		move.w	art_tile(a0),art_tile(a1)
@@ -123,14 +123,20 @@ Obj_SwingingPlatform:
 ; ---------------------------------------------------------------------------
 
 .offscreen
+
+		; delete chain object
+		movea.w	parent3(a0),a1							; load chain address into a1
+		jsr	(Delete_Referenced_Object).w
+
+.chkdel
+
+		; check respawn address
 		move.w	respawn_addr(a0),d0						; get address in respawn table
 		beq.s	.delete								; if it's zero, it isn't remembered
 		movea.w	d0,a2								; load address into a2
 		bclr	#respawn_addr.state,(a2)					; turn on the slot
 
 .delete
-		movea.w	parent3(a0),a1							; load chain address into a1
-		jsr	(Delete_Referenced_Object).w
 		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
