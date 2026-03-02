@@ -541,7 +541,7 @@ Monitor_Give_SuperSonic:
 		clr.b	invincibility_timer(a2)
 		bset	#status_secondary.invincible,status_secondary(a2)
 		sfx	sfx_SuperTransform
-		music	mus_Invincible,1						; play invincibility theme
+		music	mus_Invincible, 1						; play invincibility theme
 	else
 		rts
 	endif
