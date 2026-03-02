@@ -14,9 +14,9 @@ namespace S3KObjectDefinitions.SLZ
 
 		public override void Init(ObjectData data)
 		{
-			imgwreckingball = ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Swinging Platform/KosinskiPM Art/SLZ Swinging Platform.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms(SLZ).asm", 1, 2);
+			imgwreckingball = ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Swinging Platform/KosinskiPM Art/SLZ Swinging Platform.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms (SLZ).asm", 1, 2);
 			for (int i = 0; i < labels.Length; i++)
-				imgs.Add(ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Swinging Platform/KosinskiPM Art/SLZ Swinging Platform.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms(SLZ).asm", labels[i], i == 1 ? 2 : 2));
+				imgs.Add(ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Swinging Platform/KosinskiPM Art/SLZ Swinging Platform.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms (SLZ).asm", labels[i], i == 1 ? 2 : 2));
 		}
 
 		public override ReadOnlyCollection<byte> Subtypes

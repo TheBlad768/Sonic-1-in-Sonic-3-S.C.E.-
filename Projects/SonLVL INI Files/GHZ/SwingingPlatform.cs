@@ -14,9 +14,9 @@ namespace S3KObjectDefinitions.GHZ
 
 		public override void Init(ObjectData data)
 		{
-			imgwreckingball = ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Swinging Platform/KosinskiPM Art/GHZ Swinging Platform.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms(GHZ).asm", 1, 2);
+			imgwreckingball = ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Swinging Platform/KosinskiPM Art/GHZ Swinging Platform.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms (GHZ).asm", 1, 2);
 			for (int i = 0; i < labels.Length; i++)
-				imgs.Add(ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Swinging Platform/KosinskiPM Art/GHZ Swinging Platform.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms(GHZ).asm", labels[i], i == 1 ? 0 : 0));
+				imgs.Add(ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Swinging Platform/KosinskiPM Art/GHZ Swinging Platform.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms (GHZ).asm", labels[i], i == 1 ? 0 : 0));
 		}
 
 		public override ReadOnlyCollection<byte> Subtypes

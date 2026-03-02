@@ -13,7 +13,7 @@ namespace S3KObjectDefinitions.SBZ
 
 		public override void Init(ObjectData data)
 		{
-			imgwreckingball = ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Swinging Platform/KosinskiPM Art/GHZ Swinging Platform.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms(GHZ).asm", 1, 2);
+			imgwreckingball = ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Swinging Platform/KosinskiPM Art/GHZ Swinging Platform.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Swinging Platform/Object Data/Map - Swinging Platforms (SBZ).asm", 1, 2);
 			for (int i = 0; i < labels.Length; i++)
 				imgs.Add(ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Big Spiked Ball/KosinskiPM Art/Large Spikeball.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Big Spiked Ball/Object Data/Map - Big Spiked Ball.asm", labels[i], i == 2 ? 2 : 0));
 		}
