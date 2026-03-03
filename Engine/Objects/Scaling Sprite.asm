@@ -3,8 +3,13 @@
 ; ---------------------------------------------------------------------------
 
 ; RAM
-vScaling_buffer =			RAM_start+$2000					; $2000 bytes (128x128)
-vScaling_buffer_end =			RAM_start+$4000					; $40 to $7F level chunks will be destroyed
+
+	dsset ramaddr(RAM_start+$2000)							; pretend we're in the RAM
+
+vScaling_buffer				ds.b $2000					; $2000 bytes (128x128)
+vScaling_buffer_end =			*						; $40 to $7F level chunks will be destroyed
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -13,13 +18,13 @@ Perform_Art_Scaling:
 		bsr.s	Init_ArtScaling
 		movea.l	(sp)+,a0							; restore a0
 		pea	(a0)								; save a0
-		move.w	art_tile(a0),d0
+		move.w	art_tile(a0),d0							; get art tile to d0
 		bsr.w	Process_ArtScaling
 		movea.l	(sp)+,a0							; restore a0
-		move.w	(Scalar_factor).w,d3
-		lsl.w	#4,d3
+		move.w	(Scalar_factor).w,d3						; size of art
+		lsl.w	#4,d3								; turn it into actual size (in words)
 		move.l	#dmaSource(vScaling_buffer),d1
-		move.w	objoff_3A(a0),d2						; VRAM
+		move.w	scaling_art_tile(a0),d2						; load art destination
 		jmp	(Add_To_DMA_Queue).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -66,7 +71,7 @@ Process_ArtScaling:
 
 loc_2469A:
 		move.b	d1,mapping_frame(a0)						; scale level correlates with mapping frame
-		add.w	d1,d1
+		add.w	d1,d1								; multiply by 2
 		move.w	word_2464A(pc,d1.w),d1
 		move.w	(Scalar_factor).w,d2
 		add.w	d1,d2
@@ -77,7 +82,7 @@ loc_2469A:
 		lea	(vScaling_buffer).l,a2
 		add.w	d2,d0
 		move.w	d0,art_tile(a0)
-		lsl.w	#5,d2
+		lsl.w	#5,d2								; multiply by $20
 		adda.w	d2,a2
 		bsr.s	sub_246DA
 		movem.l	(sp)+,d1/d5-a0/a2/a4
