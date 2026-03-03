@@ -75,7 +75,7 @@ loc_2469A:
 		move.w	word_2464A(pc,d1.w),d1
 		move.w	(Scalar_factor).w,d2
 		add.w	d1,d2
-		cmpi.w	#128*2,d2							; image size (128x128 pixels)
+		cmpi.w	#128*2,d2							; maximum image size (128x128 pixels)
 		bhi.s	loc_246D2
 		sub.w	d1,d2
 		movem.l	d1/d5-a0/a2/a4,-(sp)
