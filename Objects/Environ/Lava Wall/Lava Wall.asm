@@ -3,10 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-lwall_x_vel			= objoff_30	; .w
-lwall_child_dx			= objoff_32	; .w
 
-lwall_flag			= objoff_39	; .b ; flag to start wall moving
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+lavawall.xvel				ds.w 1						; (2 bytes)
+lavawall.lava_xoffset			ds.w 1						; (2 bytes)
+lavawall.flag				ds.b 1						; flag to start wall moving (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -21,10 +25,10 @@ Obj_LavaWall:
 
 		; set sub object xpos
 		moveq	#signextendB(128),d1						; subtract 128 pixels
-		move.w	d1,lwall_child_dx(a0)
+		move.w	d1,lavawall.lava_xoffset(a0)
 
 		; sub object
-		lea	sub2_x_pos(a0),a1						; $16-$1D bytes reserved
+		lea	sub2_x_pos(a0),a1
 		move.w	x_pos(a0),d0
 		add.w	d1,d0								; subtract 128 pixels
 		move.w	d0,(a1)+							; xpos
@@ -52,11 +56,11 @@ Obj_LavaWall:
 		blo.s	.solid								; if not, branch
 
 		; set move flag
-		st	lwall_flag(a0)
+		st	lavawall.flag(a0)
 
 		; play sound
 		sfx	sfx_BossMagma
-		move.w	#$180,lwall_x_vel(a0)						; set object speed
+		move.w	#$180,lavawall.xvel(a0)						; set object speed
 		move.l	#.checkmove,address(a0)
 
 .checkmove
@@ -65,10 +69,10 @@ Obj_LavaWall:
 		move.l	#.solid,address(a0)
 
 		; stop object moving
-		clr.w	lwall_x_vel(a0)
+		clr.w	lavawall.xvel(a0)
 
 		; clear move flag
-		clr.b	lwall_flag(a0)
+		clr.b	lavawall.flag(a0)
 
 .solid
 		moveq	#(64/2)+$B,d1							; width
@@ -96,18 +100,18 @@ Obj_LavaWall:
 		bhs.s	.Sonichurt							; if yes, branch
 
 		; move lava
-		move.w	lwall_x_vel(a0),d0
+		move.w	lavawall.xvel(a0),d0
 		ext.l	d0
 		asl.l	#8,d0
 		add.l	d0,x_pos(a0)
 
 		; move sub object
 		move.w	x_pos(a0),d0
-		add.w	lwall_child_dx(a0),d0
+		add.w	lavawall.lava_xoffset(a0),d0
 		move.w	d0,sub2_x_pos(a0)
 
 .Sonichurt
-		tst.b	lwall_flag(a0)							; is object set to move?
+		tst.b	lavawall.flag(a0)						; is object set to move?
 		bne.s	.draw								; if yes, branch
 		jmp	(Sprite_CheckDeleteTouch3).w
 ; ---------------------------------------------------------------------------
