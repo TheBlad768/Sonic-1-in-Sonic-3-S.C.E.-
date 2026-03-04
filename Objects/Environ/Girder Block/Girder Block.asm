@@ -4,11 +4,15 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-gird_delay			= objoff_2E	; delay for movement
-gird_origX			= objoff_32	; original x-axis position
-gird_origY			= objoff_30	; original y-axis position
-gird_time			= objoff_34	; duration for movement in a direction
-gird_set			= objoff_38	; which movement settings to use (0/8/$10/$18)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+girder.origX				ds.w 1						; original x-axis position (2 bytes)
+girder.timer				ds.w 1						; duration for movement in a direction (2 bytes)
+girder.timer2				ds.w 1						; delay for movement (2 bytes)
+girder.settings				ds.b 1						; which movement settings to use (0/8/$10/$18) (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -19,8 +23,7 @@ Obj_Girder:
 		move.w	#make_art_tile($2DA,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(48/2,192/2,priority_4),height_pixels(a0)	; set height, width and priority
-		move.w	x_pos(a0),gird_origX(a0)
-		move.w	y_pos(a0),gird_origY(a0)
+		move.w	x_pos(a0),girder.origX(a0)
 		move.l	#.action,address(a0)
 		bsr.s	Gird_ChgMove
 
@@ -28,14 +31,14 @@ Obj_Girder:
 		move.w	x_pos(a0),-(sp)
 
 		; wait
-		tst.w	gird_delay(a0)
+		tst.w	girder.timer2(a0)
 		beq.s	.beginmove
-		subq.w	#1,gird_delay(a0)
+		subq.w	#1,girder.timer2(a0)
 		bne.s	.solid
 
 .beginmove
 		jsr	(MoveSprite2).w
-		subq.w	#1,gird_time(a0)						; decrement movement duration
+		subq.w	#1,girder.timer(a0)						; decrement movement duration
 		bne.s	.solid								; if time remains, branch
 		bsr.s	Gird_ChgMove							; if time is zero, branch
 
@@ -55,21 +58,21 @@ Obj_Girder:
 
 .chkdel
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	gird_origX(a0),d0						; get object position
+		and.w	girder.origX(a0),d0						; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
 
 Gird_ChgMove:
 		moveq	#$18,d0
-		and.b	gird_set(a0),d0
-		addq.b	#8,gird_set(a0)							; use next settings
+		and.b	girder.settings(a0),d0
+		addq.b	#8,girder.settings(a0)							; use next settings
 
 		; get par
 		lea	.settings(pc,d0.w),a1
 		move.l	(a1)+,x_vel(a0)							; x_vel and y_vel
-		move.w	(a1),gird_time(a0)
-		move.w	#7,gird_delay(a0)
+		move.w	(a1),girder.timer(a0)
+		move.w	#7,girder.timer2(a0)
 		rts
 ; ---------------------------------------------------------------------------
 

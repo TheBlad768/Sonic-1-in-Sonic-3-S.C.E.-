@@ -3,7 +3,12 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-origY2				= objoff_30
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+marblebrick.origY			ds.w 1						; original y-axis position (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -16,7 +21,7 @@ Obj_MarbleBrick:
 		movem.l	ObjDat_MarbleBrick(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 		move.w	#bytes_to_word(30/2,30/2),y_radius(a0)				; set y_radius and x_radius
-		move.w	y_pos(a0),origY2(a0)
+		move.w	y_pos(a0),marblebrick.origY(a0)
 
 .action
 		tst.b	render_flags(a0)						; object visible on the screen?
@@ -51,7 +56,7 @@ Obj_MarbleBrick:
 		moveq	#0,d0
 		move.b	(Oscillating_Data+$10).w,d0
 		lsr.w	#3,d0
-		move.w	origY2(a0),d1
+		move.w	marblebrick.origY(a0),d1
 		sub.w	d0,d1
 		move.w	d1,y_pos(a0)							; make the block wobble
 		rts
@@ -74,7 +79,7 @@ Obj_MarbleBrick:
 		addi.w	#$10,d0
 
 .set
-		move.w	origY2(a0),d1
+		move.w	marblebrick.origY(a0),d1
 		sub.w	d0,d1
 		move.w	d1,y_pos(a0)							; update the block's position to make it wobble
 		rts
@@ -87,7 +92,7 @@ Obj_MarbleBrick:
 		bpl.s	.return								; if not, branch
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)							; stop the block falling
-		move.w	y_pos(a0),origY2(a0)
+		move.w	y_pos(a0),marblebrick.origY(a0)
 		move.b	#4,subtype(a0)
 
 		; check lava
