@@ -16,11 +16,11 @@ bossblock.timer				ds.w 1						; (2 bytes)
 	dsreset										; stop pretending and reset the program counter
 
 ; functions (state_flags)
-bossblock.spikeenable =			2
-bossblock.spiketouch =			3
+bossblock.spikeenable_bit =		2
+bossblock.spiketouch_bit =		3
 
-bossblock_block.grabblock =		5
-bossblock_block.breakblock =		6
+bossblock_block.grabblock_bit =		5
+bossblock_block.breakblock_bit =	6
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -90,7 +90,7 @@ BossBlock_MoveLeftRight:
 		; set
 		move.l	#BossBlock_Setup2,address(a0)
 		move.l	#BossBlock_MoveDown,jump_ptr(a0)
-		bset	#bossblock.spikeenable,state_flags(a0)
+		bset	#bossblock.spikeenable_bit,state_flags(a0)
 		move.l	#words_to_long(0,$180),x_vel(a0)
 
 .return
@@ -113,7 +113,7 @@ BossBlock_MoveDown:
 		move.w	parent3(a0),d0
 		beq.s	.set
 		movea.w	d0,a1
-		bset	#bossblock_block.grabblock,state_flags(a1)			; grab block
+		bset	#bossblock_block.grabblock_bit,state_flags(a1)			; grab block
 		sfx	sfx_BossHitFloor
 		move.w	#50-30,wait_timer(a0)
 		move.w	#30,bossblock.timer(a0)
@@ -139,13 +139,13 @@ BossBlock_FloorShaking:
 
 .exit
 		clr.b	bossblock.counter(a0)
-		bset	#bossblock.spiketouch,state_flags(a0)
+		bset	#bossblock.spiketouch_bit,state_flags(a0)
 		move.l	#BossBlock_MoveUp,jump_ptr(a0)
 		move.w	#-$800,y_vel(a0)
 		tst.w	parent3(a0)
 		bne.s	.return
 		asr.w	y_vel(a0)
-		bclr	#bossblock.spiketouch,state_flags(a0)
+		bclr	#bossblock.spiketouch_bit,state_flags(a0)
 
 .return
 		rts
@@ -219,12 +219,12 @@ BossBlock_AirShaking:
 		bpl.s	BossBlock_MoveUp.return
 		move.w	#30,wait_timer(a0)
 		move.l	#BossBlock_MoveRestart,jump_ptr(a0)
-		bclr	#bossblock.spikeenable,state_flags(a0)				; hide spike
+		bclr	#bossblock.spikeenable_bit,state_flags(a0)			; hide spike
 		clr.b	bossblock.counter(a0)
 		move.w	parent3(a0),d0
 		beq.s	.return
 		movea.w	d0,a1
-		bset	#bossblock_block.breakblock,state_flags(a1)			; break block
+		bset	#bossblock_block.breakblock_bit,state_flags(a1)			; break block
 
 .return
 		rts
@@ -240,7 +240,7 @@ BossBlock_MoveRestart:
 		jsr	(Change_VelocityWithFlipX).w
 		tst.w	parent3(a0)
 		beq.s	.notblock
-		bclr	#bossblock.spiketouch,state_flags(a0)				; set spike touch
+		bclr	#bossblock.spiketouch_bit,state_flags(a0)			; set spike touch
 
 .notblock
 		jmp	(Swing_Setup1).w
@@ -359,7 +359,7 @@ BossBlock_MainProcess:
 BossBlock_Defeated:
 		move.l	#Wait_FadeToLevelMusic,address(a0)
 		move.l	#.explosion,jump_ptr(a0)
-		bclr	#bossblock.spikeenable,state_flags(a0)				; hide spike
+		bclr	#bossblock.spikeenable_bit,state_flags(a0)			; hide spike
 		clr.l	x_vel(a0)
 
 		; use the first line of the palette
@@ -389,7 +389,7 @@ BossBlock_Defeated:
 		move.l	#.move,address(a0)
 
 		; increase level size
-		lea	(Child6_IncLevX).w,a2
+		lea	(Child6_IncLevX).l,a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.notfree3
 		move.w	(Camera_max_X_pos).w,d0
@@ -465,7 +465,7 @@ Obj_BossBlock_Spike:
 .main
 		jsr	(Refresh_ChildPosition).w
 		move.w	bossblock_spike.ypos(a0),d0
-		btst	#bossblock.spikeenable,state_flags(a1)
+		btst	#bossblock.spikeenable_bit,state_flags(a1)
 		beq.s	.suby
 
 .addy
@@ -490,7 +490,7 @@ Obj_BossBlock_Spike:
 		bmi.s	.draw								; if yes, branch
 		btst	#status.npc.touch,status(a1)					; boss flashing?
 		bne.s	.draw								; if yes, branch
-		btst	#bossblock.spiketouch,state_flags(a1)				; flag set?
+		btst	#bossblock.spiketouch_bit,state_flags(a1)			; flag set?
 		bne.s	.draw								; if yes, branch
 
 .touch
@@ -518,7 +518,7 @@ Obj_BossBlock_Block:
 		move.l	#.check,address(a0)
 
 .check
-		btst	#bossblock_block.grabblock,state_flags(a0)
+		btst	#bossblock_block.grabblock_bit,state_flags(a0)
 		beq.s	.solid
 		move.l	#.position,address(a0)
 		jsr	(Displace_PlayerOffObject).w					; release Sonic from object
@@ -527,7 +527,7 @@ Obj_BossBlock_Block:
 		jsr	(Refresh_ChildPosition).w
 		tst.b	collision_property(a1)
 		beq.s	.break
-		btst	#bossblock_block.breakblock,state_flags(a0)
+		btst	#bossblock_block.breakblock_bit,state_flags(a0)
 		beq.s	.draw
 
 .break

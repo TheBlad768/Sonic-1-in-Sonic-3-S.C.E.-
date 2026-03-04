@@ -47,6 +47,7 @@
 		include "Objects/Main/Sinking Mud/Sinking Mud.asm"
 		include "Objects/Main/Sprite Mask/Sprite Mask.asm"
 		include "Objects/Main/Start New Level/Start New Level.asm"
+		include "Objects/Main/Level Sizes/Level Sizes.asm"
 		include "Objects/Main/Palette Script/Palette Script.asm"
 
 ; ===========================================================================

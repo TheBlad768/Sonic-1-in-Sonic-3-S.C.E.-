@@ -224,7 +224,7 @@ BossSpikeBall_Defeated:
 		move.l	#.move,address(a0)
 
 		; increase level size
-		lea	(Child6_IncLevX).w,a2
+		lea	(Child6_IncLevX).l,a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.notfree3
 		move.w	(Camera_max_X_pos).w,d0
