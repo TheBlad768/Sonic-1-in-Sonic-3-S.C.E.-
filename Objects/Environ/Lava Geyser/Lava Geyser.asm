@@ -3,8 +3,13 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-gmake_timer			= objoff_32 ; current time remaining (2 bytes)
-gmake_time			= objoff_34 ; time delay (2 bytes)
+
+	dsset wait_timer								; pretend we're in the RAM
+
+geysermaker.timer			ds.w 1						; current time remaining (2 bytes)
+geysermaker.delay			ds.w 1						; time delay (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -14,13 +19,13 @@ Obj_GeyserMaker:
 		lea	ObjDat_GeyserMaker(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		clr.b	routine(a0)
-		move.w	#2*60,gmake_time(a0)						; set time delay to 2 seconds
+		move.w	#2*60,geysermaker.delay(a0)					; set time delay to 2 seconds
 		move.l	#.wait,address(a0)
 
 .wait
-		subq.w	#1,gmake_timer(a0)						; decrement timer
+		subq.w	#1,geysermaker.timer(a0)					; decrement timer
 		bpl.s	.cancel								; if time remains, branch
-		move.w	gmake_time(a0),gmake_timer(a0)					; reset timer
+		move.w	geysermaker.delay(a0),geysermaker.timer(a0)			; reset timer
 
 		; find Sonic
 		move.w	(Player_1+y_pos).w,d0
@@ -97,7 +102,12 @@ Obj_GeyserMaker:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-lgeyser_ypos			= objoff_30
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+lavageyser.origY			ds.w 1						; original y-axis position (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -116,9 +126,10 @@ Obj_LavaGeyser:
 		lea	ObjDat_LavaGeyser(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 ;		sfx	sfx_Burning							; play flame sound
+		move.w	y_pos(a0),lavageyser.origY(a0)
 		move.l	#.action,address(a0)
 
-		move.w	y_pos(a0),lgeyser_ypos(a0)
+		; check
 		move.b	#5,anim(a0)							; bubble4 anim
 		tst.b	subtype(a0)
 		beq.s	.isgeyser
@@ -130,9 +141,12 @@ Obj_LavaGeyser:
 		jsr	(CreateChild6_Simple).w
 		bne.s	.fail
 		move.b	subtype(a0),subtype(a1)
-		addi.w	#$60,y_pos(a1)
-		move.w	lgeyser_ypos(a0),lgeyser_ypos(a1)
-		addi.w	#$60,lgeyser_ypos(a1)
+		moveq	#96,d0
+		add.w	d0,y_pos(a1)
+		add.w	lavageyser.origY(a0),d0
+		move.w	d0,lavageyser.origY(a1)
+
+		; check
 		move.b	#5,anim(a1)							; bubble4 anim
 		tst.b	subtype(a0)
 		beq.s	.fail
@@ -147,8 +161,10 @@ Obj_LavaGeyser:
 		move.b	subtype(a0),subtype(a1)
 		bset	#flip_bit_y,art_tile(a1)					; flipy
 		addi.w	#$100,y_pos(a1)
-		move.w	lgeyser_ypos(a0),lgeyser_ypos(a1)
+		move.w	lavageyser.origY(a0),lavageyser.origY(a1)
 		move.w	parent3(a0),parent3(a1)
+
+		; check
 		move.b	#5,anim(a1)							; bubble4 anim
 		tst.b	subtype(a0)
 		beq.s	.fail2
@@ -162,6 +178,8 @@ Obj_LavaGeyser:
 		and.b	subtype(a0),d0							; get object type
 		add.w	d0,d0
 		jsr	.index(pc,d0.w)
+
+		; draw
 		MoveSprite2YOnly
 		lea	Ani_Geyser(pc),a1
 		jsr	(Animate_Sprite).w
@@ -175,7 +193,7 @@ Obj_LavaGeyser:
 
 		; type01								; 1
 		addi.w	#$18,y_vel(a0)							; increase object's falling speed
-		move.w	lgeyser_ypos(a0),d0
+		move.w	lavageyser.origY(a0),d0
 		cmp.w	y_pos(a0),d0
 		bhs.s	.return
 		movea.w	parent3(a0),a1							; a1=parent object
@@ -185,7 +203,7 @@ Obj_LavaGeyser:
 
 .type00
 		addi.w	#$18,y_vel(a0)							; increase object's falling speed
-		move.w	lgeyser_ypos(a0),d0
+		move.w	lavageyser.origY(a0),d0
 		cmp.w	y_pos(a0),d0
 		bhs.s	.return
 		movea.w	parent3(a0),a1							; a1=parent object
@@ -226,39 +244,41 @@ Obj_LavaGeyser_Extra:
 		lea	ObjDat3_LavaGeyser(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
-		move.l	#.loc_EFFC,address(a0)
+		move.l	#.main,address(a0)
 
-.loc_EFFC
+.main
 		movea.w	parent3(a0),a1							; a1=parent object
-		moveq	#$60,d0
+		moveq	#96,d0
 		add.w	y_pos(a1),d0
 		move.w	d0,y_pos(a0)
-		sub.w	lgeyser_ypos(a0),d0
+		sub.w	lavageyser.origY(a0),d0
 		neg.w	d0
-		moveq	#8,d1
-		cmpi.w	#$40,d0
-		bge.s	.loc_F026
-		moveq	#$B,d1
 
-.loc_F026
-		cmpi.w	#$80,d0
-		ble.s	.loc_F02E
-		moveq	#$E,d1
+		; set
+		moveq	#8,d1								; mapping_frame
+		cmpi.w	#64,d0
+		bge.s	.check
+		moveq	#$B,d1								; mapping_frame
 
-.loc_F02E
+.check
+		cmpi.w	#128,d0
+		ble.s	.anim
+		moveq	#$E,d1								; mapping_frame
+
+.anim
 
 		; wait
 		subq.b	#1,anim_frame_timer(a0)						; decrement timer
-		bpl.s	.loc_F04C							; if time remains, branch
+		bpl.s	.draw								; if time remains, branch
 		addq.b	#7+1,anim_frame_timer(a0)					; reset timer to 7 frames
 
 		; next
 		bchg	#0,anim_frame(a0)						; chg 0 or 1
 		tst.b	render_flags(a0)						; object visible on the screen?
-		bpl.s	.loc_F04C							; if not, branch
-		sfx	sfx_LavaFall
+		bpl.s	.draw								; if not, branch
+		sfx	sfx_LavaFall							; play lava fall sound
 
-.loc_F04C
+.draw
 		move.b	anim_frame(a0),d0
 		add.b	d1,d0
 		move.b	d0,mapping_frame(a0)

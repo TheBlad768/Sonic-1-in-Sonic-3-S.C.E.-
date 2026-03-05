@@ -4,6 +4,13 @@
 
 ; dynamic object variables
 
+	dsset wait_timer								; pretend we're in the RAM
+
+lavamaker.timer				ds.w 1						; current time remaining (2 bytes)
+lavamaker.delay				ds.w 1						; time delay (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 		; lava ball production rates
@@ -20,8 +27,8 @@ Obj_LavaMaker:
 		lsr.w	#4,d0
 		andi.w	#$F,d0
 		move.b	LavaM_Rates(pc,d0.w),d0
-		move.b	d0,objoff_2E(a0)						; set time delay for lava balls
-		move.b	d0,objoff_30(a0)
+		move.b	d0,lavamaker.timer(a0)						; set time delay for lava balls
+		move.b	d0,lavamaker.delay(a0)
 		andi.b	#$F,subtype(a0)
 
 		; init
@@ -29,9 +36,9 @@ Obj_LavaMaker:
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 
 .makelava
-		subq.b	#1,objoff_2E(a0)						; subtract 1 from time delay
+		subq.b	#1,lavamaker.timer(a0)						; subtract 1 from time delay
 		bne.s	.draw								; if time still remains, branch
-		move.b	objoff_30(a0),objoff_2E(a0)					; reset time delay
+		move.b	lavamaker.delay(a0),lavamaker.timer(a0)				; reset time delay
 
 		; check
 		tst.b	render_flags(a0)						; object visible on the screen?
@@ -54,6 +61,13 @@ Obj_LavaMaker:
 
 ; dynamic object variables
 
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+lavaball.origY				ds.w 1						; original y-axis position (2 bytes)
+lavaball.boss_flag			ds.b 1						; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 LBall_Speeds:
@@ -66,7 +80,7 @@ Obj_LavaBall:
 		; init
 		movem.l	ObjDat_LavaBall(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.w	y_pos(a0),objoff_30(a0)
+		move.w	y_pos(a0),lavaball.origY(a0)
 
 		; check
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; is level Star Light Zone?
@@ -78,7 +92,7 @@ Obj_LavaBall:
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 
 		; check MZ boss
-		tst.b	objoff_3F(a0)							; is lava ball was created by the MZ boss?
+		tst.b	lavaball.boss_flag(a0)						; is lava ball was created by the MZ boss?
 		beq.s	.speed								; if not, branch
 		move.w	#priority_5,priority(a0)					; set priority
 
@@ -90,6 +104,8 @@ Obj_LavaBall:
 		add.w	d0,d0
 		move.w	LBall_Speeds(pc,d0.w),y_vel(a0)					; load object speed (vertical)
 		move.w	#bytes_to_word(16/2,32/2),y_radius(a0)				; set y_radius and x_radius
+
+		; check
 		cmpi.b	#6,subtype(a0)							; is object type below $06?
 		blo.s	.sound								; if yes, branch
 		move.w	#bytes_to_word(32/2,16/2),y_radius(a0)				; set y_radius and x_radius
@@ -106,7 +122,9 @@ Obj_LavaBall:
 		add.w	d0,d0
 		move.w	LBall_TypeIndex(pc,d0.w),d0
 		jsr	LBall_TypeIndex(pc,d0.w)
-		jsr	(MoveSprite2).w
+
+		; draw
+		MoveSprite2
 		lea	Ani_Fire(pc),a1
 		jsr	(Animate_Sprite).w
 		tst.b	routine(a0)							; changed by Animate_Sprite
@@ -133,7 +151,7 @@ LBall_TypeIndex: offsetTable
 
 LBall_Type00:
 		addi.w	#$18,y_vel(a0)							; increase object's downward speed
-		move.w	objoff_30(a0),d0
+		move.w	lavaball.origY(a0),d0
 		cmp.w	y_pos(a0),d0							; has object fallen back to its original position?
 		bhs.s	.loc_E41E							; if not, branch
 		move.l	#Delete_Current_Object,address(a0)				; goto "LBall_Delete" routine
@@ -179,7 +197,10 @@ LBall_Type05:
 
 LBall_Type06:
 		bset	#status.npc.x_flip,status(a0)
-		moveq	#-(16/2),d3
+
+		move.b	x_radius(a0),d3
+		ext.w	d3
+		neg.w	d3
 		jsr	(ObjCheckLeftWallDist).w
 		tst.w	d1
 		bpl.s	.return
@@ -193,7 +214,9 @@ LBall_Type06:
 
 LBall_Type07:
 		bclr	#status.npc.x_flip,status(a0)
-		moveq	#16/2,d3
+
+		move.b	x_radius(a0),d3
+		ext.w	d3
 		jsr	(ObjCheckRightWallDist).w
 		tst.w	d1
 		bpl.s	.return

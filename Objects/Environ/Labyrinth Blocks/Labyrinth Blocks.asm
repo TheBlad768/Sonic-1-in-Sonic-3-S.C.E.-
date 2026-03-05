@@ -3,13 +3,21 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-lblk_origX			= objoff_34	; original x-axis position
-lblk_origY			= objoff_30	; original y-axis position
-lblk_time			= objoff_36	; time delay for block movement
-lblk_untouched			= objoff_38	; flag block as untouched
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+labyrinthblock.origX			ds.w 1						; original x-axis position (2 bytes)
+labyrinthblock.origY			ds.w 1						; original y-axis position (2 bytes)
+labyrinthblock.timer			ds.w 1						; time delay for block movement (2 bytes)
+labyrinthblock.touch_flag		ds.b 1						; flag block as untouched (1 byte)
+labyrinthblock.bend			ds.b 1						; block bend (1 byte)
+labyrinthblock.solid			ds.b 1						; solid status (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; ---------------------------------------------------------------------------
 
-LBlk_Var:
+LabyrinthBlock_Var:
 
 		; width/2, height/2
 		dc.b 32/2, 32/2
@@ -29,19 +37,21 @@ Obj_LabyrinthBlock:
 		move.b	subtype(a0),d0							; get block type
 		lsr.w	#3,d0								; read only the 1st digit
 		andi.w	#$E,d0
-		move.w	LBlk_Var(pc,d0.w),d1
+		move.w	LabyrinthBlock_Var(pc,d0.w),d1
 		move.w	d1,height_pixels(a0)						; set height and width
 		move.w	d1,y_radius(a0)							; set y_radius and x_radius
 		lsr.b	d0								; division by 2
 		move.b	d0,mapping_frame(a0)
-		move.w	x_pos(a0),lblk_origX(a0)
-		move.w	y_pos(a0),lblk_origY(a0)
+		move.w	x_pos(a0),labyrinthblock.origX(a0)
+		move.w	y_pos(a0),labyrinthblock.origY(a0)
+
+		; check
 		moveq	#$F,d0								; read only the 2nd digit
 		and.b	subtype(a0),d0							; get block type
 		beq.s	.action								; branch if 0
 		cmpi.b	#7,d0
 		beq.s	.action								; branch if 7
-		st	lblk_untouched(a0)
+		st	labyrinthblock.touch_flag(a0)
 
 .action
 		move.w	x_pos(a0),-(sp)
@@ -65,43 +75,47 @@ Obj_LabyrinthBlock:
 		move.w	d2,d3
 		addq.w	#1,d3
 		jsr	(SolidObjectFull).w
-		move.b	d4,objoff_3F(a0)
-		bsr.s	sub_12180
+		move.b	d4,labyrinthblock.solid(a0)					; save solid status
+		bsr.s	LabyrinthBlock_Nudge
 
 .chkdel
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	lblk_origX(a0),d0						; get object position
+		and.w	labyrinthblock.origX(a0),d0					; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
 
-sub_12180:
-		tst.b	lblk_untouched(a0)						; has block been stood on or touched?
-		beq.s	.locret_121C0							; if yes, branch
+LabyrinthBlock_Nudge:
+
+		; check standing
+		tst.b	labyrinthblock.touch_flag(a0)					; has block been stood on or touched?
+		beq.s	.return								; if yes, branch
 		moveq	#standing_mask,d0
 		and.b	status(a0),d0							; is Sonic or Tails standing on it now?
-		bne.s	.loc_1219A							; if yes, branch
-		tst.b	objoff_3E(a0)
-		beq.s	.locret_121C0
-		subq.b	#4,objoff_3E(a0)
-		bra.s	.loc_121A6
+		bne.s	.down								; if yes, branch
+
+		; check
+		tst.b	labyrinthblock.bend(a0)
+		beq.s	.return
+		subq.b	#4,labyrinthblock.bend(a0)					; block up
+		bra.s	.bend
 ; ---------------------------------------------------------------------------
 
-.loc_1219A
-		cmpi.b	#$40,objoff_3E(a0)
-		beq.s	.locret_121C0
-		addq.b	#4,objoff_3E(a0)
+.down
+		cmpi.b	#$40,labyrinthblock.bend(a0)
+		beq.s	.return
+		addq.b	#4,labyrinthblock.bend(a0)					; block down
 
-.loc_121A6
-		move.b	objoff_3E(a0),d0
+.bend
+		move.b	labyrinthblock.bend(a0),d0
 		jsr	(GetSineCosine).w
 		move.w	#$400,d1
 		muls.w	d1,d0
 		swap	d0
-		add.w	lblk_origY(a0),d0
+		add.w	labyrinthblock.origY(a0),d0
 		move.w	d0,y_pos(a0)
 
-.locret_121C0
+.return
 		rts
 
 ; =============== S U B R O U T I N E =======================================
@@ -118,22 +132,22 @@ LabyrinthBlock_TypeIndex: offsetTable
 
 .type01
 .type03
-		tst.w	lblk_time(a0)							; does time remain?
+		tst.w	labyrinthblock.timer(a0)					; does time remain?
 		bne.s	.wait01								; if yes, branch
 		moveq	#standing_mask,d0
 		and.b	status(a0),d0							; is Sonic or Tails standing on the object?
 		beq.s	.donothing01							; if not, branch
-		move.w	#30,lblk_time(a0)						; wait for half second
+		move.w	#30,labyrinthblock.timer(a0)					; wait for half second
 
 .donothing01
 		rts
 ; ---------------------------------------------------------------------------
 
 .wait01
-		subq.w	#1,lblk_time(a0)						; decrement waiting time
+		subq.w	#1,labyrinthblock.timer(a0)					; decrement waiting time
 		bne.s	.donothing01							; if time remains, branch
 		addq.b	#1,subtype(a0)							; goto .type02 or .type04
-		clr.b	lblk_untouched(a0)						; flag block as touched
+		clr.b	labyrinthblock.touch_flag(a0)					; flag block as touched
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -166,10 +180,10 @@ LabyrinthBlock_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .type05
-		cmpi.b	#1,objoff_3F(a0)						; is Sonic touching the block?
+		cmpi.b	#1,labyrinthblock.solid(a0)					; is Sonic touching the block?
 		bne.s	.notouch05							; if not, branch
 		addq.b	#1,subtype(a0)							; goto .type06
-		clr.b	lblk_untouched(a0)
+		clr.b	labyrinthblock.touch_flag(a0)
 
 .notouch05
 		rts
@@ -181,10 +195,10 @@ LabyrinthBlock_TypeIndex: offsetTable
 		beq.s	.stop07								; if yes, branch
 		bhs.s	.fall07								; branch if block is above water
 		cmpi.w	#-2,d0
-		bge.s	.loc_1214E
+		bge.s	.checkceiling
 		moveq	#-2,d0
 
-.loc_1214E
+.checkceiling
 		add.w	d0,y_pos(a0)							; make the block rise with water level
 		jsr	(ObjCheckCeilingDist).w
 		tst.w	d1								; has block hit the ceiling?
@@ -197,10 +211,10 @@ LabyrinthBlock_TypeIndex: offsetTable
 
 .fall07
 		cmpi.w	#2,d0
-		ble.s	.loc_1216A
+		ble.s	.checkfloor
 		moveq	#2,d0
 
-.loc_1216A
+.checkfloor
 		add.w	d0,y_pos(a0)							; make the block sink with water level
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1
