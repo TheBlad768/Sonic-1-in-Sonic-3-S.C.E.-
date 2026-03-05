@@ -10,7 +10,7 @@ Obj_SinkingMud:
 
 		; set
 		move.b	subtype(a0),d0
-		lsl.w	#3,d0
+		lsl.b	#3,d0
 		move.b	d0,width_pixels(a0)
 		move.w	y_pos(a0),objoff_30(a0)
 		moveq	#$30,d0

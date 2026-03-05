@@ -7,7 +7,7 @@
 ; player 1
 	dsset x_vel									; pretend we're in the RAM
 
-teleport_p1_attached			= *
+teleport_p1_attached =			*
 teleport_p1_attached.routine		ds.b 1	; (1 byte)
 teleport_p1_attached.sine		ds.b 1	; (1 byte)
 teleport_p1_attached.timer		ds.w 1	; (2 bytes)
@@ -21,7 +21,7 @@ teleport_p1_attached.saveY		ds.w 1	; (2 bytes)
 ; player 2
 	dsset wait_timer								; pretend we're in the RAM
 
-teleport_p2_attached			= *
+teleport_p2_attached =			*
 teleport_p2_attached.routine		ds.b 1	; (1 byte)
 teleport_p2_attached.sine		ds.b 1	; (1 byte)
 teleport_p2_attached.timer		ds.w 1	; (2 bytes)
