@@ -113,7 +113,7 @@ Obj73_MakeLava:
 		add.w	d1,d0
 		move.w	d0,x_pos(a1)
 		clr.b	subtype(a1)
-		st	objoff_3F(a1)
+		st	lavaball.boss_flag(a1)
 
 loc_1844A:
 		jsr	(Random_Number).w

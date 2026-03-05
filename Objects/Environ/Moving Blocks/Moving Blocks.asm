@@ -3,12 +3,19 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-MBorigX:			= objoff_30	; .w
-MBorigY:			= objoff_32	; .w
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+movingblock.origX			ds.w 1						; original x-axis position (2 bytes)
+movingblock.origY			ds.w 1						; original y-axis position (2 bytes)
+movingblock.timer			ds.w 1						; current time remaining (2 bytes)
+movingblock.flag			ds.b 1						; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
-MBlock_Var:
+MovingBlock_Var:
 
 		; object width, frame number
 		dc.b 32/2, 0		; 0
@@ -49,16 +56,18 @@ Obj_MovingBlock:
 
 .notSBZ
 		move.w	d1,art_tile(a0)
+
+		; get
 		move.b	subtype(a0),d0
 		lsr.w	#3,d0
 		andi.w	#$1E,d0
-		lea	MBlock_Var(pc,d0.w),a2
+		lea	MovingBlock_Var(pc,d0.w),a2
 		move.b	(a2),x_radius(a0)
 		move.b	(a2)+,width_pixels(a0)
 		move.b	(a2)+,mapping_frame(a0)
 		move.w	#priority_4,priority(a0)
-		move.w	x_pos(a0),MBorigX(a0)
-		move.w	y_pos(a0),MBorigY(a0)
+		move.w	x_pos(a0),movingblock.origX(a0)
+		move.w	y_pos(a0),movingblock.origY(a0)
 		andi.b	#$F,subtype(a0)
 		move.l	#.platform,address(a0)
 
@@ -86,7 +95,7 @@ Obj_MovingBlock:
 
 .chkdel
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	MBorigX(a0),d0							; get object position
+		and.w	movingblock.origX(a0),d0					; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -115,12 +124,12 @@ MBlock_Type01:
 		move.b	(Oscillating_Data+$C).w,d0
 		moveq	#$60,d1
 		btst	#status.npc.x_flip,status(a0)
-		beq.s	loc_FF26
+		beq.s	.move
 		neg.w	d0
 		add.w	d1,d0
 
-loc_FF26:
-		move.w	MBorigX(a0),d1
+.move
+		move.w	movingblock.origX(a0),d1
 		sub.w	d0,d1
 		move.w	d1,x_pos(a0)
 		rts
@@ -129,7 +138,7 @@ loc_FF26:
 MBlock_Type02:
 		moveq	#standing_mask,d0
 		and.b	status(a0),d0							; is Sonic standing on the platform?
-		beq.s	MBlock_02_Wait
+		beq.s	MBlock_02_Wait							; if not, branch
 		addq.b	#1,subtype(a0)							; if yes, add 1 to type
 
 MBlock_02_Wait:
@@ -143,7 +152,7 @@ MBlock_Type03:
 		tst.w	d1								; has the platform hit a wall?
 		bmi.s	MBlock_03_End							; if yes, branch
 		addq.w	#1,x_pos(a0)							; move platform to the right
-		move.w	x_pos(a0),MBorigX(a0)
+		move.w	x_pos(a0),movingblock.origX(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -159,7 +168,7 @@ MBlock_Type05:
 		tst.w	d1								; has the platform hit a wall?
 		bmi.s	MBlock_05_End							; if yes, branch
 		addq.w	#1,x_pos(a0)							; move platform to the right
-		move.w	x_pos(a0),MBorigX(a0)
+		move.w	x_pos(a0),movingblock.origX(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -172,12 +181,12 @@ MBlock_Type06:
 		MoveSpriteYOnly , $18							; make the platform fall
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1								; has platform hit the floor?
-		bpl.s	locret_FFA0							; if not, branch
+		bpl.s	.return								; if not, branch
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)							; stop platform falling
 		clr.b	subtype(a0)							; change to type 00 (non-moving)
 
-locret_FFA0:
+.return
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -191,7 +200,7 @@ MBlock_07_ChkDel:
 
 		; check delete
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	MBorigX(a0),d0							; get object position
+		and.w	movingblock.origX(a0),d0					; get object position
 		jmp	(Delete_Sprite_If_Not_In_Range2).w
 ; ---------------------------------------------------------------------------
 
@@ -199,12 +208,12 @@ MBlock_Type08:
 		move.b	(Oscillating_Data+$1C).w,d0
 		move.w	#$80,d1
 		btst	#status.npc.x_flip,status(a0)
-		beq.s	loc_FFE2
+		beq.s	.move
 		neg.w	d0
 		add.w	d1,d0
 
-loc_FFE2:
-		move.w	MBorigY(a0),d1
+.move
+		move.w	movingblock.origY(a0),d1
 		sub.w	d0,d1
 		move.w	d1,y_pos(a0)
 		rts
@@ -213,44 +222,44 @@ loc_FFE2:
 MBlock_Type0A:
 		moveq	#0,d3
 		move.b	width_pixels(a0),d3
-		add.w	d3,d3
+		add.w	d3,d3								; multiply by 2
 		moveq	#8,d1
 		btst	#status.npc.x_flip,status(a0)
-		beq.s	loc_10004
+		beq.s	.check
 		neg.w	d1
 		neg.w	d3
 
-loc_10004:
-		tst.b	objoff_36(a0)							; is platform set to move back?
+.check
+		tst.b	movingblock.flag(a0)						; is platform set to move back?
 		bne.s	MBlock_0A_Back							; if yes, branch
 		move.w	x_pos(a0),d0
-		sub.w	MBorigX(a0),d0
+		sub.w	movingblock.origX(a0),d0
 		cmp.w	d3,d0
 		beq.s	MBlock_0A_Wait
 		add.w	d1,x_pos(a0)							; move platform
-		move.w	#5*60,objoff_34(a0)						; set time delay to 5 seconds
+		move.w	#5*60,movingblock.timer(a0)					; set time delay to 5 seconds
 		rts
 ; ---------------------------------------------------------------------------
 
 MBlock_0A_Wait:
-		subq.w	#1,objoff_34(a0)						; subtract 1 from time delay
-		bne.s	locret_1002E							; if time remains, branch
-		st	objoff_36(a0)							; set platform to move back to its original position
+		subq.w	#1,movingblock.timer(a0)					; subtract 1 from time delay
+		bne.s	.return								; if time remains, branch
+		st	movingblock.flag(a0)						; set platform to move back to its original position
 
-locret_1002E:
+.return
 		rts
 ; ---------------------------------------------------------------------------
 
 MBlock_0A_Back:
 		move.w	x_pos(a0),d0
-		sub.w	MBorigX(a0),d0
+		sub.w	movingblock.origX(a0),d0
 		beq.s	MBlock_0A_Reset
 		sub.w	d1,x_pos(a0)							; return platform to its original position
 		rts
 ; ---------------------------------------------------------------------------
 
 MBlock_0A_Reset:
-		clr.b	objoff_36(a0)
+		clr.b	movingblock.flag(a0)
 		subq.b	#1,subtype(a0)
 		rts
 ; ---------------------------------------------------------------------------
@@ -281,7 +290,7 @@ MBlock_Type0F:
 		tst.w	d1								; has the platform hit a wall?
 		bmi.s	MBlock_0F_End							; if yes, branch
 		addq.w	#1,x_pos(a0)							; move platform to the right
-		move.w	x_pos(a0),MBorigX(a0)
+		move.w	x_pos(a0),movingblock.origX(a0)
 		rts
 ; ---------------------------------------------------------------------------
 

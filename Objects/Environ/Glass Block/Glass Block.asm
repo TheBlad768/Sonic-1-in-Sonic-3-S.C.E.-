@@ -3,11 +3,21 @@
 ; ---------------------------------------------------------------------------
 
 ; options
-_GLASSBLOCK_YPOS_		= 1		; fixed version
+_GLASSBLOCK_YPOS_ =			1						; fixed version
 
 ; dynamic object variables
-glass_ypos			= objoff_30	; copy ypos
-glass_dist			= objoff_32	; distance block moves when switch is pressed
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+glassblock.origY			ds.w 1						; original y-axis position (2 bytes)
+glassblock.dist				ds.w 1						; distance block moves when switch is pressed (2 bytes)
+glassblock.flag1			ds.b 1						; (1 byte)
+glassblock.flag2			ds.b 1						; (1 byte)
+glassblock.timer			ds.w 1						; current time remaining (2 bytes)
+glassblock.timer2			ds.b 1						; (1 byte)
+
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -16,8 +26,8 @@ Obj_GlassBlock:
 		; init
 		movem.l	ObjDat_GlassBlock(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.w	y_pos(a0),glass_ypos(a0)
-		move.w	#$90,glass_dist(a0)
+		move.w	y_pos(a0),glassblock.origY(a0)
+		move.w	#$90,glassblock.dist(a0)
 		move.w	#2,mainspr_childsprites(a0)					; block and reflector
 
 		; sub objects
@@ -76,7 +86,7 @@ Glass_Type02:
 		add.w	d1,d0
 
 loc_B514:
-		move.w	glass_ypos(a0),d2
+		move.w	glassblock.origY(a0),d2
 		sub.w	d0,d2
 
 		; move main object
@@ -90,7 +100,7 @@ loc_B514:
 		add.w	d1,d0
 		lsr.b	d0
 		addi.w	#$20,d0
-		move.w	glass_ypos(a0),d2
+		move.w	glassblock.origY(a0),d2
 		sub.w	d0,d2
 		move.w	d2,sub2_y_pos(a0)
 		rts
@@ -100,48 +110,48 @@ Glass_Type03:
 		moveq	#standing_mask,d0
 		and.b	status(a0),d0							; is Sonic or Tails standing on the object?
 		bne.s	loc_B54E							; if yes, branch
-		bclr	#0,objoff_34(a0)
+		bclr	#0,glassblock.flag1(a0)
 		bra.s	loc_B582
 ; ---------------------------------------------------------------------------
 
 loc_B54E:
-		tst.b	objoff_34(a0)
+		tst.b	glassblock.flag1(a0)
 		bne.s	loc_B582
-		move.b	#1,objoff_34(a0)
-		bset	#0,objoff_35(a0)
+		move.b	#1,glassblock.flag1(a0)
+		bset	#0,glassblock.flag2(a0)
 		beq.s	loc_B582
-		bset	#7,objoff_34(a0)
-		move.w	#$10,objoff_36(a0)
-		move.b	#$A,objoff_38(a0)
-		cmpi.w	#$40,glass_dist(a0)
+		bset	#7,glassblock.flag1(a0)
+		move.w	#$10,glassblock.timer(a0)
+		move.b	#$A,glassblock.timer2(a0)
+		cmpi.w	#$40,glassblock.dist(a0)
 		bne.s	loc_B582
-		move.w	#$40,objoff_36(a0)
+		move.w	#$40,glassblock.timer(a0)
 
 loc_B582:
-		tst.b	objoff_34(a0)
+		tst.b	glassblock.flag1(a0)
 		bpl.s	loc_B5AA
-		tst.b	objoff_38(a0)
+		tst.b	glassblock.timer2(a0)
 		beq.s	loc_B594
-		subq.b	#1,objoff_38(a0)
+		subq.b	#1,glassblock.timer2(a0)
 		bne.s	loc_B5AA
 
 loc_B594:
-		tst.w	glass_dist(a0)
+		tst.w	glassblock.dist(a0)
 		beq.s	loc_B5A4
-		subq.w	#1,glass_dist(a0)
-		subq.w	#1,objoff_36(a0)
+		subq.w	#1,glassblock.dist(a0)
+		subq.w	#1,glassblock.timer(a0)
 		bne.s	loc_B5AA
 
 loc_B5A4:
-		bclr	#7,objoff_34(a0)
+		bclr	#7,glassblock.flag1(a0)
 
 loc_B5AA:
-		move.w	glass_dist(a0),d0
+		move.w	glassblock.dist(a0),d0
 		bra.s	loc_B5EE
 ; ---------------------------------------------------------------------------
 
 Glass_Type04:
-		tst.b	objoff_34(a0)
+		tst.b	glassblock.flag1(a0)
 		bne.s	loc_B5E0
 		lea	(Level_trigger_array).w,a2
 		moveq	#0,d0
@@ -149,18 +159,18 @@ Glass_Type04:
 		lsr.w	#4,d0								; read only the first nybble
 		tst.b	(a2,d0.w)							; has switch number d0 been pressed?
 		beq.s	loc_B5EA							; if not, branch
-		move.b	#1,objoff_34(a0)
+		move.b	#1,glassblock.flag1(a0)
 
 loc_B5E0:
-		tst.w	glass_dist(a0)
+		tst.w	glassblock.dist(a0)
 		beq.s	loc_B5EA
-		subq.w	#2,glass_dist(a0)
+		subq.w	#2,glassblock.dist(a0)
 
 loc_B5EA:
-		move.w	glass_dist(a0),d0
+		move.w	glassblock.dist(a0),d0
 
 loc_B5EE:
-		move.w	glass_ypos(a0),d2
+		move.w	glassblock.origY(a0),d2
 		sub.w	d0,d2
 
 		; move main object
