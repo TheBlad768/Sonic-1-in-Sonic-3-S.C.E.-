@@ -2,9 +2,11 @@
 ; Labyrinth Zone - Conveyor positions
 ; ---------------------------------------------------------------------------
 
+setLZPlatformPos =			512
+
 ; =============== S U B R O U T I N E =======================================
 
-LCon_Data: offsetTable
+LabyrinthConveyor_Data: offsetTable
 		offsetTableEntry.w word_125F4						; 0
 		offsetTableEntry.w word_12610						; 2
 		offsetTableEntry.w word_12628						; 4
@@ -12,21 +14,75 @@ LCon_Data: offsetTable
 		offsetTableEntry.w word_12650						; 8
 		offsetTableEntry.w word_12668						; A
 
-setLZPlatformPos =	512
+word_125F4:
+		dc.w (.end-.start)							; header
+		dc.w $1070+setLZPlatformPos						; main x-axis position
 
-word_125F4:		; ypos, xpos, xpos, ypos, xpos, ypos, xpos, ypos, xpos, ypos
-		dc.w $18, $1070+setLZPlatformPos, $1078+setLZPlatformPos, $21A, $10BE+setLZPlatformPos, $260, $10BE+setLZPlatformPos, $393
-		dc.w $108C+setLZPlatformPos, $3C5, $1022+setLZPlatformPos, $390, $1022+setLZPlatformPos, $244
+.start
+		dc.w $1078+setLZPlatformPos, $21A					; xpos, ypos
+		dc.w $10BE+setLZPlatformPos, $260
+		dc.w $10BE+setLZPlatformPos, $393
+		dc.w $108C+setLZPlatformPos, $3C5
+		dc.w $1022+setLZPlatformPos, $390
+		dc.w $1022+setLZPlatformPos, $244
+.end
+
 word_12610:
-		dc.w $14, $1280+setLZPlatformPos, $127E+setLZPlatformPos, $280, $12CE+setLZPlatformPos, $2D0, $12CE+setLZPlatformPos, $46E, $1232+setLZPlatformPos, $420, $1232+setLZPlatformPos, $2CC
+		dc.w (.end-.start)							; header
+		dc.w $1280+setLZPlatformPos						; main x-axis position
+
+.start
+		dc.w $127E+setLZPlatformPos, $280					; xpos, ypos
+		dc.w $12CE+setLZPlatformPos, $2D0
+		dc.w $12CE+setLZPlatformPos, $46E
+		dc.w $1232+setLZPlatformPos, $420
+		dc.w $1232+setLZPlatformPos, $2CC
+.end
+
 word_12628:
-		dc.w $10, $D68+setLZPlatformPos, $D22+setLZPlatformPos, $482, $D22+setLZPlatformPos, $5DE, $DAE+setLZPlatformPos, $5DE, $DAE+setLZPlatformPos, $482
+		dc.w (.end-.start)							; header
+		dc.w $D68+setLZPlatformPos						; main x-axis position
+
+.start
+		dc.w $D22+setLZPlatformPos, $482					; xpos, ypos
+		dc.w $D22+setLZPlatformPos, $5DE
+		dc.w $DAE+setLZPlatformPos, $5DE
+		dc.w $DAE+setLZPlatformPos, $482
+.end
+
 word_1263C:
-		dc.w $10, $DA0+setLZPlatformPos, $D62+setLZPlatformPos, $3A2, $DEE+setLZPlatformPos, $3A2, $DEE+setLZPlatformPos, $4DE, $D62+setLZPlatformPos, $4DE
+		dc.w (.end-.start)							; header
+		dc.w $DA0+setLZPlatformPos						; main x-axis position
+
+.start
+		dc.w $D62+setLZPlatformPos, $3A2					; xpos, ypos
+		dc.w $DEE+setLZPlatformPos, $3A2
+		dc.w $DEE+setLZPlatformPos, $4DE
+		dc.w $D62+setLZPlatformPos, $4DE
+.end
+
 word_12650:
-		dc.w $14, $D00+setLZPlatformPos, $CAC+setLZPlatformPos, $242, $DDE+setLZPlatformPos, $242, $DDE+setLZPlatformPos, $3DE, $C52+setLZPlatformPos, $3DE, $C52+setLZPlatformPos, $29C
+		dc.w (.end-.start)							; header
+		dc.w $D00+setLZPlatformPos						; main x-axis position
+
+.start
+		dc.w $CAC+setLZPlatformPos, $242					; xpos, ypos
+		dc.w $DDE+setLZPlatformPos, $242
+		dc.w $DDE+setLZPlatformPos, $3DE
+		dc.w $C52+setLZPlatformPos, $3DE
+		dc.w $C52+setLZPlatformPos, $29C
+.end
+
 word_12668:
-		dc.w $10, $1300+setLZPlatformPos, $1252+setLZPlatformPos, $20A, $13DE+setLZPlatformPos, $20A, $13DE+setLZPlatformPos, $2BE, $1252+setLZPlatformPos, $2BE
+		dc.w (.end-.start)							; header
+		dc.w $1300+setLZPlatformPos						; main x-axis position
+
+.start
+		dc.w $1252+setLZPlatformPos, $20A					; xpos, ypos
+		dc.w $13DE+setLZPlatformPos, $20A
+		dc.w $13DE+setLZPlatformPos, $2BE
+		dc.w $1252+setLZPlatformPos, $2BE
+.end
 
 ; ---------------------------------------------------------------------------
 ; Labyrinth Zone - Platform positions
@@ -34,7 +90,7 @@ word_12668:
 
 ; =============== S U B R O U T I N E =======================================
 
-ObjPosLZPlatform_Index: offsetTable
+LabyrinthConveyor_Platform_Index: offsetTable
 		offsetTableEntry.w ObjPos_LZ1pf1					; 0
 		offsetTableEntry.w ObjPos_LZ1pf2					; 2
 		offsetTableEntry.w ObjPos_LZ2pf1					; 4
@@ -44,9 +100,9 @@ ObjPosLZPlatform_Index: offsetTable
 		offsetTableEntry.w ObjPos_LZ1pf1					; C
 		offsetTableEntry.w ObjPos_LZ1pf2					; E
 
-ObjPos_LZ1pf1:		; xpos, ypos, subtype
-		dc.w 8-1
-		dc.w $1078+setLZPlatformPos, $21A, 0
+ObjPos_LZ1pf1:
+		dc.w 8-1								; header
+		dc.w $1078+setLZPlatformPos, $21A, 0					; xpos, ypos, subtype
 		dc.w $10BE+setLZPlatformPos, $291, 2
 		dc.w $10BE+setLZPlatformPos, $307, 2
 		dc.w $10BE+setLZPlatformPos, $37E, 2
@@ -54,9 +110,10 @@ ObjPos_LZ1pf1:		; xpos, ypos, subtype
 		dc.w $1022+setLZPlatformPos, $352, 5
 		dc.w $1022+setLZPlatformPos, $2DB, 5
 		dc.w $1022+setLZPlatformPos, $265, 5
+
 ObjPos_LZ1pf2:
-		dc.w 8-1
-		dc.w $127E+setLZPlatformPos, $280, $10
+		dc.w 8-1								; header
+		dc.w $127E+setLZPlatformPos, $280, $10					; xpos, ypos, subtype
 		dc.w $12CE+setLZPlatformPos, $305, $12
 		dc.w $12CE+setLZPlatformPos, $38A, $12
 		dc.w $12CE+setLZPlatformPos, $40F, $12
@@ -64,9 +121,10 @@ ObjPos_LZ1pf2:
 		dc.w $1232+setLZPlatformPos, $40F, $14
 		dc.w $1232+setLZPlatformPos, $38A, $14
 		dc.w $1232+setLZPlatformPos, $305, $14
+
 ObjPos_LZ2pf1:
-		dc.w 8-1
-		dc.w $D22+setLZPlatformPos, $483, $21
+		dc.w 8-1								; header
+		dc.w $D22+setLZPlatformPos, $483, $21					; xpos, ypos, subtype
 		dc.w $D9C+setLZPlatformPos, $482, $20
 		dc.w $DAE+setLZPlatformPos, $4EA, $23
 		dc.w $DAE+setLZPlatformPos, $564, $23
@@ -74,9 +132,10 @@ ObjPos_LZ2pf1:
 		dc.w $D34+setLZPlatformPos, $5DE, $22
 		dc.w $D22+setLZPlatformPos, $576, $21
 		dc.w $D22+setLZPlatformPos, $4FC, $21
+
 ObjPos_LZ2pf2:
-		dc.w 8-1
-		dc.w $D62+setLZPlatformPos, $3A2, $30
+		dc.w 8-1								; header
+		dc.w $D62+setLZPlatformPos, $3A2, $30					; xpos, ypos, subtype
 		dc.w $DD4+setLZPlatformPos, $3A2, $31
 		dc.w $DEE+setLZPlatformPos, $3FA, $32
 		dc.w $DEE+setLZPlatformPos, $46C, $32
@@ -84,9 +143,10 @@ ObjPos_LZ2pf2:
 		dc.w $D7C+setLZPlatformPos, $4DE, $33
 		dc.w $D62+setLZPlatformPos, $486, $30
 		dc.w $D62+setLZPlatformPos, $414, $30
+
 ObjPos_LZ3pf1:
-		dc.w 12-1
-		dc.w $CAD+setLZPlatformPos, $242, $41
+		dc.w 12-1								; header
+		dc.w $CAD+setLZPlatformPos, $242, $41					; xpos, ypos, subtype
 		dc.w $D2D+setLZPlatformPos, $242, $41
 		dc.w $DAC+setLZPlatformPos, $242, $41
 		dc.w $DDE+setLZPlatformPos, $28F, $42
@@ -98,9 +158,10 @@ ObjPos_LZ3pf1:
 		dc.w $C52+setLZPlatformPos, $3BF, $44
 		dc.w $C52+setLZPlatformPos, $340, $44
 		dc.w $C52+setLZPlatformPos, $2C1, $44
+
 ObjPos_LZ3pf2:
-		dc.w 9-1
-		dc.w $1252+setLZPlatformPos, $20A, $50
+		dc.w 9-1								; header
+		dc.w $1252+setLZPlatformPos, $20A, $50					; xpos, ypos, subtype
 		dc.w $12D2+setLZPlatformPos, $20A, $51
 		dc.w $1352+setLZPlatformPos, $20A, $51
 		dc.w $13D2+setLZPlatformPos, $20A, $51

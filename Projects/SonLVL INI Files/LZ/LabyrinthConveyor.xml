@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ObjDef xmlns="http://www.sonicretro.org" Name="Conveyor Belt" Image="platform">
+<ObjDef xmlns="http://www.sonicretro.org" Name="Labyrinth Conveyor" Image="platform">
   <Images>
     <ImageFromMappings id="platform">
       <ArtFile filename="../../Objects/Environ/Labyrinth Conveyor/KosinskiPM Art/Labyrinth Conveyor.kospm" compression="KosinskiPlusM" />

@@ -103,7 +103,7 @@
 		include "Objects/Environ/Conveyor Belt/Conveyor Belt.asm"
 		include "Objects/Environ/Vanishing Platforms/Vanishing Platforms.asm"
 		include "Objects/Environ/Small Door/Small Door.asm"
-		include "Objects/Environ/Spin Platform Conveyor/Spin Platform Conveyor.asm"
+		include "Objects/Environ/Spinning Conveyor/Spinning Conveyor.asm"
 		include "Objects/Environ/Teleporter/Teleporter.asm"
 
 ; ===========================================================================
