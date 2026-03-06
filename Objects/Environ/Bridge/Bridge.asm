@@ -151,21 +151,21 @@ TensionBridge_Nudge:
 		moveq	#16/2,d3							; height
 		move.w	x_pos(a0),d4
 		bsr.w	SolidObject_TensionBridge
-		out_of_xrange.s	.chkdel
+		out_of_xrange.s	.offscreen
 		rts
 ; ---------------------------------------------------------------------------
 
-.chkdel
+.offscreen
 		movea.w	parent3(a0),a1							; a1=object
 		jsr	(Delete_Referenced_Object).w
 
 		; check second subsprite object
 		cmpi.b	#tensionbridge.logcount,subtype(a0)
-		bls.s	.offscreen							; if bridge has more than 8 logs, delete second subsprite object
+		bls.s	.chkdel							; if bridge has more than 8 logs, delete second subsprite object
 		movea.w	parent4(a0),a1							; a1=object
 		jsr	(Delete_Referenced_Object).w
 
-.offscreen
+.chkdel
 		move.w	respawn_addr(a0),d0						; get address in respawn table
 		beq.s	.delete								; if it's zero, it isn't remembered
 		movea.w	d0,a2								; load address into a2
