@@ -161,7 +161,7 @@ TensionBridge_Nudge:
 
 		; check second subsprite object
 		cmpi.b	#tensionbridge.logcount,subtype(a0)
-		bls.s	.chkdel							; if bridge has more than 8 logs, delete second subsprite object
+		bls.s	.chkdel								; if bridge has more than 8 logs, delete second subsprite object
 		movea.w	parent4(a0),a1							; a1=object
 		jsr	(Delete_Referenced_Object).w
 
