@@ -20,7 +20,7 @@
 
 		incfile.b	ArtKosPM_Ring_Sparks, "Objects/Main/Rings/KosinskiPM Art/Sparks.kospm"
 		incfile.b	ArtKosPM_Monitors, "Objects/Main/Monitor/KosinskiPM Art/Monitors.kospm"
-		incfile.b	ArtKosPM_MonitorsEggRobo, "Objects/Main/Monitor/KosinskiPM Art/Egg Robo.kospm"
+		incfile.b	ArtKosPM_MonitorsEggRobo, "Objects/Main/Monitor/KosinskiPM Art/Egg Robo Icon.kospm"
 		incfile.b	ArtKosPM_SpikesSprings, "Objects/Main/Spikes/KosinskiPM Art/SpikesSprings.kospm"
 		incfile.b	ArtKosPM_HiddenBonus, "Objects/Main/Hidden Bonus/KosinskiPM Art/Hidden Bonus.kospm"
 		incfile.b	ArtKosPM_BossExplosion, "Objects/Main/Explosion/KosinskiPM Art/Boss Explosion.kospm"

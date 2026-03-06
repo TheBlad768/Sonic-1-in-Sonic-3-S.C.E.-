@@ -102,7 +102,7 @@ Obj_Index:
 		dc.l Obj_Orbinaut					; $60
 		dc.l Obj_LabyrinthBlock					; $61
 		dc.l Obj_Gargoyle					; $62
-		dc.l Obj_LabyrinthConvey				; $63
+		dc.l Obj_LabyrinthConveyor				; $63
 		dc.l Obj_ScrapStomp					; $64
 		dc.l Obj_Waterfall					; $65
 		dc.l Obj_Junction					; $66
@@ -114,7 +114,7 @@ Obj_Index:
 		dc.l Obj_VanishPlatform					; $6C
 		dc.l Obj_Invisible_ShockBlock				; $6D
 		dc.l Obj_Invisible_LavaBlock				; $6E
-		dc.l Obj_SpinConvey					; $6F
+		dc.l Obj_SpinningConveyor				; $6F
 		dc.l Obj_Girder						; $70
 		dc.l Delete_Current_Object				; $71
 		dc.l Obj_Teleport					; $72
