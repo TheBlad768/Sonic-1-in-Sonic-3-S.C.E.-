@@ -327,9 +327,9 @@ conveyorheader macro basex,basey,{INTLABEL}
 __LABEL__ label *
 conveyorcount := 0
 conveyorcountcur := "__LABEL__"
-conbaseX := basex								; main x-axis position
-conbaseY := basey								; main y-axis position
-	dc.w conveyorcount___LABEL__							; header
+conbaseX := basex									; main x-axis position
+conbaseY := basey									; main y-axis position
+	dc.w conveyorcount___LABEL__							; number of conveyor positions
 	dc.w conbaseX
     endm
 
@@ -347,9 +347,9 @@ conveyorplatformheader macro basex,basey,{INTLABEL}
 __LABEL__ label *
 conveyorplatformcount := 0
 conveyorplatformcountcur := "__LABEL__"
-conbaseX := basex								; main x-axis position
-conbaseY := basey								; main y-axis position
-	dc.w conveyorplatformcount___LABEL__							; header
+conbaseX := basex									; main x-axis position
+conbaseY := basey									; main y-axis position
+	dc.w conveyorplatformcount___LABEL__						; number of conveyor platform positions
     endm
 
 conveyorplatformobjdata macro xdiff,ydiff,subtype
