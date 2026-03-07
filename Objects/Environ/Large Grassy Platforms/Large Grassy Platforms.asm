@@ -20,9 +20,9 @@ largegrass.flag				ds.b 1						; (1 byte)
 LGrass_Data: offsetTable
 
 		; collision angle data, frame number, platform width
-		LargeGrassEntry LGrass_Data1, 0, 128
-		LargeGrassEntry LGrass_Data3, 1, 128
-		LargeGrassEntry LGrass_Data2, 2, 64
+		largegrassobjdata LGrass_Data1, 0, 128
+		largegrassobjdata LGrass_Data3, 1, 128
+		largegrassobjdata LGrass_Data2, 2, 64
 ; ---------------------------------------------------------------------------
 
 Obj_LargeGrass:

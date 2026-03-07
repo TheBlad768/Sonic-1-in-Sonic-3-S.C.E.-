@@ -16,7 +16,6 @@ glassblock.flag2			ds.b 1						; (1 byte)
 glassblock.timer			ds.w 1						; current time remaining (2 bytes)
 glassblock.timer2			ds.b 1						; (1 byte)
 
-
 	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
