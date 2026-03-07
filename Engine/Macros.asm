@@ -235,7 +235,7 @@ msbzcount := msbzcount + 1
     endm
 
 mSBZe macro
-msbzcount_{"\{msbzcur}"} = msbzcount-1
+msbzcount_{"\{msbzcur}"} = msbzcount - 1
     endm
 ; ---------------------------------------------------------------------------
 
@@ -309,12 +309,12 @@ objanimalending macro addr,map,vram,xvel,yvel
     endm
 ; ---------------------------------------------------------------------------
 
-LargeGrassEntry macro ptr,frame,width
+largegrassobjdata macro ptr,frame,width
 	offsetTableEntry.w ptr
 	dc.b frame,(width/2)
     endm
 
-LavaEntry macro ptr,flag
+lavadata macro ptr,flag
     if flag
 	offsetTableEntry.w (ptr)|setBit(15)
     else
@@ -322,7 +322,46 @@ LavaEntry macro ptr,flag
     endif
     endm
 
-StillSpritesEntry macro prio,vram,pal,pri,height,width
+; macros for defining conveyor positions
+conveyorheader macro basex,basey,{INTLABEL}
+__LABEL__ label *
+conveyorcount := 0
+conveyorcountcur := "__LABEL__"
+conbaseX := basex								; main x-axis position
+conbaseY := basey								; main y-axis position
+	dc.w conveyorcount___LABEL__							; header
+	dc.w conbaseX
+    endm
+
+conveyorobjdata macro xdiff,ydiff
+	dc.w conbaseX+(xdiff),conbaseY+(ydiff)
+conveyorcount := conveyorcount + 4
+    endm
+
+conveyorend macro
+conveyorcount_{"\{conveyorcountcur}"} = conveyorcount
+    endm
+
+; macros for defining conveyor platform positions
+conveyorplatformheader macro basex,basey,{INTLABEL}
+__LABEL__ label *
+conveyorplatformcount := 0
+conveyorplatformcountcur := "__LABEL__"
+conbaseX := basex								; main x-axis position
+conbaseY := basey								; main y-axis position
+	dc.w conveyorplatformcount___LABEL__							; header
+    endm
+
+conveyorplatformobjdata macro xdiff,ydiff,subtype
+	dc.w conbaseX+(xdiff),conbaseY+(ydiff),subtype
+conveyorplatformcount := conveyorplatformcount + 1
+    endm
+
+conveyorplatformend macro
+conveyorplatformcount_{"\{conveyorplatformcountcur}"} = conveyorplatformcount - 1
+    endm
+
+stillspritesobjdata macro prio,vram,pal,pri,height,width
 	dc.w sprite_priority(prio),make_art_tile(vram,pal,pri)
 	dc.b (height/2),(width/2)
     endm
@@ -344,7 +383,7 @@ titlecardresultscount := titlecardresultscount + 1
     endm
 
 titlecardresultsend macro
-titlecardresultscount_{"\{titlecardresultscur}"} = titlecardresultscount-1
+titlecardresultscount_{"\{titlecardresultscur}"} = titlecardresultscount - 1
     endm
 ; ---------------------------------------------------------------------------
 
@@ -384,7 +423,7 @@ specialresultscount := specialresultscount + 1
     endm
 
 specialresultsend macro
-specialresultscount_{"\{specialresultscur}"} = specialresultscount-1
+specialresultscount_{"\{specialresultscur}"} = specialresultscount - 1
     endm
 ; ---------------------------------------------------------------------------
 
@@ -1295,7 +1334,7 @@ zoneanimcur := "__LABEL__"
     endm
 
 zoneanimend macro
-zoneanimcount_{"\{zoneanimcur}"} = zoneanimcount-1
+zoneanimcount_{"\{zoneanimcur}"} = zoneanimcount - 1
     endm
 
 zoneanimplcdecl macro duration,artaddr,vramaddr,numentries,numvramtiles
@@ -1595,7 +1634,7 @@ plrlistcount := plrlistcount + 1
     endm
 
 plrlistend macro
-plrlistcount_{"\{plrlistcur}"} = plrlistcount-1
+plrlistcount_{"\{plrlistcur}"} = plrlistcount - 1
     endm
 
 ; ---------------------------------------------------------------------------
@@ -1702,7 +1741,7 @@ hscrollcount := hscrollcount + 1
     endm
 
 HScroll_End macro
-hscrollcount_{"\{hscrollcur}"} = hscrollcount-1
+hscrollcount_{"\{hscrollcur}"} = hscrollcount - 1
     endm
 ; ---------------------------------------------------------------------------
 

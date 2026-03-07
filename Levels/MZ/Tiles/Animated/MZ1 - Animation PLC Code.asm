@@ -4,7 +4,7 @@
 
 ; RAM
 vMZLavaBuffer		= RAM_start+$7E00						; buffer size is $200 bytes
-current_offset_table	:= AnimateTiles_MZ.script					; for LavaEntry macro
+current_offset_table	:= AnimateTiles_MZ.script					; for lavadata macro
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -70,16 +70,16 @@ AnimateTiles_MZ:
 ; ---------------------------------------------------------------------------
 
 .script
-		LavaEntry .mode00, TRUE	; mode offset, RAM shift off flag
+		lavadata .mode00, TRUE							; mode offset, RAM shift off flag
 
 	rept 6
-		LavaEntry .mode01, FALSE
-		LavaEntry .mode00, FALSE
+		lavadata .mode01, FALSE
+		lavadata .mode00, FALSE
 	endr
 
-		LavaEntry .mode02, FALSE
-		LavaEntry .mode03, TRUE
-		LavaEntry .mode04, TRUE
+		lavadata .mode02, FALSE
+		lavadata .mode03, TRUE
+		lavadata .mode04, TRUE
 ; ---------------------------------------------------------------------------
 
 .mode03

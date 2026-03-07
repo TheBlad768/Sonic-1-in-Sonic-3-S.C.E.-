@@ -2,84 +2,71 @@
 ; Scrap Brain Zone - Conveyor positions
 ; ---------------------------------------------------------------------------
 
-setSBZPlatformPos =			512
+SpinningConveyorXpos =			512
 
 ; =============== S U B R O U T I N E =======================================
 
-SCon_Data: offsetTable
-		offsetTableEntry.w word_164B2						; 0
-		offsetTableEntry.w word_164C6						; 2
-		offsetTableEntry.w word_164DA						; 4
-		offsetTableEntry.w word_164EE						; 6
-		offsetTableEntry.w word_16502						; 8
-		offsetTableEntry.w word_16516						; A
+SpinningConveyor_Data: offsetTable
+		offsetTableEntry.w SpinningConveyor_Group00				; 0
+		offsetTableEntry.w SpinningConveyor_Group01				; 2
+		offsetTableEntry.w SpinningConveyor_Group02				; 4
+		offsetTableEntry.w SpinningConveyor_Group03				; 6
+		offsetTableEntry.w SpinningConveyor_Group04				; 8
+		offsetTableEntry.w SpinningConveyor_Group05				; A
 
-word_164B2:
-		dc.w (.end-.start)							; header
-		dc.w $E80+setSBZPlatformPos						; main x-axis position
+SpinningConveyor_Group00: conveyorheader $E80+SpinningConveyorXpos, $358
 
-.start
-		dc.w $E14+setSBZPlatformPos, $370					; xpos, ypos
-		dc.w $EEF+setSBZPlatformPos, $302
-		dc.w $EEF+setSBZPlatformPos, $340
-		dc.w $E14+setSBZPlatformPos, $3AE
-.end
+		; xpos, ypos
+		conveyorobjdata -$6C, $18
+		conveyorobjdata $6F, -$56
+		conveyorobjdata $6F, -$18
+		conveyorobjdata -$6C, $56
+		conveyorend
 
-word_164C6:
-		dc.w (.end-.start)							; header
-		dc.w $F80+setSBZPlatformPos						; main x-axis position
+SpinningConveyor_Group01: conveyorheader $F80+SpinningConveyorXpos, $2C8
 
-.start
-		dc.w $F14+setSBZPlatformPos, $2E0					; xpos, ypos
-		dc.w $FEF+setSBZPlatformPos, $272
-		dc.w $FEF+setSBZPlatformPos, $2B0
-		dc.w $F14+setSBZPlatformPos, $31E
-.end
+		; xpos, ypos
+		conveyorobjdata -$6C, $18
+		conveyorobjdata $6F, -$56
+		conveyorobjdata $6F, -$18
+		conveyorobjdata -$6C, $56
+		conveyorend
 
-word_164DA:
-		dc.w (.end-.start)							; header
-		dc.w $1080+setSBZPlatformPos						; main x-axis position
+SpinningConveyor_Group02: conveyorheader $1080+SpinningConveyorXpos, $228
 
-.start
-		dc.w $1014+setSBZPlatformPos, $270					; xpos, ypos
-		dc.w $10EF+setSBZPlatformPos, $202
-		dc.w $10EF+setSBZPlatformPos, $240
-		dc.w $1014+setSBZPlatformPos, $2AE
-.end
+		; xpos, ypos
+		conveyorobjdata -$6C, $48
+		conveyorobjdata $6F, -$26
+		conveyorobjdata $6F, $18
+		conveyorobjdata -$6C, $86
+		conveyorend
 
-word_164EE:
-		dc.w (.end-.start)							; header
-		dc.w $F80+setSBZPlatformPos						; main x-axis position
+SpinningConveyor_Group03: conveyorheader $F80+SpinningConveyorXpos, $558
 
-.start
-		dc.w $F14+setSBZPlatformPos, $570					; xpos, ypos
-		dc.w $FEF+setSBZPlatformPos, $502
-		dc.w $FEF+setSBZPlatformPos, $540
-		dc.w $F14+setSBZPlatformPos, $5AE
-.end
+		; xpos, ypos
+		conveyorobjdata -$6C, $18
+		conveyorobjdata $6F, -$56
+		conveyorobjdata $6F, -$18
+		conveyorobjdata -$6C, $56
+		conveyorend
 
-word_16502:
-		dc.w (.end-.start)							; header
-		dc.w $1B80+setSBZPlatformPos						; main x-axis position
+SpinningConveyor_Group04: conveyorheader $1B80+SpinningConveyorXpos, $658
 
-.start
-		dc.w $1B14+setSBZPlatformPos, $670					; xpos, ypos
-		dc.w $1BEF+setSBZPlatformPos, $602
-		dc.w $1BEF+setSBZPlatformPos, $640
-		dc.w $1B14+setSBZPlatformPos, $6AE
-.end
+		; xpos, ypos
+		conveyorobjdata -$6C, $18
+		conveyorobjdata $6F, -$56
+		conveyorobjdata $6F, -$18
+		conveyorobjdata -$6C, $56
+		conveyorend
 
-word_16516:
-		dc.w (.end-.start)							; header
-		dc.w $1C80+setSBZPlatformPos						; main x-axis position
+SpinningConveyor_Group05: conveyorheader $1C80+SpinningConveyorXpos, $5C8
 
-.start
-		dc.w $1C14+setSBZPlatformPos, $5E0					; xpos, ypos
-		dc.w $1CEF+setSBZPlatformPos, $572
-		dc.w $1CEF+setSBZPlatformPos, $5B0
-		dc.w $1C14+setSBZPlatformPos, $61E
-.end
-
+		; xpos, ypos
+		conveyorobjdata -$6C, $18
+		conveyorobjdata $6F, -$56
+		conveyorobjdata $6F, -$18
+		conveyorobjdata -$6C, $56
+		conveyorend
 
 ; ---------------------------------------------------------------------------
 ; Scrap Brain Zone - Platform positions
@@ -87,78 +74,90 @@ word_16516:
 
 ; =============== S U B R O U T I N E =======================================
 
-ObjPosSBZPlatform_Index: offsetTable
-		offsetTableEntry.w ObjPos_SBZ1pf1					; 0
-		offsetTableEntry.w ObjPos_SBZ1pf2					; 2
-		offsetTableEntry.w ObjPos_SBZ1pf3					; 4
-		offsetTableEntry.w ObjPos_SBZ1pf4					; 6
-		offsetTableEntry.w ObjPos_SBZ1pf5					; 8
-		offsetTableEntry.w ObjPos_SBZ1pf6					; A
-		offsetTableEntry.w ObjPos_SBZ1pf1					; C
-		offsetTableEntry.w ObjPos_SBZ1pf2					; E
+SpinningConveyor_Platform_Index: offsetTable
+		offsetTableEntry.w SpinningConveyor_Platform_SBZ101			; 0 (SBZ1)
+		offsetTableEntry.w SpinningConveyor_Platform_SBZ102			; 2 (SBZ1)
+		offsetTableEntry.w SpinningConveyor_Platform_SBZ103			; 4 (SBZ1)
+		offsetTableEntry.w SpinningConveyor_Platform_SBZ104			; 6 (SBZ1)
+		offsetTableEntry.w SpinningConveyor_Platform_SBZ105			; 8 (SBZ1)
+		offsetTableEntry.w SpinningConveyor_Platform_SBZ106			; A (SBZ1)
+		offsetTableEntry.w SpinningConveyor_Platform_SBZ101			; C (SBZ1)
+		offsetTableEntry.w SpinningConveyor_Platform_SBZ102			; E (SBZ1)
 
-ObjPos_SBZ1pf1:
-		dc.w 8-1								; header
-		dc.w $E14+setSBZPlatformPos, $370, 0					; xpos, ypos, subtype
-		dc.w $E5A+setSBZPlatformPos, $34D, 1
-		dc.w $EA0+setSBZPlatformPos, $32A, 1
-		dc.w $EE7+setSBZPlatformPos, $307, 1
-		dc.w $EEF+setSBZPlatformPos, $340, 2
-		dc.w $EA9+setSBZPlatformPos, $363, 3
-		dc.w $E63+setSBZPlatformPos, $386, 3
-		dc.w $E1C+setSBZPlatformPos, $3A9, 3
+SpinningConveyor_Platform_SBZ101: conveyorplatformheader $E80+SpinningConveyorXpos, $358
 
-ObjPos_SBZ1pf2:
-		dc.w 8-1								; header
-		dc.w $F14+setSBZPlatformPos, $2E0, $10					; xpos, ypos, subtype
-		dc.w $F5A+setSBZPlatformPos, $2BD, $11
-		dc.w $FA0+setSBZPlatformPos, $29A, $11
-		dc.w $FE7+setSBZPlatformPos, $277, $11
-		dc.w $FEF+setSBZPlatformPos, $2B0, $12
-		dc.w $FA9+setSBZPlatformPos, $2D3, $13
-		dc.w $F63+setSBZPlatformPos, $2F6, $13
-		dc.w $F1C+setSBZPlatformPos, $319, $13
+		; xpos, ypos, subtype
+		conveyorplatformobjdata -$6C, $18, 0
+		conveyorplatformobjdata -$26, -$B, 1
+		conveyorplatformobjdata $20, -$2E, 1
+		conveyorplatformobjdata $67, -$51, 1
+		conveyorplatformobjdata $6F, -$18, 2
+		conveyorplatformobjdata $29, $B, 3
+		conveyorplatformobjdata -$1D, $2E, 3
+		conveyorplatformobjdata -$64, $51, 3
+		conveyorplatformend
 
-ObjPos_SBZ1pf3:
-		dc.w 8-1								; header
-		dc.w $1014+setSBZPlatformPos, $270, $20					; xpos, ypos, subtype
-		dc.w $105A+setSBZPlatformPos, $24D, $21
-		dc.w $10A0+setSBZPlatformPos, $22A, $21
-		dc.w $10E7+setSBZPlatformPos, $207, $21
-		dc.w $10EF+setSBZPlatformPos, $240, $22
-		dc.w $10A9+setSBZPlatformPos, $263, $23
-		dc.w $1063+setSBZPlatformPos, $286, $23
-		dc.w $101C+setSBZPlatformPos, $2A9, $23
+SpinningConveyor_Platform_SBZ102: conveyorplatformheader $F80+SpinningConveyorXpos, $2C8
 
-ObjPos_SBZ1pf4:
-		dc.w 8-1								; header
-		dc.w $F14+setSBZPlatformPos, $570, $30					; xpos, ypos, subtype
-		dc.w $F5A+setSBZPlatformPos, $54D, $31
-		dc.w $FA0+setSBZPlatformPos, $52A, $31
-		dc.w $FE7+setSBZPlatformPos, $507, $31
-		dc.w $FEF+setSBZPlatformPos, $540, $32
-		dc.w $FA9+setSBZPlatformPos, $563, $33
-		dc.w $F63+setSBZPlatformPos, $586, $33
-		dc.w $F1C+setSBZPlatformPos, $5A9, $33
+		; xpos, ypos, subtype
+		conveyorplatformobjdata -$6C, $18, $10
+		conveyorplatformobjdata -$26, -$B, $11
+		conveyorplatformobjdata $20, -$2E, $11
+		conveyorplatformobjdata $67, -$51, $11
+		conveyorplatformobjdata $6F, -$18, $12
+		conveyorplatformobjdata $29, $B, $13
+		conveyorplatformobjdata -$1D, $2E, $13
+		conveyorplatformobjdata -$64, $51, $13
+		conveyorplatformend
 
-ObjPos_SBZ1pf5:
-		dc.w 8-1								; header
-		dc.w $1B14+setSBZPlatformPos, $670, $40					; xpos, ypos, subtype
-		dc.w $1B5A+setSBZPlatformPos, $64D, $41
-		dc.w $1BA0+setSBZPlatformPos, $62A, $41
-		dc.w $1BE7+setSBZPlatformPos, $607, $41
-		dc.w $1BEF+setSBZPlatformPos, $640, $42
-		dc.w $1BA9+setSBZPlatformPos, $663, $43
-		dc.w $1B63+setSBZPlatformPos, $686, $43
-		dc.w $1B1C+setSBZPlatformPos, $6A9, $43
+SpinningConveyor_Platform_SBZ103: conveyorplatformheader $1080+SpinningConveyorXpos, $228
 
-ObjPos_SBZ1pf6:
-		dc.w 8-1								; header
-		dc.w $1C14+setSBZPlatformPos, $5E0, $50					; xpos, ypos, subtype
-		dc.w $1C5A+setSBZPlatformPos, $5BD, $51
-		dc.w $1CA0+setSBZPlatformPos, $59A, $51
-		dc.w $1CE7+setSBZPlatformPos, $577, $51
-		dc.w $1CEF+setSBZPlatformPos, $5B0, $52
-		dc.w $1CA9+setSBZPlatformPos, $5D3, $53
-		dc.w $1C63+setSBZPlatformPos, $5F6, $53
-		dc.w $1C1C+setSBZPlatformPos, $619, $53
+		; xpos, ypos, subtype
+		conveyorplatformobjdata -$6C, $48, $20
+		conveyorplatformobjdata -$26, $25, $21
+		conveyorplatformobjdata $20, $2, $21
+		conveyorplatformobjdata $67, -$21, $21
+		conveyorplatformobjdata $6F, $18, $22
+		conveyorplatformobjdata $29, $3B, $23
+		conveyorplatformobjdata -$1D, $5E, $23
+		conveyorplatformobjdata -$64, $81, $23
+		conveyorplatformend
+
+SpinningConveyor_Platform_SBZ104: conveyorplatformheader $F80+SpinningConveyorXpos, $558
+
+		; xpos, ypos, subtype
+		conveyorplatformobjdata -$6C, $18, $30
+		conveyorplatformobjdata -$26, -$B, $31
+		conveyorplatformobjdata $20, -$2E, $31
+		conveyorplatformobjdata $67, -$51, $31
+		conveyorplatformobjdata $6F, -$18, $32
+		conveyorplatformobjdata $29, $B, $33
+		conveyorplatformobjdata -$1D, $2E, $33
+		conveyorplatformobjdata -$64, $51, $33
+		conveyorplatformend
+
+SpinningConveyor_Platform_SBZ105: conveyorplatformheader $1B80+SpinningConveyorXpos, $658
+
+		; xpos, ypos, subtype
+		conveyorplatformobjdata -$6C, $18, $40
+		conveyorplatformobjdata -$26, -$B, $41
+		conveyorplatformobjdata $20, -$2E, $41
+		conveyorplatformobjdata $67, -$51, $41
+		conveyorplatformobjdata $6F, -$18, $42
+		conveyorplatformobjdata $29, $B, $43
+		conveyorplatformobjdata -$1D, $2E, $43
+		conveyorplatformobjdata -$64, $51, $43
+		conveyorplatformend
+
+SpinningConveyor_Platform_SBZ106: conveyorplatformheader $1C80+SpinningConveyorXpos, $5C8
+
+		; xpos, ypos, subtype
+		conveyorplatformobjdata -$6C, $18, $50
+		conveyorplatformobjdata -$26, -$B, $51
+		conveyorplatformobjdata $20, -$2E, $51
+		conveyorplatformobjdata $67, -$51, $51
+		conveyorplatformobjdata $6F, -$18, $52
+		conveyorplatformobjdata $29, $B, $53
+		conveyorplatformobjdata -$1D, $2E, $53
+		conveyorplatformobjdata -$64, $51, $53
+		conveyorplatformend

@@ -2,87 +2,75 @@
 ; Labyrinth Zone - Conveyor positions
 ; ---------------------------------------------------------------------------
 
-setLZPlatformPos =			512
+LabyrinthConveyorXpos =			512
 
 ; =============== S U B R O U T I N E =======================================
 
 LabyrinthConveyor_Data: offsetTable
-		offsetTableEntry.w word_125F4						; 0
-		offsetTableEntry.w word_12610						; 2
-		offsetTableEntry.w word_12628						; 4
-		offsetTableEntry.w word_1263C						; 6
-		offsetTableEntry.w word_12650						; 8
-		offsetTableEntry.w word_12668						; A
+		offsetTableEntry.w LabyrinthConveyor_Group00				; 0
+		offsetTableEntry.w LabyrinthConveyor_Group01				; 2
+		offsetTableEntry.w LabyrinthConveyor_Group02				; 4
+		offsetTableEntry.w LabyrinthConveyor_Group03				; 6
+		offsetTableEntry.w LabyrinthConveyor_Group04				; 8
+		offsetTableEntry.w LabyrinthConveyor_Group05				; A
 
-word_125F4:
-		dc.w (.end-.start)							; header
-		dc.w $1070+setLZPlatformPos						; main x-axis position
+LabyrinthConveyor_Group00: conveyorheader $1070+LabyrinthConveyorXpos, $2F0
 
-.start
-		dc.w $1078+setLZPlatformPos, $21A					; xpos, ypos
-		dc.w $10BE+setLZPlatformPos, $260
-		dc.w $10BE+setLZPlatformPos, $393
-		dc.w $108C+setLZPlatformPos, $3C5
-		dc.w $1022+setLZPlatformPos, $390
-		dc.w $1022+setLZPlatformPos, $244
-.end
+		; xpos, ypos
+		conveyorobjdata 8, -$D6
+		conveyorobjdata $4E, -$90
+		conveyorobjdata $4E, $A3
+		conveyorobjdata $1C, $D5
+		conveyorobjdata -$4E, $A0
+		conveyorobjdata -$4E, -$AC
+		conveyorend
 
-word_12610:
-		dc.w (.end-.start)							; header
-		dc.w $1280+setLZPlatformPos						; main x-axis position
+LabyrinthConveyor_Group01: conveyorheader $1280+LabyrinthConveyorXpos, $377
 
-.start
-		dc.w $127E+setLZPlatformPos, $280					; xpos, ypos
-		dc.w $12CE+setLZPlatformPos, $2D0
-		dc.w $12CE+setLZPlatformPos, $46E
-		dc.w $1232+setLZPlatformPos, $420
-		dc.w $1232+setLZPlatformPos, $2CC
-.end
+		; xpos, ypos
+		conveyorobjdata -2, -$F7
+		conveyorobjdata $4E, -$A7
+		conveyorobjdata $4E, $F7
+		conveyorobjdata -$4E, $A9
+		conveyorobjdata -$4E, -$AB
+		conveyorend
 
-word_12628:
-		dc.w (.end-.start)							; header
-		dc.w $D68+setLZPlatformPos						; main x-axis position
+LabyrinthConveyor_Group02: conveyorheader $D68+LabyrinthConveyorXpos, $530
 
-.start
-		dc.w $D22+setLZPlatformPos, $482					; xpos, ypos
-		dc.w $D22+setLZPlatformPos, $5DE
-		dc.w $DAE+setLZPlatformPos, $5DE
-		dc.w $DAE+setLZPlatformPos, $482
-.end
+		; xpos, ypos
+		conveyorobjdata -$46, -$AE
+		conveyorobjdata -$46, $AE
+		conveyorobjdata $46, $AE
+		conveyorobjdata $46, -$AE
+		conveyorend
 
-word_1263C:
-		dc.w (.end-.start)							; header
-		dc.w $DA0+setLZPlatformPos						; main x-axis position
+LabyrinthConveyor_Group03: conveyorheader $DA0+LabyrinthConveyorXpos, $440
 
-.start
-		dc.w $D62+setLZPlatformPos, $3A2					; xpos, ypos
-		dc.w $DEE+setLZPlatformPos, $3A2
-		dc.w $DEE+setLZPlatformPos, $4DE
-		dc.w $D62+setLZPlatformPos, $4DE
-.end
+		; xpos, ypos
+		conveyorobjdata -$3E, -$9E
+		conveyorobjdata $4E, -$9E
+		conveyorobjdata $4E, $9E
+		conveyorobjdata -$3E, $9E
+		conveyorend
 
-word_12650:
-		dc.w (.end-.start)							; header
-		dc.w $D00+setLZPlatformPos						; main x-axis position
+LabyrinthConveyor_Group04: conveyorheader $D00+LabyrinthConveyorXpos, $310
 
-.start
-		dc.w $CAC+setLZPlatformPos, $242					; xpos, ypos
-		dc.w $DDE+setLZPlatformPos, $242
-		dc.w $DDE+setLZPlatformPos, $3DE
-		dc.w $C52+setLZPlatformPos, $3DE
-		dc.w $C52+setLZPlatformPos, $29C
-.end
+		; xpos, ypos
+		conveyorobjdata -$54, -$CE
+		conveyorobjdata $DE, -$CE
+		conveyorobjdata $DE, $CE
+		conveyorobjdata -$AE, $CE
+		conveyorobjdata -$AE, -$74
+		conveyorend
 
-word_12668:
-		dc.w (.end-.start)							; header
-		dc.w $1300+setLZPlatformPos						; main x-axis position
+LabyrinthConveyor_Group05: conveyorheader $1300+LabyrinthConveyorXpos, $264
 
-.start
-		dc.w $1252+setLZPlatformPos, $20A					; xpos, ypos
-		dc.w $13DE+setLZPlatformPos, $20A
-		dc.w $13DE+setLZPlatformPos, $2BE
-		dc.w $1252+setLZPlatformPos, $2BE
-.end
+		; xpos, ypos
+		conveyorobjdata -$AE, -$5A
+		conveyorobjdata +$DE, -$5A
+		conveyorobjdata +$DE, +$5A
+		conveyorobjdata -$AE, +$5A
+		conveyorend
 
 ; ---------------------------------------------------------------------------
 ; Labyrinth Zone - Platform positions
@@ -91,82 +79,94 @@ word_12668:
 ; =============== S U B R O U T I N E =======================================
 
 LabyrinthConveyor_Platform_Index: offsetTable
-		offsetTableEntry.w ObjPos_LZ1pf1					; 0
-		offsetTableEntry.w ObjPos_LZ1pf2					; 2
-		offsetTableEntry.w ObjPos_LZ2pf1					; 4
-		offsetTableEntry.w ObjPos_LZ2pf2					; 6
-		offsetTableEntry.w ObjPos_LZ3pf1					; 8
-		offsetTableEntry.w ObjPos_LZ3pf2					; A
-		offsetTableEntry.w ObjPos_LZ1pf1					; C
-		offsetTableEntry.w ObjPos_LZ1pf2					; E
+		offsetTableEntry.w LabyrinthConveyor_Platform_LZ101			; 0 (LZ1)
+		offsetTableEntry.w LabyrinthConveyor_Platform_LZ102			; 2 (LZ1)
+		offsetTableEntry.w LabyrinthConveyor_Platform_LZ201			; 4 (LZ2)
+		offsetTableEntry.w LabyrinthConveyor_Platform_LZ202			; 6 (LZ2)
+		offsetTableEntry.w LabyrinthConveyor_Platform_LZ301			; 8 (LZ3)
+		offsetTableEntry.w LabyrinthConveyor_Platform_LZ302			; A (LZ3)
+		offsetTableEntry.w LabyrinthConveyor_Platform_LZ101			; C (LZ1)
+		offsetTableEntry.w LabyrinthConveyor_Platform_LZ102			; E (LZ1)
 
-ObjPos_LZ1pf1:
-		dc.w 8-1								; header
-		dc.w $1078+setLZPlatformPos, $21A, 0					; xpos, ypos, subtype
-		dc.w $10BE+setLZPlatformPos, $291, 2
-		dc.w $10BE+setLZPlatformPos, $307, 2
-		dc.w $10BE+setLZPlatformPos, $37E, 2
-		dc.w $105C+setLZPlatformPos, $390, 4
-		dc.w $1022+setLZPlatformPos, $352, 5
-		dc.w $1022+setLZPlatformPos, $2DB, 5
-		dc.w $1022+setLZPlatformPos, $265, 5
+LabyrinthConveyor_Platform_LZ101: conveyorplatformheader $1070+LabyrinthConveyorXpos, $2F0
 
-ObjPos_LZ1pf2:
-		dc.w 8-1								; header
-		dc.w $127E+setLZPlatformPos, $280, $10					; xpos, ypos, subtype
-		dc.w $12CE+setLZPlatformPos, $305, $12
-		dc.w $12CE+setLZPlatformPos, $38A, $12
-		dc.w $12CE+setLZPlatformPos, $40F, $12
-		dc.w $12A7+setLZPlatformPos, $46E, $13
-		dc.w $1232+setLZPlatformPos, $40F, $14
-		dc.w $1232+setLZPlatformPos, $38A, $14
-		dc.w $1232+setLZPlatformPos, $305, $14
+		; xpos, ypos, subtype
+		conveyorplatformobjdata 8, -$D6, 0
+		conveyorplatformobjdata $4E, -$5F, 2
+		conveyorplatformobjdata $4E, $17, 2
+		conveyorplatformobjdata $4E, $8E, 2
+		conveyorplatformobjdata -$14, $A0, 4
+		conveyorplatformobjdata -$4E, $62, 5
+		conveyorplatformobjdata -$4E, -$15, 5
+		conveyorplatformobjdata -$4E, -$8B, 5
+		conveyorplatformend
 
-ObjPos_LZ2pf1:
-		dc.w 8-1								; header
-		dc.w $D22+setLZPlatformPos, $483, $21					; xpos, ypos, subtype
-		dc.w $D9C+setLZPlatformPos, $482, $20
-		dc.w $DAE+setLZPlatformPos, $4EA, $23
-		dc.w $DAE+setLZPlatformPos, $564, $23
-		dc.w $DAE+setLZPlatformPos, $5DD, $23
-		dc.w $D34+setLZPlatformPos, $5DE, $22
-		dc.w $D22+setLZPlatformPos, $576, $21
-		dc.w $D22+setLZPlatformPos, $4FC, $21
+LabyrinthConveyor_Platform_LZ102: conveyorplatformheader $1280+LabyrinthConveyorXpos, $377
 
-ObjPos_LZ2pf2:
-		dc.w 8-1								; header
-		dc.w $D62+setLZPlatformPos, $3A2, $30					; xpos, ypos, subtype
-		dc.w $DD4+setLZPlatformPos, $3A2, $31
-		dc.w $DEE+setLZPlatformPos, $3FA, $32
-		dc.w $DEE+setLZPlatformPos, $46C, $32
-		dc.w $DEE+setLZPlatformPos, $4DD, $32
-		dc.w $D7C+setLZPlatformPos, $4DE, $33
-		dc.w $D62+setLZPlatformPos, $486, $30
-		dc.w $D62+setLZPlatformPos, $414, $30
+		; xpos, ypos, subtype
+		conveyorplatformobjdata -2, -$F7, $10
+		conveyorplatformobjdata $4E, -$72, $12
+		conveyorplatformobjdata $4E, $13, $12
+		conveyorplatformobjdata $4E, $98, $12
+		conveyorplatformobjdata $27, $F7, $13
+		conveyorplatformobjdata -$4E, $98, $14
+		conveyorplatformobjdata -$4E, $13, $14
+		conveyorplatformobjdata -$4E, -$72, $14
+		conveyorplatformend
 
-ObjPos_LZ3pf1:
-		dc.w 12-1								; header
-		dc.w $CAD+setLZPlatformPos, $242, $41					; xpos, ypos, subtype
-		dc.w $D2D+setLZPlatformPos, $242, $41
-		dc.w $DAC+setLZPlatformPos, $242, $41
-		dc.w $DDE+setLZPlatformPos, $28F, $42
-		dc.w $DDE+setLZPlatformPos, $30E, $42
-		dc.w $DDE+setLZPlatformPos, $38D, $42
-		dc.w $DB0+setLZPlatformPos, $3DE, $43
-		dc.w $D31+setLZPlatformPos, $3DE, $43
-		dc.w $CB2+setLZPlatformPos, $3DE, $43
-		dc.w $C52+setLZPlatformPos, $3BF, $44
-		dc.w $C52+setLZPlatformPos, $340, $44
-		dc.w $C52+setLZPlatformPos, $2C1, $44
+LabyrinthConveyor_Platform_LZ201: conveyorplatformheader $D68+LabyrinthConveyorXpos, $530
 
-ObjPos_LZ3pf2:
-		dc.w 9-1								; header
-		dc.w $1252+setLZPlatformPos, $20A, $50					; xpos, ypos, subtype
-		dc.w $12D2+setLZPlatformPos, $20A, $51
-		dc.w $1352+setLZPlatformPos, $20A, $51
-		dc.w $13D2+setLZPlatformPos, $20A, $51
-		dc.w $13DE+setLZPlatformPos, $27E, $52
-		dc.w $139E+setLZPlatformPos, $2BE, $53
-		dc.w $131E+setLZPlatformPos, $2BE, $53
-		dc.w $129E+setLZPlatformPos, $2BE, $53
-		dc.w $1252+setLZPlatformPos, $28A, $50
+		; xpos, ypos, subtype
+		conveyorplatformobjdata -$46, -$AD, $21
+		conveyorplatformobjdata $34, -$AE, $20
+		conveyorplatformobjdata $46, -$46, $23
+		conveyorplatformobjdata $46, $34, $23
+		conveyorplatformobjdata $46, $AD, $23
+		conveyorplatformobjdata -$34, $AE, $22
+		conveyorplatformobjdata -$46, $46, $21
+		conveyorplatformobjdata -$46, -$34, $21
+		conveyorplatformend
+
+LabyrinthConveyor_Platform_LZ202: conveyorplatformheader $DA0+LabyrinthConveyorXpos, $440
+
+		; xpos, ypos, subtype
+		conveyorplatformobjdata -$3E, -$9E, $30
+		conveyorplatformobjdata $34, -$9E, $31
+		conveyorplatformobjdata $4E, -$46, $32
+		conveyorplatformobjdata $4E, $2C, $32
+		conveyorplatformobjdata $4E, $9D, $32
+		conveyorplatformobjdata -$24, $9E, $33
+		conveyorplatformobjdata -$3E, $46, $30
+		conveyorplatformobjdata -$3E, -$2C, $30
+		conveyorplatformend
+
+LabyrinthConveyor_Platform_LZ301: conveyorplatformheader $D00+LabyrinthConveyorXpos, $310
+
+		; xpos, ypos, subtype
+		conveyorplatformobjdata -$53, -$CE, $41
+		conveyorplatformobjdata $2D, -$CE, $41
+		conveyorplatformobjdata $AC, -$CE, $41
+		conveyorplatformobjdata $DE, -$81, $42
+		conveyorplatformobjdata $DE, -$2, $42
+		conveyorplatformobjdata $DE, $7D, $42
+		conveyorplatformobjdata $B0, $CE, $43
+		conveyorplatformobjdata $31, $CE, $43
+		conveyorplatformobjdata -$4E, $CE, $43
+		conveyorplatformobjdata -$AE, $AF, $44
+		conveyorplatformobjdata -$AE, $30, $44
+		conveyorplatformobjdata -$AE, -$4F, $44
+		conveyorplatformend
+
+LabyrinthConveyor_Platform_LZ302: conveyorplatformheader $1300+LabyrinthConveyorXpos, $264
+
+		; xpos, ypos, subtype
+		conveyorplatformobjdata -$AE, -$5A, $50
+		conveyorplatformobjdata -$2E, -$5A, $51
+		conveyorplatformobjdata $52, -$5A, $51
+		conveyorplatformobjdata $D2, -$5A, $51
+		conveyorplatformobjdata $DE, $1A, $52
+		conveyorplatformobjdata $9E, $5A, $53
+		conveyorplatformobjdata $1E, $5A, $53
+		conveyorplatformobjdata -$62, $5A, $53
+		conveyorplatformobjdata -$AE, $26, $50
+		conveyorplatformend

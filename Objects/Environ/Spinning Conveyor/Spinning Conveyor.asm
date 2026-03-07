@@ -33,7 +33,7 @@ Obj_SpinningConveyor:
 		; create platforms
 		add.w	d0,d0								; multiply by 2
 		andi.w	#$1E,d0
-		lea	ObjPosSBZPlatform_Index(pc),a2
+		lea	SpinningConveyor_Platform_Index(pc),a2
 		adda.w	(a2,d0.w),a2
 
 		; set
@@ -89,7 +89,7 @@ Obj_SpinningConveyor_Platforms:
 		move.b	d0,d1
 		lsr.w	#3,d0
 		andi.w	#$1E,d0
-		lea	SCon_Data(pc),a2
+		lea	SpinningConveyor_Data(pc),a2
 		adda.w	(a2,d0.w),a2
 		move.w	(a2)+,spinningconveyor.index(a0)
 		move.w	(a2)+,spinningconveyor.origX(a0)
