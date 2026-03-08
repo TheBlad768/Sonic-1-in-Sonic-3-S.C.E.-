@@ -1,18 +1,18 @@
 ; ---------------------------------------------------------------------------
-; Object 44 - edge walls (GHZ)
+; Object 44 - edge wall (GHZ)
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_EdgeWalls:
+Obj_EdgeWall:
 
 		; wait
 		jsr	(Obj_WaitOffscreen).w
 
 		; init
-		move.l	#Map_EdgeWalls,mappings(a0)
+		move.l	#Map_EdgeWall,mappings(a0)
 		move.w	#make_art_tile($3A4,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(64/2,16/2,priority_6),height_pixels(a0)	; set height, width and priority
@@ -37,4 +37,4 @@ Obj_EdgeWalls:
 ; ---------------------------------------------------------------------------
 
 		; mappings
-		include "Objects/Environ/Edge Walls/Object Data/Map - Edge Walls.asm"
+		include "Objects/Environ/Edge Wall/Object Data/Map - Edge Wall.asm"

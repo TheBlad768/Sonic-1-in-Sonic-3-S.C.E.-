@@ -14,7 +14,7 @@ Obj_Index:
 		dc.l Obj_Spikes						; $08
 		dc.l Delete_Current_Object				; $09
 		dc.l Delete_Current_Object				; $0A
-		dc.l Obj_Pole						; $0B
+		dc.l Obj_BreakablePole					; $0B
 		dc.l Obj_FlapDoor					; $0C
 		dc.l Obj_EndSign					; $0D
 		dc.l Obj_TwistedRamp					; $0E
@@ -50,7 +50,7 @@ Obj_Index:
 		dc.l Obj_Jaws						; $2C
 		dc.l Obj_Burrobot					; $2D
 		dc.l Delete_Current_Object				; $2E
-		dc.l Obj_LargeGrass					; $2F
+		dc.l Obj_LargeGrassPlatform				; $2F
 		dc.l Obj_GlassBlock					; $30
 		dc.l Obj_ChainedStomper					; $31
 		dc.l Obj_Button						; $32
@@ -71,7 +71,7 @@ Obj_Index:
 		dc.l Delete_Current_Object				; $41
 		dc.l Obj_Newtron					; $42
 		dc.l Obj_Roller						; $43
-		dc.l Obj_EdgeWalls					; $44
+		dc.l Obj_EdgeWall					; $44
 		dc.l Obj_SidewaysStomper				; $45
 		dc.l Obj_MarbleBrick					; $46
 		dc.l Obj_Bumper						; $47
@@ -120,7 +120,7 @@ Obj_Index:
 		dc.l Obj_Teleport					; $72
 		dc.l Obj_Flamethrower					; $73
 		dc.l Obj_Electrocuter					; $74
-		dc.l Obj_Saws						; $75
+		dc.l Obj_Saw						; $75
 		dc.l Delete_Current_Object				; $76
 		dc.l Delete_Current_Object				; $77
 		dc.l Obj_Caterkiller					; $78

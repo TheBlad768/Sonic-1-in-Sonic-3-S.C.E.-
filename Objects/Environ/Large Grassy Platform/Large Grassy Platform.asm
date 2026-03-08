@@ -6,41 +6,41 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-largegrass.origX			ds.w 1						; original x-axis position (2 bytes)
-largegrass.origY			ds.w 1						; original y-axis position (2 bytes)
-largegrass.slope_ptr			ds.l 1						; solid object slope pointer (4 bytes)
-largegrass.yoffset			ds.w 1						; (2 bytes)
-largegrass.angle			ds.b 1						; (1 byte)
-largegrass.flag				ds.b 1						; (1 byte)
+largegrassplatform.origX		ds.w 1						; original x-axis position (2 bytes)
+largegrassplatform.origY		ds.w 1						; original y-axis position (2 bytes)
+largegrassplatform.slope_ptr		ds.l 1						; solid object slope pointer (4 bytes)
+largegrassplatform.yoffset		ds.w 1						; (2 bytes)
+largegrassplatform.angle		ds.b 1						; (1 byte)
+largegrassplatform.flag			ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
-LargeGrass_Data: offsetTable
+LargeGrassPlatform_Data: offsetTable
 
 		; collision angle data, frame number, platform width
-		largegrassobjdata LargeGrass_Data1, 0, 128
-		largegrassobjdata LargeGrass_Data3, 1, 128
-		largegrassobjdata LargeGrass_Data2, 2, 64
+		largegrassobjdata LargeGrassPlatform_Data1, 0, 128
+		largegrassobjdata LargeGrassPlatform_Data3, 1, 128
+		largegrassobjdata LargeGrassPlatform_Data2, 2, 64
 ; ---------------------------------------------------------------------------
 
-Obj_LargeGrass:
+Obj_LargeGrassPlatform:
 
 		; init
-		movem.l	ObjDat_LargeGrass(pc),d0-d3					; copy data to d0-d3
+		movem.l	ObjDat_LargeGrassPlatform(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.w	x_pos(a0),largegrass.origX(a0)
-		move.w	y_pos(a0),largegrass.origY(a0)
+		move.w	x_pos(a0),largegrassplatform.origX(a0)
+		move.w	y_pos(a0),largegrassplatform.origY(a0)
 
 		; set
 		move.b	subtype(a0),d0
 		lsr.w	#2,d0
 		andi.w	#$1C,d0
-		lea	LargeGrass_Data(pc,d0.w),a1
+		lea	LargeGrassPlatform_Data(pc,d0.w),a1
 		move.w	(a1)+,d0
-		lea	LargeGrass_Data(pc,d0.w),a2
-		move.l	a2,largegrass.slope_ptr(a0)					; save ROM address
+		lea	LargeGrassPlatform_Data(pc,d0.w),a2
+		move.l	a2,largegrassplatform.slope_ptr(a0)				; save ROM address
 		move.b	(a1)+,mapping_frame(a0)
 		move.b	(a1),width_pixels(a0)
 		andi.b	#$F,subtype(a0)
@@ -61,13 +61,13 @@ Obj_LargeGrass:
 		moveq	#96/2,d2							; height
 
 .skip
-		movea.l	largegrass.slope_ptr(a0),a2
+		movea.l	largegrassplatform.slope_ptr(a0),a2
 		move.w	x_pos(a0),d4
 		jsr	(SolidObjectFullSloped).w
 
 .draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	largegrass.origX(a0),d0						; get object position
+		and.w	largegrassplatform.origX(a0),d0					; get object position
 		jmp	(Sprite_CheckDelete.skipxpos).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -85,9 +85,9 @@ Obj_LargeGrass:
 		moveq	#standing_mask,d0
 		and.b	status(a0),d0							; is Sonic or Tails standing on the object?
 		bne.s	.loc_24FA6							; if yes, branch
-		tst.b	largegrass.angle(a0)
+		tst.b	largegrassplatform.angle(a0)
 		beq.s	.loc_24FB2
-		subq.b	#4,largegrass.angle(a0)
+		subq.b	#4,largegrassplatform.angle(a0)
 		bra.s	.loc_24FB2
 ; ---------------------------------------------------------------------------
 
@@ -120,31 +120,31 @@ Obj_LargeGrass:
 		add.w	d1,d0
 
 .loc_AFF2
-		move.w	largegrass.origY(a0),d1
+		move.w	largegrassplatform.origY(a0),d1
 		sub.w	d0,d1
 		move.w	d1,y_pos(a0)							; update position on y-axis
 		rts									; type 00 platform doesn't move
 ; ---------------------------------------------------------------------------
 
 .loc_24FA6
-		cmpi.b	#$40,largegrass.angle(a0)
+		cmpi.b	#$40,largegrassplatform.angle(a0)
 		beq.s	.loc_24FB2
-		addq.b	#4,largegrass.angle(a0)
+		addq.b	#4,largegrassplatform.angle(a0)
 
 .loc_24FB2
-		move.b	largegrass.angle(a0),d0
+		move.b	largegrassplatform.angle(a0),d0
 		jsr	(GetSineCosine).w
 		asr.w	#4,d0
-		move.w	d0,largegrass.yoffset(a0)
-		add.w	largegrass.origY(a0),d0
+		move.w	d0,largegrassplatform.yoffset(a0)
+		add.w	largegrassplatform.origY(a0),d0
 		move.w	d0,y_pos(a0)
-		cmpi.b	#32,largegrass.angle(a0)
+		cmpi.b	#32,largegrassplatform.angle(a0)
 		bne.s	.return
 
 		; create once
-		tst.b	largegrass.flag(a0)
+		tst.b	largegrassplatform.flag(a0)
 		bne.s	.return
-		st	largegrass.flag(a0)
+		st	largegrassplatform.flag(a0)
 
 		; create fire
 		jsr	(Create_New_Object_3).w
@@ -154,9 +154,9 @@ Obj_LargeGrass:
 		add.w	x_pos(a0),d0
 		move.w	d0,x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
-		move.w	largegrass.origY(a0),d0
+		move.w	largegrassplatform.origY(a0),d0
 		addq.w	#5,d0
-		move.w	d0,largegrass.origY(a1)
+		move.w	d0,largegrassplatform.origY(a1)
 		move.w	a0,parent3(a1)
 
 .return
@@ -165,14 +165,14 @@ Obj_LargeGrass:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_LargeGrass:	subObjMainData Obj_LargeGrass.action, setBit(render_flags.level), 0, 128, 0, 5, 0, 2, FALSE, Map_LargeGrass
+ObjDat_LargeGrassPlatform:	subObjMainData Obj_LargeGrassPlatform.action, setBit(render_flags.level), 0, 128, 0, 5, 0, 2, FALSE, Map_LargeGrassPlatform
 ; ---------------------------------------------------------------------------
 
 		; data
-		incfile.b	LargeGrass_Data1, "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap1.bin"
-		incfile.b	LargeGrass_Data2, "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap2.bin"
-		incfile.b	LargeGrass_Data3, "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap3.bin"
+		incfile.b	LargeGrassPlatform_Data1, "Objects/Environ/Large Grassy Platform/Object Data/Heightmap1.bin"
+		incfile.b	LargeGrassPlatform_Data2, "Objects/Environ/Large Grassy Platform/Object Data/Heightmap2.bin"
+		incfile.b	LargeGrassPlatform_Data3, "Objects/Environ/Large Grassy Platform/Object Data/Heightmap3.bin"
 ; ---------------------------------------------------------------------------
 
 		; mappings
-		include "Objects/Environ/Large Grassy Platforms/Object Data/Map - Large Grassy Platforms.asm"
+		include "Objects/Environ/Large Grassy Platform/Object Data/Map - Large Grassy Platform.asm"

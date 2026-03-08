@@ -36,23 +36,23 @@ Debug_MZ1: dbglistheader
 	dbglistobj Obj_ChainedStomper, Map_ChainedStomper, $23, $B, $328, 0, FALSE
 	dbglistobj Obj_SidewaysStomper, Map_SidewaysStomper, 0, 0, $328, 0, FALSE
 	dbglistobj Obj_GlassBlock, Map_GlassBlock, 0, 0, $300, 2, TRUE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, 0, 0, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, 1, 0, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, 2, 0, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, 3, 0, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, 4, 0, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, 5, 0, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, $10, 1, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, $11, 1, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, $12, 1, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, $13, 1, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, $14, 1, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, $15, 1, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, $20, 2, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, $21, 2, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, $22, 2, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, $23, 2, 0, 2, FALSE
-	dbglistobj Obj_LargeGrass, Map_LargeGrass, $24, 2, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, 0, 0, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, 1, 0, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, 2, 0, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, 3, 0, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, 4, 0, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, 5, 0, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, $10, 1, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, $11, 1, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, $12, 1, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, $13, 1, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, $14, 1, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, $15, 1, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, $20, 2, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, $21, 2, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, $22, 2, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, $23, 2, 0, 2, FALSE
+	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, $24, 2, 0, 2, FALSE
 	dbglistobj Obj_LavaMaker, Map_LavaBall, 0, 0, $298, 0, FALSE
 	dbglistobj Obj_MarbleBrick, Map_Offscreen, 0, 0, 0, 2, FALSE
 	dbglistobj Obj_StillSprite, Map_StillSprites, 1, 1, 1, 2, FALSE

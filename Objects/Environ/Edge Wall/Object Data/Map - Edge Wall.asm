@@ -1,22 +1,22 @@
 ; ---------------------------------------------------------------------------
-; Sprite mappings - walls (GHZ)
+; Sprite mappings - edge wall (GHZ)
 ; ---------------------------------------------------------------------------
 
-Map_EdgeWalls:
-		dc.w Map_EdgeWalls_6-Map_EdgeWalls
-		dc.w Map_EdgeWalls_20-Map_EdgeWalls
-		dc.w Map_EdgeWalls_3A-Map_EdgeWalls
-Map_EdgeWalls_6:	dc.b 0, 4
+Map_EdgeWall:
+		dc.w Map_EdgeWall_6-Map_EdgeWall
+		dc.w Map_EdgeWall_20-Map_EdgeWall
+		dc.w Map_EdgeWall_3A-Map_EdgeWall
+Map_EdgeWall_6:	dc.b 0, 4
 		dc.b $E0, 5, 0, 4, $FF, $F8
 		dc.b $F0, 5, 0, 8, $FF, $F8
 		dc.b 0, 5, 0, 8, $FF, $F8
 		dc.b $10, 5, 0, 8, $FF, $F8
-Map_EdgeWalls_20:	dc.b 0, 4
+Map_EdgeWall_20:	dc.b 0, 4
 		dc.b $E0, 5, 0, 8, $FF, $F8
 		dc.b $F0, 5, 0, 8, $FF, $F8
 		dc.b 0, 5, 0, 8, $FF, $F8
 		dc.b $10, 5, 0, 8, $FF, $F8
-Map_EdgeWalls_3A:	dc.b 0, 4
+Map_EdgeWall_3A:	dc.b 0, 4
 		dc.b $E0, 5, 0, 0, $FF, $F8
 		dc.b $F0, 5, 0, 0, $FF, $F8
 		dc.b 0, 5, 0, 0, $FF, $F8

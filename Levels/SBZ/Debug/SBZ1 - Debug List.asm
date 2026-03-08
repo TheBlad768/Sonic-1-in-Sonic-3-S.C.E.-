@@ -47,15 +47,15 @@ Debug_SBZ1: dbglistheader
 	dbglistobj Obj_MovingBlock, Map_MovingBlock, $28, 2, $2B2, 1, FALSE
 	dbglistobj Obj_SpinningPlatform, Map_Trapdoor, 3, 0, $3F8, 2, FALSE
 	dbglistobj Obj_SpinningPlatform, Map_SpinningPlatform, $83, 0, $3C8, 0, FALSE
-	dbglistobj Obj_Saws, Map_Saw, 2, 0, $3A4, 2, FALSE
+	dbglistobj Obj_Saw, Map_Saw, 2, 0, $3A4, 2, FALSE
 	dbglistobj Obj_CollapseFloor, Map_CollapseFloor, 0, 0, $2AA, 2, FALSE
 	dbglistobj Obj_MovingBlock, Map_MovingBlock, $39, 3, $380, 2, FALSE
 	dbglistobj Obj_ScrapStomp, Map_Stomp, 0, 0, $2B2, 1, FALSE
 	dbglistobj Obj_AutoDoor, Map_AutoDoor, 0, 0, $470, 2, FALSE
 	dbglistobj Obj_ScrapStomp, Map_Stomp, $13, 1, $2B2, 1, FALSE
-	dbglistobj Obj_Saws, Map_Saw, 1, 0, $3A4, 2, FALSE
+	dbglistobj Obj_Saw, Map_Saw, 1, 0, $3A4, 2, FALSE
 	dbglistobj Obj_ScrapStomp, Map_Stomp, $24, 1, $2B2, 1, FALSE
-	dbglistobj Obj_Saws, Map_Saw, 4, 2, $3A4, 2, FALSE
+	dbglistobj Obj_Saw, Map_Saw, 4, 2, $3A4, 2, FALSE
 	dbglistobj Obj_ScrapStomp, Map_Stomp, $34, 1, $2B2, 1, FALSE
 	dbglistobj Obj_VanishPlatform, Map_VanishPlatform, 0, 0, $364, 2, FALSE
 	dbglistobj Obj_Flamethrower, Map_Flamethrower, $64, 0, $562, 0, TRUE

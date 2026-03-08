@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ObjDef xmlns="http://www.sonicretro.org" Name="Breakable Pole" Image="img1">
+  <Images>
+    <ImageFromMappings id="img1">
+      <ArtFile filename="../../Objects/Environ/Breakable Pole/KosinskiPM Art/Breakable Pole.kospm" compression="KosinskiPlusM" />
+      <MapFile type="ASM" filename="../../Objects/Environ/Breakable Pole/Object Data/Map - Breakable Pole.asm" frame="0" startpal="2"/>
+    </ImageFromMappings>
+  </Images>
+  <Properties>
+    <BitsProperty name="Delay" displayname="Delay (Seconds)" type="int" startbit="0" length="8" />
+  </Properties>
+  <Display>
+    <DisplayOption>
+      <ImageRef image="img1" />
+    </DisplayOption>
+  </Display>
+</ObjDef>

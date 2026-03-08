@@ -12,7 +12,7 @@ namespace S3KObjectDefinitions.SYZ
 
 		public override void Init(ObjectData data)
 		{
-			img = ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Spiked Ball and Chain/KosinskiPM Art/Small Spikeball.kospm", CompressionType.KosinskiPlusM), "SYZ/Mappings/Map - Spiked Ball and Chain (SYZ).asm", "Map_SpikeBall_SYZ", 0);
+			img = ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Spiked Ball/KosinskiPM Art/Small Spikeball.kospm", CompressionType.KosinskiPlusM), "SYZ/Mappings/Map - Spiked Ball (SYZ).asm", "Map_SpikeBall_SYZ", 0);
 		}
 
 		public override ReadOnlyCollection<byte> Subtypes

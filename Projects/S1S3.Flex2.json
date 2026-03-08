@@ -1362,7 +1362,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Moto Bug/KosinskiPM Art/Enemy Motobug.kospm",
+                        "path": "../Objects/Enemies/Moto Bug/KosinskiPM Art/Enemy Moto Bug.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1407,7 +1407,7 @@
                     "uuid": "a239c304-7fd4-4422-b43f-5ed13c29d58b"
                 },
                 {
-                    "name": "Purple rock",
+                    "name": "Purple Rock",
                     "palettes": [
                         {
                             "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
@@ -1478,12 +1478,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Edge Walls/KosinskiPM Art/GHZ Edge Walls.kospm",
+                        "path": "../Objects/Environ/Edge Wall/KosinskiPM Art/GHZ Edge Wall.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Edge Walls/Object Data/Map - Edge Walls.asm",
+                        "path": "../Objects/Environ/Edge Wall/Object Data/Map - Edge Wall.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -1647,6 +1647,35 @@
                     "uuid": "5059c71d-f96d-476a-8423-8a0756b3511a"
                 },
                 {
+                    "name": "Chained Stomper",
+                    "format": "Sonic 3&K Object.js",
+                    "palettes": [
+                        {
+                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
+                            "length": 1
+                        },
+                        {
+                            "path": "../Levels/MZ/Palettes/Marble Zone.pal",
+                            "length": 3
+                        }
+                    ],
+                    "art": {
+                        "path": "../Objects/Environ/Chained Stomper/KosinskiPM Art/Metal Blocks.kospm",
+                        "compression": "KosinskiPlus-M",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "../Objects/Environ/Chained Stomper/Object Data/Map - Chained Stomper.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "25cc3bc1-0991-46c3-ab75-045c03b24981"
+                },
+                {
                     "name": "Collapsing Floor",
                     "palettes": [
                         {
@@ -1660,7 +1689,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Moving Blocks/KosinskiPM Art/Green Pushable Block.kospm",
+                        "path": "../Objects/Environ/Pushable Block/KosinskiPM Art/Pushable Block.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1676,7 +1705,7 @@
                     "uuid": "8ba25059-c71d-496d-a76a-04238a0756b3"
                 },
                 {
-                    "name": "Fireball Spawner",
+                    "name": "Lava Ball Spawner",
                     "format": "Sonic 3&K Object.js",
                     "palettes": [
                         {
@@ -1689,12 +1718,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Lava Ball/KosinskiPM Art/Fireballs.kospm",
+                        "path": "../Objects/Environ/Lava Ball/KosinskiPM Art/Lava Ball.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Lava Ball/Object Data/Map - Fireballs.asm",
+                        "path": "../Objects/Environ/Lava Ball/Object Data/Map - Lava Ball.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -1705,7 +1734,7 @@
                     "uuid": "6bdae612-ef85-4e41-a2ca-5284d18ba250"
                 },
                 {
-                    "name": "Grass Platform",
+                    "name": "Large Grassy Platform",
                     "format": "Sonic 3&K Object.js",
                     "palettes": [
                         {
@@ -1723,7 +1752,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Large Grassy Platforms/Object Data/Map - Large Grassy Platforms.asm",
+                        "path": "../Objects/Environ/Large Grassy Platform/Object Data/Map - Large Grassy Platform.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -1776,12 +1805,12 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Moving Blocks/KosinskiPM Art/Green Pushable Block.kospm",
+                        "path": "../Objects/Environ/Pushable Block/KosinskiPM Art/Pushable Block.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Moving Blocks/Object Data/Map - Moving Blocks (MZ and SBZ).asm",
+                        "path": "../Objects/Environ/Moving Block/Object Data/Map - Moving Block (MZ and SBZ).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -1805,12 +1834,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Moving Blocks/KosinskiPM Art/Green Pushable Block.kospm",
+                        "path": "../Objects/Environ/Pushable Block/KosinskiPM Art/Pushable Block.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Moving Blocks/Object Data/Map - Moving Blocks (MZ and SBZ).asm",
+                        "path": "../Objects/Environ/Moving Block/Object Data/Map - Moving Block (MZ and SBZ).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -1834,12 +1863,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Chained Stompers/KosinskiPM Art/Metal Blocks.kospm",
+                        "path": "../Objects/Environ/Chained Stomper/KosinskiPM Art/Metal Blocks.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Chained Stompers/Object Data/Map - Sideways Stomp.asm",
+                        "path": "../Objects/Environ/Chained Stomper/Object Data/Map - Sideways Stomper.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -1863,7 +1892,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Moving Blocks/KosinskiPM Art/Green Pushable Block.kospm",
+                        "path": "../Objects/Environ/Pushable Block/KosinskiPM Art/Pushable Block.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2138,7 +2167,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Floating Platform/Object Data/Map - Floating Platform(SYZ).asm",
+                        "path": "../Objects/Environ/Floating Platform/Object Data/Map - Floating Platform (SYZ).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -2220,12 +2249,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Spiked Ball and Chain/KosinskiPM Art/Spiked Ball and Chain.kospm",
+                        "path": "../Objects/Environ/Spiked Ball/KosinskiPM Art/Small Spikeball.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Spiked Ball and Chain/Object Data/Map - Spiked Ball and Chain (SYZ).asm",
+                        "path": "../Objects/Environ/Spiked Ball/Object Data/Map - Spiked Ball (SYZ).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -2291,7 +2320,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Labyrinth Blocks/Object Data/Map - Labyrinth Blocks.asm",
+                        "path": "../Objects/Environ/Labyrinth Block/Object Data/Map - Labyrinth Block.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -2300,6 +2329,35 @@
                         "label": ""
                     },
                     "uuid": "5f0d2c6b-dae6-42ef-85be-41a2ca5284d1"
+                },
+                {
+                    "name": "Breakable Pole",
+                    "format": "Sonic 3&K Object.js",
+                    "palettes": [
+                        {
+                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
+                            "length": 1
+                        },
+                        {
+                            "path": "../Levels/LZ/Palettes/Scrap Brain Zone Act 3.pal",
+                            "length": 3
+                        }
+                    ],
+                    "art": {
+                        "path": "../Objects/Environ/Breakable Pole/KosinskiPM Art/Breakable Pole.kospm",
+                        "compression": "KosinskiPlus-M",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "../Objects/Environ/Breakable Pole/Object Data/Map - Breakable Pole.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "047fd4d4-22f4-4f5e-913c-29d58b5f0d2c"
                 },
                 {
                     "name": "Bubbles",
@@ -2610,7 +2668,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Moving Blocks/Object Data/Map - Moving Blocks (LZ).asm",
+                        "path": "../Objects/Environ/Moving Block/Object Data/Map - Moving Block (LZ).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -2650,25 +2708,25 @@
                     "uuid": "3c29d58b-5f0d-4c6b-9ae6-12ef85be41a2"
                 },
                 {
-                    "name": "Pole",
-                    "format": "Sonic 3&K Object.js",
+                    "format": "Sonic 3&K Object Static.js",
+                    "name": "Orbinaut Orb",
                     "palettes": [
                         {
                             "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
                             "length": 1
                         },
                         {
-                            "path": "../Levels/LZ/Palettes/Scrap Brain Zone Act 3.pal",
+                            "path": "../Levels/SLZ/Palettes/Star Light Zone.pal",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Pole that Breaks/KosinskiPM Art/Breakable Pole.kospm",
+                        "path": "../Objects/Enemies/Orbinaut/KosinskiPM Art/Enemy Orbinaut.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Pole that Breaks/Object Data/Map - Pole that Breaks.asm",
+                        "path": "../Objects/Enemies/Orbinaut/Object Data/Map - Orbinaut Orb.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -2676,7 +2734,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "047fd4d4-22f4-4f5e-913c-29d58b5f0d2c"
+                    "uuid": "cc3bc109-9146-432b-b504-5c03b24981e4"
                 },
                 {
                     "name": "Spikeball on Chain",
@@ -2692,12 +2750,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Spiked Ball and Chain/KosinskiPM Art/Spiked Ball and Chain.kospm",
+                        "path": "../Objects/Environ/Spiked Ball/KosinskiPM Art/Spiked Ball and Chain.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Spiked Ball and Chain/Object Data/Map - Spiked Ball and Chain (LZ).asm",
+                        "path": "../Objects/Environ/Spiked Ball/Object Data/Map - Spiked Ball (LZ).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -2721,12 +2779,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Labyrinth Waterfalls/KosinskiPM Art/Water and Splashes.kospm",
+                        "path": "../Objects/Environ/Labyrinth Waterfall/KosinskiPM Art/Water and Splash.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Labyrinth Waterfalls/Object Data/Map - Waterfalls.asm",
+                        "path": "../Objects/Environ/Labyrinth Waterfall/Object Data/Map - Labyrinth Waterfall.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -2850,7 +2908,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Elevators/Object Data/Map - Elevators.asm",
+                        "path": "../Objects/Environ/Elevator/Object Data/Map - Elevator.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -2903,12 +2961,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Lava Ball/KosinskiPM Art/Fireballs.kospm",
+                        "path": "../Objects/Environ/Lava Ball/KosinskiPM Art/Lava Ball.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Lava Ball/Object Data/Map - Fireballs.asm",
+                        "path": "../Objects/Environ/Lava Ball/Object Data/Map - Lava Ball.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -2948,7 +3006,7 @@
                     "uuid": "1c539e89-6a36-4cd1-b768-6c6337c46aa9"
                 },
                 {
-                    "name": "Platform",
+                    "name": "Floating Platform",
                     "format": "Sonic 3&K Object.js",
                     "palettes": [
                         {
@@ -2966,7 +3024,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Floating Platform/Object Data/Map - Floating Platform(SLZ).asm",
+                        "path": "../Objects/Environ/Floating Platform/Object Data/Map - Floating Platform (SLZ).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -3406,7 +3464,7 @@
                     "art": {
                         "path": "../Objects/Environ/Stomper and Door/KosinskiPM Art/SBZ Sliding Floor Trap.kospm",
                         "compression": "KosinskiPlus-M",
-                        "offset": "0"
+                        "offset": 0
                     },
                     "mappings": {
                         "path": "../Objects/Environ/Stomper and Door/Object Data/Map - Stomper and Door.asm",
@@ -3578,7 +3636,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Vanishing Platforms/KosinskiPM Art/Vanishing Platforms.kospm",
+                        "path": "../Objects/Environ/Vanishing Platform/KosinskiPM Art/Vanishing Platform.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3607,7 +3665,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Vanishing Platforms/KosinskiPM Art/Vanishing Platforms.kospm",
+                        "path": "../Objects/Environ/Vanishing Platform/KosinskiPM Art/Vanishing Platform.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3665,12 +3723,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Spinning Platforms/KosinskiPM Art/Spinning Platform.kospm",
+                        "path": "../Objects/Environ/Spinning Platform/KosinskiPM Art/Spinning Platform.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Spinning Platforms/Object Data/Map - Spinning Platforms.asm",
+                        "path": "../Objects/Environ/Spinning Platform/Object Data/Map - Spinning Platform.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -3723,12 +3781,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Spinning Platforms/KosinskiPM Art/Trapdoor.kospm",
+                        "path": "../Objects/Environ/Spinning Platform/KosinskiPM Art/Trapdoor.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Spinning Platforms/Object Data/Map - Trapdoor.asm",
+                        "path": "../Objects/Environ/Spinning Platform/Object Data/Map - Trapdoor.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -3752,12 +3810,12 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Vanishing Platforms/KosinskiPM Art/Vanishing Platforms.kospm",
+                        "path": "../Objects/Environ/Vanishing Platform/KosinskiPM Art/Vanishing Platform.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Vanishing Platforms/Object Data/Map - Vanishing Platforms.asm",
+                        "path": "../Objects/Environ/Vanishing Platform/Object Data/Map - Vanishing Platform.asm",
                         "label": ""
                     },
                     "dplcs": {

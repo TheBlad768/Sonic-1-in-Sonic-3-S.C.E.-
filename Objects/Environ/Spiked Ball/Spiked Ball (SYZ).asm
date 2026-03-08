@@ -106,4 +106,4 @@ ObjDat_SpikeBall_SYZ:	subObjMainData \
 ; ---------------------------------------------------------------------------
 
 		; mappings
-		include "Objects/Environ/Spiked Ball and Chain/Object Data/Map - Spiked Ball and Chain (SYZ).asm"
+		include "Objects/Environ/Spiked Ball/Object Data/Map - Spiked Ball (SYZ).asm"
