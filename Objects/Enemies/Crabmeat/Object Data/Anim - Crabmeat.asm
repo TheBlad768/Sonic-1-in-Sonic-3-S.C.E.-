@@ -2,7 +2,7 @@
 ; Animation script - Crabmeat enemy
 ; ---------------------------------------------------------------------------
 
-Ani_Crab: offsetTable
+Ani_Crabmeat: offsetTable
 		offsetTableEntry.w .stand		; 0
 		offsetTableEntry.w .standslope		; 1
 		offsetTableEntry.w .standsloperev	; 2

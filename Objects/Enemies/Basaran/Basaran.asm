@@ -28,7 +28,7 @@ Obj_Basaran:
 		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
-		lea	Ani_Bas(pc),a1
+		lea	Ani_Basaran(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
 
@@ -130,7 +130,7 @@ Obj_Basaran:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Basaran:		subObjData Map_Bas, $529, 0, TRUE, 24, 32, 2, 0, $B|collision_flags.npc.touch
+ObjDat_Basaran:		subObjData Map_Basaran, $529, 0, TRUE, 24, 32, 2, 0, $B|collision_flags.npc.touch
 ; ---------------------------------------------------------------------------
 
 		; mappings

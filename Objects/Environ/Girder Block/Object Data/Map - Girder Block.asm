@@ -2,9 +2,9 @@
 ; Sprite mappings - large girder block (SBZ)
 ; ---------------------------------------------------------------------------
 
-Map_Gird:
-		dc.w Map_Gird_2-Map_Gird
-Map_Gird_2:
+Map_Girder:
+		dc.w Map_Girder_2-Map_Girder
+Map_Girder_2:
 		dc.b 0, $C
 		dc.b $E8, $E, 0, 0, $FF, $A0
 		dc.b 0, $E, $10, 0, $FF, $A0

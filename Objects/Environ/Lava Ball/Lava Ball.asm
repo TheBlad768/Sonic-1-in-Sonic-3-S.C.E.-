@@ -14,7 +14,7 @@ lavamaker.delay				ds.w 1						; time delay (2 bytes)
 ; =============== S U B R O U T I N E =======================================
 
 		; lava ball production rates
-LavaM_Rates:	dc.b 30, 60, 90, 120, 150, 180
+LavaMaker_Rates:	dc.b 30, 60, 90, 120, 150, 180
 ; ---------------------------------------------------------------------------
 
 Obj_LavaMaker:
@@ -26,7 +26,7 @@ Obj_LavaMaker:
 		move.b	subtype(a0),d0
 		lsr.w	#4,d0
 		andi.w	#$F,d0
-		move.b	LavaM_Rates(pc,d0.w),d0
+		move.b	LavaMaker_Rates(pc,d0.w),d0
 		move.b	d0,lavamaker.timer(a0)						; set time delay for lava balls
 		move.b	d0,lavamaker.delay(a0)
 		andi.b	#$F,subtype(a0)
@@ -70,7 +70,7 @@ lavaball.boss_flag			ds.b 1						; (1 byte)
 
 ; =============== S U B R O U T I N E =======================================
 
-LBall_Speeds:
+LavaBall_Speeds:
 		dc.w -$400, -$500, -$600, -$700, -$200
 		dc.w $200, -$200, $200, 0
 ; ---------------------------------------------------------------------------
@@ -102,7 +102,7 @@ Obj_LavaBall:
 		moveq	#0,d0
 		move.b	subtype(a0),d0
 		add.w	d0,d0
-		move.w	LBall_Speeds(pc,d0.w),y_vel(a0)					; load object speed (vertical)
+		move.w	LavaBall_Speeds(pc,d0.w),y_vel(a0)				; load object speed (vertical)
 		move.w	#bytes_to_word(16/2,32/2),y_radius(a0)				; set y_radius and x_radius
 
 		; check
@@ -120,12 +120,12 @@ Obj_LavaBall:
 		moveq	#0,d0
 		move.b	subtype(a0),d0
 		add.w	d0,d0
-		move.w	LBall_TypeIndex(pc,d0.w),d0
-		jsr	LBall_TypeIndex(pc,d0.w)
+		move.w	LavaBall_TypeIndex(pc,d0.w),d0
+		jsr	LavaBall_TypeIndex(pc,d0.w)
 
 		; draw
 		MoveSprite2
-		lea	Ani_Fire(pc),a1
+		lea	Ani_LavaBall(pc),a1
 		jsr	(Animate_Sprite).w
 		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	.delete
@@ -136,38 +136,38 @@ Obj_LavaBall:
 		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
-LBall_TypeIndex: offsetTable
-		offsetTableEntry.w LBall_Type00						; 0
-		offsetTableEntry.w LBall_Type00						; 1
-		offsetTableEntry.w LBall_Type00						; 2
-		offsetTableEntry.w LBall_Type00						; 3
-		offsetTableEntry.w LBall_Type04						; 4
-		offsetTableEntry.w LBall_Type05						; 5
-		offsetTableEntry.w LBall_Type06						; 6
-		offsetTableEntry.w LBall_Type07						; 7
-		offsetTableEntry.w LBall_Type08						; 8
+LavaBall_TypeIndex: offsetTable
+		offsetTableEntry.w LavaBall_Type00					; 0
+		offsetTableEntry.w LavaBall_Type00					; 1
+		offsetTableEntry.w LavaBall_Type00					; 2
+		offsetTableEntry.w LavaBall_Type00					; 3
+		offsetTableEntry.w LavaBall_Type04					; 4
+		offsetTableEntry.w LavaBall_Type05					; 5
+		offsetTableEntry.w LavaBall_Type06					; 6
+		offsetTableEntry.w LavaBall_Type07					; 7
+		offsetTableEntry.w LavaBall_Type08					; 8
 ; ---------------------------------------------------------------------------
 ; lavaball types 00-03 fly up and fall back down
 
-LBall_Type00:
+LavaBall_Type00:
 		addi.w	#$18,y_vel(a0)							; increase object's downward speed
 		move.w	lavaball.origY(a0),d0
 		cmp.w	y_pos(a0),d0							; has object fallen back to its original position?
 		bhs.s	.loc_E41E							; if not, branch
-		move.l	#Delete_Current_Object,address(a0)				; goto "LBall_Delete" routine
+		move.l	#Delete_Current_Object,address(a0)				; goto "LavaBall_Delete" routine
 
 .loc_E41E
 		bclr	#status.npc.y_flip,status(a0)
 		tst.w	y_vel(a0)
-		bpl.s	LBall_Type08
+		bpl.s	LavaBall_Type08
 		bset	#status.npc.y_flip,status(a0)
 
-LBall_Type08:
+LavaBall_Type08:
 		rts
 ; ---------------------------------------------------------------------------
 ; lavaball type 04 flies up until it hits the ceiling
 
-LBall_Type04:
+LavaBall_Type04:
 		bset	#status.npc.y_flip,status(a0)
 		jsr	(ObjCheckCeilingDist).w
 		tst.w	d1
@@ -181,7 +181,7 @@ LBall_Type04:
 ; ---------------------------------------------------------------------------
 ; lavaball type 05 falls down until it hits the floor
 
-LBall_Type05:
+LavaBall_Type05:
 		bclr	#status.npc.y_flip,status(a0)
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1
@@ -195,7 +195,7 @@ LBall_Type05:
 ; ---------------------------------------------------------------------------
 ; lavaball types 06-07 move sideways
 
-LBall_Type06:
+LavaBall_Type06:
 		bset	#status.npc.x_flip,status(a0)
 
 		move.b	x_radius(a0),d3
@@ -212,7 +212,7 @@ LBall_Type06:
 		rts
 ; ---------------------------------------------------------------------------
 
-LBall_Type07:
+LavaBall_Type07:
 		bclr	#status.npc.x_flip,status(a0)
 
 		move.b	x_radius(a0),d3
@@ -231,9 +231,9 @@ LBall_Type07:
 
 ; init
 ObjDat_LavaMaker:	subObjMainData Obj_LavaMaker.makelava, setBit(render_flags.level), 0, 64, 64, 0, 0, 0, FALSE, Map_Offscreen
-ObjDat_LavaBall:	subObjMainData Obj_LavaBall.action, setBit(render_flags.level), 0, 16, 16, 3, $298, 0, FALSE, Map_Fire
+ObjDat_LavaBall:	subObjMainData Obj_LavaBall.action, setBit(render_flags.level), 0, 16, 16, 3, $298, 0, FALSE, Map_LavaBall
 ; ---------------------------------------------------------------------------
 
 		; mappings
-		include "Objects/Environ/Lava Ball/Object Data/Anim - Fireballs.asm"
-		include "Objects/Environ/Lava Ball/Object Data/Map - Fireballs.asm"
+		include "Objects/Environ/Lava Ball/Object Data/Anim - Lava Ball.asm"
+		include "Objects/Environ/Lava Ball/Object Data/Map - Lava Ball.asm"

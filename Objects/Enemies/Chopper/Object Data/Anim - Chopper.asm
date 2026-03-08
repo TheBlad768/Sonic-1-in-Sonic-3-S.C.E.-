@@ -2,7 +2,7 @@
 ; Animation script - Chopper enemy
 ; ---------------------------------------------------------------------------
 
-Ani_Chop: offsetTable
+Ani_Chopper: offsetTable
 		offsetTableEntry.w .slow	; 0
 		offsetTableEntry.w .fast	; 1
 		offsetTableEntry.w .still	; 2

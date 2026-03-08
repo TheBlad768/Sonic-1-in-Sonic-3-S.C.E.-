@@ -2,7 +2,7 @@
 ; Animation script - Yadrin enemy
 ; ---------------------------------------------------------------------------
 
-Ani_Yad: offsetTable
+Ani_Yadrin: offsetTable
 		offsetTableEntry.w .stand	; 0
 		offsetTableEntry.w .walk	; 1
 

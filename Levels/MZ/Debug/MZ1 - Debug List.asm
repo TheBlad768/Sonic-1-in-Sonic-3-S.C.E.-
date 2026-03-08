@@ -31,23 +31,40 @@ Debug_MZ1: dbglistheader
 	dbglistobj Obj_Spring, Map_Spring2, $A2, 6, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Spikes, Map_Spikes, 0, 0, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Spikes, Map_Spikes, $10, 1, ArtTile_SpikesSprings, 0, FALSE
-	dbglistobj Obj_BuzzBomber, Map_Buzz, 0, 0, $440, 0, FALSE
-	dbglistobj Obj_ChainStomp, Map_CStom, $13, $A, $328, 0, FALSE
-	dbglistobj Obj_ChainStomp, Map_CStom, $23, $B, $328, 0, FALSE
-	dbglistobj Obj_SideStomp, Map_SStom, 0, 0, $328, 0, FALSE
-	dbglistobj Obj_GlassBlock, Map_Glass, 0, 0, $300, 2, TRUE
-	dbglistobj Obj_LavaMaker, Map_Fire, 0, 0, $298, 0, FALSE
+	dbglistobj Obj_BuzzBomber, Map_BuzzBomber, 0, 0, $440, 0, FALSE
+	dbglistobj Obj_ChainedStomper, Map_ChainedStomper, $13, $A, $328, 0, FALSE
+	dbglistobj Obj_ChainedStomper, Map_ChainedStomper, $23, $B, $328, 0, FALSE
+	dbglistobj Obj_SidewaysStomper, Map_SidewaysStomper, 0, 0, $328, 0, FALSE
+	dbglistobj Obj_GlassBlock, Map_GlassBlock, 0, 0, $300, 2, TRUE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, 0, 0, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, 1, 0, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, 2, 0, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, 3, 0, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, 4, 0, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, 5, 0, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, $10, 1, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, $11, 1, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, $12, 1, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, $13, 1, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, $14, 1, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, $15, 1, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, $20, 2, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, $21, 2, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, $22, 2, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, $23, 2, 0, 2, FALSE
+	dbglistobj Obj_LargeGrass, Map_LargeGrass, $24, 2, 0, 2, FALSE
+	dbglistobj Obj_LavaMaker, Map_LavaBall, 0, 0, $298, 0, FALSE
 	dbglistobj Obj_MarbleBrick, Map_Offscreen, 0, 0, 0, 2, FALSE
 	dbglistobj Obj_StillSprite, Map_StillSprites, 1, 1, 1, 2, FALSE
 	dbglistobj Obj_GeyserMaker, Map_Geyser, 0, 0, $36D, 3, FALSE
-	dbglistobj Obj_LavaWall, Map_LWall, 0, 0, $36D, 3, FALSE
-	dbglistobj Obj_PushableBlock, Map_Push, 0, 0, $562, 2, FALSE
-	dbglistobj Obj_SmashBlock, Map_Smab, 0, 0, $562, 2, FALSE
-	dbglistobj Obj_MovingBlock, Map_MBlock, 0, 0, $562, 2, FALSE
-	dbglistobj Obj_CollapseFloor, Map_CFlo, 0, 0, $562, 2, FALSE
+	dbglistobj Obj_LavaWall, Map_LavaWall, 0, 0, $36D, 3, FALSE
+	dbglistobj Obj_PushableBlock, Map_PushableBlock, 0, 0, $562, 2, FALSE
+	dbglistobj Obj_SmashBlock, Map_SmashBlock, 0, 0, $562, 2, FALSE
+	dbglistobj Obj_MovingBlock, Map_MovingBlock, 0, 0, $562, 2, FALSE
+	dbglistobj Obj_CollapseFloor, Map_CollapseFloor, 0, 0, $562, 2, FALSE
 	dbglistobj Obj_Invisible_LavaBlock, Map_InvisibleBlock, 0, 0, ArtTile_Monitors, 0, TRUE
-	dbglistobj Obj_Basaran, Map_Bas, 0, 0, $529, 0, TRUE
-	dbglistobj Obj_Caterkiller, Map_Cat, 0, 0, $552, 1, FALSE
+	dbglistobj Obj_Basaran, Map_Basaran, 0, 0, $529, 0, TRUE
+	dbglistobj Obj_Caterkiller, Map_Caterkiller, 0, 0, $552, 1, FALSE
 	dbglistobj Obj_Animal, Map_Animals4, 0, 2, $592, 0, FALSE
 	dbglistobj Obj_Button, Map_Button, 0, 0, $47C, 2, FALSE
 	dbglistobj Obj_StarPost, Map_StarPost, 1, 0, ArtTile_StarPost, 0, FALSE

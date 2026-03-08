@@ -55,8 +55,10 @@ Obj_Flamethrower:
 		sfx	sfx_Flamethrower						; play flame sound
 
 .animate
-		lea	Ani_Flame(pc),a1
+		lea	Ani_Flamethrower(pc),a1
 		jsr	(Animate_Sprite).w
+
+		; check
 		move.b	flamethrower.frame(a0),d0
 		cmp.b	mapping_frame(a0),d0
 		beq.s	.col
@@ -71,7 +73,7 @@ Obj_Flamethrower:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Flamethrower:		subObjData Map_Flame, $562, 0, TRUE, 40, 24, 1, 0, $23|collision_flags.npc.hurt
+ObjDat_Flamethrower:		subObjData Map_Flamethrower, $562, 0, TRUE, 40, 24, 1, 0, $23|collision_flags.npc.hurt
 ; ---------------------------------------------------------------------------
 
 		; mappings

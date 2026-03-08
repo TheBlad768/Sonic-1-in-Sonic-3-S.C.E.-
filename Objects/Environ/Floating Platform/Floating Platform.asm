@@ -20,16 +20,16 @@ floatingplatform.bend			ds.b 1						; (1 byte)
 Obj_FloatingPlatform:
 
 		; init
-		move.l	#Map_Plat_GHZ,d0
+		move.l	#Map_FloatingPlatform_GHZ,d0
 		move.w	#make_art_tile(0,2,FALSE),art_tile(a0)
 		cmpi.b	#LevelID_SYZ,(Current_zone).w					; check if level is SYZ
 		bne.s	.notSYZ								; if not, branch
-		move.l	#Map_Plat_SYZ,d0
+		move.l	#Map_FloatingPlatform_SYZ,d0
 
 .notSYZ
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; check if level is SLZ
 		bne.s	.notSLZ								; if not, branch
-		move.l	#Map_Plat_SLZ,d0
+		move.l	#Map_FloatingPlatform_SLZ,d0
 		move.b	#3,subtype(a0)
 
 .notSLZ

@@ -16,7 +16,7 @@ floatingblock.height			ds.w 1						; (2 bytes)
 
 ; =============== S U B R O U T I N E =======================================
 
-FBlock_Var:				; height/2, width/2
+FloatingBlock_Var:			; height/2, width/2
 		dc.b 32/2, 32/2		; subtype 0x/8x
 		dc.b 64/2, 64/2		; subtype 1x/9x
 		dc.b 64/2, 32/2		; subtype 2x/Ax
@@ -44,7 +44,7 @@ Obj_FloatingBlock:
 		move.b	subtype(a0),d0							; get subtype
 		lsr.w	#3,d0
 		andi.w	#$E,d0								; read only the 1st digit
-		lea	FBlock_Var(pc,d0.w),a2						; get size data
+		lea	FloatingBlock_Var(pc,d0.w),a2					; get size data
 		move.w	(a2),height_pixels(a0)						; set height and width
 		lsr.b	d0								; division by 2
 		move.b	d0,mapping_frame(a0)
@@ -529,7 +529,7 @@ BlocksDoors_TypeIndex: offsetTable
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_FloatingBlock:		subObjMainData Obj_FloatingBlock.action, setBit(render_flags.level), 0, 0, 0, 3, 0, 2, FALSE, Map_FBlock
+ObjDat_FloatingBlock:		subObjMainData Obj_FloatingBlock.action, setBit(render_flags.level), 0, 0, 0, 3, 0, 2, FALSE, Map_FloatingBlock
 ; ---------------------------------------------------------------------------
 
 		; mappings

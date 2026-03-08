@@ -33,7 +33,7 @@ Obj_MotoBug:
 
 .action
 		jsr	(Obj_Wait).w
-		lea	Ani_Moto(pc),a1
+		lea	Ani_MotoBug(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
 ; ---------------------------------------------------------------------------
@@ -104,7 +104,7 @@ Obj_MotoBug_Smoke:
 		move.l	#.check,address(a0)
 
 .check
-		lea	Ani_Moto(pc),a1
+		lea	Ani_MotoBug(pc),a1
 		jsr	(Animate_Sprite).w
 		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	.delete
@@ -117,7 +117,7 @@ Obj_MotoBug_Smoke:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_MotoBug:			subObjData Map_Moto, $561, 0, FALSE, 40, 40, 4, 0, $C|collision_flags.npc.touch
+ObjDat_MotoBug:			subObjData Map_MotoBug, $561, 0, FALSE, 40, 40, 4, 0, $C|collision_flags.npc.touch
 ObjDat3_MotoBug_Smoke:		subObjData FALSE, FALSE, 0, FALSE, 8, 8, 4, 0, 0
 
 Child6_MotoBug_Smoke:

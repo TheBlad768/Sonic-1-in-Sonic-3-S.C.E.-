@@ -17,12 +17,12 @@ largegrass.flag				ds.b 1						; (1 byte)
 
 ; =============== S U B R O U T I N E =======================================
 
-LGrass_Data: offsetTable
+LargeGrass_Data: offsetTable
 
 		; collision angle data, frame number, platform width
-		largegrassobjdata LGrass_Data1, 0, 128
-		largegrassobjdata LGrass_Data3, 1, 128
-		largegrassobjdata LGrass_Data2, 2, 64
+		largegrassobjdata LargeGrass_Data1, 0, 128
+		largegrassobjdata LargeGrass_Data3, 1, 128
+		largegrassobjdata LargeGrass_Data2, 2, 64
 ; ---------------------------------------------------------------------------
 
 Obj_LargeGrass:
@@ -37,9 +37,9 @@ Obj_LargeGrass:
 		move.b	subtype(a0),d0
 		lsr.w	#2,d0
 		andi.w	#$1C,d0
-		lea	LGrass_Data(pc,d0.w),a1
+		lea	LargeGrass_Data(pc,d0.w),a1
 		move.w	(a1)+,d0
-		lea	LGrass_Data(pc,d0.w),a2
+		lea	LargeGrass_Data(pc,d0.w),a2
 		move.l	a2,largegrass.slope_ptr(a0)					; save ROM address
 		move.b	(a1)+,mapping_frame(a0)
 		move.b	(a1),width_pixels(a0)
@@ -165,13 +165,13 @@ Obj_LargeGrass:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_LargeGrass:	subObjMainData Obj_LargeGrass.action, setBit(render_flags.level), 0, 128, 0, 5, 0, 2, FALSE, Map_LGrass
+ObjDat_LargeGrass:	subObjMainData Obj_LargeGrass.action, setBit(render_flags.level), 0, 128, 0, 5, 0, 2, FALSE, Map_LargeGrass
 ; ---------------------------------------------------------------------------
 
 		; data
-		incfile.b	LGrass_Data1, "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap1.bin"
-		incfile.b	LGrass_Data2, "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap2.bin"
-		incfile.b	LGrass_Data3, "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap3.bin"
+		incfile.b	LargeGrass_Data1, "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap1.bin"
+		incfile.b	LargeGrass_Data2, "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap2.bin"
+		incfile.b	LargeGrass_Data3, "Objects/Environ/Large Grassy Platforms/Object Data/Heightmap3.bin"
 ; ---------------------------------------------------------------------------
 
 		; mappings

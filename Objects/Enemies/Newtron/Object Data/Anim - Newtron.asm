@@ -2,7 +2,7 @@
 ; Animation script - Newtron enemy
 ; ---------------------------------------------------------------------------
 
-Ani_Newt: offsetTable
+Ani_Newtron: offsetTable
 		offsetTableEntry.w .blank	; 0
 		offsetTableEntry.w .drop	; 1
 		offsetTableEntry.w .fly1	; 2

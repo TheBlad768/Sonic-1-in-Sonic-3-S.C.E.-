@@ -23,7 +23,7 @@ Obj_Burrobot:
 		jsr	(SetUp_ObjAttributes).w
 		move.w	#bytes_to_word(38/2,16/2),y_radius(a0)				; set y_radius and x_radius
 		move.b	#2,anim(a0)
-		move.l	#.Burro_ChkSonic,jump_ptr(a0)
+		move.l	#.Burrobot_ChkSonic,jump_ptr(a0)
 		move.l	#.action,address(a0)
 
 .action
@@ -37,7 +37,7 @@ Obj_Burrobot:
 		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
-		lea	Ani_Burro(pc),a1
+		lea	Ani_Burrobot(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
 
@@ -46,7 +46,7 @@ Obj_Burrobot:
 .changedir
 		subq.w	#1,burrobot.timer(a0)
 		bpl.s	.nochg
-		move.l	#.Burro_Move,jump_ptr(a0)
+		move.l	#.Burrobot_Move,jump_ptr(a0)
 		move.w	#256-1,burrobot.timer(a0)
 		move.w	#$80,x_vel(a0)
 		move.b	#1,anim(a0)
@@ -58,7 +58,7 @@ Obj_Burrobot:
 		rts
 ; ---------------------------------------------------------------------------
 
-.Burro_Move
+.Burrobot_Move
 		subq.w	#1,burrobot.timer(a0)
 		bmi.s	.loc_AD84
 		MoveSpriteXOnly
@@ -95,13 +95,13 @@ Obj_Burrobot:
 ; ---------------------------------------------------------------------------
 
 .loc_ADA4
-		move.l	#.Burro_Jump,jump_ptr(a0)
+		move.l	#.Burrobot_Jump,jump_ptr(a0)
 		move.w	#-$400,y_vel(a0)
 		move.b	#2,anim(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
-.Burro_Jump
+.Burrobot_Jump
 		MoveSprite , $18							; make obj fall
 
 		; check jump
@@ -115,7 +115,7 @@ Obj_Burrobot:
 		clr.w	y_vel(a0)
 		move.b	#1,anim(a0)
 		move.w	#256-1,burrobot.timer(a0)
-		move.l	#.Burro_Move,jump_ptr(a0)
+		move.l	#.Burrobot_Move,jump_ptr(a0)
 		jsr	(Find_SonicTails).w
 		jsr	(Change_FlipX).w
 		move.b	render_flags(a0),status(a0)
@@ -124,7 +124,7 @@ Obj_Burrobot:
 		rts
 ; ---------------------------------------------------------------------------
 
-.Burro_ChkSonic
+.Burrobot_ChkSonic
 		jsr	(Find_SonicTails).w
 		jsr	(Change_FlipX).w
 		move.b	render_flags(a0),status(a0)
@@ -138,7 +138,7 @@ Obj_Burrobot:
 		; check debug mode
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.s	.return								; if yes, branch
-		move.l	#.Burro_Jump,jump_ptr(a0)
+		move.l	#.Burrobot_Jump,jump_ptr(a0)
 		move.w	#-$400,y_vel(a0)
 		moveq	#-$80,d0
 		jmp	(Change_VelocityWithFlipX).w
@@ -146,7 +146,7 @@ Obj_Burrobot:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Burrobot:	subObjData Map_Burro, $510, 0, FALSE, 38, 16, 4, 0, 5|collision_flags.npc.touch
+ObjDat_Burrobot:	subObjData Map_Burrobot, $510, 0, FALSE, 38, 16, 4, 0, 5|collision_flags.npc.touch
 ; ---------------------------------------------------------------------------
 
 		; mappings

@@ -22,7 +22,7 @@ Obj_Electrocuter:
 		move.w	d0,electrocuter.freq(a0)
 
 		; init
-		lea	ObjDat_Electro(pc),a1
+		lea	ObjDat_Electrocuter(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bset	#shield_reaction.lightning_shield,shield_reaction(a0)
 		move.l	#.shock,address(a0)
@@ -37,8 +37,10 @@ Obj_Electrocuter:
 		sfx	sfx_Electric							; play electricity sound
 
 .animate
-		lea	Ani_Elec(pc),a1
+		lea	Ani_Electrocuter(pc),a1
 		jsr	(Animate_Sprite).w
+
+		; check
 		cmpi.b	#4,mapping_frame(a0)						; is 4th frame displayed?
 		beq.s	.col								; if yes, branch
 
@@ -52,7 +54,7 @@ Obj_Electrocuter:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Electro:		subObjData Map_Elec, $529, 0, FALSE, 32, 80, 1, 0, $24|collision_flags.npc.hurt
+ObjDat_Electrocuter:		subObjData Map_Electrocuter, $529, 0, FALSE, 32, 80, 1, 0, $24|collision_flags.npc.hurt
 ; ---------------------------------------------------------------------------
 
 		; mappings

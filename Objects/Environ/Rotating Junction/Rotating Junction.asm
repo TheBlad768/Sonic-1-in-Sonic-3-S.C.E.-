@@ -3,24 +3,29 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-jun_save			= objoff_32	; save frame (1 byte)
-jun_frame			= objoff_34	; add or sub frame (1 byte)
-jun_reverse			= objoff_36	; flag set when switch is pressed (1 byte)
-jun_switch			= objoff_38	; which switch will reverse the disc (1 byte)
-jun_status			= objoff_39	; status (1 byte)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+junction.save_frame			ds.b 1						; save frame (1 byte)
+junction.frame				ds.b 1						; add or sub frame (1 byte)
+junction.rev_flag			ds.b 1						; flag set when switch is pressed (1 byte)
+junction.switch				ds.b 1						; which switch will reverse the disc (1 byte)
+junction.status				ds.b 1						; status (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Junction:
 
 		; set
-		move.b	subtype(a0),jun_switch(a0)
+		move.b	subtype(a0),junction.switch(a0)
 
 		; init
 		movem.l	ObjDat_Junction(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 		move.w	#2,mainspr_childsprites(a0)					; large circular and wheel
-		addq.b	#1,jun_frame(a0)						; set 1
+		addq.b	#1,junction.frame(a0)						; set 1
 
 		; sub objects
 		lea	sub2_x_pos(a0),a1						; $16-$23 bytes reserved
@@ -59,7 +64,7 @@ Obj_Junction:
 		addq.b	#p2_pushing_bit-p1_pushing_bit,d6
 
 .pushing
-		btst	d6,jun_status(a0)
+		btst	d6,junction.status(a0)
 		bne.s	.release
 		btst	d6,status(a0)
 		beq.s	.return
@@ -73,7 +78,7 @@ Obj_Junction:
 .isleft
 		cmp.b	sub3_mapframe(a0),d1						; is the gap next to Sonic?
 		bne.s	.return								; if not, branch
-		move.b	d1,jun_save(a0)
+		move.b	d1,junction.save_frame(a0)
 
 		sfx	sfx_Roll
 		move.b	#PlayerID_Control,routine(a1)
@@ -87,7 +92,7 @@ Obj_Junction:
 		clr.b	double_jump_flag(a1)						; clear character double jumping flag
 		clr.b	spin_dash_flag(a1)						; clear spin dash flag
 		bclr	d6,status(a0)							; clear object push bit
-		bset	d6,jun_status(a0)						; set object push bit
+		bset	d6,junction.status(a0)						; set object push bit
 
 		; get xypos
 		move.w	x_pos(a1),d2
@@ -110,7 +115,7 @@ Obj_Junction:
 		bne.s	Jun_ChgPos							; if not, branch
 
 .setrelease
-		cmp.b	jun_save(a0),d0
+		cmp.b	junction.save_frame(a0),d0
 		beq.s	Jun_ChgPos							; don't release
 		move.l	#words_to_long(0,$800),x_vel(a1)				; x_vel + y_vel
 		cmpi.b	#4,d0
@@ -119,7 +124,7 @@ Obj_Junction:
 
 .isdown
 		clr.b	object_control(a1)						; unlock controls
-		bclr	d6,jun_status(a0)						; clear push
+		bclr	d6,junction.status(a0)						; clear push
 		sfx	sfx_Dash							; play teleport sound
 
 ; =============== S U B R O U T I N E =======================================
@@ -167,18 +172,18 @@ Jun_ChgPos:
 Jun_ChkSwitch:
 		moveq	#0,d0
 		lea	(Level_trigger_array).w,a2
-		move.b	jun_switch(a0),d0
+		move.b	junction.switch(a0),d0
 		btst	#0,(a2,d0.w)							; is switch pressed?
 		beq.s	.unpressed							; if not, branch
-		tst.b	jun_reverse(a0)							; has switch previously been pressed?
+		tst.b	junction.rev_flag(a0)						; has switch previously been pressed?
 		bne.s	.animate							; if yes, branch
-		st	jun_reverse(a0)							; set to "previously pressed"
-		neg.b	jun_frame(a0)
+		st	junction.rev_flag(a0)						; set to "previously pressed"
+		neg.b	junction.frame(a0)
 		bra.s	.animate
 ; ---------------------------------------------------------------------------
 
 .unpressed
-		clr.b	jun_reverse(a0)							; set to "not yet pressed"
+		clr.b	junction.rev_flag(a0)						; set to "not yet pressed"
 
 .animate
 
@@ -188,7 +193,7 @@ Jun_ChkSwitch:
 		addq.b	#7+1,anim_frame_timer(a0)
 
 		; animate
-		move.b	jun_frame(a0),d1
+		move.b	junction.frame(a0),d1
 		move.b	sub3_mapframe(a0),d0
 		add.b	d1,d0
 		andi.b	#$F,d0								; max 16 frames

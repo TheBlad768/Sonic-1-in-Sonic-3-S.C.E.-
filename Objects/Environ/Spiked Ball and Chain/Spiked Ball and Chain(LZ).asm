@@ -145,7 +145,7 @@ SpikeBall_LZ_Move:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_SpikeBall_LZ:	subObjMainData Obj_SpikeBall_LZ.main, setBit(render_flags.level), 0, 48, 48, 4, $310, 0, FALSE, Map_SBall_LZ
+ObjDat_SpikeBall_LZ:	subObjMainData Obj_SpikeBall_LZ.main, setBit(render_flags.level), 0, 48, 48, 4, $310, 0, FALSE, Map_SpikeBall_LZ
 ; ---------------------------------------------------------------------------
 
 		; mappings

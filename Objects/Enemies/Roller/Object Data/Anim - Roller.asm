@@ -2,7 +2,7 @@
 ; Animation script - Roller enemy
 ; ---------------------------------------------------------------------------
 
-Ani_Roll: offsetTable
+Ani_Roller: offsetTable
 		offsetTableEntry.w .unfold	; 0
 		offsetTableEntry.w .fold	; 1
 		offsetTableEntry.w .roll	; 2

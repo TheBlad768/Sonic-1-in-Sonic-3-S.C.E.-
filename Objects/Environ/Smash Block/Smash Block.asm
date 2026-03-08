@@ -6,8 +6,8 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-smashblock.animp1			ds.b 1						; Sonic's animation (1 byte)
-smashblock.animp2			ds.b 1						; Tails's animation (1 byte)
+smashblock.p1_anim			ds.b 1						; Sonic's animation (1 byte)
+smashblock.p2_anim			ds.b 1						; Tails's animation (1 byte)
 smashblock.bonus			ds.w 1						; bonus counter (2 bytes)
 smashblock.frag_ptr			ds.l 1						; (4 bytes)
 
@@ -27,9 +27,9 @@ Obj_SmashBlock:
 		move.b	subtype(a0),mapping_frame(a0)
 
 .solid
-		move.w	(Chain_bonus_counter).w,smashblock.bonus(a0)			; load chain bonus counter
-		move.b	(Player_1+anim).w,smashblock.animp1(a0)				; load Sonic's animation
-		move.b	(Player_2+anim).w,smashblock.animp2(a0)				; load Tails's animation
+		move.w	(Chain_bonus_counter).w,smashblock.bonus(a0)			; copy chain bonus counter
+		move.b	(Player_1+anim).w,smashblock.p1_anim(a0)			; copy Sonic's animation
+		move.b	(Player_2+anim).w,smashblock.p2_anim(a0)			; copy Tails's animation
 
 		; solid
 		moveq	#$B,d1
@@ -53,17 +53,17 @@ Obj_SmashBlock:
 .smash
 		cmpi.b	#standing_mask,d0						; is Sonic and Tails standing on the object?
 		bne.s	.checkTails							; if not, branch
-		cmpi.b	#AniIDSonAni_Roll,smashblock.animp1(a0)				; is Sonic rolling?
+		cmpi.b	#AniIDSonAni_Roll,smashblock.p1_anim(a0)			; is Sonic rolling?
 		beq.s	.checkroll							; if yes, branch
-		cmpi.b	#AniIDSonAni_Roll,smashblock.animp2(a0)				; is Tails rolling?
+		cmpi.b	#AniIDSonAni_Roll,smashblock.p2_anim(a0)			; is Tails rolling?
 		bne.s	.draw								; if not, branch
 
 .checkroll
 		lea	(Player_1).w,a1							; a1=character
-		move.b	smashblock.animp1(a0),d0
+		move.b	smashblock.p1_anim(a0),d0
 		bsr.s	.checkroll2
 		lea	(Player_2).w,a1							; a1=character
-		move.b	smashblock.animp2(a0),d0
+		move.b	smashblock.p2_anim(a0),d0
 		bsr.s	.checkroll2
 		bra.s	.getbonus
 ; ---------------------------------------------------------------------------
@@ -72,7 +72,7 @@ Obj_SmashBlock:
 		move.b	d0,d1
 		andi.b	#p1_standing,d1
 		beq.s	.getbonus2
-		cmpi.b	#AniIDSonAni_Roll,smashblock.animp1(a0)				; is Tails rolling?
+		cmpi.b	#AniIDSonAni_Roll,smashblock.p1_anim(a0)			; is Tails rolling?
 		bne.s	.draw								; if not, branch
 		lea	(Player_1).w,a1							; a1=character
 		bsr.s	.setroll
@@ -101,7 +101,7 @@ Obj_SmashBlock:
 .getbonus2
 		andi.b	#p2_standing,d0
 		beq.s	.draw
-		cmpi.b	#AniIDSonAni_Roll,smashblock.animp2(a0)
+		cmpi.b	#AniIDSonAni_Roll,smashblock.p2_anim(a0)
 		bne.w	.draw
 		lea	(Player_2).w,a1							; a1=character
 		bsr.s	.setroll
@@ -163,7 +163,7 @@ Smab_Speeds:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_SmashBlock:	subObjMainData Obj_SmashBlock.solid, setBit(render_flags.level), 0, 32, 32, 5, $562, 2, FALSE, Map_Smab
+ObjDat_SmashBlock:	subObjMainData Obj_SmashBlock.solid, setBit(render_flags.level), 0, 32, 32, 5, $562, 2, FALSE, Map_SmashBlock
 ; ---------------------------------------------------------------------------
 
 		; mappings

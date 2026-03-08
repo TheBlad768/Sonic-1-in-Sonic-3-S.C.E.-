@@ -29,7 +29,7 @@ Obj_BuzzBomber:
 		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
-		lea	Ani_Buzz(pc),a1
+		lea	Ani_BuzzBomber(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
 
@@ -178,12 +178,12 @@ Obj_Missile:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BuzzBomber:		subObjData Map_Buzz, $440, 0, FALSE, 48, 48, 3, 0, 8|collision_flags.npc.touch
+ObjDat_BuzzBomber:		subObjData Map_BuzzBomber, $440, 0, FALSE, 48, 48, 3, 0, 8|collision_flags.npc.touch
 ObjDat_BuzzBomber_Missile:	subObjData Map_Missile, $440, 1, FALSE, 16, 16, 3, 0, 0
 ; ---------------------------------------------------------------------------
 
 		; mappings
 		include "Objects/Enemies/Buzz Bomber/Object Data/Anim - Buzz Bomber.asm"
-		include "Objects/Enemies/Buzz Bomber/Object Data/Anim - Buzz Bomber Missile.asm"
+		include "Objects/Enemies/Buzz Bomber/Object Data/Anim - Missile.asm"
 		include "Objects/Enemies/Buzz Bomber/Object Data/Map - Buzz Bomber.asm"
-		include "Objects/Enemies/Buzz Bomber/Object Data/Map - Buzz Bomber Missile.asm"
+		include "Objects/Enemies/Buzz Bomber/Object Data/Map - Missile.asm"

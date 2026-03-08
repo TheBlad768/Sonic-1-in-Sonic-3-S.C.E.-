@@ -2,7 +2,7 @@
 ; Animation script - Doors (SBZ)
 ; ---------------------------------------------------------------------------
 
-Ani_ADoor: offsetTable
+Ani_AutoDoor: offsetTable
 		offsetTableEntry.w .close	; 0
 		offsetTableEntry.w .open	; 1
 

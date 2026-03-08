@@ -36,7 +36,7 @@ Obj_Yadrin:
 		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
-		lea	Ani_Yad(pc),a1
+		lea	Ani_Yadrin(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
 ; ---------------------------------------------------------------------------
@@ -119,7 +119,7 @@ Yad_CheckWall:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Yadrin:		subObjData Map_Yad, $3BE, 1, FALSE, 34, 40, 4, 0, $C|collision_flags.npc.special
+ObjDat_Yadrin:		subObjData Map_Yadrin, $3BE, 1, FALSE, 34, 40, 4, 0, $C|collision_flags.npc.special
 ; ---------------------------------------------------------------------------
 
 		; mappings

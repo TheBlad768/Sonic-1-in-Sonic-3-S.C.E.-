@@ -2,7 +2,7 @@
 ; Animation script - Electrocution orbs (SBZ)
 ; ---------------------------------------------------------------------------
 
-Ani_Elec: offsetTable
+Ani_Electrocuter: offsetTable
 		offsetTableEntry.w byte_161CC	; 0
 		offsetTableEntry.w byte_161D0	; 1
 

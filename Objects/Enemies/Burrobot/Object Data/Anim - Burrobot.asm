@@ -2,7 +2,7 @@
 ; Animation script - Burrobot enemy
 ; ---------------------------------------------------------------------------
 
-Ani_Burro: offsetTable
+Ani_Burrobot: offsetTable
 		offsetTableEntry.w .walk1	; 0
 		offsetTableEntry.w .walk2	; 1
 		offsetTableEntry.w .digging	; 2

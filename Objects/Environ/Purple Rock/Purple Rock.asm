@@ -29,7 +29,7 @@ Obj_PurpleRock:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_PurpleRock:	subObjMainData Obj_PurpleRock.solid, setBit(render_flags.level), 0, 40, 48, 4, $380, 3, FALSE, Map_PRock
+ObjDat_PurpleRock:	subObjMainData Obj_PurpleRock.solid, setBit(render_flags.level), 0, 40, 48, 4, $380, 3, FALSE, Map_PurpleRock
 ; ---------------------------------------------------------------------------
 
 		; mappings

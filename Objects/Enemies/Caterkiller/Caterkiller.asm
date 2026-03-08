@@ -64,7 +64,7 @@ Obj_Caterkiller:
 		; anim
 		move.b	caterkiller.flag(a0),d1
 		bpl.s	.display
-		lea	Ani_Cat(pc),a1
+		lea	Ani_Caterkiller(pc),a1
 		moveq	#$7F,d0
 		and.b	angle(a0),d0
 		addq.b	#4,angle(a0)
@@ -235,7 +235,7 @@ Cat_BodySeg2:
 		movea.w	parent3(a0),a1							; body address
 		move.b	caterkiller_bodysegments.flag(a1),caterkiller_bodysegments.flag(a0)
 		bpl.s	Cat_BodySeg1
-		lea	Ani_Cat(pc),a1
+		lea	Ani_Caterkiller(pc),a1
 		moveq	#$7F,d0
 		and.b	angle(a0),d0
 		addq.b	#4,angle(a0)
@@ -355,7 +355,7 @@ Caterkiller_FragHead:									; head
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Caterkiller:		subObjData Map_Cat, $552, 1, FALSE, 32, 16, 4, 0, $B|collision_flags.npc.touch
+ObjDat_Caterkiller:		subObjData Map_Caterkiller, $552, 1, FALSE, 32, 16, 4, 0, $B|collision_flags.npc.touch
 ObjDat3_Caterkiller_BodySeg:	subObjData FALSE, FALSE, 0, FALSE, 32, 16, 5, 8, $B|collision_flags.npc.special
 
 Child8_Caterkiller_FragBody:

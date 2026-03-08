@@ -36,7 +36,7 @@ Obj_Roller:
 		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
-		lea	Ani_Roll(pc),a1
+		lea	Ani_Roller(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
 ; ---------------------------------------------------------------------------
@@ -138,7 +138,7 @@ Roll_Stop:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Roller:		subObjData Map_Roll, $4F0, 0, FALSE, 28, 32, 4, 0, 0
+ObjDat_Roller:		subObjData Map_Roller, $4F0, 0, FALSE, 28, 32, 4, 0, 0
 ; ---------------------------------------------------------------------------
 
 		; mappings

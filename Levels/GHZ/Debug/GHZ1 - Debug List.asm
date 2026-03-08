@@ -31,20 +31,32 @@ Debug_GHZ1: dbglistheader
 	dbglistobj Obj_Spring, Map_Spring2, $A2, 6, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Spikes, Map_Spikes, 0, 0, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Spikes, Map_Spikes, $10, 1, ArtTile_SpikesSprings, 0, FALSE
-	dbglistobj Obj_Crabmeat, Map_Crab, 0, 0, $3FC, 0, FALSE
-	dbglistobj Obj_BuzzBomber, Map_Buzz, 0, 0, $440, 0, FALSE
-	dbglistobj Obj_Chopper, Map_Chop, 0, 0, $4EC, 0, FALSE
-	dbglistobj Obj_FloatingPlatform, Map_Plat_GHZ, 0, 0, 0, 2, FALSE
+	dbglistobj Obj_Crabmeat, Map_Crabmeat, 0, 0, $3FC, 0, FALSE
+	dbglistobj Obj_BuzzBomber, Map_BuzzBomber, 0, 0, $440, 0, FALSE
+	dbglistobj Obj_Chopper, Map_Chopper, 0, 0, $4EC, 0, FALSE
+	dbglistobj Obj_FloatingPlatform, Map_FloatingPlatform_GHZ, 0, 0, 0, 2, FALSE
 	dbglistobj Obj_CollapsingPlatform, Map_CollapsingPlatform, 0, 0, 0, 2, FALSE
-	dbglistobj Obj_PurpleRock, Map_PRock, 0, 0, $380, 3, FALSE
-	dbglistobj Obj_MotoBug, Map_Moto, 0, 0, $561, 0, FALSE
-	dbglistobj Obj_Newtron, Map_Newt, 0, 0, $50C, 0, FALSE
-	dbglistobj Obj_Newtron, Map_Newt, 1, 0, $50C, 1, FALSE
+	dbglistobj Obj_PurpleRock, Map_PurpleRock, 0, 0, $380, 3, FALSE
+	dbglistobj Obj_MotoBug, Map_MotoBug, 0, 0, $561, 0, FALSE
+	dbglistobj Obj_Newtron, Map_Newtron, 0, 0, $50C, 0, FALSE
+	dbglistobj Obj_Newtron, Map_Newtron, 1, 0, $50C, 1, FALSE
 	dbglistobj Obj_Animal, Map_Animals1, 0, 2, $592, 0, FALSE
 	dbglistobj Obj_StillSprite, Map_StillSprites, 0, 0, $342, 2, FALSE
-	dbglistobj Obj_TensionBridge, Map_TensionBridge, $C, 0, $33E, 2, FALSE
+	dbglistobj Obj_TensionBridge, Map_TensionBridge, 8, 0, $33E, 2, FALSE
+	dbglistobj Obj_TensionBridge, Map_TensionBridge, 10, 0, $33E, 2, FALSE
+	dbglistobj Obj_TensionBridge, Map_TensionBridge, 12, 0, $33E, 2, FALSE
+	dbglistobj Obj_TensionBridge, Map_TensionBridge, 14, 0, $33E, 2, FALSE
+	dbglistobj Obj_TensionBridge, Map_TensionBridge, 16, 0, $33E, 2, FALSE
 	dbglistobj Obj_EdgeWalls, Map_EdgeWalls, 0, 0, $3A4, 2, FALSE
-	dbglistobj Obj_SwingingPlatform, Map_Swing_GHZ, 7, 0, $3C2, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 1, 0, $3C2, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 2, 0, $3C2, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 3, 0, $3C2, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 4, 0, $3C2, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 5, 0, $3C2, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 6, 0, $3C2, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 7, 0, $3C2, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 8, 0, $3C2, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 9, 0, $3C2, 0, FALSE
 	dbglistobj Obj_StarPost, Map_StarPost, 1, 0, ArtTile_StarPost, 0, FALSE
 	dbglistobj Obj_BigRing, Map_BigRing, 1, 0, ArtTile_Explosion, 1, FALSE
 	dbglistobj Obj_EggCapsule, Map_EggCapsule, 1, 0, $494, 0, FALSE

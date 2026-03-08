@@ -3,17 +3,20 @@
 ; ---------------------------------------------------------------------------
 
 ; constants
-tensionbridge.logcount =	8							; number of logs
+tensionbridge.logcount =		8						; number of logs
 
 ; dynamic object variables
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
+; players
+tensionbridge.p1_index			ds.b 1						; Sonic log index (1 byte)
+tensionbridge.p2_index			ds.b 1						; Tails log index (1 byte)
+
+; main
 tensionbridge.origY			ds.w 1						; original y-axis position (2 bytes)
 tensionbridge.wait			ds.b 1						; wait timer (1 byte)
 tensionbridge.bend			ds.b 1						; bridge bend (1 byte)
-tensionbridge.indexP1			ds.b 1						; Sonic log index (1 byte)
-tensionbridge.indexP2			ds.b 1						; Tails log index (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -122,16 +125,16 @@ TensionBridge_Nudge:
 		beq.s	.down								; if not, branch
 
 		; check player
-		move.b	tensionbridge.indexP1(a0),d0					; Sonic log index
-		sub.b	tensionbridge.indexP2(a0),d0					; Tails log index
+		move.b	tensionbridge.p1_index(a0),d0					; Sonic log index
+		sub.b	tensionbridge.p2_index(a0),d0					; Tails log index
 		beq.s	.down
 		bhs.s	.prevlog
-		addq.b	#1,tensionbridge.indexP1(a0)					; next log index
+		addq.b	#1,tensionbridge.p1_index(a0)					; next log index
 		bra.s	.down
 ; ---------------------------------------------------------------------------
 
 .prevlog
-		subq.b	#1,tensionbridge.indexP1(a0)					; prev log index
+		subq.b	#1,tensionbridge.p1_index(a0)					; prev log index
 
 .down
 		cmpi.b	#$40,tensionbridge.bend(a0)
@@ -315,7 +318,7 @@ SolidObject_TensionBridge:
 		tst.l	address(a1)							; is the player RAM empty?
 		beq.s	.p1								; if yes, branch
 		moveq	#p2_standing_bit,d6
-		moveq	#tensionbridge.indexP2,d5					; set RAM address
+		moveq	#tensionbridge.p2_index,d5					; set RAM address
 		movem.l	d1-d4,-(sp)
 		bsr.s	.check
 		movem.l	(sp)+,d1-d4
@@ -325,7 +328,7 @@ SolidObject_TensionBridge:
 		; player 1
 		lea	(Player_1).w,a1							; a1=character
 		moveq	#p1_standing_bit,d6
-		moveq	#tensionbridge.indexP1,d5					; set RAM address
+		moveq	#tensionbridge.p1_index,d5					; set RAM address
 
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
@@ -405,7 +408,7 @@ TensionBridge_Bend:
 		move.b	subtype(a0),d0
 		lsl.w	#4,d0								; multiply by $10
 		moveq	#0,d3
-		move.b	tensionbridge.indexP1(a0),d3
+		move.b	tensionbridge.p1_index(a0),d3
 		move.w	d3,d2
 		add.w	d0,d3
 		moveq	#0,d5
@@ -440,7 +443,7 @@ TensionBridge_Bend:
 		moveq	#0,d0
 		move.b	subtype(a0),d0
 		moveq	#1,d3
-		add.b	tensionbridge.indexP1(a0),d3
+		add.b	tensionbridge.p1_index(a0),d3
 		sub.b	d0,d3
 		neg.b	d3
 		bmi.s	.return

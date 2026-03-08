@@ -2,7 +2,7 @@
 ; Animation script - Motobug enemy
 ; ---------------------------------------------------------------------------
 
-Ani_Moto: offsetTable
+Ani_MotoBug: offsetTable
 		offsetTableEntry.w .stand	; 0
 		offsetTableEntry.w .walk	; 1
 		offsetTableEntry.w .smoke	; 2

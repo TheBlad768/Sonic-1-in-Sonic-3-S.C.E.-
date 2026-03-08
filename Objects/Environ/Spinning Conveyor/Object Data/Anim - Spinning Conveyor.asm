@@ -2,7 +2,7 @@
 ; Animation script - platform on conveyor belt (SBZ)
 ; ---------------------------------------------------------------------------
 
-Ani_SpinConvey: offsetTable
+Ani_SpinningConveyor: offsetTable
 		offsetTableEntry.w .spin	; 0
 		offsetTableEntry.w .still	; 1
 

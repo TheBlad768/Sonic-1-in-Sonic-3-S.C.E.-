@@ -343,6 +343,14 @@ Obj_BossSpikeBall_ShipTubePieces:
 
 ; dynamic object variables
 
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+bossspikeball_spikeball.origX		ds.w 1						; original x-axis position (2 bytes)
+bossspikeball_spikeball.origY		ds.w 1						; original y-axis position (2 bytes)
+bossspikeball_spikeball.frame		ds.b 1						; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossSpikeBall_SpikeBall:
@@ -352,34 +360,34 @@ Obj_BossSpikeBall_SpikeBall:
 		bclr	#7,(a1)								; disable seesaw address
 
 		; init
-		lea	ObjDat_See_SpikeBall(pc),a1
+		lea	ObjDat_Seesaw_SpikeBall(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.fall,address(a0)
 		movea.w	parent3(a0),a1							; a1=parent object (seesaw)
-		move.w	x_pos(a1),see_origX(a0)
-		move.w	y_pos(a1),see_origY(a0)
+		move.w	x_pos(a1),bossspikeball_spikeball.origX(a0)
+		move.w	y_pos(a1),bossspikeball_spikeball.origY(a0)
 		bset	#status.npc.x_flip,status(a0)
 		move.w	x_pos(a0),d0
 		cmp.w	x_pos(a1),d0
 		bgt.s	.fall
 		bclr	#status.npc.x_flip,status(a0)
-		move.b	#2,see_frame(a0)
+		move.b	#2,bossspikeball_spikeball.frame(a0)
 
 .fall
 		pea	.draw(pc)
 		jsr	(MoveSprite).w
 		movea.w	parent3(a0),a1							; a1=parent object (seesaw)
-		lea	See_Speeds(pc),a2
+		lea	Seesaw_SpikeBall_Speeds(pc),a2
 		moveq	#0,d0
 		move.b	mapping_frame(a1),d0
 		move.w	x_pos(a0),d1
-		sub.w	see_origX(a0),d1
+		sub.w	bossspikeball_spikeball.origX(a0),d1
 		bhs.s	.leftside
 		addq.w	#2,d0
 
 .leftside
 		add.w	d0,d0
-		move.w	see_origY(a0),d1
+		move.w	bossspikeball_spikeball.origY(a0),d1
 		add.w	(a2,d0.w),d1
 		cmp.w	y_pos(a0),d1
 		bgt.w	.locret_18EA8
@@ -399,8 +407,8 @@ Obj_BossSpikeBall_SpikeBall:
 .loc_18DC6
 		movea.w	parent3(a0),a1							; a1=parent object (seesaw)
 		moveq	#0,d0
-		move.b	see_frame(a0),d0
-		sub.b	see_frame(a1),d0
+		move.b	bossspikeball_spikeball.frame(a0),d0
+		sub.b	seesaw.frame(a1),d0
 		beq.s	.loc_18E2A
 		bhs.s	.loc_18DDA
 		neg.b	d0
@@ -410,14 +418,14 @@ Obj_BossSpikeBall_SpikeBall:
 		cmpi.b	#1,d0
 		beq.s	.loc_18E00
 		move.l	#words_to_long(-$F4,-$960),d1					; x_vel + y_vel
-		cmpi.w	#$9C0,see_speed(a1)
+		cmpi.w	#$9C0,seesaw.speed(a1)
 		blt.s	.loc_18E00
 		move.l	#words_to_long(-$80,-$A20),d1					; x_vel + y_vel
 
 .loc_18E00
 		move.l	d1,x_vel(a0)
 		move.w	x_pos(a0),d0
-		sub.w	see_origX(a0),d0
+		sub.w	bossspikeball_spikeball.origX(a0),d0
 		bhs.s	.leftside1
 		neg.w	x_vel(a0)
 
@@ -429,22 +437,22 @@ Obj_BossSpikeBall_SpikeBall:
 ; ---------------------------------------------------------------------------
 
 .loc_18E2A
-		lea	See_Speeds(pc),a2
+		lea	Seesaw_SpikeBall_Speeds(pc),a2
 		moveq	#0,d0
 		move.b	mapping_frame(a1),d0
 		moveq	#$28,d2
 		move.w	x_pos(a0),d1
-		sub.w	see_origX(a0),d1
+		sub.w	bossspikeball_spikeball.origX(a0),d1
 		bhs.s	.leftside2
 		neg.w	d2
 		addq.w	#2,d0
 
 .leftside2
 		add.w	d0,d0
-		move.w	see_origY(a0),d1
+		move.w	bossspikeball_spikeball.origY(a0),d1
 		add.w	(a2,d0.w),d1
 		move.w	d1,y_pos(a0)
-		add.w	see_origX(a0),d2
+		add.w	bossspikeball_spikeball.origX(a0),d2
 		move.w	d2,x_pos(a0)
 		clr.w	y_pos+2(a0)
 		clr.w	x_pos+2(a0)
@@ -515,7 +523,7 @@ Obj_BossSpikeBall_SpikeBall:
 		bpl.s	.loc_18F5C							; if yes, branch
 		jsr	(MoveSprite).w
 		moveq	#-47,d0
-		add.w	see_origY(a0),d0
+		add.w	bossspikeball_spikeball.origY(a0),d0
 		cmp.w	y_pos(a0),d0
 		bgt.s	.loc_18F58
 		jsr	(MoveSprite).w
@@ -527,17 +535,17 @@ Obj_BossSpikeBall_SpikeBall:
 .loc_18F5C
 		jsr	(MoveSprite).w
 		movea.w	parent3(a0),a1							; a1=parent object (seesaw)
-		lea	See_Speeds(pc),a2
+		lea	Seesaw_SpikeBall_Speeds(pc),a2
 		moveq	#0,d0
 		move.b	mapping_frame(a1),d0
 		move.w	x_pos(a0),d1
-		sub.w	see_origX(a0),d1
+		sub.w	bossspikeball_spikeball.origX(a0),d1
 		bhs.s	.loc_18F7E
 		addq.w	#2,d0
 
 .loc_18F7E
 		add.w	d0,d0
-		move.w	see_origY(a0),d1						; d1 = bottom of seesaw y position
+		move.w	bossspikeball_spikeball.origY(a0),d1				; d1 = bottom of seesaw y position
 		add.w	(a2,d0.w),d1							; + offset for current angle
 		cmp.w	y_pos(a0),d1							; return if y position < d1
 		bgt.s	.loc_18F58
@@ -551,8 +559,8 @@ Obj_BossSpikeBall_SpikeBall:
 		clr.w	wait_timer(a0)							; timer
 
 .spring
-		move.b	d1,see_frame(a1)
-		move.b	d1,see_frame(a0)
+		move.b	d1,seesaw.frame(a1)
+		move.b	d1,bossspikeball_spikeball.frame(a0)
 		cmp.b	mapping_frame(a1),d1
 		beq.s	.clear
 
@@ -586,7 +594,7 @@ Obj_BossSpikeBall_SpikeBall:
 
 .draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	see_origX(a0),d0						; get object position
+		and.w	bossspikeball_spikeball.origX(a0),d0				; get object position
 		jmp	(Sprite_CheckDeleteTouch3.skipxpos).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -643,7 +651,7 @@ BossSpikeBall_SpikeBall_Explode:
 ; ---------------------------------------------------------------------------
 
 .makefrag
-		move.w	see_origY(a0),y_pos(a0)
+		move.w	bossspikeball_spikeball.origY(a0),y_pos(a0)
 
 		; load spikeball shrapnel object
 		lea	Child6_BossSpikeBall_SpikeBall_Shrapnel(pc),a2

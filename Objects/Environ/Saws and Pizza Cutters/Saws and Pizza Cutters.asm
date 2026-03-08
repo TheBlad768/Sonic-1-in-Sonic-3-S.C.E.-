@@ -3,9 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-saw_origX			= objoff_3A	; original x-axis position (2 bytes)
-saw_origY			= objoff_38	; original y-axis position (2 bytes)
-saw_here			= objoff_3D	; flag set when the ground saw appears (1 byte)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+saws.origX				ds.w 1						; original x-axis position (2 bytes)
+saws.origY				ds.w 1						; original y-axis position (2 bytes)
+saws.flag				ds.b 1						; flag set when the ground saw appears (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -14,8 +19,8 @@ Obj_Saws:
 		; init
 		movem.l	ObjDat_Saws(pc),d0-d3						; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.w	x_pos(a0),saw_origX(a0)
-		move.w	y_pos(a0),saw_origY(a0)
+		move.w	x_pos(a0),saws.origX(a0)
+		move.w	y_pos(a0),saws.origY(a0)
 
 		; check
 		cmpi.b	#3,subtype(a0)							; is object a ground saw?
@@ -32,7 +37,7 @@ Obj_Saws:
 
 .draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	saw_origX(a0),d0						; get object position
+		and.w	saws.origX(a0),d0						; get object position
 		jmp	(Sprite_CheckDeleteTouch3.skipxpos).w
 ; ---------------------------------------------------------------------------
 
@@ -53,7 +58,7 @@ Saws_TypeIndex: offsetTable
 		add.w	d1,d0
 
 .noflip01
-		move.w	saw_origX(a0),d1
+		move.w	saws.origX(a0),d1
 		sub.w	d0,d1
 		move.w	d1,x_pos(a0)							; move saw sideways
 
@@ -88,7 +93,7 @@ Saws_TypeIndex: offsetTable
 		addi.w	#$80,d0
 
 .noflip02
-		move.w	saw_origY(a0),d1
+		move.w	saws.origY(a0),d1
 		sub.w	d0,d1
 		move.w	d1,y_pos(a0)							; move saw vertically
 
@@ -107,7 +112,7 @@ Saws_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .type03
-		tst.b	saw_here(a0)							; has the saw appeared already?
+		tst.b	saws.flag(a0)							; has the saw appeared already?
 		bne.s	.here03								; if yes, branch
 
 		; check
@@ -125,7 +130,7 @@ Saws_TypeIndex: offsetTable
 		blo.s	.nosaw03y
 
 		; set
-		st	saw_here(a0)
+		st	saws.flag(a0)
 		move.w	#$600,x_vel(a0)							; move object to the right
 		move.b	#$22|collision_flags.npc.hurt,collision_flags(a0)
 		move.b	#2,mapping_frame(a0)
@@ -140,7 +145,7 @@ Saws_TypeIndex: offsetTable
 
 .here03
 		MoveSpriteXOnly
-		move.w	x_pos(a0),saw_origX(a0)
+		move.w	x_pos(a0),saws.origX(a0)
 
 		; wait
 		subq.b	#1,anim_frame_timer(a0)						; decrement timer
@@ -153,7 +158,7 @@ Saws_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .type04
-		tst.b	saw_here(a0)
+		tst.b	saws.flag(a0)
 		bne.s	.here04
 
 		; check
@@ -170,7 +175,7 @@ Saws_TypeIndex: offsetTable
 		blo.s	.nosaw04y
 
 		; set
-		st	saw_here(a0)
+		st	saws.flag(a0)
 		move.w	#-$600,x_vel(a0)						; move object to the left
 		move.b	#$22|collision_flags.npc.hurt,collision_flags(a0)
 		move.b	#2,mapping_frame(a0)
@@ -185,7 +190,7 @@ Saws_TypeIndex: offsetTable
 
 .here04
 		MoveSpriteXOnly
-		move.w	x_pos(a0),saw_origX(a0)
+		move.w	x_pos(a0),saws.origX(a0)
 
 		; wait
 		subq.b	#1,anim_frame_timer(a0)						; decrement timer

@@ -31,31 +31,39 @@ Debug_SBZ1: dbglistheader
 	dbglistobj Obj_Spring, Map_Spring2, $A2, 6, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Spikes, Map_Spikes, 0, 0, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Spikes, Map_Spikes, $10, 1, ArtTile_SpikesSprings, 0, FALSE
-	dbglistobj Obj_BombBadnik, Map_Bomb, 0, 0, $500, 0, FALSE
-	dbglistobj Obj_Orbinaut, Map_Orb, 0, 0, $429, 0, FALSE
-	dbglistobj Obj_Caterkiller, Map_Cat, 0, 0, $552, 1, FALSE
-	dbglistobj Obj_SwingingPlatform, Map_Swing_SBZ, 7, 0, $448, 0, FALSE
+	dbglistobj Obj_Bomb, Map_Bomb, 0, 0, $500, 0, FALSE
+	dbglistobj Obj_Orbinaut, Map_Orbinaut, 0, 0, $429, 0, FALSE
+	dbglistobj Obj_Caterkiller, Map_Caterkiller, 0, 0, $552, 1, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SBZ, 1, 0, $448, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SBZ, 2, 0, $448, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SBZ, 3, 0, $448, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SBZ, 4, 0, $448, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SBZ, 5, 0, $448, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SBZ, 6, 0, $448, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SBZ, 7, 0, $448, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SBZ, 8, 0, $448, 0, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SBZ, 9, 0, $448, 0, FALSE
 	dbglistobj Obj_RunningDisc, Map_Offscreen, 0, 0, $3A0, 2, TRUE
-	dbglistobj Obj_MovingBlock, Map_MBlock, $28, 2, $2B2, 1, FALSE
-	dbglistobj Obj_SpinPlatform, Map_Trap, 3, 0, $3F8, 2, FALSE
-	dbglistobj Obj_SpinPlatform, Map_Spin, $83, 0, $3C8, 0, FALSE
+	dbglistobj Obj_MovingBlock, Map_MovingBlock, $28, 2, $2B2, 1, FALSE
+	dbglistobj Obj_SpinningPlatform, Map_Trapdoor, 3, 0, $3F8, 2, FALSE
+	dbglistobj Obj_SpinningPlatform, Map_SpinningPlatform, $83, 0, $3C8, 0, FALSE
 	dbglistobj Obj_Saws, Map_Saw, 2, 0, $3A4, 2, FALSE
-	dbglistobj Obj_CollapseFloor, Map_CFlo, 0, 0, $2AA, 2, FALSE
-	dbglistobj Obj_MovingBlock, Map_MBlock, $39, 3, $380, 2, FALSE
+	dbglistobj Obj_CollapseFloor, Map_CollapseFloor, 0, 0, $2AA, 2, FALSE
+	dbglistobj Obj_MovingBlock, Map_MovingBlock, $39, 3, $380, 2, FALSE
 	dbglistobj Obj_ScrapStomp, Map_Stomp, 0, 0, $2B2, 1, FALSE
-	dbglistobj Obj_AutoDoor, Map_ADoor, 0, 0, $470, 2, FALSE
+	dbglistobj Obj_AutoDoor, Map_AutoDoor, 0, 0, $470, 2, FALSE
 	dbglistobj Obj_ScrapStomp, Map_Stomp, $13, 1, $2B2, 1, FALSE
 	dbglistobj Obj_Saws, Map_Saw, 1, 0, $3A4, 2, FALSE
 	dbglistobj Obj_ScrapStomp, Map_Stomp, $24, 1, $2B2, 1, FALSE
 	dbglistobj Obj_Saws, Map_Saw, 4, 2, $3A4, 2, FALSE
 	dbglistobj Obj_ScrapStomp, Map_Stomp, $34, 1, $2B2, 1, FALSE
-	dbglistobj Obj_VanishPlatform, Map_VanP, 0, 0, $364, 2, FALSE
-	dbglistobj Obj_Flamethrower, Map_Flame, $64, 0, $562, 0, TRUE
-	dbglistobj Obj_Flamethrower, Map_Flame, $64, $B, $562, 0, TRUE
-	dbglistobj Obj_Electrocuter, Map_Elec, 4, 0, $529, 0, FALSE
-	dbglistobj Obj_Girder, Map_Gird, 4, 0, $2DA, 2, FALSE
+	dbglistobj Obj_VanishPlatform, Map_VanishPlatform, 0, 0, $364, 2, FALSE
+	dbglistobj Obj_Flamethrower, Map_Flamethrower, $64, 0, $562, 0, TRUE
+	dbglistobj Obj_Flamethrower, Map_Flamethrower, $64, $B, $562, 0, TRUE
+	dbglistobj Obj_Electrocuter, Map_Electrocuter, 4, 0, $529, 0, FALSE
+	dbglistobj Obj_Girder, Map_Girder, 4, 0, $2DA, 2, FALSE
 	dbglistobj Obj_Invisible_SolidBlock, Map_InvisibleBlock, 0, 0, ArtTile_Monitors, 0, TRUE
-	dbglistobj Obj_BallHog, Map_Hog, 0, 0, $2EC, 1, FALSE
+	dbglistobj Obj_BallHog, Map_BallHog, 0, 0, $2EC, 1, FALSE
 	dbglistobj Obj_Animal, Map_Animals1, 0, 2, $592, 0, FALSE
 	dbglistobj Obj_Button, Map_Button, 0, 0, $47C, 0, FALSE
 	dbglistobj Obj_StarPost, Map_StarPost, 1, 0, ArtTile_StarPost, 0, FALSE
