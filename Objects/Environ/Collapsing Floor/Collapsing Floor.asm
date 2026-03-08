@@ -17,14 +17,14 @@ collapsefloor.flag			ds.b 1						; (1 byte)
 Obj_CollapseFloor:
 
 		; init
-		move.l	#CFlo_Data2,d0
+		move.l	#CollapseFloor_Data2,d0
 		btst	#0,subtype(a0)
 		beq.s	.set
-		move.l	#CFlo_Data3,d0
+		move.l	#CollapseFloor_Data3,d0
 
 .set
 		move.l	d0,collapsefloor.time_ptr(a0)
-		move.l	#Map_CFlo,mappings(a0)
+		move.l	#Map_CollapseFloor,mappings(a0)
 		move.w	#make_art_tile($562,2,FALSE),d0
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; is level Star Light Zone?
 		bne.s	.notSLZ								; if not, branch
@@ -116,12 +116,12 @@ CollapseFloor_PlayerRelease:
 
 ; =============== S U B R O U T I N E =======================================
 
-CFlo_Data1:	; timer
+CollapseFloor_Data1:	; timer
 		dc.b $1C, $18, $14, $10, $1A, $16, $12, $E, $A, 6, $18, $14, $10, $C, 8, 4
 		dc.b $16, $12, $E, $A, 6, 2, $14, $10, $C, 0
-CFlo_Data2:	; timer
+CollapseFloor_Data2:	; timer
 		dc.b $1E, $16, $E, 6, $1A, $12, $A, 2
-CFlo_Data3:	; timer
+CollapseFloor_Data3:	; timer
 		dc.b $16, $1E, $1A, $12, 6, $E, $A, 2
 	even
 ; ---------------------------------------------------------------------------

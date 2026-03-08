@@ -2,7 +2,7 @@
 ; Animation script - flapping door (LZ)
 ; ---------------------------------------------------------------------------
 
-Ani_Flap: offsetTable
+Ani_FlapDoor: offsetTable
 		offsetTableEntry.w .opening	; 0
 		offsetTableEntry.w .closing	; 1
 

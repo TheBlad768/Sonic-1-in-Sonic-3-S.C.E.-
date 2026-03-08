@@ -2,7 +2,7 @@
 ; Animation script - Flamethrower (SBZ)
 ; ---------------------------------------------------------------------------
 
-Ani_Flame: offsetTable
+Ani_Flamethrower: offsetTable
 		offsetTableEntry.w .pipe1	; 0
 		offsetTableEntry.w .pipe2	; 1
 		offsetTableEntry.w .valve1	; 2

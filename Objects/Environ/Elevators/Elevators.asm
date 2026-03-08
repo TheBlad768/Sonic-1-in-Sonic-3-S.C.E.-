@@ -10,11 +10,10 @@ elevator.origX				ds.w 1						; original x-axis position (2 bytes)
 elevator.origY				ds.w 1						; original y-axis position (2 bytes)
 elevator.copyY				ds.l 1						; copy y-axis position (2 bytes)
 elevator.velocity			ds.w 1						; (2 bytes)
-elevator.flag				ds.b 1						; (1 byte)
-					ds.b 1						; (1 byte)
 elevator.dist =				*						; (2 bytes)
 elevator.timer				ds.w 1						; (2 bytes)
 elevator.delay				ds.w 1						; (2 bytes)
+elevator.flag				ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -78,7 +77,7 @@ Obj_Elevator:
 		move.b	(a2)+,subtype(a0)						; set type
 
 		; init
-		move.l	#Map_Elev,mappings(a0)
+		move.l	#Map_Elevator,mappings(a0)
 		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 
 		; set priority and art_tile

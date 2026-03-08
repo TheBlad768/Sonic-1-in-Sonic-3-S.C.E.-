@@ -6,14 +6,14 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bombbadnik.timer			ds.w 1						; time of fuse (2 bytes)
-bombbadnik.origY			ds.w 1						; original y-axis position (2 bytes)
+bomb.timer				ds.w 1						; time of fuse (2 bytes)
+bomb.origY				ds.w 1						; original y-axis position (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_BombBadnik:
+Obj_Bomb:
 
 		; init
 		lea	ObjDat_Bomb(pc),a1
@@ -35,10 +35,10 @@ Obj_BombBadnik:
 
 .walk
 		bsr.s	.chksonic
-		subq.w	#1,bombbadnik.timer(a0)						; subtract 1 from time delay
+		subq.w	#1,bomb.timer(a0)						; subtract 1 from time delay
 		bpl.s	.noflip								; if time remains, branch
 		move.l	#.wait,jump_ptr(a0)
-		move.w	#((25*60)+36)-1,bombbadnik.timer(a0)				; set time delay to 25 seconds
+		move.w	#((25*60)+36)-1,bomb.timer(a0)					; set time delay to 25 seconds
 		move.w	#$10,x_vel(a0)
 		move.b	#1,anim(a0)							; use walking animation
 		bchg	#status.npc.x_flip,status(a0)
@@ -51,7 +51,7 @@ Obj_BombBadnik:
 
 .wait
 		bsr.s	.chksonic
-		subq.w	#1,bombbadnik.timer(a0)						; subtract 1 from time delay
+		subq.w	#1,bomb.timer(a0)						; subtract 1 from time delay
 		bmi.s	.stopwalking							; if time expires, branch
 		MoveSpriteXOnly
 		rts
@@ -59,7 +59,7 @@ Obj_BombBadnik:
 
 .stopwalking
 		move.l	#.walk,jump_ptr(a0)
-		move.w	#180-1,bombbadnik.timer(a0)					; set time delay to 3 seconds
+		move.w	#180-1,bomb.timer(a0)						; set time delay to 3 seconds
 		clr.w	x_vel(a0)							; stop walking
 		clr.b	anim(a0)							; use waiting animation
 		rts
@@ -77,17 +77,17 @@ Obj_BombBadnik:
 
 		; set explode
 		move.l	#.explode,jump_ptr(a0)						; goto .explode next
-		move.w	#143,bombbadnik.timer(a0)					; set fuse time
+		move.w	#143,bomb.timer(a0)						; set fuse time
 		clr.w	x_vel(a0)
 		move.b	#2,anim(a0)							; use activated animation
 
 		; create fuse object
-		lea	Child6_BombBadnik_Fuse(pc),a2
+		lea	Child6_Bomb_Fuse(pc),a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.outofrange
-		move.w	y_pos(a0),bombbadnik_fuse.origY(a1)
+		move.w	y_pos(a0),bomb_fuse.origY(a1)
 		move.b	render_flags(a0),render_flags(a1)
-		move.w	bombbadnik.timer(a0),bombbadnik_fuse.timer(a1)			; set fuse time
+		move.w	bomb.timer(a0),bomb_fuse.timer(a1)				; set fuse time
 
 		; set y_vel
 		move.w	#$10,y_vel(a1)
@@ -100,7 +100,7 @@ Obj_BombBadnik:
 ; ---------------------------------------------------------------------------
 
 .explode
-		subq.w	#1,bombbadnik.timer(a0)						; subtract 1 from time delay
+		subq.w	#1,bomb.timer(a0)						; subtract 1 from time delay
 		bpl.s	.noexplode							; if time remains, branch
 
 		; remove
@@ -118,14 +118,14 @@ Obj_BombBadnik:
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-bombbadnik_fuse.timer			ds.w 1						; time of fuse (2 bytes)
-bombbadnik_fuse.origY			ds.w 1						; original y-axis position (2 bytes)
+bomb_fuse.timer				ds.w 1						; time of fuse (2 bytes)
+bomb_fuse.origY				ds.w 1						; original y-axis position (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_BombBadnik_Fuse:
+Obj_Bomb_Fuse:
 
 		; init
 		lea	ObjDat3_Bomb_Fuse(pc),a1
@@ -147,18 +147,18 @@ Obj_BombBadnik_Fuse:
 ; ---------------------------------------------------------------------------
 
 .wait
-		subq.w	#1,bombbadnik_fuse.timer(a0)
+		subq.w	#1,bomb_fuse.timer(a0)
 		bmi.s	.create
 		MoveSprite2YOnly
 		rts
 ; ---------------------------------------------------------------------------
 
 .create
-		clr.w	bombbadnik_fuse.timer(a0)
-		move.w	bombbadnik_fuse.origY(a0),y_pos(a0)
+		clr.w	bomb_fuse.timer(a0)
+		move.w	bomb_fuse.origY(a0),y_pos(a0)
 
 		; create shrapnel objects
-		lea	Child6_BombBadnik_Shrapnel(pc),a2
+		lea	Child6_Bomb_Shrapnel(pc),a2
 		jsr	(CreateChild6_Simple).w
 
 		; delete
@@ -172,20 +172,20 @@ Obj_BombBadnik_Fuse:
 
 ; =============== S U B R O U T I N E =======================================
 
-Bom_ShrSpeed:				; xyvel
+Bomb_Shrapnel_Speed:			; xyvel
 		dc.w -$200, -$300	; 0
 		dc.w -$100, -$200	; 4
 		dc.w $200, -$300	; 8
 		dc.w $100, -$200	; C
 ; ---------------------------------------------------------------------------
 
-Obj_BombBadnik_Shrapnel:
+Obj_Bomb_Shrapnel:
 
 		; set xyvel
 		moveq	#0,d0
 		move.b	subtype(a0),d0
 		add.w	d0,d0
-		move.l	Bom_ShrSpeed(pc,d0.w),x_vel(a0)					; x_vel and y_vel
+		move.l	Bomb_Shrapnel_Speed(pc,d0.w),x_vel(a0)				; x_vel and y_vel
 
 		; init
 		lea	ObjDat3_Bomb_Shrapnel(pc),a1
@@ -214,12 +214,12 @@ ObjDat_Bomb:			subObjData Map_Bomb, $500, 0, FALSE, 40, 24, 3, 0, $1A|collision_
 ObjDat3_Bomb_Fuse:		subObjData FALSE, FALSE, 0, FALSE, 16, 8, 3, 8, 0
 ObjDat3_Bomb_Shrapnel:		subObjData FALSE, FALSE, 0, FALSE, 8, 8, 3, $A, $18|collision_flags.npc.hurt
 
-Child6_BombBadnik_Fuse:
+Child6_Bomb_Fuse:
 		dc.w 1-1
-		dc.l Obj_BombBadnik_Fuse
-Child6_BombBadnik_Shrapnel:
+		dc.l Obj_Bomb_Fuse
+Child6_Bomb_Shrapnel:
 		dc.w 4-1
-		dc.l Obj_BombBadnik_Shrapnel
+		dc.l Obj_Bomb_Shrapnel
 ; ---------------------------------------------------------------------------
 
 		; mappings

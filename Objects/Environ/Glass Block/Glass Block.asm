@@ -200,7 +200,7 @@ ObjDat_GlassBlock:	subObjMainData \
 				Obj_GlassBlock.block012, \
 					setBit(render_flags.level) | \
 					setBit(render_flags.multi_sprite), \
-				0, 144, 64, 2, $300, 2, TRUE, Map_Glass
+				0, 144, 64, 2, $300, 2, TRUE, Map_GlassBlock
 ; ---------------------------------------------------------------------------
 
 		; mappings

@@ -2,7 +2,7 @@
 ; Animation script - Orbinaut enemy
 ; ---------------------------------------------------------------------------
 
-Ani_Orb: offsetTable
+Ani_Orbinaut: offsetTable
 		offsetTableEntry.w .normal	; 0
 		offsetTableEntry.w .angers	; 1
 

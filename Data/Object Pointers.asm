@@ -52,7 +52,7 @@ Obj_Index:
 		dc.l Delete_Current_Object				; $2E
 		dc.l Obj_LargeGrass					; $2F
 		dc.l Obj_GlassBlock					; $30
-		dc.l Obj_ChainStomp					; $31
+		dc.l Obj_ChainedStomper					; $31
 		dc.l Obj_Button						; $32
 		dc.l Obj_PushableBlock					; $33
 		dc.l Obj_StarPost					; $34
@@ -72,7 +72,7 @@ Obj_Index:
 		dc.l Obj_Newtron					; $42
 		dc.l Obj_Roller						; $43
 		dc.l Obj_EdgeWalls					; $44
-		dc.l Obj_SideStomp					; $45
+		dc.l Obj_SidewaysStomper				; $45
 		dc.l Obj_MarbleBrick					; $46
 		dc.l Obj_Bumper						; $47
 		dc.l Delete_Current_Object				; $48
@@ -98,7 +98,7 @@ Obj_Index:
 		dc.l Delete_Current_Object				; $5C
 		dc.l Obj_Fan						; $5D
 		dc.l Obj_Seesaw						; $5E
-		dc.l Obj_BombBadnik					; $5F
+		dc.l Obj_Bomb						; $5F
 		dc.l Obj_Orbinaut					; $60
 		dc.l Obj_LabyrinthBlock					; $61
 		dc.l Obj_Gargoyle					; $62
@@ -108,7 +108,7 @@ Obj_Index:
 		dc.l Obj_Junction					; $66
 		dc.l Obj_RunningDisc					; $67
 		dc.l Obj_Conveyor					; $68
-		dc.l Obj_SpinPlatform					; $69
+		dc.l Obj_SpinningPlatform				; $69
 		dc.l Obj_Invisible_HurtBlock				; $6A
 		dc.l Obj_Invisible_KillBlock				; $6B
 		dc.l Obj_VanishPlatform					; $6C

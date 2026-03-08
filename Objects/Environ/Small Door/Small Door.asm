@@ -9,7 +9,7 @@
 Obj_AutoDoor:
 
 		; init
-		move.l	#Map_ADoor,mappings(a0)
+		move.l	#Map_AutoDoor,mappings(a0)
 		move.w	#make_art_tile($470,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(64/2,16/2,priority_4),height_pixels(a0)	; set height, width and priority
@@ -27,8 +27,10 @@ Obj_AutoDoor:
 .skipp2
 
 		; animate
-		lea	Ani_ADoor(pc),a1
+		lea	Ani_AutoDoor(pc),a1
 		jsr	(Animate_Sprite).w
+
+		; check
 		tst.b	mapping_frame(a0)						; is the door open?
 		bne.s	.chkdel								; if yes, branch
 		tst.b	render_flags(a0)						; object visible on the screen?

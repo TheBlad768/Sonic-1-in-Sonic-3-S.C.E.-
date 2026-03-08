@@ -102,7 +102,7 @@ ObjDat_SpikeBall_SYZ:	subObjMainData \
 				Obj_SpikeBall_SYZ.main, \
 					setBit(render_flags.level) | \
 					setBit(render_flags.static_mappings), \
-				0, 16, 16, 4, $3BA, 0, FALSE, Map_SBall_SYZ
+				0, 16, 16, 4, $3BA, 0, FALSE, Map_SpikeBall_SYZ
 ; ---------------------------------------------------------------------------
 
 		; mappings

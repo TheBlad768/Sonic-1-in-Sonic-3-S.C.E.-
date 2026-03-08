@@ -35,9 +35,14 @@ Obj_MarbleBrick:
 		jsr	.index-2(pc,d0.w)
 
 .solid
-		moveq	#(32/2)+$B,d1							; width
-		moveq	#32/2,d2							; height
-		moveq	#(32/2)+1,d3							; height+1
+
+		; solid
+		moveq	#$B,d1
+		add.b	width_pixels(a0),d1						; monitor's width
+		moveq	#0,d2
+		move.b	height_pixels(a0),d2
+		move.w	d2,d3								; monitor's height
+		addq.w	#1,d3
 		move.w	x_pos(a0),d4
 		jsr	(SolidObjectFull).w
 
@@ -112,7 +117,7 @@ ObjDat_MarbleBrick:	subObjMainData \
 				Obj_MarbleBrick.action, \
 					setBit(render_flags.level) | \
 					setBit(render_flags.static_mappings), \
-				0, 32, 32, 1, 0, 2, FALSE, Map_Brick
+				0, 32, 32, 1, 0, 2, FALSE, Map_MarbleBrick
 ; ---------------------------------------------------------------------------
 
 		; mappings

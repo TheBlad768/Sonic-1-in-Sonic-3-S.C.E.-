@@ -2,7 +2,7 @@
 ; Sprite mappings - chain of spiked balls (SYZ)
 ; ---------------------------------------------------------------------------
 
-Map_SBall:
+Map_SpikeBall_SYZ:
 		dc.w 1
 		dc.b $F8, 5, 0, 0, $FF, $F8
 	even

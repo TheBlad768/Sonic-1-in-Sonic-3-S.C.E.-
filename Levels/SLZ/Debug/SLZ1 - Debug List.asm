@@ -31,17 +31,26 @@ Debug_SLZ1: dbglistheader
 	dbglistobj Obj_Spring, Map_Spring2, $A2, 6, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Spikes, Map_Spikes, 0, 0, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Spikes, Map_Spikes, $10, 1, ArtTile_SpikesSprings, 0, FALSE
-	dbglistobj Obj_Elevator, Map_Elev, 0, 0, 0, 2, FALSE
-	dbglistobj Obj_CollapseFloor, Map_CFlo, 0, 2, $41C, 2, FALSE
-	dbglistobj Obj_FloatingPlatform, Map_Plat_SLZ, 0, 0, 0, 2, FALSE
-	dbglistobj Obj_CirclingPlatform, Map_Circ, 0, 0, 0, 2, FALSE
+	dbglistobj Obj_Elevator, Map_Elevator, 0, 0, 0, 2, FALSE
+	dbglistobj Obj_CollapseFloor, Map_CollapseFloor, 0, 2, $41C, 2, FALSE
+	dbglistobj Obj_FloatingPlatform, Map_FloatingPlatform_SLZ, 0, 0, 0, 2, FALSE
+	dbglistobj Obj_CirclingPlatform, Map_CirclingPlatform, 0, 0, 0, 2, FALSE
 	dbglistobj Obj_Staircase, Map_Offscreen, 0, 0, 0, 2, FALSE
 	dbglistobj Obj_Fan, Map_Fan, 0, 0, $3E8, 2, FALSE
 	dbglistobj Obj_Seesaw, Map_Seesaw, 0, 0, $37A, 0, FALSE
-	dbglistobj Obj_LavaMaker, Map_Fire, 0, 0, $434, 0, FALSE
-	dbglistobj Obj_StillSprite, Map_StillSprites, 3, 3, $42C, 2, FALSE
-	dbglistobj Obj_BombBadnik, Map_Bomb, 0, 0, $500, 0, FALSE
-	dbglistobj Obj_Orbinaut, Map_Orb, 2, 0, $55B, 1, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SLZ, 1, 0, $3A6, 2, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SLZ, 2, 0, $3A6, 2, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SLZ, 3, 0, $3A6, 2, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SLZ, 4, 0, $3A6, 2, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SLZ, 5, 0, $3A6, 2, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SLZ, 6, 0, $3A6, 2, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SLZ, 7, 0, $3A6, 2, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SLZ, 8, 0, $3A6, 2, FALSE
+	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SLZ, 9, 0, $3A6, 2, FALSE
+	dbglistobj Obj_LavaMaker, Map_LavaBall, 0, 0, $434, 0, FALSE
+	dbglistobj Obj_StillSprite, Map_StillSprites, 4, 4, $42C, 2, FALSE
+	dbglistobj Obj_Bomb, Map_Bomb, 0, 0, $500, 0, FALSE
+	dbglistobj Obj_Orbinaut, Map_Orbinaut, 2, 0, $55B, 1, FALSE
 	dbglistobj Obj_Animal, Map_Animals1, 0, 2, $592, 0, FALSE
 	dbglistobj Obj_StarPost, Map_StarPost, 1, 0, ArtTile_StarPost, 0, FALSE
 	dbglistobj Obj_BigRing, Map_BigRing, 1, 0, ArtTile_Explosion, 1, FALSE

@@ -130,7 +130,7 @@ Obj_CirclingPlatform:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_CirclingPlatform:	subObjMainData Obj_CirclingPlatform.main, setBit(render_flags.level), 0, 32, 48, 4, 0, 2, FALSE, Map_Circ
+ObjDat_CirclingPlatform:	subObjMainData Obj_CirclingPlatform.main, setBit(render_flags.level), 0, 32, 48, 4, 0, 2, FALSE, Map_CirclingPlatform
 ; ---------------------------------------------------------------------------
 
 		; mappings

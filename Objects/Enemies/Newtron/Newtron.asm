@@ -30,14 +30,14 @@ Obj_Newtron:
 		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
-		lea	Ani_Newt(pc),a1
+		lea	Ani_Newtron(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
 ; ---------------------------------------------------------------------------
 
 .action2
 		MoveSpriteXOnly
-		lea	Ani_Newt(pc),a1
+		lea	Ani_Newtron(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
 
@@ -176,7 +176,7 @@ Obj_Newtron:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Newtron:		subObjData Map_Newt, $50C, 0, FALSE, 32, 40, 4, 0, 0
+ObjDat_Newtron:		subObjData Map_Newtron, $50C, 0, FALSE, 32, 40, 4, 0, 0
 ; ---------------------------------------------------------------------------
 
 		; mappings

@@ -122,7 +122,7 @@ Obj_LavaWall:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_LavaWall:	subObjData Map_LWall, $36D, 3, FALSE, 64, 180, 1, 1, $14|collision_flags.npc.hurt
+ObjDat_LavaWall:	subObjData Map_LavaWall, $36D, 3, FALSE, 64, 180, 1, 1, $14|collision_flags.npc.hurt
 ; ---------------------------------------------------------------------------
 
 		; mappings

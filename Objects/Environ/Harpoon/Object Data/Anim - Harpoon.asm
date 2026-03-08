@@ -2,7 +2,7 @@
 ; Animation script - Harpoon (LZ)
 ; ---------------------------------------------------------------------------
 
-Ani_Harp: offsetTable
+Ani_Harpoon: offsetTable
 		offsetTableEntry.w .h_extending		; 0
 		offsetTableEntry.w .h_retracting	; 1
 		offsetTableEntry.w .v_extending		; 2

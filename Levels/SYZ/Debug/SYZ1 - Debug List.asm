@@ -31,15 +31,15 @@ Debug_SYZ1: dbglistheader
 	dbglistobj Obj_Spring, Map_Spring2, $A2, 6, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Spikes, Map_Spikes, 0, 0, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Spikes, Map_Spikes, $10, 1, ArtTile_SpikesSprings, 0, FALSE
-	dbglistobj Obj_Roller, Map_Roll, 0, 0, $4F0, 0, FALSE
+	dbglistobj Obj_Roller, Map_Roller, 0, 0, $4F0, 0, FALSE
 	dbglistobj Obj_StillSprite, Map_StillSprites, 2, 2, $11, 0, FALSE
 	dbglistobj Obj_Bumper, Map_Bump, 0, 0, $372, 0, FALSE
-	dbglistobj Obj_Crabmeat, Map_Crab, 0, 0, $3FC, 0, FALSE
-	dbglistobj Obj_BuzzBomber, Map_Buzz, 0, 0, $440, 0, FALSE
-	dbglistobj Obj_Yadrin, Map_Yad, 0, 0, $3BE, 1, FALSE
+	dbglistobj Obj_Crabmeat, Map_Crabmeat, 0, 0, $3FC, 0, FALSE
+	dbglistobj Obj_BuzzBomber, Map_BuzzBomber, 0, 0, $440, 0, FALSE
+	dbglistobj Obj_Yadrin, Map_Yadrin, 0, 0, $3BE, 1, FALSE
 	dbglistobj Obj_Animal, Map_Animals1, 0, 2, $592, 0, FALSE
-	dbglistobj Obj_FloatingPlatform, Map_Plat_SYZ, 0, 0, 0, 2, FALSE
-	dbglistobj Obj_FloatingBlock, Map_FBlock, 0, 0, 0, 2, FALSE
+	dbglistobj Obj_FloatingPlatform, Map_FloatingPlatform_SYZ, 0, 0, 0, 2, FALSE
+	dbglistobj Obj_FloatingBlock, Map_FloatingBlock, 0, 0, 0, 2, FALSE
 	dbglistobj Obj_SpikeBall_SYZ, Map_Offscreen, $54, 0, $3BA, 0, FALSE
 	dbglistobj Obj_Button, Map_Button, 0, 0, $47C, 0, FALSE
 	dbglistobj Obj_StarPost, Map_StarPost, 1, 0, ArtTile_StarPost, 0, FALSE

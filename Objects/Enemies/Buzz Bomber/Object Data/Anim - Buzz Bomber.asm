@@ -2,7 +2,7 @@
 ; Animation script - Buzz Bomber enemy
 ; ---------------------------------------------------------------------------
 
-Ani_Buzz: offsetTable
+Ani_BuzzBomber: offsetTable
 		offsetTableEntry.w .fly1	; 0
 		offsetTableEntry.w .fly2	; 1
 		offsetTableEntry.w .fires	; 2

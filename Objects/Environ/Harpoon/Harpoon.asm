@@ -19,7 +19,7 @@ Obj_Harpoon:
 		move.w	#1*60,wait_timer(a0)						; set time to 1 second
 
 .move
-		lea	Ani_Harp(pc),a1
+		lea	Ani_Harpoon(pc),a1
 		jsr	(Animate_Sprite).w
 		moveq	#0,d0
 		move.b	mapping_frame(a0),d0						; get frame number
@@ -58,7 +58,7 @@ Obj_Harpoon_end
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Harpoon:		subObjData Map_Harp, $3CC, 0, FALSE, 40, 16, 4, 0, 0
+ObjDat_Harpoon:		subObjData Map_Harpoon, $3CC, 0, FALSE, 40, 16, 4, 0, 0
 ; ---------------------------------------------------------------------------
 
 		; mappings

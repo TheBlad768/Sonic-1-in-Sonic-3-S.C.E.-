@@ -12,7 +12,7 @@ namespace S3KObjectDefinitions.MZ
 
 		public override void Init(ObjectData data)
 		{
-			byte[] blocks = ObjectHelper.OpenArtFile("../../Objects/Environ/Chained Stompers/KosinskiPM Art/Metal Blocks.kospm", CompressionType.KosinskiPlusM);
+			byte[] blocks = ObjectHelper.OpenArtFile("../../Objects/Environ/Chained Stomper/KosinskiPM Art/Metal Blocks.kospm", CompressionType.KosinskiPlusM);
 			byte[] padding = new byte[0x4360-blocks.Length];
 			byte[] spikes = ObjectHelper.OpenArtFile("../../Objects/Main/Spikes/KosinskiPM Art/SpikesSprings.kospm", CompressionType.KosinskiPlusM);
 			List<byte> tmpartfile = new List<byte>();
@@ -21,7 +21,7 @@ namespace S3KObjectDefinitions.MZ
 			tmpartfile.AddRange(spikes);
 			byte[] artfile = tmpartfile.ToArray();
 			for (int i = 0; i < labels.Length; i++)
-				imgs.Add(ObjectHelper.MapASMToBmp(artfile, "../../Objects/Environ/Chained Stompers/Object Data/Map - Sideways Stomp.asm", labels[i], 0));
+				imgs.Add(ObjectHelper.MapASMToBmp(artfile, "../../Objects/Environ/Chained Stomper/Object Data/Map - Sideways Stomper.asm", labels[i], 0));
 		}
 
 		public override ReadOnlyCollection<byte> Subtypes

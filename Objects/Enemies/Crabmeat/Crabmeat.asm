@@ -44,7 +44,7 @@ Obj_Crabmeat:
 		; jump
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
-		lea	Ani_Crab(pc),a1
+		lea	Ani_Crabmeat(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
 ; ---------------------------------------------------------------------------
@@ -220,7 +220,7 @@ Obj_Crabmeat_Missile:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Crabmeat:		subObjData Map_Crab, $3FC, 0, FALSE, 32, 48, 3, 0, 6|collision_flags.npc.touch
+ObjDat_Crabmeat:		subObjData Map_Crabmeat, $3FC, 0, FALSE, 32, 48, 3, 0, 6|collision_flags.npc.touch
 ObjDat3_Crabmeat_Missile:	subObjData FALSE, FALSE, 0, FALSE, 16, 16, 3, 0, 7|collision_flags.npc.hurt
 
 Child1_Crabmeat_Missile:

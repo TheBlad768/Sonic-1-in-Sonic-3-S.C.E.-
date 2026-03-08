@@ -149,7 +149,7 @@ Obj_BallHog_Cannonball:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BallHog:			subObjData Map_Hog, $2EC, 1, FALSE, 38, 16, 4, 0, 5|collision_flags.npc.touch
+ObjDat_BallHog:			subObjData Map_BallHog, $2EC, 1, FALSE, 38, 16, 4, 0, 5|collision_flags.npc.touch
 ObjDat3_BallHog_Cannonball:	subObjData FALSE, FALSE, 0, FALSE, 16, 16, 3, 4, 7|collision_flags.npc.hurt
 
 Child6_BallHog_Cannonball:

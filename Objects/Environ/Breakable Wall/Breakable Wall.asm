@@ -9,8 +9,11 @@ _BWALL_KNUX_ =				0						; if 1, change the animation of Knuckles after breaking
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-breakablewall.speedp1			ds.w 1						; Sonic's horizontal speed (2 bytes)
-breakablewall.speedp2			ds.w 1						; Tails's horizontal speed (2 bytes)
+; players
+breakablewall.p1_speed			ds.w 1						; Sonic's horizontal speed (2 bytes)
+breakablewall.p2_speed			ds.w 1						; Tails's horizontal speed (2 bytes)
+
+; main
 breakablewall.fragright_ptr		ds.l 1						; fragments that move right (4 bytes)
 breakablewall.fragleft_ptr		ds.l 1						; fragments that move left (4 bytes)
 
@@ -33,8 +36,8 @@ Obj_BreakableWall:
 		move.l	#BreakableWall_FragSpd2,breakablewall.fragleft_ptr(a0)		; fragments that move left
 
 .main
-		move.w	(Player_1+x_vel).w,breakablewall.speedp1(a0)			; load Sonic's horizontal speed
-		move.w	(Player_2+x_vel).w,breakablewall.speedp2(a0)			; load Tails's horizontal speed
+		move.w	(Player_1+x_vel).w,breakablewall.p1_speed(a0)			; load Sonic's horizontal speed
+		move.w	(Player_2+x_vel).w,breakablewall.p2_speed(a0)			; load Tails's horizontal speed
 		moveq	#$B,d1
 		add.b	width_pixels(a0),d1
 		moveq	#0,d2
@@ -53,7 +56,7 @@ Obj_BreakableWall:
 
 .checkplayer
 		lea	(Player_1).w,a1							; a1=character
-		move.w	breakablewall.speedp1(a0),d1					; get Sonic's horizontal speed to d1
+		move.w	breakablewall.p1_speed(a0),d1					; get Sonic's horizontal speed to d1
 		move.w	d6,d0								; copy touch status to d0
 		andi.w	#p1_touch_side,d0
 		beq.s	.checkTails
@@ -85,7 +88,7 @@ Obj_BreakableWall:
 		lea	(Player_2).w,a1							; a1=character
 		cmpi.b	#AniIDSonAni_Roll,anim(a1)					; is Tails rolling?
 		bne.s	.draw								; if not, branch
-		move.w	breakablewall.speedp2(a0),x_vel(a1)
+		move.w	breakablewall.p2_speed(a0),x_vel(a1)
 		move.w	x_vel(a1),ground_vel(a1)
 		bclr	#p2_pushing_bit,status(a0)
 		bclr	#status.player.pushing,status(a1)
@@ -98,7 +101,7 @@ Obj_BreakableWall:
 		btst	#p2_pushing_bit,status(a0)
 		beq.w	.draw
 		lea	(Player_2).w,a1							; a1=character
-		move.w	breakablewall.speedp2(a0),d1					; get Tails's horizontal speed to d1
+		move.w	breakablewall.p2_speed(a0),d1					; get Tails's horizontal speed to d1
 		cmpi.b	#AniIDSonAni_Roll,anim(a1)					; is Tails rolling?
 		bne.w	.draw								; if not, branch
 		mvabs.w	d1,d0

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<ObjDef xmlns="http://www.sonicretro.org" Name="Lavaball Spawner" Image="lavaball" Debug="true">
+  <Images>
+    <ImageFromMappings id="lavaball">
+      <ArtFile filename="../../Objects/Environ/Lava Ball/KosinskiPM Art/Lava Ball.kospm" compression="KosinskiPlusM" />
+      <MapFile type="ASM" filename="../../Objects/Environ/Lava Ball/Object Data/Map - Lava Ball.asm" frame="1" startpal="0" />
+    </ImageFromMappings>
+  </Images>
+  <Properties>
+    <BitsProperty name="Delay" displayname="Delay" type="LavaballDelay" startbit="4" length="4" />
+    <BitsProperty name="SpeedDirection" displayname="Lavaball Speed/Direction" type="LavaballSpeedDirection" startbit="0" length="4" />
+  </Properties>
+  <Enums>
+    <Enum name="LavaballDelay">
+      <EnumMember name="30 frames" />
+      <EnumMember name="60 frames" />
+      <EnumMember name="90 frames" />
+      <EnumMember name="120 frames" />
+      <EnumMember name="150 frames" />
+      <EnumMember name="180 frames" />
+    </Enum>
+    <Enum name="LavaballSpeedDirection">
+      <EnumMember name="Up (400)" />
+      <EnumMember name="Up (500)" />
+      <EnumMember name="Up (600)" />
+      <EnumMember name="Up (700)" />
+      <EnumMember name="Up (200)" />
+      <EnumMember name="Down (200)" />
+      <EnumMember name="Left (200)" />
+      <EnumMember name="Right (200)" />
+    </Enum>
+  </Enums>
+  <Display>
+    <DisplayOption>
+      <ImageRef image="lavaball" />
+    </DisplayOption>
+  </Display>
+</ObjDef>

@@ -78,7 +78,7 @@ Obj_SpinningConveyor:
 Obj_SpinningConveyor_Platforms:
 
 		; init
-		move.l	#Map_Spin,mappings(a0)
+		move.l	#Map_SpinningPlatform,mappings(a0)
 		move.w	#make_art_tile($3C8,0,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(14/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority
@@ -139,7 +139,7 @@ Obj_SpinningConveyor_Platforms:
 		bsr.w	LCon_ChangeDir
 
 .main
-		lea	Ani_SpinConvey(pc),a1
+		lea	Ani_SpinningConveyor(pc),a1
 		jsr	(Animate_Sprite).w
 
 		; check animation

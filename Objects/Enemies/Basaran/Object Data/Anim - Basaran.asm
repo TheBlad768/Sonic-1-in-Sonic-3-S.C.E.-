@@ -2,7 +2,7 @@
 ; Animation script - Basaran enemy
 ; ---------------------------------------------------------------------------
 
-Ani_Bas: offsetTable
+Ani_Basaran: offsetTable
 		offsetTableEntry.w .still	; 0
 		offsetTableEntry.w .fall	; 1
 		offsetTableEntry.w .fly		; 2

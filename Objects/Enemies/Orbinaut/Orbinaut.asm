@@ -76,7 +76,7 @@ Obj_Orbinaut:
 		MoveSpriteXOnly
 
 .draw
-		lea	Ani_Orb(pc),a1
+		lea	Ani_Orbinaut(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
 
@@ -96,7 +96,7 @@ Obj_Orbinaut_Orb:
 		move.b	d0,circular_angle(a0)
 
 		; init
-		move.l	#Map_Orb_Orb,mappings(a0)
+		move.l	#Map_Orbinaut_Orb,mappings(a0)
 		lea	ObjDat3_Orbinaut_Orb(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
 		bset	#render_flags.static_mappings,render_flags(a0)			; set flag to "static mappings flag"
@@ -110,8 +110,10 @@ Obj_Orbinaut_Orb:
 		bne.s	.circle								; if not, branch
 		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
 		move.l	#.move,address(a0)
-		subq.b	#1,count(a1)
-		bpl.s	.fire
+
+		; check
+		subq.b	#1,count(a1)							; are the orbs over?
+		bpl.s	.fire								; if not, branch
 		move.l	#Obj_Orbinaut.move,address(a1)
 
 .fire
@@ -139,7 +141,7 @@ Obj_Orbinaut_Orb:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Orbinaut:		subObjData Map_Orb, $55B, 0, FALSE, 24, 24, 4, 0, $B|collision_flags.npc.touch
+ObjDat_Orbinaut:		subObjData Map_Orbinaut, $55B, 0, FALSE, 24, 24, 4, 0, $B|collision_flags.npc.touch
 ObjDat3_Orbinaut_Orb:		subObjData FALSE, FALSE, 0, FALSE, 16, 16, 4, 0, $18|collision_flags.npc.hurt
 
 Child6_Orbinaut_Orb:

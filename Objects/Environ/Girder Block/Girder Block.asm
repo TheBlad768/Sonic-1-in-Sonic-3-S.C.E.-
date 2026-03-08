@@ -19,7 +19,7 @@ girder.settings				ds.b 1						; which movement settings to use (0/8/$10/$18) (1
 Obj_Girder:
 
 		; init
-		move.l	#Map_Gird,mappings(a0)
+		move.l	#Map_Girder,mappings(a0)
 		move.w	#make_art_tile($2DA,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(48/2,192/2,priority_4),height_pixels(a0)	; set height, width and priority
@@ -78,7 +78,7 @@ Gird_ChgMove:
 
 .settings
 
-		; x-speed, y-speed, duration, unused
+		; x-speed, y-speed, duration, even
 		dc.w $100, 0, $60, 0			; right		; 0
 		dc.w 0, $100, $30, 0			; down		; 8
 		dc.w -$100, -$40, $60, 0		; up/left	; $10

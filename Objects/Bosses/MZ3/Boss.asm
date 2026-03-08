@@ -430,7 +430,7 @@ Obj74_Action:
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		jsr	(MoveSprite2).w
-		lea	Ani_Fire(pc),a1
+		lea	Ani_LavaBall(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouchXY).w
 ; ---------------------------------------------------------------------------
@@ -587,8 +587,10 @@ loc_18886:
 		clr.b	collision_flags(a0)
 
 .anim
-		lea	Ani_Fire(pc),a1
+		lea	Ani_LavaBall(pc),a1
 		jsr	(Animate_Sprite).w
+
+		; check
 		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	Obj74_Delete
 
@@ -673,7 +675,7 @@ Obj_BossFire_Scaled:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BossFire_Fire:			subObjData Map_Fire, $298, 0, FALSE, 16, 16, 5, 0, 0
+ObjDat_BossFire_Fire:			subObjData Map_LavaBall, $298, 0, FALSE, 16, 16, 5, 0, 0
 ObjDat_BossFire_ShipTube:		subObjData Map_BossFire_Tube, $420, 1, FALSE, 32, 48, 3, 0, 0
 ObjDat_BossFire_ShipTubeFlame:		subObjData Map_BossFire_Tube, $420, 1, FALSE, 8, 16, 5, 1, 0
 ObjDat_BossFire_Scaled:			subObjData Map_ScaledArt, $340, 0, FALSE, 128, 128, 6, 0, 0

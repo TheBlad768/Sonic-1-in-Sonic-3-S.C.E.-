@@ -32,26 +32,26 @@ Debug_LZ1: dbglistheader
 	dbglistobj Obj_Spikes, Map_Spikes, 0, 0, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Spikes, Map_Spikes, $10, 1, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Jaws, Map_Jaws, 8, 0, $4F0, 1, FALSE
-	dbglistobj Obj_Burrobot, Map_Burro, 0, 2, $510, 0, FALSE
+	dbglistobj Obj_Burrobot, Map_Burrobot, 0, 2, $510, 0, FALSE
 	dbglistobj Obj_Animal, Map_Animals4, 0, 2, $592, 0, FALSE
-	dbglistobj Obj_Harpoon, Map_Harp, 0, 0, $3CC, 0, FALSE
-	dbglistobj Obj_Harpoon, Map_Harp, 2, 3, $3CC, 0, FALSE
-	dbglistobj Obj_PushableBlock, Map_Push, 0, 0, $3DE, 2, FALSE
+	dbglistobj Obj_Harpoon, Map_Harpoon, 0, 0, $3CC, 0, FALSE
+	dbglistobj Obj_Harpoon, Map_Harpoon, 2, 3, $3CC, 0, FALSE
+	dbglistobj Obj_PushableBlock, Map_PushableBlock, 0, 0, $3DE, 2, FALSE
 	dbglistobj Obj_MovingBlock, Map_Offscreen, 0, 0, $3BC, 2, FALSE
-	dbglistobj Obj_LabyrinthBlock, Map_LBlock, 1, 0, $3E6, 2, FALSE
-	dbglistobj Obj_LabyrinthBlock, Map_LBlock, $13, 1, $3E6, 2, FALSE
-	dbglistobj Obj_LabyrinthBlock, Map_LBlock, 5, 0, $3E6, 2, FALSE
-	dbglistobj Obj_Gargoyle, Map_Gar, 0, 0, $2E9, 2, FALSE
-	dbglistobj Obj_LabyrinthBlock, Map_LBlock, $27, 2, $3E6, 2, FALSE
-	dbglistobj Obj_LabyrinthBlock, Map_LBlock, $30, 3, $3E6, 2, FALSE
+	dbglistobj Obj_LabyrinthBlock, Map_LabyrinthBlock, 1, 0, $3E6, 2, FALSE
+	dbglistobj Obj_LabyrinthBlock, Map_LabyrinthBlock, $13, 1, $3E6, 2, FALSE
+	dbglistobj Obj_LabyrinthBlock, Map_LabyrinthBlock, 5, 0, $3E6, 2, FALSE
+	dbglistobj Obj_Gargoyle, Map_Gargoyle, 0, 0, $2E9, 2, FALSE
+	dbglistobj Obj_LabyrinthBlock, Map_LabyrinthBlock, $27, 2, $3E6, 2, FALSE
+	dbglistobj Obj_LabyrinthBlock, Map_LabyrinthBlock, $30, 3, $3E6, 2, FALSE
 	dbglistobj Obj_StillSprite, Map_StillSprites, 3, 3, $3F6, 0, FALSE
-	dbglistobj Obj_Orbinaut, Map_Orb, 0, 0, $55B, 0, FALSE
+	dbglistobj Obj_Orbinaut, Map_Orbinaut, 0, 0, $55B, 0, FALSE
 	dbglistobj Obj_Bubbler, Map_Bubbler, $84, $13, $348, 0, TRUE
-	dbglistobj Obj_Waterfall, Map_WFall, 2, 2, $259, 2, FALSE
-	dbglistobj Obj_Waterfall, Map_WFall, 9, 9, $259, 2, FALSE
+	dbglistobj Obj_Waterfall, Map_Waterfall, 2, 2, $259, 2, FALSE
+	dbglistobj Obj_Waterfall, Map_Waterfall, 9, 9, $259, 2, FALSE
 	dbglistobj Obj_Pole, Map_Pole, 0, 0, $3DE, 2, FALSE
-	dbglistobj Obj_FlapDoor, Map_Flap, 2, 0, $328, 2, FALSE
-	dbglistobj Obj_SpikeBall_LZ, Map_SBall_LZ, $D5, 1, $310, 0, FALSE
+	dbglistobj Obj_FlapDoor, Map_FlapDoor, 2, 0, $328, 2, FALSE
+	dbglistobj Obj_SpikeBall_LZ, Map_SpikeBall_LZ, $D5, 1, $310, 0, FALSE
 	dbglistobj Obj_Button, Map_Button, 0, 0, $47C, 0, FALSE
 	dbglistobj Obj_StarPost, Map_StarPost, 1, 0, ArtTile_StarPost, 0, FALSE
 	dbglistobj Obj_BigRing, Map_BigRing, 1, 0, ArtTile_Explosion, 1, FALSE

@@ -2,9 +2,9 @@
 ; Sprite mappings - Basaran enemy (MZ)
 ; ---------------------------------------------------------------------------
 
-Map_Bas:
-		dc.w SME_u9kpk_8-Map_Bas, SME_u9kpk_10-Map_Bas
-		dc.w SME_u9kpk_24-Map_Bas, SME_u9kpk_3E-Map_Bas
+Map_Basaran:
+		dc.w SME_u9kpk_8-Map_Basaran, SME_u9kpk_10-Map_Basaran
+		dc.w SME_u9kpk_24-Map_Basaran, SME_u9kpk_3E-Map_Basaran
 SME_u9kpk_8:	dc.b 0, 1
 		dc.b $F4, 6, 0, 0, $FF, $F8
 SME_u9kpk_10:	dc.b 0, 3

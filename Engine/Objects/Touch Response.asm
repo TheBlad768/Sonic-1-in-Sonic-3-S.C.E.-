@@ -570,7 +570,7 @@ HurtCharacter:
 		move.l	mappings(a2),d1
 		cmpi.l	#Map_Spikes,d1							; was damage caused by spikes?
 		beq.s	.sound								; if yes, branch
-		cmpi.l	#Map_Harp,d1							; was damage caused by harpoon?
+		cmpi.l	#Map_Harpoon,d1							; was damage caused by harpoon?
 		beq.s	.sound								; if yes, branch
 		moveq	#signextendB(sfx_Death),d0					; load normal damage sound
 
@@ -587,7 +587,7 @@ HurtCharacter:
 		move.l	mappings(a2),d1
 		cmpi.l	#Map_Spikes,d1							; was damage caused by spikes?
 		beq.s	Kill_Character.main						; if yes, branch
-		cmpi.l	#Map_Harp,d1							; was damage caused by harpoon?
+		cmpi.l	#Map_Harpoon,d1							; was damage caused by harpoon?
 		beq.s	Kill_Character.main						; if yes, branch
 		moveq	#signextendB(sfx_Death),d0					; load normal damage sound
 

@@ -16,7 +16,7 @@ flapdoor.delay				ds.w 1						; time between opening/closing (2 bytes)
 Obj_FlapDoor:
 
 		; init
-		move.l	#Map_Flap,mappings(a0)
+		move.l	#Map_FlapDoor,mappings(a0)
 		move.w	#make_art_tile($328,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.w	#bytes_to_word(80/2,80/2),height_pixels(a0)			; set height and width
@@ -40,7 +40,7 @@ Obj_FlapDoor:
 		sfx	sfx_Door							; play door sound
 
 .wait
-		lea	Ani_Flap(pc),a1
+		lea	Ani_FlapDoor(pc),a1
 		jsr	(Animate_Sprite).w
 		clr.b	(WindTunnel_holding_flag).w					; enable wind tunnel
 		tst.b	mapping_frame(a0)						; is the door open?

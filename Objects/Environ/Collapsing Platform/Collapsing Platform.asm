@@ -20,8 +20,8 @@ Obj_CollapsingPlatform:
 		; init
 		move.l	#Map_CollapsingPlatform,mappings(a0)
 		move.w	#make_art_tile(0,2,FALSE),art_tile(a0)
-		move.l	#CFlo_Data1,collapsingplatform.time_ptr(a0)
-		move.l	#CPlat_Data,collapsingplatform.slope_ptr(a0)
+		move.l	#CollapseFloor_Data1,collapsingplatform.time_ptr(a0)
+		move.l	#CollapsingPlatform_Data,collapsingplatform.slope_ptr(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(112/2,96/2,priority_4),height_pixels(a0)	; set height, width and priority
 		move.b	#7,collapsingplatform.delay(a0)
@@ -183,7 +183,7 @@ Obj_PlatformCollapseFall:
 ; ---------------------------------------------------------------------------
 
 		; data
-		incfile.b	CPlat_Data, "Objects/Environ/Collapsing Platform/Object Data/Heightmap.bin"
+		incfile.b	CollapsingPlatform_Data, "Objects/Environ/Collapsing Platform/Object Data/Heightmap.bin"
 ; ---------------------------------------------------------------------------
 
 		; mappings

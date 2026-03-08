@@ -41,14 +41,14 @@ Obj_Chopper:
 .setframe
 		move.b	d1,anim(a0)
 		MoveSpriteYOnly , $18							; reduce speed
-		lea	Ani_Chop(pc),a1
+		lea	Ani_Chopper(pc),a1
 		jsr	(Animate_Sprite).w
 		jmp	(Sprite_CheckDeleteTouch).w
 
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Chopper:		subObjData Map_Chop, $4EC, 0, FALSE, 32, 32, 4, 0, 9|collision_flags.npc.touch
+ObjDat_Chopper:		subObjData Map_Chopper, $4EC, 0, FALSE, 32, 32, 4, 0, 9|collision_flags.npc.touch
 ; ---------------------------------------------------------------------------
 
 		; mappings

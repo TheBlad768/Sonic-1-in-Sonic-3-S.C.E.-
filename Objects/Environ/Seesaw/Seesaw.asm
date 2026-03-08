@@ -3,10 +3,14 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-see_origX			= objoff_30	; original x-axis position (2 bytes)
-see_origY			= objoff_34	; original y-axis position (2 bytes)
-see_speed			= objoff_38	; speed of collision (2 bytes)
-see_frame			= objoff_3A	; frame (1 byte)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+seesaw.origX				ds.w 1						; original x-axis position (2 bytes)
+seesaw.speed				ds.w 1						; speed of collision (2 bytes)
+seesaw.frame				ds.b 1						; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -17,7 +21,7 @@ Obj_Seesaw:
 		move.w	#make_art_tile($37A,0,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(96/2,96/2,priority_3),height_pixels(a0)	; set height, width and priority
-		move.w	x_pos(a0),see_origX(a0)
+		move.w	x_pos(a0),seesaw.origX(a0)
 		move.l	#.main,address(a0)
 
 		; check boss
@@ -36,7 +40,7 @@ Obj_Seesaw:
 .noboss
 
 		; load spikeball object
-		lea	Child6_See_Spikeball(pc),a2
+		lea	Child6_Seesaw_SpikeBall(pc),a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.noball
 		move.b	status(a0),status(a1)
@@ -47,10 +51,10 @@ Obj_Seesaw:
 		move.b	#2,mapping_frame(a0)						; use different frame
 
 .noflip
-		move.b	mapping_frame(a0),see_frame(a0)
+		move.b	mapping_frame(a0),seesaw.frame(a0)
 
 .main
-		move.b	see_frame(a0),d1
+		move.b	seesaw.frame(a0),d1
 		btst	#p1_standing_bit,status(a0)
 		beq.s	.notplayer1
 
@@ -123,18 +127,18 @@ Obj_Seesaw:
 		move.w	d2,d0
 
 .setspeed
-		move.w	d0,see_speed(a0)
+		move.w	d0,seesaw.speed(a0)
 
 .slope
 
 		; change frame
-		bsr.s	See_ChgFrame
+		bsr.s	Seesaw_ChgFrame
 
 		; load slope data
-		lea	See_DataSlope(pc),a2
+		lea	Seesaw_DataSlope(pc),a2
 		btst	#0,mapping_frame(a0)						; is seesaw flat?
 		beq.s	.notflat							; if not, branch
-		lea	See_DataFlat(pc),a2
+		lea	Seesaw_DataFlat(pc),a2
 
 .notflat
 		moveq	#0,d1
@@ -144,12 +148,12 @@ Obj_Seesaw:
 
 		; draw and delete
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	see_origX(a0),d0						; get object position
+		and.w	seesaw.origX(a0),d0						; get object position
 		jmp	(Sprite_CheckDelete.skipxpos).w
 
 ; =============== S U B R O U T I N E =======================================
 
-See_ChgFrame:
+Seesaw_ChgFrame:
 		move.b	mapping_frame(a0),d0
 		cmp.b	d1,d0								; does frame need to change?
 		beq.s	.noflip								; if not, branch
@@ -159,7 +163,7 @@ See_ChgFrame:
 .loc_11772
 		subq.b	#1,d0
 		move.b	d0,mapping_frame(a0)
-		move.b	d1,see_frame(a0)
+		move.b	d1,seesaw.frame(a0)
 		bclr	#render_flags.x_flip,render_flags(a0)
 		btst	#1,mapping_frame(a0)
 		beq.s	.noflip
@@ -174,28 +178,36 @@ See_ChgFrame:
 
 ; dynamic object variables
 
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+seesaw_spikeball.origX			ds.w 1						; original x-axis position (2 bytes)
+seesaw_spikeball.origY			ds.w 1						; original y-axis position (2 bytes)
+seesaw_spikeball.frame			ds.b 1						; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
-Obj_See_Spikeball:
+Obj_Seesaw_SpikeBall:
 
 		; init
-		lea	ObjDat_See_SpikeBall(pc),a1
+		lea	ObjDat_Seesaw_SpikeBall(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.main,address(a0)
-		move.w	x_pos(a0),see_origX(a0)
+		move.w	x_pos(a0),seesaw_spikeball.origX(a0)
 		addi.w	#40,x_pos(a0)
-		move.w	y_pos(a0),see_origY(a0)
+		move.w	y_pos(a0),seesaw_spikeball.origY(a0)
 		btst	#status.npc.x_flip,status(a0)					; is seesaw flipped?
 		beq.s	.main								; if not, branch
 		subi.w	#80,x_pos(a0)							; move spikeball to the other side
-		move.b	#2,see_frame(a0)
+		move.b	#2,seesaw_spikeball.frame(a0)
 
 .main
 		pea	.draw(pc)
 		movea.w	parent3(a0),a1							; a1=parent object (seesaw)
 		moveq	#0,d0
-		move.b	see_frame(a0),d0
-		sub.b	see_frame(a1),d0
+		move.b	seesaw_spikeball.frame(a0),d0
+		sub.b	seesaw.frame(a1),d0
 		beq.s	.loc_1183E
 		bhs.s	.loc_117FC
 		neg.b	d0
@@ -205,14 +217,14 @@ Obj_See_Spikeball:
 		cmpi.b	#1,d0
 		beq.s	.loc_11822
 		move.l	#words_to_long(-$CC,-$AF0),d1					; x_vel + y_vel
-		cmpi.w	#$A00,see_speed(a1)
+		cmpi.w	#$A00,seesaw.speed(a1)
 		blt.s	.loc_11822
 		move.l	#words_to_long(-$A0,-$E00),d1					; x_vel + y_vel
 
 .loc_11822
 		move.l	d1,x_vel(a0)
 		move.w	x_pos(a0),d0
-		sub.w	see_origX(a0),d0
+		sub.w	seesaw_spikeball.origX(a0),d0
 		bhs.s	.leftside1
 		neg.w	x_vel(a0)
 
@@ -222,22 +234,22 @@ Obj_See_Spikeball:
 ; ---------------------------------------------------------------------------
 
 .loc_1183E
-		lea	See_Speeds(pc),a2
+		lea	Seesaw_SpikeBall_Speeds(pc),a2
 		moveq	#0,d0
 		move.b	mapping_frame(a1),d0
 		moveq	#$28,d2
 		move.w	x_pos(a0),d1
-		sub.w	see_origX(a0),d1
+		sub.w	seesaw_spikeball.origX(a0),d1
 		bhs.s	.leftside2
 		neg.w	d2
 		addq.w	#2,d0
 
 .leftside2
 		add.w	d0,d0
-		move.w	see_origY(a0),d1
+		move.w	seesaw_spikeball.origY(a0),d1
 		add.w	(a2,d0.w),d1
 		move.w	d1,y_pos(a0)
-		add.w	see_origX(a0),d2
+		add.w	seesaw_spikeball.origX(a0),d2
 		move.w	d2,x_pos(a0)
 		clr.w	y_pos+2(a0)
 		clr.w	x_pos+2(a0)
@@ -254,7 +266,7 @@ Obj_See_Spikeball:
 		bpl.s	.loc_1189A							; if yes, branch
 		jsr	(MoveSprite).w
 		moveq	#-47,d0
-		add.w	see_origY(a0),d0
+		add.w	seesaw_spikeball.origY(a0),d0
 		cmp.w	y_pos(a0),d0
 		bgt.s	.return
 		jmp	(MoveSprite).w
@@ -263,17 +275,17 @@ Obj_See_Spikeball:
 .loc_1189A
 		jsr	(MoveSprite).w
 		movea.w	parent3(a0),a1							; a1=parent object (seesaw)
-		lea	See_Speeds(pc),a2
+		lea	Seesaw_SpikeBall_Speeds(pc),a2
 		moveq	#0,d0
 		move.b	mapping_frame(a1),d0
 		move.w	x_pos(a0),d1
-		sub.w	see_origX(a0),d1
+		sub.w	seesaw_spikeball.origX(a0),d1
 		bhs.s	.loc_118BA
 		addq.w	#2,d0
 
 .loc_118BA
 		add.w	d0,d0
-		move.w	see_origY(a0),d1						; d1 = bottom of seesaw y position
+		move.w	seesaw_spikeball.origY(a0),d1					; d1 = bottom of seesaw y position
 		add.w	(a2,d0.w),d1							; + offset for current angle
 		cmp.w	y_pos(a0),d1							; return if y position < d1
 		bgt.s	.return2
@@ -284,8 +296,8 @@ Obj_See_Spikeball:
 		moveq	#0,d1
 
 .spring
-		move.b	d1,see_frame(a1)
-		move.b	d1,see_frame(a0)
+		move.b	d1,seesaw.frame(a1)
+		move.b	d1,seesaw_spikeball.frame(a0)
 		cmp.b	mapping_frame(a1),d1
 		beq.s	.clear
 
@@ -313,7 +325,7 @@ Obj_See_Spikeball:
 
 .draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	see_origX(a0),d0						; get object position
+		and.w	seesaw_spikeball.origX(a0),d0					; get object position
 		jmp	(Sprite_CheckDeleteTouch3.skipxpos).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -332,20 +344,20 @@ Seesaw_LaunchCharacter:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_See_SpikeBall:	subObjData Map_SSawBall, $4EE, 0, FALSE, 24, 24, 4, 1, $B|collision_flags.npc.hurt
+ObjDat_Seesaw_SpikeBall:	subObjData Map_SeesawSpikeBall, $4EE, 0, FALSE, 24, 24, 4, 1, $B|collision_flags.npc.hurt
 
-Child6_See_Spikeball:
+Child6_Seesaw_SpikeBall:
 		dc.w 1-1
-		dc.l Obj_See_Spikeball
+		dc.l Obj_Seesaw_SpikeBall
 
-See_Speeds:		dc.w -8, -28, -47, -28, -8	; low, balanced, high, balanced, low
+Seesaw_SpikeBall_Speeds:		dc.w -8, -28, -47, -28, -8	; low, balanced, high, balanced, low
 ; ---------------------------------------------------------------------------
 
 		; data
-		incfile.b	See_DataSlope, "Objects/Environ/Seesaw/Object Data/Slope.bin"
-		incfile.b	See_DataFlat, "Objects/Environ/Seesaw/Object Data/Flat.bin"
+		incfile.b	Seesaw_DataSlope, "Objects/Environ/Seesaw/Object Data/Slope.bin"
+		incfile.b	Seesaw_DataFlat, "Objects/Environ/Seesaw/Object Data/Flat.bin"
 ; ---------------------------------------------------------------------------
 
 		; mappings
 		include "Objects/Environ/Seesaw/Object Data/Map - Seesaw.asm"
-		include "Objects/Environ/Seesaw/Object Data/Map - Seesaw Ball.asm"
+		include "Objects/Environ/Seesaw/Object Data/Map - Seesaw SpikeBall.asm"

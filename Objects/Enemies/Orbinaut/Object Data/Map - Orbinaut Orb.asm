@@ -2,5 +2,5 @@
 ; Sprite mappings - Orbinaut enemy (LZ, SLZ, SBZ)
 ; ---------------------------------------------------------------------------
 
-Map_Orb_Orb:	dc.b $F8, 5, 0, $1B, $FF, $F8
+Map_Orbinaut_Orb:	dc.b $F8, 5, 0, $1B, $FF, $F8
 	even

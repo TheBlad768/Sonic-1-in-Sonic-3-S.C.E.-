@@ -6,10 +6,10 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
-superTailsBirds.timer		ds.b 1							; (1 byte)
-superTailsBirds.found		ds.b 1							; (1 byte)
-superTailsBirds.locked		ds.b 1							; (1 byte)
-superTailsBirds.angle		ds.b 1							; (1 byte)
+superTailsBirds.timer			ds.b 1						; (1 byte)
+superTailsBirds.found			ds.b 1						; (1 byte)
+superTailsBirds.locked			ds.b 1						; (1 byte)
+superTailsBirds.angle			ds.b 1						; (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -22,7 +22,7 @@ Obj_SuperTailsBirds:
 		; load birds art
 		QueueStaticDMA ArtUnc_SuperTailsBirds,.artsize,tiles_to_bytes(ArtTile_Player_1)
 
-.bcount =	4										; number of birds
+.bcount =	4									; number of birds
 
 		; load
 		lea	(a0),a1
