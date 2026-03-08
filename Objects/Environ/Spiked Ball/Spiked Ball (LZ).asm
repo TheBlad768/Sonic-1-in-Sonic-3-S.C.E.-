@@ -149,4 +149,4 @@ ObjDat_SpikeBall_LZ:	subObjMainData Obj_SpikeBall_LZ.main, setBit(render_flags.l
 ; ---------------------------------------------------------------------------
 
 		; mappings
-		include "Objects/Environ/Spiked Ball and Chain/Object Data/Map - Spiked Ball and Chain (LZ).asm"
+		include "Objects/Environ/Spiked Ball/Object Data/Map - Spiked Ball (LZ).asm"

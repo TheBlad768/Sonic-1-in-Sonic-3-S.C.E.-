@@ -25,7 +25,7 @@ Obj_GrassFire:
 
 .main
 		movea.w	parent3(a0),a2							; a2=parent object (Large Grassy Platforms)
-		movea.l	largegrass.slope_ptr(a2),a1					; LGrass data pointer
+		movea.l	largegrassplatform.slope_ptr(a2),a1				; LGrass data pointer
 		move.w	x_pos(a0),d1
 		sub.w	grassfire.origX(a0),d1
 		addi.w	#12,d1
@@ -35,7 +35,7 @@ Obj_GrassFire:
 		neg.w	d0
 		add.w	grassfire.origY(a0),d0
 		move.w	d0,d3
-		add.w	largegrass.yoffset(a2),d0
+		add.w	largegrassplatform.yoffset(a2),d0
 		move.w	d0,y_pos(a0)
 		cmpi.w	#$84,d1
 		bhs.s	Obj_GrassFire_Fire.anim
@@ -74,7 +74,7 @@ Obj_GrassFire_Fire:
 .main
 		movea.w	parent3(a0),a1							; a1=parent object (Large Grassy Platforms)
 		move.w	grassfire.origY(a0),d0
-		add.w	largegrass.yoffset(a1),d0
+		add.w	largegrassplatform.yoffset(a1),d0
 		move.w	d0,y_pos(a0)
 
 .anim

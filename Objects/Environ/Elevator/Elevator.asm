@@ -266,4 +266,4 @@ Elevator_MakeMulti:
 ; ---------------------------------------------------------------------------
 
 		; mappings
-		include "Objects/Environ/Elevators/Object Data/Map - Elevators.asm"
+		include "Objects/Environ/Elevator/Object Data/Map - Elevator.asm"

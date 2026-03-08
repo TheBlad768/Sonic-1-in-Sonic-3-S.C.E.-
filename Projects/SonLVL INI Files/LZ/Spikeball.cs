@@ -14,10 +14,10 @@ namespace S3KObjectDefinitions.LZ
 
 		public override void Init(ObjectData data)
 		{
-			byte[] artfile = ObjectHelper.OpenArtFile("../../Objects/Environ/Spiked Ball and Chain/KosinskiPM Art/Spiked Ball and Chain.kospm", CompressionType.KosinskiPlusM);
-			img = ObjectHelper.MapASMToBmp(artfile, "../../Objects/Environ/Spiked Ball and Chain/Object Data/Map - Spiked Ball and Chain (LZ).asm", 1, 0);
+			byte[] artfile = ObjectHelper.OpenArtFile("../../Objects/Environ/Spiked Ball/KosinskiPM Art/Spiked Ball and Chain.kospm", CompressionType.KosinskiPlusM);
+			img = ObjectHelper.MapASMToBmp(artfile, "../../Objects/Environ/Spiked Ball/Object Data/Map - Spiked Ball (LZ).asm", 1, 0);
 			for (int i = 0; i < labels.Length; i++)
-				imgs.Add(ObjectHelper.MapASMToBmp(artfile, "../../Objects/Environ/Spiked Ball and Chain/Object Data/Map - Spiked Ball and Chain (LZ).asm", labels[i], 0));
+				imgs.Add(ObjectHelper.MapASMToBmp(artfile, "../../Objects/Environ/Spiked Ball/Object Data/Map - Spiked Ball (LZ).asm", labels[i], 0));
 		}
 
 		public override ReadOnlyCollection<byte> Subtypes

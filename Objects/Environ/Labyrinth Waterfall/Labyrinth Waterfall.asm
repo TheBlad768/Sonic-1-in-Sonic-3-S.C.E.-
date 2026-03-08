@@ -32,7 +32,7 @@ Obj_Waterfall:
 .not49
 		btst	#5,subtype(a0)							; is object type $A9?
 		beq.s	.anim								; if not, branch
-		move.l	#.loc_12B36,address(a0)
+		move.l	#.checkchunk,address(a0)
 
 .anim
 		lea	AniRaw_WFall(pc),a1
@@ -49,7 +49,9 @@ Obj_Waterfall:
 		bra.s	.anim
 ; ---------------------------------------------------------------------------
 
-.loc_12B36
+.checkchunk
+
+		; check
 		bclr	#high_priority_bit,art_tile(a0)					; low priority
 		tst.l	(Chunk_table+($32*$80+$20)).l					; is empty block?
 		bne.s	.anim								; if not, branch
@@ -66,4 +68,4 @@ AniRaw_WFall:	dc.b 5, 9, $A, $B, arfEnd
 ; ---------------------------------------------------------------------------
 
 		; mappings
-		include "Objects/Environ/Labyrinth Waterfalls/Object Data/Map - Waterfalls.asm"
+		include "Objects/Environ/Labyrinth Waterfall/Object Data/Map - Labyrinth Waterfall.asm"
