@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ObjDef xmlns="http://www.sonicretro.org" Name="Stairs" Image="img1">
+<ObjDef xmlns="http://www.sonicretro.org" Name="Staircase" Image="img1">
   <Images>
     <ImageFromMappings id="img1">
       <ArtFile filename="LevelArt" />
-      <MapFile type="ASM" filename="SLZ/Mappings/Map - Staircase.asm" label="Map_Stair" startpal="2" />
+      <MapFile type="ASM" filename="SLZ/Mappings/Map - Staircase.asm" label="Map_Staircase" startpal="2" />
     </ImageFromMappings>
   </Images>
   <Subtypes>
