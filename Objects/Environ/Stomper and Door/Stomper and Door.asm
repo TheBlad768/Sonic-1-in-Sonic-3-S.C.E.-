@@ -18,7 +18,7 @@ scrapstomp.switch			ds.b 1						; (1 byte)
 
 ; =============== S U B R O U T I N E =======================================
 
-Sto_Var:
+ScrapStomp_Var:
 
 		; height, width, dist, type number
 		dc.b 24/2, 128/2, $80, 1
@@ -34,7 +34,7 @@ Obj_ScrapStomp:
 		move.b	subtype(a0),d0
 		lsr.w	#2,d0
 		andi.w	#$1C,d0
-		lea	Sto_Var(pc,d0.w),a3
+		lea	ScrapStomp_Var(pc,d0.w),a3
 		move.w	(a3)+,height_pixels(a0)						; set height and width
 		lsr.w	#2,d0								; division by 4
 		move.b	d0,mapping_frame(a0)
