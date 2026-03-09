@@ -183,7 +183,7 @@ Obj_PlatformCollapseFall:
 ; ---------------------------------------------------------------------------
 
 		; data
-		incfile.b	CollapsingPlatform_Data, "Objects/Environ/Collapsing Platform/Object Data/Heightmap.bin"
+		incfile.ba	CollapsingPlatform_Data, "Objects/Environ/Collapsing Platform/Object Data/Heightmap.bin"
 ; ---------------------------------------------------------------------------
 
 		; mappings

@@ -477,8 +477,8 @@ TensionBridge_Bend:
 ; ---------------------------------------------------------------------------
 
 		; data
-		incfile.b	BridgeDepression, "Objects/Environ/Bridge/Object Data/Depression.bin"
-		incfile.b	BridgeBendData, "Objects/Environ/Bridge/Object Data/Bend.bin"
+		incfile.ba	BridgeDepression, "Objects/Environ/Bridge/Object Data/Depression.bin"
+		incfile.ba	BridgeBendData, "Objects/Environ/Bridge/Object Data/Bend.bin"
 ; ---------------------------------------------------------------------------
 
 		; mappings
