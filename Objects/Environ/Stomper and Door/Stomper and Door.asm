@@ -3,19 +3,24 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-sto_origX			= objoff_34	; original x-axis position (2 bytes)
-sto_origY			= objoff_30	; original y-axis position (2 bytes)
-sto_time			= objoff_36	; time (2 bytes)
-sto_active			= objoff_38	; flag set when a switch is pressed (1 byte)
-;				= objoff_3A	; (2 bytes)
-;				= objoff_3C	; (2 bytes)
-;				= objoff_3E	; (1 byte)
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+scrapstomp.origX			ds.w 1						; original x-axis position (2 bytes)
+scrapstomp.origY			ds.w 1						; original y-axis position (2 bytes)
+scrapstomp.timer			ds.w 1						; (2 bytes)
+scrapstomp.move				ds.w 1						; (2 bytes)
+scrapstomp.dist				ds.w 1						; (2 bytes)
+scrapstomp.active			ds.b 1						; flag set when a switch is pressed (1 byte)
+scrapstomp.switch			ds.b 1						; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
-Sto_Var:
+ScrapStomp_Var:
 
-		; height, width, ????, type number
+		; height, width, dist, type number
 		dc.b 24/2, 128/2, $80, 1
 		dc.b 64/2, 56/2, $38, 3
 		dc.b 64/2, 56/2, $40, 4
@@ -29,8 +34,8 @@ Obj_ScrapStomp:
 		move.b	subtype(a0),d0
 		lsr.w	#2,d0
 		andi.w	#$1C,d0
-		lea	Sto_Var(pc,d0.w),a3
-		move.w	(a3)+,height_pixels(a0)
+		lea	ScrapStomp_Var(pc,d0.w),a3
+		move.w	(a3)+,height_pixels(a0)						; set height and width
 		lsr.w	#2,d0								; division by 4
 		move.b	d0,mapping_frame(a0)
 		move.l	#.action,address(a0)
@@ -68,17 +73,17 @@ Obj_ScrapStomp:
 .isSBZ12
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.w	#priority_4,priority(a0)
-		move.w	x_pos(a0),sto_origX(a0)
-		move.w	y_pos(a0),sto_origY(a0)
+		move.w	x_pos(a0),scrapstomp.origX(a0)
+		move.w	y_pos(a0),scrapstomp.origY(a0)
 
 		; set
 		moveq	#0,d0
 		move.b	(a3)+,d0
-		move.w	d0,objoff_3C(a0)
+		move.w	d0,scrapstomp.dist(a0)
 		move.b	subtype(a0),d0
 		bpl.s	.action
 		andi.b	#$F,d0
-		move.b	d0,objoff_3E(a0)
+		move.b	d0,scrapstomp.switch(a0)
 		move.b	(a3),subtype(a0)
 
 .action
@@ -105,7 +110,7 @@ Obj_ScrapStomp:
 		jsr	(SolidObjectFull).w
 
 .chkdel2
-		out_of_xrange.s	.chkgone2,sto_origX(a0)
+		out_of_xrange.s	.chkgone2,scrapstomp.origX(a0)
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
 
@@ -137,30 +142,30 @@ ScrapStomp_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .type01
-		tst.b	sto_active(a0)
+		tst.b	scrapstomp.active(a0)
 		bne.s	.isactive01
 		lea	(Level_trigger_array).w,a2
 		moveq	#0,d0
-		move.b	objoff_3E(a0),d0
+		move.b	scrapstomp.switch(a0),d0
 		btst	#0,(a2,d0.w)
 		beq.s	.loc_15DC2
-		st	sto_active(a0)
+		st	scrapstomp.active(a0)
 
 .isactive01
-		move.w	objoff_3C(a0),d0
-		cmp.w	objoff_3A(a0),d0
+		move.w	scrapstomp.dist(a0),d0
+		cmp.w	scrapstomp.move(a0),d0
 		beq.s	.loc_15DE0
-		addq.w	#2,objoff_3A(a0)
+		addq.w	#2,scrapstomp.move(a0)
 
 .loc_15DC2
-		move.w	objoff_3A(a0),d0
+		move.w	scrapstomp.move(a0),d0
 		btst	#status.npc.x_flip,status(a0)
 		beq.s	.noflip01
 		neg.w	d0
 		addi.w	#$80,d0
 
 .noflip01
-		move.w	sto_origX(a0),d1
+		move.w	scrapstomp.origX(a0),d1
 		sub.w	d0,d1
 		move.w	d1,x_pos(a0)
 		rts
@@ -168,8 +173,8 @@ ScrapStomp_TypeIndex: offsetTable
 
 .loc_15DE0
 		addq.b	#1,subtype(a0)
-		move.w	#3*60,objoff_36(a0)
-		clr.b	sto_active(a0)
+		move.w	#3*60,scrapstomp.timer(a0)
+		clr.b	scrapstomp.active(a0)
 		move.w	respawn_addr(a0),d0						; get address in respawn table
 		beq.s	.loc_15DC2							; if it's zero, it isn't remembered
 		movea.w	d0,a2								; load address into a2
@@ -178,26 +183,26 @@ ScrapStomp_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .type02
-		tst.b	sto_active(a0)
+		tst.b	scrapstomp.active(a0)
 		bne.s	.isactive02
-		subq.w	#1,objoff_36(a0)
+		subq.w	#1,scrapstomp.timer(a0)
 		bne.s	.loc_15E1E
-		st	sto_active(a0)
+		st	scrapstomp.active(a0)
 
 .isactive02
-		tst.w	objoff_3A(a0)
+		tst.w	scrapstomp.move(a0)
 		beq.s	.loc_15E3C
-		subq.w	#2,objoff_3A(a0)
+		subq.w	#2,scrapstomp.move(a0)
 
 .loc_15E1E
-		move.w	objoff_3A(a0),d0
+		move.w	scrapstomp.move(a0),d0
 		btst	#status.npc.x_flip,status(a0)
 		beq.s	.noflip02
 		neg.w	d0
 		addi.w	#$80,d0
 
 .noflip02
-		move.w	sto_origX(a0),d1
+		move.w	scrapstomp.origX(a0),d1
 		sub.w	d0,d1
 		move.w	d1,x_pos(a0)
 		rts
@@ -205,7 +210,7 @@ ScrapStomp_TypeIndex: offsetTable
 
 .loc_15E3C
 		subq.b	#1,subtype(a0)
-		clr.b	sto_active(a0)
+		clr.b	scrapstomp.active(a0)
 		move.w	respawn_addr(a0),d0						; get address in respawn table
 		beq.s	.loc_15E1E							; if it's zero, it isn't remembered
 		movea.w	d0,a2								; load address into a2
@@ -214,93 +219,93 @@ ScrapStomp_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .type03
-		tst.b	sto_active(a0)
+		tst.b	scrapstomp.active(a0)
 		bne.s	.isactive03
-		tst.w	objoff_3A(a0)
+		tst.w	scrapstomp.move(a0)
 		beq.s	.loc_15E6A
-		subq.w	#1,objoff_3A(a0)
+		subq.w	#1,scrapstomp.move(a0)
 		bra.s	.loc_15E8E
 ; ---------------------------------------------------------------------------
 
 .loc_15E6A
-		subq.w	#1,objoff_36(a0)
+		subq.w	#1,scrapstomp.timer(a0)
 		bpl.s	.loc_15E8E
-		move.w	#1*60,objoff_36(a0)
-		st	sto_active(a0)
+		move.w	#1*60,scrapstomp.timer(a0)
+		st	scrapstomp.active(a0)
 
 .isactive03
-		addq.w	#8,objoff_3A(a0)
-		move.w	objoff_3A(a0),d0
-		cmp.w	objoff_3C(a0),d0
+		addq.w	#8,scrapstomp.move(a0)
+		move.w	scrapstomp.move(a0),d0
+		cmp.w	scrapstomp.dist(a0),d0
 		bne.s	.loc_15E8E
-		clr.b	sto_active(a0)
+		clr.b	scrapstomp.active(a0)
 
 .loc_15E8E
-		move.w	objoff_3A(a0),d0
+		move.w	scrapstomp.move(a0),d0
 		btst	#status.npc.x_flip,status(a0)
 		beq.s	.noflip03
 		neg.w	d0
 		addi.w	#$38,d0
 
 .noflip03
-		move.w	sto_origY(a0),d1
+		move.w	scrapstomp.origY(a0),d1
 		add.w	d0,d1
 		move.w	d1,y_pos(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
 .type04
-		tst.b	sto_active(a0)
+		tst.b	scrapstomp.active(a0)
 		bne.s	.isactive04
-		tst.w	objoff_3A(a0)
+		tst.w	scrapstomp.move(a0)
 		beq.s	.loc_15EBE
-		subq.w	#8,objoff_3A(a0)
+		subq.w	#8,scrapstomp.move(a0)
 		bra.s	.loc_15EF0
 ; ---------------------------------------------------------------------------
 
 .loc_15EBE
-		subq.w	#1,objoff_36(a0)
+		subq.w	#1,scrapstomp.timer(a0)
 		bpl.s	.loc_15EF0
-		move.w	#1*60,objoff_36(a0)
-		st	sto_active(a0)
+		move.w	#1*60,scrapstomp.timer(a0)
+		st	scrapstomp.active(a0)
 
 .isactive04
-		move.w	objoff_3A(a0),d0
-		cmp.w	objoff_3C(a0),d0
+		move.w	scrapstomp.move(a0),d0
+		cmp.w	scrapstomp.dist(a0),d0
 		beq.s	.loc_15EE0
-		addq.w	#8,objoff_3A(a0)
+		addq.w	#8,scrapstomp.move(a0)
 		bra.s	.loc_15EF0
 ; ---------------------------------------------------------------------------
 
 .loc_15EE0
-		subq.w	#1,objoff_36(a0)
+		subq.w	#1,scrapstomp.timer(a0)
 		bpl.s	.loc_15EF0
-		move.w	#1*60,objoff_36(a0)
-		clr.b	sto_active(a0)
+		move.w	#1*60,scrapstomp.timer(a0)
+		clr.b	scrapstomp.active(a0)
 
 .loc_15EF0
-		move.w	objoff_3A(a0),d0
+		move.w	scrapstomp.move(a0),d0
 		btst	#status.npc.x_flip,status(a0)
 		beq.s	.noflip04
 		neg.w	d0
 		addi.w	#$38,d0
 
 .noflip04
-		move.w	sto_origY(a0),d1
+		move.w	scrapstomp.origY(a0),d1
 		add.w	d0,d1
 		move.w	d1,y_pos(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
 .type05
-		tst.b	sto_active(a0)
+		tst.b	scrapstomp.active(a0)
 		bne.s	.loc_15F3E
 		lea	(Level_trigger_array).w,a2
 		moveq	#0,d0
-		move.b	objoff_3E(a0),d0
+		move.b	scrapstomp.switch(a0),d0
 		btst	#0,(a2,d0.w)
 		beq.s	.locret_15F5C
-		st	sto_active(a0)
+		st	scrapstomp.active(a0)
 		st	(Screen_shaking_flag).w
 		move.w	respawn_addr(a0),d0						; get address in respawn table
 		beq.s	.loc_15F3E							; if it's zero, it isn't remembered
@@ -310,7 +315,7 @@ ScrapStomp_TypeIndex: offsetTable
 .loc_15F3E
 		subq.w	#1,x_pos(a0)
 		addi.l	#$8000,y_pos(a0)
-		move.w	x_pos(a0),sto_origX(a0)
+		move.w	x_pos(a0),scrapstomp.origX(a0)
 		cmpi.w	#$980,x_pos(a0)							; LZ4
 		beq.s	.loc_15F5E
 
@@ -328,7 +333,7 @@ ScrapStomp_TypeIndex: offsetTable
 
 .loc_15F5E
 		clr.b	subtype(a0)
-		clr.b	sto_active(a0)
+		clr.b	scrapstomp.active(a0)
 		move.w	#(ScreenShakeArray2-ScreenShakeArray),(Screen_shaking_flag).w
 		sfx	sfx_Crash, 1
 ; ---------------------------------------------------------------------------
