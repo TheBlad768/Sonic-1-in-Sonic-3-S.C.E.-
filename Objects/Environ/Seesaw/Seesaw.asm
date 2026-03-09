@@ -354,8 +354,8 @@ Seesaw_SpikeBall_Speeds:		dc.w -8, -28, -47, -28, -8	; low, balanced, high, bala
 ; ---------------------------------------------------------------------------
 
 		; data
-		incfile.b	Seesaw_DataSlope, "Objects/Environ/Seesaw/Object Data/Slope.bin"
-		incfile.b	Seesaw_DataFlat, "Objects/Environ/Seesaw/Object Data/Flat.bin"
+		incfile.ba	Seesaw_DataSlope, "Objects/Environ/Seesaw/Object Data/Slope.bin"
+		incfile.ba	Seesaw_DataFlat, "Objects/Environ/Seesaw/Object Data/Flat.bin"
 ; ---------------------------------------------------------------------------
 
 		; mappings

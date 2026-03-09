@@ -169,9 +169,9 @@ ObjDat_LargeGrassPlatform:	subObjMainData Obj_LargeGrassPlatform.action, setBit(
 ; ---------------------------------------------------------------------------
 
 		; data
-		incfile.b	LargeGrassPlatform_Data1, "Objects/Environ/Large Grassy Platform/Object Data/Heightmap1.bin"
-		incfile.b	LargeGrassPlatform_Data2, "Objects/Environ/Large Grassy Platform/Object Data/Heightmap2.bin"
-		incfile.b	LargeGrassPlatform_Data3, "Objects/Environ/Large Grassy Platform/Object Data/Heightmap3.bin"
+		incfile.ba	LargeGrassPlatform_Data1, "Objects/Environ/Large Grassy Platform/Object Data/Heightmap1.bin"
+		incfile.ba	LargeGrassPlatform_Data2, "Objects/Environ/Large Grassy Platform/Object Data/Heightmap2.bin"
+		incfile.ba	LargeGrassPlatform_Data3, "Objects/Environ/Large Grassy Platform/Object Data/Heightmap3.bin"
 ; ---------------------------------------------------------------------------
 
 		; mappings
