@@ -454,31 +454,21 @@ AniRaw_RobotnikEnd:	dc.b 7, 4, 5, 6, 5, 4, 5, 6, 5, 4, 5, 6, 5, 4, 5, 6, 5, arfE
 
 CreditsRobotnik_LoadEmeralds:
 
-		; get RAM slot
-		getobjectRAMslot a3
-		bmi.s	.return								; branch, if object RAM slots ended
-
 		; load emeralds
-		movea.w	a0,a1								; load current object to a1
 		lea	(Collected_emeralds_array).w,a2
 		moveq	#0,d1
 		moveq	#0,d2
 		moveq	#ChaosEmeralds_Count-1,d6
 
+		; create emeralds
+		jsr	(Create_New_Object_3).w
+		bne.s	.return
+
 .loop
-		tst.b	(a2)+
-		bne.s	.next
+		tst.b	(a2)+								; was the emerald collected?
+		bne.s	.next							; if yes, branch
 
-		; create emerald object
-
-.find
-		lea	next_object(a1),a1						; goto next object RAM slot
-		tst.l	address(a1)							; is object RAM slot empty?
-		dbeq	d0,.find							; if not, branch
-		bne.s	.return								; branch, if object RAM slot is not empty
-		subq.w	#1,d0								; dbeq didn't subtract sprite table so we'll do it ourselves
-
-		; load object
+		; load emerald object
 		move.l	#Obj_CreditsRobotnik_Emeralds,address(a1)
 		move.w	a0,parent3(a1)							; save Robotnik address to emeralds
 		move.w	x_pos(a0),x_pos(a1)
@@ -489,8 +479,10 @@ CreditsRobotnik_LoadEmeralds:
 
 .next
 		addq.b	#1,d1								; next emerald frame
-		tst.w	d0								; object RAM slots ended?
-		dbmi	d6,.loop							; if not, loop
+
+		; create next object
+		jsr	(Create_New_Object_4).w						; find next free object slot
+		dbne	d6,.loop
 
 .return
 		rts
@@ -687,11 +679,7 @@ AniRaw_CreditsEggRoboEnd:	dc.b $13, 0, 1, arfEnd
 
 CreditsEggRobo_LoadEmeralds:
 
-		; get RAM slot
-		getobjectRAMslot a3
-		bmi.s	.return								; branch, if object RAM slots ended
-
-		; calc pos
+		; calc emeralds position
 		moveq	#ChaosEmeralds_Count,d6						; max emeralds
 		sub.b	(Chaos_emerald_count).w,d6
 		blo.s	.return
@@ -699,27 +687,21 @@ CreditsEggRobo_LoadEmeralds:
 		divu.w	d6,d4
 
 		; load emeralds
-		movea.w	a0,a1								; load current object to a1
 		lea	(Collected_emeralds_array).w,a2
 		moveq	#0,d1
 		moveq	#0,d2
 		moveq	#0,d3
 		moveq	#ChaosEmeralds_Count-1,d6
 
+		; create emeralds
+		jsr	(Create_New_Object_3).w
+		bne.s	.return
+
 .loop
-		tst.b	(a2)+
-		bne.s	.next
+		tst.b	(a2)+								; was the emerald collected?
+		bne.s	.next							; if yes, branch
 
-		; create emerald object
-
-.find
-		lea	next_object(a1),a1						; goto next object RAM slot
-		tst.l	address(a1)							; is object RAM slot empty?
-		dbeq	d0,.find							; if not, branch
-		bne.s	.return								; branch, if object RAM slot is not empty
-		subq.w	#1,d0								; dbeq didn't subtract sprite table so we'll do it ourselves
-
-		; load object
+		; load emerald object
 		move.l	#Obj_CreditsEggRobo_Emeralds,address(a1)
 		move.w	a0,parent3(a1)							; save Egg Robo address to emeralds
 		move.w	x_pos(a0),x_pos(a1)
@@ -732,8 +714,10 @@ CreditsEggRobo_LoadEmeralds:
 
 .next
 		addq.b	#1,d1								; next emerald frame
-		tst.w	d0								; object RAM slots ended?
-		dbmi	d6,.loop							; if not, loop
+
+		; create next object
+		jsr	(Create_New_Object_4).w						; find next free object slot
+		dbne	d6,.loop
 
 .return
 		rts

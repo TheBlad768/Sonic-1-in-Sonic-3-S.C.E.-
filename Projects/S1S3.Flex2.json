@@ -1945,7 +1945,7 @@
             "name": "SYZ",
             "children": [
                 {
-                    "name": "Big Spiked Ball",
+                    "name": "Big Spike Ball",
                     "format": "Sonic 3&K Object.js",
                     "palettes": [
                         {
@@ -1958,12 +1958,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Big Spiked Ball/KosinskiPM Art/Large Spikeball.kospm",
+                        "path": "../Objects/Environ/Big Spike Ball/KosinskiPM Art/Large Spikeball.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Big Spiked Ball/Object Data/Map - Big Spiked Ball.asm",
+                        "path": "../Objects/Environ/Big Spike Ball/Object Data/Map - Big Spike Ball.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -2249,12 +2249,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Spiked Ball/KosinskiPM Art/Small Spikeball.kospm",
+                        "path": "../Objects/Environ/Spike Ball/KosinskiPM Art/Small Spikeball.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Spiked Ball/Object Data/Map - Spiked Ball (SYZ).asm",
+                        "path": "../Objects/Environ/Spike Ball/Object Data/Map - Spike Ball (SYZ).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -2750,12 +2750,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Spiked Ball/KosinskiPM Art/Spiked Ball and Chain.kospm",
+                        "path": "../Objects/Environ/Spike Ball/KosinskiPM Art/Spike Ball and Chain.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Spiked Ball/Object Data/Map - Spiked Ball (LZ).asm",
+                        "path": "../Objects/Environ/Spike Ball/Object Data/Map - Spike Ball (LZ).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -3752,12 +3752,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Big Spiked Ball/KosinskiPM Art/Large Spikeball.kospm",
+                        "path": "../Objects/Environ/Big Spike Ball/KosinskiPM Art/Large Spikeball.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Environ/Big Spiked Ball/Object Data/Map - Big Spiked Ball.asm",
+                        "path": "../Objects/Environ/Big Spike Ball/Object Data/Map - Big Spike Ball.asm",
                         "label": ""
                     },
                     "dplcs": {

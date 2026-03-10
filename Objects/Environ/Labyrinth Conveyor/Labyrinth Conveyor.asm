@@ -33,40 +33,29 @@ Obj_LabyrinthConveyor:
 		; create platforms
 		add.w	d0,d0								; multiply by 2
 		andi.w	#$1E,d0
-		lea	LabyrinthConveyor_Platform_Index(pc),a2
-		adda.w	(a2,d0.w),a2
+		lea	LabyrinthConveyor_Platform_Index(pc),a3
+		adda.w	(a3,d0.w),a3
 
 		; set
-		move.w	(a2)+,d1							; get count
+		move.w	(a3)+,d1							; get count
 		move.l	#Obj_LabyrinthConveyor_Platforms,d4
 		movea.w	a0,a1								; load current object to a1
 
-		; get RAM slot
-		getobjectRAMslot a3
-		bra.s	.load
-; ---------------------------------------------------------------------------
+		; get current RAM slot in d0
+		getobjectSlot a2
 
 .create
 
 		; create LZ platform object
-
-.find
-		lea	next_object(a1),a1						; goto next object RAM slot
-		tst.l	address(a1)							; is object RAM slot empty?
-		dbeq	d0,.find							; if not, branch
-		bne.s	.return								; branch, if object RAM slot is not empty
-		subq.w	#1,d0								; subtract from sprite table
-
-.load
 		move.l	d4,address(a1)
-		move.w	(a2)+,x_pos(a1)
-		move.w	(a2)+,y_pos(a1)
-		move.w	(a2)+,d2
+		move.w	(a3)+,x_pos(a1)
+		move.w	(a3)+,y_pos(a1)
+		move.w	(a3)+,d2
 		move.b	d2,subtype(a1)
-		tst.w	d0								; object RAM slots ended?
-		dbmi	d1,.create							; if not, loop
 
-.return
+		; create next object
+		jsr	(Create_New_Object_4).w						; find next free object slot
+		dbne	d1,.create
 		rts
 
 ; ---------------------------------------------------------------------------

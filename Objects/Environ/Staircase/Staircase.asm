@@ -52,23 +52,14 @@ Obj_Staircase:
 		move.w	x_pos(a0),d2
 		movea.w	a0,a1								; load current object to a1
 
-		; get RAM slot
-		getobjectRAMslot a2
+		; get current RAM slot in d0
+		getobjectSlot a2
 		bra.s	.load
 ; ---------------------------------------------------------------------------
 
 .create
 
 		; create staircase object
-
-.find
-		lea	next_object(a1),a1						; goto next object RAM slot
-		tst.l	address(a1)							; is object RAM slot empty?
-		dbeq	d0,.find							; if not, branch
-		bne.s	.notfree							; branch, if object RAM slot is not empty
-		subq.w	#1,d0								; subtract from sprite table
-
-		; load object
 		move.l	#.solid,address(a1)
 
 .load
@@ -85,10 +76,12 @@ Obj_Staircase:
 		move.b	d3,staircase.offset(a1)
 		move.w	a0,parent3(a1)
 		add.b	d4,d3
-		tst.w	d0								; object RAM slots ended?
-		dbmi	d1,.create							; if not, loop
 
-.notfree
+		; create next object
+		jsr	(Create_New_Object_4).w						; find next free object slot
+		dbne	d1,.create
+
+		; next
 		move.l	#.move,address(a0)
 
 .move

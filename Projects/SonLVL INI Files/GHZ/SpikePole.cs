@@ -6,7 +6,7 @@ using SonicRetro.SonLVL.API;
 
 namespace S3KObjectDefinitions.GHZ
 {
-	class SpikedPole : ObjectDefinition
+	class SpikePole : ObjectDefinition
 	{
 		private List<Sprite> imgs = new List<Sprite>();
 
