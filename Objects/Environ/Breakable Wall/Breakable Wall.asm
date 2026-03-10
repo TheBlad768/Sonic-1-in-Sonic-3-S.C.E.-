@@ -180,24 +180,15 @@ BreakObjectToPieces2:
 		move.b	render_flags(a0),d5						; get render type
 		movea.w	a0,a1								; load current object to a1
 
-		; get RAM slot
-		getobjectRAMslot a2
+		; get current RAM slot in d0
+		getobjectSlot a2
 		bra.s	.load
 ; ---------------------------------------------------------------------------
 
 .create
 
-		; create break pieces object
-
-.find
-		lea	next_object(a1),a1						; goto next object RAM slot
-		tst.l	address(a1)							; is object RAM slot empty?
-		dbeq	d0,.find							; if not, branch
-		bne.s	.return								; branch, if object RAM slot is not empty
-		subq.w	#1,d0								; subtract from sprite table
-		addq.w	#6,a3								; add to mappings
-
-		; load object
+		; load break pieces object
+		addq.w	#6,a3								; next mappings
 		move.l	d4,address(a1)							; set object address
 		move.b	d5,render_flags(a1)						; set render type
 		move.w	art_tile(a0),art_tile(a1)
@@ -215,10 +206,10 @@ BreakObjectToPieces2:
 		move.l	a3,mappings(a1)							; get mappings pointer
 		ori.w	#high_priority,art_tile(a1)					; change fragments priority
 		move.l	(a4)+,x_vel(a1)							; set xyvel
-		tst.w	d0								; object RAM slots ended?
-		dbmi	d1,.create							; if not, loop
 
-.return
+		; create next object
+		jsr	(Create_New_Object_4).w						; find next free object slot
+		dbne	d1,.create
 		rts
 ; ---------------------------------------------------------------------------
 

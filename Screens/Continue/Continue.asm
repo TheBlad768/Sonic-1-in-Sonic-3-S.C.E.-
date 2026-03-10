@@ -803,6 +803,8 @@ Continue_LoadIcons:
 		move.l	#Obj_Continue_Icons,address(a1)
 		move.b	d2,subtype(a1)
 		addq.w	#2,d2
+
+		; create next object
 		jsr	(Create_New_Object_4).w						; find next free object slot
 		dbne	d6,.loop
 

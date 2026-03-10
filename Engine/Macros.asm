@@ -766,7 +766,7 @@ respawn_delete macro terminate
 ; macros for frequently used subroutines
 ; ---------------------------------------------------------------------------
 
-getobjectRAMslot macro reg
+getobjectSlot macro reg
     ifb reg
 	fatal "Error! Empty value!"
     endif

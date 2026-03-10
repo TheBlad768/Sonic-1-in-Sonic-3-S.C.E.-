@@ -117,4 +117,4 @@ ObjDat_BigSpikeBall:		subObjMainData Obj_BigSpikeBall.move, setBit(render_flags.
 ; ---------------------------------------------------------------------------
 
 		; mappings
-		include "Objects/Environ/Big Spiked Ball/Object Data/Map - Big Spiked Ball.asm"
+		include "Objects/Environ/Big Spike Ball/Object Data/Map - Big Spike Ball.asm"

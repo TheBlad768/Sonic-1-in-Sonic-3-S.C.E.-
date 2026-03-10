@@ -340,7 +340,7 @@ PLC1_LZ1_Before: plrlistheader
 PLC2_LZ1_After: plrlistheader
 		plreq $259, ArtKosPM_WaterSplashes					; water and splashes
 		plreq $2E9, ArtKosPM_Gargoyle						; gargoyle
-		plreq $310, ArtKosPM_SpikedBallandChain					; small spikeball
+		plreq $310, ArtKosPM_SpikeBallandChain					; small spikeball
 		plreq $328, ArtKosPM_FlappingDoor					; flapping door
 		plreq $348, ArtKosPM_Bubbles						; bubbles
 		plreq $3BC, ArtKosPM_LZBlock3						; block3
@@ -373,7 +373,7 @@ PLC1_LZ2_Before: plrlistheader
 PLC2_LZ2_After: plrlistheader
 		plreq $259, ArtKosPM_WaterSplashes					; water and splashes
 		plreq $2E9, ArtKosPM_Gargoyle						; gargoyle
-		plreq $310, ArtKosPM_SpikedBallandChain					; small spikeball
+		plreq $310, ArtKosPM_SpikeBallandChain					; small spikeball
 		plreq $328, ArtKosPM_FlappingDoor					; flapping door
 		plreq $348, ArtKosPM_Bubbles						; bubbles
 		plreq $3BC, ArtKosPM_LZBlock3						; block3
@@ -406,7 +406,7 @@ PLC1_LZ3_Before: plrlistheader
 PLC2_LZ3_After: plrlistheader
 		plreq $259, ArtKosPM_WaterSplashes					; water and splashes
 		plreq $2E9, ArtKosPM_Gargoyle						; gargoyle
-		plreq $310, ArtKosPM_SpikedBallandChain					; small spikeball
+		plreq $310, ArtKosPM_SpikeBallandChain					; small spikeball
 		plreq $328, ArtKosPM_FlappingDoor					; flapping door
 		plreq $348, ArtKosPM_Bubbles						; bubbles
 		plreq $3BC, ArtKosPM_LZBlock3						; block3
@@ -440,7 +440,7 @@ PLC1_LZ4_Before: plrlistheader
 PLC2_LZ4_After: plrlistheader
 		plreq $259, ArtKosPM_WaterSplashes					; water and splashes
 		plreq $2E9, ArtKosPM_Gargoyle						; gargoyle
-		plreq $310, ArtKosPM_SpikedBallandChain					; small spikeball
+		plreq $310, ArtKosPM_SpikeBallandChain					; small spikeball
 		plreq $328, ArtKosPM_FlappingDoor					; flapping door
 		plreq $348, ArtKosPM_Bubbles						; bubbles
 		plreq $3BC, ArtKosPM_LZBlock3						; block3

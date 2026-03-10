@@ -6,13 +6,13 @@ using SonicRetro.SonLVL.API;
 
 namespace S3KObjectDefinitions.SYZ
 {
-	class BigSpikedBall : ObjectDefinition
+	class BigSpikeBall : ObjectDefinition
 	{
 		private Sprite img;
 
 		public override void Init(ObjectData data)
 		{
-			img = (ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Big Spiked Ball/KosinskiPM Art/Large Spikeball.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Big Spiked Ball/Object Data/Map - Big Spiked Ball.asm", 0, 0));
+			img = (ObjectHelper.MapASMToBmp(ObjectHelper.OpenArtFile("../../Objects/Environ/Big Spike Ball/KosinskiPM Art/Large Spikeball.kospm", CompressionType.KosinskiPlusM), "../../Objects/Environ/Big Spike Ball/Object Data/Map - Big Spike Ball.asm", 0, 0));
 		}
 
 		public override ReadOnlyCollection<byte> Subtypes
@@ -22,7 +22,7 @@ namespace S3KObjectDefinitions.SYZ
 
 		public override string Name
 		{
-			get { return "Big Spiked Ball"; }
+			get { return "Big Spike Ball"; }
 		}
 
 		public override bool RememberState

@@ -63,12 +63,11 @@ Obj_Monitor:
 		bsr.w	SolidObject_Monitor_Tails
 
 .anim
-		Add_SpriteToCollisionResponseList a1
 		lea	Ani_Monitor(pc),a1
 		jsr	(Animate_Sprite).w
 
-.draw
-		jmp	(Sprite_OnScreen_Test).w
+		; draw
+		jmp	(Sprite_OnScreen_Test_Collision).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -244,7 +243,7 @@ Obj_MonitorSpawnIcon:
 Obj_MonitorAnimate:
 		cmpi.b	#$C,mapping_frame(a0)						; is monitor broken?
 		bne.s	.notbroken							; if not, branch
-		move.l	#Obj_Monitor.draw,address(a0)
+		move.l	#Sprite_OnScreen_Test,address(a0)
 
 .notbroken
 		lea	Ani_Monitor(pc),a1

@@ -501,17 +501,19 @@ Obj_EndChaos:
 		cmpi.b	#2,(Player_1+mapping_frame).w					; is object 87, which has its own frames
 		bne.w	.return
 
-		; create
+		; main
 		move.l	#.expand,address(a0)
 
 		; copy xypos
 		move.w	x_pos(a0),echa_origX(a0)
 		move.w	y_pos(a0),echa_origY(a0)
 
-		; create chaos emeralds
+		; load emeralds
 		moveq	#0,d2								; mapping frame
 		moveq	#0,d3								; angle
 		moveq	#ChaosEmeralds_Count-1,d6
+
+		; create emeralds
 		jsr	(Create_New_Object_3).w
 		bne.s	.expand
 
@@ -528,6 +530,8 @@ Obj_EndChaos:
 		addq.b	#1,d2
 		move.b	d3,angle(a1)
 		addi.b	#256/ChaosEmeralds_Count,d3					; angle between each emerald
+
+		; create next object
 		jsr	(Create_New_Object_4).w						; find next free object slot
 		dbne	d6,.cloop
 

@@ -106,29 +106,20 @@ ObjPlatformCollapse_SmashObject:
 		movea.l	mappings(a0),a3
 		adda.w	(a3,d0.w),a3
 		move.w	(a3)+,d1
-		subq.w	#1,d1
+		subq.w	#1,d1								; fix dbf
 		bset	#render_flags.static_mappings,render_flags(a0)			; set flag to "static mappings flag"
 		move.b	render_flags(a0),d5						; get render type
 		movea.w	a0,a1								; load current object to a1
 
-		; get RAM slot
-		getobjectRAMslot a2
+		; get current RAM slot in d0
+		getobjectSlot a2
 		bra.s	.load
 ; ---------------------------------------------------------------------------
 
 .create
 
 		; create break pieces object
-
-.find
-		lea	next_object(a1),a1						; goto next object RAM slot
-		tst.l	address(a1)							; is object RAM slot empty?
-		dbeq	d0,.find							; if not, branch
-		bne.s	.notfree							; branch, if object RAM slot is not empty
-		subq.w	#1,d0								; dbeq didn't subtract sprite table so we'll do it ourselves
-		addq.w	#6,a3								; add to mappings
-
-		; load object
+		addq.w	#6,a3								; next mappings
 		move.l	d4,address(a1)
 		move.b	d5,render_flags(a1)
 		move.w	art_tile(a0),art_tile(a1)
@@ -140,10 +131,12 @@ ObjPlatformCollapse_SmashObject:
 .load
 		move.l	a3,mappings(a1)
 		move.b	(a4)+,collapsingplatform.delay(a1)
-		tst.w	d0								; object RAM slots ended?
-		dbmi	d1,.create							; if not, loop
 
-.notfree
+		; create next object
+		jsr	(Create_New_Object_4).w						; find next free object slot
+		dbne	d1,.create
+
+		; next
 		pea	(Draw_Sprite).w
 
 		; function when object isnt spawned by layout (plays sound anyway)
