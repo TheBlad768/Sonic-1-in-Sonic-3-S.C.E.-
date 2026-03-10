@@ -244,7 +244,7 @@
 ; ---------------------------------------------------------------------------
 
 		include "Objects/Players/Tails/Tails.asm"
-		include "Objects/Players/Tails/Tails(Tail).asm"
+		include "Objects/Players/Tails/Tails Tail.asm"
 		include "Objects/Players/Transform/Birds.asm"
 
 ; ---------------------------------------------------------------------------

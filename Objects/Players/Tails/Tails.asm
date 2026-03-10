@@ -435,7 +435,6 @@ loc_13B78:
 		move.b	d0,spin_dash_flag(a0)
 		move.w	d0,spin_dash_counter(a0)
 		move.b	d0,jumping(a0)
-		move.b	d0,objoff_41(a0)
 		move.b	#(8*60)/2,double_jump_property(a0)
 		bra.w	Tails_Set_Flying_Animation
 ; ---------------------------------------------------------------------------
