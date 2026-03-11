@@ -118,19 +118,19 @@ Obj_SmashBlock:
 		lea	(Child6_EndSignScore).l,a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.fall
-		move.w	(Chain_bonus_counter).w,d2
+		move.w	(Chain_bonus_counter).w,d2					; get copy of chain bonus counter
 		addq.w	#2,(Chain_bonus_counter).w					; add 2 to item bonus counter
-		cmpi.w	#6,d2
-		blo.s	.notreachedlimit
-		moveq	#6,d2								; max bonus is lvl6
+		cmpi.w	#(Enemy_Points_end-Enemy_Points)-2,d2				; has the counter already surpassed 5?
+		blo.s	.notreachedlimit						; if not, branch
+		moveq	#(Enemy_Points_end-Enemy_Points)-2,d2				; cap counter at 6
 
 .notreachedlimit
 		lea	(Enemy_Points).l,a2
-		moveq	#0,d0
-		move.w	(a2,d2.w),d0
+		moveq	#0,d0								; clear d0 for HUD_AddToScore
+		move.w	(a2,d2.w),d0							; get appropriate number of points
 		cmpi.w	#16*2,(Chain_bonus_counter).w					; have 16 enemies been destroyed?
 		blo.s	.notreachedlimit2						; if not, branch
-		move.w	#1000,d0							; fix bonus to 10000
+		move.w	#1000,d0							; fix bonus to 10000 points
 		moveq	#10,d2
 
 .notreachedlimit2

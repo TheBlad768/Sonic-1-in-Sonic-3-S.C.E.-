@@ -17,6 +17,7 @@ Obj_SpikeBall_SYZ:
 		; init
 		movem.l	ObjDat_SpikeBall_SYZ(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		move.b	#$18|collision_flags.npc.hurt,collision_flags(a0)		; SYZ specific code (chain hurts Sonic)
 
 		; subtype
 		moveq	#signextendB($F0),d1						; read only the 1st digit
@@ -29,42 +30,22 @@ Obj_SpikeBall_SYZ:
 		andi.b	#$C0,d0
 		move.b	d0,circular_angle(a0)
 
-		; get current RAM slot in d0
-		getobjectSlot a2
-
-		; get current object address
-		movea.w	a0,a1								; load current object to a1
-		movea.w	a0,a3								; creates a linked object list
-
-		; get number of spike balls
-		moveq	#7,d1								; read only the 2nd digit
-		and.b	subtype(a0),d1							; get object type
-		subq.w	#1,d1								; set chain length (type-1)
+		; get number of spike balls for CreateChild8_TreeListRepeated
+		moveq	#7,d6								; read only the 2nd digit
+		and.b	subtype(a0),d6							; get object type
+		subq.w	#1,d6								; set chain length (type-1)
 		blo.s	.main
 		btst	#3,subtype(a0)							; 8?
 		beq.s	.create
-		subq.w	#1,d1
+		subq.w	#1,d6
 		blo.s	.main
 
 .create
 
 		; create spike balls object tree list
-		move.w	a3,parent3(a1)							; parent RAM address into parent3
-;		move.w	a0,parent4(a1)							; parent RAM address into parent4
-		movea.w	a1,a3								; next parent RAM address
-		move.l	#Obj_SpikeBall_SYZ_Child,address(a1)
-		move.l	mappings(a0),mappings(a1)
-		move.w	art_tile(a0),art_tile(a1)
-		move.b	render_flags(a0),render_flags(a1)
-		move.w	priority(a0),priority(a1)
-		move.w	height_pixels(a0),height_pixels(a1)				; set height and width
-		move.b	#$18|collision_flags.npc.hurt,collision_flags(a1)		; SYZ specific code (chain hurts Sonic)
-		move.w	x_pos(a0),x_pos(a1)
-		move.w	y_pos(a0),y_pos(a1)
-
-		; create next object
-		jsr	(Create_New_Object_4).w						; find next free object slot
-		dbne	d1,.create
+		lea	Child8_SpikeBall_SYZ(pc),a2
+		moveq	#0,d2								; set subtype
+		jsr	(CreateChild8_TreeListRepeated.create).w
 
 .main
 		move.w	spikeball_syz.speed(a0),d0
@@ -80,6 +61,15 @@ Obj_SpikeBall_SYZ:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SpikeBall_SYZ_Child:
+
+		; init
+		movea.w	parent4(a0),a1							; a1=parent object
+		move.b	render_flags(a1),render_flags(a0)				; copy render flags
+		move.l	height_pixels(a1),height_pixels(a0)				; copy height, width and priority
+		move.b	collision_flags(a1),collision_flags(a0)				; copy collision flags
+		move.l	#.main,address(a0)
+
+.main
 
 		; move
 		movea.w	parent3(a0),a1							; a1=parent object
@@ -98,6 +88,8 @@ ObjDat_SpikeBall_SYZ:	subObjMainData \
 					setBit(render_flags.level) | \
 					setBit(render_flags.static_mappings), \
 				0, 16, 16, 4, $3BA, 0, FALSE, Map_SpikeBall_SYZ
+
+Child8_SpikeBall_SYZ:		dc.l Obj_SpikeBall_SYZ_Child
 ; ---------------------------------------------------------------------------
 
 		; mappings
