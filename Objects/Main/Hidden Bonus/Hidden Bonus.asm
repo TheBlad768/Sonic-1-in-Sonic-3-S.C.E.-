@@ -3,7 +3,6 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-bonus_timelen		= objoff_2E ; length of time to display bonus sprites
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -26,13 +25,13 @@ Obj_HiddenBonus:
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.draw,address(a0)
 		move.b	subtype(a0),mapping_frame(a0)
-		move.w	#(2*60)-1,bonus_timelen(a0)					; set display time to 2 seconds
+		move.w	#(2*60)-1,wait_timer(a0)					; set display time to 2 seconds
 		sfx	sfx_HiddenBonus							; play bonus sound
 
 		; add score
-		moveq	#0,d0
+		moveq	#0,d0								; clear d0 for HUD_AddToScore
 		move.b	subtype(a0),d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		move.w	.points(pc,d0.w),d0						; load bonus points array
 		jsr	(HUD_AddToScore).w
 
@@ -52,7 +51,7 @@ Obj_HiddenBonus:
 ; ---------------------------------------------------------------------------
 
 .draw
-		subq.w	#1,bonus_timelen(a0)						; decrement display time
+		subq.w	#1,wait_timer(a0)						; decrement display time
 		bmi.s	.delete								; if time is zero, branch
 
 		; delete the object and do not create it again
