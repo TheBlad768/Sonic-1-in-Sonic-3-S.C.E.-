@@ -251,7 +251,7 @@ Touch_Monitor:
 		moveq	#-16,d0								; subtract height of monitor from it
 		add.w	y_pos(a0),d0							; get player's y_pos
 		cmp.w	y_pos(a1),d0
-		blo.s	.locret								; if new value is lower than monitor's y_pos, return
+		blo.s	.return								; if new value is lower than monitor's y_pos, return
 		bra.s	.monitorfall
 ; ---------------------------------------------------------------------------
 
@@ -259,7 +259,7 @@ Touch_Monitor:
 		moveq	#16,d0								; add height of monitor from it
 		add.w	y_pos(a0),d0							; get player's y_pos
 		cmp.w	y_pos(a1),d0
-		bhs.s	.locret								; if new value is higher than monitor's y_pos, return
+		bhs.s	.return								; if new value is higher than monitor's y_pos, return
 
 .monitorfall
 
@@ -272,10 +272,10 @@ Touch_Monitor:
 		neg.w	y_vel(a0)							; reverse Sonic's y-motion
 		move.w	#-$180,y_vel(a1)
 		tst.b	routine_secondary(a1)
-		bne.s	.locret
+		bne.s	.return
 		st	routine_secondary(a1)						; set the monitor's routine_secondary counter
 
-.locret
+.return
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -297,8 +297,6 @@ Touch_Monitor:
 		neg.w	y_vel(a0)
 		move.w	a0,parent(a1)							; save player address
 		move.l	#Obj_MonitorBreak,address(a1)
-
-.return
 		rts
 
 ; =============== S U B R O U T I N E =======================================
