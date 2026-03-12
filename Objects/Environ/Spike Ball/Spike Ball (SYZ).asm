@@ -43,13 +43,19 @@ Obj_SpikeBall_SYZ:
 .create
 
 		; create spike balls object tree list
-		lea	Child8_SpikeBall_SYZ(pc),a2
+		pea	Obj_SpikeBall_SYZ_Child(pc)					; push address to the stack
+		lea	(sp),a2								; load stack to a2
 		moveq	#0,d2								; set subtype
-		jsr	(CreateChild8_TreeListRepeated.create).w
+		jsr	(CreateChild8_TreeListRepeated.create).w			; "
+		addq.w	#4,sp								; return stack
 
 .main
+
+		; move
 		move.w	spikeball_syz.speed(a0),d0
 		sub.w	d0,circular_angle(a0)
+
+		; draw
 		jmp	(Sprite_CheckDeleteTouch).w
 
 ; ---------------------------------------------------------------------------
@@ -88,8 +94,6 @@ ObjDat_SpikeBall_SYZ:	subObjMainData \
 					setBit(render_flags.level) | \
 					setBit(render_flags.static_mappings), \
 				0, 16, 16, 4, $3BA, 0, FALSE, Map_SpikeBall_SYZ
-
-Child8_SpikeBall_SYZ:		dc.l Obj_SpikeBall_SYZ_Child
 ; ---------------------------------------------------------------------------
 
 		; mappings
