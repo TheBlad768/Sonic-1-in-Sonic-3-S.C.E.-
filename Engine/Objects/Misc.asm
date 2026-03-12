@@ -212,7 +212,7 @@ Displace_PlayerOffObject:
 ; =============== S U B R O U T I N E =======================================
 
 Go_CheckPlayerRelease:
-		movem.l	d7-a0/a2-a3,-(sp)
+		movem.l	d7-a0/a2-a3,-(sp)						; save the registers to the stack
 		lea	(Player_1).w,a1							; a1=character
 		btst	#status.player.on_object,status(a1)
 		beq.s	.notp1
@@ -227,7 +227,7 @@ Go_CheckPlayerRelease:
 		bsr.w	CheckPlayerReleaseFromObj
 
 .notp2
-		movem.l	(sp)+,d7-a0/a2-a3
+		movem.l	(sp)+,d7-a0/a2-a3						; return saved registers from the stack
 		rts
 
 ; =============== S U B R O U T I N E =======================================
@@ -524,7 +524,7 @@ Restore_PlayerControl2:
 ; =============== S U B R O U T I N E =======================================
 
 Player_Load_PLC:
-		move.w	a0,-(sp)
+		move.w	a0,-(sp)							; save the register to the stack
 		lea	(Player_1).w,a0							; a0=character
 		moveq	#0,d0
 		move.b	character_id(a0),d0
@@ -532,7 +532,7 @@ Player_Load_PLC:
 		add.w	d0,d0
 		movea.l	.index(pc,d0.w),a1
 		jsr	(a1)
-		movea.w	(sp)+,a0
+		movea.w	(sp)+,a0							; return saved register from the stack
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -544,7 +544,7 @@ Player_Load_PLC:
 ; =============== S U B R O U T I N E =======================================
 
 Player_Load_PLC2:
-		move.w	a0,-(sp)
+		move.w	a0,-(sp)							; save the register to the stack
 		movea.w	a1,a0
 		tst.l	address(a0)							; is player RAM empty?
 		beq.s	.exit								; if yes, branch
@@ -556,7 +556,7 @@ Player_Load_PLC2:
 		jsr	(a1)
 
 .exit
-		movea.w	(sp)+,a0
+		movea.w	(sp)+,a0							; return saved register from the stack
 		rts
 
 ; =============== S U B R O U T I N E =======================================
