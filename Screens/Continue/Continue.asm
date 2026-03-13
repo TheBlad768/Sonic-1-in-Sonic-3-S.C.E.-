@@ -188,9 +188,9 @@ Obj_Continue_Countdown:
 		bmi.s	.pstart								; if start was pressed, skip ahead
 
 		; wait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.return
-		move.w	#60-1,objoff_2E(a0)
+		move.w	#60-1,wait_timer(a0)
 
 		; sub and draw numbers
 		move.b	(Continue.countdown_numbers).w,d0
@@ -207,7 +207,7 @@ Obj_Continue_Countdown:
 ; ---------------------------------------------------------------------------
 
 .pstart
-		bset	#3,objoff_38(a0)						; set "press start" flag
+		bset	#3,state_flags(a0)						; set "press start" flag
 		move.l	#.return,address(a0)
 
 .return
@@ -231,7 +231,7 @@ Obj_Continue_SonicWTails:
 
 .main
 		movea.w	(Continue.countdown).w,a1
-		btst	#3,objoff_38(a1)						; is Start was pressed?
+		btst	#3,state_flags(a1)						; is Start was pressed?
 		bne.s	.pstart								; if yes, branch
 
 		; anim
@@ -285,7 +285,7 @@ Obj_Continue_SonicWTails:
 		move.l	#.waitrun,address(a0)
 		move.w	#bytes_to_word(0,1),anim(a0)
 		move.w	#$600,ground_vel(a0)
-		move.w	#(1<<4)-1,objoff_2E(a0)						; set wait
+		move.w	#(1<<4)-1,wait_timer(a0)					; set wait
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
 
@@ -300,7 +300,7 @@ Obj_Continue_SonicWTails:
 
 .waitrun
 		jsr	(Animate_Sonic).l
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bmi.s	.startrun
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
@@ -340,7 +340,7 @@ Obj_Continue_SonicAlone:
 
 .main
 		movea.w	(Continue.countdown).w,a1
-		btst	#2,objoff_38(a1)						; Knuckles run to the middle of the screen?
+		btst	#2,state_flags(a1)						; Knuckles run to the middle of the screen?
 		bne.s	.setrun								; if yes, branch
 		lea	AniRaw_5CBC5(pc),a1
 
@@ -355,12 +355,12 @@ Obj_Continue_SonicAlone:
 .setrun
 		move.l	#.waitrun,address(a0)
 		move.b	#$BA,mapping_frame(a0)
-		move.w	#(1<<3)-1,objoff_2E(a0)						; set wait
+		move.w	#(1<<3)-1,wait_timer(a0)					; set wait
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
 
 .waitrun
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.draw
 		move.l	#.run,address(a0)
 		move.b	#$21,mapping_frame(a0)
@@ -398,7 +398,7 @@ Obj_Continue_TailsWSonic:
 
 .waitstart
 		movea.w	(Continue.countdown).w,a1
-		btst	#3,objoff_38(a1)						; is Start was pressed?
+		btst	#3,state_flags(a1)						; is Start was pressed?
 		bne.s	.pstart								; if yes, branch
 
 		; anim
@@ -418,7 +418,7 @@ Obj_Continue_TailsWSonic:
 
 		; create tails
 		move.l	#Obj_Tails_Tail,(Tails_tails+address).w
-		move.w	a0,(Tails_tails+objoff_30).w
+		move.w	a0,(Tails_tails+parent).w
 
 		; create fix for tails
 		move.l	#Obj_Continue_Tails_tails_Fix,(Dust+address).w
@@ -436,22 +436,22 @@ Obj_Continue_TailsWSonic:
 		clr.b	(Player_prev_frame_P2).w
 		move.w	#bytes_to_word(5,0),anim(a0)					; set anim and prev_anim
 		move.w	#bytes_to_word($AD,0),mapping_frame(a0)				; set frame and clear anim_frame
-		move.w	#$28-1,objoff_2E(a0)						; set wait
+		move.w	#$28-1,wait_timer(a0)						; set wait
 		bra.s	.anim
 ; ---------------------------------------------------------------------------
 
 .wait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.anim
 		move.l	#.waitrun,address(a0)
 
 		; set run
 		clr.b	anim(a0)
 		move.w	#$600,ground_vel(a0)
-		move.w	#$14-1,objoff_2E(a0)						; set wait
+		move.w	#$14-1,wait_timer(a0)						; set wait
 
 .waitrun
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.anim
 		move.l	#.run,address(a0)
 
@@ -512,9 +512,9 @@ Obj_Continue_Knuckles:
 		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
 .waitstart
-		move.w	#$2F,objoff_2E(a0)						; set wait
+		move.w	#$2F,wait_timer(a0)						; set wait
 		movea.w	(Continue.countdown).w,a1
-		btst	#3,objoff_38(a1)						; is Start was pressed?
+		btst	#3,state_flags(a1)						; is Start was pressed?
 		beq.s	.wait								; if not, branch
 		move.l	#.wait,address(a0)
 
@@ -524,7 +524,7 @@ Obj_Continue_Knuckles:
 		move.l	#Obj_Continue_EggRobo,address(a1)
 
 .wait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.anim
 		move.l	#.main,address(a0)
 
@@ -545,7 +545,7 @@ Obj_Continue_Knuckles:
 
 .waitstart2
 		movea.w	(Continue.countdown).w,a1
-		btst	#3,objoff_38(a1)						; is Start was pressed?
+		btst	#3,state_flags(a1)						; is Start was pressed?
 		bne.s	.pstart								; if yes, branch
 
 .draw
@@ -563,7 +563,7 @@ Obj_Continue_Knuckles:
 		movea.w	(Continue.countdown).w,a1
 		cmpi.w	#$80+(screen_width/2),d0
 		blo.s	.checkpos
-		bset	#2,objoff_38(a1)						; set Knuckles in the middle of the screen flag
+		bset	#2,state_flags(a1)						; set Knuckles in the middle of the screen flag
 
 .checkpos
 		cmpi.w	#$80+(320+32),d0
@@ -588,10 +588,10 @@ Obj_Continue_Knuckles:
 
 Knuckles_Load_PLC_Continue:
 		moveq	#0,d0
-		move.b	mapping_frame(a0),d0
-		cmp.b	objoff_3A(a0),d0
+		move.b	mapping_frame(a0),d0						; get the frame number
+		cmp.b	ros_prev_frame(a0),d0						; if frame number remains the same as before, don't do anything
 		beq.s	.return
-		move.b	d0,objoff_3A(a0)
+		move.b	d0,ros_prev_frame(a0)
 
 		; load
 		add.w	d0,d0
@@ -861,7 +861,7 @@ Obj_Continue_Icons:
 		addq.w	#1,d0
 
 .skip
-		movea.l	objoff_30(a0),a1
+		movea.l	aniraw_ptr(a0),a1
 		move.b	(a1,d0.w),mapping_frame(a0)
 		jmp	(Draw_Sprite).w
 
@@ -899,7 +899,7 @@ Continue_Icons_LoadAnim:
 .notTails
 		add.w	d4,d4
 		add.w	d4,d4
-		move.l	.index(pc,d4.w),objoff_30(a0)
+		move.l	.index(pc,d4.w),aniraw_ptr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 

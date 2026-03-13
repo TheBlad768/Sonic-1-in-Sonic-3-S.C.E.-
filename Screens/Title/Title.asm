@@ -366,7 +366,6 @@ DemoLevels_end
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-ts_timer		= objoff_2E	; .w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -381,10 +380,10 @@ Obj_TitleSonic:
 			make_art_tile($300,1,FALSE) \
 		),priority(a0)
 
-		st	objoff_3A(a0)							; reset DPLC frame
+		st	ros_prev_frame(a0)						; reset DPLC prev frame (used by Perform_DPLC)
 		move.w	#$80+120,x_pos(a0)
 		move.w	#$80+94,y_pos(a0)						; position is fixed to screen
-		move.w	#30-1,objoff_2E(a0)						; set time delay to 0.5 seconds
+		move.w	#30-1,wait_timer(a0)						; set time delay to 0.5 seconds
 		move.l	#.wait,address(a0)
 
 		; create sprite mask
@@ -404,7 +403,7 @@ Obj_TitleSonic:
 		move.w	a0,parent3(a1)							; save parent
 
 .wait
-		subq.w	#1,objoff_2E(a0)						; subtract 1 from time delay
+		subq.w	#1,wait_timer(a0)						; subtract 1 from time delay
 		bpl.s	.return								; if time remains, branch
 		move.l	#.move,address(a0)
 
@@ -434,9 +433,12 @@ Obj_TitleSonic:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-tpsb_timer		= objoff_2E	; .w
 
-tpsb_counter		= objoff_3E	; .w
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+titlepsb.counter			ds.w 1						; (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -447,11 +449,11 @@ Obj_TitlePSB:
 		move.w	#make_art_tile($200,0,FALSE),art_tile(a0)
 		move.w	#$D8,x_pos(a0)
 		move.w	#$130,y_pos(a0)
-		move.w	#(1<<5)-1,tpsb_timer(a0)					; set wait
+		move.w	#(1<<5)-1,wait_timer(a0)					; set wait
 		move.l	#.main,address(a0)
 
 .main
-		subq.w	#1,tpsb_timer(a0)						; wait
+		subq.w	#1,wait_timer(a0)						; wait
 		bpl.s	.anim
 		move.l	#.cstart,address(a0)
 
@@ -460,8 +462,8 @@ Obj_TitlePSB:
 		bne.s	.soptions							; if yes, branch
 
 .anim
-		addq.w	#1,tpsb_counter(a0)						; alternative for "Level_frame_counter"
-		btst	#5,tpsb_counter+1(a0)
+		addq.w	#1,titlepsb.counter(a0)						; alternative for "Level_frame_counter"
+		btst	#5,titlepsb.counter+1(a0)
 		beq.s	.return
 
 .draw
@@ -488,13 +490,13 @@ Obj_TitlePSB:
 
 		; next
 		sfx	sfx_StarPost
-		move.w	#(1<<4)-1,tpsb_timer(a0)					; set wait
+		move.w	#(1<<4)-1,wait_timer(a0)					; set wait
 		move.l	#.woptions,address(a0)
 		bra.s	.options2
 ; ---------------------------------------------------------------------------
 
 .woptions
-		subq.w	#1,tpsb_timer(a0)						; wait
+		subq.w	#1,wait_timer(a0)						; wait
 		bpl.s	.return
 		move.l	#.options,address(a0)
 		st	(Title.end).w							; set exit flag from current screen

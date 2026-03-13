@@ -2,6 +2,14 @@
 ; Tails tail (Object)
 ; ---------------------------------------------------------------------------
 
+; dynamic object variables
+
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+tails_tail.prev_anim			ds.b 1						; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Tails_Tail:
@@ -27,7 +35,7 @@ Obj_Tails_Tail:
 .main
 
 		; here, several SSTs are inheritied from the parent, normally Tails
-		movea.w	objoff_30(a0),a2						; a2=character
+		movea.w	parent(a0),a2							; a2=character
 		move.b	angle(a2),angle(a0)
 		move.b	status(a2),status(a0)
 		move.w	x_pos(a2),x_pos(a0)
@@ -54,9 +62,9 @@ Obj_Tails_Tail:
 		moveq	#4,d0
 
 .check
-		cmp.b	objoff_34(a0),d0						; has the input parent anim changed since last check?
+		cmp.b	tails_tail.prev_anim(a0),d0					; has the input parent anim changed since last check?
 		beq.s	.prev								; if not, branch and skip setting a matching Tails' Tails anim
-		move.b	d0,objoff_34(a0)						; store d0 for the above comparision
+		move.b	d0,tails_tail.prev_anim(a0)					; store d0 for the above comparision
 		move.b	.aniselection(pc,d0.w),anim(a0)					; load anim relative to parent's
 
 .prev

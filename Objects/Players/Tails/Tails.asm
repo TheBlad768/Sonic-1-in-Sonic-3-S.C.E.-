@@ -121,7 +121,7 @@ loc_137A4:
 		clr.w	(Tails_CPU_idle_timer).w
 		clr.w	(Tails_CPU_flight_timer).w
 		move.l	#Obj_Tails_Tail,(Tails_tails+address).w
-		move.w	a0,(Tails_tails+objoff_30).w
+		move.w	a0,(Tails_tails+parent).w
 		move.b	(Last_star_post_hit).w,(Tails_CPU_star_post_flag).w
 		rts
 ; ---------------------------------------------------------------------------

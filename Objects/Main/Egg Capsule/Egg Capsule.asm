@@ -3,10 +3,6 @@
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-ecap_timer				= objoff_2E	; .w
-
-ecap_jump				= objoff_34	; .l
-ecap_status				= objoff_38	; .b
 ecap_speed				= objoff_3A	; .w ; flipped only
 
 ; Functions (objoff_38 status)
@@ -87,13 +83,13 @@ Obj_EggCapsule:
 ; =============== S U B R O U T I N E =======================================
 
 .normal
-		btst	#1,objoff_38(a0)						; is button pressed?
+		btst	#1,state_flags(a0)						; is button pressed?
 		beq.s	.return								; if not, branch
 		move.l	#.Sonicendpose,jump_ptr(a0)
 
 .open
 		move.b	#1,mapping_frame(a0)						; set empty egg capsule frame
-		move.w	#$40,objoff_2E(a0)						; wait
+		move.w	#$40,wait_timer(a0)						; wait
 
 		; create pieces objects
 		lea	Child1_EggCapsule_Pieces(pc),a2
@@ -170,7 +166,7 @@ Obj_EggCapsule:
 		add.l	d1,y_pos(a0)
 
 		; check button
-		btst	#1,objoff_38(a0)						; is button pressed?
+		btst	#1,state_flags(a0)						; is button pressed?
 		beq.s	.swing								; if not, branch
 
 		; load sub routine
@@ -256,7 +252,7 @@ sub_866EC:										; Routine $10 (LBZ)
 Check_SonicEndPose:
 
 		; wait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.return
 
 		lea	(Player_1).w,a1							; a1=character
@@ -280,7 +276,7 @@ Check_SonicEndPose:
 Check_TailsEndPose:
 		tst.b	(Last_act_end_flag).w
 		beq.s	Check_SonicEndPose.return
-		btst	#7,objoff_38(a0)
+		btst	#7,state_flags(a0)
 		bne.s	Check_SonicEndPose.return
 		lea	(Player_2).w,a1							; a1=character
 		btst	#7,status(a1)
@@ -289,7 +285,7 @@ Check_TailsEndPose:
 		bne.s	Check_SonicEndPose.return					; if yes, branch
 		cmpi.b	#PlayerID_Death,routine(a1)					; has player just died?
 		bhs.s	Check_SonicEndPose.return					; if yes, branch
-		bset	#7,objoff_38(a0)
+		bset	#7,state_flags(a0)
 		clr.b	(Ctrl_2_locked).w
 		jmp	(Set_PlayerEndingPose).w
 
@@ -298,7 +294,7 @@ Check_TailsEndPose:
 Check_SonicEndPose_MGZ:
 
 		; wait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.return
 
 		lea	(Player_1).w,a1							; a1=character
@@ -351,7 +347,7 @@ Obj_EggCapsule_Button:
 		beq.s	.draw								; if not, branch
 		move.l	#.solid,address(a0)
 		movea.w	parent3(a0),a1							; load egg capsule address
-		bset	#1,objoff_38(a1)						; set flag as "pressed"
+		bset	#1,state_flags(a1)						; set flag as "pressed"
 		move.b	#$C,mapping_frame(a0)						; "pressed" frame
 
 .draw
@@ -409,7 +405,7 @@ Obj_EggCapsule_FlippedButton:
 		move.l	#.refresh,address(a0)
 		subq.b	#8,child_dy(a0)							; move object to "pressed"
 		movea.w	parent3(a0),a1							; load egg capsule address
-		bset	#1,objoff_38(a1)						; set flag as "pressed"
+		bset	#1,state_flags(a1)						; set flag as "pressed"
 
 .refresh
 		jsr	(Refresh_ChildPosition).w
@@ -491,8 +487,6 @@ AniRaw_Propeller:	dc.b 0, 6, 7, 8, 9, arfEnd
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-ecapa_timer				= objoff_2E	; .w
-
 ecapa_yvel				= objoff_3E	; .w
 
 ; =============== S U B R O U T I N E =======================================
@@ -511,7 +505,7 @@ Obj_EggCapsule_Animals:
 .normal
 
 		; wait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.draw
 		move.l	#.jump,address(a0)
 		move.w	#priority_1,priority(a0)
@@ -574,7 +568,7 @@ Obj_EggCapsule_Animals_Flipped:
 		jsr	(Refresh_ChildPosition).w
 
 		; wait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.draw
 		move.l	#.move,address(a0)
 		move.w	#priority_1,priority(a0)
@@ -705,9 +699,9 @@ EggCapsule_Animals_Load:
 		move.b	(a1,d0.w),d0
 		lea	Obj_Animal_Properties(pc),a2
 		move.l	(a2,d0.w),mappings(a0)
+		add.w	d1,d1								; multiply by 4
 		add.w	d1,d1
-		add.w	d1,d1
-		move.w	d1,objoff_2E(a0)						; set wait
+		move.w	d1,wait_timer(a0)						; set wait
 
 		; set xvel
 		movea.w	parent3(a0),a1							; load egg capsule address

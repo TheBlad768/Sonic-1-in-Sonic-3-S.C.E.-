@@ -366,8 +366,6 @@ Credits_DrawLargeText:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-crdre_timer		= objoff_2E ; (2 bytes)
-
 crdre_drop		= objoff_39 ; (1 byte)
 
 ; =============== S U B R O U T I N E =======================================
@@ -379,7 +377,7 @@ Obj_CreditsRobotnik:
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 		move.w	#screen_width/2,x_pos(a0)
 		move.w	#screen_height/2,y_pos(a0)
-		move.w	#(20*60)-1,objoff_2E(a0)
+		move.w	#(20*60)-1,wait_timer(a0)
 
 		; END
 		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
@@ -420,7 +418,7 @@ Obj_CreditsRobotnik:
 		bmi.s	.finish								; if start was pressed, skip ahead
 
 		; wait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bmi.s	.finish
 
 		jmp	(Draw_Sprite).w
@@ -608,31 +606,31 @@ Obj_CreditsEggRobo:
 		move.w	#screen_height/2,y_pos(a0)
 
 		; Try Again
-		move.l	#AniRaw_CreditsEggRoboEnd,objoff_30(a0)
+		move.l	#AniRaw_CreditsEggRoboEnd,aniraw_ptr(a0)
 		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
 		bne.s	.createemrl							; if not, branch
 
 		; END
-		move.l	#AniRaw_CreditsEggRobo,objoff_30(a0)
+		move.l	#AniRaw_CreditsEggRobo,aniraw_ptr(a0)
 		move.w	#(screen_height/2)+32,y_pos(a0)
 		move.l	#.wait,address(a0)
 		lea	Child1_CreditsEggRobo_Misc(pc),a2
 		jsr	(CreateChild1_Normal).w
 
 .wait
-		btst	#2,objoff_38(a0)
+		btst	#2,state_flags(a0)
 		beq.s	.draw
-		move.w	#$1F,objoff_2E(a0)
+		move.w	#$1F,wait_timer(a0)
 		move.l	#.rise,address(a0)
 
 .rise
 		subq.w	#1,y_pos(a0)
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.draw
 		move.l	#.animate,address(a0)
 
 .riseskip
-		move.w	#(20*60)-1,objoff_2E(a0)
+		move.w	#(20*60)-1,wait_timer(a0)
 
 .animate
 		jsr	(Animate_Raw).w
@@ -643,7 +641,7 @@ Obj_CreditsEggRobo:
 		bmi.s	.finish								; if start was pressed, skip ahead
 
 		; wait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bmi.s	.finish
 
 .draw
@@ -727,7 +725,6 @@ CreditsEggRobo_LoadEmeralds:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-cere_timer		= objoff_2E ; (2 bytes)
 cere_origX		= objoff_32 ; original x-axis position (2 bytes)
 cere_origY		= objoff_30 ; original y-axis position (2 bytes)
 
@@ -801,11 +798,11 @@ Obj_CreditsEggRobo_Eyes:
 		move.b	#2,mapping_frame(a0)
 		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
 		bne.s	.setframe							; if not, branch
-		move.w	#(2*60)-1,objoff_2E(a0)
+		move.w	#(2*60)-1,wait_timer(a0)
 		move.l	#.main,address(a0)
 
 .main
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.return
 		move.l	#.animate,address(a0)
 		move.l	#.setf,jump_ptr(a0)
@@ -823,7 +820,7 @@ Obj_CreditsEggRobo_Eyes:
 .setf
 		move.l	#.refresh,address(a0)
 		movea.w	parent3(a0),a1							; a1=parent object
-		bset	#2,objoff_38(a1)
+		bset	#2,state_flags(a1)
 		rts
 ; ---------------------------------------------------------------------------
 

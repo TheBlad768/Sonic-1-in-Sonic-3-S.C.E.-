@@ -85,7 +85,7 @@ loc_4B9E8:
 		cmpi.b	#PlayerModeID_Tails-1,d0
 		bne.s	.notTails
 		move.l	#Obj_Tails_Tail,(Tails_tails+address).w
-		move.w	a0,(Tails_tails+objoff_30).w
+		move.w	a0,(Tails_tails+parent).w
 
 .notTails
 		add.w	d0,d0

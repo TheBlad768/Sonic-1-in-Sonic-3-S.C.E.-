@@ -14,7 +14,7 @@ SBZ1_Resize:
 		move.w	(Camera_max_X_pos).w,d0
 		subi.w	#256,d0
 		cmp.w	(Camera_X_pos).w,d0
-		bhi.s	.return
+		bhi.w	.return
 		move.w	d0,(Camera_min_X_pos).w
 		move.l	#.checkxpos,(Level_data_addr_RAM.Resize).w
 
@@ -46,7 +46,7 @@ SBZ1_Resize:
 		movea.w	d0,a1								; get signpost address
 
 		; check signpost
-		tst.b	objoff_39(a1)							; is signpost active?
+		btst	#1,state_flags(a1)						; is signpost active?
 		beq.s	.return								; if not, branch
 		move.l	#.checksign,(Level_data_addr_RAM.Resize).w
 

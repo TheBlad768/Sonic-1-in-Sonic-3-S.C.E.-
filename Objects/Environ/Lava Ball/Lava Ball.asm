@@ -6,8 +6,8 @@
 
 	dsset wait_timer								; pretend we're in the RAM
 
-lavamaker.timer				ds.w 1						; current time remaining (2 bytes)
-lavamaker.delay				ds.w 1						; time delay (2 bytes)
+lavamaker.timer				ds.b 1						; current time remaining (1 byte)
+lavamaker.delay				ds.b 1						; time delay (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
