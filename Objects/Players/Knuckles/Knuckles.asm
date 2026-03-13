@@ -732,11 +732,12 @@ Knuckles_Sliding:
 		add.w	d1,y_pos(a0)
 		move.b	d3,angle(a0)
 
-		; play the sliding sound every 8 frames.
+		; play the sliding sound every 8 frames
 		moveq	#7,d0
 		and.b	(Level_frame_counter+1).w,d0
 		bne.s	.skip3
-		sfx	sfx_GroundSlide
+		sfx	sfx_GroundSlide, 1
+; ---------------------------------------------------------------------------
 
 .skip3
 		rts

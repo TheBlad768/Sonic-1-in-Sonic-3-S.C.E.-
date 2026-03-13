@@ -4,6 +4,17 @@
 
 ; dynamic object variables
 
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+; players
+pathswap.p1_passed			ds.b 1						; Sonic's passed flag (1 byte)
+pathswap.p2_passed			ds.b 1						; Tails's passed flag (1 byte)
+
+; main
+pathswap.range				ds.w 1						; (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_PathSwap:
@@ -22,18 +33,18 @@ Obj_PathSwap:
 		move.b	d0,mapping_frame(a0)
 		andi.w	#3,d0
 		add.w	d0,d0
-		move.w	word_1CD34(pc,d0.w),objoff_32(a0)
+		move.w	word_1CD34(pc,d0.w),pathswap.range(a0)
 		move.w	y_pos(a0),d1
 		lea	(Player_1).w,a1							; a1=character
 		cmp.w	y_pos(a1),d1
 		bhs.s	loc_1CD06
-		move.b	#1,objoff_34(a0)
+		st	pathswap.p1_passed(a0)
 
 loc_1CD06:
 		lea	(Player_2).w,a1							; a1=character
 		cmp.w	y_pos(a1),d1
 		bhs.s	loc_1CD16
-		move.b	#1,objoff_35(a0)
+		st	pathswap.p2_passed(a0)
 
 loc_1CD16:
 
@@ -54,18 +65,18 @@ loc_1CD3C:
 		andi.w	#3,d0
 		move.b	d0,mapping_frame(a0)
 		add.w	d0,d0
-		move.w	word_1CD34(pc,d0.w),objoff_32(a0)
+		move.w	word_1CD34(pc,d0.w),pathswap.range(a0)
 		move.w	x_pos(a0),d1
 		lea	(Player_1).w,a1							; a1=character
 		cmp.w	x_pos(a1),d1
 		bhs.s	loc_1CD60
-		move.b	#1,objoff_34(a0)
+		st	pathswap.p1_passed(a0)
 
 loc_1CD60:
 		lea	(Player_2).w,a1							; a1=character
 		cmp.w	x_pos(a1),d1
 		bhs.s	loc_1CD70
-		move.b	#1,objoff_35(a0)
+		st	pathswap.p2_passed(a0)
 
 loc_1CD70:
 		move.l	#loc_1CD8A,address(a0)
@@ -76,7 +87,7 @@ loc_1CD8A:
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.s	loc_1CDAC							; if yes, branch
 		move.w	x_pos(a0),d1
-		lea	objoff_34(a0),a2
+		lea	pathswap.p1_passed(a0),a2
 		lea	(Player_1).w,a1							; a1=character
 		bsr.s	sub_1CDDA
 		lea	(Player_2).w,a1							; a1=character
@@ -97,7 +108,7 @@ sub_1CDDA:
 		st	-1(a2)
 		move.w	y_pos(a0),d2
 		move.w	d2,d3
-		move.w	objoff_32(a0),d4
+		move.w	pathswap.range(a0),d4
 		sub.w	d4,d2
 		add.w	d4,d3
 		move.w	y_pos(a1),d4
@@ -143,7 +154,7 @@ loc_1CE6C:
 		clr.b	-1(a2)
 		move.w	y_pos(a0),d2
 		move.w	d2,d3
-		move.w	objoff_32(a0),d4
+		move.w	pathswap.range(a0),d4
 		sub.w	d4,d2
 		add.w	d4,d3
 		move.w	y_pos(a1),d4
@@ -187,7 +198,7 @@ sub_1CEF2:
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.s	loc_1CF14							; if yes, branch
 		move.w	y_pos(a0),d1
-		lea	objoff_34(a0),a2
+		lea	pathswap.p1_passed(a0),a2
 		lea	(Player_1).w,a1							; a1=character
 		bsr.s	sub_1CF42
 		lea	(Player_2).w,a1							; a1=character
@@ -208,7 +219,7 @@ sub_1CF42:
 		st	-1(a2)
 		move.w	x_pos(a0),d2
 		move.w	d2,d3
-		move.w	objoff_32(a0),d4
+		move.w	pathswap.range(a0),d4
 		sub.w	d4,d2
 		add.w	d4,d3
 		move.w	x_pos(a1),d4
@@ -254,7 +265,7 @@ loc_1CFD4:
 		clr.b	-1(a2)
 		move.w	x_pos(a0),d2
 		move.w	d2,d3
-		move.w	objoff_32(a0),d4
+		move.w	pathswap.range(a0),d4
 		sub.w	d4,d2
 		add.w	d4,d3
 		move.w	x_pos(a1),d4

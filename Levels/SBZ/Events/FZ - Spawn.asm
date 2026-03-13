@@ -5,7 +5,7 @@
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Spawn_FinalZone:
-		move.w	#30-1,objoff_2E(a0)						; set time
+		move.w	#30-1,wait_timer(a0)						; set time
 		move.l	#.wait,address(a0)
 
 		; set
@@ -43,7 +43,7 @@ Obj_Spawn_FinalZone:
 		move.w	d0,(Ctrl_2_logical).w
 
 		; wait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.return
 
 		; next

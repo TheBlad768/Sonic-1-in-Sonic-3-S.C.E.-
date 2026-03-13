@@ -9,7 +9,7 @@
 Obj_EndSignControl:
 		move.l	#Obj_Wait,address(a0)
 		st	(Level_results_flag).w						; end of level is in effect
-		move.w	#(2*60)-1,objoff_2E(a0)
+		move.w	#(2*60)-1,wait_timer(a0)
 		move.l	#Obj_EndSignControlDoSign,jump_ptr(a0)
 
 .return
@@ -23,6 +23,8 @@ Obj_EndSignControlDoSign:
 		jsr	(CreateChild6_Simple).w
 
 AfterBoss_Cleanup:
+
+		; check after boss
 		move.l	(Level_data_addr_RAM.AfterBoss).w,d0
 		beq.s	Obj_EndSignControl.return
 		movea.l	d0,a1
@@ -30,6 +32,8 @@ AfterBoss_Cleanup:
 ; ---------------------------------------------------------------------------
 
 Obj_EndSignControlAwaitStart:
+
+		; check level results flag
 		tst.b	(Level_results_flag).w
 		bne.s	Obj_EndSignControl.return
 		move.l	#Obj_EndSignControlDoStart,address(a0)
@@ -42,6 +46,8 @@ Obj_EndSignControlAwaitStart:
 ; ---------------------------------------------------------------------------
 
 Obj_EndSignControlDoStart:
+
+		; check end level flag
 		tst.b	(End_of_level_flag).w						; wait for title card to finish
 		beq.s	Obj_EndSignControl.return
 		jsr	(Change_ActSizes).w						; set level size
@@ -52,12 +58,6 @@ Obj_EndSignControlDoStart:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-sign_timer			= objoff_2E	; .w
-sign_aniraw			= objoff_30	; .l
-
-sign_dplcframe			= objoff_3A	; .b
-sign_rosbit			= objoff_3B	; .b
-sign_rosaddr			= objoff_3C	; .w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -86,7 +86,7 @@ Obj_EndSign:
 		move.l	#AniRaw_EndSigns2,d0
 
 .notKnux
-		move.l	d0,objoff_30(a0)
+		move.l	d0,aniraw_ptr(a0)
 
 		; create stub
 		lea	Child1_EndSignStub(pc),a2					; make the little stub at the bottom of the signpost
@@ -127,7 +127,7 @@ Obj_EndSign:
 
 		; bounce
 		sfx	sfx_SignpostRotation
-		st	objoff_39(a0)
+		bset	#1,state_flags(a0)						; signpost active flag
 		move.w	#-$380,y_vel(a0)
 		move.l	#.bounce,address(a0)
 
@@ -145,7 +145,7 @@ Obj_EndSign:
 		add.w	(Camera_Y_pos).w,d0
 		move.w	d0,y_pos(a0)							; place vertical position at top of screen
 		sfx	sfx_Signpost
-		st	objoff_39(a0)
+		bset	#1,state_flags(a0)						; signpost active flag
 		move.l	#.signfall,address(a0)
 
 .signfall
@@ -173,8 +173,8 @@ Obj_EndSign:
 		bpl.s	.draw
 		add.w	d1,y_pos(a0)
 		move.l	#.signlanded,address(a0)
-		bset	#0,objoff_38(a0)
-		move.w	#(1*60)+4,objoff_2E(a0)
+		bset	#0,state_flags(a0)						; signpost landed flag
+		move.w	#(1*60)+4,wait_timer(a0)
 
 .draw
 		lea	PLCPtr_EndSigns(pc),a2
@@ -183,10 +183,10 @@ Obj_EndSign:
 ; ---------------------------------------------------------------------------
 
 .signlanded
-		btst	#0,objoff_38(a0)
-		beq.s	.hmon
+		btst	#0,state_flags(a0)
+		beq.s	.hmon								; if signpost hasn't landed, branch
 		jsr	(Animate_Raw).w
-		subq.w	#1,objoff_2E(a0)						; keep animating while landing for X amount of frames
+		subq.w	#1,wait_timer(a0)						; keep animating while landing for X amount of frames
 		bmi.s	.endtime
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
@@ -285,7 +285,7 @@ Obj_SignpostSparkle:
 		add.w	d0,y_pos(a0)							; random vertical position
 		move.w	x_pos(a0),objoff_3A(a0)
 		move.w	#$1000,x_vel(a0)
-		move.w	#32,objoff_2E(a0)
+		move.w	#32,wait_timer(a0)
 		move.l	#Go_Delete_Object,jump_ptr(a0)
 
 .main

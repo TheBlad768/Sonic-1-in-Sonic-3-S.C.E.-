@@ -43,7 +43,7 @@ SYZ1_Resize:
 		movea.w	d0,a1								; get signpost address
 
 		; check signpost
-		tst.b	objoff_39(a1)							; is signpost active?
+		btst	#1,state_flags(a1)						; is signpost active?
 		beq.s	.return								; if not, branch
 		move.l	#.checksign,(Level_data_addr_RAM.Resize).w
 

@@ -308,7 +308,7 @@ Obj_Sonic_Ending:
 		jsr	(SetUp_ObjAttributes).w
 		move.l	(a1)+,eson_anim(a0)
 		move.l	(a1),eson_dplc(a0)
-		st	objoff_3A(a0)							; reset DPLC frame
+		st	ros_prev_frame(a0)						; reset DPLC prev frame (used by Perform_DPLC)
 		clr.b	routine(a0)
 		clr.b	status(a0)
 		clr.b	anim(a0)
@@ -453,7 +453,7 @@ Obj_Sonic_Ending:
 		jsr	(SetUp_ObjAttributes).w
 		move.l	(a1)+,eson_anim(a0)
 		move.l	(a1),eson_dplc(a0)
-		st	objoff_3A(a0)							; reset DPLC frame
+		st	ros_prev_frame(a0)						; reset DPLC prev frame (used by Perform_DPLC)
 		clr.b	routine(a0)
 		clr.b	status(a0)
 		move.b	#2,anim(a0)							; use "leaping" animation
@@ -591,11 +591,11 @@ Obj_EndSTH:
 		move.w	#make_art_tile($480,3,TRUE),art_tile(a0)
 		move.w	#$80+88,y_pos(a0)
 		move.b	(Player_mode+1).w,mapping_frame(a0)
-		move.w	#4-1,objoff_2E(a0)						; set duration for delay
+		move.w	#4-1,wait_timer(a0)						; set duration for delay
 		move.l	#.swait,address(a0)
 
 .swait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.draw
 		move.l	#.move,address(a0)
 
@@ -603,11 +603,11 @@ Obj_EndSTH:
 		addi.w	#16,x_pos(a0)							; move object to the right
 		cmpi.w	#$80+64,x_pos(a0)						; has object reached $40?
 		bne.s	.draw								; if yes, branch
-		move.w	#5*60,objoff_2E(a0)						; set duration for delay (5 seconds)
+		move.w	#5*60,wait_timer(a0)						; set duration for delay (5 seconds)
 		move.l	#.ewait,address(a0)
 
 .ewait
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.s	.draw
 		move.b	#GameModeID_CreditsScreen,(Game_mode).w				; set screen mode to Credits
 		addq.w	#4*2,sp								; exit from object and current screen
