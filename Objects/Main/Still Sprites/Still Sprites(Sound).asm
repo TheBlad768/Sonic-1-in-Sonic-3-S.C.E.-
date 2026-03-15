@@ -11,7 +11,7 @@ Obj_SoundStillSprite:
 		; get
 		moveq	#0,d0
 		move.b	subtype(a0),d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		move.w	.index(pc,d0.w),objoff_30(a0)
 		move.l	#.main,address(a0)
 

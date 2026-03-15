@@ -677,7 +677,7 @@ Obj_BossSpikeBall_SpikeBall_Shrapnel:
 		; set xyvel
 		moveq	#0,d0
 		move.b	subtype(a0),d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		move.l	BossSpikeBall_FragSpeed(pc,d0.w),x_vel(a0)
 
 		; init

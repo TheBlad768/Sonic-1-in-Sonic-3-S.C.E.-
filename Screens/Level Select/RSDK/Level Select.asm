@@ -91,20 +91,20 @@ LevelSelectRSDKScreen:
 		EniDecomp	MapEni_LevelSelectRSDKIcons, RAM_start+$2000, 0, 0, FALSE	; decompress Enigma mappings
 
 		; load icon
-		lea	(LevelSelectRSDK.buffer+$AB0).l,a2
+		lea	(LevelSelectRSDK.buffer+planeLoc(64,24,21)).l,a2
 		copyTilemapToRAM	80, 48, $80
 
 		; load text
 		bsr.w	LevelSelectRSDK_LoadText
-		move.w	#palette_line_1,d3
+		move.w	#make_art_tile(0,1,FALSE),d3
 		bsr.w	LevelSelectRSDK_MarkFields
-		moveq	#palette_line_0+LevelSelectRSDK.VRAM,d3
+		mvq	make_art_tile(LevelSelectRSDK.VRAM,0,FALSE),d3
 		bsr.w	LevelSelectRSDK_MarkFields.drawplayer
-		moveq	#palette_line_0+LevelSelectRSDK.VRAM,d3
+		mvq	make_art_tile(LevelSelectRSDK.VRAM,0,FALSE),d3
 		bsr.w	LevelSelectRSDK_MarkFields.drawmusic
-		moveq	#palette_line_0+LevelSelectRSDK.VRAM,d3
+		mvq	make_art_tile(LevelSelectRSDK.VRAM,0,FALSE),d3
 		bsr.w	LevelSelectRSDK_MarkFields.drawsound
-		moveq	#palette_line_0+LevelSelectRSDK.VRAM,d3
+		mvq	make_art_tile(LevelSelectRSDK.VRAM,0,FALSE),d3
 		bsr.w	LevelSelectRSDK_MarkFields.drawsample
 
 		; load main palette
@@ -138,13 +138,17 @@ LevelSelectRSDKScreen:
 
 .loop
 		jsr	(Wait_VSync).w
-		moveq	#palette_line_0,d3
+
+		; update text
+		moveq	#make_art_tile(0,0,FALSE),d3
 		bsr.w	LevelSelectRSDK_MarkFields
 		bsr.w	LevelSelectRSDK_Controls
-		move.w	#palette_line_1,d3
+		move.w	#make_art_tile(0,1,FALSE),d3
 		bsr.w	LevelSelectRSDK_MarkFields
 		lea	(Normal_palette_line_3).w,a2
 		bsr.w	LevelSelectRSDK_UpdateIcons
+
+		; check exit
 		tst.b	(Ctrl_1_pressed).w
 		bpl.s	.loop
 		cmpi.w	#LevelSelectRSDK.SpecialStageCount,(LevelSelectRSDK.vertical_count).w
@@ -175,7 +179,7 @@ LevelSelectRSDKScreen:
 		; load zone and act
 		move.b	#GameModeID_LevelScreen,(Game_mode).w				; set screen mode to Level
 		move.w	(LevelSelectRSDK.vertical_count).w,d2
-		add.w	d2,d2
+		add.w	d2,d2								; multiply by 2
 		lea	TitleLevelSelectScreen.index(pc),a0
 		move.w	(a0,d2.w),d2
 		move.w	d2,(Current_zone_and_act).w
@@ -217,7 +221,7 @@ LevelSelectRSDK_Controls:
 		; check vertical line
 		subi.w	#LevelSelectRSDK.SpecialStageCount+1,d3
 		blo.w	LevelSelectRSDK_SwitchSide
-		add.w	d3,d3
+		add.w	d3,d3								; multiply by 2
 		jmp	.index(pc,d3.w)
 ; ---------------------------------------------------------------------------
 
@@ -384,7 +388,7 @@ LevelSelectRSDK_UpdateIcons:
 		move.w	d1,(LevelSelectRSDK.vertical_count_prev).w
 
 		; load palette
-		add.w	d1,d1
+		add.w	d1,d1								; multiply by 4
 		add.w	d1,d1
 		lea	(Pal_LevelSelectRSDKIcons).l,a1
 		adda.w	.table(pc,d1.w),a1
@@ -473,7 +477,7 @@ LevelSelectRSDK_MarkFields:
 		; get text pos
 		move.w	(LevelSelectRSDK.vertical_count).w,d0
 		move.w	d0,d4
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 4
 		add.w	d0,d0
 		movem.w	LevelSelectRSDK_MappingOffsets2(pc,d0.w),d0-d1			; get name and act pos
 
@@ -517,15 +521,15 @@ LevelSelectRSDK_MarkFields:
 
 .options
 
-	if LevelSelectRSDK.VRAM<>0
-		ori.w	#LevelSelectRSDK.VRAM,d3
+	if ((make_art_tile(LevelSelectRSDK.VRAM,0,FALSE))<>0)
+		ori.w	#make_art_tile(LevelSelectRSDK.VRAM,0,FALSE),d3
 	endif
 
 		; check vertical line
 		moveq	#-(LevelSelectRSDK.SpecialStageCount+1),d0
 		add.w	(LevelSelectRSDK.vertical_count).w,d0
 		bhs.s	.return
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		jmp	.index(pc,d0.w)
 ; ---------------------------------------------------------------------------
 
@@ -617,12 +621,8 @@ LevelSelectRSDK_LoadText:
 		lea	(LevelSelectRSDK.buffer).l,a1
 		lea	LevelSelectRSDK_MainText(pc),a2
 
-	if LevelSelectRSDK.VRAM=0
-		moveq	#0,d3
-	else
-		move.w	#LevelSelectRSDK.VRAM,d3
-	endif
-
+		; set
+		mvq	make_art_tile(LevelSelectRSDK.VRAM,0,FALSE),d3
 		moveq	#LevelSelectRSDK.MaxCount-1,d1
 
 .load
@@ -640,20 +640,20 @@ LevelSelectRSDK_LoadText:
 		dbf	d1,.load
 
 		; set act numbers
-		lea	(LevelSelectRSDK.buffer+$11E).l,a1
+		lea	(LevelSelectRSDK.buffer+planeLoc(64,15,2)).l,a1
 		moveq	#5-1,d1								; (GHZ-SLZ)
 
 .nload
 		moveq	#'1',d0								; write (act) '1'
 		add.w	d3,d0
-		move.w	d0,(a1)
+		move.w	d0,planeLoc(64,0,0)(a1)
 		moveq	#'2',d0								; write (act) '2'
 		add.w	d3,d0
-		move.w	d0,$80(a1)
+		move.w	d0,planeLoc(64,0,1)(a1)
 		moveq	#'3',d0								; write (act) '3'
 		add.w	d3,d0
-		move.w	d0,$100(a1)
-		lea	$200(a1),a1							; next line
+		move.w	d0,planeLoc(64,0,2)(a1)
+		lea	planeLoc(64,0,4)(a1),a1						; next line
 		dbf	d1,.nload
 
 		; SBZ

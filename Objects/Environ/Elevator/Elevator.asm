@@ -67,7 +67,7 @@ Obj_Elevator:
 		move.b	(a2)+,width_pixels(a0)						; set width
 		move.b	(a2)+,mapping_frame(a0)						; set frame
 		move.b	subtype(a0),d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		andi.w	#$1E,d0
 		lea	.var2(pc,d0.w),a2
 		move.b	(a2)+,d0
@@ -95,7 +95,7 @@ Obj_Elevator:
 		moveq	#$F,d0
 		and.b	subtype(a0),d0
 		beq.s	.skipt								; if zero, branch
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		jsr	.index-2(pc,d0.w)
 
 .skipt

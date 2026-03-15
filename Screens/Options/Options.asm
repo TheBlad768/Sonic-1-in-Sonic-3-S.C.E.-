@@ -106,19 +106,19 @@ OptionsScreen:
 
 		; load text
 		bsr.w	Options_LoadText
-		move.w	#palette_line_0+Options.VRAM,d3
+		mvq	make_art_tile(Options.VRAM,0,FALSE),d3
 		bsr.w	Options_MarkFields.loadcharacter
-		move.w	#palette_line_0+Options.VRAM,d3
+		mvq	make_art_tile(Options.VRAM,0,FALSE),d3
 		bsr.w	Options_MarkFields.musicopt
-		move.w	#palette_line_0+Options.VRAM,d3
+		mvq	make_art_tile(Options.VRAM,0,FALSE),d3
 		bsr.w	Options_MarkFields.soundopt
-		move.w	#palette_line_0+Options.VRAM,d3
+		mvq	make_art_tile(Options.VRAM,0,FALSE),d3
 		bsr.w	Options_MarkFields.drawmusic
-		move.w	#palette_line_0+Options.VRAM,d3
+		mvq	make_art_tile(Options.VRAM,0,FALSE),d3
 		bsr.w	Options_MarkFields.drawsound
-		move.w	#palette_line_0+Options.VRAM,d3
+		mvq	make_art_tile(Options.VRAM,0,FALSE),d3
 		bsr.w	Options_MarkFields.drawsample
-		move.w	#palette_line_1,d3
+		move.w	#make_art_tile(0,1,FALSE),d3
 		bsr.w	Options_MarkFields
 
 		; load main palette
@@ -138,11 +138,15 @@ OptionsScreen:
 
 .loop
 		jsr	(Wait_VSync).w
-		moveq	#palette_line_0,d3
+
+		; update text
+		moveq	#make_art_tile(0,0,FALSE),d3
 		bsr.w	Options_MarkFields
 		bsr.s	Options_Controls
-		move.w	#palette_line_1,d3
+		move.w	#make_art_tile(0,1,FALSE),d3
 		bsr.w	Options_MarkFields
+
+		; check exit
 		tst.b	(Ctrl_1_pressed).w
 		bpl.s	.loop
 
@@ -166,7 +170,7 @@ Options_Controls:
 		move.w	d3,(Options.vertical_count).w
 
 		; check vertical line
-		add.w	d3,d3
+		add.w	d3,d3								; multiply by 4
 		add.w	d3,d3
 		jmp	.index(pc,d3.w)
 ; ---------------------------------------------------------------------------
@@ -428,7 +432,7 @@ Options_MarkFields:
 
 		; get text pos
 		move.w	(Options.vertical_count).w,d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		move.w	Options_MappingOffsets(pc,d0.w),d0
 
 		; RAM shift
@@ -451,7 +455,7 @@ Options_MarkFields:
 		dbf	d2,.copy
 
 		; check icon
-		cmpi.w	#palette_line_1,d3
+		cmpi.w	#make_art_tile(0,1,FALSE),d3
 		bne.s	.skipi
 		move.l	#words_to_long($253B,$253C),-(38*2)(a2)				; send icon data
 
@@ -463,7 +467,7 @@ Options_MarkFields:
 
 		; check vertical line
 		move.w	(Options.vertical_count).w,d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 4
 		add.w	d0,d0
 		jmp	.index(pc,d0.w)
 ; ---------------------------------------------------------------------------
@@ -561,7 +565,7 @@ Options_MarkFields:
 .loadcharacter
 		lea	(Options.buffer2+planeLoc(64,23,4)).l,a5
 		move.w	(Player_option).w,d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		lea	LevelSelect_LoadCharacterText1(pc),a0
 		tst.b	(Graphics_flags).w						; check console region
 		bmi.s	.notMiles
@@ -572,7 +576,7 @@ Options_MarkFields:
 
 .loadtext
 		moveq	#0,d6
-		move.b	(a0)+,d6
+		move.b	(a0)+,d6							; get text size
 
 .tcopy
 		moveq	#0,d0
@@ -596,12 +600,8 @@ Options_LoadText:
 		lea	(Options.buffer).l,a1
 		lea	Options_Text(pc),a2
 
-	if Options.VRAM=0
-		moveq	#0,d3
-	else
-		move.w	#Options.VRAM,d3
-	endif
-
+		; set
+		mvq	make_art_tile(Options.VRAM,0,FALSE),d3
 		moveq	#Options.MaxCount-1,d1
 
 .load

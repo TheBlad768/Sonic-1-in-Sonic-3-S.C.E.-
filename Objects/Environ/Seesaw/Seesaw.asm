@@ -31,7 +31,7 @@ Obj_Seesaw:
 		; SLZ boss
 		lea	(Boss_events).w,a1
 		andi.w	#$7F,d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		adda.w	d0,a1
 		move.w	a0,(a1)								; save address for boss
 		bra.s	.noball
@@ -284,7 +284,7 @@ Obj_Seesaw_SpikeBall:
 		addq.w	#2,d0
 
 .loc_118BA
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		move.w	seesaw_spikeball.origY(a0),d1					; d1 = bottom of seesaw y position
 		add.w	(a2,d0.w),d1							; + offset for current angle
 		cmp.w	y_pos(a0),d1							; return if y position < d1
