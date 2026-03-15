@@ -6,15 +6,15 @@
 
 	dsset wait_timer								; pretend we're in the RAM
 
-lavamaker.timer				ds.b 1						; current time remaining (1 byte)
-lavamaker.delay				ds.b 1						; time delay (1 byte)
+lavamaker.timer				ds.w 1						; current time remaining (2 bytes)
+lavamaker.delay				ds.w 1						; time delay (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
 		; lava ball production rates
-LavaMaker_Rates:	dc.b 30, 60, 90, 120, 150, 180
+LavaMaker_Rates:	dc.w ((1*60)-30), (1*60), ((1*60)+30), (2*60), ((2*60)+30), (3*60)
 ; ---------------------------------------------------------------------------
 
 Obj_LavaMaker:
@@ -24,11 +24,11 @@ Obj_LavaMaker:
 
 		; set
 		move.b	subtype(a0),d0
-		lsr.w	#4,d0
-		andi.w	#$F,d0
-		move.b	LavaMaker_Rates(pc,d0.w),d0
-		move.b	d0,lavamaker.timer(a0)						; set time delay for lava balls
-		move.b	d0,lavamaker.delay(a0)
+		lsr.w	#3,d0
+		andi.w	#$E,d0
+		move.w	LavaMaker_Rates(pc,d0.w),d0
+		move.w	d0,lavamaker.timer(a0)						; set time delay for lava balls
+		move.w	d0,lavamaker.delay(a0)
 		andi.b	#$F,subtype(a0)
 
 		; init
@@ -36,9 +36,9 @@ Obj_LavaMaker:
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 
 .makelava
-		subq.b	#1,lavamaker.timer(a0)						; subtract 1 from time delay
+		subq.w	#1,lavamaker.timer(a0)						; subtract 1 from time delay
 		bne.s	.draw								; if time still remains, branch
-		move.b	lavamaker.delay(a0),lavamaker.timer(a0)				; reset time delay
+		move.w	lavamaker.delay(a0),lavamaker.timer(a0)				; reset time delay
 
 		; check
 		tst.b	render_flags(a0)						; object visible on the screen?
@@ -101,7 +101,7 @@ Obj_LavaBall:
 		; set
 		moveq	#0,d0
 		move.b	subtype(a0),d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		move.w	LavaBall_Speeds(pc,d0.w),y_vel(a0)				; load object speed (vertical)
 		move.w	#bytes_to_word(16/2,32/2),y_radius(a0)				; set y_radius and x_radius
 
@@ -119,7 +119,7 @@ Obj_LavaBall:
 .action
 		moveq	#0,d0
 		move.b	subtype(a0),d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		move.w	LavaBall_TypeIndex(pc,d0.w),d0
 		jsr	LavaBall_TypeIndex(pc,d0.w)
 
@@ -157,10 +157,10 @@ LavaBall_Type00:
 		move.l	#Delete_Current_Object,address(a0)				; goto "LavaBall_Delete" routine
 
 .loc_E41E
-		bclr	#status.npc.y_flip,status(a0)
-		tst.w	y_vel(a0)
-		bpl.s	LavaBall_Type08
-		bset	#status.npc.y_flip,status(a0)
+		bclr	#status.npc.y_flip,status(a0)					; clear flipy
+		tst.w	y_vel(a0)							; is object falling down?
+		bpl.s	LavaBall_Type08							; if yes, branch
+		bset	#status.npc.y_flip,status(a0)					; set flipy
 
 LavaBall_Type08:
 		rts
@@ -168,7 +168,7 @@ LavaBall_Type08:
 ; lavaball type 04 flies up until it hits the ceiling
 
 LavaBall_Type04:
-		bset	#status.npc.y_flip,status(a0)
+		bset	#status.npc.y_flip,status(a0)					; set flipy
 		jsr	(ObjCheckCeilingDist).w
 		tst.w	d1
 		bpl.s	.return
@@ -182,7 +182,7 @@ LavaBall_Type04:
 ; lavaball type 05 falls down until it hits the floor
 
 LavaBall_Type05:
-		bclr	#status.npc.y_flip,status(a0)
+		bclr	#status.npc.y_flip,status(a0)					; clear flipy
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1
 		bpl.s	.return
@@ -196,7 +196,7 @@ LavaBall_Type05:
 ; lavaball types 06-07 move sideways
 
 LavaBall_Type06:
-		bset	#status.npc.x_flip,status(a0)
+		bset	#status.npc.x_flip,status(a0)					; set flipx
 
 		move.b	x_radius(a0),d3
 		ext.w	d3
@@ -213,7 +213,7 @@ LavaBall_Type06:
 ; ---------------------------------------------------------------------------
 
 LavaBall_Type07:
-		bclr	#status.npc.x_flip,status(a0)
+		bclr	#status.npc.x_flip,status(a0)					; clear flipx
 
 		move.b	x_radius(a0),d3
 		ext.w	d3

@@ -191,6 +191,8 @@ LevelScreen:
 		jsr	(Load_ExtraRender).w
 		move.l	#Load_Objects_Init,(Object_load_addr_RAM).w
 		move.l	#Load_Rings_Init,(Rings_manager_addr_RAM).w
+
+		; check water
 		tst.b	(Water_flag).w
 		beq.s	.notwater2
 		cmpi.w	#bytes_to_word(LevelID_LZ,2),(Current_zone_and_act).w		; is LZ3?

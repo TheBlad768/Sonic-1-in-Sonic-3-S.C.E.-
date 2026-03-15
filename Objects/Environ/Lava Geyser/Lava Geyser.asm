@@ -119,7 +119,7 @@ Obj_LavaGeyser:
 		; get y velocity
 		moveq	#0,d0
 		move.b	subtype(a0),d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		move.w	Geyser_Speeds(pc,d0.w),y_vel(a0)
 
 		; init

@@ -33,7 +33,7 @@ Obj_SidewaysStomper:
 		; set length
 		moveq	#0,d0
 		move.b	subtype(a0),d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		move.b	SidewaysStomper_Length(pc,d0.w),sidewaysstomper.length(a0)
 
 		; init

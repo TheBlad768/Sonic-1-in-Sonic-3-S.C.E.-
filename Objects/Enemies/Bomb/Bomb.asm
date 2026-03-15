@@ -184,7 +184,7 @@ Obj_Bomb_Shrapnel:
 		; set xyvel
 		moveq	#0,d0
 		move.b	subtype(a0),d0
-		add.w	d0,d0
+		add.w	d0,d0								; multiply by 2
 		move.l	Bomb_Shrapnel_Speed(pc,d0.w),x_vel(a0)				; x_vel and y_vel
 
 		; init

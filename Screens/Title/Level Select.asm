@@ -3,7 +3,7 @@
 ; ---------------------------------------------------------------------------
 
 ; Constants
-TitleLevelSelect.VRAM =					$C50F
+TitleLevelSelect.VRAM =					$50F
 
 TitleLevelSelect.MaxCount =				22
 TitleLevelSelect.SpecialStageCount =			19
@@ -51,11 +51,11 @@ TitleLevelSelectScreen:
 
 		; load text
 		bsr.w	TitleLevelSelect_LoadText
-		move.w	#palette_line_0+TitleLevelSelect.VRAM,d3
+		mvq	make_art_tile(TitleLevelSelect.VRAM,2,TRUE),d3
 		bsr.w	TitleLevelSelect_MarkFields.drawss
-		move.w	#palette_line_0+TitleLevelSelect.VRAM,d3
+		mvq	make_art_tile(TitleLevelSelect.VRAM,2,TRUE),d3
 		bsr.w	TitleLevelSelect_MarkFields.drawmusic
-		move.w	#palette_line_0+TitleLevelSelect.VRAM,d3
+		mvq	make_art_tile(TitleLevelSelect.VRAM,2,TRUE),d3
 		bsr.w	TitleLevelSelect_MarkFields.drawplayer
 
 		; we need to switch planes
@@ -94,11 +94,15 @@ TitleLevelSelectScreen:
 
 .loop
 		jsr	(Wait_VSync).w
-		moveq	#palette_line_0,d3
+
+		; update text
+		moveq	#make_art_tile(0,0,FALSE),d3
 		bsr.w	TitleLevelSelect_MarkFields
 		bsr.w	TitleLevelSelect_Controls
-		move.w	#palette_line_1,d3
+		move.w	#make_art_tile(0,1,FALSE),d3
 		bsr.w	TitleLevelSelect_MarkFields
+
+		; check exit
 		tst.b	(Ctrl_1_pressed).w
 		bpl.s	.loop
 		cmpi.w	#TitleLevelSelect.SpecialStageCount,(TitleLevelSelect.vertical_count).w
@@ -377,8 +381,8 @@ TitleLevelSelect_MarkFields:
 
 		dbf	d2,.copy
 
-	if TitleLevelSelect.VRAM<>0
-		ori.w	#TitleLevelSelect.VRAM,d3
+	if ((make_art_tile(TitleLevelSelect.VRAM,2,TRUE))<>0)
+		ori.w	#make_art_tile(TitleLevelSelect.VRAM,2,TRUE),d3
 	endif
 
 		; check vertical line
@@ -478,12 +482,8 @@ TitleLevelSelect_LoadText:
 		lea	(TitleLevelSelect.buffer).l,a1
 		lea	TitleLevelSelect_Text(pc),a2
 
-	if TitleLevelSelect.VRAM=0
-		moveq	#0,d3
-	else
-		move.w	#TitleLevelSelect.VRAM,d3
-	endif
-
+		; set
+		mvq	make_art_tile(TitleLevelSelect.VRAM,2,TRUE),d3
 		moveq	#TitleLevelSelect.MaxCount-1,d1
 
 .load
