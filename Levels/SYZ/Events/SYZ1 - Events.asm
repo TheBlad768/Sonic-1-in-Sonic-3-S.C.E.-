@@ -140,8 +140,8 @@ SYZ1_Deform:
 ; ---------------------------------------------------------------------------
 
 SYZ1_BGDeformArray:
-		dcb.w 8, 16	; clouds
-		dc.w 80		; mountains
-		dc.w 96		; buildings
-		dcb.w 14, 16	; bushes
-		dc.w $7FFF
+		dcb.w 8, 16	; clouds size
+		dc.w 80		; mountains size
+		dc.w 96		; buildings size
+		dcb.w 14, 16	; bushes size
+		dc.w $7FFF	; end marker

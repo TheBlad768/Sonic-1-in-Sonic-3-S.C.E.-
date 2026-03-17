@@ -36,6 +36,8 @@ Obj_LavaMaker:
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
 
 .makelava
+
+		; wait
 		subq.w	#1,lavamaker.timer(a0)						; subtract 1 from time delay
 		bne.s	.draw								; if time still remains, branch
 		move.w	lavamaker.delay(a0),lavamaker.timer(a0)				; reset time delay

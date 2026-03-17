@@ -158,21 +158,21 @@ MZ1_Deform:
 ; ---------------------------------------------------------------------------
 
 MZ1_BGDrawArray:
-		dc.w 512+80	; sky, clouds
-		dc.w 32		; mountains
-		dc.w 144	; bushes
-		dc.w $7FFF	; wall
+		dc.w 512+80	; sky, clouds size
+		dc.w 32		; mountains size
+		dc.w 144	; bushes size
+		dc.w $7FFF	; wall size ; end marker
 MZ1_BGDrawArray_end
 
 MZ1_BGDeformArray:
-		dc.w 512	; sky
+		dc.w 512	; sky size
 
 	if MZ1_Deform.setBG
-		dcb.w 10, 8	; clouds
+		dcb.w 10, 8	; clouds size
 	else
-		dcb.w 5, 16	; clouds
+		dcb.w 5, 16	; clouds size
 	endif
 
-		dc.w 32		; mountains
-		dc.w 144	; bushes
-		dc.w $7FFF	; wall
+		dc.w 32		; mountains size
+		dc.w 144	; bushes size
+		dc.w $7FFF	; wall size ; end marker

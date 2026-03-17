@@ -124,14 +124,14 @@ SBZ1_Deform:
 ; ---------------------------------------------------------------------------
 
 SBZ1_BGDrawArray:
-		dc.w 64		; clouds
-		dc.w 160	; distant brown buildings
-		dc.w 112	; upper black buildings
-		dc.w $7FFF	; lower black buildings
+		dc.w 16+16+16+16	; clouds size
+		dc.w 160		; distant brown buildings size
+		dc.w 112		; upper black buildings size
+		dc.w $7FFF		; lower black buildings size ; end marker
 SBZ1_BGDrawArray_end
 
 SBZ1_BGDeformArray:
-		dcb.w 4, 16	; clouds
-		dc.w 160	; distant brown buildings
-		dc.w 112	; upper black buildings
-		dc.w $7FFF	; lower black buildings
+		dcb.w 4, 16		; clouds size
+		dc.w 160		; distant brown buildings size
+		dc.w 112		; upper black buildings size
+		dc.w $7FFF		; lower black buildings size ; end marker
