@@ -164,15 +164,15 @@ GHZ1_Deform:
 ; ---------------------------------------------------------------------------
 
 GHZ1_BGDrawArray:
-		dc.w 64			; cloud 1+2+3
-		dcb.w 2, 48		; mountains 1 and 2
-		dc.w $7FFF		; water
+		dc.w 32+16+16		; cloud 1+2+3 size
+		dcb.w 2, 48		; mountains 1 and 2 size
+		dc.w $7FFF		; water size ; end marker
 GHZ1_BGDrawArray_end
 
 GHZ1_BGDeformArray:
-		dc.w 32			; cloud 1
-		dcb.w 2, 16		; cloud 2 and 3
-		dc.w 48			; mountains
-		dc.w 40			; mountains 2
-		dc.w 104+$8000		; water
-		dc.w $7FFF
+		dc.w 32			; cloud 1 size
+		dcb.w 2, 16		; cloud 2 and 3 size
+		dc.w 48			; mountains size
+		dc.w 40			; mountains 2 size
+		dc.w 104|$8000		; water size + linear flag
+		dc.w $7FFF		; end marker

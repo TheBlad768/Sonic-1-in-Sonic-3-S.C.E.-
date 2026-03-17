@@ -105,7 +105,7 @@ SLZ1_Deform:
 ; ---------------------------------------------------------------------------
 
 SLZ1_BGDeformArray:
-		dc.w 192	; unused
-		dcb.w 28, 16	; stars
-		dcb.w 2, 80	; distant black buildings and closer buildings
-		dc.w $7FFF	; bottom part of background
+		dc.w 192	; unused size
+		dcb.w 28, 16	; stars size
+		dcb.w 2, 80	; distant black buildings and closer buildings size
+		dc.w $7FFF	; bottom part of background size ; end marker
