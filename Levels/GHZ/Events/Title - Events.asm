@@ -5,7 +5,7 @@
 ; =============== S U B R O U T I N E =======================================
 
 Title_BackgroundInit:
-		bsr.s	Title_Deform
+		bsr.w	Title_Deform
 
 		; update BG
 		jsr	(Reset_TileOffsetPositionEff).w
@@ -27,7 +27,9 @@ Title_BackgroundInit:
 		; deform
 		lea	GHZ1_BGDeformArray(pc),a4
 		lea	(H_scroll_table).w,a5
-		jmp	(ApplyBGDeformation).w
+		lea	(H_scroll_buffer+2).w,a1
+		move.w	(Camera_Y_pos_BG_copy).w,d0
+		jmp	(ApplyCustomDeformation).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -48,7 +50,9 @@ Title_BackgroundEvent:
 		; deform
 		lea	GHZ1_BGDeformArray(pc),a4
 		lea	(H_scroll_table).w,a5
-		jmp	(ApplyBGDeformation).w
+		lea	(H_scroll_buffer+2).w,a1
+		move.w	(Camera_Y_pos_BG_copy).w,d0
+		jmp	(ApplyCustomDeformation).w
 
 ; =============== S U B R O U T I N E =======================================
 

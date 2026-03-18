@@ -208,14 +208,8 @@ TitleScreen:
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync.skip).w
 		addq.w	#1,(Level_frame_counter).w
+		addq.w	#2,(Player_1+x_pos).w						; move background
 		jsr	(Process_Objects).w
-
-		; move background
-		move.w	(Player_1+x_pos).w,d0
-		addq.w	#2,d0
-		move.w	d0,(Player_1+x_pos).w						; move Sonic to the right
-		cmpi.w	#$1C00,d0							; has Sonic object passed $1C00 on x-axis?
-		bhs.w	.demo								; if yes, branch
 
 		; check exit
 		tst.w	(Demo_timer).w
