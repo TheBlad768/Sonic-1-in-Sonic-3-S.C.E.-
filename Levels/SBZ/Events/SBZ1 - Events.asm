@@ -4,11 +4,6 @@
 
 ; =============== S U B R O U T I N E =======================================
 
-SBZ3_ForegroundInit:
-		st	(Disable_wall_grab).w						; disable Knuckles wall grab
-
-; =============== S U B R O U T I N E =======================================
-
 SBZ1_ForegroundInit:
 
 		; update FG
