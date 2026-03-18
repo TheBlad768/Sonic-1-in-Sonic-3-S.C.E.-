@@ -66,8 +66,8 @@ Obj_BreakableWall:
 		bne.s	.createfrag							; if so, branch
 		cmpi.b	#PlayerID_Knuckles,character_id(a1)				; is player Knuckles?
 		beq.s	.createfrag							; if yes, branch
-		btst	#shield_reaction.fire_shield,shield_reaction(a1)
-		bne.s	.chkroll
+		btst	#status_secondary.fire_shield,status_secondary(a1)		; does Sonic have a Fire Shield?
+		bne.s	.chkroll							; if yes, branch
 		btst	#p1_pushing_bit,status(a0)
 		beq.s	.checkTails
 
