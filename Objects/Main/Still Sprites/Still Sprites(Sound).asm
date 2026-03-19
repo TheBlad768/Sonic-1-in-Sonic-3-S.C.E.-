@@ -4,6 +4,13 @@
 
 ; dynamic object variables
 
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+soundstillsprite.play			ds.b 1						; (1 byte)
+soundstillsprite.frame			ds.b 1						; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SoundStillSprite:
@@ -12,14 +19,14 @@ Obj_SoundStillSprite:
 		moveq	#0,d0
 		move.b	subtype(a0),d0
 		add.w	d0,d0								; multiply by 2
-		move.w	.index(pc,d0.w),objoff_30(a0)
+		move.w	.index(pc,d0.w),soundstillsprite.play(a0)			; set play and wait
 		move.l	#.main,address(a0)
 
 .main
 
 		; play sound
-		move.b	objoff_30(a0),d0
-		move.b	objoff_31(a0),d1
+		move.b	soundstillsprite.play(a0),d0					; Play_SFX
+		move.b	soundstillsprite.frame(a0),d1					; V_int_run_count
 		jsr	(Play_SFX_Continuous).w
 
 		; check delete

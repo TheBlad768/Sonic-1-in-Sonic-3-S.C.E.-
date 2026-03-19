@@ -4,6 +4,13 @@
 
 ; dynamic object variables
 
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+movementstillsprite.origX		ds.w 1						; original x-axis position (2 bytes)
+movementstillsprite.origY		ds.w 1						; original y-axis position (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_MovementStillSprite:
@@ -11,8 +18,8 @@ Obj_MovementStillSprite:
 		; init
 		move.l	#Map_MovementStillSprite,mappings(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
-		move.w	x_pos(a0),objoff_30(a0)
-		move.w	y_pos(a0),objoff_32(a0)
+		move.w	x_pos(a0),movementstillsprite.origX(a0)
+		move.w	y_pos(a0),movementstillsprite.origY(a0)
 
 		; get
 		moveq	#$F,d0
@@ -58,14 +65,14 @@ sub_2C26A:
 ; =============== S U B R O U T I N E =======================================
 
 sub_2C270:
-		move.w	objoff_30(a0),d1
+		move.w	movementstillsprite.origX(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
 		asr.w	#4,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
-		move.w	objoff_32(a0),d1
+		move.w	movementstillsprite.origY(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
@@ -75,20 +82,20 @@ sub_2C270:
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	objoff_30(a0),d0						; get object position
+		and.w	movementstillsprite.origX(a0),d0				; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
 
 sub_2C2A6:
-		move.w	objoff_30(a0),d1
+		move.w	movementstillsprite.origX(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
 		asr.w	#3,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
-		move.w	objoff_32(a0),d1
+		move.w	movementstillsprite.origY(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
@@ -98,20 +105,20 @@ sub_2C2A6:
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	objoff_30(a0),d0						; get object position
+		and.w	movementstillsprite.origX(a0),d0				; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
 
 sub_2C2DC:
-		move.w	objoff_30(a0),d1
+		move.w	movementstillsprite.origX(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
 		asr.w	#2,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
-		move.w	objoff_32(a0),d1
+		move.w	movementstillsprite.origY(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
@@ -121,20 +128,20 @@ sub_2C2DC:
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	objoff_30(a0),d0						; get object position
+		and.w	movementstillsprite.origX(a0),d0				; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
 
 sub_2C312:
-		move.w	objoff_30(a0),d1
+		move.w	movementstillsprite.origX(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
 		asr.w	#1,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
-		move.w	objoff_32(a0),d1
+		move.w	movementstillsprite.origY(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
@@ -144,19 +151,19 @@ sub_2C312:
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	objoff_30(a0),d0						; get object position
+		and.w	movementstillsprite.origX(a0),d0				; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
 
 sub_2C348:
-		move.w	objoff_30(a0),d1
+		move.w	movementstillsprite.origX(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
-		move.w	objoff_32(a0),d1
+		move.w	movementstillsprite.origY(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
@@ -165,20 +172,20 @@ sub_2C348:
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	objoff_30(a0),d0						; get object position
+		and.w	movementstillsprite.origX(a0),d0				; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
 
 sub_2C37A:
-		move.w	objoff_30(a0),d1
+		move.w	movementstillsprite.origX(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
 		add.w	d1,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
-		move.w	objoff_32(a0),d1
+		move.w	movementstillsprite.origY(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
@@ -187,7 +194,7 @@ sub_2C37A:
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	objoff_30(a0),d0						; get object position
+		and.w	movementstillsprite.origX(a0),d0				; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 ; ---------------------------------------------------------------------------
 
