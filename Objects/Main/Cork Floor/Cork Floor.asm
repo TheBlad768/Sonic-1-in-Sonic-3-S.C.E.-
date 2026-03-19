@@ -4,6 +4,20 @@
 
 ; dynamic object variables
 
+	dsset aniraw_ptr								; pretend we're in the RAM
+
+; players
+corkfloor.p1_yvel			ds.w 1						; Sonic's y velocity (2 bytes)
+corkfloor.p2_yvel			ds.w 1						; Tails's y velocity (2 bytes)
+corkfloor.p1_anim			ds.b 1						; Sonic's animation (1 byte)
+corkfloor.p2_anim			ds.b 1						; Tails's animation (1 byte)
+
+; main
+corkfloor.bonus				ds.w 1						; bonus counter (2 bytes)
+corkfloor.frag_ptr			ds.l 1						; (4 bytes)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_CorkFloor:
@@ -11,7 +25,7 @@ Obj_CorkFloor:
 		; init
 		movem.l	ObjDat_CorkFloor(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
-		move.l	#CorkFloor_Speeds,objoff_3C(a0)
+		move.l	#CorkFloor_Speeds,corkfloor.frag_ptr(a0)
 
 		; check
 		tst.b	subtype(a0)
@@ -21,9 +35,9 @@ Obj_CorkFloor:
 ; ---------------------------------------------------------------------------
 
 .solid
-		move.w	(Chain_bonus_counter).w,objoff_38(a0)
-		move.b	(Player_1+anim).w,objoff_34(a0)
-		move.b	(Player_2+anim).w,objoff_36(a0)
+		move.w	(Chain_bonus_counter).w,corkfloor.bonus(a0)
+		move.b	(Player_1+anim).w,corkfloor.p1_anim(a0)
+		move.b	(Player_2+anim).w,corkfloor.p2_anim(a0)
 		moveq	#$B,d1
 		add.b	width_pixels(a0),d1
 		moveq	#0,d2
@@ -43,17 +57,17 @@ Obj_CorkFloor:
 .smash
 		cmpi.b	#p1_standing|p2_standing,d0					; is Sonic and Tails standing on the object?
 		bne.s	.checkroll2							; if not, branch
-		cmpi.b	#AniIDSonAni_Roll,objoff_34(a0)					; check player 1
+		cmpi.b	#AniIDSonAni_Roll,corkfloor.p1_anim(a0)				; check player 1
 		beq.s	.checkroll
-		cmpi.b	#AniIDSonAni_Roll,objoff_36(a0)					; check player 2
+		cmpi.b	#AniIDSonAni_Roll,corkfloor.p2_anim(a0)				; check player 2
 		bne.s	.draw
 
 .checkroll
 		lea	(Player_1).w,a1							; a1=character
-		move.b	objoff_34(a0),d0
+		move.b	corkfloor.p1_anim(a0),d0
 		bsr.s	.Sonicroll
 		lea	(Player_2).w,a1							; a1=character
-		move.b	objoff_36(a0),d0
+		move.b	corkfloor.p2_anim(a0),d0
 		bsr.s	.Sonicroll
 		bra.s	.getbonus
 ; ---------------------------------------------------------------------------
@@ -62,7 +76,7 @@ Obj_CorkFloor:
 		move.b	d0,d1
 		andi.b	#p1_standing,d1
 		beq.s	.getbonus2
-		cmpi.b	#AniIDSonAni_Roll,objoff_34(a0)
+		cmpi.b	#AniIDSonAni_Roll,corkfloor.p1_anim(a0)
 		bne.s	.draw
 		lea	(Player_1).w,a1							; a1=character
 		bsr.s	.Tailsroll
@@ -91,17 +105,17 @@ Obj_CorkFloor:
 .getbonus2
 		andi.b	#p2_standing,d0
 		beq.s	.draw
-		cmpi.b	#AniIDSonAni_Roll,objoff_36(a0)
+		cmpi.b	#AniIDSonAni_Roll,corkfloor.p2_anim(a0)
 		bne.w	.draw
 		lea	(Player_2).w,a1							; a1=character
 		bsr.s	.Tailsroll
 
 .getbonus
-		move.w	objoff_38(a0),(Chain_bonus_counter).w
+		move.w	corkfloor.bonus(a0),(Chain_bonus_counter).w
 		andi.b	#~(standing_mask)&$FF,status(a0)
 
 		; break
-		movea.l	objoff_3C(a0),a4						; CorkFloor_Speeds
+		movea.l	corkfloor.frag_ptr(a0),a4					; CorkFloor_Speeds
 		addq.b	#1,mapping_frame(a0)
 		move.l	#.fall,address(a0)
 		jsr	(BreakObjectToPieces).l
@@ -122,8 +136,8 @@ Obj_CorkFloor:
 ; =============== S U B R O U T I N E =======================================
 
 CorkFloor_Bottom:
-		move.w	(Player_1+y_vel).w,objoff_30(a0)
-		move.w	(Player_2+y_vel).w,objoff_32(a0)
+		move.w	(Player_1+y_vel).w,corkfloor.p1_yvel(a0)
+		move.w	(Player_2+y_vel).w,corkfloor.p2_yvel(a0)
 		moveq	#$B,d1
 		add.b	width_pixels(a0),d1
 		moveq	#0,d2
@@ -145,11 +159,11 @@ CorkFloor_Bottom:
 		andi.b	#p1_touch_bottom,d0
 		beq.s	.p2
 		lea	(Player_1).w,a1							; a1=character
-		move.w	objoff_30(a0),y_vel(a1)
+		move.w	corkfloor.p1_yvel(a0),y_vel(a1)
 		andi.b	#p2_touch_bottom,d6
 		beq.s	.break
 		lea	(Player_2).w,a1							; a1=character
-		move.w	objoff_32(a0),y_vel(a1)
+		move.w	corkfloor.p2_yvel(a0),y_vel(a1)
 		bra.s	.break
 ; ---------------------------------------------------------------------------
 
@@ -157,7 +171,7 @@ CorkFloor_Bottom:
 		andi.b	#p2_touch_bottom,d6
 		beq.s	.draw
 		lea	(Player_2).w,a1							; a1=character
-		move.w	objoff_32(a0),y_vel(a1)
+		move.w	corkfloor.p2_yvel(a0),y_vel(a1)
 
 .break
 
@@ -165,7 +179,7 @@ CorkFloor_Bottom:
 		jsr	(Displace_PlayerOffObject).w					; release Sonic from object
 
 		; break
-		movea.l	objoff_3C(a0),a4						; CorkFloor_Speeds
+		movea.l	corkfloor.frag_ptr(a0),a4					; CorkFloor_Speeds
 		addq.b	#1,mapping_frame(a0)
 		move.l	#Obj_CorkFloor.fall,address(a0)
 		jsr	(BreakObjectToPieces).l
