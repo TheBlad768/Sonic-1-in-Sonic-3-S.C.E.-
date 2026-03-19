@@ -6,8 +6,11 @@
 
 	dsset aniraw_ptr								; pretend we're in the RAM
 
+; players
 smashblock.p1_anim			ds.b 1						; Sonic's animation (1 byte)
 smashblock.p2_anim			ds.b 1						; Tails's animation (1 byte)
+
+; main
 smashblock.bonus			ds.w 1						; bonus counter (2 bytes)
 smashblock.frag_ptr			ds.l 1						; (4 bytes)
 

@@ -40,10 +40,10 @@ Debug_Mode:
 		move.b	d0,(WindTunnel_flag).w
 
 		; load player's breathing bubbles
-		lea	(Breathing_bubbles+objoff_30).w,a1
+		lea	(Breathing_bubbles+aircountdown.drown_timer).w,a1
 		cmpi.b	#PlayerID_Tails,character_id(a0)				; is player Tails?
 		bne.s	.notTails							; if not, branch
-		lea	(Breathing_bubbles_P2+objoff_30).w,a1
+		lea	(Breathing_bubbles_P2+aircountdown.drown_timer).w,a1
 
 .notTails
 		move.w	d0,(a1)								; clear drowning timer
