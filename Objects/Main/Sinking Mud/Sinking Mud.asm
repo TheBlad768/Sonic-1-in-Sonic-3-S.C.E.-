@@ -22,6 +22,8 @@ Obj_SinkingMud:
 .main
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.w	loc_32B62							; if yes, branch
+
+		; check p1
 		lea	(Player_1).w,a1
 		btst	#p1_standing_bit,status(a0)
 		bne.s	loc_32AEA
@@ -52,6 +54,8 @@ loc_32AF4:
 		moveq	#p1_standing_bit,d6
 		move.w	x_pos(a0),d4
 		jsr	(SolidObjectTop.check).w
+
+		; check p2
 		lea	(Player_2).w,a1
 		btst	#p2_standing_bit,status(a0)
 		bne.s	loc_32B40
