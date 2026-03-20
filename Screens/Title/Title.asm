@@ -471,7 +471,7 @@ Obj_TitlePSB:
 .soptions
 
 		; fix options xpos
-		moveq	#4+8,d0								; set FG line pos
+		moveq	#4,d0								; set FG line pos
 		lea	(H_scroll_buffer+(192*4)).w,a1
 
 	rept 7
@@ -625,24 +625,24 @@ PLC_Title: plrlistheader
 Title_StartGameText:
 		dc.b "Start Game"
 		dc.b draw_planetext.nextline|1, draw_planetext.palette_line_1		; next line, select palette line
-		dc.b "Options"
+		dc.b " Options"
 		dc.b draw_planetext.end							; stop loading characters
 Title_StartGameText2:
 		dc.b draw_planetext.palette_line_1					; select palette line
 		dc.b "Start Game"
 		dc.b draw_planetext.nextline|1, draw_planetext.palette_line_0		; next line, select palette line
-		dc.b "Options"
+		dc.b " Options"
 		dc.b draw_planetext.end							; stop loading characters
 Title_ContinueText:
 		dc.b " Continue"
 		dc.b draw_planetext.nextline|1, draw_planetext.palette_line_1		; next line, select palette line
-		dc.b "Options"
+		dc.b " Options"
 		dc.b draw_planetext.end							; stop loading characters
 Title_ContinueText2:
 		dc.b draw_planetext.palette_line_1					; select palette line
 		dc.b " Continue"
 		dc.b draw_planetext.nextline|1, draw_planetext.palette_line_0		; next line, select palette line
-		dc.b "Options"
+		dc.b " Options"
 		dc.b draw_planetext.end							; stop loading characters
 Title_CopyrightText:
 		dc.b "@ 1991 SEGA"
