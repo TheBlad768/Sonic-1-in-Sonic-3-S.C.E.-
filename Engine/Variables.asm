@@ -14,7 +14,7 @@ Player_1						ds.b object_size		; main character in 1 player mode
 Player_2						ds.b object_size		; Tails in a Sonic and Tails game
 Reserved_object_3					ds.b object_size		; during a level, an object whose sole purpose is to clear the collision response list is stored here
 Dynamic_object_RAM					ds.b object_size*90		; 90 objects
-Dynamic_object_RAM_end	 =				*
+Dynamic_object_RAM_end =				*
 							ds.b object_size		; unused
 Breathing_bubbles					ds.b object_size		; for the main character
 Breathing_bubbles_P2					ds.b object_size		; for Tails in a Sonic and Tails game
@@ -25,7 +25,7 @@ Dust_P2							ds.b object_size		; for Tails in a Sonic and Tails game
 Shield							ds.b object_size
 							ds.b object_size		; unused
 Invincibility_stars					ds.b object_size*4		; 4 objects
-Invincibility_stars_end	 =				*
+Invincibility_stars_end =				*
 							ds.b object_size*2		; unused
 Water_Splash						ds.b object_size		; Obj_WaterSplash is loaded here
 Wave_Splash						ds.b object_size		; Obj_WaveSplash is loaded here
@@ -157,7 +157,7 @@ Game_mode						ds.b 1
 							ds.b 1				; even
 V_int_flag =						*
 V_int_ptr						ds.l 1
-Ctrl_1_logical	 =					*
+Ctrl_1_logical =					*
 Ctrl_1_held_logical					ds.b 1
 Ctrl_1_pressed_logical					ds.b 1
 Ctrl_1 =						*
