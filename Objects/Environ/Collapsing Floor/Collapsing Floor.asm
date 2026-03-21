@@ -89,7 +89,7 @@ CollapseFloor_PlayerRelease:
 		moveq	#p1_standing_bit,d6
 		bsr.s	.check
 		lea	(Player_2).w,a1							; a1=character
-		addq.b	#1,d6
+		moveq	#p2_standing_bit,d6
 
 .check
 		btst	d6,status(a0)
