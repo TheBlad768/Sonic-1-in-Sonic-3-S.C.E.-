@@ -4,5 +4,5 @@
 
 				; object, mappings, subtype, frame, VRAM, palette, priority
 Debug_Special: dbglistheader
-	dbglistobj Obj_Ring, Map_Ring, 0, 0, $7B2, 1, 1
+	dbglistobj Obj_Ring, Map_Ring, 0, 0, ArtTile_SS_Ring, 1, TRUE
 	dbglistend
