@@ -282,16 +282,16 @@ Water_WaterSlides:
 sub_71E4:
 		btst	#status.player.in_air,status(a1)				; is the player in the air?
 		bne.s	loc_3F6A							; if yes, branch
-		btst	#status.player.on_object,status(a1)
-		bne.s	loc_3F6A
+		btst	#status.player.on_object,status(a1)				; is player standing on any object?
+		bne.s	loc_3F6A							; if yes, branch
 
-		; calc chunk
+		; calc current chunk
 		movea.l	(Level_layout_addr_ROM).w,a2
 		move.w	y_pos(a1),d0
-		lsr.w	#5,d0
+		lsr.w	#5,d0								; division by $20
 		and.w	(Layout_row_index_mask).w,d0
 		move.w	x_pos(a1),d1
-		lsr.w	#7,d1
+		lsr.w	#7,d1								; division by $80
 		add.w	d1,d1								; chunk ID to word
 		add.w	8(a2,d0.w),d1
 		adda.w	d1,a2
@@ -300,7 +300,7 @@ sub_71E4:
 		; check chunks
 		moveq	#0,d1
 		move.b	(Current_act).w,d1
-		add.w	d1,d1
+		add.w	d1,d1								; multiply by 2
 		lea	Slide_Chunks_Index(pc),a2
 		adda.w	(a2,d1.w),a2
 		move.w	-(a2),d1
@@ -311,10 +311,16 @@ loc_3F62:
 		beq.s	LZSlide_Move
 
 loc_3F6A:
-		tst.b	status_secondary(a1)
-		bpl.s	locret_3F7A
-		move.w	#5,move_lock(a1)
-		andi.b	#$7F,status_secondary(a1)
+		tst.b	status_secondary(a1)						; is water slide flag set?
+		bpl.s	locret_3F7A							; if not, branch
+
+		; set
+		move.w	#5,move_lock(a1)						; set player control lock time
+
+		; remove water slide flag
+		andi.b	#~( \
+			setBit(status_secondary.sliding) \
+		)&$FF,status_secondary(a1)
 
 locret_3F7A:
 		rts
@@ -350,10 +356,14 @@ loc_725E:
 
 loc_3F9A:
 		move.b	#AniIDSonAni_Slide,anim(a1)					; use Sonic's "sliding" animation
-		ori.b	#$80,status_secondary(a1)					; set water slide flag
+
+		; set water slide flag
+		ori.b	#( \
+			setBit(status_secondary.sliding) \
+		)&$FF,status_secondary(a1)
 
 		; play continuous sfx
-		sfxcont	sfx_Waterfall,$1F,1						; play water sound every 32th frame
+		sfxcont	sfx_Waterfall, $1F, 1						; play water sound every 32th frame
 ; ---------------------------------------------------------------------------
 
 loc_728A:
@@ -398,7 +408,11 @@ loc_72E6:
 
 loc_72EE:
 		move.w	d0,ground_vel(a1)
-		ori.b	#$80,status_secondary(a1)
+
+		; set water slide flag
+		ori.b	#( \
+			setBit(status_secondary.sliding) \
+		)&$FF,status_secondary(a1)
 		rts
 ; ---------------------------------------------------------------------------
 
