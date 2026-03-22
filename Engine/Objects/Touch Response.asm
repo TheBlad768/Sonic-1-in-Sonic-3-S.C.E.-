@@ -296,7 +296,7 @@ Touch_Monitor:
 .okaytodestroy
 		neg.w	y_vel(a0)
 		move.w	a0,parent(a1)							; save player address
-		move.l	#Obj_MonitorBreak,address(a1)
+		move.l	#Monitor_Break,address(a1)
 		rts
 
 ; =============== S U B R O U T I N E =======================================
