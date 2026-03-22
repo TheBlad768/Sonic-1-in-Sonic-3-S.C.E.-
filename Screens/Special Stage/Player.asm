@@ -556,9 +556,9 @@ Obj09_MakeGhostSolid:
 
 		; find ghost solid
 		lea	(SStage_Ghost_Buffer).l,a2
+		moveq	#-1,d0								; set RAM_start
 
 .ghostloop
-		moveq	#-1,d0								; set RAM_start
 		move.w	(a2),d0								; get ghost solid address
 		beq.s	Obj09_GhostNotSolid						; if there are no ghost solids, branch
 		clr.w	(a2)+								; clear address
