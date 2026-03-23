@@ -270,8 +270,8 @@ TensionBridge_BreakObjectToPieces:
 		move.l	height_pixels(a3),height_pixels(a1)				; set height, width and priority
 		move.w	(a2)+,x_pos(a1)
 		move.w	(a2)+,y_pos(a1)
-		move.w	(a2)+,d0
-		move.b	d0,mapping_frame(a1)
+		move.w	(a2)+,d1
+		move.b	d1,mapping_frame(a1)
 		move.b	(a4)+,tensionbridge.wait(a1)					; set wait time
 		movea.w	a1,a5								; load object address to a5
 
