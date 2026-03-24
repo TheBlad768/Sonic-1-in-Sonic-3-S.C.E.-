@@ -31,7 +31,7 @@
 		include "Objects/Main/Count Down/Count Down.asm"
 		include "Objects/Main/Wave Splash/Wave Splash.asm"
 		include "Objects/Main/Water Splash/Water Splash.asm"
-		include "Objects/Main/StarPost/StarPost.asm"
+		include "Objects/Main/Star Post/Star Post.asm"
 		include "Objects/Main/Big Ring/Big Ring.asm"
 		include "Objects/Main/Button/Button.asm"
 		include "Objects/Main/Animals/Animals.asm"
