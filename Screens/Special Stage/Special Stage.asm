@@ -115,7 +115,7 @@ SpecialStageScreen:
 		disableInts
 		move.l	#VInt,(V_int_addr).w
 		move.l	#HInt,(H_int_addr).w
-		disableScreen
+		disableDisplay
 		jsr	(Clear_DisplayData).w
 		lea	SpecialStage_VDP(pc),a1
 		jsr	(Load_VDP).w
@@ -245,7 +245,7 @@ SpecialStageScreen:
 
 		; set
 		move.l	#VInt_SpecialStage,(V_int_ptr).w				; set VInt pointer
-		enableScreen
+		enableDisplay
 		jsr	(Pal_FadeFromWhite).w
 
 .loop

@@ -20,7 +20,7 @@ EndingScreen:
 		disableInts
 		move.l	#VInt,(V_int_addr).w
 		move.l	#HInt,(H_int_addr).w
-		disableScreen
+		disableDisplay
 		jsr	(Clear_DisplayData).w
 		lea	Level_VDP(pc),a1
 		jsr	(Load_VDP).w
@@ -194,7 +194,7 @@ EndingScreen:
 
 		; set
 		move.l	#VInt_Level,(V_int_ptr).w					; set VInt pointer
-		enableScreen
+		enableDisplay
 		jsr	(Pal_FadeFromBlack).w
 
 .loop

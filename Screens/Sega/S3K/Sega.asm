@@ -25,7 +25,7 @@ SegaScreen:
 		disableInts
 		move.l	#VInt,(V_int_addr).w
 		move.l	#HInt,(H_int_addr).w
-		disableScreen
+		disableDisplay
 		jsr	(Clear_DisplayData).w
 		lea	Sega_VDP(pc),a1
 		jsr	(Load_VDP).w
@@ -84,7 +84,7 @@ SegaScreen:
 		; next
 		move.l	#VInt_Main,(V_int_ptr).w					; set VInt pointer
 		jsr	(Wait_VSync).w
-		enableScreen
+		enableDisplay
 		jsr	(Pal_FadeFromBlack).w
 		music	mus_SEGA							; play SEGA sound
 

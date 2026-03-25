@@ -58,7 +58,7 @@ OptionsScreen:
 		disableInts
 		move.l	#VInt,(V_int_addr).w
 		move.l	#HInt,(H_int_addr).w
-		disableScreen
+		disableDisplay
 		jsr	(Clear_DisplayData).w
 		lea	Options_VDP(pc),a1
 		jsr	(Load_VDP).w
@@ -133,7 +133,7 @@ OptionsScreen:
 		; next
 		move.l	#VInt_LevelSelect,(V_int_ptr).w					; set VInt pointer
 		jsr	(Wait_VSync).w
-		enableScreen
+		enableDisplay
 		jsr	(Pal_FadeFromBlack).w
 
 .loop
