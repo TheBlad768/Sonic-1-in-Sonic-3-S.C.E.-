@@ -22,7 +22,7 @@ TitleScreen:
 		disableInts
 		move.l	#VInt,(V_int_addr).w
 		move.l	#HInt,(H_int_addr).w
-		disableScreen
+		disableDisplay
 		jsr	(Clear_DisplayData).w
 		lea	Level_VDP(pc),a1
 		jsr	(Load_VDP).w
@@ -113,7 +113,7 @@ TitleScreen:
 		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
-		enableScreen
+		enableDisplay
 		jsr	(Pal_FadeFromBlack).w
 
 .tloop
@@ -133,7 +133,7 @@ TitleScreen:
 .tnext
 		jsr	(Pal_FadeToBlack).w
 		disableInts
-		disableScreen
+		disableDisplay
 
 		; check cheat
 		tst.b	(Japan_credits_flag).w
@@ -200,7 +200,7 @@ TitleScreen:
 
 		; set
 		move.l	#VInt_Level,(V_int_ptr).w					; set VInt pointer
-		enableScreen
+		enableDisplay
 		jsr	(Pal_FadeFromBlack).w
 
 .loop

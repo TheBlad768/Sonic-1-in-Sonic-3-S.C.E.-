@@ -38,7 +38,7 @@ CreditsScreen:
 		disableInts
 		move.l	#VInt,(V_int_addr).w
 		move.l	#HInt,(H_int_addr).w
-		disableScreen
+		disableDisplay
 		jsr	(Clear_DisplayData).w
 		lea	Credits_VDP(pc),a1
 		jsr	(Load_VDP).w
@@ -99,7 +99,7 @@ CreditsScreen:
 		move.l	#Credits_Process_LoadText,(Credits.process).w
 		move.l	#VInt_Main,(V_int_ptr).w					; set VInt pointer
 		jsr	(Wait_VSync).w
-		enableScreen
+		enableDisplay
 		jsr	(Pal_FadeFromBlack).w
 
 .loopt

@@ -38,7 +38,7 @@ ContinueScreen:
 		disableInts
 		move.l	#VInt,(V_int_addr).w
 		move.l	#HInt,(H_int_addr).w
-		disableScreen
+		disableDisplay
 		jsr	(Clear_DisplayData).w
 		lea	Continue_VDP(pc),a1
 		jsr	(Load_VDP).w
@@ -135,7 +135,7 @@ ContinueScreen:
 		music	mus_Continue
 		move.l	#VInt_Continue,(V_int_ptr).w					; set VInt pointer
 		jsr	(Wait_VSync).w
-		enableScreen
+		enableDisplay
 		jsr	(Pal_FadeFromBlack).w
 
 .loop
