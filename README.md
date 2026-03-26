@@ -81,6 +81,7 @@ Please read the [license](LICENSE) before using this project.
 
 - The size of the object slots is now 0x50 bytes:
     - Additional free bytes will facilitate work on complex objects;
+    - You can easily change the object slot size without breaking anything, since there’s no slot-size-based multiplication like in Sonic 1 and Sonic 2;
 
 - Various sound drivers:
     - There are Z80 Sound Flamedriver and M68K Sonic 2 Clone Driver v2 (Mega PCM 2.0 version). It all depends on your tasks.
