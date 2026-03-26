@@ -173,7 +173,8 @@ To build this, use build.bat if you're a Windows user, or build.sh if you're a L
 
 #### How do I make different text for Title Card?
 
-- If you want to make different text for the Title Card, you need to open the [Constants.asm](Engine) file and look for `Title Card zone names`. There you’ll find a list of zones whose names you can modify.
+- If you want to make different text for the Title Card, you need to open the [Constants.asm](Engine) file and look for \
+`Title Card zone names`. There you’ll find a list of zones whose names you can modify.
 
     ```m68k
     ; ---------------------------------------------------------------------------
