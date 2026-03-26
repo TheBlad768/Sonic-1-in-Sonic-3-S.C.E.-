@@ -150,7 +150,7 @@ To build this, use build.bat if you're a Windows user, or build.sh if you're a L
 
 - Recommended emulators for debugging: [BizHawk](https://github.com/TASEmulators/BizHawk/releases), [BlastEm](https://www.retrodev.com/blastem/nightlies/), [ClownMDEmu](https://github.com/Clownacy/clownmdemu-frontend/releases), [Exodus](https://www.exodusemulator.com/downloads/current-release), [Gens KMod](https://segaretro.org/Gens_KMod), [Regen](https://segaretro.org/Regen).
 
-- Recommended emulators for Mode 1 (MSU): [BlastEm](https://www.retrodev.com/blastem/nightlies/), RetroArch(https://www.retroarch.com/).
+- Recommended emulators for Mode 1 (MSU): [BlastEm](https://www.retrodev.com/blastem/nightlies/), [RetroArch](https://www.retroarch.com/).
 
 ## Current issues
 
