@@ -171,10 +171,24 @@ To build this, use build.bat if you're a Windows user, or build.sh if you're a L
 
 #### How do I make different text for Title Card?
 
-- If you want to make a different text for Title Card, you need to create a file of letters from [List.unc](Objects/Main/Title%20Card/KosinskiPM%20Art/Levels). This will be loaded before the level starts.
-You don't have to add the letters **'ENOZ' (ZONE)** because those letters are already in VRAM. Then you have to create a mapping of your zone name in [Map - Title Card.asm](Objects/Main/Title%20Card/Object%20Data).
+- If you want to make different text for the Title Card, you need to open the [Constants.asm](Engine) file and look for `Title Card zone names`. There you’ll find a list of zones whose names you can modify.
 
-Now you can use a Python script to create Title Card mappings [S3TCG](https://github.com/RobiTheGit/S3TCG).
+    ```m68k
+    ; ---------------------------------------------------------------------------
+    ;  Title Card zone names
+    ; ---------------------------------------------------------------------------
+    
+    TitleCardName_ZONE =					"ZONE"
+    TitleCardName_GHZ =					"GREEN HILL"
+    TitleCardName_MZ =					"MARBLE"
+    TitleCardName_SYZ =					"SPRING YARD"
+    TitleCardName_LZ =					"LABYRINTH"
+    TitleCardName_SLZ =					"STAR LIGHT"
+    TitleCardName_SBZ =					"SCRAP BRAIN"
+    TitleCardName_FZ =					"FINAL"
+    ```
+
+If you still want to use direct mappings instead of a macro to create Title Card mappings [S3TCG](https://github.com/RobiTheGit/S3TCG).
 
 #### Where can I find other SMPS music?
 
