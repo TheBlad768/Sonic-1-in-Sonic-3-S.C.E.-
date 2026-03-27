@@ -2,8 +2,8 @@
 <ObjDef xmlns="http://www.sonicretro.org" Name="Star Post" Image="img" Depth="5">
   <Images>
     <ImageFromMappings id="img">
-      <ArtFile filename="../../Objects/Main/StarPost/KosinskiPM Art/Enemy points.kospm" compression="KosinskiPlusM" />
-      <MapFile type="ASM" filename="../../Objects/Main/StarPost/Object Data/Map - StarPost.asm" />
+      <ArtFile filename="../../Objects/Main/Enemy Score/KosinskiPM Art/Enemy Score and Star Post.kospm" compression="KosinskiPlusM" />
+      <MapFile type="ASM" filename="../../Objects/Main/Star Post/Object Data/Map - Star Post.asm" />
     </ImageFromMappings>
   </Images>
   <Properties>
