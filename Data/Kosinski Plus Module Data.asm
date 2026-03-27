@@ -25,7 +25,7 @@
 		incfile.ba	ArtKosPM_HiddenBonus, "Objects/Main/Hidden Bonus/KosinskiPM Art/Hidden Bonus.kospm"
 		incfile.ba	ArtKosPM_BossExplosion, "Objects/Main/Explosion/KosinskiPM Art/Boss Explosion.kospm"
 		incfile.ba	ArtKosPM_Explosion, "Objects/Main/Explosion/KosinskiPM Art/Explosion.kospm"
-		incfile.ba	ArtKosPM_EnemyScore, "Objects/Main/Enemy Score/KosinskiPM Art/Enemy Score and Star Post.kospm"
+		incfile.ba	ArtKosPM_EnemyScoreStarPost, "Objects/Main/Enemy Score/KosinskiPM Art/Enemy Score and Star Post.kospm"
 		incfile.ba	ArtKosPM_GrayButton, "Objects/Main/Button/KosinskiPM Art/Gray Button.kospm"
 		incfile.ba	ArtKosPM_MZGrayButton, "Objects/Main/Button/KosinskiPM Art/MZ Gray Button.kospm"
 		incfile.ba	ArtKosPM_DiagonalSpring, "Objects/Main/Spring/KosinskiPM Art/Diagonal Spring.kospm"
