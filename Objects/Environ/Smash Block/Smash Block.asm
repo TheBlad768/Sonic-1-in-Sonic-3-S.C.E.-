@@ -118,7 +118,7 @@ Obj_SmashBlock:
 		jsr	(BreakObjectToPieces).l
 
 		; draw score
-		lea	(Child6_EndSignScore).l,a2
+		lea	(Child6_EnemyScore).l,a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.fall
 		move.w	(Chain_bonus_counter).w,d2					; get copy of chain bonus counter

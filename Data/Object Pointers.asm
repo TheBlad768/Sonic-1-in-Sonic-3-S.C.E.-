@@ -16,7 +16,7 @@ Obj_Index:
 		dc.l Delete_Current_Object				; $0A
 		dc.l Obj_BreakablePole					; $0B
 		dc.l Obj_FlapDoor					; $0C
-		dc.l Obj_EndSign					; $0D
+		dc.l Obj_Signpost					; $0D
 		dc.l Obj_TwistedRamp					; $0E
 		dc.l Obj_SinkingMud					; $0F
 		dc.l Delete_Current_Object				; $10

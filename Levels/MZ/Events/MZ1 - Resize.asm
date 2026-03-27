@@ -113,7 +113,7 @@ MZ1_Resize:
 		; create signpost
 		jsr	(Create_New_Object).w
 		bne.s	.checkxpos
-		move.l	#Obj_EndSign,address(a1)
+		move.l	#Obj_Signpost,address(a1)
 		move.w	(Camera_max_X_pos).w,d2
 		addi.w	#screen_width/2,d2
 		move.w	d2,x_pos(a1)

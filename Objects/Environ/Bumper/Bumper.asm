@@ -99,7 +99,7 @@ Obj_Bumper:
 		jsr	(HUD_AddToScore).w						; add 10 to score
 
 		; draw score
-		lea	Child6_EndSignScore(pc),a2
+		lea	Child6_EnemyScore(pc),a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.return
 		move.b	#4,mapping_frame(a1)
