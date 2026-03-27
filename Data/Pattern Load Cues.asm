@@ -8,7 +8,7 @@
 ; ===========================================================================
 
 PLC1_Sonic: plrlistheader
-		plreq ArtTile_StarPost, ArtKosPM_EnemyPtsStarPost			; starpost
+		plreq ArtTile_StarPost, ArtKosPM_EnemyScore				; starpost
 		plreq ArtTile_Ring_Sparks, ArtKosPM_Ring_Sparks				; rings
 		plreq ArtTile_HUD, ArtKosPM_HUD						; HUD
 		plreq ArtTile_LifeIcon, ArtKosPM_SonicLifeIcon				; life icon
@@ -19,7 +19,7 @@ PLC1_Sonic: plrlistheader
 ; ===========================================================================
 
 PLC1_Miles: plrlistheader
-		plreq ArtTile_StarPost, ArtKosPM_EnemyPtsStarPost			; starpost
+		plreq ArtTile_StarPost, ArtKosPM_EnemyScore				; starpost
 		plreq ArtTile_Ring_Sparks, ArtKosPM_Ring_Sparks				; rings
 		plreq ArtTile_HUD, ArtKosPM_HUD						; HUD
 		plreq ArtTile_LifeIcon, ArtKosPM_MilesLifeIcon				; life icon
@@ -30,7 +30,7 @@ PLC1_Miles: plrlistheader
 ; ===========================================================================
 
 PLC1_Tails: plrlistheader
-		plreq ArtTile_StarPost, ArtKosPM_EnemyPtsStarPost			; starpost
+		plreq ArtTile_StarPost, ArtKosPM_EnemyScore				; starpost
 		plreq ArtTile_Ring_Sparks, ArtKosPM_Ring_Sparks				; rings
 		plreq ArtTile_HUD, ArtKosPM_HUD						; HUD
 		plreq ArtTile_LifeIcon, ArtKosPM_TailsLifeIcon				; life icon
@@ -41,7 +41,7 @@ PLC1_Tails: plrlistheader
 ; ===========================================================================
 
 PLC1_Knuckles: plrlistheader
-		plreq ArtTile_StarPost, ArtKosPM_EnemyPtsStarPost			; starpost
+		plreq ArtTile_StarPost, ArtKosPM_EnemyScore				; starpost
 		plreq ArtTile_Ring_Sparks, ArtKosPM_Ring_Sparks				; rings
 		plreq ArtTile_HUD, ArtKosPM_HUD						; HUD
 		plreq ArtTile_LifeIcon, ArtKosPM_KnucklesLifeIcon			; life icon
@@ -340,7 +340,7 @@ PLC1_LZ1_Before: plrlistheader
 PLC2_LZ1_After: plrlistheader
 		plreq $259, ArtKosPM_WaterSplashes					; water and splashes
 		plreq $2E9, ArtKosPM_Gargoyle						; gargoyle
-		plreq $310, ArtKosPM_SpikeBallandChain					; small spikeball
+		plreq $310, ArtKosPM_SpikeBallChain					; small spikeball
 		plreq $328, ArtKosPM_FlappingDoor					; flapping door
 		plreq $348, ArtKosPM_Bubbles						; bubbles
 		plreq $3BC, ArtKosPM_LZBlock3						; block3
@@ -373,7 +373,7 @@ PLC1_LZ2_Before: plrlistheader
 PLC2_LZ2_After: plrlistheader
 		plreq $259, ArtKosPM_WaterSplashes					; water and splashes
 		plreq $2E9, ArtKosPM_Gargoyle						; gargoyle
-		plreq $310, ArtKosPM_SpikeBallandChain					; small spikeball
+		plreq $310, ArtKosPM_SpikeBallChain					; small spikeball
 		plreq $328, ArtKosPM_FlappingDoor					; flapping door
 		plreq $348, ArtKosPM_Bubbles						; bubbles
 		plreq $3BC, ArtKosPM_LZBlock3						; block3
@@ -406,7 +406,7 @@ PLC1_LZ3_Before: plrlistheader
 PLC2_LZ3_After: plrlistheader
 		plreq $259, ArtKosPM_WaterSplashes					; water and splashes
 		plreq $2E9, ArtKosPM_Gargoyle						; gargoyle
-		plreq $310, ArtKosPM_SpikeBallandChain					; small spikeball
+		plreq $310, ArtKosPM_SpikeBallChain					; small spikeball
 		plreq $328, ArtKosPM_FlappingDoor					; flapping door
 		plreq $348, ArtKosPM_Bubbles						; bubbles
 		plreq $3BC, ArtKosPM_LZBlock3						; block3
@@ -440,7 +440,7 @@ PLC1_LZ4_Before: plrlistheader
 PLC2_LZ4_After: plrlistheader
 		plreq $259, ArtKosPM_WaterSplashes					; water and splashes
 		plreq $2E9, ArtKosPM_Gargoyle						; gargoyle
-		plreq $310, ArtKosPM_SpikeBallandChain					; small spikeball
+		plreq $310, ArtKosPM_SpikeBallChain					; small spikeball
 		plreq $328, ArtKosPM_FlappingDoor					; flapping door
 		plreq $348, ArtKosPM_Bubbles						; bubbles
 		plreq $3BC, ArtKosPM_LZBlock3						; block3

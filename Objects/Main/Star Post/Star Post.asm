@@ -499,4 +499,3 @@ ObjDat_StarPost:	subObjMainData \
 		; mappings
 		include "Objects/Main/Star Post/Object Data/Map - Star Post.asm"
 		include "Objects/Main/Star Post/Object Data/Map - Star Post Stars.asm"
-		include "Objects/Main/Star Post/Object Data/Map - Enemy Points.asm"
