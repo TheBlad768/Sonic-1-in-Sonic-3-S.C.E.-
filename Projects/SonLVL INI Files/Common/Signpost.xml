@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Name="Signpost" Image="main" Depth="4" DefaultSubtype="80">
+  <Images>
+    <ImageFromMappings id="main">
+      <ArtFile filename="../../Objects/Main/Signpost/Uncompressed Art/Signpost.unc" compression="Uncompressed" />
+      <MapFile type="ASM" filename="../../Objects/Main/Signpost/Object Data/Map - Signpost.asm"
+        dplcfile="../../Objects/Main/Signpost/Object Data/DPLC - Signpost.asm" frame="0" />
+    </ImageFromMappings>
+    <ImageFromMappings id="button">
+      <ArtFile filename="../../Objects/Main/Signpost/Uncompressed Art/Signpost Stub.unc" compression="Uncompressed" />
+      <MapFile type="ASM" filename="Common/Mappings/Map - Signpost Stub.asm" label="Map_Signpost_Stub" />
+    </ImageFromMappings>
+  </Images>
+  <Display>
+    <DisplayOption>
+      <ImageRef image="button">
+        <Offset Y="24" />
+      </ImageRef>
+      <ImageRef image="main" />
+    </DisplayOption>
+  </Display>
+</ObjDef>

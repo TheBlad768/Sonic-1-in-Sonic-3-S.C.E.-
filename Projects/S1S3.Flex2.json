@@ -652,17 +652,17 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Main/Signpost/Uncompressed Art/End Signs.unc",
+                        "path": "..\\Objects\\Main\\Signpost\\Uncompressed Art\\Signpost.unc",
                         "compression": "Uncompressed",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Main/Signpost/Object Data/Map - End Signs.asm",
+                        "path": "..\\Objects\\Main\\Signpost\\Object Data\\Map - Signpost.asm",
                         "label": ""
                     },
                     "dplcs": {
                         "enabled": true,
-                        "path": "../Objects/Main/Signpost/Object Data/DPLC - End Signs.asm",
+                        "path": "..\\Objects\\Main\\Signpost\\Object Data\\DPLC - Signpost.asm",
                         "label": ""
                     },
                     "uuid": "472ab9f3-6355-46ce-a3a8-3fd70d6d9cd8"
@@ -677,12 +677,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Signpost/Uncompressed Art/Stub.unc",
+                        "path": "..\\Objects\\Main\\Signpost\\Uncompressed Art\\Signpost Stub.unc",
                         "compression": "Uncompressed",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Main/Signpost/Object Data/Map - Signpost Stub.asm",
+                        "path": "..\\Objects\\Main\\Signpost\\Object Data\\Map - Signpost Stub.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -702,7 +702,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Spikes/KosinskiPM Art/SpikesSprings.kospm",
+                        "path": "../Objects/Main/Spikes/KosinskiPM Art/Spikes and Springs.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -727,12 +727,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Spikes/KosinskiPM Art/SpikesSprings.kospm",
+                        "path": "../Objects/Main/Spikes/KosinskiPM Art/Spikes and Springs.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Main/Spring/Object Data/Map - Spring(Red).asm",
+                        "path": "../Objects/Main/Spring/Object Data/Map - Spring (Red).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -752,12 +752,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Spikes/KosinskiPM Art/SpikesSprings.kospm",
+                        "path": "../Objects/Main/Spikes/KosinskiPM Art/Spikes and Springs.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Main/Spring/Object Data/Map - Spring(Yellow).asm",
+                        "path": "../Objects/Main/Spring/Object Data/Map - Spring (Yellow).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -768,7 +768,7 @@
                     "uuid": "da31e76d-9547-4a20-8415-411628875120"
                 },
                 {
-                    "name": "StarPost",
+                    "name": "Star Post",
                     "format": "Sonic 3&K Object.js",
                     "palettes": [
                         {
@@ -777,12 +777,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/StarPost/KosinskiPM Art/Enemy points.kospm",
+                        "path": "..\\Objects\\Main\\Enemy Score\\KosinskiPM Art\\Enemy Score and Star Post.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Main/StarPost/Object Data/Map - StarPost.asm",
+                        "path": "../Objects/Main/Star Post/Object Data/Map - Star Post.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -802,12 +802,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/StarPost/KosinskiPM Art/StarPost Stars 1.kospm",
+                        "path": "../Objects/Main/Star Post/KosinskiPM Art/Star Post Stars 1.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Main/StarPost/Object Data/Map - StarPost Stars.asm",
+                        "path": "../Objects/Main/Star Post/Object Data/Map - Star Post Stars.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -827,12 +827,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/StarPost/KosinskiPM Art/StarPost Stars 2.kospm",
+                        "path": "../Objects/Main/Star Post/KosinskiPM Art/Star Post Stars 2.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Main/StarPost/Object Data/Map - StarPost Stars.asm",
+                        "path": "../Objects/Main/Star Post/Object Data/Map - Star Post Stars.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -852,12 +852,12 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/StarPost/KosinskiPM Art/StarPost Stars 3.kospm",
+                        "path": "../Objects/Main/Star Post/KosinskiPM Art/Star Post Stars 3.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "../Objects/Main/StarPost/Object Data/Map - StarPost Stars.asm",
+                        "path": "../Objects/Main/Star Post/Object Data/Map - Star Post Stars.asm",
                         "label": ""
                     },
                     "dplcs": {
