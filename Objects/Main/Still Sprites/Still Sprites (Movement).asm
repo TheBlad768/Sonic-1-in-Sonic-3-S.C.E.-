@@ -199,4 +199,4 @@ sub_2C37A:
 ; ---------------------------------------------------------------------------
 
 		; mappings
-		include "Objects/Main/Still Sprites/Object Data/Map - Still Sprites(Movement).asm"
+		include "Objects/Main/Still Sprites/Object Data/Map - Still Sprites (Movement).asm"

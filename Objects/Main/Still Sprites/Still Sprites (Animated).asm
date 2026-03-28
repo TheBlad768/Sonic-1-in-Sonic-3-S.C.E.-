@@ -37,5 +37,5 @@ Obj_AnimatedStillSprite:
 ; ---------------------------------------------------------------------------
 
 		; mappings
-		include "Objects/Main/Still Sprites/Object Data/Anim - Still Sprites(Animated).asm"
-		include "Objects/Main/Still Sprites/Object Data/Map - Still Sprites(Animated).asm"
+		include "Objects/Main/Still Sprites/Object Data/Anim - Still Sprites (Animated).asm"
+		include "Objects/Main/Still Sprites/Object Data/Map - Still Sprites (Animated).asm"
