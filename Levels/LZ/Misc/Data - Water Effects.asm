@@ -41,7 +41,7 @@ Slide_Speeds_Index: offsetTable
 		offsetTableEntry.w Slide_Speeds1					; 0 ; act 1
 		offsetTableEntry.w Slide_Speeds2					; 2 ; act 2
 		offsetTableEntry.w Slide_Speeds3					; 4 ; act 3
-		offsetTableEntry.w Slide_Speeds1					; 6 ; act 4
+		offsetTableEntry.w Slide_Speeds1					; 6 ; act 4 (unused)
 
 Slide_Speeds1:
 		dc.b $A, $A								; right
@@ -63,24 +63,24 @@ Slide_Chunks_Index: offsetTable
 		offsetTableEntry.w Slide_Chunks1_start					; act 1
 		offsetTableEntry.w Slide_Chunks2_start					; act 2
 		offsetTableEntry.w Slide_Chunks3_start					; act 3
-		offsetTableEntry.w Slide_Chunks1_start					; act 4
+		offsetTableEntry.w Slide_Chunks1_start					; act 4 (unused)
 
 Slide_Chunks1:
-		dc.w $51, $52								; right
+		dc.w $7B, $7C								; right
 Slide_Chunks1_end
 		dc.w ((Slide_Chunks1_end-Slide_Chunks1)/2)-1
 Slide_Chunks1_start
 
 Slide_Chunks2:
-		dc.w $25, $26, $2C, $2D, $2E, $2F					; right
-		dc.w $30, $31, $32, $33							; left
+		dc.w $5F, $60, $64, $65, $66, $67					; right
+		dc.w $68, $69, $6A, $6B							; left
 Slide_Chunks2_end
 		dc.w ((Slide_Chunks2_end-Slide_Chunks2)/2)-1
 Slide_Chunks2_start
 
 Slide_Chunks3:
-		dc.w $D, $E, $11, $12, $13, $14, $1B, $1D, $1E, $1F, $20		; right
-		dc.w $24, $25, $26, $27, $2F, $30, $31, $32, $BE, $BF, $C0		; left
+		dc.w $54, $55, $58, $59, $5A, $5B, $5F, $61, $62, $63, $64		; right
+		dc.w $65, $66, $67, $68, $70, $71, $72, $73, $BF, $C9, $CA		; left
 Slide_Chunks3_end
 		dc.w ((Slide_Chunks3_end-Slide_Chunks3)/2)-1
 Slide_Chunks3_start

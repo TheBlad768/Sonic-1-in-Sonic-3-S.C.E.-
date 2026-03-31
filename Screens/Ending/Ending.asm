@@ -622,8 +622,8 @@ Obj_EndSTH:
 ; =============== S U B R O U T I N E =======================================
 
 Redraw_EndingChunks:
-		lea	(RAM_start+$80).l,a1						; get $01-$06 chunk (1*$80)
-		lea	$1480(a1),a2							; get $2A-$2F chunk ($2A*$80-$80)
+		lea	(Chunk_table+(1*$80)).l,a1					; get $01-$06 chunks
+		lea	($2A*$80-1*$80)(a1),a2						; get $2A-$2F chunks
 
 		; redraw
 

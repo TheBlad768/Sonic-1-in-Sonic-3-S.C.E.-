@@ -73,14 +73,14 @@ End_LZ3Boss:
 ; =============== S U B R O U T I N E =======================================
 
 Redraw_LZ3NormalChunks:
-		lea	(RAM_start+$5F00).l,a1						; get $BE-$BF chunks
-		lea	-$4680(a1),a2							; get $31-$32 chunks
+		lea	(Chunk_table+($C9*$80)).l,a1					; get $C9-$CA chunks
+		lea	-($C9*$80-$72*$80)(a1),a2					; get $72-$73 chunks
 		bra.s	Redraw_LZ3AltChunks.redraw
 ; ---------------------------------------------------------------------------
 
 Redraw_LZ3AltChunks:
-		lea	(RAM_start+$5F00).l,a1						; get $BE-$BF chunks
-		lea	$100(a1),a2							; get $C0-$C1 chunks
+		lea	(Chunk_table+($C9*$80)).l,a1					; get $C9-$CA chunks
+		lea	-($C9*$80-$BE*$80)(a1),a2					; get $BE-$BF chunks
 
 .redraw
 

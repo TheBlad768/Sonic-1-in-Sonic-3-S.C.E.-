@@ -502,8 +502,8 @@ Obj_BossBall_Scaled:
 
 .delete
 
-		; restore chunks
-		QueueKosPlus	GHZ3_128x128_KosP, RAM_start
+		; restore primary chunks
+		QueueKosPlus	GHZ_128x128_KosP, Chunk_table
 
 		; update time counter
 		move.b	#1,(Update_HUD_timer).w

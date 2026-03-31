@@ -37,8 +37,8 @@
 		0, \
 		0, \
 		Chunk_table, \
+		SYZ_128x128_KosP, \
 		SYZ3_128x128_KosP, \
-		0, \
 		SYZ3_Layout_Unc, \
 		0, \
 		0, \

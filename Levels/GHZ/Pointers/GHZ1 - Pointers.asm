@@ -37,8 +37,8 @@
 		0, \
 		0, \
 		Chunk_table, \
+		GHZ_128x128_KosP, \
 		GHZ1_128x128_KosP, \
-		0, \
 		GHZ1_Layout_Unc, \
 		0, \
 		0, \
