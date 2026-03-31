@@ -53,7 +53,7 @@ Obj_Waterfall:
 
 		; check
 		bclr	#high_priority_bit,art_tile(a0)					; low priority
-		tst.l	(Chunk_table+($32*$80+$20)).l					; is empty block?
+		tst.l	(Chunk_table+($73*$80+$20)).l					; is empty block? ($73 chunk)
 		bne.s	.anim								; if not, branch
 		bset	#high_priority_bit,art_tile(a0)					; high priority
 		bra.s	.anim

@@ -4,10 +4,10 @@
 
 ; RAM
 
-	dsset ramaddr(RAM_start+$2000)							; pretend we're in the RAM
+	dsset ramaddr(RAM_start+$80)							; pretend we're in the RAM
 
 vScaling_buffer				ds.b $2000					; $2000 bytes (128x128)
-vScaling_buffer_end =			*						; $40 to $7F level chunks will be destroyed
+vScaling_buffer_end =			*						; $01 to $40 level chunks will be destroyed
 
 	dsreset										; stop pretending and reset the program counter
 

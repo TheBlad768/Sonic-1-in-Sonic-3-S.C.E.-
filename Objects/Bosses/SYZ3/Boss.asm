@@ -617,11 +617,11 @@ BossBlock_BreakChunkBlock:
 		clr.l	$110(a1)							; clear bottom of block (32x16)
 
 		; check chunk
-		cmpi.w	#$CF,d5								; is it $CF chunk?
+		cmpi.w	#$D0,d5								; is it $D0 chunk?
 		bne.s	.redraw								; if not, branch
 
 		; replace block (32x16)
-		move.l	-(($CF*$80-$B*$80)+$70)(a1),$110(a1)				; copy data from $B chunk to $CF
+		move.l	-(($D0*$80-4*$80)+$70)(a1),$110(a1)				; copy data from 4 chunk to $D0
 
 .redraw
 		move.w	(Camera_Y_pos_copy).w,d0

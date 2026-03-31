@@ -662,8 +662,8 @@ Obj_BossFire_Scaled:
 
 .delete
 
-		; restore chunks
-		QueueKosPlus	MZ3_128x128_KosP, RAM_start
+		; restore primary chunks
+		QueueKosPlus	MZ_128x128_KosP, Chunk_table
 
 		; update time counter
 		move.b	#1,(Update_HUD_timer).w

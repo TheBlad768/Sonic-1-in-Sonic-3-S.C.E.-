@@ -37,8 +37,8 @@
 		0, \
 		0, \
 		Chunk_table, \
+		MZ_128x128_KosP, \
 		MZ1_128x128_KosP, \
-		0, \
 		MZ1_Layout_Unc, \
 		0, \
 		0, \

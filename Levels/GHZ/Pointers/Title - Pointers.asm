@@ -41,7 +41,7 @@ LevelLoadPointer_Title:
 		0, \
 		0, \
 		Chunk_table, \
-		GHZ1_128x128_KosP, \
+		GHZ_128x128_KosP, \
 		0, \
 		GHZ1_Layout_Unc, \
 		0, \
