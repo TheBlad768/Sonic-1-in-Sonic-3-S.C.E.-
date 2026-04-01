@@ -86,7 +86,7 @@ Obj_GeyserMaker:
 
 .draw
 		lea	Ani_Geyser(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_CheckDelete).w
 ; ---------------------------------------------------------------------------
 
@@ -182,7 +182,7 @@ Obj_LavaGeyser:
 		; draw
 		MoveSprite2YOnly
 		lea	Ani_Geyser(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Child_Draw_Sprite).w
 
 ; =============== S U B R O U T I N E =======================================

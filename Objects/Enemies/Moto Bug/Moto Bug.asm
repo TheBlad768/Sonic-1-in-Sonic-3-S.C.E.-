@@ -34,7 +34,7 @@ Obj_MotoBug:
 .action
 		jsr	(Obj_Wait).w
 		lea	Ani_MotoBug(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_CheckDeleteTouch).w
 ; ---------------------------------------------------------------------------
 
@@ -105,7 +105,7 @@ Obj_MotoBug_Smoke:
 
 .check
 		lea	Ani_MotoBug(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	.delete
 		jmp	(Sprite_CheckDeleteXY).w

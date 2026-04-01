@@ -285,7 +285,7 @@ Obj_AirCountdown_Bubbles:
 
 .animate
 		lea	Ani_AirCountdown(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		tst.b	routine(a0)							; changed by Animate_Sprite
 		beq.s	.chkwater
 		clr.b	routine(a0)
@@ -345,7 +345,7 @@ Obj_AirCountdown_Bubbles:
 
 		; draw
 		lea	Ani_AirCountdown(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	.delete
 		bsr.w	AirCountdown_Load_Art
@@ -373,7 +373,7 @@ Obj_AirCountdown_Bubbles:
 
 .draw
 		lea	Ani_AirCountdown(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	.delete
 		bsr.s	AirCountdown_Load_Art
@@ -390,7 +390,7 @@ Obj_AirCountdown_Bubbles:
 		; draw
 		bsr.s	AirCountdown_ShowNumber
 		lea	Ani_AirCountdown(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	.delete
 		tst.b	render_flags(a0)						; object visible on the screen?

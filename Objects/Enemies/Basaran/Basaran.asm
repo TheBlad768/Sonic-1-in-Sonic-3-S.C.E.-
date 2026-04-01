@@ -29,7 +29,7 @@ Obj_Basaran:
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Basaran(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_CheckDeleteTouch).w
 
 ; =============== S U B R O U T I N E =======================================

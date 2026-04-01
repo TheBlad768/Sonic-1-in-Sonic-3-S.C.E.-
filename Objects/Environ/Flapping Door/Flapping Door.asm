@@ -41,7 +41,7 @@ Obj_FlapDoor:
 
 .wait
 		lea	Ani_FlapDoor(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		clr.b	(WindTunnel_holding_flag).w					; enable wind tunnel
 		tst.b	mapping_frame(a0)						; is the door open?
 		bne.s	.display							; if yes, branch

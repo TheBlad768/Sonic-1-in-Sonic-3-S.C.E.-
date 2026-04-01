@@ -27,7 +27,7 @@ Obj_AnimatedStillSprite:
 
 .anim
 		lea	Ani_AnimatedStillSprites(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_OnScreen_Test).w
 ; ---------------------------------------------------------------------------
 

@@ -28,7 +28,7 @@ Obj_AutoDoor:
 
 		; animate
 		lea	Ani_AutoDoor(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; check
 		tst.b	mapping_frame(a0)						; is the door open?

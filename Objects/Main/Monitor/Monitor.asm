@@ -64,7 +64,7 @@ Obj_Monitor:
 
 .anim
 		lea	Ani_Monitor(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; draw
 		jmp	(Sprite_OnScreen_Test_Collision).w
@@ -250,7 +250,7 @@ Monitor_Animate:
 
 .notbroken
 		lea	Ani_Monitor(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_OnScreen_Test).w
 
 ; ---------------------------------------------------------------------------

@@ -120,7 +120,7 @@ Obj_Spring_Up:
 
 .anim
 		lea	Ani_Spring(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_OnScreen_Test).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -152,7 +152,7 @@ Obj_Spring_Up_NoSolid:
 
 .anim
 		lea	Ani_Spring(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_OnScreen_Test).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -257,7 +257,7 @@ loc_230BA:
 loc_230C4:
 		bsr.w	sub_2326C
 		lea	Ani_Spring(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80
@@ -432,7 +432,7 @@ loc_2334C:
 
 loc_23362:
 		lea	Ani_Spring(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_OnScreen_Test).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -519,7 +519,7 @@ loc_234B8:
 
 loc_234D0:
 		lea	Ani_Spring(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80
@@ -628,7 +628,7 @@ loc_235F8:
 
 loc_2360E:
 		lea	Ani_Spring(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80

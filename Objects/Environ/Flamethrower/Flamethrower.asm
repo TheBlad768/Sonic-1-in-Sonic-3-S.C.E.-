@@ -56,7 +56,7 @@ Obj_Flamethrower:
 
 .animate
 		lea	Ani_Flamethrower(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; check
 		move.b	flamethrower.frame(a0),d0

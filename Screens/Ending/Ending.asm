@@ -474,7 +474,7 @@ Obj_Sonic_Ending:
 
 .anim
 		movea.l	eson_anim(a0),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 .dplc
 		movea.l	eson_dplc(a0),a2

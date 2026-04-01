@@ -128,7 +128,7 @@ Obj_LavaBall:
 		; draw
 		MoveSprite2
 		lea	Ani_LavaBall(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	.delete
 		jmp	(Sprite_OnScreen_Test_Collision).w

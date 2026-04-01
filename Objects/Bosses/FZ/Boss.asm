@@ -183,7 +183,7 @@ BossFinal_MainProcess:
 
 		; anim
 		lea	Ani_EggmanFZ(pc),a1
-		jsr	(Animate_SpriteMultiDelay).w
+		jsr	(Animate_SpriteMultiDelayNoSST).w
 
 		; DPLC
 		lea	PLCPtr_ScrapEggman(pc),a2
@@ -443,7 +443,7 @@ BossFinal_Defeated:
 .draw
 		; anim
 		lea	Ani_EggmanFZ(pc),a1
-		jsr	(Animate_SpriteMultiDelay).w
+		jsr	(Animate_SpriteMultiDelayNoSST).w
 
 		; DPLC
 		lea	PLCPtr_ScrapEggman(pc),a2

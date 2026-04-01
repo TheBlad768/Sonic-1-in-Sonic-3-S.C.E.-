@@ -28,7 +28,7 @@ Obj_Bomb:
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Bomb(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_CheckDeleteTouch).w
 
 ; =============== S U B R O U T I N E =======================================
