@@ -30,7 +30,7 @@ Obj_BuzzBomber:
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_BuzzBomber(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_CheckDeleteTouch).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -166,13 +166,13 @@ Obj_Missile:
 
 .animatebuzz
 		lea	Ani_Missile(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_CheckDeleteTouchXY).w
 ; ---------------------------------------------------------------------------
 
 .animatebuzz_child
 		lea	Ani_Missile(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Child_Draw_Sprite).w
 
 ; =============== S U B R O U T I N E =======================================

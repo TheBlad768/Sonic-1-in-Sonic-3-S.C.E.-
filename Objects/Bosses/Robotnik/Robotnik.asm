@@ -57,7 +57,7 @@ Obj_RobotnikHead3:
 .draw
 		jsr	(Refresh_ChildPositionAdjusted_Animate2).w
 		movea.l	aniraw_ptr(a0),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Child_Draw_Sprite2).w
 ; ---------------------------------------------------------------------------
 
@@ -141,7 +141,7 @@ Obj_RobotnikHead4:
 		jsr	(Refresh_ChildPositionAdjusted_Animate2).w
 		jsr	(Child_GetPriority.skipp).w
 		movea.l	aniraw_ptr(a0),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; check delete flag
 		movea.w	parent3(a0),a1							; a1=parent object

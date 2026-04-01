@@ -77,7 +77,7 @@ Obj_Orbinaut:
 
 .draw
 		lea	Ani_Orbinaut(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_CheckDeleteTouch).w
 
 ; ---------------------------------------------------------------------------

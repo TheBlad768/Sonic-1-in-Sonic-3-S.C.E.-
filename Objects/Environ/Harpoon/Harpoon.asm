@@ -20,7 +20,7 @@ Obj_Harpoon:
 
 .move
 		lea	Ani_Harpoon(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		moveq	#0,d0
 		move.b	mapping_frame(a0),d0						; get frame number
 		move.b	.types(pc,d0.w),collision_flags(a0)				; get collision type

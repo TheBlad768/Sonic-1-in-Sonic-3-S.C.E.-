@@ -86,7 +86,7 @@ Obj_SpinningPlatform:
 
 .tanimate
 		lea	Ani_Trapdoor(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; draw
 		pea	(Sprite_OnScreen_Test).w
@@ -132,7 +132,7 @@ Obj_SpinningPlatform:
 
 .sanimate
 		lea	Ani_SpinningPlatform(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; draw
 		pea	(Sprite_OnScreen_Test).w

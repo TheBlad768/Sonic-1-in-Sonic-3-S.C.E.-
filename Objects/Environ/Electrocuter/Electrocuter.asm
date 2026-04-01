@@ -38,7 +38,7 @@ Obj_Electrocuter:
 
 .animate
 		lea	Ani_Electrocuter(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; check
 		cmpi.b	#4,mapping_frame(a0)						; is 4th frame displayed?

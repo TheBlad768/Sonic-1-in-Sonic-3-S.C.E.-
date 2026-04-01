@@ -431,7 +431,7 @@ Obj74_Action:
 		jsr	(a1)
 		jsr	(MoveSprite2).w
 		lea	Ani_LavaBall(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_CheckDeleteTouchXY).w
 ; ---------------------------------------------------------------------------
 
@@ -588,7 +588,7 @@ loc_18886:
 
 .anim
 		lea	Ani_LavaBall(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; check
 		tst.b	routine(a0)							; changed by Animate_Sprite

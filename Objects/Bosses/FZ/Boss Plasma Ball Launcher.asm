@@ -77,7 +77,7 @@ Obj_BossFinal_Plasma:
 
 		; anim
 		lea	Ani_PLaunch(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; check draw
 		movea.w	parent3(a0),a1							; load Eggman address
@@ -166,7 +166,7 @@ Obj_BossFinal_PlasmaBall:
 
 .draw
 		lea	Ani_Plasma(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; draw and check plasma ball launcher
 		jmp	(Child_Draw_Sprite).w
@@ -185,7 +185,7 @@ Obj_BossFinal_PlasmaBall:
 
 		; draw
 		lea	Ani_Plasma(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; draw and check plasma ball launcher
 		jmp	(Child_DrawTouch_Sprite).w

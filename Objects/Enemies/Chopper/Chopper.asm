@@ -42,7 +42,7 @@ Obj_Chopper:
 		move.b	d1,anim(a0)
 		MoveSpriteYOnly , $18							; reduce speed
 		lea	Ani_Chopper(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_CheckDeleteTouch).w
 
 ; =============== S U B R O U T I N E =======================================

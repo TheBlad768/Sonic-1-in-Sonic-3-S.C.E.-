@@ -129,7 +129,7 @@ Obj_SpinningConveyor_Platforms:
 
 .main
 		lea	Ani_SpinningConveyor(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 		; check animation
 		tst.b	anim(a0)							; is spin anim?

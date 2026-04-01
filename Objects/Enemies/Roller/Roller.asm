@@ -37,7 +37,7 @@ Obj_Roller:
 		movea.l	jump_ptr(a0),a1
 		jsr	(a1)
 		lea	Ani_Roller(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_CheckDeleteTouch).w
 ; ---------------------------------------------------------------------------
 

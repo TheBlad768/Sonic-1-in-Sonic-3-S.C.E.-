@@ -37,7 +37,7 @@ Obj_Bumper:
 
 .display
 		lea	Ani_Bump(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_OnScreen_Test_Collision).w
 ; ---------------------------------------------------------------------------
 

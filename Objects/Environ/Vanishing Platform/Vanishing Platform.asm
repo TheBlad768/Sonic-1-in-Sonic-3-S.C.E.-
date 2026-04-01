@@ -50,7 +50,7 @@ Obj_VanishPlatform:
 
 .draw
 		lea	Ani_VanishPlatform(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		jmp	(Sprite_OnScreen_Test).w
 ; ---------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ Obj_VanishPlatform:
 
 .wait
 		lea	Ani_VanishPlatform(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 		pea	(Sprite_OnScreen_Test).w
 
 		; check

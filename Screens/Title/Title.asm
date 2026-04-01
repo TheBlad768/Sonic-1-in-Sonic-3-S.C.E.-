@@ -413,7 +413,7 @@ Obj_TitleSonic:
 
 .anim
 		lea	Ani_TSon(pc),a1
-		jsr	(Animate_Sprite).w
+		jsr	(Animate_SpriteNoSST).w
 
 .dplc
 		lea	PLCPtr_TSon(pc),a2
