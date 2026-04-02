@@ -23,7 +23,7 @@ Obj_AnimatedStillSprite:
 		lea	.index(pc,d0.w),a1
 		move.l	(a1)+,priority(a0)						; set priority and VRAM
 		move.w	(a1),height_pixels(a0)						; set height and width
-		move.l	#.anim,address(a0)
+		move.l	#.anim,code_addr(a0)
 
 .anim
 		lea	Ani_AnimatedStillSprites(pc),a1

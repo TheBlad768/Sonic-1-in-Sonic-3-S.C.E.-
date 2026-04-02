@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 collapsingplatform.time_ptr		ds.l 1						; collapsing floor time (4 bytes)
 collapsingplatform.delay		ds.b 1						; (1 byte)
@@ -27,7 +27,7 @@ Obj_CollapsingPlatform:
 		move.b	#7,collapsingplatform.delay(a0)
 		move.b	subtype(a0),mapping_frame(a0)
 		ori.b	#$80,status(a0)
-		move.l	#.check,address(a0)
+		move.l	#.check,code_addr(a0)
 
 .check
 		tst.b	collapsingplatform.flag(a0)					; has Sonic touched the	object?
@@ -61,7 +61,7 @@ CollapsingPlatform_PlayerRelease:
 		bne.s	.return
 
 		; start fall
-		move.l	#Obj_PlatformCollapseFall,address(a0)
+		move.l	#Obj_PlatformCollapseFall,code_addr(a0)
 		lea	(Player_1).w,a1							; a1=character
 		moveq	#p1_standing_bit,d6
 		bsr.s	.check
@@ -92,7 +92,7 @@ CollapsingPlatform_PlayerRelease:
 ; =============== S U B R O U T I N E =======================================
 
 ObjPlatformCollapse_CreateFragments:
-		move.l	#CollapsingPlatform_PlayerRelease,address(a0)
+		move.l	#CollapsingPlatform_PlayerRelease,code_addr(a0)
 		move.l	#Obj_PlatformCollapseWait,d4
 		addq.b	#2,mapping_frame(a0)
 
@@ -120,7 +120,7 @@ ObjPlatformCollapse_SmashObject:
 
 		; create break pieces object
 		addq.w	#6,a3								; next mappings
-		move.l	d4,address(a1)
+		move.l	d4,code_addr(a1)
 		move.b	d5,render_flags(a1)
 		move.w	art_tile(a0),art_tile(a1)
 		move.w	x_pos(a0),x_pos(a1)
@@ -153,7 +153,7 @@ ObjPlatformCollapse_SmashObject:
 Obj_PlatformCollapseWait:
 		subq.b	#1,collapsingplatform.delay(a0)
 		bne.s	.draw
-		move.l	#Obj_PlatformCollapseFall,address(a0)
+		move.l	#Obj_PlatformCollapseFall,code_addr(a0)
 
 .draw
 		jmp	(Draw_Sprite).w

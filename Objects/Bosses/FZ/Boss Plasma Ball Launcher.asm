@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bossfinal_plasma.count			ds.b 1						; (1 byte)
 bossfinal_plasma.count2			ds.b 1						; (1 byte)
@@ -19,20 +19,20 @@ Obj_BossFinal_Plasma:
 		; init
 		lea	ObjDat_BossFinal_Plasma(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.checkattack,address(a0)
+		move.l	#.checkattack,code_addr(a0)
 
 .checkattack
 		clr.b	anim(a0)
 		tst.b	bossfinal_plasma.enable(a0)
 		beq.s	.solid
 		addq.b	#1,anim(a0)
-		move.l	#.makeballs,address(a0)
+		move.l	#.makeballs,code_addr(a0)
 		bra.s	.solid
 ; ---------------------------------------------------------------------------
 
 .makeballs
 		clr.b	bossfinal_plasma.enable(a0)
-		move.l	#.checkpend,address(a0)
+		move.l	#.checkpend,code_addr(a0)
 
 		; create plasma balls
 		lea	Child6_BossFinal_PlasmaBall(pc),a2
@@ -46,18 +46,18 @@ Obj_BossFinal_Plasma:
 .checkpend
 		tst.b	bossfinal_plasma.count(a0)					; plasma create wait
 		bne.s	.solid
-		move.l	#.setanim,address(a0)
+		move.l	#.setanim,code_addr(a0)
 		bra.s	.solid
 ; ---------------------------------------------------------------------------
 
 .setanim
 		move.b	#2,anim(a0)
-		move.l	#.checkpbend,address(a0)
+		move.l	#.checkpbend,code_addr(a0)
 
 .checkpbend
 		tst.b	bossfinal_plasma.count2(a0)					; plasma ball wait
 		bne.s	.solid
-		move.l	#Obj_BossFinal_Plasma.checkattack,address(a0)			; return
+		move.l	#Obj_BossFinal_Plasma.checkattack,code_addr(a0)			; return
 
 		; load Eggman address
 		movea.w	parent3(a0),a1
@@ -101,7 +101,7 @@ Obj_BossFinal_Plasma:
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bossfinal_plasmaball.xpos		ds.w 1						; (2 bytes)
 
@@ -132,7 +132,7 @@ Obj_BossFinal_PlasmaBall:
 		lea	ObjDat_BossFinal_PlasmaBall(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.w	#3*60,wait_timer(a0)						; timer
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		tst.w	x_vel(a0)
@@ -156,7 +156,7 @@ Obj_BossFinal_PlasmaBall:
 		addq.b	#1,anim(a0)
 
 		move.w	#3*60,wait_timer(a0)						; timer
-		move.l	#.chkdel,address(a0)
+		move.l	#.chkdel,code_addr(a0)
 
 		; set xyvel
 		move.w	(Player_1+x_pos).w,d0

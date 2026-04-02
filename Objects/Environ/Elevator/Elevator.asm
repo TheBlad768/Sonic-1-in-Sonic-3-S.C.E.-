@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 elevator.origX				ds.w 1						; original x-axis position (2 bytes)
 elevator.origY				ds.w 1						; original y-axis position (2 bytes)
@@ -33,7 +33,7 @@ Obj_Elevator:
 		add.w	d1,d0
 		move.w	d0,elevator.timer(a0)						; set wait time
 		move.w	d0,elevator.delay(a0)
-		move.l	#Elevator_MakeMulti,address(a0)
+		move.l	#Elevator_MakeMulti,code_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ Obj_Elevator:
 
 		move.w	x_pos(a0),elevator.origX(a0)
 		move.w	y_pos(a0),elevator.origY(a0)
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		move.w	x_pos(a0),-(sp)
@@ -256,7 +256,7 @@ Elevator_MakeMulti:
 		; create
 		jsr	(Create_New_Object_3).w
 		bne.s	.chkdel
-		move.l	#Obj_Elevator,address(a1)					; duplicate the object
+		move.l	#Obj_Elevator,code_addr(a1)					; duplicate the object
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		move.b	#$E,subtype(a1)							; set $E subtype

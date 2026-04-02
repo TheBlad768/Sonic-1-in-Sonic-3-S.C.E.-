@@ -27,7 +27,7 @@ Obj_SpecialStage_Results:
 
 .settime
 		move.w	d0,objoff_2E(a0)
-		move.l	#.create,address(a0)
+		move.l	#.create,code_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -41,7 +41,7 @@ Obj_SpecialStage_Results:
 		bsr.w	SpecialStage_Results_Load
 
 		; next
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 
 .return
 		rts
@@ -99,7 +99,7 @@ Obj_SpecialStage_Results:
 .finish
 		sfx	sfx_Register							; play the cash register sound
 		move.w	#2*60,objoff_2E(a0)						; set wait amount
-		move.l	#.wait2,address(a0)
+		move.l	#.wait2,code_addr(a0)
 
 .wait2
 		cmpi.w	#50,(Special_stage_ring_count).w
@@ -119,14 +119,14 @@ Obj_SpecialStage_Results:
 		; create continue player icon
 		jsr	(Create_New_Object_3).w
 		bne.s	.setend
-		move.l	#Obj_2EBE8,address(a1)
+		move.l	#Obj_2EBE8,code_addr(a1)
 
 		; set wait
 		move.w	#4*60+30,objoff_2E(a0)						; set wait
 		sfx	sfx_Continue							; play extra continue sound
 
 .setend
-		move.l	#.endtimer,address(a0)
+		move.l	#.endtimer,code_addr(a0)
 
 .endtimer
 		tst.w	objoff_2E(a0)
@@ -146,11 +146,11 @@ Obj_SpecialStage_Results:
 
 		; move text to the right
 		move.l	#Obj_2EC1E,d0
-		move.l	d0,(Dynamic_object_RAM+(object_size*44)+address).w
-		move.l	d0,(Dynamic_object_RAM+(object_size*45)+address).w
-		move.l	d0,(Dynamic_object_RAM+(object_size*46)+address).w
-		move.l	d0,(Dynamic_object_RAM+(object_size*47)+address).w
-		move.l	d0,(Dynamic_object_RAM+(object_size*48)+address).w
+		move.l	d0,(Dynamic_object_RAM+(object_size*44)+code_addr).w
+		move.l	d0,(Dynamic_object_RAM+(object_size*45)+code_addr).w
+		move.l	d0,(Dynamic_object_RAM+(object_size*46)+code_addr).w
+		move.l	d0,(Dynamic_object_RAM+(object_size*47)+code_addr).w
+		move.l	d0,(Dynamic_object_RAM+(object_size*48)+code_addr).w
 
 		; set wait
 		moveq	#4,d0
@@ -159,7 +159,7 @@ Obj_SpecialStage_Results:
 
 		; set
 		move.w	#5,objoff_30(a0)						; number of objects
-		move.l	#.waitsuper,address(a0)
+		move.l	#.waitsuper,code_addr(a0)
 
 .return3
 		rts
@@ -182,7 +182,7 @@ Obj_SpecialStage_Results:
 
 		; wait
 		move.w	#4*60,objoff_2E(a0)						; set wait
-		move.l	#.endtimer2,address(a0)
+		move.l	#.endtimer2,code_addr(a0)
 
 .endtimer2
 		tst.w	objoff_2E(a0)
@@ -196,7 +196,7 @@ SpecialStage_Results_Load:
 		move.w	(a2)+,d1							; make objects
 
 .loop
-		move.l	(a2)+,address(a1)
+		move.l	(a2)+,code_addr(a1)
 		move.w	(a2)+,objoff_46(a1)
 		move.w	(a2)+,x_pos(a1)
 		move.w	(a2)+,y_pos(a1)
@@ -231,7 +231,7 @@ Obj_2EA3E:
 		sub.w	d0,objoff_46(a0)
 
 loc_2EA4A:
-		move.l	#loc_2EA50,address(a0)
+		move.l	#loc_2EA50,code_addr(a0)
 
 loc_2EA50:
 		jsr	(LevelResults_MoveElement).l
@@ -373,7 +373,7 @@ Obj_2EBE8:										; (Continue Sonic Icon)
 		move.w	#make_art_tile($500,0,FALSE),art_tile(a0)
 		move.w	#$17C,x_pos(a0)
 		move.w	#$14C,y_pos(a0)
-		move.l	#.draw,address(a0)
+		move.l	#.draw,code_addr(a0)
 		move.w	(Player_mode).w,d0						; get current character "mode"
 		move.b	.framearray(pc,d0.w),mapping_frame(a0)
 

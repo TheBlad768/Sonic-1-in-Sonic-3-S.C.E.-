@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 yadrin.timer				ds.w 1						; time between direction changes (2 bytes)
 
@@ -18,7 +18,7 @@ Obj_Yadrin:
 		lea	ObjDat_Yadrin(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
-		move.l	#.checkfall,address(a0)
+		move.l	#.checkfall,code_addr(a0)
 
 .checkfall
 		MoveSpriteYOnly
@@ -28,13 +28,13 @@ Obj_Yadrin:
 		add.w	d1,y_pos(a0)							; match object's position with the floor
 		clr.w	y_vel(a0)
 		bchg	#status.npc.x_flip,status(a0)
-		move.l	#.move,jump_ptr(a0)
-		move.l	#.action,address(a0)
+		move.l	#.move,wait_addr(a0)
+		move.l	#.action,code_addr(a0)
 
 .action
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 		lea	Ani_Yadrin(pc),a1
 		jsr	(Animate_SpriteNoSST).w
@@ -49,7 +49,7 @@ Obj_Yadrin:
 .move
 		subq.w	#1,yadrin.timer(a0)						; subtract 1 from pause time
 		bpl.s	.noflip								; if time remains, branch
-		move.l	#.fixtofloor,jump_ptr(a0)
+		move.l	#.fixtofloor,wait_addr(a0)
 		move.w	#-$100,x_vel(a0)						; move object
 		move.b	#1,anim(a0)
 		bchg	#status.npc.x_flip,status(a0)
@@ -74,7 +74,7 @@ Obj_Yadrin:
 ; ---------------------------------------------------------------------------
 
 .pause
-		move.l	#.move,jump_ptr(a0)
+		move.l	#.move,wait_addr(a0)
 		move.w	#60-1,yadrin.timer(a0)						; set pause time to 1 second
 		clr.w	x_vel(a0)
 		clr.b	anim(a0)

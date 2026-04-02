@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bossfinal_cylinder.origY		ds.l 1						; original y-axis position (4 bytes)
 bossfinal_cylinder.yvel			ds.l 1						; (4 bytes)
@@ -42,7 +42,7 @@ Obj_BossFinal_Cylinder:
 		jsr	(SetUp_ObjAttributes).w
 		bset	#status.npc.no_balancing,status(a0)				; disable player's balance animation
 		move.w	#bytes_to_word(64/2,128/2),bossexplosion.xoffset(a0)		; set x offset range and y offset range
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 		; check flipy
 		cmpi.b	#2,subtype(a0)
@@ -53,7 +53,7 @@ Obj_BossFinal_Cylinder:
 		clr.l	bossfinal_cylinder.yvel(a0)
 		tst.b	bossfinal_cylinder.enable(a0)
 		beq.s	.move
-		move.l	#EggmanCylinder_Movement,address(a0)
+		move.l	#EggmanCylinder_Movement,code_addr(a0)
 
 .move
 		move.l	bossfinal_cylinder.yvel(a0),d0
@@ -63,7 +63,7 @@ Obj_BossFinal_Cylinder:
 		move.w	d1,y_pos(a0)
 
 		; check
-		cmpi.l	#EggmanCylinder_Movement,address(a0)				; check "EggmanCylinder_Movement"
+		cmpi.l	#EggmanCylinder_Movement,code_addr(a0)				; check "EggmanCylinder_Movement"
 		bne.s	.solid
 		tst.b	bossfinal_cylinder.grab(a0)					; check Eggman flag
 		beq.s	.solid
@@ -174,7 +174,7 @@ EggmanCylinder_Movement:
 		addq.w	#2,bossfinal_cylinder.yvel(a0)
 		bhs.s	.returnup
 		clr.l	bossfinal_cylinder.yvel(a0)
-		move.l	#Obj_BossFinal_Cylinder.main,address(a0)
+		move.l	#Obj_BossFinal_Cylinder.main,code_addr(a0)
 
 		; load Eggman address
 		movea.w	parent3(a0),a1
@@ -233,7 +233,7 @@ EggmanCylinder_Movement:
 		subq.w	#2,bossfinal_cylinder.yvel(a0)
 		bhs.s	.returndown
 		clr.l	bossfinal_cylinder.yvel(a0)
-		move.l	#Obj_BossFinal_Cylinder.main,address(a0)
+		move.l	#Obj_BossFinal_Cylinder.main,code_addr(a0)
 
 		; load Eggman address
 		movea.w	parent3(a0),a1

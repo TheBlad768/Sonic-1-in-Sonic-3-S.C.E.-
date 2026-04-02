@@ -5,7 +5,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bossfire.timer				ds.w 1						; (2 bytes)
 
@@ -20,7 +20,7 @@ Obj_BossFire:
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
 		bne.s	BossFire_MoveLeft.return
-		move.l	#BossFire_Setup3,address(a0)
+		move.l	#BossFire_Setup3,code_addr(a0)
 
 		; init
 		lea	ObjDat_RobotnikShip2(pc),a1
@@ -28,7 +28,7 @@ Obj_BossFire:
 		st	(Boss_flag).w
 		move.b	#.hitcount,collision_property(a0)				; set hits
 		move.w	#-$100,x_vel(a0)						; set move left
-		move.l	#BossFire_MoveLeft,jump_ptr(a0)
+		move.l	#BossFire_MoveLeft,wait_addr(a0)
 
 		; create
 		lea	Child1_MakeRoboHead4(pc),a2
@@ -56,8 +56,8 @@ BossFire_MoveLeft:
 		bne.s	.return
 
 		; next
-		move.l	#BossFire_Setup2,address(a0)
-		move.l	#BossFire_MoveCircle,jump_ptr(a0)
+		move.l	#BossFire_Setup2,code_addr(a0)
+		move.l	#BossFire_MoveCircle,wait_addr(a0)
 		clr.l	x_vel(a0)
 
 .return
@@ -98,7 +98,7 @@ Obj73_MakeLava:
 		; create
 		jsr	(Create_New_Object_3).w
 		bne.s	loc_1844A
-		move.l	#Obj_LavaBall,address(a1)					; load lava ball object
+		move.l	#Obj_LavaBall,code_addr(a1)					; load lava ball object
 		move.w	(Camera_max_Y_pos).w,d0
 		addi.w	#$E8,d0
 		move.w	d0,y_pos(a1)							; set Y position
@@ -148,7 +148,7 @@ loc_18482:
 		neg.w	y_vel(a0)
 
 loc_18498:
-		move.l	#BossFire_AttackFire2,jump_ptr(a0)
+		move.l	#BossFire_AttackFire2,wait_addr(a0)
 
 locret_1849C:
 		rts
@@ -169,7 +169,7 @@ BossFire_AttackFire2:
 		; create
 		jsr	(Create_New_Object_3).w
 		bne.s	.skip
-		move.l	#Obj_BossFire_Fire,address(a1)					; load lava ball object
+		move.l	#Obj_BossFire_Fire,code_addr(a1)				; load lava ball object
 		move.w	x_pos(a0),d0
 		moveq	#-1,d1
 		btst	#render_flags.x_flip,render_flags(a0)
@@ -187,7 +187,7 @@ BossFire_AttackFire2:
 .skip
 		subq.w	#1,bossfire.timer(a0)
 		bne.s	.return
-		move.l	#BossFire_MoveCircle,jump_ptr(a0)
+		move.l	#BossFire_MoveCircle,wait_addr(a0)
 		bclr	#6,state_flags(a0)						; clear Robotnik laugh flag
 
 .return
@@ -210,7 +210,7 @@ BossFire_Setup2:
 BossFire_Setup:
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 
 ; ---------------------------------------------------------------------------
@@ -262,8 +262,8 @@ BossFire_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 BossFire_Defeated:
-		move.l	#Wait_FadeToLevelMusic,address(a0)
-		move.l	#.explosion,jump_ptr(a0)
+		move.l	#Wait_FadeToLevelMusic,code_addr(a0)
+		move.l	#.explosion,wait_addr(a0)
 		clr.l	x_vel(a0)
 		lea	Child1_MakeRoboShipFlame(pc),a2
 		jsr	(CreateChild1_Normal).w
@@ -279,7 +279,7 @@ BossFire_Defeated:
 ; ---------------------------------------------------------------------------
 
 .explosion
-		move.l	#.move,address(a0)
+		move.l	#.move,code_addr(a0)
 
 		; increase level size
 		lea	(Child6_IncLevX).l,a2
@@ -303,7 +303,7 @@ BossFire_Defeated:
 		; create
 		jsr	(Create_New_Object).w
 		bne.s	.notfree2
-		move.l	#Obj_EggCapsule,address(a1)
+		move.l	#Obj_EggCapsule,code_addr(a1)
 		move.w	(Camera_stored_max_X_pos).w,d0
 		addi.w	#$A0,d0
 		move.w	d0,x_pos(a1)
@@ -343,7 +343,7 @@ Obj_BossFire_ShipTube:
 		; init
 		lea	ObjDat_BossFire_ShipTube(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		jsr	(Refresh_ChildPositionAdjusted).w
@@ -363,7 +363,7 @@ Obj_BossFire_ShipTubeFlame:
 		; init
 		lea	ObjDat_BossFire_ShipTubeFlame(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		jsr	(Refresh_ChildPositionAdjusted).w
@@ -388,11 +388,11 @@ Obj_BossFire_ShipTubeFlame:
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bossfire_fire.origX			ds.w 1						; original x-axis position (2 bytes)
 bossfire_fire.copyX			ds.w 1						; copy x-axis position (2 bytes)
-					ds.l 1						; skip jump_ptr (4 bytes)
+					ds.l 1						; skip wait_addr (4 bytes)
 bossfire_fire.origY			ds.w 1						; original y-axis position (2 bytes)
 bossfire_fire.timer			ds.b 1						; (1 byte)
 
@@ -409,14 +409,14 @@ Obj_BossFire_Fire:
 		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 		move.w	y_pos(a0),bossfire_fire.origY(a0)
-		move.l	#Obj74_Drop,jump_ptr(a0)
-		move.l	#Obj74_Action,address(a0)
+		move.l	#Obj74_Drop,wait_addr(a0)
+		move.l	#Obj74_Action,code_addr(a0)
 
 		; check
 		tst.b	subtype(a0)
 		bne.s	loc_1870A
 		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
-		move.l	#loc_18886,address(a0)
+		move.l	#loc_18886,code_addr(a0)
 		bra.w	loc_18886
 ; ---------------------------------------------------------------------------
 
@@ -427,7 +427,7 @@ loc_1870A:
 Obj74_Action:
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 		jsr	(MoveSprite2).w
 		lea	Ani_LavaBall(pc),a1
@@ -448,7 +448,7 @@ Obj74_Drop:
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1
 		bpl.s	.return
-		move.l	#Obj74_MakeFlame,jump_ptr(a0)
+		move.l	#Obj74_MakeFlame,wait_addr(a0)
 
 .return
 		rts
@@ -483,10 +483,10 @@ Obj74_MakeFlame:
 	endr
 
 		neg.w	x_vel(a1)
-		move.l	#Obj74_Duplicate,jump_ptr(a1)
+		move.l	#Obj74_Duplicate,wait_addr(a1)
 
 .notfree
-		move.l	#Obj74_Duplicate,jump_ptr(a0)
+		move.l	#Obj74_Duplicate,wait_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -516,12 +516,12 @@ loc_1881E:
 ; ---------------------------------------------------------------------------
 
 loc_18826:
-		move.l	#Obj74_FallEdge,jump_ptr(a0)
+		move.l	#Obj74_FallEdge,wait_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
 loc_1882C:
-		move.l	#loc_18886,address(a0)
+		move.l	#loc_18886,code_addr(a0)
 		rts
 
 ; =============== S U B R O U T I N E =======================================
@@ -529,7 +529,7 @@ loc_1882C:
 Obj74_Duplicate2:
 		jsr	(Create_New_Object_3).w
 		bne.s	.return
-		move.l	#Obj_BossFire_Fire,address(a1)
+		move.l	#Obj_BossFire_Fire,code_addr(a1)
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		move.b	#$67,bossfire_fire.timer(a1)					; set wait
@@ -564,7 +564,7 @@ Obj74_FallEdge:
 		clr.w	y_vel(a0)
 		move.w	bossfire_fire.copyX(a0),x_pos(a0)
 		move.w	bossfire_fire.origY(a0),y_pos(a0)
-		move.l	#Obj74_Duplicate,jump_ptr(a0)
+		move.l	#Obj74_Duplicate,wait_addr(a0)
 		bset	#high_priority_bit,art_tile(a0)					; high priority
 
 .return
@@ -621,13 +621,13 @@ Obj_BossFire_Scaled:
 		move.l	#ArtScaled_EggRoboMZ,d0						; art pointer
 
 .artpointer
-		move.l	d0,scaling_art_address(a0)					; set art pointer
-		move.l	#.wait,address(a0)
+		move.l	d0,scaling_art_addr(a0)						; set art pointer
+		move.l	#.wait,code_addr(a0)
 
 		; create decorative pillar
 		jsr	(Create_New_Object_3).w
 		bne.s	.wait
-		move.l	#Child_Draw_Sprite,address(a1)
+		move.l	#Child_Draw_Sprite,code_addr(a1)
 		move.l	#Map_BossFire_Pillar,mappings(a1)
 		move.b	#setBit(render_flags.level),render_flags(a1)			; use screen coordinates
 		move.w	#priority_3,priority(a1)
@@ -638,7 +638,7 @@ Obj_BossFire_Scaled:
 .wait
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.scale
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		moveq	#$6F,d0

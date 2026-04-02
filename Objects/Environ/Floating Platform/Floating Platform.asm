@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 floatingplatform.origX			ds.w 1						; original x-axis position (2 bytes)
 floatingplatform.copyX			ds.w 1						; copy x-axis position (2 bytes)
@@ -51,7 +51,7 @@ Obj_FloatingPlatform:
 .skip
 		add.b	d0,d0
 		move.b	d0,subtype(a0)
-		move.l	#loc_255F4,address(a0)
+		move.l	#loc_255F4,code_addr(a0)
 
 loc_255F4:
 		move.w	x_pos(a0),-(sp)
@@ -215,7 +215,7 @@ FloatingPlatform_Falling:								; type04
 		bsr.s	FloatingPlatform_SetPlayerFalling
 
 .notp2
-		move.l	#Obj_FallingPlatformIntangible,address(a0)
+		move.l	#Obj_FallingPlatformIntangible,code_addr(a0)
 
 .fall
 		move.l	y_pos(a0),d3

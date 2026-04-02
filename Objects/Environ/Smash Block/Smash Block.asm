@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 ; players
 smashblock.p1_anim			ds.b 1						; Sonic's animation (1 byte)
@@ -25,7 +25,7 @@ Obj_SmashBlock:
 
 		; init
 		movem.l	ObjDat_SmashBlock(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.l	#Smab_Speeds,smashblock.frag_ptr(a0)				; fragments that move
 		move.b	subtype(a0),mapping_frame(a0)
 
@@ -114,7 +114,7 @@ Obj_SmashBlock:
 		andi.b	#~(standing_mask)&$FF,status(a0)
 		movea.l	smashblock.frag_ptr(a0),a4					; use fragments that move
 		addq.b	#1,mapping_frame(a0)
-		move.l	#.fall,address(a0)
+		move.l	#.fall,code_addr(a0)
 		jsr	(BreakObjectToPieces).l
 
 		; draw score

@@ -7,7 +7,7 @@
 ; =============== S U B R O U T I N E =======================================
 
 sub_23A3C:
-		move.l	#loc_23A42,address(a0)
+		move.l	#loc_23A42,code_addr(a0)
 
 loc_23A42:
 		bsr.w	RetractingSpring_Delay
@@ -39,7 +39,7 @@ Obj_RetractingSpring:
 ; ---------------------------------------------------------------------------
 
 											; 8
-		move.l	#loc_23A8E,address(a0)
+		move.l	#loc_23A8E,code_addr(a0)
 
 loc_23A8E:
 		bsr.w	RetractingSpring_Delay
@@ -59,7 +59,7 @@ loc_23AA4:
 ; ---------------------------------------------------------------------------
 
 sub_23A04:
-		move.l	#loc_23A0A,address(a0)
+		move.l	#loc_23A0A,code_addr(a0)
 
 loc_23A0A:
 		bsr.s	RetractingSpring_Delay
@@ -71,7 +71,7 @@ loc_23A0A:
 ; ---------------------------------------------------------------------------
 
 sub_23A58:
-		move.l	#loc_23A5E,address(a0)
+		move.l	#loc_23A5E,code_addr(a0)
 
 loc_23A5E:
 		bsr.s	RetractingSpring_Delay
@@ -91,7 +91,7 @@ loc_23A74:
 ; ---------------------------------------------------------------------------
 
 sub_23A20:
-		move.l	#loc_23A26,address(a0)
+		move.l	#loc_23A26,code_addr(a0)
 
 loc_23A26:
 		bsr.s	RetractingSpring_Delay

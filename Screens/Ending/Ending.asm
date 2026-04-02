@@ -165,7 +165,7 @@ EndingScreen:
 
 		; p2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.notp2								; if yes, branch
 		addi.w	#64,x_pos(a1)
 		bset	#status.player.x_flip,status(a1)				; make Tails face left
@@ -314,12 +314,12 @@ Obj_Sonic_Ending:
 		clr.b	anim(a0)
 		clr.b	mapping_frame(a0)
 		move.w	#(1*60)+20,eson_time(a0)					; set duration for Sonic to pause
-		move.l	#.makeemrd,address(a0)
+		move.l	#.makeemrd,code_addr(a0)
 
 .makeemrd
 		subq.w	#1,eson_time(a0)						; subtract 1 from duration
 		bne.w	.dplc
-		move.l	#.waitradanim,address(a0)
+		move.l	#.waitradanim,code_addr(a0)
 		sfx	sfx_MechaTransform						; play sfx
 		move.w	#bytes_to_word(0,1),anim(a0)					; use "radiance" animation and reset animate
 
@@ -327,7 +327,7 @@ Obj_Sonic_Ending:
 		jsr	(Create_New_Object).w
 		bne.w	.draw
 		move.w	a0,parent3(a1)
-		move.l	#Obj_EndChaos,address(a1)
+		move.l	#Obj_EndChaos,code_addr(a1)
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		move.w	a1,parent3(a0)
@@ -342,7 +342,7 @@ Obj_Sonic_Ending:
 		clr.b	routine(a0)
 
 		; next
-		move.l	#.lookup,address(a0)
+		move.l	#.lookup,code_addr(a0)
 		bra.w	.draw
 ; ---------------------------------------------------------------------------
 
@@ -355,7 +355,7 @@ Obj_Sonic_Ending:
 		move.w	#(1*60)+30,eson_time(a0)
 
 		; next
-		move.l	#.clrobjram,address(a0)
+		move.l	#.clrobjram,code_addr(a0)
 		bra.w	.draw
 ; ---------------------------------------------------------------------------
 
@@ -365,21 +365,21 @@ Obj_Sonic_Ending:
 
 		; delete chaos emeralds objects
 		movea.w	parent3(a0),a1							; a1=parent object
-		move.l	#Go_Delete_Object,address(a1)
+		move.l	#Go_Delete_Object,code_addr(a1)
 		st	(Restart_level_flag).w						; set level to restart
 		move.w	#1*60,eson_time(a0)
 		move.b	#1,anim(a0)							; use "looks left/right" animation
 
 		; check Tails
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.notp2								; if yes, branch
 		move.b	#$2A,anim(a1)							; use "looks left/right" animation
 
 .notp2
 
 		; next
-		move.l	#.waitlooksanim,address(a0)
+		move.l	#.waitlooksanim,code_addr(a0)
 		bra.w	.anim
 ; ---------------------------------------------------------------------------
 
@@ -389,7 +389,7 @@ Obj_Sonic_Ending:
 		clr.b	routine(a0)
 
 		; next
-		move.l	#.makelogo,address(a0)
+		move.l	#.makelogo,code_addr(a0)
 		bra.w	.draw
 ; ---------------------------------------------------------------------------
 
@@ -401,7 +401,7 @@ Obj_Sonic_Ending:
 
 		; check Tails
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.notp22								; if yes, branch
 		move.b	#AniIDSonAni_Landing,anim(a1)					; use "landing" animation
 
@@ -410,22 +410,22 @@ Obj_Sonic_Ending:
 		; load "SONIC THE HEDGEHOG" object
 		jsr	(Create_New_Object).w
 		bne.w	.draw
-		move.l	#Obj_EndSTH,address(a1)
+		move.l	#Obj_EndSTH,code_addr(a1)
 
 		; next
-		move.l	#.anim,address(a0)
+		move.l	#.anim,code_addr(a0)
 		bra.w	.draw
 
 ; =============== S U B R O U T I N E =======================================
 
 .nonoemrd
 		move.w	#(4*60)-24,eson_time(a0)
-		move.l	#.waitnoemrd,address(a0)
+		move.l	#.waitnoemrd,code_addr(a0)
 
 .waitnoemrd
 		subq.w	#1,eson_time(a0)
 		bpl.w	.draw
-		move.l	#.anim,address(a0)
+		move.l	#.anim,code_addr(a0)
 
 		; check
 		cmpi.w	#PlayerModeID_Tails,(Player_mode).w				; is Tails?
@@ -461,7 +461,7 @@ Obj_Sonic_Ending:
 
 		; check Tails
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.notp222							; if yes, branch
 		move.b	#AniIDSonAni_Landing,anim(a1)					; use "landing" animation
 
@@ -470,7 +470,7 @@ Obj_Sonic_Ending:
 		; load "SONIC THE HEDGEHOG" object
 		jsr	(Create_New_Object).w
 		bne.s	.anim
-		move.l	#Obj_EndSTH,address(a1)
+		move.l	#Obj_EndSTH,code_addr(a1)
 
 .anim
 		movea.l	eson_anim(a0),a1
@@ -502,7 +502,7 @@ Obj_EndChaos:
 		bne.w	.return
 
 		; main
-		move.l	#.expand,address(a0)
+		move.l	#.expand,code_addr(a0)
 
 		; copy xypos
 		move.w	x_pos(a0),echa_origX(a0)
@@ -519,7 +519,7 @@ Obj_EndChaos:
 
 .cloop
 		move.w	a0,parent3(a1)
-		move.l	#.circular,address(a1)
+		move.l	#.circular,code_addr(a1)
 		move.l	#Map_ECha,mappings(a1)
 		move.w	#make_art_tile($3C5,0,TRUE),art_tile(a1)
 		move.b	#setBit(render_flags.level),render_flags(a1)			; use screen coordinates
@@ -592,19 +592,19 @@ Obj_EndSTH:
 		move.w	#$80+88,y_pos(a0)
 		move.b	(Player_mode+1).w,mapping_frame(a0)
 		move.w	#4-1,wait_timer(a0)						; set duration for delay
-		move.l	#.swait,address(a0)
+		move.l	#.swait,code_addr(a0)
 
 .swait
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.draw
-		move.l	#.move,address(a0)
+		move.l	#.move,code_addr(a0)
 
 .move
 		addi.w	#16,x_pos(a0)							; move object to the right
 		cmpi.w	#$80+64,x_pos(a0)						; has object reached $40?
 		bne.s	.draw								; if yes, branch
 		move.w	#5*60,wait_timer(a0)						; set duration for delay (5 seconds)
-		move.l	#.ewait,address(a0)
+		move.l	#.ewait,code_addr(a0)
 
 .ewait
 		subq.w	#1,wait_timer(a0)

@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 collapsefloor.time_ptr			ds.l 1						; collapsing floor time (4 bytes)
 collapsefloor.delay			ds.b 1						; (1 byte)
@@ -42,7 +42,7 @@ Obj_CollapseFloor:
 		move.l	#bytes_word_to_long(48/2,64/2,priority_4),height_pixels(a0)	; set height, width and priority
 		move.b	#7,collapsefloor.delay(a0)
 		ori.b	#$80,status(a0)
-		move.l	#.check,address(a0)
+		move.l	#.check,code_addr(a0)
 
 .check
 		tst.b	collapsefloor.flag(a0)						; has Sonic touched the	object?
@@ -67,7 +67,7 @@ Obj_CollapseFloor:
 ; ---------------------------------------------------------------------------
 
 .collapse
-		move.l	#CollapseFloor_PlayerRelease,address(a0)
+		move.l	#CollapseFloor_PlayerRelease,code_addr(a0)
 		move.l	#Obj_PlatformCollapseWait,d4
 		addq.b	#1,mapping_frame(a0)
 		bra.w	ObjPlatformCollapse_CreateFragments2
@@ -84,7 +84,7 @@ CollapseFloor_PlayerRelease:
 		bne.s	.return
 
 		; start fall
-		move.l	#Obj_PlatformCollapseFall,address(a0)
+		move.l	#Obj_PlatformCollapseFall,code_addr(a0)
 		lea	(Player_1).w,a1							; a1=character
 		moveq	#p1_standing_bit,d6
 		bsr.s	.check

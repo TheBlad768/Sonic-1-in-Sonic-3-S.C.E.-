@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 spinningconveyor.origX			ds.w 1						; original x-axis position (2 bytes)
 spinningconveyor.saveX			ds.w 1						; save x-axis position (2 bytes)
@@ -47,7 +47,7 @@ Obj_SpinningConveyor:
 .create
 
 		; create SBZ platform object
-		move.l	d4,address(a1)
+		move.l	d4,code_addr(a1)
 		move.w	(a3)+,x_pos(a1)
 		move.w	(a3)+,y_pos(a1)
 		move.w	(a3)+,d2
@@ -71,7 +71,7 @@ Obj_SpinningConveyor_Platforms:
 		move.w	#make_art_tile($3C8,0,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(14/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 		; set
 		move.b	subtype(a0),d0

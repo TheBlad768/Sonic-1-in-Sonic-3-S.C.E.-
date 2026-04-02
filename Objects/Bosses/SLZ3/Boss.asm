@@ -14,7 +14,7 @@ Obj_BossSpikeBall:
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
 		bne.s	BossSpikeBall_MoveLeft.return
-		move.l	#BossSpikeBall_Setup3,address(a0)
+		move.l	#BossSpikeBall_Setup3,code_addr(a0)
 
 		; init
 		lea	ObjDat_BossSpikeBall_Ship(pc),a1
@@ -22,7 +22,7 @@ Obj_BossSpikeBall:
 		st	(Boss_flag).w							; set boss flag
 		move.b	#.hitcount,collision_property(a0)				; set hits
 		move.w	#-$100,x_vel(a0)						; set move left
-		move.l	#BossSpikeBall_MoveLeft,jump_ptr(a0)
+		move.l	#BossSpikeBall_MoveLeft,wait_addr(a0)
 
 		; create
 		lea	Child1_MakeRoboHead4(pc),a2
@@ -44,15 +44,15 @@ BossSpikeBall_MoveLeft:
 		addi.w	#$120+1,d0
 		cmp.w	x_pos(a0),d0
 		bne.s	.return
-		move.l	#BossSpikeBall_MoveLeftRight,jump_ptr(a0)
+		move.l	#BossSpikeBall_MoveLeftRight,wait_addr(a0)
 
 .return
 		rts
 ; ---------------------------------------------------------------------------
 
 BossSpikeBall_MoveRestore:
-		move.l	#BossSpikeBall_Setup3,address(a0)
-		move.l	#BossSpikeBall_MoveLeftRight,jump_ptr(a0)
+		move.l	#BossSpikeBall_Setup3,code_addr(a0)
+		move.l	#BossSpikeBall_MoveLeftRight,wait_addr(a0)
 
 BossSpikeBall_MoveLeftRight:
 		move.w	(Camera_max_X_pos).w,d0
@@ -114,8 +114,8 @@ BossSpikeBall_MoveLeftRight:
 .found
 		move.w	a1,parent2(a0)							; save seesaw address buffer
 		move.w	a2,parent3(a0)							; save found seesaw address
-		move.l	#BossSpikeBall_Setup,address(a0)
-		move.l	#BossSpikeBall_MakeBall,jump_ptr(a0)
+		move.l	#BossSpikeBall_Setup,code_addr(a0)
+		move.l	#BossSpikeBall_MakeBall,wait_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -138,7 +138,7 @@ BossSpikeBall_MakeBall:
 		move.w	#40-1,wait_timer(a0)						; set wait
 
 		; back
-		move.l	#BossSpikeBall_MoveRestore,jump_ptr(a0)
+		move.l	#BossSpikeBall_MoveRestore,wait_addr(a0)
 		rts
 
 ; ---------------------------------------------------------------------------
@@ -205,8 +205,8 @@ BossSpikeBall_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 BossSpikeBall_Defeated:
-		move.l	#Wait_FadeToLevelMusic,address(a0)
-		move.l	#.explosion,jump_ptr(a0)
+		move.l	#Wait_FadeToLevelMusic,code_addr(a0)
+		move.l	#.explosion,wait_addr(a0)
 		clr.l	x_vel(a0)
 		move.b	#$F,mapping_frame(a0)						; set the broken frame
 
@@ -221,7 +221,7 @@ BossSpikeBall_Defeated:
 ; ---------------------------------------------------------------------------
 
 .explosion
-		move.l	#.move,address(a0)
+		move.l	#.move,code_addr(a0)
 
 		; increase level size
 		lea	(Child6_IncLevX).l,a2
@@ -250,7 +250,7 @@ BossSpikeBall_Defeated:
 		; create
 		jsr	(Create_New_Object).w
 		bne.s	.notfree2
-		move.l	#Obj_EggCapsule,address(a1)
+		move.l	#Obj_EggCapsule,code_addr(a1)
 		move.w	(Camera_stored_max_X_pos).w,d0
 		addi.w	#$A0,d0
 		move.w	d0,x_pos(a1)
@@ -291,7 +291,7 @@ Obj_BossSpikeBall_ShipTube:
 		; init
 		lea	ObjDat_BossSpikeBall_ShipTube(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		jsr	(Refresh_ChildPositionAdjusted).w
@@ -328,7 +328,7 @@ Obj_BossSpikeBall_ShipTubePieces:
 		lea	ObjDat_BossSpikeBall_ShipTube(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		jsr	(Change_FlipXUseParent).w
-		move.l	#Obj_FlickerMove,address(a0)
+		move.l	#Obj_FlickerMove,code_addr(a0)
 		move.b	subtype(a0),d0
 		lsr.b	d0								; division by 2
 		addq.b	#1,d0
@@ -343,7 +343,7 @@ Obj_BossSpikeBall_ShipTubePieces:
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bossspikeball_spikeball.origX		ds.w 1						; original x-axis position (2 bytes)
 bossspikeball_spikeball.origY		ds.w 1						; original y-axis position (2 bytes)
@@ -362,7 +362,7 @@ Obj_BossSpikeBall_SpikeBall:
 		; init
 		lea	ObjDat_Seesaw_SpikeBall(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.fall,address(a0)
+		move.l	#.fall,code_addr(a0)
 		movea.w	parent3(a0),a1							; a1=parent object (seesaw)
 		move.w	x_pos(a1),bossspikeball_spikeball.origX(a0)
 		move.w	y_pos(a1),bossspikeball_spikeball.origY(a0)
@@ -432,7 +432,7 @@ Obj_BossSpikeBall_SpikeBall:
 .leftside1
 		move.b	#1,mapping_frame(a0)
 		move.w	#$20,wait_timer(a0)						; timer
-		move.l	#.loc_18EAA,address(a0)
+		move.l	#.loc_18EAA,code_addr(a0)
 		bra.w	.loc_18EAA
 ; ---------------------------------------------------------------------------
 
@@ -461,7 +461,7 @@ Obj_BossSpikeBall_SpikeBall:
 		subq.w	#1,wait_timer(a0)
 		bne.s	.loc_18E7A
 		move.w	#$20,wait_timer(a0)						; timer
-		move.l	#BossSpikeBall_SpikeBall_Explode,address(a0)
+		move.l	#BossSpikeBall_SpikeBall_Explode,code_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -509,7 +509,7 @@ Obj_BossSpikeBall_SpikeBall:
 		lea	.xydata(pc),a2
 		jsr	(Check_InTheirRange).w
 		beq.s	.loc_18F38
-		move.l	#BossSpikeBall_SpikeBall_Explode,address(a0)
+		move.l	#BossSpikeBall_SpikeBall_Explode,code_addr(a0)
 		clr.w	wait_timer(a0)							; timer
 		move.b	collision_flags(a1),boss_saved_collision(a1)
 		clr.b	collision_flags(a1)
@@ -583,12 +583,12 @@ Obj_BossSpikeBall_SpikeBall:
 
 		; load routine
 		move.l	#.loc_18DC6,d0
-		cmpi.l	#.fall,address(a0)
+		cmpi.l	#.fall,code_addr(a0)
 		beq.s	.skipr
 		move.l	#BossSpikeBall_SpikeBall_Explode,d0
 
 .skipr
-		move.l	d0,address(a0)
+		move.l	d0,code_addr(a0)
 		bra.w	.loc_18E7A
 ; ---------------------------------------------------------------------------
 
@@ -684,7 +684,7 @@ Obj_BossSpikeBall_SpikeBall_Shrapnel:
 		lea	ObjDat_RobotnikShip_SpikeBall_Shrapnel(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
-		move.l	#.action,address(a0)
+		move.l	#.action,code_addr(a0)
 		bset	#render_flags.on_screen,render_flags(a0)
 
 .action

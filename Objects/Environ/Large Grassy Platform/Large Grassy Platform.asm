@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 largegrassplatform.origX		ds.w 1						; original x-axis position (2 bytes)
 largegrassplatform.origY		ds.w 1						; original y-axis position (2 bytes)
@@ -29,7 +29,7 @@ Obj_LargeGrassPlatform:
 
 		; init
 		movem.l	ObjDat_LargeGrassPlatform(pc),d0-d3				; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	x_pos(a0),largegrassplatform.origX(a0)
 		move.w	y_pos(a0),largegrassplatform.origY(a0)
 
@@ -149,7 +149,7 @@ Obj_LargeGrassPlatform:
 		; create fire
 		jsr	(Create_New_Object_3).w
 		bne.s	.return
-		move.l	#Obj_GrassFire,address(a1)
+		move.l	#Obj_GrassFire,code_addr(a1)
 		moveq	#-64,d0
 		add.w	x_pos(a0),d0
 		move.w	d0,x_pos(a1)

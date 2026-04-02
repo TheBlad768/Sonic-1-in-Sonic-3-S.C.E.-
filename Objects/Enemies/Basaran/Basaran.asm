@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 basaran.sypos				ds.w 1						; copy Sonic ypos (2 bytes)
 
@@ -20,13 +20,13 @@ Obj_Basaran:
 		; init
 		lea	ObjDat_Basaran(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.dropcheck,jump_ptr(a0)
-		move.l	#.action,address(a0)
+		move.l	#.dropcheck,wait_addr(a0)
+		move.l	#.action,code_addr(a0)
 
 .action
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 		lea	Ani_Basaran(pc),a1
 		jsr	(Animate_SpriteNoSST).w
@@ -56,7 +56,7 @@ Obj_Basaran:
 		andi.b	#7,d0
 		bne.s	.nodrop
 		move.b	#1,anim(a0)
-		move.l	#.dropfly,jump_ptr(a0)
+		move.l	#.dropfly,wait_addr(a0)
 
 .nodrop
 		rts
@@ -78,7 +78,7 @@ Obj_Basaran:
 		jsr	(Change_VelocityWithFlipX).w
 		clr.w	y_vel(a0)							; stop basaran falling
 		move.b	#2,anim(a0)
-		move.l	#.flapsound,jump_ptr(a0)
+		move.l	#.flapsound,wait_addr(a0)
 
 .dropmore
 		rts
@@ -89,7 +89,7 @@ Obj_Basaran:
 		bmi.s	.dropmore							; if yes, branch
 
 		; delete object
-		move.l	#Sprite_CheckDelete.offscreen,address(a0)
+		move.l	#Sprite_CheckDelete.offscreen,code_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -107,7 +107,7 @@ Obj_Basaran:
 		add.b	d7,d0								; d7 - object count (Process_Objects)
 		andi.b	#7,d0
 		bne.s	.dontflyup
-		move.l	#.flyup,jump_ptr(a0)
+		move.l	#.flyup,wait_addr(a0)
 
 .dontflyup
 		rts
@@ -122,7 +122,7 @@ Obj_Basaran:
 		andi.w	#-8,x_pos(a0)							; align xpos (8 pixels)
 		clr.l	x_vel(a0)							; stop basaran moving
 		clr.b	anim(a0)
-		move.l	#.dropcheck,jump_ptr(a0)
+		move.l	#.dropcheck,wait_addr(a0)
 
 .noceiling
 		rts

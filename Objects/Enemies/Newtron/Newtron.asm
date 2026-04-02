@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 newtron.state_flags			ds.b 1						; (1 byte)
 
@@ -22,13 +22,13 @@ Obj_Newtron:
 		jsr	(SetUp_ObjAttributes).w
 		clr.b	routine(a0)
 		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
-		move.l	#.chkdistance,jump_ptr(a0)
-		move.l	#.action,address(a0)
+		move.l	#.chkdistance,wait_addr(a0)
+		move.l	#.action,code_addr(a0)
 
 .action
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 		lea	Ani_Newtron(pc),a1
 		jsr	(Animate_SpriteNoSST).w
@@ -57,12 +57,12 @@ Obj_Newtron:
 		; check debug mode
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.s	.outofrange							; if yes, branch
-		move.l	#.type00,jump_ptr(a0)						; goto .type00 next
+		move.l	#.type00,wait_addr(a0)						; goto .type00 next
 		move.b	#1,anim(a0)
 		tst.b	subtype(a0)							; check object type
 		beq.s	.istype00							; if type is 00, branch
 		ori.w	#palette_line_1,art_tile(a0)
-		move.l	#.type01,jump_ptr(a0)						; goto .type01 next
+		move.l	#.type01,wait_addr(a0)						; goto .type01 next
 		move.b	#4,anim(a0)							; use different	animation
 
 .outofrange
@@ -95,7 +95,7 @@ Obj_Newtron:
 		bpl.s	.keepfalling							; if not, branch
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)							; stop newtron falling
-		move.l	#.matchfloor,jump_ptr(a0)
+		move.l	#.matchfloor,wait_addr(a0)
 		move.b	#2,anim(a0)
 		btst	#5,art_tile(a0)							; palette_line_1
 		beq.s	.notgreen
@@ -124,7 +124,7 @@ Obj_Newtron:
 ; ---------------------------------------------------------------------------
 
 .nextroutine
-		move.l	#.action2,address(a0)						; goto .speed next
+		move.l	#.action2,code_addr(a0)						; goto .speed next
 		rts
 
 ; =============== S U B R O U T I N E =======================================
@@ -142,12 +142,12 @@ Obj_Newtron:
 		st	newtron.state_flags(a0)
 
 		; set delete
-		move.l	#.delete,jump_ptr(a0)
+		move.l	#.delete,wait_addr(a0)
 
 		; create missile
 		jsr	(Create_New_Object_3).w
 		bne.s	.fail
-		move.l	#Obj_Missile,address(a1)					; load missile object
+		move.l	#Obj_Missile,code_addr(a1)					; load missile object
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		subq.w	#8,y_pos(a1)

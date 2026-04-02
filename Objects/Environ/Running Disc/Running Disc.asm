@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 ; players
 runningdisc_p1_attached =		*
@@ -47,7 +47,7 @@ Obj_RunningDisc:
 
 		; init
 		movem.l	ObjDat_RunningDisc(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	x_pos(a0),runningdisc.origX(a0)
 		move.w	y_pos(a0),runningdisc.origY(a0)
 
@@ -65,7 +65,7 @@ Obj_RunningDisc:
 		; player 2
 		addq.w	#runningdisc_p2_attached-runningdisc_p1_attached,a2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.notp2								; if yes, branch
 		bsr.s	Disc_MovePlayer
 

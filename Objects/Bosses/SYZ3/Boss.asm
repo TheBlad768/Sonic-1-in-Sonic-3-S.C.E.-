@@ -5,12 +5,12 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bossblock.origY				ds.w 1						; original y-axis position (2 bytes)
 bossblock.camXpos			ds.b 1						; (1 byte)
 bossblock.counter			ds.b 1						; (1 byte)
-					ds.b 6						; skip jump_ptr, state_flags and count (6 bytes)
+					ds.b 6						; skip wait_addr, state_flags and count (6 bytes)
 bossblock.timer				ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
@@ -31,7 +31,7 @@ Obj_BossBlock:
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
 		bne.w	BossBlock_MoveLeftRight.return
-		move.l	#BossBlock_Setup4,address(a0)
+		move.l	#BossBlock_Setup4,code_addr(a0)
 
 		; init
 		lea	ObjDat_RobotnikShip2(pc),a1
@@ -39,7 +39,7 @@ Obj_BossBlock:
 		st	(Boss_flag).w
 		move.b	#.hitcount,collision_property(a0)				; set hits
 		move.w	#-$100,x_vel(a0)						; set move left
-		move.l	#BossBlock_MoveLeftRight,jump_ptr(a0)
+		move.l	#BossBlock_MoveLeftRight,wait_addr(a0)
 
 		; create
 		lea	Child1_MakeRoboShipFlame(pc),a2
@@ -88,8 +88,8 @@ BossBlock_MoveLeftRight:
 		bsr.w	BossBlock_BreakChunkBlock
 
 		; set
-		move.l	#BossBlock_Setup2,address(a0)
-		move.l	#BossBlock_MoveDown,jump_ptr(a0)
+		move.l	#BossBlock_Setup2,code_addr(a0)
+		move.l	#BossBlock_MoveDown,wait_addr(a0)
 		bset	#bossblock.spikeenable_bit,state_flags(a0)
 		move.l	#words_to_long(0,$180),x_vel(a0)
 
@@ -120,7 +120,7 @@ BossBlock_MoveDown:
 		move.l	#BossBlock_FloorShaking,d1
 
 .set
-		move.l	d1,jump_ptr(a0)
+		move.l	d1,wait_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -140,7 +140,7 @@ BossBlock_FloorShaking:
 .exit
 		clr.b	bossblock.counter(a0)
 		bset	#bossblock.spiketouch_bit,state_flags(a0)
-		move.l	#BossBlock_MoveUp,jump_ptr(a0)
+		move.l	#BossBlock_MoveUp,wait_addr(a0)
 		move.w	#-$800,y_vel(a0)
 		tst.w	parent3(a0)
 		bne.s	.return
@@ -164,7 +164,7 @@ BossBlock_MoveUp:
 		blo.s	.moveupfix
 		move.w	d0,y_pos(a0)
 		clr.w	y_vel(a0)
-		move.l	#BossBlock_AirShaking,jump_ptr(a0)
+		move.l	#BossBlock_AirShaking,wait_addr(a0)
 		move.w	y_pos(a0),bossblock.origY(a0)
 		moveq	#8,d0
 		tst.w	parent3(a0)
@@ -218,7 +218,7 @@ BossBlock_AirShaking:
 		subq.w	#1,bossblock.timer(a0)
 		bpl.s	BossBlock_MoveUp.return
 		move.w	#30,wait_timer(a0)
-		move.l	#BossBlock_MoveRestart,jump_ptr(a0)
+		move.l	#BossBlock_MoveRestart,wait_addr(a0)
 		bclr	#bossblock.spikeenable_bit,state_flags(a0)			; hide spike
 		clr.b	bossblock.counter(a0)
 		move.w	parent3(a0),d0
@@ -234,8 +234,8 @@ BossBlock_MoveRestart:
 		moveq	#$28,d0
 		add.w	(Camera_max_Y_pos).w,d0
 		move.w	d0,y_pos(a0)
-		move.l	#BossBlock_Setup3,address(a0)
-		move.l	#BossBlock_Restart,jump_ptr(a0)
+		move.l	#BossBlock_Setup3,code_addr(a0)
+		move.l	#BossBlock_Restart,wait_addr(a0)
 		move.w	#-$100,d0
 		jsr	(Change_VelocityWithFlipX).w
 		tst.w	parent3(a0)
@@ -262,8 +262,8 @@ BossBlock_Restart:
 		bgt.s	.return
 
 .restart
-		move.l	#BossBlock_Setup4,address(a0)
-		move.l	#BossBlock_MoveLeftRight,jump_ptr(a0)
+		move.l	#BossBlock_Setup4,code_addr(a0)
+		move.l	#BossBlock_MoveLeftRight,wait_addr(a0)
 
 .return
 		rts
@@ -357,8 +357,8 @@ BossBlock_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 BossBlock_Defeated:
-		move.l	#Wait_FadeToLevelMusic,address(a0)
-		move.l	#.explosion,jump_ptr(a0)
+		move.l	#Wait_FadeToLevelMusic,code_addr(a0)
+		move.l	#.explosion,wait_addr(a0)
 		bclr	#bossblock.spikeenable_bit,state_flags(a0)			; hide spike
 		clr.l	x_vel(a0)
 
@@ -386,7 +386,7 @@ BossBlock_Defeated:
 ; ---------------------------------------------------------------------------
 
 .explosion
-		move.l	#.move,address(a0)
+		move.l	#.move,code_addr(a0)
 
 		; increase level size
 		lea	(Child6_IncLevX).l,a2
@@ -411,7 +411,7 @@ BossBlock_Defeated:
 		; create
 		jsr	(Create_New_Object).w
 		bne.s	.notfree2
-		move.l	#Obj_EggCapsule,address(a1)
+		move.l	#Obj_EggCapsule,code_addr(a1)
 		move.w	(Camera_stored_max_X_pos).w,d0
 		addi.w	#$A0,d0
 		move.w	d0,x_pos(a1)
@@ -446,7 +446,7 @@ BossBlock_Defeated:
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bossblock_spike.ypos			ds.w 1						; y-axis position (2 bytes)
 
@@ -460,7 +460,7 @@ Obj_BossBlock_Spike:
 		lea	ObjDat_BossBlock_Spike(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bset	#render_flags.static_mappings,render_flags(a0)			; set static mapping flag
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		jsr	(Refresh_ChildPosition).w
@@ -515,12 +515,12 @@ Obj_BossBlock_Block:
 		jsr	(SetUp_ObjAttributes).w
 		move.w	#bytes_to_word(0,36),child_dx(a0)				; set dxy
 		bset	#status.npc.no_balancing,status(a0)				; disable player's balance animation
-		move.l	#.check,address(a0)
+		move.l	#.check,code_addr(a0)
 
 .check
 		btst	#bossblock_block.grabblock_bit,state_flags(a0)
 		beq.s	.solid
-		move.l	#.position,address(a0)
+		move.l	#.position,code_addr(a0)
 		jsr	(Displace_PlayerOffObject).w					; release Sonic from object
 
 .position
@@ -563,7 +563,7 @@ Obj_BossSYZBlock_FlickerMove:
 		; init
 		lea	ObjDat_BossBlock_Block(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#Obj_FlickerMove,address(a0)
+		move.l	#Obj_FlickerMove,code_addr(a0)
 		move.b	subtype(a0),d0
 		lsr.b	d0								; division by 2
 		addq.b	#1,d0
@@ -633,7 +633,7 @@ BossBlock_BreakChunkBlock:
 		; create sprite boss block
 		jsr	(Create_New_Object_3).w
 		bne.s	.return
-		move.l	#Obj_BossBlock_Block,address(a1)
+		move.l	#Obj_BossBlock_Block,code_addr(a1)
 		moveq	#32/2,d1
 		add.w	d1,d2
 		add.w	d1,d3

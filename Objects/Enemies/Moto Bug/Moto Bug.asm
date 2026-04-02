@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 motobug.delay				ds.b 1						; (1 byte)
 
@@ -18,7 +18,7 @@ Obj_MotoBug:
 		lea	ObjDat_MotoBug(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.w	#bytes_to_word(28/2,40/2),y_radius(a0)				; set y_radius and x_radius
-		move.l	#.checkfall,address(a0)
+		move.l	#.checkfall,code_addr(a0)
 
 .checkfall
 		MoveSpriteYOnly
@@ -28,8 +28,8 @@ Obj_MotoBug:
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)
 		bchg	#status.npc.x_flip,status(a0)
-		move.l	#.move,jump_ptr(a0)
-		move.l	#.action,address(a0)
+		move.l	#.move,wait_addr(a0)
+		move.l	#.action,code_addr(a0)
 
 .action
 		jsr	(Obj_Wait).w
@@ -44,7 +44,7 @@ Obj_MotoBug:
 ; =============== S U B R O U T I N E =======================================
 
 .move
-		move.l	#.findfloor,jump_ptr(a0)
+		move.l	#.findfloor,wait_addr(a0)
 		move.b	#1,anim(a0)
 		move.w	#-$100,x_vel(a0)						; move object to the left
 		bchg	#status.npc.x_flip,status(a0)
@@ -82,7 +82,7 @@ Obj_MotoBug:
 
 .pause
 		move.w	#60-1,wait_timer(a0)						; set pause time to 1 second
-		move.l	#.move,jump_ptr(a0)
+		move.l	#.move,wait_addr(a0)
 		clr.w	x_vel(a0)							; stop the object moving
 		clr.b	anim(a0)
 		rts
@@ -101,7 +101,7 @@ Obj_MotoBug_Smoke:
 		lea	ObjDat3_MotoBug_Smoke(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
 		clr.b	routine(a0)
-		move.l	#.check,address(a0)
+		move.l	#.check,code_addr(a0)
 
 .check
 		lea	Ani_MotoBug(pc),a1

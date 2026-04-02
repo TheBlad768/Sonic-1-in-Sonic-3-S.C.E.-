@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 spikeball_syz.speed			ds.w 1						; (2 bytes)
 
@@ -16,7 +16,7 @@ Obj_SpikeBall_SYZ:
 
 		; init
 		movem.l	ObjDat_SpikeBall_SYZ(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.b	#$18|collision_flags.npc.hurt,collision_flags(a0)		; SYZ specific code (chain hurts Sonic)
 
 		; subtype
@@ -73,7 +73,7 @@ Obj_SpikeBall_SYZ_Child:
 		move.b	render_flags(a1),render_flags(a0)				; copy render flags
 		move.l	height_pixels(a1),height_pixels(a0)				; copy height, width and priority
 		move.b	collision_flags(a1),collision_flags(a0)				; copy collision flags
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 

@@ -54,7 +54,7 @@ SYZ3_Resize:
 		move.b	d0,(Current_music+1).w						; save music
 		jsr	(Create_New_Object).w
 		bne.s	.return
-		move.l	#Obj_BossBlock,address(a1)
+		move.l	#Obj_BossBlock,code_addr(a1)
 		move.w	(Camera_max_X_pos).w,d0
 		addi.w	#$1B0,d0
 		move.w	d0,x_pos(a1)

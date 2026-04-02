@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 ; players
 corkfloor.p1_yvel			ds.w 1						; Sonic's y velocity (2 bytes)
@@ -24,13 +24,13 @@ Obj_CorkFloor:
 
 		; init
 		movem.l	ObjDat_CorkFloor(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.l	#CorkFloor_Speeds,corkfloor.frag_ptr(a0)
 
 		; check
 		tst.b	subtype(a0)
 		bne.s	.solid
-		move.l	#CorkFloor_Bottom,address(a0)					; break from the bottom
+		move.l	#CorkFloor_Bottom,code_addr(a0)					; break from the bottom
 		bra.w	CorkFloor_Bottom
 ; ---------------------------------------------------------------------------
 
@@ -117,7 +117,7 @@ Obj_CorkFloor:
 		; break
 		movea.l	corkfloor.frag_ptr(a0),a4					; CorkFloor_Speeds
 		addq.b	#1,mapping_frame(a0)
-		move.l	#.fall,address(a0)
+		move.l	#.fall,code_addr(a0)
 		jsr	(BreakObjectToPieces).l
 
 		; draw score...
@@ -181,7 +181,7 @@ CorkFloor_Bottom:
 		; break
 		movea.l	corkfloor.frag_ptr(a0),a4					; CorkFloor_Speeds
 		addq.b	#1,mapping_frame(a0)
-		move.l	#Obj_CorkFloor.fall,address(a0)
+		move.l	#Obj_CorkFloor.fall,code_addr(a0)
 		jsr	(BreakObjectToPieces).l
 		bra.w	Obj_CorkFloor.fall
 ; ---------------------------------------------------------------------------

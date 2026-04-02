@@ -101,7 +101,7 @@ sub_246DA:
 		move.b	scaling_scale_factor(a0),d0					; scale factor
 		moveq	#0,d1
 		move.b	scaling_frame(a0),d1						; next frame (address shift)
-		movea.l	scaling_art_address(a0),a1					; scaled art address
+		movea.l	scaling_art_addr(a0),a1						; scaled art address
 		ror.w	#4,d1								; 1 to $1000 (max 16 frames?)
 		adda.l	d1,a1
 		lea	(a1),a0

@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 ballhog.launchflag			ds.b 1						; 0 to launch a cannonball (1 byte)
 
@@ -21,7 +21,7 @@ Obj_BallHog:
 		lea	ObjDat_BallHog(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
-		move.l	#.checkfall,address(a0)
+		move.l	#.checkfall,code_addr(a0)
 
 .checkfall
 		MoveSpriteYOnly
@@ -30,7 +30,7 @@ Obj_BallHog:
 		bpl.s	.floornotfound
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)
-		move.l	#.action,address(a0)
+		move.l	#.action,code_addr(a0)
 
 .action
 		lea	AniRaw_Hog(pc),a1
@@ -102,7 +102,7 @@ Obj_BallHog_Cannonball:
 		lea	ObjDat3_BallHog_Cannonball(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
 		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
-		move.l	#.bounce,address(a0)
+		move.l	#.bounce,code_addr(a0)
 
 .bounce
 		jsr	(MoveSprite).w
@@ -133,7 +133,7 @@ Obj_BallHog_Cannonball:
 
 		; remove
 		bset	#status.npc.defeated,status(a0)
-		move.l	#Obj_Explosion.skipanimal,address(a0)				; change object to explosion
+		move.l	#Obj_Explosion.skipanimal,code_addr(a0)				; change object to explosion
 		rts
 ; ---------------------------------------------------------------------------
 

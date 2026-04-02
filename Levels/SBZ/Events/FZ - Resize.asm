@@ -17,7 +17,7 @@ FZ_Resize:
 		; create boss
 		jsr	(Create_New_Object).w
 		bne.s	.return
-		move.l	#Obj_BossFinal,address(a1)
+		move.l	#Obj_BossFinal,code_addr(a1)
 		move.w	#$100,x_pos(a1)
 		move.w	#$100,y_pos(a1)
 

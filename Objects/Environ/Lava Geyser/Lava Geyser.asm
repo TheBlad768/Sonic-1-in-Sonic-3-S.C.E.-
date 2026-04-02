@@ -20,7 +20,7 @@ Obj_GeyserMaker:
 		jsr	(SetUp_ObjAttributes).w
 		clr.b	routine(a0)
 		move.w	#2*60,geysermaker.delay(a0)					; set time delay to 2 seconds
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 
 .wait
 		subq.w	#1,geysermaker.timer(a0)					; decrement timer
@@ -35,17 +35,17 @@ Obj_GeyserMaker:
 		subi.w	#$170,d1
 		cmp.w	d1,d0
 		blo.s	.cancel
-		move.l	#.chktype,address(a0)						; if Sonic is within range, goto GMake_ChkType
+		move.l	#.chktype,code_addr(a0)						; if Sonic is within range, goto GMake_ChkType
 
 .cancel
 		bra.s	.range
 ; ---------------------------------------------------------------------------
 
 .chktype
-		move.l	#.checkanim,address(a0)
+		move.l	#.checkanim,code_addr(a0)
 		tst.b	subtype(a0)							; is object type 00 (geyser) ?
 		beq.s	.draw								; if yes, branch
-		move.l	#.makelava,address(a0)
+		move.l	#.makelava,code_addr(a0)
 		bra.s	.range
 ; ---------------------------------------------------------------------------
 
@@ -55,7 +55,7 @@ Obj_GeyserMaker:
 		clr.b	routine(a0)
 
 .makelava
-		move.l	#.checkdelete,address(a0)
+		move.l	#.checkdelete,code_addr(a0)
 		lea	Child6_LavaGeyser(pc),a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.fail
@@ -78,7 +78,7 @@ Obj_GeyserMaker:
 		tst.b	routine(a0)							; changed by Animate_Sprite
 		beq.s	.draw
 		clr.b	routine(a0)
-		move.l	#.delete,address(a0)
+		move.l	#.delete,code_addr(a0)
 
 .range
 		jmp	(Delete_Sprite_If_Not_In_Range_Check).w
@@ -92,7 +92,7 @@ Obj_GeyserMaker:
 
 .delete
 		clr.b	anim(a0)							; bubble1 anim
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 		tst.b	subtype(a0)
 		bne.s	.range
 		jmp	(Sprite_CheckDelete.offscreen).w				; Delete_Sprite_If_Not_In_RangeCheck.offscreen
@@ -103,7 +103,7 @@ Obj_GeyserMaker:
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 lavageyser.origY			ds.w 1						; original y-axis position (2 bytes)
 
@@ -127,7 +127,7 @@ Obj_LavaGeyser:
 		jsr	(SetUp_ObjAttributes).w
 ;		sfx	sfx_Burning							; play flame sound
 		move.w	y_pos(a0),lavageyser.origY(a0)
-		move.l	#.action,address(a0)
+		move.l	#.action,code_addr(a0)
 
 		; check
 		move.b	#5,anim(a0)							; bubble4 anim
@@ -227,7 +227,7 @@ Obj_LavaGeyser_Extra2:
 		; init
 		lea	ObjDat3_LavaGeyser2(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
-		move.l	#Obj_LavaGeyser.action,address(a0)
+		move.l	#Obj_LavaGeyser.action,code_addr(a0)
 		bra.s	Obj_LavaGeyser.action
 
 ; ---------------------------------------------------------------------------
@@ -244,7 +244,7 @@ Obj_LavaGeyser_Extra:
 		lea	ObjDat3_LavaGeyser(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		movea.w	parent3(a0),a1							; a1=parent object

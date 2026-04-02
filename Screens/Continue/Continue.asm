@@ -104,27 +104,27 @@ ContinueScreen:
 		bhs.s	.main								; if yes, branch
 		cmpi.w	#PlayerModeID_Sonic,d0						; is Sonic alone?
 		bne.s	.notsa								; if not, branch
-		move.l	#Obj_Continue_SonicAlone,(Player_1+address).w			; create Sonic alone
+		move.l	#Obj_Continue_SonicAlone,(Player_1+code_addr).w			; create Sonic alone
 		bra.s	.main
 ; ---------------------------------------------------------------------------
 
 .notsa
-		move.l	#Obj_Continue_SonicWTails,(Player_1+address).w			; create Sonic and Tails
-		move.l	#Obj_Continue_TailsWSonic,(Player_2+address).w
+		move.l	#Obj_Continue_SonicWTails,(Player_1+code_addr).w		; create Sonic and Tails
+		move.l	#Obj_Continue_TailsWSonic,(Player_2+code_addr).w
 
 .main
-		move.l	#Obj_Continue_Knuckles,(Reserved_object_3+address).w		; create Knuckles for Sonic and Tails
+		move.l	#Obj_Continue_Knuckles,(Reserved_object_3+code_addr).w		; create Knuckles for Sonic and Tails
 
 		; create countdown object
 		jsr	(Create_New_Object).w
 		bne.s	.notfree
-		move.l	#Obj_Continue_Countdown,address(a1)
+		move.l	#Obj_Continue_Countdown,code_addr(a1)
 		move.w	a1,(Continue.countdown).w					; save parent
 
 		; create stars object
 		jsr	(Create_New_Object_4).w
 		bne.s	.notfree
-		move.l	#Obj_Continue_Stars,address(a1)
+		move.l	#Obj_Continue_Stars,code_addr(a1)
 
 .notfree
 
@@ -180,7 +180,7 @@ ContinueScreen:
 
 Obj_Continue_Countdown:
 		move.b	#9+1,(Continue.countdown_numbers).w				; set 10 seconds
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		move.b	(Ctrl_1_pressed).w,d0
@@ -208,7 +208,7 @@ Obj_Continue_Countdown:
 
 .pstart
 		bset	#3,state_flags(a0)						; set "press start" flag
-		move.l	#.return,address(a0)
+		move.l	#.return,code_addr(a0)
 
 .return
 		rts
@@ -225,7 +225,7 @@ Obj_Continue_SonicWTails:
 
 		; init
 		movem.l	ObjDat_Continue_SonicWTails(pc),d0-d3				; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	#$80+((screen_width/2)-8),x_pos(a0)
 		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
@@ -246,7 +246,7 @@ Obj_Continue_SonicWTails:
 ; ---------------------------------------------------------------------------
 
 .pstart
-		move.l	#.rotation,address(a0)
+		move.l	#.rotation,code_addr(a0)
 		move.l	#Map_Sonic,mappings(a0)
 		move.w	#make_art_tile(ArtTile_Player_1,0,FALSE),art_tile(a0)
 		clr.b	(Player_prev_frame).w
@@ -282,7 +282,7 @@ Obj_Continue_SonicWTails:
 ; ---------------------------------------------------------------------------
 
 .setrun
-		move.l	#.waitrun,address(a0)
+		move.l	#.waitrun,code_addr(a0)
 		move.w	#bytes_to_word(0,1),anim(a0)
 		move.w	#$600,ground_vel(a0)
 		move.w	#(1<<4)-1,wait_timer(a0)					; set wait
@@ -306,7 +306,7 @@ Obj_Continue_SonicWTails:
 ; ---------------------------------------------------------------------------
 
 .startrun
-		move.l	#.run,address(a0)
+		move.l	#.run,code_addr(a0)
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
 
@@ -319,7 +319,7 @@ Obj_Continue_SonicWTails:
 ; ---------------------------------------------------------------------------
 
 .stoprun
-		move.l	#.draw,address(a0)
+		move.l	#.draw,code_addr(a0)
 		bra.s	.draw
 
 ; ---------------------------------------------------------------------------
@@ -334,7 +334,7 @@ Obj_Continue_SonicAlone:
 
 		; init
 		movem.l	ObjDat_Continue_SonicAlone(pc),d0-d3				; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	#$80+(screen_width/2),x_pos(a0)
 		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
@@ -353,7 +353,7 @@ Obj_Continue_SonicAlone:
 ; ---------------------------------------------------------------------------
 
 .setrun
-		move.l	#.waitrun,address(a0)
+		move.l	#.waitrun,code_addr(a0)
 		move.b	#$BA,mapping_frame(a0)
 		move.w	#(1<<3)-1,wait_timer(a0)					; set wait
 		bra.s	.draw
@@ -362,7 +362,7 @@ Obj_Continue_SonicAlone:
 .waitrun
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.draw
-		move.l	#.run,address(a0)
+		move.l	#.run,code_addr(a0)
 		move.b	#$21,mapping_frame(a0)
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
@@ -377,7 +377,7 @@ Obj_Continue_SonicAlone:
 
 .stoprun
 		move.b	#1,(Continue.routine).w						; set screen routine
-		move.l	#.draw,address(a0)
+		move.l	#.draw,code_addr(a0)
 		bra.s	.draw
 
 ; ---------------------------------------------------------------------------
@@ -392,7 +392,7 @@ Obj_Continue_TailsWSonic:
 
 		; init
 		movem.l	ObjDat_Continue_TailsWSonic(pc),d0-d3				; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	#$80+((screen_width/2)+12),x_pos(a0)
 		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
@@ -413,18 +413,18 @@ Obj_Continue_TailsWSonic:
 ; ---------------------------------------------------------------------------
 
 .pstart
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 		addq.w	#4,y_pos(a0)							; fix pos
 
 		; create tails
-		move.l	#Obj_Tails_Tail,(Tails_tails+address).w
+		move.l	#Obj_Tails_Tail,(Tails_tails+code_addr).w
 		move.w	a0,(Tails_tails+parent).w
 
 		; create fix for tails
-		move.l	#Obj_Continue_Tails_tails_Fix,(Dust+address).w
+		move.l	#Obj_Continue_Tails_tails_Fix,(Dust+code_addr).w
 
 .main
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 		move.l	#Map_Tails,mappings(a0)
 
 		; set priority and art_tile
@@ -443,7 +443,7 @@ Obj_Continue_TailsWSonic:
 .wait
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.anim
-		move.l	#.waitrun,address(a0)
+		move.l	#.waitrun,code_addr(a0)
 
 		; set run
 		clr.b	anim(a0)
@@ -453,7 +453,7 @@ Obj_Continue_TailsWSonic:
 .waitrun
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.anim
-		move.l	#.run,address(a0)
+		move.l	#.run,code_addr(a0)
 
 .anim
 		jsr	(Animate_Tails).l
@@ -499,7 +499,7 @@ Obj_Continue_Knuckles:
 		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
 		; next
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 		bra.s	.main
 ; ---------------------------------------------------------------------------
 
@@ -507,7 +507,7 @@ Obj_Continue_Knuckles:
 
 		; init
 		movem.l	ObjDat_Continue_Knuckles(pc),d0-d3				; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	#$80+((screen_width/2)-4),x_pos(a0)
 		move.w	#$80+((screen_height/2)+48),y_pos(a0)
 
@@ -516,17 +516,17 @@ Obj_Continue_Knuckles:
 		movea.w	(Continue.countdown).w,a1
 		btst	#3,state_flags(a1)						; is Start was pressed?
 		beq.s	.wait								; if not, branch
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 
 		; create egg robo
 		jsr	(Create_New_Object).w
 		bne.s	.wait
-		move.l	#Obj_Continue_EggRobo,address(a1)
+		move.l	#Obj_Continue_EggRobo,code_addr(a1)
 
 .wait
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.anim
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .anim
 		lea	AniRaw_5CBC0(pc),a1
@@ -536,7 +536,7 @@ Obj_Continue_Knuckles:
 
 .main
 		movem.l	ObjDat_Continue_Knuckles2(pc),d0-d3				; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.b	#7,mapping_frame(a0)
 		clr.b	anim_frame_timer(a0)
 		clr.b	anim_frame(a0)
@@ -554,7 +554,7 @@ Obj_Continue_Knuckles:
 ; ---------------------------------------------------------------------------
 
 .pstart
-		move.l	#.run,address(a0)
+		move.l	#.run,code_addr(a0)
 
 .run
 		move.w	x_pos(a0),d0
@@ -574,7 +574,7 @@ Obj_Continue_Knuckles:
 ; ---------------------------------------------------------------------------
 
 .stoprun
-		move.l	#.draw,address(a0)
+		move.l	#.draw,code_addr(a0)
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w				; is Knuckles?
 		blo.s	.draw								; if not, branch
 		move.b	#1,(Continue.routine).w						; set screen routine
@@ -637,7 +637,7 @@ Obj_Continue_EggRobo:
 		lea	ObjDat_919A6(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.b	#render_flags.y_flip,render_flags(a0)				; flipx
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 		move.w	#$80-32,x_pos(a0)
 		move.w	#$80+(screen_height/2),y_pos(a0)
 		move.w	#$600,x_vel(a0)
@@ -677,7 +677,7 @@ Obj_Continue_EggRobo_Legs:
 		; init
 		lea	ObjDat3_919BE(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 		; check
 		movea.w	parent3(a0),a1							; a1=parent object
@@ -712,7 +712,7 @@ Obj_Continue_EggRobo_Gun:
 		; init
 		lea	ObjDat3_919C4(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 		; check
 		movea.w	parent3(a0),a1							; a1=parent object
@@ -771,7 +771,7 @@ Obj_Continue_Stars:
 
 		; init
 		movem.l	ObjDat_Continue_Stars(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.b	#7,mapping_frame(a0)
 		move.w	#$80+(screen_width/2),x_pos(a0)
 		move.w	#($80+(screen_height/2))+5,y_pos(a0)
@@ -800,7 +800,7 @@ Continue_LoadIcons:
 		bne.s	.return
 
 .loop
-		move.l	#Obj_Continue_Icons,address(a1)
+		move.l	#Obj_Continue_Icons,code_addr(a1)
 		move.b	d2,subtype(a1)
 		addq.w	#2,d2
 
@@ -823,7 +823,7 @@ Obj_Continue_Tails_tails_Icons:
 
 		; init
 		movem.l	ObjDat_Continue_Tails_tails_Icons(pc),d0-d3			; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 
 .main
 		lea	AniRaw_5CBBB(pc),a1
@@ -842,7 +842,7 @@ Obj_Continue_Icons:
 
 		; init
 		movem.l	ObjDat_Continue_Icons(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 
 		; check
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
@@ -861,7 +861,7 @@ Obj_Continue_Icons:
 		addq.w	#1,d0
 
 .skip
-		movea.l	aniraw_ptr(a0),a1
+		movea.l	animations(a0),a1
 		move.b	(a1,d0.w),mapping_frame(a0)
 		jmp	(Draw_Sprite).w
 
@@ -899,7 +899,7 @@ Continue_Icons_LoadAnim:
 .notTails
 		add.w	d4,d4
 		add.w	d4,d4
-		move.l	.index(pc,d4.w),aniraw_ptr(a0)
+		move.l	.index(pc,d4.w),animations(a0)
 		rts
 ; ---------------------------------------------------------------------------
 

@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 chopper.origY				ds.w 1						; original y-axis position (2 bytes)
 
@@ -19,7 +19,7 @@ Obj_Chopper:
 		jsr	(SetUp_ObjAttributes).w
 		move.w	#-$700,y_vel(a0)						; set vertical speed
 		move.w	y_pos(a0),chopper.origY(a0)					; save original position
-		move.l	#.chgspeed,address(a0)
+		move.l	#.chgspeed,code_addr(a0)
 
 .chgspeed
 		move.w	chopper.origY(a0),d0

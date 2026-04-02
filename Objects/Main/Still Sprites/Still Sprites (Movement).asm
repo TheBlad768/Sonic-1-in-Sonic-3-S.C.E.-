@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 movementstillsprite.origX		ds.w 1						; original x-axis position (2 bytes)
 movementstillsprite.origY		ds.w 1						; original y-axis position (2 bytes)
@@ -40,7 +40,7 @@ Obj_MovementStillSprite:
 		movea.l	.load(pc,d0.w),a1
 
 		; draw
-		move.l	a1,address(a0)
+		move.l	a1,code_addr(a0)
 		jmp	(a1)
 ; ---------------------------------------------------------------------------
 

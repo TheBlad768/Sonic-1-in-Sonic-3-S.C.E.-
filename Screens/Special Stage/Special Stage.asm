@@ -200,7 +200,7 @@ SpecialStageScreen:
 		bsr.w	SS_Load								; load SS layout data
 
 		; load character
-		move.l	#Obj_PlayerSpecial,(Player_1+address).w				; load special stage player object
+		move.l	#Obj_PlayerSpecial,(Player_1+code_addr).w			; load special stage player object
 
 		; update palette
 		lea	(VDP_data_port).l,a6						; load VDP data address to a6
@@ -395,7 +395,7 @@ SpecialStageScreen:
 		move.l	#VInt_SpecialStageResults,(V_int_ptr).w				; set VInt pointer
 
 		; load object
-		move.l	#Obj_SpecialStage_Results,(Dynamic_object_RAM+(object_size*29)+address).w	; load results screen object
+		move.l	#Obj_SpecialStage_Results,(Dynamic_object_RAM+(object_size*29)+code_addr).w	; load results screen object
 		jsr	(Pal_FadeFromWhite).w
 
 .results
@@ -917,7 +917,7 @@ Process_SSSprites:
 
 		; player
 		lea	(Player_1).w,a0
-		move.l	address(a0),d0
+		move.l	code_addr(a0),d0
 		beq.s	.nextslot
 		movea.l	d0,a1
 		jsr	(a1)
@@ -926,7 +926,7 @@ Process_SSSprites:
 
 		; tails for Tails
 		lea	(Tails_tails).w,a0
-		move.l	address(a0),d0
+		move.l	code_addr(a0),d0
 		beq.s	SS_RemoveCollectedItem.return
 		movea.l	d0,a1
 		jmp	(a1)

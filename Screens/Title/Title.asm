@@ -90,7 +90,7 @@ TitleScreen:
 
 		; create
 		lea	(Reserved_object_3).w,a1					; load "SONIC TEAM PRESENTS" object
-		move.l	#Draw_Sprite,address(a1)
+		move.l	#Draw_Sprite,code_addr(a1)
 		move.l	#Map_TText,mappings(a1)
 		move.w	#make_art_tile($540,0,FALSE),art_tile(a1)
 		move.w	#$120,x_pos(a1)
@@ -171,20 +171,20 @@ TitleScreen:
 .askip
 
 		; set
-		move.l	#Obj_TitleSonic,(Player_2+address).w				; load big Sonic object
-		move.l	#Obj_TitlePSB,(Reserved_object_3+address).w			; load "PRESS START BUTTON" object
+		move.l	#Obj_TitleSonic,(Player_2+code_addr).w				; load big Sonic object
+		move.l	#Obj_TitlePSB,(Reserved_object_3+code_addr).w			; load "PRESS START BUTTON" object
 
 		; check console region
 		tst.b	(Graphics_flags).w
 		bpl.s	.skipTM								; remove the TM from the title logo if on a japan console
 
 		; create "TM" object
-		lea	(Breathing_bubbles+address).w,a1
+		lea	(Breathing_bubbles+code_addr).w,a1
 		move.l	#Map_TTM,mappings(a1)
 		move.b	#setBit(render_flags.static_mappings),render_flags(a1)		; set static mapping
 		move.w	#$178,x_pos(a1)
 		move.w	#$F8,y_pos(a1)
-		move.l	#Draw_Sprite,address(a1)
+		move.l	#Draw_Sprite,code_addr(a1)
 
 .skipTM
 		music	mus_Title
@@ -378,12 +378,12 @@ Obj_TitleSonic:
 		move.w	#$80+120,x_pos(a0)
 		move.w	#$80+94,y_pos(a0)						; position is fixed to screen
 		move.w	#30-1,wait_timer(a0)						; set time delay to 0.5 seconds
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 
 		; create sprite mask
 		jsr	(Create_New_Object).w
 		bne.s	.wait
-		move.l	#Obj_SpriteMask2,address(a1)
+		move.l	#Obj_SpriteMask2,code_addr(a1)
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	#$80+144,y_pos(a1)
 
@@ -399,7 +399,7 @@ Obj_TitleSonic:
 .wait
 		subq.w	#1,wait_timer(a0)						; subtract 1 from time delay
 		bpl.s	.return								; if time remains, branch
-		move.l	#.move,address(a0)
+		move.l	#.move,code_addr(a0)
 
 .return
 		rts
@@ -409,7 +409,7 @@ Obj_TitleSonic:
 		subq.w	#8,y_pos(a0)							; move Sonic up
 		cmpi.w	#$80+22,y_pos(a0)						; has Sonic reached final position?
 		bne.s	.dplc								; if not, branch
-		move.l	#.anim,address(a0)
+		move.l	#.anim,code_addr(a0)
 
 .anim
 		lea	Ani_TSon(pc),a1
@@ -428,7 +428,7 @@ Obj_TitleSonic:
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 titlepsb.counter			ds.w 1						; (2 bytes)
 
@@ -444,12 +444,12 @@ Obj_TitlePSB:
 		move.w	#$D8,x_pos(a0)
 		move.w	#$130,y_pos(a0)
 		move.w	#(1<<5)-1,wait_timer(a0)					; set wait
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		subq.w	#1,wait_timer(a0)						; wait
 		bpl.s	.anim
-		move.l	#.cstart,address(a0)
+		move.l	#.cstart,code_addr(a0)
 
 .cstart
 		bclr	#button_start,(Ctrl_1_pressed).w				; is Start pressed? ; clear Start button so we don't exit the title screen early
@@ -485,14 +485,14 @@ Obj_TitlePSB:
 		; next
 		sfx	sfx_StarPost
 		move.w	#(1<<4)-1,wait_timer(a0)					; set wait
-		move.l	#.woptions,address(a0)
+		move.l	#.woptions,code_addr(a0)
 		bra.s	.options2
 ; ---------------------------------------------------------------------------
 
 .woptions
 		subq.w	#1,wait_timer(a0)						; wait
 		bpl.s	.return
-		move.l	#.options,address(a0)
+		move.l	#.options,code_addr(a0)
 		st	(Title.end).w							; set exit flag from current screen
 
 .options

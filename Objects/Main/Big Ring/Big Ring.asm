@@ -14,8 +14,8 @@ Obj_BigRing:
 		; init
 		lea	ObjSlot_BigRing(pc),a1
 		jsr	(SetUp_ObjAttributesSlotted).w					; only one special stage ring can be loaded at one time, period
-		move.l	#.main,address(a0)
-		move.l	#AniRaw_BigRing,aniraw_ptr(a0)
+		move.l	#.main,code_addr(a0)
+		move.l	#AniRaw_BigRing,animations(a0)
 
 		; check
 		tst.b	subtype(a0)
@@ -70,7 +70,7 @@ Obj_BigRing:
 		beq.s	.alt								; if chaos emeralds are collected, branch
 
 		; next
-		move.l	#BigRing_Animate,address(a0)
+		move.l	#BigRing_Animate,code_addr(a0)
 
 		; p1
 		lea	(Player_1).w,a1
@@ -86,7 +86,7 @@ Obj_BigRing:
 
 		; p2
 		lea	(Player_2).w,a1
-		tst.l	address(a1)							; is the player RAM empty?
+		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.create								; if yes, branch
 		st	(Player_prev_frame_P2).w
 		clr.b	mapping_frame(a1)
@@ -98,7 +98,7 @@ Obj_BigRing:
 		; create flash
 		jsr	(Create_New_Object).w
 		bne.s	BigRing_Display
-		move.l	#Obj_BigRing_Flash,address(a1)
+		move.l	#Obj_BigRing_Flash,code_addr(a1)
 		move.w	a0,parent3(a1)							; set ring as parent
 
 		; next
@@ -172,9 +172,9 @@ Obj_BigRing_Flash:
 		; init
 		lea	ObjSlot_BigRingFlash(pc),a1
 		jsr	(SetUp_ObjAttributesSlotted).w
-		move.l	#.main,address(a0)
-		move.l	#.finished,jump_ptr(a0)
-		move.l	#AniRaw_BigRingFlash,aniraw_ptr(a0)
+		move.l	#.main,code_addr(a0)
+		move.l	#.finished,wait_addr(a0)
+		move.l	#AniRaw_BigRingFlash,animations(a0)
 
 		; copy
 		movea.w	parent3(a0),a1							; a1=parent object
@@ -207,9 +207,9 @@ Obj_BigRing_Flash:
 ; ---------------------------------------------------------------------------
 
 .finished
-		move.l	#Obj_Wait,address(a0)						; this is performed when animation is finished
+		move.l	#Obj_Wait,code_addr(a0)						; this is performed when animation is finished
 		move.w	#$20,wait_timer(a0)
-		move.l	#.goSS,jump_ptr(a0)
+		move.l	#.goSS,wait_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 

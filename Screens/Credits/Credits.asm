@@ -126,10 +126,10 @@ CreditsScreen:
 		; create objects
 		jsr	(Create_New_Object).w
 		bne.s	.fadefrom
-		move.l	#Obj_CreditsRobotnik,address(a1)
+		move.l	#Obj_CreditsRobotnik,code_addr(a1)
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
 		blo.s	.fadefrom
-		move.l	#Obj_CreditsEggRobo,address(a1)
+		move.l	#Obj_CreditsEggRobo,code_addr(a1)
 
 .fadefrom
 		jsr	(Process_Objects).w
@@ -374,7 +374,7 @@ Obj_CreditsRobotnik:
 
 		; init
 		movem.l	ObjDat_CreditsRobotnik(pc),d0-d3				; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	#screen_width/2,x_pos(a0)
 		move.w	#screen_height/2,y_pos(a0)
 		move.w	#(20*60)-1,wait_timer(a0)
@@ -385,7 +385,7 @@ Obj_CreditsRobotnik:
 
 		; Try Again
 		move.b	#5,anim_frame_timer(a0)
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 		bsr.w	CreditsRobotnik_LoadEmeralds
 
 .main
@@ -396,13 +396,13 @@ Obj_CreditsRobotnik:
 		st	crdre_drop(a0)
 
 		; next
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 
 .wait
 		subq.b	#1,anim_frame_timer(a0)
 		bpl.s	.draw
 		addq.b	#5+1,anim_frame_timer(a0)
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 		; set frame
 		clr.b	mapping_frame(a0)
@@ -464,10 +464,10 @@ CreditsRobotnik_LoadEmeralds:
 
 .loop
 		tst.b	(a2)+								; was the emerald collected?
-		bne.s	.next							; if yes, branch
+		bne.s	.next								; if yes, branch
 
 		; load emerald object
-		move.l	#Obj_CreditsRobotnik_Emeralds,address(a1)
+		move.l	#Obj_CreditsRobotnik_Emeralds,code_addr(a1)
 		move.w	a0,parent3(a1)							; save Robotnik address to emeralds
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
@@ -514,7 +514,7 @@ Obj_CreditsRobotnik_Emeralds:
 
 		; init
 		movem.l	ObjDat_CreditsRobotnik_Emeralds(pc),d0-d3			; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	x_pos(a0),credre_origX(a0)
 		moveq	#-12,d0
 		add.w	y_pos(a0),d0
@@ -528,7 +528,7 @@ Obj_CreditsRobotnik_Emeralds:
 		movea.w	parent3(a0),a1							; load Robotnik address
 		tst.b	crdre_drop(a1)
 		beq.s	.circular
-		move.l	#.move,address(a0)
+		move.l	#.move,code_addr(a0)
 
 		; set move
 		moveq	#2,d0
@@ -560,7 +560,7 @@ Obj_CreditsRobotnik_Emeralds:
 .clrs
 		clr.b	credre_speed(a0)
 		move.w	credre_btimer(a0),credre_timer(a0)
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 		; check
 		tst.b	subtype(a0)							; is first emerald?
@@ -601,19 +601,19 @@ Obj_CreditsEggRobo:
 
 		; init
 		movem.l	ObjDat_CreditsEggRobo(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	#screen_width/2,x_pos(a0)
 		move.w	#screen_height/2,y_pos(a0)
 
 		; Try Again
-		move.l	#AniRaw_CreditsEggRoboEnd,aniraw_ptr(a0)
+		move.l	#AniRaw_CreditsEggRoboEnd,animations(a0)
 		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
 		bne.s	.createemrl							; if not, branch
 
 		; END
-		move.l	#AniRaw_CreditsEggRobo,aniraw_ptr(a0)
+		move.l	#AniRaw_CreditsEggRobo,animations(a0)
 		move.w	#(screen_height/2)+32,y_pos(a0)
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 		lea	Child1_CreditsEggRobo_Misc(pc),a2
 		jsr	(CreateChild1_Normal).w
 
@@ -621,13 +621,13 @@ Obj_CreditsEggRobo:
 		btst	#2,state_flags(a0)
 		beq.s	.draw
 		move.w	#$1F,wait_timer(a0)
-		move.l	#.rise,address(a0)
+		move.l	#.rise,code_addr(a0)
 
 .rise
 		subq.w	#1,y_pos(a0)
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.draw
-		move.l	#.animate,address(a0)
+		move.l	#.animate,code_addr(a0)
 
 .riseskip
 		move.w	#(20*60)-1,wait_timer(a0)
@@ -697,10 +697,10 @@ CreditsEggRobo_LoadEmeralds:
 
 .loop
 		tst.b	(a2)+								; was the emerald collected?
-		bne.s	.next							; if yes, branch
+		bne.s	.next								; if yes, branch
 
 		; load emerald object
-		move.l	#Obj_CreditsEggRobo_Emeralds,address(a1)
+		move.l	#Obj_CreditsEggRobo_Emeralds,code_addr(a1)
 		move.w	a0,parent3(a1)							; save Egg Robo address to emeralds
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
@@ -737,7 +737,7 @@ Obj_CreditsEggRobo_Emeralds:
 
 		; init
 		movem.l	ObjDat_CreditsEggRobo_Emeralds(pc),d0-d3			; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	x_pos(a0),cere_origX(a0)
 		moveq	#-72,d0
 		add.w	y_pos(a0),d0
@@ -776,7 +776,7 @@ Obj_CreditsEggRobo_ScrapMetal:
 
 		; init
 		movem.l	ObjDat_CreditsEggRobo_ScrapMetal(pc),d0-d3			; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.b	#4,mapping_frame(a0)
 
 		; draw
@@ -794,18 +794,18 @@ Obj_CreditsEggRobo_Eyes:
 
 		; init
 		movem.l	ObjDat_CreditsEggRobo_Eyes(pc),d0-d3				; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.b	#2,mapping_frame(a0)
 		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
 		bne.s	.setframe							; if not, branch
 		move.w	#(2*60)-1,wait_timer(a0)
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.return
-		move.l	#.animate,address(a0)
-		move.l	#.setf,jump_ptr(a0)
+		move.l	#.animate,code_addr(a0)
+		move.l	#.setf,wait_addr(a0)
 
 .return
 		rts
@@ -818,7 +818,7 @@ Obj_CreditsEggRobo_Eyes:
 ; ---------------------------------------------------------------------------
 
 .setf
-		move.l	#.refresh,address(a0)
+		move.l	#.refresh,code_addr(a0)
 		movea.w	parent3(a0),a1							; a1=parent object
 		bset	#2,state_flags(a1)
 		rts

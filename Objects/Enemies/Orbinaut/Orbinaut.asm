@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 orbinaut.rotation			ds.b 1						; (1 byte)
 
@@ -48,10 +48,10 @@ Obj_Orbinaut:
 .notslz
 
 		; set
-		move.l	#.chksonic,address(a0)
+		move.l	#.chksonic,code_addr(a0)
 		tst.b	subtype(a0)
 		beq.s	.load
-		move.l	#.move,address(a0)
+		move.l	#.move,code_addr(a0)
 
 .load
 		lea	Child6_Orbinaut_Orb(pc),a2
@@ -68,7 +68,7 @@ Obj_Orbinaut:
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.s	.draw								; if yes, branch
 		addq.b	#1,anim(a0)							; use "angry" animation
-		move.l	#.draw,address(a0)
+		move.l	#.draw,code_addr(a0)
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
 
@@ -100,7 +100,7 @@ Obj_Orbinaut_Orb:
 		lea	ObjDat3_Orbinaut_Orb(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
 		bset	#render_flags.static_mappings,render_flags(a0)			; set flag to "static mappings flag"
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		movea.w	parent3(a0),a1							; load orbinaut address
@@ -109,12 +109,12 @@ Obj_Orbinaut_Orb:
 		tst.b	circular_angle(a0)						; is spikeorb directly under the orbinaut?
 		bne.s	.circle								; if not, branch
 		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
-		move.l	#.move,address(a0)
+		move.l	#.move,code_addr(a0)
 
 		; check
 		subq.b	#1,count(a1)							; are the orbs over?
 		bpl.s	.fire								; if not, branch
-		move.l	#Obj_Orbinaut.move,address(a1)
+		move.l	#Obj_Orbinaut.move,code_addr(a1)
 
 .fire
 		move.w	#-$200,x_vel(a0)						; move orb to the left (quickly)

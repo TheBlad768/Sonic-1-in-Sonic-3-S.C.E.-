@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 spinningplatform.timer			ds.w 1						; time counter until change (2 bytes)
 spinningplatform.delay			ds.w 1						; time between changes (general) (2 bytes)
@@ -36,7 +36,7 @@ Obj_SpinningPlatform:
 		jsr	(SetUp_ObjAttributes).w
 
 		; next
-		move.l	#.trapdoor,address(a0)
+		move.l	#.trapdoor,code_addr(a0)
 		bra.s	.trapdoor
 ; ---------------------------------------------------------------------------
 
@@ -64,7 +64,7 @@ Obj_SpinningPlatform:
 		jsr	(SetUp_ObjAttributes).w
 
 		; next
-		move.l	#.spinningplatform,address(a0)
+		move.l	#.spinningplatform,code_addr(a0)
 		bra.s	.spinningplatform
 
 ; ---------------------------------------------------------------------------

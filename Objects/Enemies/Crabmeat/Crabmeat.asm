@@ -7,7 +7,7 @@ _CRABMEAT_SLOPE_ =			0						; if 1, enable slope animation
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 crabmeat.timer				ds.w 1						; (2 bytes)
 crabmeat.mode				ds.b 1						; (1 byte)
@@ -22,7 +22,7 @@ Obj_Crabmeat:
 		lea	ObjDat_Crabmeat(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.w	#bytes_to_word(32/2,32/2),y_radius(a0)				; set y_radius and x_radius
-		move.l	#.checkfall,address(a0)
+		move.l	#.checkfall,code_addr(a0)
 
 .checkfall
 		MoveSpriteYOnly
@@ -36,13 +36,13 @@ Obj_Crabmeat:
 	endif
 
 		clr.w	y_vel(a0)
-		move.l	#.waittofire,jump_ptr(a0)
-		move.l	#.action,address(a0)
+		move.l	#.waittofire,wait_addr(a0)
+		move.l	#.action,code_addr(a0)
 
 .action
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 		lea	Ani_Crabmeat(pc),a1
 		jsr	(Animate_SpriteNoSST).w
@@ -63,7 +63,7 @@ Obj_Crabmeat:
 		bne.s	.fire
 
 .movecrab
-		move.l	#.walkonfloor,jump_ptr(a0)
+		move.l	#.walkonfloor,wait_addr(a0)
 		move.w	#128-1,crabmeat.timer(a0)					; set time delay to approx 2 seconds
 		move.w	#$80,x_vel(a0)							; move Crabmeat to the right
 
@@ -133,7 +133,7 @@ Obj_Crabmeat:
 ; ---------------------------------------------------------------------------
 
 .chgdirection
-		move.l	#.waittofire,jump_ptr(a0)
+		move.l	#.waittofire,wait_addr(a0)
 		move.w	#60-1,crabmeat.timer(a0)
 		clr.w	x_vel(a0)
 
@@ -196,7 +196,7 @@ Obj_Crabmeat_Missile:
 		lea	ObjDat3_Crabmeat_Missile(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
 		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 		; set x_vel and y_vel
 		move.l	#words_to_long(-$100,-$400),x_vel(a0)				; x_vel and y_vel

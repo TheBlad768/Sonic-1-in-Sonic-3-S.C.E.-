@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 staircase.origX				ds.w 1						; original x-axis position (2 bytes)
 staircase.origY				ds.w 1						; original y-axis position (2 bytes)
@@ -60,7 +60,7 @@ Obj_Staircase:
 .create
 
 		; create staircase object
-		move.l	#.solid,address(a1)
+		move.l	#.solid,code_addr(a1)
 
 .load
 		move.l	#Map_Staircase,mappings(a1)
@@ -82,7 +82,7 @@ Obj_Staircase:
 		dbne	d1,.create
 
 		; next
-		move.l	#.move,address(a0)
+		move.l	#.move,code_addr(a0)
 
 .move
 		moveq	#7,d0

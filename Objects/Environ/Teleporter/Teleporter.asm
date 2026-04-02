@@ -40,7 +40,7 @@ Obj_Teleport:
 		jsr	(Obj_WaitOffscreen).w
 
 		; set
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 		; init
 		moveq	#$F,d0
@@ -80,7 +80,7 @@ Obj_Teleport:
 		; player 2
 		lea	teleport_p2_attached(a0),a4
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is object RAM slot empty?
+		tst.l	code_addr(a1)							; is object RAM slot empty?
 		beq.s	.skipp2								; if yes, branch
 		bsr.s	.check
 

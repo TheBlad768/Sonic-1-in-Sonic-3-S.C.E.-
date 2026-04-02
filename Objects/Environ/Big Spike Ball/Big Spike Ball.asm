@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bigspikeball.origX			ds.w 1						; original x-axis position (2 bytes)
 bigspikeball.origY			ds.w 1						; original y-axis position (2 bytes)
@@ -19,7 +19,7 @@ Obj_BigSpikeBall:
 
 		; init
 		movem.l	ObjDat_BigSpikeBall(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.b	#6|collision_flags.npc.hurt,collision_flags(a0)
 		move.w	x_pos(a0),bigspikeball.origX(a0)
 		move.w	y_pos(a0),bigspikeball.origY(a0)

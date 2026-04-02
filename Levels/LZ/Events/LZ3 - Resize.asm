@@ -44,7 +44,7 @@ LZ3_Resize:
 		move.b	d0,(Current_music+1).w						; save music
 		jsr	(Create_New_Object).w
 		bne.s	.return
-		move.l	#Obj_BossWater,address(a1)
+		move.l	#Obj_BossWater,code_addr(a1)
 		move.w	#$2010,x_pos(a1)
 		move.w	#$5C0,y_pos(a1)
 

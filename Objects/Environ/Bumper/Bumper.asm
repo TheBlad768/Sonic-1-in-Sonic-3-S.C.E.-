@@ -13,7 +13,7 @@ Obj_Bumper:
 
 		; init
 		movem.l	ObjDat_Bumper(pc),d0-d3						; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.b	#$17|collision_flags.npc.special,collision_flags(a0)
 
 .hit
@@ -26,7 +26,7 @@ Obj_Bumper:
 
 .p2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.reset								; if yes, branch
 		bclr	#1,collision_property(a0)					; has Tails touched the bumper?
 		beq.s	.reset								; if not, branch

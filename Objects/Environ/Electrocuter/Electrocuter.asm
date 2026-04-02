@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 electrocuter.freq			ds.w 1						; frequency (2 bytes)
 
@@ -25,7 +25,7 @@ Obj_Electrocuter:
 		lea	ObjDat_Electrocuter(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bset	#shield_reaction.lightning_shield,shield_reaction(a0)
-		move.l	#.shock,address(a0)
+		move.l	#.shock,code_addr(a0)
 
 .shock
 		move.w	(Level_frame_counter).w,d0

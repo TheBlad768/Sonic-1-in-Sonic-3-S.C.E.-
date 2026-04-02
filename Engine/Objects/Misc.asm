@@ -39,7 +39,7 @@ SetUp_ObjAttributesSlotted:
 
 		; delete object
 		moveq	#0,d0
-		move.l	d0,address(a0)
+		move.l	d0,code_addr(a0)
 		move.l	d0,x_pos(a0)
 		move.l	d0,y_pos(a0)
 		move.b	d0,render_flags(a0)
@@ -235,7 +235,7 @@ Go_CheckPlayerRelease:
 Obj_Song_Fade_Transition:
 		music	mus_FadeOut							; fade out music
 		move.w	#(2*60)-30,wait_timer(a0)
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 
 .return
 		rts
@@ -254,7 +254,7 @@ Obj_Song_Fade_Transition:
 Obj_Song_Fade_ToLevelMusic:
 		music	mus_FadeOut							; fade out music
 		move.w	#2*60,wait_timer(a0)
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 
 .return
 		rts
@@ -352,7 +352,7 @@ EnemyDefeat_Score:
 		move.w	#10,explosion.bonus_counter(a0)
 
 .notreachedlimit2
-		move.l	#Obj_Explosion,address(a0)					; change object to explosion
+		move.l	#Obj_Explosion,code_addr(a0)					; change object to explosion
 		bra.w	HUD_AddToScore
 
 ; =============== S U B R O U T I N E =======================================
@@ -467,7 +467,7 @@ Load_LevelResults:
 		; create
 		bsr.w	Create_New_Object
 		bne.s	.return
-		move.l	#Obj_LevelResults,address(a1)
+		move.l	#Obj_LevelResults,code_addr(a1)
 
 .return
 		rts
@@ -546,7 +546,7 @@ Player_Load_PLC:
 Player_Load_PLC2:
 		move.w	a0,-(sp)							; save the register to the stack
 		movea.w	a1,a0
-		tst.l	address(a0)							; is player RAM empty?
+		tst.l	code_addr(a0)							; is player RAM empty?
 		beq.s	.exit								; if yes, branch
 		moveq	#0,d0
 		move.b	character_id(a0),d0
@@ -591,7 +591,7 @@ Wait_NewDelay:
 		move.w	#(2*60)-1,wait_timer(a0)
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jmp	(a1)
 
 ; =============== S U B R O U T I N E =======================================
@@ -609,12 +609,12 @@ Wait_FadeToLevelMusic:
 		; create
 		bsr.w	Create_New_Object
 		bne.s	.notfree
-		move.l	#Obj_Song_Fade_ToLevelMusic,address(a1)
+		move.l	#Obj_Song_Fade_ToLevelMusic,code_addr(a1)
 
 .notfree
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jmp	(a1)
 
 ; =============== S U B R O U T I N E =======================================
@@ -764,7 +764,7 @@ Offset_ObjectsDuringTransition:
 		moveq	#bytesToXcnt(Dynamic_object_RAM_end-Dynamic_object_RAM,object_size),d2
 
 .check
-		tst.l	address(a1)							; is this object slot occupied?
+		tst.l	code_addr(a1)							; is this object slot occupied?
 		beq.s	.nextobj							; if not, branch
 		btst	#render_flags.level,render_flags(a1)				; is this object using screen coordinates?
 		beq.s	.nextobj							; if not, branch

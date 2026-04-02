@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 superTailsBirds.timer			ds.b 1						; (1 byte)
 superTailsBirds.found			ds.b 1						; (1 byte)
@@ -30,7 +30,7 @@ Obj_SuperTailsBirds:
 		moveq	#.bcount-1,d1
 
 .bloop
-		move.l	#.init,address(a1)
+		move.l	#.init,code_addr(a1)
 		move.b	d0,superTailsBirds.angle(a1)
 		addi.b	#256/.bcount,d0							; 90 degrees
 		lea	next_object(a1),a1
@@ -40,7 +40,7 @@ Obj_SuperTailsBirds:
 
 		; init
 		movem.l	ObjDat_SuperTailsBirds(pc),d0-d3				; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 
 		; get xypos
 		move.w	(Player_1+x_pos).w,x_pos(a0)
@@ -70,7 +70,7 @@ Obj_SuperTailsBirds:
 .no_target
 		move.b	d0,superTailsBirds.found(a0)
 		move.b	#2*60,superTailsBirds.timer(a0)					; only search for enemies every two seconds (probably to reduce lag)
-		move.l	#SuperTailsBirds_FlyAway,address(a0)
+		move.l	#SuperTailsBirds_FlyAway,code_addr(a0)
 
 .still_super
 		bsr.s	SuperTailsBirds_GetDestination

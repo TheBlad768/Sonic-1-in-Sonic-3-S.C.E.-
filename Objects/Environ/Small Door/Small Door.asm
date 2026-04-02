@@ -13,14 +13,14 @@ Obj_AutoDoor:
 		move.w	#make_art_tile($470,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(64/2,16/2,priority_4),height_pixels(a0)	; set height, width and priority
-		move.l	#.openshut,address(a0)
+		move.l	#.openshut,code_addr(a0)
 
 .openshut
 		clr.b	anim(a0)							; use "closing" animation
 		lea	(Player_1).w,a1							; a1=character
 		bsr.s	.check
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.skipp2								; if yes, branch
 		bsr.s	.check
 

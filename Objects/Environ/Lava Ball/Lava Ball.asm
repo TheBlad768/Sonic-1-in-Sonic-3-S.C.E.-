@@ -33,7 +33,7 @@ Obj_LavaMaker:
 
 		; init
 		movem.l	ObjDat_LavaMaker(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 
 .makelava
 
@@ -49,7 +49,7 @@ Obj_LavaMaker:
 		; create lava ball object
 		jsr	(Create_New_Object_3).w
 		bne.s	.draw
-		move.l	#Obj_LavaBall,address(a1)					; load lava ball object
+		move.l	#Obj_LavaBall,code_addr(a1)					; load lava ball object
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		move.b	subtype(a0),subtype(a1)
@@ -63,7 +63,7 @@ Obj_LavaMaker:
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 lavaball.origY				ds.w 1						; original y-axis position (2 bytes)
 lavaball.boss_flag			ds.b 1						; (1 byte)
@@ -81,7 +81,7 @@ Obj_LavaBall:
 
 		; init
 		movem.l	ObjDat_LavaBall(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	y_pos(a0),lavaball.origY(a0)
 
 		; check
@@ -156,7 +156,7 @@ LavaBall_Type00:
 		move.w	lavaball.origY(a0),d0
 		cmp.w	y_pos(a0),d0							; has object fallen back to its original position?
 		bhs.s	.loc_E41E							; if not, branch
-		move.l	#Delete_Current_Object,address(a0)				; goto "LavaBall_Delete" routine
+		move.l	#Delete_Current_Object,code_addr(a0)				; goto "LavaBall_Delete" routine
 
 .loc_E41E
 		bclr	#status.npc.y_flip,status(a0)					; clear flipy

@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 ; players
 breakablepole_p1_attached =			*
@@ -31,7 +31,7 @@ Obj_BreakablePole:
 
 		; init
 		movem.l	ObjDat_BreakablePole(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.l	#words_to_long(24,36),breakablepole.ysub(a0)
 
 		; set time
@@ -64,7 +64,7 @@ Obj_BreakablePole:
 		; check p2
 		addq.w	#breakablepole_p2_attached-breakablepole_p1_attached,a2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.rcheck								; if yes, branch
 		move.w	(Ctrl_2).w,d1
 		moveq	#WindTunnel_holding_flag.player_2,d2
@@ -97,7 +97,7 @@ Obj_BreakablePole:
 
 		; draw
 		lea	(Sprite_OnScreen_Test).w,a1
-		move.l	a1,address(a0)
+		move.l	a1,code_addr(a0)
 		jmp	(a1)
 
 ; =============== S U B R O U T I N E =======================================

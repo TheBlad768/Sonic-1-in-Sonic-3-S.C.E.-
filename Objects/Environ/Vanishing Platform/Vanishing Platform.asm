@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 vanishplatform.timer			ds.w 1						; counter for time until event (2 bytes)
 vanishplatform.delay			ds.w 1						; time between events (general) (2 bytes)
@@ -22,7 +22,7 @@ Obj_VanishPlatform:
 		move.w	#make_art_tile($364,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(32/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 		; set wait
 		moveq	#$F,d0								; read only the 2nd digit
@@ -55,7 +55,7 @@ Obj_VanishPlatform:
 ; ---------------------------------------------------------------------------
 
 .jvanish
-		move.l	#.vanish,address(a0)
+		move.l	#.vanish,code_addr(a0)
 
 .vanish
 

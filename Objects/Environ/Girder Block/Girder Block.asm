@@ -5,7 +5,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 girder.origX				ds.w 1						; original x-axis position (2 bytes)
 girder.timer				ds.w 1						; duration for movement in a direction (2 bytes)
@@ -24,7 +24,7 @@ Obj_Girder:
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(48/2,192/2,priority_4),height_pixels(a0)	; set height, width and priority
 		move.w	x_pos(a0),girder.origX(a0)
-		move.l	#.action,address(a0)
+		move.l	#.action,code_addr(a0)
 		bsr.s	Gird_ChgMove
 
 .action

@@ -29,10 +29,10 @@ Obj_ScrapEggman:
 .notKnux
 		jsr	(SetUp_ObjAttributes).w
 		st	ros_prev_frame(a0)						; reset DPLC frame
-		move.l	#.checkxcam,address(a0)
+		move.l	#.checkxcam,code_addr(a0)
 		move.w	#$4F,wait_timer(a0)
-		move.l	#.wait,jump_ptr(a0)
-		move.l	#AniRaw_ScrapEggman_Stand,aniraw_ptr(a0)
+		move.l	#.wait,wait_addr(a0)
+		move.l	#AniRaw_ScrapEggman_Stand,animations(a0)
 
 		; load control desk
 		lea	Child1_ScrapEggman_ControlDesk(pc),a2
@@ -45,7 +45,7 @@ Obj_ScrapEggman:
 .checkxcam
 		cmpi.w	#$2240,(Camera_X_pos).w
 		blo.s	.anim
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		jsr	(Obj_Wait).w
@@ -70,14 +70,14 @@ Obj_ScrapEggman:
 
 .wait
 		move.w	#$4F,wait_timer(a0)
-		move.l	#.fset,jump_ptr(a0)
+		move.l	#.fset,wait_addr(a0)
 		lea	AniRaw_ScrapEggman_Laugh(pc),a1
 		jmp	(Set_Raw_Animation).w
 ; ---------------------------------------------------------------------------
 
 .fset
 		st	scrapeggman.block(a0)
-		move.l	#.return,jump_ptr(a0)
+		move.l	#.return,wait_addr(a0)
 
 .return
 		rts
@@ -98,7 +98,7 @@ Obj_ScrapEggman_ControlDesk:
 
 		; draw
 		lea	(Child_Draw_Sprite).w,a1
-		move.l	a1,address(a0)
+		move.l	a1,code_addr(a0)
 		jmp	(a1)
 
 ; ---------------------------------------------------------------------------
@@ -134,7 +134,7 @@ Obj_ScrapEggman_Block:
 		jsr	(SetUp_ObjAttributes).w
 		bset	#render_flags.static_mappings,render_flags(a0)			; set static mapping flag
 		bset	#status.npc.no_balancing,status(a0)				; disable player's balance animation
-		move.l	#.fwait,address(a0)
+		move.l	#.fwait,code_addr(a0)
 
 .fwait
 
@@ -142,7 +142,7 @@ Obj_ScrapEggman_Block:
 		movea.w	parent3(a0),a1							; a1=parent object
 		tst.b	scrapeggman.block(a1)
 		beq.w	.solid
-		move.l	#.twait,address(a0)
+		move.l	#.twait,code_addr(a0)
 
 .twait
 		subq.w	#1,wait_timer(a0)
@@ -214,7 +214,7 @@ Obj_ScrapEggman_BlockPieces:
 		; init
 		lea	ObjDat_ScrapEggman_BlockPieces(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.fall,address(a0)
+		move.l	#.fall,code_addr(a0)
 
 		; get subtype
 		moveq	#0,d0

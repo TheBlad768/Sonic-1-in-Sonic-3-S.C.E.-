@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 flamethrower.timer			ds.w 1						; (2 bytes)
 flamethrower.delay			ds.w 1						; (2 bytes)
@@ -34,7 +34,7 @@ Obj_Flamethrower:
 		lea	ObjDat_Flamethrower(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
-		move.l	#.action,address(a0)
+		move.l	#.action,code_addr(a0)
 		move.b	#10,flamethrower.frame(a0)
 
 		; check

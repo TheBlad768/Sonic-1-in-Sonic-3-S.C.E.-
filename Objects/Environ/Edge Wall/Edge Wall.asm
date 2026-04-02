@@ -19,10 +19,10 @@ Obj_EdgeWall:
 		move.b	subtype(a0),mapping_frame(a0)
 
 		; check
-		move.l	#Sprite_OnScreen_Test,address(a0)
+		move.l	#Sprite_OnScreen_Test,code_addr(a0)
 		bclr	#4,mapping_frame(a0)
 		bne.s	.draw
-		move.l	#.solid,address(a0)
+		move.l	#.solid,code_addr(a0)
 
 .solid
 		moveq	#(16/2)+$B,d1							; width

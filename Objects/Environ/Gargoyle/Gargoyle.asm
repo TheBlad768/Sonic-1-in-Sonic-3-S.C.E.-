@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 gargoyle.timer				ds.b 1						; (1 byte)
 gargoyle.delay				ds.b 1						; (1 byte)
@@ -25,7 +25,7 @@ Obj_Gargoyle:
 		; init
 		lea	ObjDat_Gargoyle(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.makefire,address(a0)
+		move.l	#.makefire,code_addr(a0)
 
 		; set
 		moveq	#$F,d0								; read only the 2nd digit
@@ -46,7 +46,7 @@ Obj_Gargoyle:
 		; create
 		jsr	(Create_New_Object_3).w
 		bne.s	.draw
-		move.l	#Obj_Gargoyle_FireBall,address(a1)				; load fireball object
+		move.l	#Obj_Gargoyle_FireBall,code_addr(a1)				; load fireball object
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),d0
 		addq.w	#8,d0
@@ -73,7 +73,7 @@ Obj_Gargoyle_FireBall:
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
 		sfx	sfx_Fireball							; play lava ball sound
-		move.l	#.anifire,address(a0)
+		move.l	#.anifire,code_addr(a0)
 		move.w	#$200,x_vel(a0)
 		btst	#status.npc.x_flip,status(a0)					; is gargoyle facing left?
 		bne.s	.anifire							; if not, branch

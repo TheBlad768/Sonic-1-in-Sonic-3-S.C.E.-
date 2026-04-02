@@ -120,7 +120,7 @@ Tails_Init_Continued:
 loc_137A4:
 		clr.w	(Tails_CPU_idle_timer).w
 		clr.w	(Tails_CPU_flight_timer).w
-		move.l	#Obj_Tails_Tail,(Tails_tails+address).w
+		move.l	#Obj_Tails_Tail,(Tails_tails+code_addr).w
 		move.w	a0,(Tails_tails+parent).w
 		move.b	(Last_star_post_hit).w,(Tails_CPU_star_post_flag).w
 		rts
@@ -854,7 +854,7 @@ loc_140AC:
 
 		; delete
 		moveq	#0,d0
-		move.l	d0,address(a0)
+		move.l	d0,code_addr(a0)
 		move.w	d0,x_pos(a0)
 		move.w	d0,y_pos(a0)
 		move.w	#$A,(Tails_CPU_routine).w
@@ -1344,7 +1344,7 @@ Tails_InWater:
 		addq.b	#1,(Water_entered_counter).w
 		movea.w	a0,a1
 		bsr.w	Player_ResetAirTimer
-		move.l	#Obj_AirCountdown,(Breathing_bubbles_P2+address).w
+		move.l	#Obj_AirCountdown,(Breathing_bubbles_P2+code_addr).w
 		move.w	a0,(Breathing_bubbles_P2+parent).w
 		move.w	#$300,Max_speed_P2-Max_speed_P2(a4)
 		move.w	#6,Acceleration_P2-Max_speed_P2(a4)
@@ -2032,7 +2032,7 @@ loc_14C62:
 		bclr	#status.player.x_flip,status(a0)
 		cmpi.b	#12,air_left(a0)						; check air remaining
 		blo.s	locret_14CAA							; if less than 12, branch
-		move.l	#DashDust_CheckSkid,address(a6)					; Dust_P2
+		move.l	#DashDust_CheckSkid,code_addr(a6)				; Dust_P2
 		move.b	#$15,mapping_frame(a6)						; Dust_P2
 
 locret_14CAA:
@@ -2083,7 +2083,7 @@ loc_14CE8:
 		bset	#status.player.x_flip,status(a0)
 		cmpi.b	#12,air_left(a0)						; check air remaining
 		blo.s	locret_14D30							; if less than 12, branch
-		move.l	#DashDust_CheckSkid,address(a6)					; Dust_P2
+		move.l	#DashDust_CheckSkid,code_addr(a6)				; Dust_P2
 		move.b	#$15,mapping_frame(a6)						; Dust_P2
 
 locret_14D30:
