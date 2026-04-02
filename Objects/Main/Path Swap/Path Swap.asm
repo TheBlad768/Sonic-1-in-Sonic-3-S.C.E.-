@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 ; players
 pathswap.p1_passed			ds.b 1						; Sonic's passed flag (1 byte)
@@ -50,7 +50,7 @@ loc_1CD16:
 
 		; next
 		lea	sub_1CEF2(pc),a1
-		move.l	a1,address(a0)
+		move.l	a1,code_addr(a0)
 		jmp	(a1)
 ; ---------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ loc_1CD60:
 		st	pathswap.p2_passed(a0)
 
 loc_1CD70:
-		move.l	#loc_1CD8A,address(a0)
+		move.l	#loc_1CD8A,code_addr(a0)
 
 ; =============== S U B R O U T I N E =======================================
 

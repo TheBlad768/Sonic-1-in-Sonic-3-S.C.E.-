@@ -163,7 +163,7 @@ Water_WindTunnels:
 		; check p2
 		addq.w	#1,a3
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	LoadWaterPalette.return						; if yes, branch
 		move.b	(Ctrl_2_logical).w,d6
 		moveq	#WindTunnel_holding_flag.player_2,d5
@@ -275,7 +275,7 @@ Water_WaterSlides:
 		move.b	(Ctrl_1_logical).w,d2
 		bsr.s	sub_71E4
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	locret_3F7A							; if yes, branch
 		move.b	(Ctrl_2_logical).w,d2
 

@@ -7,7 +7,7 @@ _GLASSBLOCK_YPOS_ =			1						; fixed version
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 glassblock.origY			ds.w 1						; original y-axis position (2 bytes)
 glassblock.dist				ds.w 1						; distance block moves when switch is pressed (2 bytes)
@@ -24,7 +24,7 @@ Obj_GlassBlock:
 
 		; init
 		movem.l	ObjDat_GlassBlock(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	y_pos(a0),glassblock.origY(a0)
 		move.w	#$90,glassblock.dist(a0)
 		move.w	#2,mainspr_childsprites(a0)					; block and reflector

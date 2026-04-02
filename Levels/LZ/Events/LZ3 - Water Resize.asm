@@ -15,7 +15,7 @@ LZ3_WaterResize:
 		bhs.s	.setwaterlz3							; if not, branch
 		move.w	#$4C8,d1							; set new water height
 		pea	Redraw_LZ3NormalChunks(pc)					; modify level layout
-		move.l	#Obj_WaveSplash,(Wave_Splash+address).w				; create wave splash object
+		move.l	#Obj_WaveSplash,(Wave_Splash+code_addr).w			; create wave splash object
 		move.l	#.routine2,(Level_data_addr_RAM.WaterResize).w			; use second routine next
 		sfx	sfx_Rumbling							; play sound $B7 (rumbling)
 		move.w	#$3F,(Screen_shaking_flag).w					; screen shake

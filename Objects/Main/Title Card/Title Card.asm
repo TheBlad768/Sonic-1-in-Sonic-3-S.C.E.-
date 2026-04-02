@@ -38,7 +38,7 @@ Obj_TitleCard:
 		move.w	#1*60+30,objoff_2E(a0)						; set wait value
 		clr.w	objoff_32(a0)
 		st	objoff_48(a0)
-		move.l	#.create,address(a0)
+		move.l	#.create,code_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ Obj_TitleCard:
 
 .loop
 		addq.w	#1,objoff_30(a0)
-		move.l	(a2)+,address(a1)
+		move.l	(a2)+,code_addr(a1)
 		move.w	(a2)+,objoff_46(a1)
 		move.w	(a2)+,x_pos(a1)
 		move.w	(a2)+,y_pos(a1)
@@ -70,7 +70,7 @@ Obj_TitleCard:
 		dbne	d1,.loop
 
 		; next
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 
 .return
 		rts
@@ -100,7 +100,7 @@ Obj_TitleCard:
 
 .skiplevel
 		clr.w	objoff_48(a0)
-		move.l	#.wait2,address(a0)
+		move.l	#.wait2,code_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -202,7 +202,7 @@ Obj_TitleCardName:
 
 .notFZ
 		add.b	d0,mapping_frame(a0)
-		move.l	#Obj_TitleCardElement,address(a0)
+		move.l	#Obj_TitleCardElement,code_addr(a0)
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -239,7 +239,7 @@ Obj_TitleCardElement:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_TitleCardAct:
-		move.l	#Obj_TitleCardElement,address(a0)
+		move.l	#Obj_TitleCardElement,code_addr(a0)
 
 		; check
 		cmpi.w	#bytes_to_word(LevelID_SBZ,2),(Current_zone_and_act).w		; is level Final Zone?

@@ -7,7 +7,7 @@ tensionbridge.logcount =		8						; number of logs
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 ; players
 tensionbridge.p1_index			ds.b 1						; Sonic log index (1 byte)
@@ -25,7 +25,7 @@ tensionbridge.bend			ds.b 1						; bridge bend (1 byte)
 Obj_TensionBridge:
 
 		; init
-		move.l	#TensionBridge_Nudge,address(a0)				; normal bridge
+		move.l	#TensionBridge_Nudge,code_addr(a0)				; normal bridge
 		move.l	#Map_TensionBridge,mappings(a0)
 		move.w	#make_art_tile($33E,2,FALSE),art_tile(a0)
 
@@ -33,7 +33,7 @@ Obj_TensionBridge:
 		tst.b	subtype(a0)
 		bpl.s	.normal
 		andi.b	#$7F,subtype(a0)
-		move.l	#TensionBridge_CheckExplosion,address(a0)			; bridge explosion
+		move.l	#TensionBridge_CheckExplosion,code_addr(a0)			; bridge explosion
 
 .normal
 		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
@@ -80,7 +80,7 @@ TensionBridge_CreateSegments:
 		; create
 		jsr	(Create_New_Object_3).w
 		bne.s	.return
-		move.l	#Draw_Sprite,address(a1)
+		move.l	#Draw_Sprite,code_addr(a1)
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		move.l	mappings(a0),mappings(a1)
@@ -189,7 +189,7 @@ Obj_TensionBridge_LogFall:
 ; ---------------------------------------------------------------------------
 
 .setfall
-		move.l	#.fall,address(a0)
+		move.l	#.fall,code_addr(a0)
 
 .fall
 		MoveSprite , $18
@@ -216,7 +216,7 @@ TensionBridge_CheckExplosion:								; check bridge explosion
 		move.b	#$E,tensionbridge.wait(a0)
 
 		; bridge explode
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 
 .wait
 
@@ -263,7 +263,7 @@ TensionBridge_BreakObjectToPieces:
 		bne.s	.notfree
 
 .load
-		move.l	d4,address(a1)
+		move.l	d4,code_addr(a1)
 		move.l	mappings(a3),mappings(a1)
 		move.b	render_flags(a3),render_flags(a1)
 		move.w	art_tile(a3),art_tile(a1)
@@ -278,7 +278,7 @@ TensionBridge_BreakObjectToPieces:
 		; create
 		jsr	(Create_New_Object_3).w
 		bne.s	.notfree
-		move.l	#Obj_TensionBridge_Explosion,address(a1)			; explosion
+		move.l	#Obj_TensionBridge_Explosion,code_addr(a1)			; explosion
 		move.w	x_pos(a5),x_pos(a1)
 		move.w	y_pos(a5),y_pos(a1)
 		move.b	-1(a4),anim_frame_timer(a1)
@@ -315,7 +315,7 @@ SolidObject_TensionBridge:
 
 		; player 2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is the player RAM empty?
+		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.p1								; if yes, branch
 		moveq	#p2_standing_bit,d6
 		moveq	#tensionbridge.p2_index,d5					; set RAM address

@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 conveyor.speed				ds.w 1						; (2 bytes)
 conveyor.width				ds.b 1						; (1 byte)
@@ -19,7 +19,7 @@ Obj_Conveyor:
 		jsr	(Obj_WaitOffscreen).w
 
 		; init
-		move.l	#.action,address(a0)
+		move.l	#.action,code_addr(a0)
 		move.b	#128,conveyor.width(a0)						; set width to 128 pixels
 		move.b	subtype(a0),d0							; get object type
 		move.b	d0,d1								; save object type
@@ -46,7 +46,7 @@ Obj_Conveyor:
 
 		; player 2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.return								; if yes, branch
 
 ; =============== S U B R O U T I N E =======================================

@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bomb.timer				ds.w 1						; time of fuse (2 bytes)
 bomb.origY				ds.w 1						; original y-axis position (2 bytes)
@@ -19,13 +19,13 @@ Obj_Bomb:
 		lea	ObjDat_Bomb(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		bchg	#status.npc.x_flip,status(a0)
-		move.l	#.action,address(a0)
-		move.l	#.walk,jump_ptr(a0)
+		move.l	#.action,code_addr(a0)
+		move.l	#.walk,wait_addr(a0)
 
 .action
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 		lea	Ani_Bomb(pc),a1
 		jsr	(Animate_SpriteNoSST).w
@@ -37,7 +37,7 @@ Obj_Bomb:
 		bsr.s	.chksonic
 		subq.w	#1,bomb.timer(a0)						; subtract 1 from time delay
 		bpl.s	.noflip								; if time remains, branch
-		move.l	#.wait,jump_ptr(a0)
+		move.l	#.wait,wait_addr(a0)
 		move.w	#((25*60)+36)-1,bomb.timer(a0)					; set time delay to 25 seconds
 		move.w	#$10,x_vel(a0)
 		move.b	#1,anim(a0)							; use walking animation
@@ -58,7 +58,7 @@ Obj_Bomb:
 ; ---------------------------------------------------------------------------
 
 .stopwalking
-		move.l	#.walk,jump_ptr(a0)
+		move.l	#.walk,wait_addr(a0)
 		move.w	#180-1,bomb.timer(a0)						; set time delay to 3 seconds
 		clr.w	x_vel(a0)							; stop walking
 		clr.b	anim(a0)							; use waiting animation
@@ -76,7 +76,7 @@ Obj_Bomb:
 		bne.s	.outofrange							; if yes, branch
 
 		; set explode
-		move.l	#.explode,jump_ptr(a0)						; goto .explode next
+		move.l	#.explode,wait_addr(a0)						; goto .explode next
 		move.w	#143,bomb.timer(a0)						; set fuse time
 		clr.w	x_vel(a0)
 		move.b	#2,anim(a0)							; use activated animation
@@ -105,7 +105,7 @@ Obj_Bomb:
 
 		; remove
 		bset	#status.npc.defeated,status(a0)
-		move.l	#Obj_Explosion.skipanimal,address(a0)				; change object to explosion
+		move.l	#Obj_Explosion.skipanimal,code_addr(a0)				; change object to explosion
 
 .noexplode
 		rts
@@ -116,7 +116,7 @@ Obj_Bomb:
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bomb_fuse.timer				ds.w 1						; time of fuse (2 bytes)
 bomb_fuse.origY				ds.w 1						; original y-axis position (2 bytes)
@@ -130,7 +130,7 @@ Obj_Bomb_Fuse:
 		; init
 		lea	ObjDat3_Bomb_Fuse(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
-		move.l	#.action,address(a0)
+		move.l	#.action,code_addr(a0)
 
 .action
 		bsr.s	.wait
@@ -191,7 +191,7 @@ Obj_Bomb_Shrapnel:
 		lea	ObjDat3_Bomb_Shrapnel(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
 		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
-		move.l	#.action,address(a0)
+		move.l	#.action,code_addr(a0)
 		bset	#render_flags.on_screen,render_flags(a0)
 
 .action

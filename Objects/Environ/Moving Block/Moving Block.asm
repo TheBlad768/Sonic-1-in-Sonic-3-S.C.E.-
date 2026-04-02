@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 movingblock.origX			ds.w 1						; original x-axis position (2 bytes)
 movingblock.origY			ds.w 1						; original y-axis position (2 bytes)
@@ -69,7 +69,7 @@ Obj_MovingBlock:
 		move.w	x_pos(a0),movingblock.origX(a0)
 		move.w	y_pos(a0),movingblock.origY(a0)
 		andi.b	#$F,subtype(a0)
-		move.l	#.platform,address(a0)
+		move.l	#.platform,code_addr(a0)
 
 .platform
 		move.w	x_pos(a0),-(sp)

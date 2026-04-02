@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 spikeball_lz.origX			ds.w 1						; original x-axis position (2 bytes)
 spikeball_lz.origY			ds.w 1						; original y-axis position (2 bytes)
@@ -18,7 +18,7 @@ Obj_SpikeBall_LZ:
 
 		; init
 		movem.l	ObjDat_SpikeBall_LZ(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.b	#1,mapping_frame(a0)
 		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
 		move.w	x_pos(a0),spikeball_lz.origX(a0)
@@ -38,7 +38,7 @@ Obj_SpikeBall_LZ:
 		; create chain
 		jsr	(Create_New_Object_3).w
 		bne.w	.chkdel
-		move.l	#Draw_Sprite,address(a1)
+		move.l	#Draw_Sprite,code_addr(a1)
 		move.l	mappings(a0),mappings(a1)
 		move.w	art_tile(a0),art_tile(a1)
 		moveq	#setBit(render_flags.multi_sprite),d0				; set multi-draw flag

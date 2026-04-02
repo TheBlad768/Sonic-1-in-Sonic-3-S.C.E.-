@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 roller.timer				ds.w 1						; (2 bytes)
 roller.mode				ds.b 1						; (1 byte)
@@ -19,7 +19,7 @@ Obj_Roller:
 		lea	ObjDat_Roller(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
-		move.l	#.checkfall,address(a0)
+		move.l	#.checkfall,code_addr(a0)
 
 .checkfall
 		MoveSpriteYOnly
@@ -28,13 +28,13 @@ Obj_Roller:
 		bpl.s	.floornotfound
 		add.w	d1,y_pos(a0)							; match roller's position with the floor
 		clr.w	y_vel(a0)
-		move.l	#.rollchk,jump_ptr(a0)
-		move.l	#.action,address(a0)
+		move.l	#.rollchk,wait_addr(a0)
+		move.l	#.action,code_addr(a0)
 
 .action
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 		lea	Ani_Roller(pc),a1
 		jsr	(Animate_SpriteNoSST).w
@@ -52,7 +52,7 @@ Obj_Roller:
 		blo.s	.skip
 		sub.w	x_pos(a0),d0							; check distance between Roller and Sonic
 		blo.s	.skip
-		move.l	#.chkjump,jump_ptr(a0)
+		move.l	#.chkjump,wait_addr(a0)
 		move.b	#2,anim(a0)
 		move.w	#$700,x_vel(a0)							; move Roller horizontally
 		move.b	#$E|collision_flags.npc.hurt,collision_flags(a0)		; make Roller invincible
@@ -76,7 +76,7 @@ Obj_Roller:
 ; ---------------------------------------------------------------------------
 
 .next
-		move.l	#.chkjump,jump_ptr(a0)
+		move.l	#.chkjump,wait_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -93,7 +93,7 @@ Obj_Roller:
 ; ---------------------------------------------------------------------------
 
 .jump
-		move.l	#.matchfloor,jump_ptr(a0)
+		move.l	#.matchfloor,wait_addr(a0)
 		bset	#0,roller.mode(a0)
 		beq.s	.return2
 		move.w	#-$600,y_vel(a0)						; move Roller vertically
@@ -111,7 +111,7 @@ Obj_Roller:
 		bpl.s	.return3
 		add.w	d1,y_pos(a0)							; match Roller's position with the floor
 		clr.w	y_vel(a0)
-		move.l	#.chkjump,jump_ptr(a0)
+		move.l	#.chkjump,wait_addr(a0)
 
 .return3
 		rts
@@ -130,7 +130,7 @@ Roll_Stop:
 		clr.w	x_vel(a0)
 		move.w	#2*60,roller.timer(a0)						; set waiting time to 2 seconds
 		bset	#7,roller.mode(a0)
-		move.l	#Obj_Roller.rollnochk,jump_ptr(a0)
+		move.l	#Obj_Roller.rollnochk,wait_addr(a0)
 
 .return
 		rts

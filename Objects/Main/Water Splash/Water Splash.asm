@@ -11,7 +11,7 @@ Obj_WaterSplash:
 		; init
 		st	objoff_31(a0)
 		movem.l	ObjDat_WaterSplash(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	#2,mainspr_childsprites(a0)
 
 		; set

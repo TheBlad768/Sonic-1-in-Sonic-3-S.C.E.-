@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 seesaw.origX				ds.w 1						; original x-axis position (2 bytes)
 seesaw.speed				ds.w 1						; speed of collision (2 bytes)
@@ -22,7 +22,7 @@ Obj_Seesaw:
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(96/2,96/2,priority_3),height_pixels(a0)	; set height, width and priority
 		move.w	x_pos(a0),seesaw.origX(a0)
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 		; check boss
 		move.b	subtype(a0),d0							; is object type $80-$FF?
@@ -178,7 +178,7 @@ Seesaw_ChgFrame:
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 seesaw_spikeball.origX			ds.w 1						; original x-axis position (2 bytes)
 seesaw_spikeball.origY			ds.w 1						; original y-axis position (2 bytes)
@@ -193,7 +193,7 @@ Obj_Seesaw_SpikeBall:
 		; init
 		lea	ObjDat_Seesaw_SpikeBall(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 		move.w	x_pos(a0),seesaw_spikeball.origX(a0)
 		addi.w	#40,x_pos(a0)
 		move.w	y_pos(a0),seesaw_spikeball.origY(a0)
@@ -229,7 +229,7 @@ Obj_Seesaw_SpikeBall:
 		neg.w	x_vel(a0)
 
 .leftside1
-		move.l	#.spikefall,address(a0)
+		move.l	#.spikefall,code_addr(a0)
 		bra.s	.spikefallskip
 ; ---------------------------------------------------------------------------
 
@@ -317,7 +317,7 @@ Obj_Seesaw_SpikeBall:
 
 .clear
 		clr.l	x_vel(a0)							; clear ball velocity
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .return2
 		rts

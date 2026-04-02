@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 labyrinthconveyor.origX			ds.w 1						; original x-axis position (2 bytes)
 labyrinthconveyor.saveX			ds.w 1						; save x-axis position (2 bytes)
@@ -47,7 +47,7 @@ Obj_LabyrinthConveyor:
 .create
 
 		; create LZ platform object
-		move.l	d4,address(a1)
+		move.l	d4,code_addr(a1)
 		move.w	(a3)+,x_pos(a1)
 		move.w	(a3)+,y_pos(a1)
 		move.w	(a3)+,d2
@@ -78,7 +78,7 @@ Obj_LabyrinthConveyor_Platforms:
 
 		move.l	#bytes_word_to_long(32/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority
 		addq.b	#1,mapping_frame(a0)						; platform frame
-		move.l	#.solid,address(a0)
+		move.l	#.solid,code_addr(a0)
 
 		; set
 		move.b	subtype(a0),d0

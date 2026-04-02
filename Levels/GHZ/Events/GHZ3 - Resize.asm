@@ -79,7 +79,7 @@ Check_GHZ3boss:
 		; create intro
 		jsr	(Create_New_Object).w
 		bne.s	.return
-		move.l	#Obj_BossBall_Scaled,address(a1)
+		move.l	#Obj_BossBall_Scaled,code_addr(a1)
 		moveq	#-$20,d0
 		add.w	(Camera_X_pos).w,d0
 		move.w	d0,x_pos(a1)
@@ -116,7 +116,7 @@ Load_GHZ3Boss:
 		move.b	d0,(Current_music+1).w						; save music
 		jsr	(Create_New_Object).w
 		bne.s	.return
-		move.l	#Obj_BossBall,address(a1)
+		move.l	#Obj_BossBall,code_addr(a1)
 		move.w	(Camera_max_X_pos).w,d0
 		addi.w	#$110,d0
 		move.w	d0,x_pos(a1)

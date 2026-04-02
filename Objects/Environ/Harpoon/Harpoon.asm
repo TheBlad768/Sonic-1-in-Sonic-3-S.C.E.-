@@ -12,7 +12,7 @@ Obj_Harpoon:
 		lea	ObjDat_Harpoon(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		clr.b	routine(a0)
-		move.l	#.move,address(a0)
+		move.l	#.move,code_addr(a0)
 
 		; set
 		move.b	subtype(a0),anim(a0)						; get type (vert/horiz)
@@ -37,13 +37,13 @@ Obj_Harpoon:
 
 .routine
 		clr.b	routine(a0)
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 
 .wait
 		subq.w	#1,wait_timer(a0)						; decrement timer
 		bpl.s	.chkdel								; branch if time remains
 		move.w	#1*60,wait_timer(a0)						; reset timer
-		move.l	#.move,address(a0)						; run "Harp_Move" subroutine
+		move.l	#.move,code_addr(a0)						; run "Harp_Move" subroutine
 		bchg	#0,anim(a0)							; extending/retracting harpoon
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bpl.s	.chkdel								; if not, branch

@@ -30,7 +30,7 @@ Obj_Caterkiller:
 
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.b	render_flags(a0),status(a0)
-		move.l	#.checkfall,address(a0)
+		move.l	#.checkfall,code_addr(a0)
 
 .checkfall
 		MoveSpriteYOnly
@@ -40,7 +40,7 @@ Obj_Caterkiller:
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)
 		move.b	#7,caterkiller.timer(a0)
-		move.l	#.head,address(a0)
+		move.l	#.head,code_addr(a0)
 
 		; create tail
 		lea	Child8_Caterkiller_FragBody(pc),a2
@@ -224,10 +224,10 @@ Obj_Caterkiller_BodySegments:
 		move.b	status(a1),status(a0)
 		move.b	status(a1),render_flags(a0)
 		move.w	#bytes_to_word(14/2,16/2),y_radius(a0)				; set y_radius and x_radius
-		move.l	#Cat_BodySeg1,address(a0)
+		move.l	#Cat_BodySeg1,code_addr(a0)
 		cmpi.b	#4,subtype(a0)
 		bne.s	Cat_BodySeg1
-		move.l	#Cat_BodySeg2,address(a0)
+		move.l	#Cat_BodySeg2,code_addr(a0)
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -337,7 +337,7 @@ Caterkiller_FragHead:									; head
 		move.w	#-$400,y_vel(a0)
 		andi.b	#$F8,mapping_frame(a0)
 		bset	#shield_reaction.all_shields,shield_reaction(a0)		; bounce off all shields
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		MoveSprite

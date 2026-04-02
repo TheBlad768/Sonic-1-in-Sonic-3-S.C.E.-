@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 grassfire.origX				ds.w 1						; original x-axis position (2 bytes)
 grassfire.origY				ds.w 1						; original y-axis position (2 bytes)
@@ -21,7 +21,7 @@ Obj_GrassFire:
 		sfx	sfx_Burning
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 		move.w	x_pos(a0),grassfire.origX(a0)
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		movea.w	parent3(a0),a2							; a2=parent object (Large Grassy Platforms)
@@ -69,7 +69,7 @@ Obj_GrassFire_Fire:
 		; init
 		lea	ObjDat3_GrassFire_Fire(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		movea.w	parent3(a0),a1							; a1=parent object (Large Grassy Platforms)

@@ -9,7 +9,7 @@ LZ3_ForegroundInit:
 		; restore wave splash object
 		tst.b	(Last_star_post_hit).w						; have any starpost been hit?
 		beq.s	.first								; if not, branch
-		move.l	#Obj_WaveSplash,(Wave_Splash+address).w				; create wave splash object
+		move.l	#Obj_WaveSplash,(Wave_Splash+code_addr).w			; create wave splash object
 
 .first
 

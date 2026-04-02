@@ -7,7 +7,7 @@ _PUSHB_XPOS_				= $200						; add pixels
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 ; players
 movingblock.p1_status			ds.b 1						; Sonic's status (1 byte)
@@ -16,7 +16,7 @@ movingblock.p2_status			ds.b 1						; Tails's status (1 byte)
 ; main
 pushableblock.sound			ds.b 1						; sound timer (1 byte)
 pushableblock.float_flag		ds.b 1						; float flag (1 byte)
-					ds.l 1						; skip jump_ptr (4 bytes)
+					ds.l 1						; skip wait_addr (4 bytes)
 pushableblock.origX			ds.w 1						; original x-axis position (2 bytes)
 pushableblock.origY			ds.w 1						; original y-axis position (2 bytes)
 pushableblock.copyXvel			ds.w 1						; copy x velocity (2 bytes)
@@ -51,8 +51,8 @@ Obj_PushableBlock:
 		move.w	#bytes_to_word(30/2,32/2),y_radius(a0)				; set y_radius and x_radius
 		move.w	x_pos(a0),pushableblock.origX(a0)
 		move.w	y_pos(a0),pushableblock.origY(a0)
-		move.l	#PushableBlock_MovePush,jump_ptr(a0)
-		move.l	#.action,address(a0)
+		move.l	#PushableBlock_MovePush,wait_addr(a0)
+		move.l	#.action,code_addr(a0)
 
 		; set
 		move.b	subtype(a0),d0
@@ -80,7 +80,7 @@ Obj_PushableBlock:
 
 		; normal push
 		move.w	x_pos(a0),-(sp)
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 		move.b	(Player_1+status).w,movingblock.p1_status(a0)
 		move.b	(Player_2+status).w,movingblock.p2_status(a0)
@@ -124,7 +124,7 @@ Obj_PushableBlock:
 		out_of_xrange.s	.offscreen, pushableblock.origX(a0)
 		move.w	pushableblock.origX(a0),x_pos(a0)
 		move.w	pushableblock.origY(a0),y_pos(a0)
-		move.l	#.restore,address(a0)
+		move.l	#.restore,code_addr(a0)
 		bra.s	.restore
 ; ---------------------------------------------------------------------------
 
@@ -145,7 +145,7 @@ Obj_PushableBlock:
 .restore
 		jsr	(Chk_WidthOffScreen).w						; object visible on the screen?
 		beq.s	.return								; if yes, branch
-		move.l	#.action,address(a0)
+		move.l	#.action,code_addr(a0)
 		clr.b	pushableblock.float_flag(a0)
 		clr.l	x_vel(a0)
 
@@ -160,9 +160,9 @@ Obj_PushableBlock:
 
 PushableBlock_Floating:									; floating block on lava
 		move.w	x_pos(a0),-(sp)
-		cmpi.l	#PushableBlock_EdgeFix,jump_ptr(a0)
+		cmpi.l	#PushableBlock_EdgeFix,wait_addr(a0)
 		beq.s	.smove
-		cmpi.l	#PushableBlock_Fall,jump_ptr(a0)
+		cmpi.l	#PushableBlock_Fall,wait_addr(a0)
 		beq.s	.smove
 		jsr	(MoveSprite2).w
 
@@ -238,7 +238,7 @@ PushableBlock_Floating:									; floating block on lava
 .push
 
 		; normal push
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 		move.b	(Player_1+status).w,movingblock.p1_status(a0)
 		move.b	(Player_2+status).w,movingblock.p2_status(a0)
@@ -300,7 +300,7 @@ PushableBlock_ChkLava:
 .createlava
 		jsr	(Create_New_Object_3).w
 		bne.s	.return
-		move.l	#Obj_GeyserMaker,address(a1)					; load lava geyser object
+		move.l	#Obj_GeyserMaker,code_addr(a1)					; load lava geyser object
 		move.w	a0,parent3(a1)							; save block address for geyser
 		move.w	x_pos(a0),d0
 		add.w	d2,d0
@@ -330,7 +330,7 @@ PushableBlock_EdgeFix:									; fix fall block
 		clr.w	x_vel(a0)
 
 		; next
-		move.l	#PushableBlock_Fall,jump_ptr(a0)
+		move.l	#PushableBlock_Fall,wait_addr(a0)
 
 		; fix player pos
 		jmp	(Displace_PlayerOffObject).w					; release player from object
@@ -353,7 +353,7 @@ PushableBlock_Fall:
 		clr.w	y_vel(a0)
 
 		; next
-		move.l	#PushableBlock_MovePush,jump_ptr(a0)
+		move.l	#PushableBlock_MovePush,wait_addr(a0)
 
 		; check lava
 		move.w	(a1),d0								; get id of the 16x16 block
@@ -401,7 +401,7 @@ PushableBlock_MovePush:									; push block normal
 
 		; Tails
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.return								; if yes, branch
 		move.b	movingblock.p2_status(a0),d0					; p2 status
 		moveq	#p2_pushing_bit,d6						; 6
@@ -451,7 +451,7 @@ PushableBlock_MovePush:									; push block normal
 		ble.s	.notedgel							; if not, branch
 
 		; next
-		move.l	#PushableBlock_EdgeFix,jump_ptr(a0)
+		move.l	#PushableBlock_EdgeFix,wait_addr(a0)
 		move.w	#-$400,x_vel(a0)
 
 .endl
@@ -505,7 +505,7 @@ PushableBlock_MovePush:									; push block normal
 		ble.s	.notedger							; if not, branch
 
 		; next
-		move.l	#PushableBlock_EdgeFix,jump_ptr(a0)
+		move.l	#PushableBlock_EdgeFix,wait_addr(a0)
 		move.w	#$400,x_vel(a0)
 
 .endr

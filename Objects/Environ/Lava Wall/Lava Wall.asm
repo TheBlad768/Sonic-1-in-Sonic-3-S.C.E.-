@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 lavawall.xvel				ds.w 1						; (2 bytes)
 lavawall.lava_xoffset			ds.w 1						; (2 bytes)
@@ -36,7 +36,7 @@ Obj_LavaWall:
 		move.w	#5,(a1)								; frame
 
 .restart
-		move.l	#.action,address(a0)
+		move.l	#.action,code_addr(a0)
 
 .action
 		jsr	(Find_SonicObject).w
@@ -44,7 +44,7 @@ Obj_LavaWall:
 		bhs.s	.solid								; if not, branch
 		cmpi.w	#96,d3								; is Sonic within $60 pixels (y-axis)?
 		bhs.s	.solid								; if not, branch
-		move.l	#.movewall,address(a0)
+		move.l	#.movewall,code_addr(a0)
 		bra.s	.solid
 ; ---------------------------------------------------------------------------
 
@@ -61,12 +61,12 @@ Obj_LavaWall:
 		; play sound
 		sfx	sfx_BossMagma
 		move.w	#$180,lavawall.xvel(a0)						; set object speed
-		move.l	#.checkmove,address(a0)
+		move.l	#.checkmove,code_addr(a0)
 
 .checkmove
 		cmpi.w	#$8A0,x_pos(a0)							; has object reached $6A0 on the x-axis?
 		bne.s	.solid								; if not, branch
-		move.l	#.solid,address(a0)
+		move.l	#.solid,code_addr(a0)
 
 		; stop object moving
 		clr.w	lavawall.xvel(a0)

@@ -8,7 +8,7 @@ _SPLATFORM_POS_ =			1						; if 1, enable S1 version
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 swingingplatform.origX			ds.w 1						; original x-axis position (2 bytes)
 swingingplatform.origY			ds.w 1						; original y-axis position (2 bytes)
@@ -59,7 +59,7 @@ Obj_SwingingPlatform:
 		; create chain
 		jsr	(Create_New_Object_3).w
 		bne.w	.chkdel
-		move.l	#Draw_Sprite,address(a1)
+		move.l	#Draw_Sprite,code_addr(a1)
 		move.l	mappings(a0),mappings(a1)
 		move.w	art_tile(a0),art_tile(a1)
 		moveq	#setBit(render_flags.multi_sprite),d0				; set multi-draw flag
@@ -91,17 +91,17 @@ Obj_SwingingPlatform:
 		move.b	#2,mapping_frame(a1)
 
 		; check level
-		move.l	#.mainghz,address(a0)						; set GHZ
+		move.l	#.mainghz,code_addr(a0)						; set GHZ
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; is level Star Light Zone?
 		bne.s	.notSLZ2							; if not, branch
-		move.l	#.mainslz,address(a0)						; set SLZ
+		move.l	#.mainslz,code_addr(a0)						; set SLZ
 		bra.s	.mainslz
 ; ---------------------------------------------------------------------------
 
 .notSLZ2
 		cmpi.b	#LevelID_SBZ,(Current_zone).w					; is level Scrap Brain Zone?
 		bne.s	.mainghz							; if not, branch
-		move.l	#.mainsbz,address(a0)						; set SBZ
+		move.l	#.mainsbz,code_addr(a0)						; set SBZ
 		bra.s	.mainsbz
 ; ---------------------------------------------------------------------------
 

@@ -26,7 +26,7 @@ Obj_StillSprite:
 
 		; draw
 		lea	(Sprite_OnScreen_Test).w,a1
-		move.l	a1,address(a0)
+		move.l	a1,code_addr(a0)
 		jmp	(a1)
 ; ---------------------------------------------------------------------------
 

@@ -7,7 +7,7 @@ _BWALL_KNUX_ =				0						; if 1, change the animation of Knuckles after breaking
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 ; players
 breakablewall.p1_speed			ds.w 1						; Sonic's horizontal speed (2 bytes)
@@ -25,7 +25,7 @@ Obj_BreakableWall:
 
 		; init
 		movem.l	ObjDat_BreakableWall(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; is level Star Light Zone?
 		bne.s	.notSLZ								; if not, branch
 		move.w	#make_art_tile($414,2,FALSE),art_tile(a0)
@@ -143,7 +143,7 @@ BreakableWall_CreateFragments:
 .notKnux
 	endif
 
-		move.l	#Obj_BreakableWallFall,address(a0)
+		move.l	#Obj_BreakableWallFall,code_addr(a0)
 		bsr.s	BreakObjectToPieces
 
 ; =============== S U B R O U T I N E =======================================
@@ -176,7 +176,7 @@ BreakObjectToPieces2:
 		move.w	(a3)+,d1
 		subq.w	#1,d1								; fix dbf
 		bset	#render_flags.static_mappings,render_flags(a0)			; set flag to "static mappings flag"
-		move.l	address(a0),d4							; get object address
+		move.l	code_addr(a0),d4						; get object address
 		move.b	render_flags(a0),d5						; get render type
 		movea.w	a0,a1								; load current object to a1
 
@@ -189,7 +189,7 @@ BreakObjectToPieces2:
 
 		; load break pieces object
 		addq.w	#6,a3								; next mappings
-		move.l	d4,address(a1)							; set object address
+		move.l	d4,code_addr(a1)						; set object address
 		move.b	d5,render_flags(a1)						; set render type
 		move.w	art_tile(a0),art_tile(a1)
 		move.w	x_pos(a0),x_pos(a1)

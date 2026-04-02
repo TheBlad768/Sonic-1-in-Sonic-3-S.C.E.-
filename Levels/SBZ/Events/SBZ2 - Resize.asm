@@ -21,7 +21,7 @@ SBZ2_Resize:
 		; create signpost
 		jsr	(Create_New_Object).w
 		bne.s	.loadboss
-		move.l	#Obj_Signpost,address(a1)
+		move.l	#Obj_Signpost,code_addr(a1)
 		move.w	(Camera_max_X_pos).w,d2
 		addi.w	#screen_width/2,d2
 		move.w	d2,x_pos(a1)
@@ -85,7 +85,7 @@ SBZ2_Resize:
 		; load SBZ2 Eggman intro object
 		jsr	(Create_New_Object).w
 		bne.s	.addxcam
-		move.l	#Obj_ScrapEggman,address(a1)
+		move.l	#Obj_ScrapEggman,code_addr(a1)
 		move.w	#$2340,x_pos(a1)
 		move.w	(Camera_max_Y_pos).w,d0
 		addi.w	#$94,d0

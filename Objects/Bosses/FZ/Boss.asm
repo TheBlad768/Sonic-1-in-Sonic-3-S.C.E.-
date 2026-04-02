@@ -23,8 +23,8 @@ Obj_BossFinal:
 		st	(Boss_flag).w
 		move.l	(V_int_run_count).w,(RNG_seed).w				; set to RNG seed for more RNG
 		move.b	#.hitcount,collision_property(a0)				; set hits
-		move.l	#BossFinal_Setup,address(a0)
-		move.l	#BossFinal_WaitXpos,jump_ptr(a0)
+		move.l	#BossFinal_Setup,code_addr(a0)
+		move.l	#BossFinal_WaitXpos,wait_addr(a0)
 		move.b	#1,anim(a0)							; set laugh anim
 
 		; create plasma ball launcher
@@ -46,7 +46,7 @@ Obj_BossFinal:
 		jsr	(CreateChild6_Simple).w
 
 BossFinal_Setup:
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 		addq.w	#7,(RNG_seed).w
 		bra.w	BossFinal_MainProcess
@@ -62,7 +62,7 @@ BossFinal_WaitXpos:
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
 		bne.s	.return
-		move.l	#.checkxpos,jump_ptr(a0)
+		move.l	#.checkxpos,wait_addr(a0)
 
 .checkxpos
 
@@ -71,7 +71,7 @@ BossFinal_WaitXpos:
 		add.w	(Camera_max_X_pos).w,d0
 		cmp.w	(Camera_X_pos).w,d0
 		bhs.s	.return
-		move.l	#BossFinal_MoveCylinders,jump_ptr(a0)
+		move.l	#BossFinal_MoveCylinders,wait_addr(a0)
 
 .return
 		rts
@@ -94,7 +94,7 @@ BossFinal_Range:
 BossFinal_MoveCylinders:
 
 		; jmp
-		move.l	#.waitcyl,jump_ptr(a0)
+		move.l	#.waitcyl,wait_addr(a0)
 
 		; calc cylinders address
 		jsr	(Random_Number).w
@@ -131,7 +131,7 @@ BossFinal_MoveCylinders:
 .waitcyl
 		tst.b	count(a0)							; wait end attack cylinders
 		bne.s	.flipx
-		move.l	#BossFinal_CreatePlasmaBalls,jump_ptr(a0)
+		move.l	#BossFinal_CreatePlasmaBalls,wait_addr(a0)
 
 .flipx
 
@@ -152,7 +152,7 @@ BossFinal_MoveCylinders:
 ; =============== S U B R O U T I N E =======================================
 
 BossFinal_CreatePlasmaBalls:
-		move.l	#.waitpl,jump_ptr(a0)
+		move.l	#.waitpl,wait_addr(a0)
 
 		; enable plasma ball launcher
 		sfx	sfx_Electric							; play sfx
@@ -168,7 +168,7 @@ BossFinal_CreatePlasmaBalls:
 		; check end
 		tst.b	count(a0)
 		bne.s	.return
-		move.l	#BossFinal_MoveCylinders,jump_ptr(a0)				; routine back
+		move.l	#BossFinal_MoveCylinders,wait_addr(a0)				; routine back
 
 .return
 		rts
@@ -305,7 +305,7 @@ BossFinal_Defeated:
 		bsr.s	BossFinal_MainProcess.bounce
 
 		; start defeated
-		move.l	#.defeated,address(a0)
+		move.l	#.defeated,code_addr(a0)
 		bset	#status.npc.defeated,status(a0)					; set defeated flag
 		move.b	#3,anim(a0)							; set defeated anim
 		jmp	(BossDefeated_StopTimer).w
@@ -316,7 +316,7 @@ BossFinal_Defeated:
 		; wait end attack cylinders
 		tst.b	count(a0)
 		bne.w	.draw
-		move.l	#.defeatedfall,address(a0)
+		move.l	#.defeatedfall,code_addr(a0)
 		move.l	#FZ_Resize.afterboss,(Level_data_addr_RAM.Resize).w
 		bset	#status.npc.x_flip,status(a0)					; set flipx
 		bset	#4,state_flags(a0)						; remove plasma ball launcher
@@ -353,7 +353,7 @@ BossFinal_Defeated:
 		cmp.w	y_pos(a0),d0
 		bhs.w	.draw
 		move.w	d0,y_pos(a0)
-		move.l	#.defeatedfloor,address(a0)
+		move.l	#.defeatedfloor,code_addr(a0)
 		move.b	#5,anim(a0)							; set run anim
 		move.l	#words_to_long($100,-$100),x_vel(a0)				; x_vel + y_vel
 		move.w	#priority_5,priority(a0)
@@ -400,7 +400,7 @@ BossFinal_Defeated:
 		; check robotnik ship
 		cmp.w	#$28A0,x_pos(a0)
 		blo.s	.draw
-		move.l	#.defeatedfallrs,address(a0)
+		move.l	#.defeatedfallrs,code_addr(a0)
 		move.b	#6,anim(a0)							; set jump anim
 		move.l	#words_to_long($240,-$4C0),x_vel(a0)				; x_vel + y_vel
 
@@ -410,7 +410,7 @@ BossFinal_Defeated:
 		cmp.w	#$28E0,x_pos(a0)
 		blo.s	.defeatedfallrs2
 		clr.w	x_vel(a0)
-		move.l	#.defeatedfallrs2,address(a0)
+		move.l	#.defeatedfallrs2,code_addr(a0)
 
 .defeatedfallrs2
 		moveq	#$34,d1
@@ -432,11 +432,11 @@ BossFinal_Defeated:
 		bne.s	.draw
 
 		; delete Eggman
-		move.l	#Delete_Current_Object,address(a0)
+		move.l	#Delete_Current_Object,code_addr(a0)
 
 		; load robotnik ship address
 		movea.w	parent2(a0),a1
-		move.l	#Obj_BossFinal_RobotnikShip.main,address(a1)
+		move.l	#Obj_BossFinal_RobotnikShip.main,code_addr(a1)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -477,7 +477,7 @@ Obj_BossFinal_ControlDesk:
 
 		; draw
 		lea	(Draw_Sprite).w,a1
-		move.l	a1,address(a0)
+		move.l	a1,code_addr(a0)
 		jmp	(a1)
 
 ; ---------------------------------------------------------------------------
@@ -506,14 +506,14 @@ Obj_BossFinal_RobotnikShip:
 
 		; draw
 		lea	(Draw_Sprite).w,a1
-		move.l	a1,address(a0)
+		move.l	a1,code_addr(a0)
 		jmp	(a1)
 ; ---------------------------------------------------------------------------
 
 .main
 		sfx	sfx_Rising
 		move.w	#-$180,y_vel(a0)
-		move.l	#.moveup,address(a0)
+		move.l	#.moveup,code_addr(a0)
 
 		; load fire
 		lea	Child1_MakeRoboShipFlame(pc),a2
@@ -531,7 +531,7 @@ Obj_BossFinal_RobotnikShip:
 		subq.b	#1,child_dy(a1)
 		cmpi.b	#-28,child_dy(a1)
 		bne.s	.move
-		move.l	#.moveupchk,address(a0)
+		move.l	#.moveupchk,code_addr(a0)
 
 .moveupchk
 
@@ -540,7 +540,7 @@ Obj_BossFinal_RobotnikShip:
 		blo.s	.move
 		move.w	d0,y_pos(a0)
 		move.l	#words_to_long($180,-$18),x_vel(a0)				; x_vel + y_vel
-		move.l	#.checktouch,address(a0)
+		move.l	#.checktouch,code_addr(a0)
 		move.b	#$F|collision_flags.npc.touch,collision_flags(a0)
 
 .checktouch
@@ -548,7 +548,7 @@ Obj_BossFinal_RobotnikShip:
 		bne.s	.chkdel
 		clr.b	collision_flags(a0)
 		bset	#status.npc.defeated,status(a0)					; set defeated flag
-		move.l	#.chkdel,address(a0)
+		move.l	#.chkdel,code_addr(a0)
 		move.w	#$60,y_vel(a0)
 
 		; create explosion
@@ -586,13 +586,13 @@ Obj_BossFinal_RobotnikShipStand:
 		; init
 		lea	ObjDat_BossFinal_RobotnikShipStand(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		movea.w	parent3(a0),a1							; load robotnik ship address
-		cmpi.l	#Obj_BossFinal_RobotnikShip.moveup,address(a1)
+		cmpi.l	#Obj_BossFinal_RobotnikShip.moveup,code_addr(a1)
 		bne.s	.draw
-		move.l	#.anim,address(a0)
+		move.l	#.anim,code_addr(a0)
 		move.b	#20-1,anim_frame_timer(a0)
 
 .anim
@@ -624,7 +624,7 @@ Obj_BossFinal_RobotnikShipStand:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_BossFinal_CheckPlayers:
-		move.l	#.check,address(a0)
+		move.l	#.check,code_addr(a0)
 
 		; get address
 		movea.w	parent3(a0),a1							; load robotnik address
@@ -640,7 +640,7 @@ Obj_BossFinal_CheckPlayers:
 
 		; p2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.return								; if yes, branch
 		tst.b	render_flags(a1)						; player 2 visible on the screen?
 		bpl.s	.return								; if not, branch

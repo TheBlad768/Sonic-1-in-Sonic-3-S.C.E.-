@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 tails_tail.prev_anim			ds.b 1						; (1 byte)
 
@@ -30,7 +30,7 @@ Obj_Tails_Tail:
 		0,48/2,48/2 \
 		),render_flags(a0)
 
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 

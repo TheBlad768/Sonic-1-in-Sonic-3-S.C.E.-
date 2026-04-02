@@ -12,7 +12,7 @@ Obj_Splats:
 		lea	ObjDat_Splats(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.w	height_pixels(a0),y_radius(a0)					; set y_radius and x_radius
-		move.l	#.checkfall,address(a0)
+		move.l	#.checkfall,code_addr(a0)
 
 .checkfall
 		MoveSpriteYOnly
@@ -21,13 +21,13 @@ Obj_Splats:
 		bpl.s	.floornotfound
 		add.w	d1,y_pos(a0)
 		move.w	#-$400,y_vel(a0)
-		move.l	#.floor,jump_ptr(a0)
-		move.l	#.action,address(a0)
+		move.l	#.floor,wait_addr(a0)
+		move.l	#.action,code_addr(a0)
 
 .action
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 		jmp	(Sprite_CheckDeleteTouch).w
 ; ---------------------------------------------------------------------------

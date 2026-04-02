@@ -4,17 +4,17 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
-sidewaysstomper.origX				ds.w 1						; original x-axis position (2 bytes)
+sidewaysstomper.origX			ds.w 1						; original x-axis position (2 bytes)
 sidewaysstomper.xoffset			ds.w 1						; (2 bytes)
 sidewaysstomper.length			ds.w 1						; (2 bytes)
-sidewaysstomper.delay_flag			ds.b 1						; (1 byte)
-sidewaysstomper.spike_flag			ds.b 1						; (1 byte)
-sidewaysstomper.wait				ds.w 1						; (2 bytes)
-sidewaysstomper.copyX				ds.w 1						; copy x-axis position (2 bytes)
-sidewaysstomper.xvel				ds.w 1						; (2 bytes)
-sidewaysstomper.pole_xoffset			ds.w 1						; (2 bytes)
+sidewaysstomper.delay_flag		ds.b 1						; (1 byte)
+sidewaysstomper.spike_flag		ds.b 1						; (1 byte)
+sidewaysstomper.wait			ds.w 1						; (2 bytes)
+sidewaysstomper.copyX			ds.w 1						; copy x-axis position (2 bytes)
+sidewaysstomper.xvel			ds.w 1						; (2 bytes)
+sidewaysstomper.pole_xoffset		ds.w 1						; (2 bytes)
 sidewaysstomper.spikes_xoffset		ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
@@ -37,8 +37,8 @@ Obj_SidewaysStomper:
 		move.b	SidewaysStomper_Length(pc,d0.w),sidewaysstomper.length(a0)
 
 		; init
-		movem.l	ObjDat_SidewaysStomper(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	ObjDat_SidewaysStomper(pc),d0-d3				; copy data to d0-d3
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.b	#1,mapping_frame(a0)
 
 		; set sub objects
@@ -105,15 +105,15 @@ Obj_SidewaysStomper:
 
 		; draw and delete
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	sidewaysstomper.copyX(a0),d0						; get object position
+		and.w	sidewaysstomper.copyX(a0),d0					; get object position
 		jmp	(Sprite_CheckDelete.skipxpos).w
 
 ; =============== S U B R O U T I N E =======================================
 
 SidewaysStomper_TypeIndex: offsetTable
-		offsetTableEntry.w SidewaysStomper_Type00						; 0
-		offsetTableEntry.w SidewaysStomper_Type00						; 1
-		offsetTableEntry.w SidewaysStomper_Type00						; 2
+		offsetTableEntry.w SidewaysStomper_Type00				; 0
+		offsetTableEntry.w SidewaysStomper_Type00				; 1
+		offsetTableEntry.w SidewaysStomper_Type00				; 2
 ; ---------------------------------------------------------------------------
 
 SidewaysStomper_Type00:
@@ -182,7 +182,7 @@ Obj_SidewaysStomper_Spikes:
 		; init
 		lea	ObjDat_SidewaysStomper_Spikes(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
-		move.l	#.solid,address(a0)
+		move.l	#.solid,code_addr(a0)
 
 .solid
 		move.w	x_pos(a0),-(sp)

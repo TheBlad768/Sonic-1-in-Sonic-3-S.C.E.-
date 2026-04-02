@@ -23,7 +23,7 @@ Obj_HiddenBonus:
 		; init
 		lea	ObjDat_HiddenBonus(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.draw,address(a0)
+		move.l	#.draw,code_addr(a0)
 		move.b	subtype(a0),mapping_frame(a0)
 		move.w	#(2*60)-1,wait_timer(a0)					; set display time to 2 seconds
 		sfx	sfx_HiddenBonus							; play bonus sound

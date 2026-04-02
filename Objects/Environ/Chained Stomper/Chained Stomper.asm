@@ -4,24 +4,24 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 chainedstomper.origY			ds.w 1						; original y-axis position (2 bytes)
 chainedstomper.yoffset			ds.w 1						; (2 bytes)
 chainedstomper.length			ds.w 1						; (2 bytes)
-chainedstomper.delay_flag			ds.b 1						; (1 byte)
-chainedstomper.spike_flag			ds.b 1						; (1 byte)
-chainedstomper.wait				ds.b 1						; (1 byte)
+chainedstomper.delay_flag		ds.b 1						; (1 byte)
+chainedstomper.spike_flag		ds.b 1						; (1 byte)
+chainedstomper.wait			ds.b 1						; (1 byte)
 chainedstomper.switch			ds.b 1						; switch number for the current stomper (1 byte)
-chainedstomper.cap_yoffset			ds.w 1						; (2 bytes)
+chainedstomper.cap_yoffset		ds.w 1						; (2 bytes)
 chainedstomper.chain_yoffset		ds.w 1						; (2 bytes)
-chainedstomper.yvel				ds.w 1						; (2 bytes)
+chainedstomper.yvel			ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
-ChainedStomper_Length:	dc.b $70, $A0, $50, $78, $38, $58, $B8, $70				; length
+ChainedStomper_Length:	dc.b $70, $A0, $50, $78, $38, $58, $B8, $70			; length
 	even
 ChainedStomper_Var2:
 		dc.b 112/2, 1								; width, frame number
@@ -60,7 +60,7 @@ Obj_ChainedStomper:
 
 		; init
 		movem.l	ObjDat_ChainedStomper(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 
 		; set
 		move.b	subtype(a0),d0
@@ -144,15 +144,15 @@ Obj_ChainedStomper:
 ; =============== S U B R O U T I N E =======================================
 
 ChainedStomper_TypeIndex: offsetTable
-		offsetTableEntry.w ChainedStomper_Type00						; 0
-		offsetTableEntry.w ChainedStomper_Type01						; 1
-		offsetTableEntry.w ChainedStomper_Type01						; 2
-		offsetTableEntry.w ChainedStomper_Type03						; 3
-		offsetTableEntry.w ChainedStomper_Type01						; 4
-		offsetTableEntry.w ChainedStomper_Type03						; 5
-		offsetTableEntry.w ChainedStomper_Type01						; 6
-		offsetTableEntry.w ChainedStomper_Type03						; 7
-		offsetTableEntry.w ChainedStomper_Type01						; 8
+		offsetTableEntry.w ChainedStomper_Type00				; 0
+		offsetTableEntry.w ChainedStomper_Type01				; 1
+		offsetTableEntry.w ChainedStomper_Type01				; 2
+		offsetTableEntry.w ChainedStomper_Type03				; 3
+		offsetTableEntry.w ChainedStomper_Type01				; 4
+		offsetTableEntry.w ChainedStomper_Type03				; 5
+		offsetTableEntry.w ChainedStomper_Type01				; 6
+		offsetTableEntry.w ChainedStomper_Type03				; 7
+		offsetTableEntry.w ChainedStomper_Type01				; 8
 ; ---------------------------------------------------------------------------
 
 ChainedStomper_Type00:
@@ -295,9 +295,9 @@ loc_B996:
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
-chainedstomper_spikes.spike_yoffset		ds.w 1						; (2 bytes)
+chainedstomper_spikes.spike_yoffset	ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -308,7 +308,7 @@ Obj_ChainedStomper_Spikes:
 		; init
 		lea	ObjDat_ChainedStomper_Spikes(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		moveq	#0,d0

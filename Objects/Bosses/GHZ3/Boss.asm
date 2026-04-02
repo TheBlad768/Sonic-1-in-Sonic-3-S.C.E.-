@@ -17,7 +17,7 @@ Obj_BossBall:
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
 		bne.w	BossBall_MoveDown.return
-		move.l	#BossBall_Setup2,address(a0)
+		move.l	#BossBall_Setup2,code_addr(a0)
 
 		; init
 		lea	ObjDat_RobotnikShip2(pc),a1
@@ -25,7 +25,7 @@ Obj_BossBall:
 		st	(Boss_flag).w
 		move.b	#.hitcount,collision_property(a0)				; set hits
 		move.w	#$100,y_vel(a0)							; set move down
-		move.l	#BossBall_MoveDown,jump_ptr(a0)
+		move.l	#BossBall_MoveDown,wait_addr(a0)
 
 		; create
 		lea	Child1_MakeRoboShipFlame(pc),a2
@@ -48,8 +48,8 @@ BossBall_MoveDown:
 		bhs.s	.return
 
 		; next
-		move.l	#BossBall_Setup3,address(a0)
-		move.l	#.createball,jump_ptr(a0)
+		move.l	#BossBall_Setup3,code_addr(a0)
+		move.l	#.createball,wait_addr(a0)
 		move.w	#-$100,x_vel(a0)						; set move left
 		jmp	(Swing_Setup1).w
 ; ---------------------------------------------------------------------------
@@ -65,7 +65,7 @@ BossBall_MoveDown:
 		; next
 		clr.w	x_vel(a0)							; set stop move
 		move.w	#(2*60)-1,wait_timer(a0)					; set wait
-		move.l	#.wait,jump_ptr(a0)
+		move.l	#.wait,wait_addr(a0)
 		bset	#6,state_flags(a0)						; set Robotnik laugh flag
 
 		; create
@@ -76,7 +76,7 @@ BossBall_MoveDown:
 .wait
 		move.w	#(1<<7)-1,wait_timer(a0)					; set wait
 		move.w	#-$40,x_vel(a0)
-		move.l	#BossBall_Move.flipx,jump_ptr(a0)
+		move.l	#BossBall_Move.flipx,wait_addr(a0)
 		bset	#bossball.attack_bit,state_flags(a0)
 		bclr	#6,state_flags(a0)						; clear Robotnik laugh flag
 
@@ -91,7 +91,7 @@ BossBall_MoveDown:
 
 BossBall_Move:
 		move.w	#(1<<6)-1,wait_timer(a0)					; set wait
-		move.l	#.flipx,jump_ptr(a0)
+		move.l	#.flipx,wait_addr(a0)
 
 		; set move
 		move.w	#-$100,d0
@@ -100,7 +100,7 @@ BossBall_Move:
 
 .flipx
 		move.w	#(1<<6)-1,wait_timer(a0)					; set wait
-		move.l	#BossBall_Move,jump_ptr(a0)
+		move.l	#BossBall_Move,wait_addr(a0)
 		bchg	#render_flags.x_flip,render_flags(a0)
 		clr.w	x_vel(a0)
 		rts
@@ -174,8 +174,8 @@ BossBall_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 BossBall_Defeated:
-		move.l	#Wait_FadeToLevelMusic,address(a0)
-		move.l	#.explosion,jump_ptr(a0)
+		move.l	#Wait_FadeToLevelMusic,code_addr(a0)
+		move.l	#.explosion,wait_addr(a0)
 		clr.l	x_vel(a0)
 
 		; use the first line of the palette
@@ -202,7 +202,7 @@ BossBall_Defeated:
 ; ---------------------------------------------------------------------------
 
 .explosion
-		move.l	#.move,address(a0)
+		move.l	#.move,code_addr(a0)
 
 		; increase level size
 		lea	(Child6_IncLevX).l,a2
@@ -231,7 +231,7 @@ BossBall_Defeated:
 		; create
 		jsr	(Create_New_Object).w
 		bne.s	.notfree2
-		move.l	#Obj_EggCapsule,address(a1)
+		move.l	#Obj_EggCapsule,code_addr(a1)
 		move.w	(Camera_stored_max_X_pos).w,d0
 		addi.w	#$A0,d0
 		move.w	d0,x_pos(a1)
@@ -266,7 +266,7 @@ BossBall_Defeated:
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bossball_crane.speed			ds.w 1						; (2 bytes)
 bossball_crane.moving			ds.b 1						; (1 byte)
@@ -285,13 +285,13 @@ Obj_BossBall_Crane:
 		move.w	#-$200,bossball_crane.speed(a0)					; set speed
 		move.w	#$80,circular_angle(a0)						; set circular angle
 		bsr.s	BossBall_GetWaitTime
-		move.l	#.down,address(a0)
+		move.l	#.down,code_addr(a0)
 
 .down
 		addq.w	#1,y_pos(a0)
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.draw
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 		bra.s	.refresh
 ; ---------------------------------------------------------------------------
 
@@ -299,7 +299,7 @@ Obj_BossBall_Crane:
 		movea.w	parent4(a0),a1							; load boss address
 		btst	#bossball.attack_bit,state_flags(a1)				; wait boss attack flag
 		beq.s	.refresh
-		move.l	#.circular,address(a0)
+		move.l	#.circular,code_addr(a0)
 		bra.s	.refresh
 ; ---------------------------------------------------------------------------
 
@@ -361,13 +361,13 @@ Obj_BossBall_Chain:
 		jsr	(SetUp_ObjAttributes).w
 		ori.b	#setBit(render_flags.static_mappings),render_flags(a0)		; set static mapping flag
 		bsr.s	BossBall_GetWaitTime
-		move.l	#.down,address(a0)
+		move.l	#.down,code_addr(a0)
 
 .down
 		addq.w	#1,y_pos(a0)
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.draw
-		move.l	#.circular,address(a0)
+		move.l	#.circular,code_addr(a0)
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
 
@@ -396,14 +396,14 @@ Obj_BossBall_Ball:
 		jsr	(SetUp_ObjAttributes).w
 		st	ros_prev_frame(a0)						; reset DPLC frame
 		bsr.s	BossBall_GetWaitTime
-		move.l	#.down,address(a0)
+		move.l	#.down,code_addr(a0)
 
 .down
 		addq.w	#1,y_pos(a0)
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.angle
 		move.b	#$F|collision_flags.npc.hurt,collision_flags(a0)		; set collision
-		move.l	#.circular,address(a0)
+		move.l	#.circular,code_addr(a0)
 
 .circular
 		movea.w	parent3(a0),a1							; load crane address
@@ -450,19 +450,19 @@ Obj_BossBall_Scaled:
 		move.w	#$3F,wait_timer(a0)
 		move.l	#words_to_long($300,$200),x_vel(a0)
 		move.w	#tiles_to_bytes($340),scaling_art_tile(a0)			; VRAM
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 		move.l	#ArtScaled_RobotnikGHZ,d0					; art pointer
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w				; is Knuckles?
 		blo.s	.notKnux							; if not, branch
 		move.l	#ArtScaled_EggRoboGHZ,d0					; art pointer
 
 .notKnux
-		move.l	d0,scaling_art_address(a0)					; set art pointer
+		move.l	d0,scaling_art_addr(a0)						; set art pointer
 
 .wait
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.scale
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		subi.w	#$40,y_vel(a0)

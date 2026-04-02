@@ -11,8 +11,8 @@ Obj_RobotnikHead3:
 		; init
 		lea	ObjDat_RobotnikHead(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.main,address(a0)
-		move.l	#Ani_RobotnikHead,aniraw_ptr(a0)
+		move.l	#.main,code_addr(a0)
+		move.l	#Ani_RobotnikHead,animations(a0)
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w			; is player Knuckles?
 		bne.s	.notKnux							; if not, branch
 		bsr.s	Load_EggRoboHead						; load Egg Robo art
@@ -56,14 +56,14 @@ Obj_RobotnikHead3:
 
 .draw
 		jsr	(Refresh_ChildPositionAdjusted_Animate2).w
-		movea.l	aniraw_ptr(a0),a1
+		movea.l	animations(a0),a1
 		jsr	(Animate_SpriteNoSST).w
 		jmp	(Child_Draw_Sprite2).w
 ; ---------------------------------------------------------------------------
 
 .defeated
 		move.b	#3,anim(a0)							; defeated animate
-		move.l	#.draw,address(a0)
+		move.l	#.draw,code_addr(a0)
 		bra.s	.draw
 
 ; ---------------------------------------------------------------------------
@@ -76,7 +76,7 @@ Load_EggRoboHead:
 		move.l	#Map_EggRoboHead,mappings(a0)					; if player is Knuckles, use Egg Robo head
 
 .skip
-		move.l	#Ani_EggRoboHead,aniraw_ptr(a0)
+		move.l	#Ani_EggRoboHead,animations(a0)
 
 		; load Egg Robo head art
 		movea.w	parent3(a0),a1							; a1=parent object
@@ -99,8 +99,8 @@ Obj_RobotnikHead4:
 		; init
 		lea	ObjDat_RobotnikHead(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.main,address(a0)
-		move.l	#Ani_RobotnikHead,aniraw_ptr(a0)
+		move.l	#.main,code_addr(a0)
+		move.l	#Ani_RobotnikHead,animations(a0)
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w			; is player Knuckles?
 		bne.s	.notKnux							; if not, branch
 		bsr.s	Load_EggRoboHead						; load Egg Robo art
@@ -140,7 +140,7 @@ Obj_RobotnikHead4:
 .draw
 		jsr	(Refresh_ChildPositionAdjusted_Animate2).w
 		jsr	(Child_GetPriority.skipp).w
-		movea.l	aniraw_ptr(a0),a1
+		movea.l	animations(a0),a1
 		jsr	(Animate_SpriteNoSST).w
 
 		; check delete flag
@@ -154,7 +154,7 @@ Obj_RobotnikHead4:
 
 .defeated
 		move.b	#3,anim(a0)							; defeated animate
-		move.l	#.draw,address(a0)
+		move.l	#.draw,code_addr(a0)
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
 
@@ -175,7 +175,7 @@ Obj_RobotnikShipFlame:
 		lea	ObjDat2_RoboShipFlame(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
 		andi.w	#$87FF,art_tile(a0)
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		movea.w	parent3(a0),a1							; a1=parent object
@@ -207,7 +207,7 @@ Obj_RobotnikShipPieces:
 		; init
 		lea	ObjDat_RobotnikShipPieces(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#Obj_FlickerMove,address(a0)
+		move.l	#Obj_FlickerMove,code_addr(a0)
 		move.b	subtype(a0),d0
 		lsr.b	d0								; division by 2
 		move.b	d0,mapping_frame(a0)

@@ -9,10 +9,10 @@ bosswater.ypos =			$C0
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 bosswater.origX				ds.l 1						; original x-axis position (4 bytes)
-					ds.b 6						; skip jump_ptr, state_flags and count (6 bytes)
+					ds.b 6						; skip wait_addr, state_flags and count (6 bytes)
 bosswater.origY				ds.l 1						; original y-axis position (4 bytes)
 bosswater.timer				ds.b 1						; (1 byte)
 bosswater.counter			ds.b 1						; (1 byte)
@@ -28,7 +28,7 @@ Obj_BossWater:
 		; don't load the objects until the art has been loaded
 		tst.w	(KosPlus_modules_left).w
 		bne.s	BossWater_MoveUp.return
-		move.l	#BossWater_Setup2,address(a0)
+		move.l	#BossWater_Setup2,code_addr(a0)
 
 		; init
 		lea	ObjDat_BossWater_ShipGlass(pc),a1
@@ -37,7 +37,7 @@ Obj_BossWater:
 		move.w	x_pos(a0),bosswater.origX(a0)
 		move.w	y_pos(a0),bosswater.origY(a0)
 		move.b	#.hitcount,collision_property(a0)				; set hits
-		move.l	#BossWater_MoveUp,jump_ptr(a0)
+		move.l	#BossWater_MoveUp,wait_addr(a0)
 		move.w	#bosswater.xpos,(Camera_saved_min_X_pos).w
 		move.w	#bosswater.ypos,(Camera_saved_min_Y_pos).w
 
@@ -60,7 +60,7 @@ BossWater_MoveUp:
 		cmp.w	d1,d0
 		blo.s	.return
 		move.l	#words_to_long($60,-$180),x_vel(a0)
-		move.l	#BossWater_MoveRight,jump_ptr(a0)
+		move.l	#BossWater_MoveRight,wait_addr(a0)
 
 .return
 		rts
@@ -88,7 +88,7 @@ BossWater_MoveRight:
 .loc_17FCA
 		bne.s	.return
 		move.l	#words_to_long($140,-$200),x_vel(a0)
-		move.l	#BossWater_MoveUp2,jump_ptr(a0)
+		move.l	#BossWater_MoveUp2,wait_addr(a0)
 
 .return
 		rts
@@ -116,8 +116,8 @@ BossWater_MoveUp2:
 .loc_1800A
 		bne.s	.return
 		move.w	#-$180,y_vel(a0)
-		move.l	#BossWater_Setup,address(a0)
-		move.l	#BossWater_MoveSwing,jump_ptr(a0)
+		move.l	#BossWater_Setup,code_addr(a0)
+		move.l	#BossWater_MoveSwing,wait_addr(a0)
 		clr.b	angle(a0)
 
 .return
@@ -137,8 +137,8 @@ BossWater_MoveSwing:
 		asl.w	y_vel(a0)
 
 .loc_18046
-		move.l	#BossWater_MoveUp3,jump_ptr(a0)
-		move.l	#BossWater_Setup2,address(a0)
+		move.l	#BossWater_MoveUp3,wait_addr(a0)
+		move.l	#BossWater_Setup2,code_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -207,7 +207,7 @@ BossWater_MoveUp3:
 
 .loc_180E6
 		bne.s	.return
-		move.l	#BossWater_MoveUp4,jump_ptr(a0)
+		move.l	#BossWater_MoveUp4,wait_addr(a0)
 		bclr	#render_flags.x_flip,render_flags(a0)
 
 .return
@@ -230,7 +230,7 @@ BossWater_MoveUp4:
 .loc_18112
 		music	mus_LZ								; play LZ music
 		bset	#render_flags.x_flip,render_flags(a0)
-		move.l	#BossWater_MoveUp5,jump_ptr(a0)
+		move.l	#BossWater_MoveUp5,wait_addr(a0)
 
 		; flags
 		st	(Last_act_end_flag).w
@@ -254,7 +254,7 @@ BossWater_MoveUp5:
 .loc_18136
 		clr.b	bosswater.timer(a0)
 		move.l	#words_to_long($400,-$40),x_vel(a0)
-		move.l	#BossWater_MoveUp6,jump_ptr(a0)
+		move.l	#BossWater_MoveUp6,wait_addr(a0)
 
 .return
 		rts
@@ -303,7 +303,7 @@ BossWater_Setup:
 		lea	(Player_1).w,a2							; a2=character
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 
 ; ---------------------------------------------------------------------------

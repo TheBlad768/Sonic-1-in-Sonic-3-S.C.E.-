@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 junction.save_frame			ds.b 1						; save frame (1 byte)
 junction.frame				ds.b 1						; add or sub frame (1 byte)
@@ -23,7 +23,7 @@ Obj_Junction:
 
 		; init
 		movem.l	ObjDat_Junction(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	#2,mainspr_childsprites(a0)					; large circular and wheel
 		addq.b	#1,junction.frame(a0)						; set 1
 
@@ -57,7 +57,7 @@ Obj_Junction:
 
 		; check player 2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.w	.return								; if yes, branch
 		tst.b	render_flags(a1)						; player 2 visible on the screen?
 		bpl.w	.return								; if not, branch

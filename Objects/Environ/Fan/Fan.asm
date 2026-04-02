@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 fan.switch				ds.b 1						; on/off switch (1 byte)
 
@@ -19,7 +19,7 @@ Obj_Fan:
 		move.w	#make_art_tile($3E8,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(32/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 		btst	#1,subtype(a0)							; is object type 02/03 (always on)?
@@ -46,7 +46,7 @@ Obj_Fan:
 
 .p2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is player RAM empty?
+		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.notp2								; if yes, branch
 		bsr.s	Fan_Check
 

@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 burrobot.timer				ds.w 1						; time between direction changes (2 bytes)
 burrobot.mode				ds.b 1						; (1 byte)
@@ -23,8 +23,8 @@ Obj_Burrobot:
 		jsr	(SetUp_ObjAttributes).w
 		move.w	#bytes_to_word(38/2,16/2),y_radius(a0)				; set y_radius and x_radius
 		move.b	#2,anim(a0)
-		move.l	#.Burrobot_ChkSonic,jump_ptr(a0)
-		move.l	#.action,address(a0)
+		move.l	#.Burrobot_ChkSonic,wait_addr(a0)
+		move.l	#.action,code_addr(a0)
 
 .action
 		cmpi.w	#-$100,(Camera_min_Y_pos).w					; is vertical wrapping enabled?
@@ -35,7 +35,7 @@ Obj_Burrobot:
 .notwrapping
 
 		; jump
-		movea.l	jump_ptr(a0),a1
+		movea.l	wait_addr(a0),a1
 		jsr	(a1)
 		lea	Ani_Burrobot(pc),a1
 		jsr	(Animate_SpriteNoSST).w
@@ -46,7 +46,7 @@ Obj_Burrobot:
 .changedir
 		subq.w	#1,burrobot.timer(a0)
 		bpl.s	.nochg
-		move.l	#.Burrobot_Move,jump_ptr(a0)
+		move.l	#.Burrobot_Move,wait_addr(a0)
 		move.w	#256-1,burrobot.timer(a0)
 		move.w	#$80,x_vel(a0)
 		move.b	#1,anim(a0)
@@ -87,7 +87,7 @@ Obj_Burrobot:
 .loc_AD84
 		btst	#2,(V_int_run_count+3).w
 		beq.s	.loc_ADA4
-		move.l	#.changedir,jump_ptr(a0)
+		move.l	#.changedir,wait_addr(a0)
 		move.w	#60-1,burrobot.timer(a0)
 		clr.w	x_vel(a0)
 		clr.b	anim(a0)
@@ -95,7 +95,7 @@ Obj_Burrobot:
 ; ---------------------------------------------------------------------------
 
 .loc_ADA4
-		move.l	#.Burrobot_Jump,jump_ptr(a0)
+		move.l	#.Burrobot_Jump,wait_addr(a0)
 		move.w	#-$400,y_vel(a0)
 		move.b	#2,anim(a0)
 		rts
@@ -115,7 +115,7 @@ Obj_Burrobot:
 		clr.w	y_vel(a0)
 		move.b	#1,anim(a0)
 		move.w	#256-1,burrobot.timer(a0)
-		move.l	#.Burrobot_Move,jump_ptr(a0)
+		move.l	#.Burrobot_Move,wait_addr(a0)
 		jsr	(Find_SonicTails).w
 		jsr	(Change_FlipX).w
 		move.b	render_flags(a0),status(a0)
@@ -138,7 +138,7 @@ Obj_Burrobot:
 		; check debug mode
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.s	.return								; if yes, branch
-		move.l	#.Burrobot_Jump,jump_ptr(a0)
+		move.l	#.Burrobot_Jump,wait_addr(a0)
 		move.w	#-$400,y_vel(a0)
 		moveq	#-$80,d0
 		jmp	(Change_VelocityWithFlipX).w

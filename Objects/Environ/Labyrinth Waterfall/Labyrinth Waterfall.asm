@@ -11,7 +11,7 @@ Obj_Waterfall:
 		; init
 		lea	ObjDat_Waterfalls(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.chkdel,address(a0)
+		move.l	#.chkdel,code_addr(a0)
 
 		; set
 		move.b	subtype(a0),d0							; get object type
@@ -24,15 +24,15 @@ Obj_Waterfall:
 		cmpi.b	#9,d0								; is object type $x9?
 		bne.s	.chkdel								; if not, branch
 		clr.w	priority(a0)							; object is in front of Sonic
-		move.l	#.anim,address(a0)
+		move.l	#.anim,code_addr(a0)
 		btst	#6,subtype(a0)							; is object type $49?
 		beq.s	.not49								; if not, branch
-		move.l	#.onwater,address(a0)
+		move.l	#.onwater,code_addr(a0)
 
 .not49
 		btst	#5,subtype(a0)							; is object type $A9?
 		beq.s	.anim								; if not, branch
-		move.l	#.checkchunk,address(a0)
+		move.l	#.checkchunk,code_addr(a0)
 
 .anim
 		lea	AniRaw_WFall(pc),a1

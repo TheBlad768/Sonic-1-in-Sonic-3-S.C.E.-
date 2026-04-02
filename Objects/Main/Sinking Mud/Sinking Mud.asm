@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 ; players
 sinkingmud.p1_depth			ds.b 1						; Sonic's depth of the mud (1 byte)
@@ -26,7 +26,7 @@ Obj_SinkingMud:
 		move.b	d0,sinkingmud.p1_depth(a0)
 		move.b	d0,sinkingmud.p2_depth(a0)
 		bset	#status.npc.no_balancing,status(a0)				; disable player's balance animation
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 
@@ -42,7 +42,7 @@ Obj_SinkingMud:
 
 		; check p2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is the player RAM empty?
+		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.chkdel								; if yes, branch
 		lea	sinkingmud.p2_depth(a0),a2
 		moveq	#p2_standing_bit,d6
@@ -65,7 +65,7 @@ Obj_SinkingMud:
 		btst	#status.player.on_object,status(a1)				; is player standing on an object?
 		beq.s	.solid								; if not, branch
 		movea.w	interact(a1),a3
-		cmpi.l	#Obj_SinkingMud.main,address(a3)
+		cmpi.l	#Obj_SinkingMud.main,code_addr(a3)
 		bne.s	.solid
 		move.w	a2,d0
 		sub.w	a0,d0

@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 superSonicKnux_stars.flag1		ds.b 1						; (1 byte)
 superSonicKnux_stars.flag2		ds.b 1						; (1 byte)
@@ -22,7 +22,7 @@ Obj_SuperSonicKnux_Stars:
 
 		; init
 		movem.l	ObjDat_SuperSonicKnux_Stars(pc),d0-d3				; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 
 		; check priority
 		btst	#high_priority_bit,(Player_1+art_tile).w			; is Sonic has high priority?
@@ -96,7 +96,7 @@ Obj_SuperSonicKnux_Stars:
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 hyperSonic_stars.xdiff			ds.w 1						; (2 bytes)
 hyperSonic_stars.ydiff			ds.w 1						; (2 bytes)
@@ -121,7 +121,7 @@ Obj_HyperSonic_Stars:
 		moveq	#.scount-1,d1
 
 .createObject
-		move.l	#.init,address(a1)
+		move.l	#.init,code_addr(a1)
 		move.b	d0,angle(a1)
 		addi.b	#256/.scount,d0							; 90 degrees
 		addq.b	#1,d2
@@ -145,14 +145,14 @@ Obj_HyperSonic_Stars:
 
 		; init
 		movem.l	ObjDat_HyperSonic_Stars(pc),d0-d3				; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 
 		move.b	#6,mapping_frame(a0)
 
 		; check main object
 		cmpa.w	#Invincibility_stars,a0
 		bne.s	.child
-		move.l	#.main,address(a0)
+		move.l	#.main,code_addr(a0)
 
 .main
 

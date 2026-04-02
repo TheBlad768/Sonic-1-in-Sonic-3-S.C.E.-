@@ -77,7 +77,7 @@ SolidObjectFull2:
 
 		; player 2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is the player RAM empty?
+		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
 		moveq	#p2_standing_bit,d6
 
@@ -139,7 +139,7 @@ SolidObjectFullSloped_Spring:
 
 		; player 2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is the player RAM empty?
+		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
 		moveq	#p2_standing_bit,d6
 
@@ -193,7 +193,7 @@ SolidObjectDoubleSloped:
 
 		; player 2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is the player RAM empty?
+		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
 		moveq	#p2_standing_bit,d6
 
@@ -240,7 +240,7 @@ SolidObjectFullSloped:
 
 		; player 2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is the player RAM empty?
+		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
 		moveq	#p2_standing_bit,d6
 
@@ -289,7 +289,7 @@ SolidObjectFull_Offset:
 
 		; player 2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is the player RAM empty?
+		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
 		moveq	#p2_standing_bit,d6
 
@@ -857,7 +857,7 @@ SolidObjectTop:
 
 		; player 2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is the player RAM empty?
+		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
 		moveq	#p2_standing_bit,d6
 
@@ -908,7 +908,7 @@ SolidObjectTopSloped2:
 
 		; player 2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is the player RAM empty?
+		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
 		moveq	#p2_standing_bit,d6
 
@@ -959,7 +959,7 @@ SolidObjectTopSloped:
 
 		; player 2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is the player RAM empty?
+		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
 		moveq	#p2_standing_bit,d6
 
@@ -1006,7 +1006,7 @@ sub_1E3AE:
 
 		; player 2
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)							; is the player RAM empty?
+		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
 		moveq	#p2_standing_bit,d6
 

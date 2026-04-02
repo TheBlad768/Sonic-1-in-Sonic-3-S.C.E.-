@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 labyrinthblock.origX			ds.w 1						; original x-axis position (2 bytes)
 labyrinthblock.origY			ds.w 1						; original y-axis position (2 bytes)
@@ -31,7 +31,7 @@ Obj_LabyrinthBlock:
 
 		; init
 		movem.l	ObjDat_LabyrinthBlock(pc),d0-d3					; copy data to d0-d3
-		movem.l	d0-d3,address(a0)						; set data from d0-d3 to current object
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 
 		; set
 		move.b	subtype(a0),d0							; get block type

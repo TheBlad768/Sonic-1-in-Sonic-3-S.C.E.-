@@ -6,7 +6,7 @@
 
 Obj_Spawn_FinalZone:
 		move.w	#30-1,wait_timer(a0)						; set time
-		move.l	#.wait,address(a0)
+		move.l	#.wait,code_addr(a0)
 
 		; set
 		move.w	#-1,(Ctrl_1_locked).w						; lock control 1 and control 2
@@ -22,7 +22,7 @@ Obj_Spawn_FinalZone:
 		lea	(Player_1).w,a1							; a1=character
 		bsr.s	.set
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)
+		tst.l	code_addr(a1)
 		beq.s	.return
 
 .set
@@ -47,11 +47,11 @@ Obj_Spawn_FinalZone:
 		bpl.s	.return
 
 		; next
-		move.l	#.fall,address(a0)
+		move.l	#.fall,code_addr(a0)
 		lea	(Player_1).w,a1							; a1=character
 		bsr.s	.setjump
 		lea	(Player_2).w,a1							; a1=character
-		tst.l	address(a1)
+		tst.l	code_addr(a1)
 		beq.s	.return2
 
 .setjump
@@ -83,7 +83,7 @@ Obj_Spawn_FinalZone:
 
 		; check p2
 		lea	(Player_2).w,a2							; a2=character
-		tst.l	address(a2)
+		tst.l	code_addr(a2)
 		beq.s	.delete
 		clr.b	object_control(a2)
 
@@ -111,7 +111,7 @@ Obj_Spawn_FinalZone:
 .checkfalling
 		bsr.s	.falling
 		lea	(Player_2).w,a2							; a2=character
-		tst.l	address(a2)							; is player RAM empty?
+		tst.l	code_addr(a2)							; is player RAM empty?
 		beq.s	.return3							; if yes, branch
 
 .falling

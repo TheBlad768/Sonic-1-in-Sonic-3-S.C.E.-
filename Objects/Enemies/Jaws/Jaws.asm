@@ -7,7 +7,7 @@ _JAWSWATER_FIX_ =			1						; hide jaws if it is above water
 
 ; dynamic object variables
 
-	dsset aniraw_ptr								; pretend we're in the RAM
+	dsset animations								; pretend we're in the RAM
 
 jaws.timer				ds.w 1						; (2 bytes)
 jaws.delay				ds.w 1						; (2 bytes)
@@ -24,7 +24,7 @@ Obj_Jaws:
 		; init
 		lea	ObjDat_Jaws(pc),a1
 		jsr	(SetUp_ObjAttributes).w
-		move.l	#.turn,address(a0)
+		move.l	#.turn,code_addr(a0)
 
 		; set
 		moveq	#0,d0
