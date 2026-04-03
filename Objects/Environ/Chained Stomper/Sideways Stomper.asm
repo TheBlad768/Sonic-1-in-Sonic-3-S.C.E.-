@@ -33,33 +33,53 @@ Obj_SidewaysStomper:
 		; set length
 		moveq	#0,d0
 		move.b	subtype(a0),d0
-		add.w	d0,d0								; multiply by 2
 		move.b	SidewaysStomper_Length(pc,d0.w),sidewaysstomper.length(a0)
+;		clr.b	sidewaysstomper.length+1(a0)
 
 		; init
-		movem.l	ObjDat_SidewaysStomper(pc),d0-d3				; copy data to d0-d3
-		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
-		move.b	#1,mapping_frame(a0)
+		lea	ObjDat_SidewaysStomper(pc),a1
+		jsr	(SetUp_ObjAttributes).w
+
+		; set multi-draw flag
+		bset	#render_flags.multi_sprite,render_flags(a0)
 
 		; set sub objects
 		move.w	#2,mainspr_childsprites(a0)					; wall bracket, pole
 
 		; set xpos
 		move.w	x_pos(a0),d0
+		addq.w	#4,d0
+		move.w	d0,x_pos(a0)
 		move.w	d0,sidewaysstomper.origX(a0)
 		move.w	d0,sidewaysstomper.copyX(a0)
+
+		; check flipx
+		btst	#render_flags.x_flip,render_flags(a0)
+		sne	d3								; if object is x flipped, set flag
 
 		; sub object 1
 		lea	sub2_x_pos(a0),a1						; $16-$29 bytes reserved
 		move.w	d0,d1
-		addi.w	#40,d1
+		moveq	#40,d2
+		tst.b	d3								; check flipx
+		beq.s	.notflipxwb
+		neg.w	d2
+
+.notflipxwb
+		add.w	d2,d1
 		move.w	d1,(a1)+							; xpos
 		move.w	y_pos(a0),(a1)+							; ypos
 		move.w	#3,(a1)+							; frame (wall bracket)
 
 		; sub object 2
 		move.w	d0,d1
-		addi.w	#52,d1
+		moveq	#52,d2
+		tst.b	d3								; check flipx
+		beq.s	.notflipxp
+		neg.w	d2
+
+.notflipxp
+		add.w	d2,d1
 		move.w	d1,(a1)+							; xpos
 		move.w	d1,sidewaysstomper.pole_xoffset(a0)
 		move.w	y_pos(a0),(a1)+							; ypos
@@ -67,12 +87,21 @@ Obj_SidewaysStomper:
 
 		; object 3 (spikes)
 		move.w	d0,d1
-		subi.w	#28,d1
+		moveq	#28,d2
+		tst.b	d3								; check flipx
+		bne.s	.notflipxs
+		neg.w	d2
+
+.notflipxs
+		add.w	d2,d1
 		move.w	d1,sidewaysstomper.spikes_xoffset(a0)
 
 		; create spikes
 		lea	Child6_SidewaysStomper_Spikes(pc),a2
 		jsr	(CreateChild6_Simple).w
+
+		; next
+		move.l	#.action,code_addr(a0)
 
 .action
 
@@ -99,7 +128,11 @@ Obj_SidewaysStomper:
 		move.b	d0,sub3_mapframe(a0)
 		moveq	#0,d0
 		move.b	sidewaysstomper.xoffset(a0),d0
+		btst	#render_flags.x_flip,render_flags(a0)				; check flipx
+		bne.s	.notflipx
 		neg.w	d0
+
+.notflipx
 		add.w	sidewaysstomper.pole_xoffset(a0),d0
 		move.w	d0,sub3_x_pos(a0)
 
@@ -164,7 +197,11 @@ loc_BB3C:
 
 loc_BB3E:
 		move.b	sidewaysstomper.xoffset(a0),d0
+		btst	#render_flags.x_flip,render_flags(a0)				; check flipx
+		bne.s	.notflipx
 		neg.w	d0
+
+.notflipx
 		add.w	sidewaysstomper.origX(a0),d0
 		move.w	d0,x_pos(a0)
 		rts
@@ -182,6 +219,7 @@ Obj_SidewaysStomper_Spikes:
 		; init
 		lea	ObjDat_SidewaysStomper_Spikes(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
+		jsr	(Change_FlipXUseParent).w
 		move.l	#.solid,code_addr(a0)
 
 .solid
@@ -219,7 +257,11 @@ Obj_SidewaysStomper_Spikes:
 		moveq	#0,d0
 		movea.w	parent3(a0),a1							; a1=parent object
 		move.b	sidewaysstomper.xoffset(a1),d0
+		btst	#render_flags.x_flip,render_flags(a0)				; check flipx
+		bne.s	.notflipx
 		neg.w	d0
+
+.notflipx
 		add.w	sidewaysstomper.spikes_xoffset(a1),d0
 		move.w	d0,x_pos(a0)
 		rts
@@ -227,12 +269,7 @@ Obj_SidewaysStomper_Spikes:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_SidewaysStomper:	subObjMainData \
-				Obj_SidewaysStomper.action, \
-					setBit(render_flags.level) | \
-					setBit(render_flags.multi_sprite), \
-				0, 64, 256, 3, $328, 0, FALSE, Map_SidewaysStomper
-
+ObjDat_SidewaysStomper:	subObjData Map_SidewaysStomper, $328, 0, FALSE, 64, 256, 3, 1, 0
 ObjDat_SidewaysStomper_Spikes:	subObjData FALSE, FALSE, 0, FALSE, 40, 32, 4, 2, 0
 
 Child6_SidewaysStomper_Spikes:
