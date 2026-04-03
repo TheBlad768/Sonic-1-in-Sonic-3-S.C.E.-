@@ -1111,10 +1111,10 @@ Tails_Carry_Sonic:
 		bhs.w	loc_14466
 		btst	#status.player.in_air,status(a1)				; is the player in the air?
 		beq.w	loc_1445A							; if not, branch
-		move.w	(_unkF744).w,d1
+		move.w	(Flying_carrying_saved_X_vel).w,d1
 		cmp.w	x_vel(a1),d1
 		bne.s	loc_1445A
-		move.w	(_unkF74C).w,d1
+		move.w	(Flying_carrying_saved_Y_vel).w,d1
 		cmp.w	y_vel(a1),d1
 		bne.s	loc_14460
 		tst.b	object_control(a1)
@@ -1222,8 +1222,7 @@ loc_144E4:
 loc_144F8:
 		movem.w	x_vel(a0),d0-d1							; load xy speed
 		movem.w	d0-d1,(Player_1+x_vel).w					; save xy speed
-		move.w	d0,(_unkF744).w							; save x speed
-		move.w	d1,(_unkF74C).w							; save y speed
+		movem.w	d0-d1,(Flying_carrying_saved_X_vel).w				; save xy speed
 		movem.l	d0-a6,-(sp)
 		lea	(Player_1).w,a0							; a0=character
 		bsr.w	SonicKnux_DoLevelCollision
@@ -1313,9 +1312,9 @@ sub_1459E:
 		and.b	status(a0),d0
 		or.b	d0,render_flags(a1)
 		or.b	d0,status(a1)
-		move.w	x_vel(a0),(_unkF744).w
+		move.w	x_vel(a0),(Flying_carrying_saved_X_vel).w
 		move.w	x_vel(a0),x_vel(a1)
-		move.w	y_vel(a0),(_unkF74C).w
+		move.w	y_vel(a0),(Flying_carrying_saved_Y_vel).w
 		move.w	y_vel(a0),y_vel(a1)
 		tst.b	(Reverse_gravity_flag).w
 		beq.s	locret_14630
