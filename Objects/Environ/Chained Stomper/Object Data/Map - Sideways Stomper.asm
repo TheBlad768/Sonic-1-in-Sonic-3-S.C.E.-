@@ -43,16 +43,7 @@ Map_SidewaysStomper_90:	dc.b 0, 8
 		dc.b $F8, 5, 0, $41, 0, $30
 		dc.b $F8, 5, 0, $41, 0, $40
 		dc.b $F8, 5, 0, $41, 0, $50
-Map_SidewaysStomper_C2:	dc.b 0, 8
-		dc.b $F8, 5, 0, $41, $FF, $E0
-		dc.b $F8, 5, 0, $41, $FF, $F0
-		dc.b $F8, 5, 0, $41, 0, 0
-		dc.b $F8, 5, 0, $41, 0, $10
-		dc.b $F8, 5, 0, $41, 0, $20
-		dc.b $F8, 5, 0, $41, 0, $30
-		dc.b $F8, 5, 0, $41, 0, $40
-		dc.b $F8, 5, 0, $41, 0, $50
-Map_SidewaysStomper_F4:	dc.b 0, $A
+Map_SidewaysStomper_C2:	dc.b 0, $A
 		dc.b $F8, 5, 0, $41, $FF, $E0
 		dc.b $F8, 5, 0, $41, $FF, $F0
 		dc.b $F8, 5, 0, $41, 0, 0
@@ -63,4 +54,17 @@ Map_SidewaysStomper_F4:	dc.b 0, $A
 		dc.b $F8, 5, 0, $41, 0, $50
 		dc.b $F8, 5, 0, $41, 0, $60
 		dc.b $F8, 5, 0, $41, 0, $70
+Map_SidewaysStomper_F4:	dc.b 0, $C
+		dc.b $F8, 5, 0, $41, $FF, $E0
+		dc.b $F8, 5, 0, $41, $FF, $F0
+		dc.b $F8, 5, 0, $41, 0, 0
+		dc.b $F8, 5, 0, $41, 0, $10
+		dc.b $F8, 5, 0, $41, 0, $20
+		dc.b $F8, 5, 0, $41, 0, $30
+		dc.b $F8, 5, 0, $41, 0, $40
+		dc.b $F8, 5, 0, $41, 0, $50
+		dc.b $F8, 5, 0, $41, 0, $60
+		dc.b $F8, 5, 0, $41, 0, $70
+		dc.b $F8, 5, 0, $41, 0, $80
+		dc.b $F8, 5, 0, $41, 0, $90
 		even

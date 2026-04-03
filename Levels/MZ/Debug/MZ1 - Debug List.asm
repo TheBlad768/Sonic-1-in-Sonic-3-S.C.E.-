@@ -35,6 +35,7 @@ Debug_MZ1: dbglistheader
 	dbglistobj Obj_ChainedStomper, Map_ChainedStomper, $13, $A, $328, 0, FALSE
 	dbglistobj Obj_ChainedStomper, Map_ChainedStomper, $23, $B, $328, 0, FALSE
 	dbglistobj Obj_SidewaysStomper, Map_SidewaysStomper, 0, 0, $328, 0, FALSE
+	dbglistobj Obj_SidewaysStomper, Map_SidewaysStomper, 1, 0, $328, 0, FALSE
 	dbglistobj Obj_GlassBlock, Map_GlassBlock, 0, 0, $300, 2, TRUE
 	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, 0, 0, 0, 2, FALSE
 	dbglistobj Obj_LargeGrassPlatform, Map_LargeGrassPlatform, 1, 0, 0, 2, FALSE
