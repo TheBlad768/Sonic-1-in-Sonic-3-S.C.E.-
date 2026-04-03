@@ -281,7 +281,6 @@ Total_bonus_countup					ds.w 1
 Tails_CPU_interact					ds.w 1				; RAM address of the last object Tails stood on while controlled by AI
 Tails_CPU_idle_timer					ds.w 1				; counts down while controller 2 is idle, when it reaches 0 the AI takes over
 Tails_CPU_flight_timer					ds.w 1				; counts up while Tails is respawning, when it reaches 300 he drops into the level
-							ds.w 1				; unused
 Tails_CPU_routine					ds.w 1				; Tails' current AI routine in a Sonic and Tails game
 Tails_CPU_target_X					ds.w 1				; Tails' target x-position
 Tails_CPU_target_Y					ds.w 1				; Tails' target y-position
@@ -289,10 +288,8 @@ Tails_CPU_auto_fly_timer				ds.b 1				; counts up until AI Tails automatically f
 Tails_CPU_auto_jump_flag				ds.b 1				; set to #1 when AI Tails needs to jump of his own accord, regardless of whether Sonic jumped or not
 Flying_carrying_Sonic_flag				ds.b 1				; set when Tails carries Sonic in a Sonic and Tails game
 Flying_picking_Sonic_timer				ds.b 1				; until this is 0 Tails can't pick Sonic up
-_unkF744						ds.w 1
-_unkF74A						ds.b 1
-_unkF74B						ds.b 1
-_unkF74C						ds.w 1
+Flying_carrying_saved_X_vel				ds.w 1				; save Tails' x-velocity
+Flying_carrying_saved_Y_vel				ds.w 1				; save Tails' y-velocity
 Tails_CPU_star_post_flag				ds.b 1				; copy of Last_star_post_hit, sets Tails' starting behavior in a Sonic and Tails game
 Super_Tails_birds_target_counter			ds.b 1				; Super Tails birds find target
 Gliding_collision_flags					ds.b 1
