@@ -13,7 +13,7 @@ namespace S3KObjectDefinitions.MZ
 		public override void Init(ObjectData data)
 		{
 			byte[] blocks = ObjectHelper.OpenArtFile("../../Objects/Environ/Chained Stomper/KosinskiPM Art/Metal Blocks.kospm", CompressionType.KosinskiPlusM);
-			byte[] padding = new byte[0x4360-blocks.Length];
+			byte[] padding = new byte[0x2B80-blocks.Length];
 			byte[] spikes = ObjectHelper.OpenArtFile("../../Objects/Main/Spikes/KosinskiPM Art/Spikes and Springs.kospm", CompressionType.KosinskiPlusM);
 			List<byte> tmpartfile = new List<byte>();
 			tmpartfile.AddRange(blocks);
@@ -63,7 +63,7 @@ namespace S3KObjectDefinitions.MZ
 				Sprite tmp = new Sprite(imgs[0]);
 				tmp.Offset(xoff, 0);
 				sprs.Add(tmp);
-				tmp = new Sprite(imgs[1]);
+				tmp = new Sprite(imgs[2]);
 				tmp.Offset(xoff - 0x1C, 0);
 				sprs.Add(tmp);
 				return new Sprite(sprs.ToArray());
@@ -98,16 +98,28 @@ namespace S3KObjectDefinitions.MZ
 			}
 			tmp.Offset(globalxoff + secondaryxoff + 0x34, 0);
 			sprs.Add(tmp);
-			tmp = new Sprite(imgs[2]);
+			tmp = new Sprite(imgs[3]);
 			tmp.Offset(globalxoff + 0x28, 0);
 			sprs.Add(tmp);
-			tmp = new Sprite(imgs[1]);
+			tmp = new Sprite(imgs[2]);
 			tmp.Offset(globalxoff + secondaryxoff - 0x1C, 0);
 			sprs.Add(tmp);
 			tmp = new Sprite(imgs[0]);
 			tmp.Offset(globalxoff + secondaryxoff, 0);
 			sprs.Add(tmp);
-			return new Sprite(sprs.ToArray());
+
+			Sprite final = new Sprite(sprs.ToArray());
+			Sprite[] flipped = BuildFlippedSprites(final);
+			return flipped[(obj.XFlip ? 1 : 0) | (obj.YFlip ? 2 : 0)];
+		}
+
+		private Sprite[] BuildFlippedSprites(Sprite sprite)
+		{
+			var flipX = new Sprite(sprite, true, false);
+			var flipY = new Sprite(sprite, false, true);
+			var flipXY = new Sprite(sprite, true, true);
+
+			return new[] { sprite, flipX, flipY, flipXY };
 		}
 	}
 }
