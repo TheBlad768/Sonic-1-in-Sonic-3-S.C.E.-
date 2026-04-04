@@ -915,7 +915,7 @@ loc_14164:
 		clr.w	(Ctrl_2_logical).w
 		tst.b	(Flying_carrying_Sonic_flag).w
 		beq.w	loc_142E2
-		clr.b	(_unkFAAC).w
+		clr.b	(Flying_catch_Sonic_flag).w
 		btst	#button_down,(Ctrl_1).w
 		beq.s	loc_14198
 		addq.b	#1,(Tails_CPU_auto_fly_timer).w
@@ -1023,7 +1023,7 @@ locret_142E0:
 ; ---------------------------------------------------------------------------
 
 loc_142E2:
-		tst.b	(_unkFAAC).w
+		tst.b	(Flying_catch_Sonic_flag).w
 		bne.s	loc_14362
 		lea	(Player_1).w,a1							; a1=character
 		tst.b	render_flags(a1)						; is the player visible on the screen?
@@ -1049,7 +1049,7 @@ loc_1432E:
 ; ---------------------------------------------------------------------------
 
 loc_14330:
-		st	(_unkFAAC).w
+		st	(Flying_catch_Sonic_flag).w
 		move.w	y_pos(a1),d1
 		sub.w	y_pos(a0),d1
 		bpl.s	loc_14340

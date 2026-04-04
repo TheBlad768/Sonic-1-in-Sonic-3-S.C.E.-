@@ -253,7 +253,7 @@ Chain_stomp_addr					ds.w 1
 Push_block_addr						ds.w 1
 Float_block_flag					ds.b 1
 Scrap_stomp_flag					ds.b 1
-_unkFAAC						ds.b 1
+Flying_catch_Sonic_flag					ds.b 1
 Convey_rev_flag						ds.b 1
 Convey_rev_buffer					ds.b 6
 Palette_cycle_counters					ds.b $40
