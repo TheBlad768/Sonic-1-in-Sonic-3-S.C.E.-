@@ -33,7 +33,7 @@ namespace S3KObjectDefinitions.SBZ
 
 		public override string SubtypeName(byte subtype)
 		{
-			return null;
+			return (subtype & 0xF) == 0 ? "Normal (144)" : "Small (112)";
 		}
 
 		public override Sprite SubtypeImage(byte subtype)
@@ -46,21 +46,29 @@ namespace S3KObjectDefinitions.SBZ
 			return sprite[(obj.XFlip ? 1 : 0) | (obj.YFlip ? 2 : 0)];
 		}
 
+		private int GetRadius(byte subtype)
+		{
+			return (subtype & 0xF) == 0 ? 72 : 56;
+		}
+
 		public override Sprite GetDebugOverlay(ObjectEntry obj)
 		{
-			var bitmap = new BitmapBits(192, 192);
-			bitmap.DrawRectangle(LevelData.ColorWhite, 0, 0, 191, 191);
-			return new Sprite(bitmap, -96, -96);
+			int r = GetRadius(obj.SubType);
+			int size = r * 2;
+			var bitmap = new BitmapBits(size, size);
+			bitmap.DrawRectangle(LevelData.ColorWhite, 0, 0, size - 1, size - 1);
+			return new Sprite(bitmap, -r, -r);
 		}
 
 		public override Rectangle GetBounds(ObjectEntry obj)
 		{
-			return new Rectangle(obj.X - 96, obj.Y - 96, 192, 192);
+			int r = GetRadius(obj.SubType);
+			return new Rectangle(obj.X - r, obj.Y - r, r * 2, r * 2);
 		}
 
 		public override void Init(ObjectData data)
 		{
-			subtypes = new ReadOnlyCollection<byte>(new byte[0]);
+			subtypes = new ReadOnlyCollection<byte>(new byte[] { 0, 1 });
 			sprite = BuildFlippedSprites(ObjectHelper.UnknownObject);
 		}
 
