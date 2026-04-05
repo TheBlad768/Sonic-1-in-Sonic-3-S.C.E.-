@@ -28,7 +28,7 @@ SolidObjectFull:
 		lea	(Player_2).w,a1							; a1=character
 		tst.b	render_flags(a1)						; is the player visible on the screen?
 		bpl.s	.return								; if not, branch
-		moveq	#p2_standing_bit,d6
+		addq.b	#1,d6								; p2_standing_bit
 
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
@@ -79,7 +79,7 @@ SolidObjectFull2:
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
-		moveq	#p2_standing_bit,d6
+		addq.b	#1,d6								; p2_standing_bit
 
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
@@ -141,7 +141,7 @@ SolidObjectFullSloped_Spring:
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
-		moveq	#p2_standing_bit,d6
+		addq.b	#1,d6								; p2_standing_bit
 
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
@@ -195,7 +195,7 @@ SolidObjectDoubleSloped:
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
-		moveq	#p2_standing_bit,d6
+		addq.b	#1,d6								; p2_standing_bit
 
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
@@ -242,7 +242,7 @@ SolidObjectFullSloped:
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
-		moveq	#p2_standing_bit,d6
+		addq.b	#1,d6								; p2_standing_bit
 
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
@@ -291,7 +291,7 @@ SolidObjectFull_Offset:
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
-		moveq	#p2_standing_bit,d6
+		addq.b	#1,d6								; p2_standing_bit
 
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
@@ -859,7 +859,7 @@ SolidObjectTop:
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
-		moveq	#p2_standing_bit,d6
+		addq.b	#1,d6								; p2_standing_bit
 
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
@@ -910,7 +910,7 @@ SolidObjectTopSloped2:
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
-		moveq	#p2_standing_bit,d6
+		addq.b	#1,d6								; p2_standing_bit
 
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
@@ -961,7 +961,7 @@ SolidObjectTopSloped:
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
-		moveq	#p2_standing_bit,d6
+		addq.b	#1,d6								; p2_standing_bit
 
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
@@ -1008,7 +1008,7 @@ sub_1E3AE:
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.return								; if yes, branch
-		moveq	#p2_standing_bit,d6
+		addq.b	#1,d6								; p2_standing_bit
 
 .check
 		btst	d6,status(a0)							; is the player standing on the current object?
