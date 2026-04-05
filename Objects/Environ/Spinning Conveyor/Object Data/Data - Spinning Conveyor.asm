@@ -2,8 +2,6 @@
 ; Scrap Brain Zone - Conveyor positions
 ; ---------------------------------------------------------------------------
 
-SpinningConveyorXpos =			512
-
 ; =============== S U B R O U T I N E =======================================
 
 SpinningConveyor_Data: offsetTable
@@ -14,58 +12,58 @@ SpinningConveyor_Data: offsetTable
 		offsetTableEntry.w SpinningConveyor_Group04				; 8
 		offsetTableEntry.w SpinningConveyor_Group05				; A
 
-SpinningConveyor_Group00: conveyorheader $E80+SpinningConveyorXpos, $358
+SpinningConveyor_Group00: conveyorheader
 
 		; xpos, ypos
-		conveyorobjdata -$6C, $18
-		conveyorobjdata $6F, -$56
-		conveyorobjdata $6F, -$18
-		conveyorobjdata -$6C, $56
+		conveyorobjdata -$6C, -$10
+		conveyorobjdata $6F, -$7E
+		conveyorobjdata $6F, -$40
+		conveyorobjdata -$6C, $2E
 		conveyorend
 
-SpinningConveyor_Group01: conveyorheader $F80+SpinningConveyorXpos, $2C8
+SpinningConveyor_Group01: conveyorheader
 
 		; xpos, ypos
-		conveyorobjdata -$6C, $18
-		conveyorobjdata $6F, -$56
-		conveyorobjdata $6F, -$18
-		conveyorobjdata -$6C, $56
+		conveyorobjdata -$6C, -$20
+		conveyorobjdata $6F, -$8E
+		conveyorobjdata $6F, -$50
+		conveyorobjdata -$6C, $1E
 		conveyorend
 
-SpinningConveyor_Group02: conveyorheader $1080+SpinningConveyorXpos, $228
+SpinningConveyor_Group02: conveyorheader
 
 		; xpos, ypos
-		conveyorobjdata -$6C, $48
-		conveyorobjdata $6F, -$26
-		conveyorobjdata $6F, $18
-		conveyorobjdata -$6C, $86
+		conveyorobjdata -$6C, -$10
+		conveyorobjdata $6F, -$7E
+		conveyorobjdata $6F, -$40
+		conveyorobjdata -$6C, $2E
 		conveyorend
 
-SpinningConveyor_Group03: conveyorheader $F80+SpinningConveyorXpos, $558
+SpinningConveyor_Group03: conveyorheader
 
 		; xpos, ypos
-		conveyorobjdata -$6C, $18
-		conveyorobjdata $6F, -$56
-		conveyorobjdata $6F, -$18
-		conveyorobjdata -$6C, $56
+		conveyorobjdata -$6C, $70
+		conveyorobjdata $6F, 2
+		conveyorobjdata $6F, $40
+		conveyorobjdata -$6C, $AE
 		conveyorend
 
-SpinningConveyor_Group04: conveyorheader $1B80+SpinningConveyorXpos, $658
+SpinningConveyor_Group04: conveyorheader
 
 		; xpos, ypos
-		conveyorobjdata -$6C, $18
-		conveyorobjdata $6F, -$56
-		conveyorobjdata $6F, -$18
-		conveyorobjdata -$6C, $56
+		conveyorobjdata -$6C, $70
+		conveyorobjdata $6F, 2
+		conveyorobjdata $6F, $40
+		conveyorobjdata -$6C, $AE
 		conveyorend
 
-SpinningConveyor_Group05: conveyorheader $1C80+SpinningConveyorXpos, $5C8
+SpinningConveyor_Group05: conveyorheader
 
 		; xpos, ypos
-		conveyorobjdata -$6C, $18
-		conveyorobjdata $6F, -$56
-		conveyorobjdata $6F, -$18
-		conveyorobjdata -$6C, $56
+		conveyorobjdata -$6C, $60
+		conveyorobjdata $6F, -$E
+		conveyorobjdata $6F, $30
+		conveyorobjdata -$6C, $9E
 		conveyorend
 
 ; ---------------------------------------------------------------------------
@@ -84,80 +82,80 @@ SpinningConveyor_Platform_Index: offsetTable
 		offsetTableEntry.w SpinningConveyor_Platform_SBZ101			; C (SBZ1)
 		offsetTableEntry.w SpinningConveyor_Platform_SBZ102			; E (SBZ1)
 
-SpinningConveyor_Platform_SBZ101: conveyorplatformheader $E80+SpinningConveyorXpos, $358
+SpinningConveyor_Platform_SBZ101: conveyorplatformheader
 
 		; xpos, ypos, subtype
-		conveyorplatformobjdata -$6C, $18, 0
-		conveyorplatformobjdata -$26, -$B, 1
-		conveyorplatformobjdata $20, -$2E, 1
-		conveyorplatformobjdata $67, -$51, 1
-		conveyorplatformobjdata $6F, -$18, 2
-		conveyorplatformobjdata $29, $B, 3
-		conveyorplatformobjdata -$1D, $2E, 3
-		conveyorplatformobjdata -$64, $51, 3
+		conveyorplatformobjdata -$6C, -$10, 0
+		conveyorplatformobjdata -$26, -$33, 1
+		conveyorplatformobjdata $20, -$56, 1
+		conveyorplatformobjdata $67, -$79, 1
+		conveyorplatformobjdata $6F, -$40, 2
+		conveyorplatformobjdata $29, -$1D, 3
+		conveyorplatformobjdata -$1D, 6, 3
+		conveyorplatformobjdata -$64, $29, 3
 		conveyorplatformend
 
-SpinningConveyor_Platform_SBZ102: conveyorplatformheader $F80+SpinningConveyorXpos, $2C8
+SpinningConveyor_Platform_SBZ102: conveyorplatformheader
 
 		; xpos, ypos, subtype
-		conveyorplatformobjdata -$6C, $18, $10
-		conveyorplatformobjdata -$26, -$B, $11
-		conveyorplatformobjdata $20, -$2E, $11
-		conveyorplatformobjdata $67, -$51, $11
-		conveyorplatformobjdata $6F, -$18, $12
-		conveyorplatformobjdata $29, $B, $13
-		conveyorplatformobjdata -$1D, $2E, $13
-		conveyorplatformobjdata -$64, $51, $13
+		conveyorplatformobjdata -$6C, -$20, $10
+		conveyorplatformobjdata -$26, -$43, $11
+		conveyorplatformobjdata $20, -$66, $11
+		conveyorplatformobjdata $67, -$89, $11
+		conveyorplatformobjdata $6F, -$50, $12
+		conveyorplatformobjdata $29, -$2D, $13
+		conveyorplatformobjdata -$1D, -$A, $13
+		conveyorplatformobjdata -$64, $19, $13
 		conveyorplatformend
 
-SpinningConveyor_Platform_SBZ103: conveyorplatformheader $1080+SpinningConveyorXpos, $228
+SpinningConveyor_Platform_SBZ103: conveyorplatformheader
 
 		; xpos, ypos, subtype
-		conveyorplatformobjdata -$6C, $48, $20
-		conveyorplatformobjdata -$26, $25, $21
-		conveyorplatformobjdata $20, $2, $21
-		conveyorplatformobjdata $67, -$21, $21
-		conveyorplatformobjdata $6F, $18, $22
-		conveyorplatformobjdata $29, $3B, $23
-		conveyorplatformobjdata -$1D, $5E, $23
-		conveyorplatformobjdata -$64, $81, $23
+		conveyorplatformobjdata -$6C, -$10, $20
+		conveyorplatformobjdata -$26, -$33, $21
+		conveyorplatformobjdata $20, -$56, $21
+		conveyorplatformobjdata $67, -$79, $21
+		conveyorplatformobjdata $6F, -$40, $22
+		conveyorplatformobjdata $29, -$1D, $23
+		conveyorplatformobjdata -$1D, 6, $23
+		conveyorplatformobjdata -$64, $29, $23
 		conveyorplatformend
 
-SpinningConveyor_Platform_SBZ104: conveyorplatformheader $F80+SpinningConveyorXpos, $558
+SpinningConveyor_Platform_SBZ104: conveyorplatformheader
 
 		; xpos, ypos, subtype
-		conveyorplatformobjdata -$6C, $18, $30
-		conveyorplatformobjdata -$26, -$B, $31
-		conveyorplatformobjdata $20, -$2E, $31
-		conveyorplatformobjdata $67, -$51, $31
-		conveyorplatformobjdata $6F, -$18, $32
-		conveyorplatformobjdata $29, $B, $33
-		conveyorplatformobjdata -$1D, $2E, $33
-		conveyorplatformobjdata -$64, $51, $33
+		conveyorplatformobjdata -$6C, $70, $30
+		conveyorplatformobjdata -$26, $4D, $31
+		conveyorplatformobjdata $20, $2A, $31
+		conveyorplatformobjdata $67, 7, $31
+		conveyorplatformobjdata $6F, $40, $32
+		conveyorplatformobjdata $29, $63, $33
+		conveyorplatformobjdata -$1D, $86, $33
+		conveyorplatformobjdata -$64, $A9, $33
 		conveyorplatformend
 
-SpinningConveyor_Platform_SBZ105: conveyorplatformheader $1B80+SpinningConveyorXpos, $658
+SpinningConveyor_Platform_SBZ105: conveyorplatformheader
 
 		; xpos, ypos, subtype
-		conveyorplatformobjdata -$6C, $18, $40
-		conveyorplatformobjdata -$26, -$B, $41
-		conveyorplatformobjdata $20, -$2E, $41
-		conveyorplatformobjdata $67, -$51, $41
-		conveyorplatformobjdata $6F, -$18, $42
-		conveyorplatformobjdata $29, $B, $43
-		conveyorplatformobjdata -$1D, $2E, $43
-		conveyorplatformobjdata -$64, $51, $43
+		conveyorplatformobjdata -$6C, $70, $40
+		conveyorplatformobjdata -$26, $4D, $41
+		conveyorplatformobjdata $20, $2A, $41
+		conveyorplatformobjdata $67, 7, $41
+		conveyorplatformobjdata $6F, $40, $42
+		conveyorplatformobjdata $29, $63, $43
+		conveyorplatformobjdata -$1D, $86, $43
+		conveyorplatformobjdata -$64, $A9, $43
 		conveyorplatformend
 
-SpinningConveyor_Platform_SBZ106: conveyorplatformheader $1C80+SpinningConveyorXpos, $5C8
+SpinningConveyor_Platform_SBZ106: conveyorplatformheader
 
 		; xpos, ypos, subtype
-		conveyorplatformobjdata -$6C, $18, $50
-		conveyorplatformobjdata -$26, -$B, $51
-		conveyorplatformobjdata $20, -$2E, $51
-		conveyorplatformobjdata $67, -$51, $51
-		conveyorplatformobjdata $6F, -$18, $52
-		conveyorplatformobjdata $29, $B, $53
-		conveyorplatformobjdata -$1D, $2E, $53
-		conveyorplatformobjdata -$64, $51, $53
+		conveyorplatformobjdata -$6C, $60, $50
+		conveyorplatformobjdata -$26, $3D, $51
+		conveyorplatformobjdata $20, $1A, $51
+		conveyorplatformobjdata $67, -9, $51
+		conveyorplatformobjdata $6F, $30, $52
+		conveyorplatformobjdata $29, $53, $53
+		conveyorplatformobjdata -$1D, $76, $53
+		conveyorplatformobjdata -$64, $99, $53
 		conveyorplatformend

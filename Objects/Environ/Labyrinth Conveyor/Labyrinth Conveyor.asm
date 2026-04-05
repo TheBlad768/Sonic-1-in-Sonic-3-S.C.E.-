@@ -7,6 +7,7 @@
 	dsset animations								; pretend we're in the RAM
 
 labyrinthconveyor.origX			ds.w 1						; original x-axis position (2 bytes)
+labyrinthconveyor.origY			ds.w 1						; original y-axis position (2 bytes)
 labyrinthconveyor.saveX			ds.w 1						; save x-axis position (2 bytes)
 labyrinthconveyor.saveY			ds.w 1						; save y-axis position (2 bytes)
 labyrinthconveyor.save_ptr		ds.l 1						; (4 bytes)
@@ -32,12 +33,13 @@ Obj_LabyrinthConveyor:
 
 		; create platforms
 		add.w	d0,d0								; multiply by 2
-		andi.w	#$1E,d0
 		lea	LabyrinthConveyor_Platform_Index(pc),a3
 		adda.w	(a3,d0.w),a3
 
 		; set
 		move.w	(a3)+,d1							; get count
+		move.w	x_pos(a0),d2
+		move.w	y_pos(a0),d3
 		move.l	#Obj_LabyrinthConveyor_Platforms,d4
 		movea.w	a0,a1								; load current object to a1
 
@@ -48,10 +50,17 @@ Obj_LabyrinthConveyor:
 
 		; create LZ platform object
 		move.l	d4,code_addr(a1)
-		move.w	(a3)+,x_pos(a1)
-		move.w	(a3)+,y_pos(a1)
-		move.w	(a3)+,d2
-		move.b	d2,subtype(a1)
+		move.w	(a3)+,d0
+		add.w	d2,d0
+		move.w	d0,x_pos(a1)
+		move.w	(a3)+,d0
+		add.w	d3,d0
+		move.w	d0,y_pos(a1)
+		move.w	d2,labyrinthconveyor.origX(a1)
+		move.w	d3,labyrinthconveyor.origY(a1)
+		move.w	(a3)+,d5
+		move.b	d5,subtype(a1)
+		move.b	status(a0),status(a1)
 
 		; create next object
 		jsr	(Create_New_Object_4).w						; find next free object slot
@@ -78,7 +87,7 @@ Obj_LabyrinthConveyor_Platforms:
 
 		move.l	#bytes_word_to_long(32/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority
 		addq.b	#1,mapping_frame(a0)						; platform frame
-		move.l	#.solid,code_addr(a0)
+		move.l	#.main,code_addr(a0)
 
 		; set
 		move.b	subtype(a0),d0
@@ -88,7 +97,6 @@ Obj_LabyrinthConveyor_Platforms:
 		lea	LabyrinthConveyor_Data(pc),a2
 		adda.w	(a2,d0.w),a2
 		move.w	(a2)+,labyrinthconveyor.index(a0)
-		move.w	(a2)+,labyrinthconveyor.origX(a0)
 		move.l	a2,labyrinthconveyor.save_ptr(a0)				; save ROM address
 		andi.w	#$F,d1
 		add.w	d1,d1								; multiply by 4
@@ -100,7 +108,7 @@ Obj_LabyrinthConveyor_Platforms:
 		tst.b	(Convey_rev_flag).w
 		beq.s	.loc_1244C
 		st	labyrinthconveyor.rev_flag(a0)
-		neg.b	labyrinthconveyor.offset(a0)
+		neg.b	labyrinthconveyor.offset(a0)						; change direction
 
 		; set
 		moveq	#0,d1
@@ -119,19 +127,33 @@ Obj_LabyrinthConveyor_Platforms:
 		move.b	d1,labyrinthconveyor.index(a0)
 
 .loc_1244C
-		move.l	(a2,d1.w),labyrinthconveyor.saveX(a0)
+		move.w	(a2,d1.w),d0
+		add.w	labyrinthconveyor.origX(a0),d0
+		move.w	d0,labyrinthconveyor.saveX(a0)
+		move.w	2(a2,d1.w),d0
+		add.w	labyrinthconveyor.origY(a0),d0
+		move.w	d0,labyrinthconveyor.saveY(a0)
 		bsr.w	LCon_ChangeDir
 
-.solid
+.main
 
-		; solid
+		; move
 		move.w	x_pos(a0),-(sp)
 		bsr.s	sub_12502
+		move.w	(sp)+,d4
+
+		; check
+		tst.b	render_flags(a0)						; object visible on the screen?
+		bpl.s	.checkdelete							; if not, branch
+
+		; solid
 		moveq	#0,d1
 		move.b	width_pixels(a0),d1
 		moveq	#(16/2)+1,d3							; height+1
-		move.w	(sp)+,d4
 		jsr	(SolidObjectTop).w
+
+		; play continuous sfx
+		sfxcont	sfx_ChainTick, $F						; play chain tick sound every 16th frame
 
 .checkdelete
 		out_of_xrange.s	.offscreen,labyrinthconveyor.origX(a0)
@@ -201,7 +223,12 @@ sub_12502:
 .loc_12552
 		move.b	d1,labyrinthconveyor.index(a0)
 		movea.l	labyrinthconveyor.save_ptr(a0),a1
-		move.l	(a1,d1.w),labyrinthconveyor.saveX(a0)
+		move.w	(a1,d1.w),d0
+		add.w	labyrinthconveyor.origX(a0),d0
+		move.w	d0,labyrinthconveyor.saveX(a0)
+		move.w	2(a1,d1.w),d0
+		add.w	labyrinthconveyor.origY(a0),d0
+		move.w	d0,labyrinthconveyor.saveY(a0)
 		bsr.s	LCon_ChangeDir
 
 .loc_1256A

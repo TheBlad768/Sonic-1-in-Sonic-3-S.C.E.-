@@ -121,6 +121,7 @@ sfx_BigRing =			SMPS_id(ptr_snd46)
 sfx_Thump =			SMPS_id(ptr_snd47)
 sfx_Crash =			SMPS_id(ptr_snd48)
 sfx_Rumble2 =			SMPS_id(ptr_snd49)
+sfx_ChainTick =			SMPS_id(ptr_snd4A)
 
 ; Continuous
 sfx_RobotnikSiren =		SMPS_id(ptr_sndC01)

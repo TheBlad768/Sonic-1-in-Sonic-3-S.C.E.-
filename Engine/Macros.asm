@@ -323,18 +323,15 @@ lavadata macro ptr,flag
     endm
 
 ; macros for defining conveyor positions
-conveyorheader macro basex,basey,{INTLABEL}
+conveyorheader macro {INTLABEL}
 __LABEL__ label *
 conveyorcount := 0
 conveyorcountcur := "__LABEL__"
-conbaseX := basex									; main x-axis position
-conbaseY := basey									; main y-axis position
 	dc.w conveyorcount___LABEL__							; number of conveyor positions
-	dc.w conbaseX
     endm
 
 conveyorobjdata macro xdiff,ydiff
-	dc.w conbaseX+(xdiff),conbaseY+(ydiff)
+	dc.w xdiff,ydiff
 conveyorcount := conveyorcount + 4
     endm
 
@@ -343,17 +340,15 @@ conveyorcount_{"\{conveyorcountcur}"} = conveyorcount
     endm
 
 ; macros for defining conveyor platform positions
-conveyorplatformheader macro basex,basey,{INTLABEL}
+conveyorplatformheader macro {INTLABEL}
 __LABEL__ label *
 conveyorplatformcount := 0
 conveyorplatformcountcur := "__LABEL__"
-conbaseX := basex									; main x-axis position
-conbaseY := basey									; main y-axis position
 	dc.w conveyorplatformcount___LABEL__						; number of conveyor platform positions
     endm
 
 conveyorplatformobjdata macro xdiff,ydiff,subtype
-	dc.w conbaseX+(xdiff),conbaseY+(ydiff),subtype
+	dc.w xdiff,ydiff,subtype
 conveyorplatformcount := conveyorplatformcount + 1
     endm
 

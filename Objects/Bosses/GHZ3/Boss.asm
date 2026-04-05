@@ -492,7 +492,7 @@ Obj_BossBall_Scaled:
 .draw
 
 		; play continuous sfx
-		sfxcont	sfx_RobotnikSiren,7						; play robotnik siren sound every 8th frame
+		sfxcont	sfx_RobotnikSiren, 7						; play robotnik siren sound every 8th frame
 
 		; check delete
 		out_of_yrange.s	.delete
