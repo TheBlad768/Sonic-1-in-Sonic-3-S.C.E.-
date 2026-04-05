@@ -5195,6 +5195,7 @@ Sound_46_Ptr:	offsetBankTableEntry.w Sound_46
 Sound_47_Ptr:	offsetBankTableEntry.w Sound_47
 Sound_48_Ptr:	offsetBankTableEntry.w Sound_48
 Sound_49_Ptr:	offsetBankTableEntry.w Sound_49
+Sound_4A_Ptr:	offsetBankTableEntry.w Sound_4A
 
 ; Continuous
 Sound_C01_Ptr:	offsetBankTableEntry.w Sound_C01
@@ -5283,6 +5284,7 @@ Sound_46:	include "Sound/SFX/Snd - Big Ring.asm"
 Sound_47:	include "Sound/SFX/Snd - Thump.asm"
 Sound_48:	include "Sound/SFX/Snd - Crash.asm"
 Sound_49:	include "Sound/SFX/Snd - Rumble 2.asm"
+Sound_4A:	include "Sound/SFX/Snd - Chain Tick.asm"
 
 ; Continuous
 Sound_C01:	include "Sound/SFX/Continuous/Snd - Robotnik Siren.asm"

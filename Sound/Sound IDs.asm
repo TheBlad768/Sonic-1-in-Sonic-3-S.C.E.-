@@ -140,6 +140,7 @@ sfx_BigRing				ds.b 1		; $46
 sfx_Thump				ds.b 1		; $47
 sfx_Crash				ds.b 1		; $48
 sfx_Rumble2				ds.b 1		; $49
+sfx_ChainTick				ds.b 1		; $4A
 
 ; Continuous
 sfx__FirstContinuous =			*		; ID of the first continuous sound effect

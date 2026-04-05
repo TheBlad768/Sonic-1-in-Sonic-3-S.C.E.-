@@ -7,14 +7,13 @@
 	dsset animations								; pretend we're in the RAM
 
 spinningconveyor.origX			ds.w 1						; original x-axis position (2 bytes)
+spinningconveyor.origY			ds.w 1						; original y-axis position (2 bytes)
 spinningconveyor.saveX			ds.w 1						; save x-axis position (2 bytes)
 spinningconveyor.saveY			ds.w 1						; save y-axis position (2 bytes)
 spinningconveyor.save_ptr		ds.l 1						; (4 bytes)
 spinningconveyor.index			ds.b 1						; (1 byte)
 spinningconveyor.limit			ds.b 1						; (1 byte)
 spinningconveyor.offset			ds.b 1						; (1 byte)
-spinningconveyor.rev_flag		ds.b 1						; (1 byte)
-spinningconveyor.subtype		ds.b 1						; save subtype (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -24,20 +23,17 @@ Obj_SpinningConveyor:
 
 		; check
 		move.b	subtype(a0),d0
-		move.b	d0,spinningconveyor.subtype(a0)
 		andi.w	#$7F,d0
-		lea	(Convey_rev_buffer).w,a2
-		bset	#0,(a2,d0.w)
-		bne.w	Obj_SpinningConveyor_Platforms.chkdel				; if the same object subtype already exists, delete it
 
 		; create platforms
 		add.w	d0,d0								; multiply by 2
-		andi.w	#$1E,d0
 		lea	SpinningConveyor_Platform_Index(pc),a3
 		adda.w	(a3,d0.w),a3
 
 		; set
 		move.w	(a3)+,d1							; get count
+		move.w	x_pos(a0),d2
+		move.w	y_pos(a0),d3
 		move.l	#Obj_SpinningConveyor_Platforms,d4
 		movea.w	a0,a1								; load current object to a1
 
@@ -48,10 +44,17 @@ Obj_SpinningConveyor:
 
 		; create SBZ platform object
 		move.l	d4,code_addr(a1)
-		move.w	(a3)+,x_pos(a1)
-		move.w	(a3)+,y_pos(a1)
-		move.w	(a3)+,d2
-		move.b	d2,subtype(a1)
+		move.w	(a3)+,d0
+		add.w	d2,d0
+		move.w	d0,x_pos(a1)
+		move.w	(a3)+,d0
+		add.w	d3,d0
+		move.w	d0,y_pos(a1)
+		move.w	d2,spinningconveyor.origX(a1)
+		move.w	d3,spinningconveyor.origY(a1)
+		move.w	(a3)+,d5
+		move.b	d5,subtype(a1)
+		move.b	status(a0),status(a1)
 
 		; create next object
 		jsr	(Create_New_Object_4).w						; find next free object slot
@@ -81,7 +84,6 @@ Obj_SpinningConveyor_Platforms:
 		lea	SpinningConveyor_Data(pc),a2
 		adda.w	(a2,d0.w),a2
 		move.w	(a2)+,spinningconveyor.index(a0)
-		move.w	(a2)+,spinningconveyor.origX(a0)
 		move.l	a2,spinningconveyor.save_ptr(a0)				; save ROM address
 		andi.w	#$F,d1
 		add.w	d1,d1								; multiply by 4
@@ -90,10 +92,9 @@ Obj_SpinningConveyor_Platforms:
 		move.b	#4,spinningconveyor.offset(a0)					; set next conveyor positions
 
 		; check
-		tst.b	(Convey_rev_flag).w
+		btst	#status.npc.x_flip,status(a0)
 		beq.s	.loc_16356
-		st	spinningconveyor.rev_flag(a0)
-		neg.b	spinningconveyor.offset(a0)
+		neg.b	spinningconveyor.offset(a0)						; change direction
 
 		; set
 		moveq	#0,d1
@@ -112,7 +113,12 @@ Obj_SpinningConveyor_Platforms:
 		move.b	d1,spinningconveyor.index(a0)
 
 .loc_16356
-		move.l	(a2,d1.w),spinningconveyor.saveX(a0)
+		move.w	(a2,d1.w),d0
+		add.w	spinningconveyor.origX(a0),d0
+		move.w	d0,spinningconveyor.saveX(a0)
+		move.w	2(a2,d1.w),d0
+		add.w	spinningconveyor.origY(a0),d0
+		move.w	d0,spinningconveyor.saveY(a0)
 
 		; check
 		tst.w	d1
@@ -153,34 +159,13 @@ Obj_SpinningConveyor_Platforms:
 		addq.w	#1,d3
 		jsr	(SolidObjectFull).w
 
+		; play continuous sfx
+		sfxcont	sfx_ChainTick, $F						; play chain tick sound every 16th frame
+
 .checkdelete
-		out_of_xrange.s	.offscreen,spinningconveyor.origX(a0)
-
-.draw
-		jmp	(Draw_Sprite).w
-; ---------------------------------------------------------------------------
-
-.offscreen
-		cmpi.b	#2,(Current_act).w						; check if act is 3
-		bne.s	.checkbuffer							; if not, branch
-		cmpi.w	#-$80,d0
-		bhs.s	.draw
-
-.checkbuffer
-		move.b	spinningconveyor.subtype(a0),d0
-		bpl.s	.chkdel
-		andi.w	#$7F,d0
-		lea	(Convey_rev_buffer).w,a2
-		bclr	#0,(a2,d0.w)
-
-.chkdel
-		move.w	respawn_addr(a0),d0						; get address in respawn table
-		beq.s	.delete								; if it's zero, it isn't remembered
-		movea.w	d0,a2								; load address into a2
-		bclr	#respawn_addr.state,(a2)					; turn on the slot
-
-.delete
-		jmp	(Delete_Current_Object).w
+		moveq	#-$80,d0							; round down to nearest $80
+		and.w	spinningconveyor.origX(a0),d0						; get object position
+		jmp	(Sprite_OnScreen_Test2).w
 ; ---------------------------------------------------------------------------
 
 .notsolid
@@ -212,7 +197,12 @@ sub_16424:
 .loc_16456
 		move.b	d1,spinningconveyor.index(a0)
 		movea.l	spinningconveyor.save_ptr(a0),a1
-		move.l	(a1,d1.w),spinningconveyor.saveX(a0)
+		move.w	(a1,d1.w),d0
+		add.w	spinningconveyor.origX(a0),d0
+		move.w	d0,spinningconveyor.saveX(a0)
+		move.w	2(a1,d1.w),d0
+		add.w	spinningconveyor.origY(a0),d0
+		move.w	d0,spinningconveyor.saveY(a0)
 		tst.w	d1
 		bne.s	.loc_16474
 		move.b	#1,anim(a0)
