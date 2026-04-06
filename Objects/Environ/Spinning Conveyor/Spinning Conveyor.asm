@@ -21,7 +21,7 @@ spinningconveyor.offset			ds.b 1						; (1 byte)
 
 Obj_SpinningConveyor:
 
-		; check
+		; set
 		move.b	subtype(a0),d0
 		andi.w	#$7F,d0
 
@@ -94,7 +94,7 @@ Obj_SpinningConveyor_Platforms:
 		; check
 		btst	#status.npc.x_flip,status(a0)
 		beq.s	.loc_16356
-		neg.b	spinningconveyor.offset(a0)						; change direction
+		neg.b	spinningconveyor.offset(a0)					; change direction
 
 		; set
 		moveq	#0,d1
@@ -164,7 +164,7 @@ Obj_SpinningConveyor_Platforms:
 
 .checkdelete
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	spinningconveyor.origX(a0),d0						; get object position
+		and.w	spinningconveyor.origX(a0),d0					; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 ; ---------------------------------------------------------------------------
 

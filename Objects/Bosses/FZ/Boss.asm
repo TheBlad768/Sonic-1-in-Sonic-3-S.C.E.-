@@ -340,7 +340,7 @@ BossFinal_Defeated:
 		cmp.w	x_pos(a1),d0
 		bhs.s	.pwall
 		move.w	d0,x_pos(a1)
-		clr.w	2+x_pos(a1)
+		clr.w	x_sub(a1)
 		clr.w	x_vel(a1)
 		clr.w	ground_vel(a1)
 

@@ -23,10 +23,12 @@ labyrinthconveyor.subtype		ds.b 1						; save subtype (1 byte)
 
 Obj_LabyrinthConveyor:
 
-		; check
+		; set
 		move.b	subtype(a0),d0
 		move.b	d0,labyrinthconveyor.subtype(a0)
 		andi.w	#$7F,d0
+
+		; check same object subtype
 		lea	(Convey_rev_buffer).w,a2
 		bset	#0,(a2,d0.w)
 		bne.w	Obj_LabyrinthConveyor_Platforms.chkdel				; if the same object subtype already exists, delete it
@@ -108,7 +110,7 @@ Obj_LabyrinthConveyor_Platforms:
 		tst.b	(Convey_rev_flag).w
 		beq.s	.loc_1244C
 		st	labyrinthconveyor.rev_flag(a0)
-		neg.b	labyrinthconveyor.offset(a0)						; change direction
+		neg.b	labyrinthconveyor.offset(a0)					; change direction
 
 		; set
 		moveq	#0,d1
@@ -259,7 +261,7 @@ LCon_ChangeDir:
 		blo.s	.loc_125C2
 		move.w	x_pos(a0),d0
 		sub.w	labyrinthconveyor.saveX(a0),d0
-		beq.s	.loc_125AE
+		beq.s	.loc_125AE							; if zero, skip
 		ext.l	d0
 		asl.l	#8,d0
 		divs.w	d1,d0
@@ -268,15 +270,15 @@ LCon_ChangeDir:
 .loc_125AE
 		movem.w	d0/d3,x_vel(a0)
 		swap	d0
-		move.w	d0,x_pos+2(a0)
-		clr.w	y_pos+2(a0)
+		move.w	d0,x_sub(a0)
+		clr.w	y_sub(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
 .loc_125C2
 		move.w	y_pos(a0),d1
 		sub.w	labyrinthconveyor.saveY(a0),d1
-		beq.s	.loc_125D4
+		beq.s	.loc_125D4							; if zero, skip
 		ext.l	d1
 		asl.l	#8,d1
 		divs.w	d0,d1
@@ -286,8 +288,8 @@ LCon_ChangeDir:
 		move.w	d1,y_vel(a0)
 		move.w	d2,x_vel(a0)
 		swap	d1
-		move.w	d1,y_pos+2(a0)
-		clr.w	x_pos+2(a0)
+		move.w	d1,y_sub(a0)
+		clr.w	x_sub(a0)
 		rts
 ; ---------------------------------------------------------------------------
 

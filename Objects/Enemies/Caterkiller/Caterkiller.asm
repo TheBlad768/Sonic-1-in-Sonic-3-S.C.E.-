@@ -159,7 +159,7 @@ Obj_Caterkiller:
 		moveq	#0,d0
 		move.b	caterkiller.count(a0),d0
 		move.b	#$80,caterkiller.flag2(a0,d0.w)
-		neg.w	x_pos+2(a0)
+		neg.w	x_sub(a0)
 		beq.s	.loc_1730A
 		btst	#status.npc.x_flip,status(a0)
 		beq.s	.loc_1730A
@@ -282,7 +282,7 @@ Cat_BodySeg1:
 		cmpi.b	#$80,d1
 		bne.s	.loc_16C50
 		move.b	d1,caterkiller_bodysegments.flag2(a0,d0.w)
-		neg.w	x_pos+2(a0)
+		neg.w	x_sub(a0)
 		beq.s	.locj_173E4
 		btst	#status.npc.x_flip,status(a0)
 		beq.s	.locj_173E4

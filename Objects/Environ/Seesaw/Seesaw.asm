@@ -251,8 +251,8 @@ Obj_Seesaw_SpikeBall:
 		move.w	d1,y_pos(a0)
 		add.w	seesaw_spikeball.origX(a0),d2
 		move.w	d2,x_pos(a0)
-		clr.w	y_pos+2(a0)
-		clr.w	x_pos+2(a0)
+		clr.w	y_sub(a0)
+		clr.w	x_sub(a0)
 
 .return
 		rts

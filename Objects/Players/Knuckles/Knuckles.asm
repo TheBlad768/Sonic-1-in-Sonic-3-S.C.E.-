@@ -552,9 +552,9 @@ Knuckles_Gliding_HitWall:
 		clr.b	anim_frame(a0)
 		move.b	#3,double_jump_property(a0)
 
-		; 'x_pos+2' holds the X coordinate that Knuckles was at when he first
+		; 'x_sub' holds the X coordinate that Knuckles was at when he first
 		; latched onto the wall.
-		move.w	x_pos(a0),x_pos+2(a0)
+		move.w	x_pos(a0),x_sub(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -760,7 +760,7 @@ Knuckles_Wall_Climb:
 		; probably intended to detach Knuckles from the wall if something
 		; physically pushes him away from it.
 		move.w	x_pos(a0),d0
-		cmp.w	x_pos+2(a0),d0
+		cmp.w	x_sub(a0),d0
 		bne.w	Knuckles_LetGoOfWall
 
 		; if an object is now carrying Knuckles, then detach him from the
