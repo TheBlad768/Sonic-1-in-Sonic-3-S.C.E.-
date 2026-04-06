@@ -1382,7 +1382,7 @@ Player_Boundary_Bottom:
 
 Player_Boundary_Sides:
 		move.w	d0,x_pos(a0)
-		clr.w	2+x_pos(a0)							; subpixel x
+		clr.w	x_sub(a0)							; subpixel x
 		clr.w	x_vel(a0)
 		clr.w	ground_vel(a0)
 
@@ -1394,7 +1394,7 @@ Player_Boundary_Sides:
 
 Player_Boundary_Top:
 		move.w	d0,y_pos(a0)
-		clr.w	2+y_pos(a0)							; subpixel y
+		clr.w	y_sub(a0)							; subpixel y
 		clr.w	y_vel(a0)
 		bra.s	Player_Boundary_CheckBottom
 	endif

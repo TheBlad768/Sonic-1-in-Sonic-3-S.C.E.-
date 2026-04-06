@@ -190,7 +190,7 @@ PushableBlock_Floating:									; floating block on lava
 		asr.w	#3,d0
 		move.w	d0,x_vel(a0)
 		st	pushableblock.float_flag(a0)
-		clr.w	y_pos+2(a0)
+		clr.w	y_sub(a0)
 		bra.s	.push
 ; ---------------------------------------------------------------------------
 
@@ -364,7 +364,7 @@ PushableBlock_Fall:
 		asr.w	#3,d0
 		move.w	d0,x_vel(a0)
 		st	pushableblock.float_flag(a0)
-		clr.w	y_pos+2(a0)
+		clr.w	y_sub(a0)
 
 .cpush
 		jmp	(Release_PlayerFromObject).w					; release player from object
