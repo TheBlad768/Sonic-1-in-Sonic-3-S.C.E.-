@@ -370,11 +370,11 @@ Obj_BossFire_ShipTubeFlame:
 
 		; anim
 		moveq	#1,d0
-		btst	#0,(V_int_run_count+3).w
+		btst	#0,(V_int_run_count+3).w					; 0 or 1
 		bne.s	.setf
 		tst.w	x_vel(a1)
 		beq.s	.setf
-		moveq	#2,d0
+		addq.b	#1,d0
 
 .setf
 		move.b	d0,mapping_frame(a0)
@@ -633,7 +633,7 @@ Obj_BossFire_Scaled:
 		move.w	#priority_3,priority(a1)
 		move.w	#$1C20,x_pos(a1)
 		move.w	#$240,y_pos(a1)
-		move.w	a0,parent3(a1)							; parent RAM address into $46
+		move.w	a0,parent3(a1)							; parent RAM address into parent3
 
 .wait
 		subq.w	#1,wait_timer(a0)

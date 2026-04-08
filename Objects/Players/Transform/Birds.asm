@@ -342,7 +342,7 @@ SuperTailsBirds_Move:
 ; =============== S U B R O U T I N E =======================================
 
 SuperTailsBirds_FindTarget:
-		moveq	#0,d1
+		moveq	#0,d1								; set flag to 0
 		lea	(Collision_response_list).w,a4
 		move.w	(a4)+,d6							; get number of objects queued
 		beq.s	.return								; if there are none, return
@@ -388,7 +388,7 @@ SuperTailsBirds_FindTarget:
 		st	superTailsBirds.locked(a1)
 		move.w	a1,parent(a0)							; save target object
 		move.b	#1,superTailsBirds.found(a0)
-		moveq	#1,d1
+		moveq	#1,d1								; set flag to 1
 		rts
 
 ; =============== S U B R O U T I N E =======================================

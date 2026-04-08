@@ -11,6 +11,7 @@ LabyrinthConveyor_Data: offsetTable
 		offsetTableEntry.w LabyrinthConveyor_Group03				; 6
 		offsetTableEntry.w LabyrinthConveyor_Group04				; 8
 		offsetTableEntry.w LabyrinthConveyor_Group05				; A
+; ---------------------------------------------------------------------------
 
 LabyrinthConveyor_Group00: conveyorheader
 
@@ -85,6 +86,7 @@ LabyrinthConveyor_Platform_Index: offsetTable
 		offsetTableEntry.w LabyrinthConveyor_Platform_LZ302			; A (LZ3)
 		offsetTableEntry.w LabyrinthConveyor_Platform_LZ101			; C (LZ1)
 		offsetTableEntry.w LabyrinthConveyor_Platform_LZ102			; E (LZ1)
+; ---------------------------------------------------------------------------
 
 LabyrinthConveyor_Platform_LZ101: conveyorplatformheader
 

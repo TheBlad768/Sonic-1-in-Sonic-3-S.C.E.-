@@ -17,10 +17,11 @@ lavawall.flag				ds.b 1						; flag to start wall moving (1 byte)
 Obj_LavaWall:
 
 		; init
-		lea	ObjDat_LavaWall(pc),a1
-		jsr	(SetUp_ObjAttributes).w
+		movem.l	ObjDat_LavaWall(pc),d0-d3					; copy data to d0-d3
+		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
-		bset	#render_flags.multi_sprite,render_flags(a0)			; set multi-draw flag
+		move.b	#1,mapping_frame(a0)
+		move.b	#$14|collision_flags.npc.hurt,collision_flags(a0)			; set lava wall collision
 		move.w	#1,mainspr_childsprites(a0)					; set sub objects
 
 		; set sub object xpos
@@ -122,7 +123,11 @@ Obj_LavaWall:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_LavaWall:	subObjData Map_LavaWall, $36D, 3, FALSE, 64, 180, 1, 1, $14|collision_flags.npc.hurt
+ObjDat_LavaWall:	subObjMainData \
+				Obj_LavaWall.action, \
+					setBit(render_flags.level) | \
+					setBit(render_flags.multi_sprite), \
+				0, 64, 180, 1, $36D, 3, FALSE, Map_LavaWall
 ; ---------------------------------------------------------------------------
 
 		; mappings

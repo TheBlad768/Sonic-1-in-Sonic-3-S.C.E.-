@@ -2,6 +2,8 @@
 ; Labyrinth Zone - Water tunnels
 ; ---------------------------------------------------------------------------
 
+WaterTunPos		= 512
+
 ; =============== S U B R O U T I N E =======================================
 
 LZ_WaterTunLocs_Index: offsetTable
@@ -12,18 +14,18 @@ LZ_WaterTunLocs_Index: offsetTable
 
 LZ1_WaterTunLocs:									; min x, min y, max x, max y, x velo, y velo, player can influence which axis flag (set = x, clear = y)
 		dc.w 2-1
-		dc.w $A80+512, $300, $C10+512, $380
-		dc.w $F80+512, $100, $1410+512, $180
+		dc.w $A80+WaterTunPos, $300, $C10+WaterTunPos, $380
+		dc.w $F80+WaterTunPos, $100, $1410+WaterTunPos, $180
 LZ1_WaterTunLocs_end
 
 LZ2_WaterTunLocs:									; min x, min y, max x, max y, x velo, y velo, player can influence which axis flag (set = x, clear = y)
 		dc.w 1-1
-		dc.w $460+512, $400, $710+512, $480
+		dc.w $460+WaterTunPos, $400, $710+WaterTunPos, $480
 LZ2_WaterTunLocs_end
 
 LZ3_WaterTunLocs:									; min x, min y, max x, max y, x velo, y velo, player can influence which axis flag (set = x, clear = y)
 		dc.w 1-1
-		dc.w $A20+512, $600, $1610+512, $6E0
+		dc.w $A20+WaterTunPos, $600, $1610+WaterTunPos, $6E0
 LZ3_WaterTunLocs_end
 
 SBZ3_WaterTunLocs:									; min x, min y, max x, max y, x velo, y velo, player can influence which axis flag (set = x, clear = y)

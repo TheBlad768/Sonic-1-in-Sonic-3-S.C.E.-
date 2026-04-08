@@ -115,10 +115,10 @@ Obj_Newtron:
 .matchfloor
 		MoveSpriteXOnly
 		jsr	(ObjCheckFloorDist).w
-		cmpi.w	#-8,d1
-		blt.s	.nextroutine
-		cmpi.w	#12,d1
-		bge.s	.nextroutine
+		cmpi.w	#-8,d1								; is newtron underground?
+		blt.s	.nextroutine							; is yes, branch
+		cmpi.w	#12,d1								; is newtron above ground?
+		bge.s	.nextroutine							; is yes, branch
 		add.w	d1,y_pos(a0)							; match newtron's position with floor
 		rts
 ; ---------------------------------------------------------------------------
