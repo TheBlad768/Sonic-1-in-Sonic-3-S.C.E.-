@@ -11,6 +11,7 @@ SpinningConveyor_Data: offsetTable
 		offsetTableEntry.w SpinningConveyor_Group03				; 6
 		offsetTableEntry.w SpinningConveyor_Group04				; 8
 		offsetTableEntry.w SpinningConveyor_Group05				; A
+; ---------------------------------------------------------------------------
 
 SpinningConveyor_Group00: conveyorheader
 
@@ -81,6 +82,7 @@ SpinningConveyor_Platform_Index: offsetTable
 		offsetTableEntry.w SpinningConveyor_Platform_SBZ106			; A (SBZ1)
 		offsetTableEntry.w SpinningConveyor_Platform_SBZ101			; C (SBZ1)
 		offsetTableEntry.w SpinningConveyor_Platform_SBZ102			; E (SBZ1)
+; ---------------------------------------------------------------------------
 
 SpinningConveyor_Platform_SBZ101: conveyorplatformheader
 

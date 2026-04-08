@@ -135,7 +135,7 @@ Obj_LabyrinthConveyor_Platforms:
 		move.w	2(a2,d1.w),d0
 		add.w	labyrinthconveyor.origY(a0),d0
 		move.w	d0,labyrinthconveyor.saveY(a0)
-		bsr.w	LCon_ChangeDir
+		bsr.w	LabyrinthConveyor_ChangeDir
 
 .main
 
@@ -231,14 +231,14 @@ sub_12502:
 		move.w	2(a1,d1.w),d0
 		add.w	labyrinthconveyor.origY(a0),d0
 		move.w	d0,labyrinthconveyor.saveY(a0)
-		bsr.s	LCon_ChangeDir
+		bsr.s	LabyrinthConveyor_ChangeDir
 
 .loc_1256A
 		jmp	(MoveSprite2).w
 
 ; =============== S U B R O U T I N E =======================================
 
-LCon_ChangeDir:
+LabyrinthConveyor_ChangeDir:
 		moveq	#0,d0
 		move.w	#-$100,d2
 		move.w	x_pos(a0),d0

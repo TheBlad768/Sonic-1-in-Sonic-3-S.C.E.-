@@ -224,7 +224,7 @@ sub_27310:
 		moveq	#0,d0
 		move.w	teleport_p1_attached.saveX-teleport_p1_attached(a4),d0		; get saveX
 		sub.w	x_pos(a1),d0
-		beq.s	.loc_273B0
+		beq.s	.loc_273B0							; if zero, skip
 		swap	d0
 		divs.w	d1,d0
 
@@ -244,7 +244,7 @@ sub_27310:
 		moveq	#0,d1
 		move.w	teleport_p1_attached.saveY-teleport_p1_attached(a4),d1		; get saveY
 		sub.w	y_pos(a1),d1
-		beq.s	.loc_273DE
+		beq.s	.loc_273DE							; if zero, skip
 		swap	d1
 		divs.w	d0,d1
 

@@ -5,14 +5,15 @@
 ; =============== S U B R O U T I N E =======================================
 
 Teleport_Data: offsetTable
-		offsetTableEntry.w Tele_Type00
-		offsetTableEntry.w Tele_Type01
-		offsetTableEntry.w Tele_Type02
-		offsetTableEntry.w Tele_Type03
-		offsetTableEntry.w Tele_Type04
-		offsetTableEntry.w Tele_Type05
-		offsetTableEntry.w Tele_Type06
-		offsetTableEntry.w Tele_Type07
+		offsetTableEntry.w Tele_Type00				; 0
+		offsetTableEntry.w Tele_Type01				; 2
+		offsetTableEntry.w Tele_Type02				; 4
+		offsetTableEntry.w Tele_Type03				; 6
+		offsetTableEntry.w Tele_Type04				; 8
+		offsetTableEntry.w Tele_Type05				; A
+		offsetTableEntry.w Tele_Type06				; C
+		offsetTableEntry.w Tele_Type07				; E
+; ---------------------------------------------------------------------------
 
 Tele_Type00: objTeleportSize
 		dc.w $994, $98C			; start xypos => end xypos

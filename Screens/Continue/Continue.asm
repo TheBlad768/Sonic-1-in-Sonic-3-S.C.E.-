@@ -236,9 +236,9 @@ Obj_Continue_SonicWTails:
 
 		; anim
 		moveq	#0,d0
-		btst	#4,(V_int_run_count+3).w
+		btst	#4,(V_int_run_count+3).w					; 0 or $10
 		beq.s	.setanim
-		moveq	#1,d0
+		addq.b	#1,d0
 
 .setanim
 		move.b	d0,mapping_frame(a0)
@@ -403,7 +403,7 @@ Obj_Continue_TailsWSonic:
 
 		; anim
 		moveq	#5,d0
-		btst	#5,(V_int_run_count+3).w
+		btst	#5,(V_int_run_count+3).w					; 0 or $20
 		beq.s	.setframe
 		addq.b	#1,d0
 
@@ -656,7 +656,7 @@ Obj_Continue_EggRobo:
 
 		; anim
 		moveq	#1,d0
-		btst	#0,(V_int_run_count+3).w
+		btst	#0,(V_int_run_count+3).w					; 0 or 1
 		beq.s	.skip
 		moveq	#3,d0
 
@@ -856,7 +856,7 @@ Obj_Continue_Icons:
 
 .main
 		moveq	#0,d0
-		btst	#4,(V_int_run_count+3).w
+		btst	#4,(V_int_run_count+3).w					; 0 or $10
 		beq.s	.skip
 		addq.w	#1,d0
 

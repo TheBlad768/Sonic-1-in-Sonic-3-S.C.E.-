@@ -85,7 +85,7 @@ Obj_Burrobot:
 ; ---------------------------------------------------------------------------
 
 .loc_AD84
-		btst	#2,(V_int_run_count+3).w
+		btst	#2,(V_int_run_count+3).w					; 0 or 4
 		beq.s	.loc_ADA4
 		move.l	#.changedir,wait_addr(a0)
 		move.w	#60-1,burrobot.timer(a0)

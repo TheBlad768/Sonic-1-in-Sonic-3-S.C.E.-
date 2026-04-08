@@ -27,15 +27,15 @@ Obj_Crabmeat:
 .checkfall
 		MoveSpriteYOnly
 		jsr	(ObjCheckFloorDist).w
-		tst.w	d1
-		bpl.s	.floornotfound
+		tst.w	d1								; has crabmeat hit the floor?
+		bpl.s	.floornotfound							; if not, branch
 		add.w	d1,y_pos(a0)
 
 	if _CRABMEAT_SLOPE_
 		move.b	d3,angle(a0)
 	endif
 
-		clr.w	y_vel(a0)
+		clr.w	y_vel(a0)							; stop crabmeat falling
 		move.l	#.waittofire,wait_addr(a0)
 		move.l	#.action,code_addr(a0)
 
@@ -65,10 +65,10 @@ Obj_Crabmeat:
 .movecrab
 		move.l	#.walkonfloor,wait_addr(a0)
 		move.w	#128-1,crabmeat.timer(a0)					; set time delay to approx 2 seconds
-		move.w	#$80,x_vel(a0)							; move Crabmeat to the right
+		move.w	#$80,x_vel(a0)							; move crabmeat to the right
 
 	if _CRABMEAT_SLOPE_
-		bsr.w	Crab_SetAni
+		bsr.w	Crabmeat_SetAni
 		addq.b	#3,d0
 		move.b	d0,anim(a0)
 	else
@@ -109,10 +109,10 @@ Obj_Crabmeat:
 .notflipx
 		add.w	x_pos(a0),d3
 		jsr	(ObjCheckFloorDist2).w
-		cmpi.w	#-8,d1
-		blt.s	.chgdirection
-		cmpi.w	#12,d1
-		bge.s	.chgdirection
+		cmpi.w	#-8,d1								; is crabmeat underground?
+		blt.s	.chgdirection							; is yes, branch
+		cmpi.w	#12,d1								; is crabmeat above ground?
+		bge.s	.chgdirection							; is yes, branch
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -122,7 +122,7 @@ Obj_Crabmeat:
 
 	if _CRABMEAT_SLOPE_
 		move.b	d3,angle(a0)
-		bsr.s	Crab_SetAni
+		bsr.s	Crabmeat_SetAni
 		addq.b	#3,d0
 		move.b	d0,anim(a0)
 	else
@@ -138,7 +138,7 @@ Obj_Crabmeat:
 		clr.w	x_vel(a0)
 
 	if _CRABMEAT_SLOPE_
-		bsr.s	Crab_SetAni
+		bsr.s	Crabmeat_SetAni
 		move.b	d0,anim(a0)
 	else
 		clr.b	anim(a0)
@@ -154,7 +154,7 @@ Obj_Crabmeat:
 
 ; =============== S U B R O U T I N E =======================================
 
-Crab_SetAni:
+Crabmeat_SetAni:
 		moveq	#0,d0
 		move.b	angle(a0),d3
 		bmi.s	.alt
@@ -171,13 +171,11 @@ Crab_SetAni:
 
 .alt
 		cmpi.b	#-6,d3
-		bhi.s	.return2
+		bhi.s	.return
 		moveq	#2,d0
 		btst	#status.npc.x_flip,status(a0)
-		bne.s	.return2
+		bne.s	.return
 		moveq	#1,d0
-
-.return2
 		rts
 
 	endif

@@ -68,8 +68,8 @@ Obj_Yadrin:
 		cmpi.w	#12,d1
 		bge.s	.pause
 		add.w	d1,y_pos(a0)							; match object's position to the floor
-		bsr.s	Yad_CheckWall
-		bne.s	.pause
+		bsr.s	Yadrin_CheckWall
+		bmi.s	.pause								; if Yadrin touch the wall, branch
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -86,34 +86,29 @@ Obj_Yadrin:
 
 ; =============== S U B R O U T I N E =======================================
 
-Yad_CheckWall:
-		move.w	(Level_frame_counter).w,d0
-		add.w	d7,d0								; d7 - object count (Process_Objects)
-		andi.w	#3,d0
-		bne.s	.nottouch
+Yadrin_CheckWall:
+		move.w	(Level_frame_counter).w,d1
+		add.w	d7,d1								; d7 - object count (Process_Objects)
+		andi.w	#3,d1								; check wall every 4th frame
+		beq.s	.wall								; if zero, branch
 
-		; check wall
-		move.b	x_radius(a0),d3
-		ext.w	d3
-		tst.w	x_vel(a0)							; check x velocity
-		bmi.s	.left								; left move
-		jsr	(ObjCheckRightWallDist).w
-		tst.w	d1
-		bpl.s	.nottouch
-
-.settouch
-		moveq	#1,d0								; Yadrin has touched the wall
+		; exit
+		moveq	#0,d1								; Yadrin didn't touch the wall
 		rts
 ; ---------------------------------------------------------------------------
 
-.left
+.wall
+		move.b	x_radius(a0),d3
+		ext.w	d3
+		lea	(ObjCheckRightWallDist).w,a1
+		tst.w	x_vel(a0)							; check x velocity
+		bpl.s	.check								; right move
 		neg.w	d3
-		jsr	(ObjCheckLeftWallDist).w
-		tst.w	d1
-		bmi.s	.settouch
+		lea	(ObjCheckLeftWallDist).w,a1
 
-.nottouch
-		moveq	#0,d0								; Yadrin didn't touch the wall
+.check
+		jsr	(a1)
+		tst.w	d1								; check if Yadrin touch the wall
 		rts
 
 ; =============== S U B R O U T I N E =======================================

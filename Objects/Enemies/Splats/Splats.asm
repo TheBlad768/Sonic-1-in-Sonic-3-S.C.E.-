@@ -66,8 +66,8 @@ Obj_Splats:
 ; ---------------------------------------------------------------------------
 
 .wall
-		bsr.w	Yad_CheckWall
-		beq.s	.return
+		bsr.w	Yadrin_CheckWall
+		bpl.s	.return								; if Splats didn't touch the wall, branch
 		neg.w	x_vel(a0)
 		bchg	#render_flags.x_flip,render_flags(a0)
 

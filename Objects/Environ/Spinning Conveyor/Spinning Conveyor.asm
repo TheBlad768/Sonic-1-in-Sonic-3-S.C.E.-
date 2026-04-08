@@ -131,7 +131,7 @@ Obj_SpinningConveyor_Platforms:
 		clr.b	anim(a0)
 
 .loc_16378
-		bsr.w	LCon_ChangeDir
+		bsr.w	LabyrinthConveyor_ChangeDir
 
 .main
 		lea	Ani_SpinningConveyor(pc),a1
@@ -203,6 +203,8 @@ sub_16424:
 		move.w	2(a1,d1.w),d0
 		add.w	spinningconveyor.origY(a0),d0
 		move.w	d0,spinningconveyor.saveY(a0)
+
+		; check
 		tst.w	d1
 		bne.s	.loc_16474
 		move.b	#1,anim(a0)
@@ -213,7 +215,7 @@ sub_16424:
 		clr.b	anim(a0)
 
 .loc_16480
-		bsr.w	LCon_ChangeDir
+		bsr.w	LabyrinthConveyor_ChangeDir
 
 .loc_16484
 		jmp	(MoveSprite2).w
