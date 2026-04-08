@@ -668,7 +668,10 @@ loc_1B1C0:
 		moveq	#0,d0
 		move.w	(Camera_Y_pos_copy).w,d0
 		divu.w	#$18,d0
-		mulu.w	#$80,d0
+		move.w	d0,d6
+		moveq	#0,d0
+		move.w	d6,d0
+		lsl.l	#7,d0
 		adda.l	d0,a0
 		moveq	#0,d0
 		move.w	(Camera_X_pos_copy).w,d0

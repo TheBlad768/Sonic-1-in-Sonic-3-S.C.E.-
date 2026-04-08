@@ -371,7 +371,10 @@ sub_1BCE8:
 		swap	d2
 		addi.w	#$44,d4
 		divu.w	#$18,d4
-		mulu.w	#$80,d4
+		move.w	d4,d5
+		moveq	#0,d4
+		move.w	d5,d4
+		lsl.l	#7,d4
 		adda.l	d4,a1
 		moveq	#0,d4
 		swap	d3
@@ -423,7 +426,10 @@ Obj09_ChkItems:
 		moveq	#$50,d4
 		add.w	y_pos(a0),d4
 		divu.w	#$18,d4
-		mulu.w	#$80,d4
+		move.w	d4,d5
+		moveq	#0,d4
+		move.w	d5,d4
+		lsl.l	#7,d4
 		adda.l	d4,a1
 		moveq	#$20,d4
 		add.w	x_pos(a0),d4
