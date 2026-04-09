@@ -349,9 +349,9 @@ TitleScreen:
 ; ---------------------------------------------------------------------------
 
 DemoLevels:
-		dc.w bytes_to_word(LevelID_GHZ,0)	; Green Hill Zone Act 1
-		dc.w bytes_to_word(LevelID_MZ,0)	; Marble Zone Act 1
-		dc.w bytes_to_word(LevelID_SYZ,0)	; Spring Yard Zone Act 1
+		dc.w bytes_to_word(LevelID_GHZ,ACT_1)	; Green Hill Zone Act 1
+		dc.w bytes_to_word(LevelID_MZ,ACT_1)	; Marble Zone Act 1
+		dc.w bytes_to_word(LevelID_SYZ,ACT_1)	; Spring Yard Zone Act 1
 		dc.w -1					; Special Stage 1
 DemoLevels_end
 

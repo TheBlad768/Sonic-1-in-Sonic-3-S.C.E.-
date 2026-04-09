@@ -19,7 +19,7 @@ AnPal_LZ:
 
 		; check
 		lea	(Pal_LZCyc1).l,a1
-		cmpi.b	#3,(Current_act).w						; check if level is SBZ3
+		cmpi.b	#ACT_4,(Current_act).w						; check if level is SBZ3
 		bne.s	.notsbz3							; if not, branch
 
 .palSBZ3	:= Pal_SBZ3Cyc-Pal_LZCyc1						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set

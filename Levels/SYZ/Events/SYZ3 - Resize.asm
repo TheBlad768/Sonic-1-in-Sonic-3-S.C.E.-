@@ -5,14 +5,16 @@
 ; =============== S U B R O U T I N E =======================================
 
 SYZ3_Resize:
+
+		; check camera
 		move.w	#$2D00,d0
 		cmp.w	(Camera_X_pos).w,d0
 		bhi.w	.return
 		move.w	d0,(Camera_min_X_pos).w
 		move.w	#$4B0,(Camera_target_max_Y_pos).w
-		move.l	#.boss,(Level_data_addr_RAM.Resize).w
+		move.l	#.check_boss,(Level_data_addr_RAM.Resize).w
 
-.boss
+.check_boss
 
 		; check xpos
 		move.w	#$2E00,d0
@@ -33,18 +35,20 @@ SYZ3_Resize:
 		clr.l	(Level_data_addr_RAM.AnimateTiles).w				; disable animate tiles
 
 .fade
-		subq.w	#1,(Events_fg+2).w
-		bne.s	.return
+
+		; wait
+		subq.w	#1,(Events_fg+2).w						; subtract 1 from fade delay
+		bne.s	.return								; if fade still remains, branch
 
 		; load boss
 		clr.l	(Level_data_addr_RAM.Resize).w					; set return for resize
 		move.l	#SYZ3_ForegroundEvent,(Level_data_addr_RAM.ScreenEvent).w
 
-		; load art
+		; load boss art
 		lea	(PLC_BossBlock).l,a5
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
-		; load palette
+		; load boss palette
 		lea	(Pal_Robotnik).l,a1
 		lea	(Normal_palette_line_2).w,a2
 		jsr	(PalLoad_Line16).w
@@ -66,16 +70,18 @@ SYZ3_Resize:
 		rts
 ; ---------------------------------------------------------------------------
 
-End_SYZ3Boss:
+.after_boss
 		move.w	(Camera_X_pos).w,(Camera_min_X_pos).w
 		cmpi.w	#$3000,(Camera_X_pos).w
-		bne.s	.check
-		move.l	#.check,(Level_data_addr_RAM.Resize).w
+		bne.s	.check_end
+		move.l	#.check_end,(Level_data_addr_RAM.Resize).w
 
-.check
+.check_end
+
+		; check end level flag
 		tst.b	(End_of_level_flag).w
-		beq.s	SYZ3_Resize.return
+		beq.s	.return
 
 		; next zone
-		move.w	#bytes_to_word(LevelID_LZ,0),d0
+		move.w	#bytes_to_word(LevelID_LZ,ACT_1),d0
 		jmp	(StartNewLevel).w

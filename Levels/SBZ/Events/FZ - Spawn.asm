@@ -49,12 +49,12 @@ Obj_Spawn_FinalZone:
 		; next
 		move.l	#.fall,code_addr(a0)
 		lea	(Player_1).w,a1							; a1=character
-		bsr.s	.setjump
+		bsr.s	.set_jump
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)
 		beq.s	.return2
 
-.setjump
+.set_jump
 		move.w	#-$780,y_vel(a1)
 		bset	#status.player.in_air,status(a1)
 		clr.b	jumping(a1)
@@ -78,7 +78,7 @@ Obj_Spawn_FinalZone:
 		; check p1
 		lea	(Player_1).w,a2							; a2=character
 		cmpi.w	#$5C0,y_pos(a2)
-		bhs.s	.checkfalling
+		bhs.s	.check_falling
 		clr.b	object_control(a2)
 
 		; check p2
@@ -108,7 +108,7 @@ Obj_Spawn_FinalZone:
 		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
-.checkfalling
+.check_falling
 		bsr.s	.falling
 		lea	(Player_2).w,a2							; a2=character
 		tst.l	code_addr(a2)							; is player RAM empty?

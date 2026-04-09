@@ -5,6 +5,8 @@
 ; =============== S U B R O U T I N E =======================================
 
 GHZ3_Resize:
+
+		; check camera
 		move.w	#$300,(Camera_target_max_Y_pos).w
 		cmpi.w	#$580,(Camera_X_pos).w
 		blo.s	.return
@@ -12,34 +14,38 @@ GHZ3_Resize:
 		cmpi.w	#$B60,(Camera_X_pos).w
 		blo.s	.return
 		cmpi.w	#$280,(Camera_Y_pos).w
-		blo.s	.loc_6E98
+		blo.s	.back
 		move.w	#$400,(Camera_target_max_Y_pos).w
 		cmpi.w	#$1580,(Camera_X_pos).w
 		bhs.s	.check
+
+		; set
 		move.w	#$4C0,d0
 		move.w	d0,(Camera_max_Y_pos).w
 		move.w	d0,(Camera_target_max_Y_pos).w
 
 .check
 		cmpi.w	#$1960,(Camera_X_pos).w
-		bhs.s	.loc_6E98
+		bhs.s	.back
 
 .return
 		rts
 ; ---------------------------------------------------------------------------
 
-.loc_6E98
+.back
 		move.w	#$300,(Camera_target_max_Y_pos).w
-		move.l	#Check_GHZ3boss,(Level_data_addr_RAM.Resize).w
+		move.l	#.check_boss_intro,(Level_data_addr_RAM.Resize).w
 		rts
 ; ---------------------------------------------------------------------------
 
-Check_GHZ3boss:
+.check_boss_intro
 		cmpi.w	#$1960,(Camera_X_pos).w
-		bhs.s	.loc_6EB0
+		bhs.s	.check_boss_intro_xcamera
+
+		; back
 		move.l	#GHZ3_Resize,(Level_data_addr_RAM.Resize).w
 
-.loc_6EB0
+.check_boss_intro_xcamera
 
 		; check xpos
 		move.w	#$2B60,d0
@@ -56,7 +62,7 @@ Check_GHZ3boss:
 		move.w	d0,(Camera_target_max_Y_pos).w
 
 		; load intro
-		music	mus_FadeOut
+		music	mus_FadeOut							; fade out music
 		move.w	#2*60,(Events_fg+2).w						; fade time
 
 		; set
@@ -68,9 +74,9 @@ Check_GHZ3boss:
 
 	if BossIntro
 		tst.b	(Intro_flag).w
-		bne.s	Load_GHZ3Boss_Skip
+		bne.s	.skip_boss_intro
 	else
-		bra.s	Load_GHZ3Boss_Skip
+		bra.s	.skip_boss_intro
 	endif
 
 		; stop update time counter
@@ -87,26 +93,30 @@ Check_GHZ3boss:
 		add.w	(Camera_max_Y_pos).w,d0
 		move.w	d0,y_pos(a1)
 
-.return
+.return2
 		rts
 ; ---------------------------------------------------------------------------
 
-Load_GHZ3Boss_Skip:
-		move.l	#Load_GHZ3Boss,(Level_data_addr_RAM.Resize).w
+.skip_boss_intro
+		move.l	#.fade_boss,(Level_data_addr_RAM.Resize).w
 
-Load_GHZ3Boss:
-		subq.w	#1,(Events_fg+2).w
-		bne.s	.return
-		move.l	#.return,(Level_data_addr_RAM.Resize).w
+.fade_boss
+		subq.w	#1,(Events_fg+2).w						; subtract 1 from fade delay
+		bne.s	.return2							; if fade still remains, branch
 
-		; set intro flag
-		st	(Intro_flag).w
+.load_boss
 
-		; load art
+		; set
+		move.l	#.return2,(Level_data_addr_RAM.Resize).w
+
+		; set boss intro flag
+		st	(Intro_flag).w							; don't show boss intro again
+
+		; load boss art
 		lea	(PLC_BossBall).l,a5
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
-		; load palette
+		; load boss palette
 		lea	(Pal_Robotnik).l,a1
 		lea	(Normal_palette_line_2).w,a2
 		jsr	(PalLoad_Line16).w
@@ -115,7 +125,7 @@ Load_GHZ3Boss:
 		music	mus_ZoneBoss
 		move.b	d0,(Current_music+1).w						; save music
 		jsr	(Create_New_Object).w
-		bne.s	.return
+		bne.s	.return3
 		move.l	#Obj_BossBall,code_addr(a1)
 		move.w	(Camera_max_X_pos).w,d0
 		addi.w	#$110,d0
@@ -124,20 +134,22 @@ Load_GHZ3Boss:
 		add.w	(Camera_max_Y_pos).w,d0
 		move.w	d0,y_pos(a1)
 
-.return
+.return3
 		rts
 ; ---------------------------------------------------------------------------
 
-End_GHZ3Boss:
+.after_boss
 		move.w	(Camera_X_pos).w,(Camera_min_X_pos).w
 		cmpi.w	#$2D0C,(Camera_X_pos).w
-		bne.s	.check
-		move.l	#.check,(Level_data_addr_RAM.Resize).w
+		bne.s	.check_end
+		move.l	#.check_end,(Level_data_addr_RAM.Resize).w
 
-.check
+.check_end
+
+		; check end level flag
 		tst.b	(End_of_level_flag).w
-		beq.s	Load_GHZ3Boss.return
+		beq.s	.return3
 
 		; next zone
-		move.w	#bytes_to_word(LevelID_MZ,0),d0
+		move.w	#bytes_to_word(LevelID_MZ,ACT_1),d0
 		jmp	(StartNewLevel).w

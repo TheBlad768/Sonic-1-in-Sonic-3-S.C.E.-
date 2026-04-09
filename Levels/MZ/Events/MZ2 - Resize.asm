@@ -51,7 +51,7 @@ MZ2_Resize:
 		; check signpost
 		btst	#1,state_flags(a1)						; is signpost active?
 		beq.s	.return								; if not, branch
-		move.l	#.checksign,(Level_data_addr_RAM.Resize).w
+		move.l	#.check_signpost,(Level_data_addr_RAM.Resize).w
 
 		; set flags
 		st	(Last_act_end_flag).w						; disable background event and Title Card
@@ -67,12 +67,14 @@ MZ2_Resize:
 		rts
 ; ---------------------------------------------------------------------------
 
-.checksign
+.check_signpost
+
+		; check end level flag
 		tst.b	(End_of_level_flag).w
 		beq.s	.return
 
 		; next act
-		move.b	#2,(Current_act).w						; set act 3
+		move.b	#ACT_3,(Current_act).w						; set act 3
 		move.w	(Current_zone_and_act).w,(Apparent_zone_and_act).w
 		st	(Restart_level_flag).w
 		clr.b	(Last_star_post_hit).w

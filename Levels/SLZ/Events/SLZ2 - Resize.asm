@@ -13,14 +13,14 @@ SLZ2_Resize:
 		bhi.w	.return
 		move.w	d0,(Camera_min_X_pos).w
 		move.w	#$220,(Camera_target_max_Y_pos).w
-		move.l	#.checkxpos,(Level_data_addr_RAM.Resize).w
+		move.l	#.check_xpos,(Level_data_addr_RAM.Resize).w
 
 		; load hidden bonus art
 		QueueKosPlusModule	ArtKosPM_HiddenBonus, $460
 
 		; create signpost
 		jsr	(Create_New_Object).w
-		bne.s	.checkxpos
+		bne.s	.check_xpos
 		move.l	#Obj_Signpost,code_addr(a1)
 		move.w	(Camera_max_X_pos).w,d2
 		addi.w	#screen_width/2,d2
@@ -28,7 +28,7 @@ SLZ2_Resize:
 		move.w	#$220+$A0,y_pos(a1)
 		st	subtype(a1)							; flag for the standing signpost
 
-.checkxpos
+.check_xpos
 
 		; check xpos
 		move.w	(Camera_max_X_pos).w,d0
@@ -45,7 +45,7 @@ SLZ2_Resize:
 		; check signpost
 		btst	#1,state_flags(a1)						; is signpost active?
 		beq.s	.return								; if not, branch
-		move.l	#.checksign,(Level_data_addr_RAM.Resize).w
+		move.l	#.check_signpost,(Level_data_addr_RAM.Resize).w
 
 		; set flags
 		st	(Last_act_end_flag).w						; disable background event and Title Card
@@ -61,12 +61,14 @@ SLZ2_Resize:
 		rts
 ; ---------------------------------------------------------------------------
 
-.checksign
+.check_signpost
+
+		; check end level flag
 		tst.b	(End_of_level_flag).w
 		beq.s	.return
 
 		; next act
-		move.b	#2,(Current_act).w						; set act 3
+		move.b	#ACT_3,(Current_act).w						; set act 3
 		move.w	(Current_zone_and_act).w,(Apparent_zone_and_act).w
 		st	(Restart_level_flag).w
 		clr.b	(Last_star_post_hit).w

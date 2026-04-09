@@ -67,7 +67,8 @@ SBZ1_BackgroundEvent:
 SBZ1_Transition:
 		clr.b	(Background_event_flag).w
 		rts
-; ---------------------------------------------------------------------------
+
+; =============== S U B R O U T I N E =======================================
 
 SBZ1_Deform:
 

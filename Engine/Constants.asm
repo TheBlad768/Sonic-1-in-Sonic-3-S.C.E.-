@@ -281,7 +281,7 @@ AniIDKnuxAni_Carry =					id(ptr_KnuxAni_Carry)		; 25
 AniIDKnuxAni_Carry2 =					id(ptr_KnuxAni_Carry2)		; 26
 
 ; ---------------------------------------------------------------------------
-; Levels
+; Zones
 ; ---------------------------------------------------------------------------
 
 LevelID_GHZ =						0				; Green Hill Zone
@@ -291,6 +291,15 @@ LevelID_LZ =						3				; Labyrinth Zone
 LevelID_SLZ =						4				; Star Light Zone
 LevelID_SBZ =						5				; Scrap Brain Zone
 LevelID_NULL =						$FF				; NULL
+
+; ---------------------------------------------------------------------------
+; Acts
+; ---------------------------------------------------------------------------
+
+ACT_1 =							0
+ACT_2 =							1
+ACT_3 =							2
+ACT_4 =							3
 
 ; ---------------------------------------------------------------------------
 ; Buttons bit numbers

@@ -356,9 +356,9 @@ off_139EC: offsetTable
 loc_13A10:
 		tst.b	(Tails_CPU_star_post_flag).w
 		bne.s	loc_13AF4
-		cmpi.w	#bytes_to_word(LevelID_LZ,3),(Current_zone_and_act).w		; is LZ4?
+		cmpi.w	#bytes_to_word(LevelID_LZ,ACT_4),(Current_zone_and_act).w	; is LZ4?
 		beq.s	loc_13B12							; if yes, branch
-		cmpi.w	#bytes_to_word(LevelID_SBZ,2),(Current_zone_and_act).w		; is FZ?
+		cmpi.w	#bytes_to_word(LevelID_SBZ,ACT_3),(Current_zone_and_act).w	; is FZ?
 		beq.s	loc_13B12							; if yes, branch
 
 loc_13AF4:

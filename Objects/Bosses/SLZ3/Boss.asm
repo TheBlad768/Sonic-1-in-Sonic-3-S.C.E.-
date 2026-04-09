@@ -236,7 +236,7 @@ BossSpikeBall_Defeated:
 		move.l	#words_to_long($400,0),x_vel(a0)
 
 		; return
-		move.l	#End_SLZ3Boss,(Level_data_addr_RAM.Resize).w
+		move.l	#SLZ3_Resize.after_boss,(Level_data_addr_RAM.Resize).w
 
 		; restore pylon
 		moveq	#1,d1								; current slot priority

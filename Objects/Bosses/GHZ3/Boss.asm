@@ -222,7 +222,7 @@ BossBall_Defeated:
 
 		; return
 		move.l	#AnimateTiles_DoAniPLC,(Level_data_addr_RAM.AnimateTiles).w
-		move.l	#End_GHZ3Boss,(Level_data_addr_RAM.Resize).w
+		move.l	#GHZ3_Resize.after_boss,(Level_data_addr_RAM.Resize).w
 
 		; flags
 		st	(Last_act_end_flag).w
@@ -509,7 +509,7 @@ Obj_BossBall_Scaled:
 		move.b	#1,(Update_HUD_timer).w
 
 		; delete
-		move.l	#Load_GHZ3Boss,(Level_data_addr_RAM.Resize).w
+		move.l	#GHZ3_Resize.load_boss,(Level_data_addr_RAM.Resize).w
 		jmp	(Delete_Current_Object).w
 
 ; =============== S U B R O U T I N E =======================================

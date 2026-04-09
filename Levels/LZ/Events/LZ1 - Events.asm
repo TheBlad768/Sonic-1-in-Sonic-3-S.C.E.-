@@ -18,6 +18,8 @@ LZ3_ForegroundInit:
 		move.w	#$7F0,(Camera_Y_pos_mask).w
 		move.w	#$3C,(Layout_row_index_mask).w					; set layout y size: $7FF
 
+; =============== S U B R O U T I N E =======================================
+
 LZ1_ForegroundInit:
 
 		; update FG

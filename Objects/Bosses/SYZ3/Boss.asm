@@ -401,7 +401,7 @@ BossBlock_Defeated:
 		move.l	#words_to_long($400,0),x_vel(a0)
 
 		; return
-		move.l	#End_SYZ3Boss,(Level_data_addr_RAM.Resize).w
+		move.l	#SYZ3_Resize.after_boss,(Level_data_addr_RAM.Resize).w
 		move.l	#Draw_FGAsYouMove,(Level_data_addr_RAM.ScreenEvent).w
 
 		; flags

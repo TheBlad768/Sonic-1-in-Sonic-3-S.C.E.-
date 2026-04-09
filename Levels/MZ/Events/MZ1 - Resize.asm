@@ -5,6 +5,8 @@
 ; =============== S U B R O U T I N E =======================================
 
 MZ1_Resize:
+
+		; check camera
 		move.w	#$1D0,d0
 		cmpi.w	#$900,(Camera_X_pos).w
 		blo.s	.set
@@ -14,105 +16,113 @@ MZ1_Resize:
 		move.w	#$340,d0
 		cmpi.w	#$340,(Camera_Y_pos).w
 		blo.s	.set
-		move.l	#.loc_6FEA,(Level_data_addr_RAM.Resize).w
+		move.l	#.check_back,(Level_data_addr_RAM.Resize).w
 
 .set
 		move.w	d0,(Camera_target_max_Y_pos).w
 
 		; check end level
-		bra.w	.checkend
+		bra.w	.check_end
 ; ---------------------------------------------------------------------------
 
-.loc_6FEA
+.check_back
 		cmpi.w	#$340,(Camera_Y_pos).w
-		bhs.s	.loc_6FF8
-		move.w	(Camera_max_Y_pos).w,d0						; fix S1 bug...
+		bhs.s	.check_next
+
+		; wait camera
+		move.w	(Camera_max_Y_pos).w,d0						; fix Sonic 1 camera bug...
 		cmp.w	(Camera_target_max_Y_pos).w,d0
-		blt.s	.loc_6FF8
+		blt.s	.check_next
+
+		; back
 		move.l	#MZ1_Resize,(Level_data_addr_RAM.Resize).w
 		rts
 ; ---------------------------------------------------------------------------
 
-.loc_6FF8
+.check_next
 		clr.w	(Camera_min_Y_pos).w
 		cmpi.w	#$1000,(Camera_X_pos).w
-		bhs.s	.locret_702C
+		bhs.s	.return
 		move.w	#$340,(Camera_min_Y_pos).w
 		move.w	#$340,(Camera_target_max_Y_pos).w
 		cmpi.w	#$C90,(Camera_X_pos).w
-		bhs.s	.locret_702C
+		bhs.s	.return
 		move.w	#$500,(Camera_target_max_Y_pos).w
 		cmpi.w	#$370,(Camera_Y_pos).w
-		blo.s	.locret_702C
-		move.l	#.loc_702E,(Level_data_addr_RAM.Resize).w
+		blo.s	.return
+		move.l	#.check_back2,(Level_data_addr_RAM.Resize).w
 
-.locret_702C
+.return
 		rts
 ; ---------------------------------------------------------------------------
 
-.loc_702E
+.check_back2
 		cmpi.w	#$370,(Camera_Y_pos).w
-		bhs.s	.loc_703C
-		move.l	#.loc_6FEA,(Level_data_addr_RAM.Resize).w
+		bhs.s	.check_next2
+
+		; back
+		move.l	#.check_back,(Level_data_addr_RAM.Resize).w
 		rts
 ; ---------------------------------------------------------------------------
 
-.loc_703C
+.check_next2
 		cmpi.w	#$500,(Camera_Y_pos).w
-		blo.s	.locret_704E
+		blo.s	.return2
 		cmpi.w	#$D80,(Camera_X_pos).w
-		blo.s	.locret_704E
-		move.w	#$500,(Camera_min_Y_pos).w
-		move.l	#.loc_7050,(Level_data_addr_RAM.Resize).w
+		blo.s	.return2
 
-.locret_704E
+		; next
+		move.w	#$500,(Camera_min_Y_pos).w
+		move.l	#.check_next3,(Level_data_addr_RAM.Resize).w
+
+.return2
 		rts
 ; ---------------------------------------------------------------------------
 
-.loc_7050
+.check_next3
 		cmpi.w	#$D80,(Camera_X_pos).w
-		bhs.s	.locj_76B8
+		bhs.s	.check_next4
 		cmpi.w	#$340,(Camera_min_Y_pos).w
-		beq.s	.checkend
+		beq.s	.check_end
 		subq.w	#2,(Camera_min_Y_pos).w
 
-.locret_76B6
+.return3
 		rts
 ; ---------------------------------------------------------------------------
 
-.locj_76B8
+.check_next4
 		cmpi.w	#$500,(Camera_min_Y_pos).w
-		beq.s	.locj_76CE
+		beq.s	.skip_ypos
 		cmpi.w	#$500,(Camera_Y_pos).w
-		blo.s	.checkend
+		blo.s	.check_end
 		move.w	#$500,(Camera_min_Y_pos).w
 
-.locj_76CE
+.skip_ypos
 		cmpi.w	#$1070,(Camera_X_pos).w
-		blo.s	.checkend
+		blo.s	.check_end
 		clr.w	(Camera_min_Y_pos).w
 		move.w	#$500,(Camera_target_max_Y_pos).w
 		cmpi.w	#$1630,(Camera_X_pos).w
-		blo.s	.checkend
+		blo.s	.check_end
 		move.w	#$210,(Camera_target_max_Y_pos).w
 
-.checkend
+.check_end
 
 		; check end level
 		move.w	(Camera_max_X_pos).w,d0
 		subi.w	#256,d0
 		cmp.w	(Camera_X_pos).w,d0
-		bhi.s	.locret_76B6
+		bhi.s	.return3
 		move.w	d0,(Camera_min_X_pos).w
 		move.w	#$210,(Camera_target_max_Y_pos).w
-		move.l	#.checkxpos,(Level_data_addr_RAM.Resize).w
+		move.l	#.check_xpos,(Level_data_addr_RAM.Resize).w
 
 		; load hidden bonus art
 		QueueKosPlusModule	ArtKosPM_HiddenBonus, $460
 
 		; create signpost
 		jsr	(Create_New_Object).w
-		bne.s	.checkxpos
+		bne.s	.check_xpos
 		move.l	#Obj_Signpost,code_addr(a1)
 		move.w	(Camera_max_X_pos).w,d2
 		addi.w	#screen_width/2,d2
@@ -120,24 +130,24 @@ MZ1_Resize:
 		move.w	#$210+$82,y_pos(a1)
 		st	subtype(a1)							; flag for the standing signpost
 
-.checkxpos
+.check_xpos
 
 		; check xpos
 		move.w	(Camera_max_X_pos).w,d0
 		cmp.w	(Camera_X_pos).w,d0
-		bhi.s	.return
+		bhi.s	.return4
 		move.w	d0,(Camera_min_X_pos).w
 		move.l	#.signpost,(Level_data_addr_RAM.Resize).w
 
 .signpost
 		move.w	(Signpost_addr).w,d0						; address is empty?
-		beq.s	.return								; if it is, branch
+		beq.s	.return4							; if it is, branch
 		movea.w	d0,a1								; get signpost address
 
 		; check signpost
 		btst	#1,state_flags(a1)						; is signpost active?
-		beq.s	.return								; if not, branch
-		move.l	#.checksign,(Level_data_addr_RAM.Resize).w
+		beq.s	.return4							; if not, branch
+		move.l	#.check_signpost,(Level_data_addr_RAM.Resize).w
 
 		; set flags
 		st	(Last_act_end_flag).w						; disable background event and Title Card
@@ -149,16 +159,18 @@ MZ1_Resize:
 		move.b	d0,(End_of_level_flag).w
 		move.b	d0,(Boss_flag).w
 
-.return
+.return4
 		rts
 ; ---------------------------------------------------------------------------
 
-.checksign
+.check_signpost
+
+		; check end level flag
 		tst.b	(End_of_level_flag).w
-		beq.s	.return
+		beq.s	.return4
 
 		; next act
-		move.b	#1,(Current_act).w						; set act 2
+		move.b	#ACT_2,(Current_act).w						; set act 2
 		move.w	(Current_zone_and_act).w,(Apparent_zone_and_act).w
 		st	(Restart_level_flag).w
 		clr.b	(Last_star_post_hit).w

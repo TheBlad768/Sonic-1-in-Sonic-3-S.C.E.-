@@ -294,7 +294,7 @@ BossFire_Defeated:
 		move.l	#words_to_long($400,0),x_vel(a0)
 
 		; return
-		move.l	#End_MZ3Boss,(Level_data_addr_RAM.Resize).w
+		move.l	#MZ3_Resize.after_boss,(Level_data_addr_RAM.Resize).w
 
 		; flags
 		st	(Last_act_end_flag).w
@@ -669,7 +669,7 @@ Obj_BossFire_Scaled:
 		move.b	#1,(Update_HUD_timer).w
 
 		; delete
-		move.l	#Load_MZ3Boss,(Level_data_addr_RAM.Resize).w
+		move.l	#MZ3_Resize.load_boss,(Level_data_addr_RAM.Resize).w
 		jmp	(Go_Delete_Object).w
 
 ; =============== S U B R O U T I N E =======================================

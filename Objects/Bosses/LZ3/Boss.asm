@@ -271,7 +271,7 @@ BossWater_MoveUp6:
 .delete
 
 		; return
-		move.l	#End_LZ3Boss,(Level_data_addr_RAM.Resize).w
+		move.l	#LZ3_Resize.after_boss,(Level_data_addr_RAM.Resize).w
 
 		; remove Robotnik head and fire
 		bset	#5,state_flags(a0)

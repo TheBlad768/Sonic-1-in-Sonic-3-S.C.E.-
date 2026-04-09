@@ -92,7 +92,7 @@ Obj_PushableBlock:
 		jsr	(SolidObjectFull).w
 
 		; check act
-		cmpi.w	#bytes_to_word(LevelID_MZ,0),(Current_zone_and_act).w		; is the level MZ act 1?
+		cmpi.w	#bytes_to_word(LevelID_MZ,ACT_1),(Current_zone_and_act).w	; is the level MZ act 1?
 		bne.s	.draw								; if not, branch
 
 		; clr bit
@@ -266,7 +266,7 @@ PushableBlock_Floating:									; floating block on lava
 PushableBlock_ChkLava:
 
 		; check act
-		cmpi.w	#bytes_to_word(LevelID_MZ,1),(Current_zone_and_act).w		; is the level MZ act 2?
+		cmpi.w	#bytes_to_word(LevelID_MZ,ACT_2),(Current_zone_and_act).w	; is the level MZ act 2?
 		bne.s	.notact2							; if not, branch
 
 		; start
@@ -285,7 +285,7 @@ PushableBlock_ChkLava:
 .notact2
 
 		; check act
-		cmpi.w	#bytes_to_word(LevelID_MZ,2),(Current_zone_and_act).w		; is the level MZ act 3?
+		cmpi.w	#bytes_to_word(LevelID_MZ,ACT_3),(Current_zone_and_act).w	; is the level MZ act 3?
 		bne.s	.return								; if not, branch
 
 		; start
