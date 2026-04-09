@@ -216,7 +216,7 @@ LZ_WaterTunnels:
 		cmp.w	(a2),d0
 		bhs.s	.movesonic
 		moveq	#2,d0
-		cmpi.b	#1,(Current_act).w						; check if level is LZ2
+		cmpi.b	#ACT_2,(Current_act).w						; check if level is LZ2
 		bne.s	.notact2							; if not, branch
 		neg.w	d0
 
@@ -267,7 +267,7 @@ LZ_WaterTunnels:
 Water_WaterSlides:
 		cmpi.b	#LevelID_LZ,(Current_zone).w					; check if level is LZ
 		bne.s	locret_3F7A							; if not, branch
-		cmpi.b	#3,(Current_act).w						; check if level is SBZ3
+		cmpi.b	#ACT_4,(Current_act).w						; check if level is SBZ3
 		beq.s	locret_3F7A							; if yes, branch
 
 		; check

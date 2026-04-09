@@ -33,9 +33,9 @@ MZ3_Resize:
 
 	if BossIntro
 		tst.b	(Intro_flag).w
-		bne.s	Load_MZ3Boss_Skip
+		bne.s	.skip_boss_intro
 	else
-		bra.s	Load_MZ3Boss_Skip
+		bra.s	.skip_boss_intro
 	endif
 
 		; stop update time counter
@@ -57,15 +57,17 @@ MZ3_Resize:
 		rts
 ; ---------------------------------------------------------------------------
 
-Load_MZ3Boss_Skip:
+.skip_boss_intro
 		move.w	#2*60,(Events_fg+2).w						; fade time
-		move.l	#Load_MZ3Boss_Wait,(Level_data_addr_RAM.Resize).w
+		move.l	#.fade_boss,(Level_data_addr_RAM.Resize).w
 
-Load_MZ3Boss_Wait:
-		subq.w	#1,(Events_fg+2).w
-		bne.s	MZ3_Resize.return
+.fade_boss
 
-Load_MZ3Boss:
+		; wait
+		subq.w	#1,(Events_fg+2).w						; subtract 1 from fade delay
+		bne.s	.return								; if fade still remains, branch
+
+.load_boss
 
 		; set
 		clr.l	(Level_data_addr_RAM.Resize).w					; set return for resize
@@ -86,7 +88,7 @@ Load_MZ3Boss:
 		music	mus_ZoneBoss
 		move.b	d0,(Current_music+1).w						; save music
 		jsr	(Create_New_Object).w
-		bne.s	.return
+		bne.s	.return2
 		move.l	#Obj_BossFire,code_addr(a1)
 		move.w	(Camera_max_X_pos).w,d0
 		addi.w	#$170,d0
@@ -95,22 +97,24 @@ Load_MZ3Boss:
 		add.w	(Camera_max_Y_pos).w,d0
 		move.w	d0,y_pos(a1)
 
-.return
+.return2
 		rts
 ; ---------------------------------------------------------------------------
 
-End_MZ3Boss:
+.after_boss
 		move.w	(Camera_X_pos).w,(Camera_min_X_pos).w
 		cmpi.w	#$1C80,(Camera_X_pos).w
-		bne.s	.check
-		move.l	#.check,(Level_data_addr_RAM.Resize).w
+		bne.s	.check_end
+		move.l	#.check_end,(Level_data_addr_RAM.Resize).w
 
-.check
+.check_end
+
+		; check end level flag
 		tst.b	(End_of_level_flag).w
-		beq.s	Load_MZ3Boss.return
+		beq.s	.return2
 
 		; next zone
-		move.w	#bytes_to_word(LevelID_SYZ,0),d0
+		move.w	#bytes_to_word(LevelID_SYZ,ACT_1),d0
 		jmp	(StartNewLevel).w
 ; ---------------------------------------------------------------------------
 

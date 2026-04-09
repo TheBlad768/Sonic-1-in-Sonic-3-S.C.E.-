@@ -65,11 +65,13 @@ GHZ1_Resize:
 ; ---------------------------------------------------------------------------
 
 .checksign
+
+		; check end level flag
 		tst.b	(End_of_level_flag).w
 		beq.s	.return
 
 		; next act
-		move.b	#1,(Current_act).w						; set act 2
+		move.b	#ACT_2,(Current_act).w						; set act 2
 		move.w	(Current_zone_and_act).w,(Apparent_zone_and_act).w
 		st	(Restart_level_flag).w
 		clr.b	(Last_star_post_hit).w

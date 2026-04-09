@@ -5,14 +5,16 @@
 ; =============== S U B R O U T I N E =======================================
 
 SLZ3_Resize:
+
+		; check camera
 		move.w	#$2070,d0
 		cmp.w	(Camera_X_pos).w,d0
 		bhi.w	.return
 		move.w	d0,(Camera_min_X_pos).w
 		move.w	#$210,(Camera_target_max_Y_pos).w
-		move.l	#.boss,(Level_data_addr_RAM.Resize).w
+		move.l	#.check_boss,(Level_data_addr_RAM.Resize).w
 
-.boss
+.check_boss
 
 		; check xpos
 		move.w	#$2200,d0
@@ -30,11 +32,13 @@ SLZ3_Resize:
 		; set fade
 		music	mus_FadeOut
 		move.w	#2*60,(Events_fg+2).w						; fade time
-		move.l	#.fade,(Level_data_addr_RAM.Resize).w
+		move.l	#.fade_boss,(Level_data_addr_RAM.Resize).w
 
-.fade
-		subq.w	#1,(Events_fg+2).w
-		bne.s	.return
+.fade_boss
+
+		; wait
+		subq.w	#1,(Events_fg+2).w						; subtract 1 from fade delay
+		bne.s	.return								; if fade still remains, branch
 
 		; load boss
 		move.l	#.return,(Level_data_addr_RAM.Resize).w
@@ -43,11 +47,11 @@ SLZ3_Resize:
 		moveq	#1,d1								; current slot priority
 		jsr	(DeleteSlot_ExtraRender).w
 
-		; load art
+		; load boss art
 		lea	(PLC_BossSpikeBall).l,a5
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
-		; load palette
+		; load boss palette
 		lea	(Pal_Robotnik).l,a1
 		lea	(Normal_palette_line_2).w,a2
 		jsr	(PalLoad_Line16).w
@@ -69,16 +73,18 @@ SLZ3_Resize:
 		rts
 ; ---------------------------------------------------------------------------
 
-End_SLZ3Boss:
+.after_boss
 		move.w	(Camera_X_pos).w,(Camera_min_X_pos).w
 		cmpi.w	#$23D0,(Camera_X_pos).w
-		bne.s	.check
-		move.l	#.check,(Level_data_addr_RAM.Resize).w
+		bne.s	.check_end
+		move.l	#.check_end,(Level_data_addr_RAM.Resize).w
 
-.check
+.check_end
+
+		; check end level flag
 		tst.b	(End_of_level_flag).w
-		beq.s	SLZ3_Resize.return
+		beq.s	.return
 
 		; next zone
-		move.w	#bytes_to_word(LevelID_SBZ,0),d0
+		move.w	#bytes_to_word(LevelID_SBZ,ACT_1),d0
 		jmp	(StartNewLevel).w

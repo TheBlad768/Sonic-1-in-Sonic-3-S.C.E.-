@@ -317,7 +317,7 @@ BossFinal_Defeated:
 		tst.b	count(a0)
 		bne.w	.draw
 		move.l	#.defeatedfall,code_addr(a0)
-		move.l	#FZ_Resize.afterboss,(Level_data_addr_RAM.Resize).w
+		move.l	#FZ_Resize.after_boss,(Level_data_addr_RAM.Resize).w
 		bset	#status.npc.x_flip,status(a0)					; set flipx
 		bset	#4,state_flags(a0)						; remove plasma ball launcher
 		move.b	#9,anim(a0)							; set defeated jump anim
@@ -570,7 +570,7 @@ Obj_BossFinal_RobotnikShip:
 ; ---------------------------------------------------------------------------
 
 .delete
-		move.l	#FZ_Resize.endboss,(Level_data_addr_RAM.Resize).w
+		move.l	#FZ_Resize.end_boss,(Level_data_addr_RAM.Resize).w
 		jmp	(Delete_Current_Object).w
 
 ; ---------------------------------------------------------------------------

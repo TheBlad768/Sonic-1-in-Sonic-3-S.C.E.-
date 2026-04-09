@@ -230,7 +230,7 @@ BlocksDoors_TypeIndex: offsetTable
 		; moves up when a switch is pressed
 		tst.b	floatingblock.flag(a0)
 		bne.s	.loc_104A4
-		cmpi.w	#bytes_to_word(LevelID_LZ,0),(Current_zone_and_act).w		; is level LZ1?
+		cmpi.w	#bytes_to_word(LevelID_LZ,ACT_1),(Current_zone_and_act).w	; is level LZ1?
 		bne.s	.aaa								; if not, branch
 		cmpi.b	#3,floatingblock.type(a0)
 		bne.s	.aaa
@@ -251,7 +251,7 @@ BlocksDoors_TypeIndex: offsetTable
 		move.b	floatingblock.type(a0),d0
 		btst	#0,(a2,d0.w)
 		beq.s	.loc_104AE
-		cmpi.w	#bytes_to_word(LevelID_LZ,0),(Current_zone_and_act).w		; is level LZ1?
+		cmpi.w	#bytes_to_word(LevelID_LZ,ACT_1),(Current_zone_and_act).w	; is level LZ1?
 		bne.s	.loc_1049E							; if not, branch
 		cmpi.b	#3,d0
 		bne.s	.loc_1049E

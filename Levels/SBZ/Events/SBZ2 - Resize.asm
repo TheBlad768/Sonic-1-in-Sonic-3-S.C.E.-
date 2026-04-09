@@ -16,11 +16,11 @@ SBZ2_Resize:
 		cmp.w	(Camera_X_pos).w,d0
 		bhi.s	.return
 		move.w	d0,(Camera_min_X_pos).w
-		move.l	#.loadboss,(Level_data_addr_RAM.Resize).w
+		move.l	#.load_boss,(Level_data_addr_RAM.Resize).w
 
 		; create signpost
 		jsr	(Create_New_Object).w
-		bne.s	.loadboss
+		bne.s	.load_boss
 		move.l	#Obj_Signpost,code_addr(a1)
 		move.w	(Camera_max_X_pos).w,d2
 		addi.w	#screen_width/2,d2
@@ -28,7 +28,7 @@ SBZ2_Resize:
 		move.w	#$510+$90,y_pos(a1)
 		st	subtype(a1)							; flag for the standing signpost
 
-.loadboss
+.load_boss
 
 		; check xpos
 		move.w	#$2040,d0
@@ -45,7 +45,7 @@ SBZ2_Resize:
 		; check signpost
 		btst	#1,state_flags(a1)						; is signpost active?
 		beq.s	.return								; if not, branch
-		move.l	#.checksign,(Level_data_addr_RAM.Resize).w
+		move.l	#.check_signpost,(Level_data_addr_RAM.Resize).w
 
 		; set flags
 		st	(Last_act_end_flag).w						; disable background event and Title Card
@@ -61,7 +61,9 @@ SBZ2_Resize:
 		rts
 ; ---------------------------------------------------------------------------
 
-.checksign
+.check_signpost
+
+		; check end level flag
 		tst.b	(End_of_level_flag).w
 		beq.s	.return
 
@@ -73,7 +75,7 @@ SBZ2_Resize:
 
 		; next
 		music	mus_MidBoss
-		move.l	#.addxcam,(Level_data_addr_RAM.Resize).w
+		move.l	#.add_xcam,(Level_data_addr_RAM.Resize).w
 		move.w	(Camera_max_Y_pos).w,(Camera_min_Y_pos).w
 		st	(Disable_wall_grab).w						; disable Knuckles wall grab
 		st	(Disable_death_plane).w
@@ -84,44 +86,44 @@ SBZ2_Resize:
 
 		; load SBZ2 Eggman intro object
 		jsr	(Create_New_Object).w
-		bne.s	.addxcam
+		bne.s	.add_xcam
 		move.l	#Obj_ScrapEggman,code_addr(a1)
 		move.w	#$2340,x_pos(a1)
 		move.w	(Camera_max_Y_pos).w,d0
 		addi.w	#$94,d0
 		move.w	d0,y_pos(a1)
 
-.addxcam
+.add_xcam
 
 		; add xpos
 		move.w	#$2250,d0
 		addq.w	#2,(Camera_max_X_pos).w
 		cmp.w	(Camera_max_X_pos).w,d0
-		bhi.s	.checkxcam
+		bhi.s	.check_xcam
 		move.w	d0,(Camera_max_X_pos).w
-		move.l	#.checkxcam,(Level_data_addr_RAM.Resize).w
+		move.l	#.check_xcam,(Level_data_addr_RAM.Resize).w
 
-.checkxcam
+.check_xcam
 
 		; add xpos
 		move.w	#$2250,d0
 		move.w	(Camera_X_pos).w,(Camera_min_X_pos).w
 		cmp.w	(Camera_X_pos).w,d0
-		bhi.s	.checkypos
+		bhi.s	.check_ypos
 		move.w	d0,(Camera_min_X_pos).w
-		move.l	#.checkypos,(Level_data_addr_RAM.Resize).w
+		move.l	#.check_ypos,(Level_data_addr_RAM.Resize).w
 
-.checkypos
+.check_ypos
 
 		; check player 2
 		move.w	(Camera_min_Y_pos).w,d0
 		addi.w	#256,d0
 		cmp.w	(Player_2+y_pos).w,d0
-		bhs.s	.notp2
+		bhs.s	.not_p2
 		move.b	#$83,(Player_2+object_control).w				; lock controls and physics
 		move.w	#$A,(Tails_CPU_routine).w					; disable CPU
 
-.notp2
+.not_p2
 
 		; check player 1
 		cmp.w	(Player_1+y_pos).w,d0
@@ -132,7 +134,7 @@ SBZ2_Resize:
 		move.b	(Player_1+status).w,(SBZ2_player_roll).w
 
 		; next zone
-		move.w	#bytes_to_word(LevelID_LZ,3),d0
+		move.w	#bytes_to_word(LevelID_LZ,ACT_4),d0
 		jmp	(StartNewLevel).w
 ; ---------------------------------------------------------------------------
 

@@ -18,7 +18,7 @@ AnimateTiles_MZ:
 
 		; wait
 		subq.b	#1,(a1)								; decrement timer
-		bpl.s	Load_GHZ3Boss.return						; if time remains, branch
+		bpl.s	GHZ3_Resize.return3						; if time remains, branch
 		addq.b	#1+1,(a1)							; reset timer to 1 frames
 
 		; load art

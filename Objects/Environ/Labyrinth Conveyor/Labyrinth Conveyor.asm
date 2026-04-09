@@ -165,7 +165,7 @@ Obj_LabyrinthConveyor_Platforms:
 ; ---------------------------------------------------------------------------
 
 .offscreen
-		cmpi.b	#2,(Current_act).w						; check if act is 3
+		cmpi.b	#ACT_3,(Current_act).w						; check if act is 3
 		bne.s	.checkbuffer							; if not, branch
 		cmpi.w	#-$80,d0
 		bhs.s	.draw

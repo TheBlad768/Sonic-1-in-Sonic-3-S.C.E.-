@@ -195,7 +195,7 @@ LevelScreen:
 		; check water
 		tst.b	(Water_flag).w
 		beq.s	.notwater2
-		cmpi.w	#bytes_to_word(LevelID_LZ,2),(Current_zone_and_act).w		; is LZ3?
+		cmpi.w	#bytes_to_word(LevelID_LZ,ACT_3),(Current_zone_and_act).w	; is LZ3?
 		beq.s	.notwater2							; if yes, branch
 		move.l	#Obj_WaveSplash,(Wave_Splash+code_addr).w
 
@@ -298,7 +298,7 @@ SpawnLevelMainSprites:
 		lea	(Player_1).w,a1							; a1=character
 		lea	(Player_2).w,a2							; a2=character
 
-		cmpi.w	#bytes_to_word(LevelID_LZ,3),(Current_zone_and_act).w		; is LZ4?
+		cmpi.w	#bytes_to_word(LevelID_LZ,ACT_4),(Current_zone_and_act).w	; is LZ4?
 		bne.s	.notLZ4								; if not, branch
 
 		; set fall
@@ -316,7 +316,7 @@ SpawnLevelMainSprites:
 		bset	#status.player.in_air,status(a2)
 
 .notLZ4
-		cmpi.w	#bytes_to_word(LevelID_SBZ,2),(Current_zone_and_act).w		; is FZ?
+		cmpi.w	#bytes_to_word(LevelID_SBZ,ACT_3),(Current_zone_and_act).w	; is FZ?
 		bne.s	.return								; if not, branch
 		cmpi.b	#GameModeID_LevelSelectScreen,(Game_mode_last).w		; is the level loaded from Level Select?
 		beq.s	.return								; if yes, branch

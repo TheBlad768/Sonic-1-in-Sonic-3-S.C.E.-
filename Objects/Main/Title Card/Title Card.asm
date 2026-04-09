@@ -26,7 +26,7 @@ Obj_TitleCard:
 		movea.l	TitleCardAct_Index(pc,d0.w),a1
 
 		; check
-		cmpi.w	#bytes_to_word(LevelID_LZ,3),(Current_zone_and_act).w		; is level Labyrinth Zone 4?
+		cmpi.w	#bytes_to_word(LevelID_LZ,ACT_4),(Current_zone_and_act).w	; is level Labyrinth Zone 4?
 		bne.s	.notSBZ03							; if not, branch
 		lea	(ArtKosPM_TitleCardNum3).l,a1
 
@@ -191,12 +191,12 @@ Obj_TitleCardRedBanner:
 
 Obj_TitleCardName:
 		move.b	(Current_zone).w,d0
-		cmpi.w	#bytes_to_word(LevelID_LZ,3),(Current_zone_and_act).w		; is level Labyrinth Zone 4?
+		cmpi.w	#bytes_to_word(LevelID_LZ,ACT_4),(Current_zone_and_act).w	; is level Labyrinth Zone 4?
 		bne.s	.notSBZ3							; if not, branch
 		addq.b	#2,d0								; set "SBZ"
 
 .notSBZ3
-		cmpi.w	#bytes_to_word(LevelID_SBZ,2),(Current_zone_and_act).w		; is level Scrap Brain Zone 3?
+		cmpi.w	#bytes_to_word(LevelID_SBZ,ACT_3),(Current_zone_and_act).w	; is level Scrap Brain Zone 3?
 		bne.s	.notFZ								; if not, branch
 		addq.b	#1,d0								; set "Final"
 
@@ -242,7 +242,7 @@ Obj_TitleCardAct:
 		move.l	#Obj_TitleCardElement,code_addr(a0)
 
 		; check
-		cmpi.w	#bytes_to_word(LevelID_SBZ,2),(Current_zone_and_act).w		; is level Final Zone?
+		cmpi.w	#bytes_to_word(LevelID_SBZ,ACT_3),(Current_zone_and_act).w	; is level Final Zone?
 		bne.s	Obj_TitleCardElement						; if not, branch
 
 		; remove a number of the act, if not needed
@@ -301,12 +301,12 @@ TitleCard_LoadLetters:
 		adda.w	(a1,d0.w),a1
 
 		; check level
-		cmpi.w	#bytes_to_word(LevelID_LZ,3),(Current_zone_and_act).w		; is level Labyrinth Zone 4?
+		cmpi.w	#bytes_to_word(LevelID_LZ,ACT_4),(Current_zone_and_act).w	; is level Labyrinth Zone 4?
 		bne.s	.notSBZ3							; if not, branch
 		lea	VRAM_TitleCard_SBZ(pc),a1
 
 .notSBZ3
-		cmpi.w	#bytes_to_word(LevelID_SBZ,2),(Current_zone_and_act).w
+		cmpi.w	#bytes_to_word(LevelID_SBZ,ACT_3),(Current_zone_and_act).w
 		bne.s	.main
 		lea	VRAM_TitleCard_FZ(pc),a1
 

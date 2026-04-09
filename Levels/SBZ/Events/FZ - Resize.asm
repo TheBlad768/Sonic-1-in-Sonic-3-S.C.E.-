@@ -11,7 +11,7 @@ FZ_Resize:
 		move.w	(Camera_X_pos).w,(Camera_min_X_pos).w
 		cmp.w	(Camera_X_pos).w,d0
 		bhi.s	.return
-		move.l	#.addxcam,(Level_data_addr_RAM.Resize).w
+		move.l	#.add_xcam,(Level_data_addr_RAM.Resize).w
 		clr.b	(Disable_wall_grab).w						; enable Knuckles wall grab
 
 		; create boss
@@ -21,7 +21,7 @@ FZ_Resize:
 		move.w	#$100,x_pos(a1)
 		move.w	#$100,y_pos(a1)
 
-.addxcam
+.add_xcam
 
 		; check xpos
 		move.w	#$2650,d0
@@ -34,17 +34,17 @@ FZ_Resize:
 		rts
 ; ---------------------------------------------------------------------------
 
-.afterboss
+.after_boss
 
 		; add xpos
 		move.w	#$2900,d0
 		addq.w	#2,(Camera_max_X_pos).w
 		cmp.w	(Camera_max_X_pos).w,d0
-		bhi.s	.afterbossxcam
+		bhi.s	.after_boss_xcam
 		move.w	d0,(Camera_max_X_pos).w
-		move.l	#.afterbossxcam,(Level_data_addr_RAM.Resize).w
+		move.l	#.after_boss_xcam,(Level_data_addr_RAM.Resize).w
 
-.afterbossxcam
+.after_boss_xcam
 
 		; check xpos
 		move.w	#$2900,d0
@@ -57,7 +57,7 @@ FZ_Resize:
 		rts
 ; ---------------------------------------------------------------------------
 
-.endboss
+.end_boss
 		addq.w	#4*2,sp								; exit from resize and current screen
 		move.b	#GameModeID_EndingScreen,(Game_mode).w				; set screen mode to Ending
 		clr.b	(Last_star_post_hit).w
