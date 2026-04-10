@@ -201,7 +201,7 @@ LZ_WaterTunnels:
 		bhs.s	.chknext
 
 		; play continuous sfx
-		sfxcont	sfx_Waterfall,$3F						; play water sound every 64th frame
+		sfxcont	sfx_Waterfall, $3F						; play water sound every 64th frame
 
 		; check
 		cmpi.b	#PlayerID_Hurt,routine(a1)					; is Sonic falling back from getting hurt?

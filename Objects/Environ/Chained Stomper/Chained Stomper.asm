@@ -242,7 +242,7 @@ loc_B902:
 		bpl.s	loc_B91C							; if not, branch
 
 		; play continuous sfx
-		sfxcont	sfx_ChainRise,$F						; play rising chain sound every 16th frame
+		sfxcont	sfx_ChainRise, $F						; play rising chain sound every 16th frame
 
 loc_B91C:
 		subi.w	#$80,chainedstomper.yoffset(a0)

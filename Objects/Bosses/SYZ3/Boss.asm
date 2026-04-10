@@ -357,7 +357,7 @@ BossBlock_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 BossBlock_Defeated:
-		move.l	#Wait_FadeToLevelMusic,code_addr(a0)
+		move.l	#Obj_WaitFadeToLevelMusic,code_addr(a0)
 		move.l	#.explosion,wait_addr(a0)
 		bclr	#bossblock.spikeenable_bit,state_flags(a0)			; hide spike
 		clr.l	x_vel(a0)

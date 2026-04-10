@@ -163,7 +163,7 @@ BossFinal_CreatePlasmaBalls:
 .waitpl
 
 		; play continuous sfx
-		sfxcont	sfx_Electric,$F							; play electricity sound every 16th frame
+		sfxcont	sfx_Electric, $F							; play electricity sound every 16th frame
 
 		; check end
 		tst.b	count(a0)
