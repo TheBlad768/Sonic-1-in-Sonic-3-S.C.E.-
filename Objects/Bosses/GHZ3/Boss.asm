@@ -174,7 +174,7 @@ BossBall_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 BossBall_Defeated:
-		move.l	#Wait_FadeToLevelMusic,code_addr(a0)
+		move.l	#Obj_WaitFadeToLevelMusic,code_addr(a0)
 		move.l	#.explosion,wait_addr(a0)
 		clr.l	x_vel(a0)
 

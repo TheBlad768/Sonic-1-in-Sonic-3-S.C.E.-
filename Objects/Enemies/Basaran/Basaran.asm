@@ -96,7 +96,7 @@ Obj_Basaran:
 .flapsound
 
 		; play continuous sfx
-		sfxcont	sfx_Basaran,$F							; play flapping sound every 16th frame
+		sfxcont	sfx_Basaran, $F							; play flapping sound every 16th frame
 		MoveSpriteXOnly
 
 		; check players

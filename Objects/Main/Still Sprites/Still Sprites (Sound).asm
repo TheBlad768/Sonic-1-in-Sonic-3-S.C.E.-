@@ -27,7 +27,7 @@ Obj_SoundStillSprite:
 		; play sound
 		move.b	soundstillsprite.play(a0),d0					; Play_SFX
 		move.b	soundstillsprite.frame(a0),d1					; V_int_run_count
-		jsr	(Play_SFX_Continuous).w
+		jsr	(Play_SFX_Continuous.main).w
 
 		; check delete
 		jmp	(Delete_Sprite_If_Not_In_Range).w
