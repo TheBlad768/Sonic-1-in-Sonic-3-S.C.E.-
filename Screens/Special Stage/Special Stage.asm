@@ -395,7 +395,7 @@ SpecialStageScreen:
 		move.l	#VInt_SpecialStageResults,(V_int_ptr).w				; set VInt pointer
 
 		; load object
-		move.l	#Obj_SpecialStage_Results,(Dynamic_object_RAM+(object_size*29)+code_addr).w	; load results screen object
+		move.l	#Obj_SpecialStageResults,(Dynamic_object_RAM+(object_size*29)+code_addr).w	; load results screen object
 		jsr	(Pal_FadeFromWhite).w
 
 .results

@@ -4,9 +4,18 @@
 
 ; dynamic object variables
 
+	dsset animations								; pretend we're in the RAM
+
+specialstageresults.elements_count	ds.w 1						; (2 bytes)
+specialstageresults.exit_phase		ds.w 1						; (2 bytes)
+
+specialstageresults.destination =	parent3						; (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
-Obj_SpecialStage_Results:
+Obj_SpecialStageResults:
 		move.w	(Special_stage_ring_count).w,d0
 		add.w	d0,d0								; multiply by 10
 		move.w	d0,d1
@@ -26,7 +35,7 @@ Obj_SpecialStage_Results:
 		move.w	#3*60,d0							; wait 3 seconds before starting score counting sequence
 
 .settime
-		move.w	d0,objoff_2E(a0)
+		move.w	d0,wait_timer(a0)						; set wait timer
 		move.l	#.create,code_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
@@ -38,7 +47,7 @@ Obj_SpecialStage_Results:
 		; load text
 		lea	next_object(a0),a1
 		lea	ObjArray_SSResults(pc),a2
-		bsr.w	SpecialStage_Results_Load
+		bsr.w	SpecialStageResults_Load
 
 		; next
 		move.l	#.wait,code_addr(a0)
@@ -48,14 +57,14 @@ Obj_SpecialStage_Results:
 ; ---------------------------------------------------------------------------
 
 .wait
-		tst.w	objoff_2E(a0)
-		beq.s	.countdown
-		subq.w	#1,objoff_2E(a0)
+		tst.w	wait_timer(a0)							; is timer over?
+		beq.s	.countdown							; if yes, branch
+		subq.w	#1,wait_timer(a0)						; subtract 1
 
 		; check timer
 		tst.b	(Music_disable_flag).w
 		bne.s	.return
-		cmpi.w	#5*60-11,objoff_2E(a0)
+		cmpi.w	#5*60-11,wait_timer(a0)
 		bne.s	.return								; play after eh, a second or so
 		music	mus_GotThrough,1						; play level complete theme
 ; ---------------------------------------------------------------------------
@@ -90,6 +99,8 @@ Obj_SpecialStage_Results:
 		tst.w	d0
 		beq.s	.finish								; branch once score has finished counting down
 		jsr	(HUD_AddToScore).w						; add to actual score
+
+		; play sfx
 		moveq	#3,d0
 		and.w	(Level_frame_counter).w,d0
 		bne.s	.return2
@@ -98,7 +109,7 @@ Obj_SpecialStage_Results:
 
 .finish
 		sfx	sfx_Register							; play the cash register sound
-		move.w	#2*60,objoff_2E(a0)						; set wait amount
+		move.w	#2*60,wait_timer(a0)						; set wait amount
 		move.l	#.wait2,code_addr(a0)
 
 .wait2
@@ -106,9 +117,9 @@ Obj_SpecialStage_Results:
 		blo.s	.setend								; skip perfect
 
 		; next
-		tst.w	objoff_2E(a0)
-		beq.s	.continue
-		subq.w	#1,objoff_2E(a0)
+		tst.w	wait_timer(a0)							; is timer over?
+		beq.s	.continue							; if yes, branch
+		subq.w	#1,wait_timer(a0)						; subtract 1
 
 .return2
 		rts
@@ -122,16 +133,16 @@ Obj_SpecialStage_Results:
 		move.l	#Obj_2EBE8,code_addr(a1)
 
 		; set wait
-		move.w	#4*60+30,objoff_2E(a0)						; set wait
+		move.w	#(4*60)+30,wait_timer(a0)					; set wait
 		sfx	sfx_Continue							; play extra continue sound
 
 .setend
 		move.l	#.endtimer,code_addr(a0)
 
 .endtimer
-		tst.w	objoff_2E(a0)
-		beq.s	.checksuper
-		subq.w	#1,objoff_2E(a0)
+		tst.w	wait_timer(a0)							; is timer over?
+		beq.s	.checksuper							; if yes, branch
+		subq.w	#1,wait_timer(a0)						; subtract 1
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -154,11 +165,11 @@ Obj_SpecialStage_Results:
 
 		; set wait
 		moveq	#4,d0
-		move.w	d0,(Dynamic_object_RAM+(object_size*46)+objoff_2E).w
-		move.w	d0,(Dynamic_object_RAM+(object_size*48)+objoff_2E).w
+		move.w	d0,(Dynamic_object_RAM+(object_size*46)+wait_timer).w
+		move.w	d0,(Dynamic_object_RAM+(object_size*48)+wait_timer).w
 
 		; set
-		move.w	#5,objoff_30(a0)						; number of objects
+		move.b	#5,specialstageresults.elements_count(a0)			; number of objects
 		move.l	#.waitsuper,code_addr(a0)
 
 .return3
@@ -172,32 +183,32 @@ Obj_SpecialStage_Results:
 ; ---------------------------------------------------------------------------
 
 .waitsuper
-		tst.w	objoff_30(a0)							; wait until the last object has been deleted
+		tst.b	specialstageresults.elements_count(a0)				; wait until the last object has been deleted
 		bne.s	.return3
 
 		; create Super/Hyper text
 		lea	(Dynamic_object_RAM+(object_size*44)).w,a1
 		lea	ObjArray_SSResults2(pc),a2
-		bsr.s	SpecialStage_Results_Load
+		bsr.s	SpecialStageResults_Load
 
 		; wait
-		move.w	#4*60,objoff_2E(a0)						; set wait
+		move.w	#4*60,wait_timer(a0)						; set wait
 		move.l	#.endtimer2,code_addr(a0)
 
 .endtimer2
-		tst.w	objoff_2E(a0)
-		beq.s	.endr
-		subq.w	#1,objoff_2E(a0)
+		tst.w	wait_timer(a0)							; is timer over?
+		beq.s	.endr								; if yes, branch
+		subq.w	#1,wait_timer(a0)						; subtract 1
 		rts
 
 ; =============== S U B R O U T I N E =======================================
 
-SpecialStage_Results_Load:
+SpecialStageResults_Load:
 		move.w	(a2)+,d1							; make objects
 
 .loop
 		move.l	(a2)+,code_addr(a1)
-		move.w	(a2)+,objoff_46(a1)
+		move.w	(a2)+,specialstageresults.destination(a1)
 		move.w	(a2)+,x_pos(a1)
 		move.w	(a2)+,y_pos(a1)
 		move.b	(a2)+,mapping_frame(a1)
@@ -215,7 +226,7 @@ SpecialStage_Results_Load:
 Obj_2EA10:
 		bsr.w	sub_2EC80
 		add.w	d0,x_pos(a0)
-		add.w	d0,objoff_46(a0)
+		add.w	d0,specialstageresults.destination(a0)
 		bra.s	loc_2EA4A
 
 ; =============== S U B R O U T I N E =======================================
@@ -228,7 +239,7 @@ Obj_2EA1E:
 Obj_2EA3E:
 		bsr.w	sub_2EC80
 		sub.w	d0,x_pos(a0)
-		sub.w	d0,objoff_46(a0)
+		sub.w	d0,specialstageresults.destination(a0)
 
 loc_2EA4A:
 		move.l	#loc_2EA50,code_addr(a0)
@@ -251,7 +262,7 @@ Obj_2EA64:
 		move.w	(Time_bonus_countdown).w,d0
 
 loc_2EA6C:
-		jsr	(LevResults_DisplayScore).l
+		jsr	(LevelResults_DisplayScore).l
 		jmp	(Draw_Sprite).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -296,14 +307,14 @@ Obj_2EAD8:
 		cmpi.b	#ChaosEmeralds_Count,(a1)
 		blo.s	Obj_2EAF6
 		subi.w	#16,x_pos(a0)
-		subi.w	#16,objoff_46(a0)
+		subi.w	#16,specialstageresults.destination(a0)
 
 ; =============== S U B R O U T I N E =======================================
 
 Obj_2EAF6:
 		bsr.w	sub_2EC80
 		add.w	d0,x_pos(a0)
-		add.w	d0,objoff_46(a0)
+		add.w	d0,specialstageresults.destination(a0)
 		add.b	d1,mapping_frame(a0)
 		bra.w	loc_2EA4A
 
@@ -315,12 +326,12 @@ Obj_2EB30:
 		bsr.w	sub_2ECBC
 		bsr.w	sub_2EC80
 		sub.w	d0,x_pos(a0)
-		sub.w	d0,objoff_46(a0)
+		sub.w	d0,specialstageresults.destination(a0)
 		bsr.w	sub_2ECA8
 		cmpi.b	#ChaosEmeralds_Count,(a1)
 		blo.w	loc_2EA4A
-		subi.w	#16,x_pos(a0)
-		subi.w	#16,objoff_46(a0)
+		subi.w	#8*2,x_pos(a0)
+		subi.w	#8*2,specialstageresults.destination(a0)
 		bra.w	loc_2EA4A
 
 ; =============== S U B R O U T I N E =======================================
@@ -332,7 +343,7 @@ Obj_2EB64:
 		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w
 		blo.w	loc_2EA4A
 		subq.w	#8,x_pos(a0)
-		subq.w	#8,objoff_46(a0)
+		subq.w	#8,specialstageresults.destination(a0)
 		bra.w	loc_2EA4A
 
 ; =============== S U B R O U T I N E =======================================
@@ -346,7 +357,7 @@ Obj_2EBA4:
 		blo.s	loc_2EC7A
 		bsr.s	sub_2EC80
 		sub.w	d0,x_pos(a0)
-		sub.w	d0,objoff_46(a0)
+		sub.w	d0,specialstageresults.destination(a0)
 		bra.w	loc_2EA4A
 
 ; =============== S U B R O U T I N E =======================================
@@ -393,14 +404,20 @@ Obj_2EBE8:										; (Continue Sonic Icon)
 ; =============== S U B R O U T I N E =======================================
 
 sub_2EC80:
+
+		; set Sonic
 		moveq	#0,d0								; xpos
 		moveq	#0,d1								; Sonic
-		cmpi.w	#PlayerModeID_Sonic,(Player_mode).w
-		bls.s	.return
+		cmpi.w	#PlayerModeID_Sonic,(Player_mode).w				; is Sonic?
+		bls.s	.return								; if yes, branch
+
+		; set Knuckles
 		moveq	#-24,d0								; xpos
 		moveq	#3,d1								; Knuckles
-		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
-		bhs.s	.return
+		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w				; is Knuckles?
+		bhs.s	.return								; if yes, branch
+
+		; check Miles/Tails
 		moveq	#0,d0								; xpos
 		moveq	#1,d1								; Miles
 		tst.b	(Graphics_flags).w						; check console region
@@ -428,24 +445,26 @@ sub_2ECBC:
 Obj_2EC1E:
 
 		; wait
-		tst.w	objoff_2E(a0)
-		beq.s	loc_2EC2A
-		subq.w	#1,objoff_2E(a0)
-		bra.s	loc_2EC44
+		tst.w	wait_timer(a0)							; is timer over?
+		beq.s	.check_delete							; if yes, branch
+		subq.w	#1,wait_timer(a0)						; subtract 1
+		bra.s	.draw
 ; ---------------------------------------------------------------------------
 
-loc_2EC2A:
+.check_delete
 		tst.b	render_flags(a0)						; object visible on the screen?
-		bmi.s	loc_2EC3E							; if yes, branch
+		bmi.s	.move_out_xpos							; if yes, branch
+
+		; delete
 		movea.w	parent2(a0),a1							; a1=parent object
-		subq.w	#1,objoff_30(a1)						; if offscreen, subtract from number of elements and delete
+		subq.b	#1,specialstageresults.elements_count(a1)			; if offscreen, subtract from number of elements and delete
 		jmp	(Delete_Current_Object).w
 ; ---------------------------------------------------------------------------
 
-loc_2EC3E:
+.move_out_xpos
 		addi.w	#32,x_pos(a0)							; move out
 
-loc_2EC44:
+.draw
 		jmp	(Draw_Sprite).w
 
 ; =============== S U B R O U T I N E =======================================
