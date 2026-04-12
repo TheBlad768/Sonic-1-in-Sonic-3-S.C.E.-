@@ -4,6 +4,18 @@
 
 ; dynamic object variables
 
+	dsset animations								; pretend we're in the RAM
+
+; main
+spring.strength				ds.w 1						; speed applied on player (2 bytes)
+spring.origX				ds.w 1						; original x-axis position (2 bytes)
+spring.origY				ds.w 1						; original y-axis position (2 bytes)
+spring.retract_offset			ds.w 1						; actual position relative to base position (2 bytes)
+spring.retract_state			ds.w 1						; 0 = positive offset, 1 = original position (2 bytes)
+spring.retract_timer			ds.w 1						; delay, before spring move again (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_Spring:
@@ -13,8 +25,8 @@ Obj_Spring:
 		move.w	#make_art_tile(ArtTile_SpikesSprings,0,FALSE),art_tile(a0)	; set red
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(32/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority
-		move.w	x_pos(a0),objoff_32(a0)
-		move.w	y_pos(a0),objoff_34(a0)
+		move.w	x_pos(a0),spring.origX(a0)
+		move.w	y_pos(a0),spring.origY(a0)
 
 		; next
 		move.b	subtype(a0),d0
@@ -79,7 +91,7 @@ loc_22E96:
 Spring_Common:
 		moveq	#2,d0
 		and.b	subtype(a0),d0
-		move.w	word_22EF0(pc,d0.w),objoff_30(a0)
+		move.w	word_22EF0(pc,d0.w),spring.strength(a0)
 		btst	#1,d0
 		beq.s	locret_22EEE
 		move.l	#Map_Spring2,mappings(a0)					; set yellow
@@ -165,7 +177,7 @@ sub_22F98:
 		subi.w	#8*2,y_pos(a1)
 
 .notgrav
-		move.w	objoff_30(a0),y_vel(a1)
+		move.w	spring.strength(a0),y_vel(a1)
 		bset	#status.player.in_air,status(a1)
 		bclr	#status.player.on_object,status(a1)
 		clr.b	jumping(a1)
@@ -261,14 +273,14 @@ loc_230C4:
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	objoff_32(a0),d0						; get object position
+		and.w	spring.origX(a0),d0						; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
 
 sub_23190:
 		move.w	#bytes_to_word(3,0),anim(a0)					; set anim and clear next_anim/prev_anim
-		move.w	objoff_30(a0),x_vel(a1)
+		move.w	spring.strength(a0),x_vel(a1)
 		addq.w	#8,x_pos(a1)
 		bset	#status.player.x_flip,status(a1)
 		btst	#status.npc.x_flip,status(a0)
@@ -445,7 +457,7 @@ sub_233CA:
 
 .notgrav
 		move.w	#bytes_to_word(1,0),anim(a0)					; set anim and clear next_anim/prev_anim
-		move.w	objoff_30(a0),y_vel(a1)
+		move.w	spring.strength(a0),y_vel(a1)
 		neg.w	y_vel(a1)
 		cmpi.w	#$1000,y_vel(a1)
 		bne.s	loc_233F8
@@ -523,7 +535,7 @@ loc_234D0:
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	objoff_32(a0),d0						; get object position
+		and.w	spring.origX(a0),d0						; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
@@ -548,7 +560,7 @@ loc_234FC:
 
 loc_2350A:
 		move.w	#bytes_to_word(5,0),anim(a0)					; set anim and clear next_anim/prev_anim
-		move.w	objoff_30(a0),d0
+		move.w	spring.strength(a0),d0
 		move.w	d0,x_vel(a1)
 		move.w	d0,y_vel(a1)
 		addq.w	#6,y_pos(a1)
@@ -632,14 +644,14 @@ loc_2360E:
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	objoff_32(a0),d0						; get object position
+		and.w	spring.origX(a0),d0						; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; =============== S U B R O U T I N E =======================================
 
 sub_23624:
 		move.w	#bytes_to_word(5,0),anim(a0)					; set anim and clear next_anim/prev_anim
-		move.w	objoff_30(a0),d0
+		move.w	spring.strength(a0),d0
 		move.w	d0,x_vel(a1)
 		move.w	d0,y_vel(a1)
 		neg.w	y_vel(a1)
