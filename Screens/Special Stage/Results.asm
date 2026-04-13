@@ -6,8 +6,8 @@
 
 	dsset animations								; pretend we're in the RAM
 
-specialstageresults.elements_count	ds.w 1						; (2 bytes)
-specialstageresults.exit_phase		ds.w 1						; (2 bytes)
+specialstageresults.elements_count	ds.b 1						; (1 byte)
+specialstageresults.exit_phase		ds.b 1						; (1 byte)
 
 specialstageresults.destination =	parent3						; (2 bytes)
 

@@ -107,7 +107,7 @@ End_MoveSonic:
 		tst.b	d5								; is player 1?
 		bne.s	.return3							; if not, branch
 		move.w	#screen_width/2,x_pos(a1)					; p1
-		move.l	#Obj_Sonic_Ending,(Player_1+code_addr).w
+		move.l	#Obj_SonicEnding,(Player_1+code_addr).w
 
 .return3
 		rts

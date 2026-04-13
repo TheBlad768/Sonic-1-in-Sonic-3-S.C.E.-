@@ -4,12 +4,19 @@
 
 ; dynamic object variables
 
+	dsset animations								; pretend we're in the RAM
+
+watersplash.frame			ds.b 1						; (1 byte)
+watersplash.prev_frame			ds.b 1						; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
+
 ; =============== S U B R O U T I N E =======================================
 
 Obj_WaterSplash:
 
 		; init
-		st	objoff_31(a0)
+		st	watersplash.prev_frame(a0)					; reset DPLC frame
 		movem.l	ObjDat_WaterSplash(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	#2,mainspr_childsprites(a0)
@@ -43,17 +50,17 @@ loc_384DA:
 		addq.b	#2+1,anim_frame_timer(a0)
 
 		; next
-		addq.b	#1,objoff_30(a0)
-		cmpi.b	#5,objoff_30(a0)
+		addq.b	#1,watersplash.frame(a0)
+		cmpi.b	#5,watersplash.frame(a0)
 		blo.s	loc_384F8
-		clr.b	objoff_30(a0)
+		clr.b	watersplash.frame(a0)
 
 loc_384F8:
 		moveq	#0,d1
-		move.b	objoff_30(a0),d1
-		cmp.b	objoff_31(a0),d1
+		move.b	watersplash.frame(a0),d1
+		cmp.b	watersplash.prev_frame(a0),d1
 		beq.s	.draw
-		move.b	d1,objoff_31(a0)
+		move.b	d1,watersplash.prev_frame(a0)
 		lsl.w	#6,d1								; multiply by $180/2
 		move.w	d1,d0
 		add.w	d0,d0
