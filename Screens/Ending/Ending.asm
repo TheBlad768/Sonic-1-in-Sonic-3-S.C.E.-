@@ -276,13 +276,16 @@ EndingScreen:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-eson_time		= objoff_2E ; time to wait between events
-eson_anim		= objoff_30
-eson_dplc		= objoff_34
+
+	dsset wait_addr									; pretend we're in the RAM
+
+sonicending.dplc_addr			ds.l 1						; (4 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
-Obj_Sonic_Ending:
+Obj_SonicEnding:
 		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
 		bne.w	.nonoemrd							; if not, branch
 
@@ -306,18 +309,18 @@ Obj_Sonic_Ending:
 .loadobja
 		clr.b	render_flags(a0)
 		jsr	(SetUp_ObjAttributes).w
-		move.l	(a1)+,eson_anim(a0)
-		move.l	(a1),eson_dplc(a0)
+		move.l	(a1)+,animations(a0)
+		move.l	(a1),sonicending.dplc_addr(a0)
 		st	ros_prev_frame(a0)						; reset DPLC prev frame (used by Perform_DPLC)
 		clr.b	routine(a0)
 		clr.b	status(a0)
 		clr.b	anim(a0)
 		clr.b	mapping_frame(a0)
-		move.w	#(1*60)+20,eson_time(a0)					; set duration for Sonic to pause
+		move.w	#(1*60)+20,wait_timer(a0)					; set duration for Sonic to pause
 		move.l	#.makeemrd,code_addr(a0)
 
 .makeemrd
-		subq.w	#1,eson_time(a0)						; subtract 1 from duration
+		subq.w	#1,wait_timer(a0)						; subtract 1 from duration
 		bne.w	.dplc
 		move.l	#.waitradanim,code_addr(a0)
 		sfx	sfx_MechaTransform						; play sfx
@@ -348,11 +351,11 @@ Obj_Sonic_Ending:
 
 .lookup
 		movea.w	parent3(a0),a1							; a1=parent object
-		cmpi.w	#$2000,echa_radius(a1)
+		cmpi.w	#$2000,endchaos.radius(a1)
 		bne.w	.draw
 		sfx	sfx_SuperEmerald						; play sfx
 		st	(Restart_level_flag).w						; set level to restart (causes flash)
-		move.w	#(1*60)+30,eson_time(a0)
+		move.w	#(1*60)+30,wait_timer(a0)
 
 		; next
 		move.l	#.clrobjram,code_addr(a0)
@@ -360,14 +363,14 @@ Obj_Sonic_Ending:
 ; ---------------------------------------------------------------------------
 
 .clrobjram
-		subq.w	#1,eson_time(a0)						; subtract 1 from duration
+		subq.w	#1,wait_timer(a0)						; subtract 1 from duration
 		bne.w	.draw
 
 		; delete chaos emeralds objects
 		movea.w	parent3(a0),a1							; a1=parent object
 		move.l	#Go_Delete_Object,code_addr(a1)
 		st	(Restart_level_flag).w						; set level to restart
-		move.w	#1*60,eson_time(a0)
+		move.w	#1*60,wait_timer(a0)
 		move.b	#1,anim(a0)							; use "looks left/right" animation
 
 		; check Tails
@@ -394,9 +397,9 @@ Obj_Sonic_Ending:
 ; ---------------------------------------------------------------------------
 
 .makelogo
-		subq.w	#1,eson_time(a0)						; subtract 1 from duration
+		subq.w	#1,wait_timer(a0)						; subtract 1 from duration
 		bne.w	.draw
-		move.w	#3*60,eson_time(a0)
+		move.w	#3*60,wait_timer(a0)
 		move.b	#2,anim(a0)							; use "leaping" animation
 
 		; check Tails
@@ -419,11 +422,11 @@ Obj_Sonic_Ending:
 ; =============== S U B R O U T I N E =======================================
 
 .nonoemrd
-		move.w	#(4*60)-24,eson_time(a0)
+		move.w	#(4*60)-24,wait_timer(a0)
 		move.l	#.waitnoemrd,code_addr(a0)
 
 .waitnoemrd
-		subq.w	#1,eson_time(a0)
+		subq.w	#1,wait_timer(a0)
 		bpl.w	.draw
 		move.l	#.anim,code_addr(a0)
 
@@ -451,8 +454,8 @@ Obj_Sonic_Ending:
 .loadobja2
 		clr.b	render_flags(a0)
 		jsr	(SetUp_ObjAttributes).w
-		move.l	(a1)+,eson_anim(a0)
-		move.l	(a1),eson_dplc(a0)
+		move.l	(a1)+,animations(a0)
+		move.l	(a1),sonicending.dplc_addr(a0)
 		st	ros_prev_frame(a0)						; reset DPLC prev frame (used by Perform_DPLC)
 		clr.b	routine(a0)
 		clr.b	status(a0)
@@ -473,11 +476,11 @@ Obj_Sonic_Ending:
 		move.l	#Obj_EndSTH,code_addr(a1)
 
 .anim
-		movea.l	eson_anim(a0),a1
+		movea.l	animations(a0),a1
 		jsr	(Animate_SpriteNoSST).w
 
 .dplc
-		movea.l	eson_dplc(a0),a2
+		movea.l	sonicending.dplc_addr(a0),a2
 		jsr	(Perform_DPLC).w
 
 .draw
@@ -488,10 +491,15 @@ Obj_Sonic_Ending:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-echa_origX		= objoff_30 ; x-axis center of emerald circle (2 bytes)
-echa_origY		= objoff_32 ; y-axis center of emerald circle (2 bytes)
-echa_radius		= objoff_3A ; radius (2 bytes)
-echa_speed		= objoff_3C ; angle for rotation (2 bytes)
+
+	dsset animations								; pretend we're in the RAM
+
+endchaos.origX				ds.w 1						; original x-axis position (2 bytes)
+endchaos.origY				ds.w 1						; original y-axis position (2 bytes)
+endchaos.radius				ds.w 1						; radius of circular (2 bytes)
+endchaos.speed				ds.w 1						; rotation speed (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -505,8 +513,8 @@ Obj_EndChaos:
 		move.l	#.expand,code_addr(a0)
 
 		; copy xypos
-		move.w	x_pos(a0),echa_origX(a0)
-		move.w	y_pos(a0),echa_origY(a0)
+		move.w	x_pos(a0),endchaos.origX(a0)
+		move.w	y_pos(a0),endchaos.origY(a0)
 
 		; load emeralds
 		moveq	#0,d2								; mapping frame
@@ -536,19 +544,19 @@ Obj_EndChaos:
 		dbne	d6,.cloop
 
 .expand
-		cmpi.w	#$2000,echa_radius(a0)
+		cmpi.w	#$2000,endchaos.radius(a0)
 		beq.s	.rotate
-		addi.w	#$20,echa_radius(a0)						; expand circle of emeralds
+		addi.w	#$20,endchaos.radius(a0)					; expand circle of emeralds
 
 .rotate
-		cmpi.w	#$2000,echa_speed(a0)
+		cmpi.w	#$2000,endchaos.speed(a0)
 		beq.s	.rise
-		addi.w	#$20,echa_speed(a0)						; move emeralds around the center
+		addi.w	#$20,endchaos.speed(a0)						; move emeralds around the center
 
 .rise
-		cmpi.w	#$140,echa_origY(a0)
+		cmpi.w	#$140,endchaos.origY(a0)
 		beq.s	.return
-		subq.w	#1,echa_origY(a0)						; make circle rise
+		subq.w	#1,endchaos.origY(a0)						; make circle rise
 
 .return
 		rts
@@ -556,20 +564,20 @@ Obj_EndChaos:
 
 .circular
 		movea.w	parent3(a0),a1							; a1=parent object
-		move.w	echa_speed(a1),d0
+		move.w	endchaos.speed(a1),d0
 		add.w	d0,angle(a0)
 		move.b	angle(a0),d0
 		jsr	(GetSineCosine).w
-		move.w	echa_radius(a1),d2
+		move.w	endchaos.radius(a1),d2
 		move.w	d2,d3
 		muls.w	d0,d2
 		swap	d2
 		muls.w	d1,d3
 		swap	d3
-		move.w	echa_origY(a1),d0
+		move.w	endchaos.origY(a1),d0
 		add.w	d2,d0
 		move.w	d0,y_pos(a0)							; move object circularly
-		move.w	echa_origX(a1),d1
+		move.w	endchaos.origX(a1),d1
 		add.w	d3,d1
 		move.w	d1,x_pos(a0)
 

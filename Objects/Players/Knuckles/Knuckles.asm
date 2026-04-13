@@ -2253,7 +2253,7 @@ loc_178AE:
 Knux_Transform:
 		move.b	#1,(Super_palette_status).w					; set Super/Hyper palette status to 'fading'
 		move.b	#$F,(Palette_timer).w
-		move.w	#60,(Super_frame_count).w
+		move.w	#(1*60)-1,(Super_frame_count).w
 		move.b	#$81,object_control(a0)
 		move.b	#AniIDSupSonAni_Transform,anim(a0)				; enter 'transformation' animation
 

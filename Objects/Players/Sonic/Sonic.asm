@@ -1674,7 +1674,7 @@ Sonic_Transform:
 
 		move.b	#1,(Super_palette_status).w					; set Super/Hyper palette status to 'fading'
 		move.b	#$F,(Palette_timer).w
-		move.w	#60,(Super_frame_count).w
+		move.w	#(1*60)-1,(Super_frame_count).w
 		move.l	#Map_SuperSonic,mappings(a0)
 		move.b	#$81,object_control(a0)
 		move.b	#AniIDSupSonAni_Transform,anim(a0)				; enter 'transformation' animation
@@ -1774,9 +1774,13 @@ SonicKnux_SuperHyper:
 .continued
 		tst.b	(Level_results_flag).w						; is level over?
 		bne.s	.revertToNormal							; if yes, branch
-		subq.w	#1,(Super_frame_count).w
-		bhi.w	.return
-		move.w	#60,(Super_frame_count).w
+
+		; wait
+		subq.w	#1,(Super_frame_count).w					; decrement timer
+		bpl.w	.return								; if time remains, branch
+		move.w	#(1*60)-1,(Super_frame_count).w					; reset timer
+
+		; check rings
 		tst.w	(Ring_count).w
 		beq.s	.revertToNormal							; if rings depleted, return to normal
 
