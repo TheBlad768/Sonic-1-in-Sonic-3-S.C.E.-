@@ -401,7 +401,7 @@ Signpost_CheckPlayerHit:
 ; ---------------------------------------------------------------------------
 
 .subtime
-		subq.b	#1,signpost.timer(a0)						; subtract 1
+		subq.b	#1,signpost.timer(a0)						; decrement timer
 
 .return
 		rts

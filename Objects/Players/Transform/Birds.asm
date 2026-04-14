@@ -97,8 +97,8 @@ Obj_SuperTailsBirds:
 			setBit(render_flags.y_flip) \
 		),render_flags(a0)
 
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	.not_upside_down
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	.not_upside_down						; if not, branch
 
 		ori.b	#( \
 			setBit(render_flags.y_flip) \
@@ -158,8 +158,8 @@ SuperTailsBirds_GetDestination:
 		move.w	(Player_1+x_pos).w,d2
 		moveq	#-32,d3
 		add.w	(Player_1+y_pos).w,d3
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	.not_upside_down
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	.not_upside_down						; if not, branch
 		addi.w	#32*2,d3
 
 .not_upside_down

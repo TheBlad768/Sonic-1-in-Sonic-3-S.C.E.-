@@ -366,7 +366,12 @@ Credits_DrawLargeText:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-crdre_drop		= objoff_39 ; (1 byte)
+
+	dsset count									; pretend we're in the RAM
+
+creditsrobotnik.drop_flag		ds.b 1						; (1 byte)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -377,7 +382,7 @@ Obj_CreditsRobotnik:
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	#screen_width/2,x_pos(a0)
 		move.w	#screen_height/2,y_pos(a0)
-		move.w	#(20*60)-1,wait_timer(a0)
+		move.w	#(20*60)-1,wait_timer(a0)					; set wait timer
 
 		; END
 		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
@@ -393,7 +398,7 @@ Obj_CreditsRobotnik:
 		bpl.s	.draw
 		move.b	#$80,anim_frame_timer(a0)
 		addq.b	#1,mapping_frame(a0)
-		st	crdre_drop(a0)
+		st	creditsrobotnik.drop_flag(a0)
 
 		; next
 		move.l	#.wait,code_addr(a0)
@@ -418,8 +423,8 @@ Obj_CreditsRobotnik:
 		bmi.s	.finish								; if start was pressed, skip ahead
 
 		; wait
-		subq.w	#1,wait_timer(a0)
-		bmi.s	.finish
+		subq.w	#1,wait_timer(a0)						; decrement timer
+		bmi.s	.finish								; if timer has run out, branch
 
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
@@ -490,13 +495,16 @@ CreditsRobotnik_LoadEmeralds:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-credre_timer		= objoff_2E ; (2 bytes)
-credre_origX		= objoff_32 ; original x-axis position (2 bytes)
-credre_origY		= objoff_30 ; original y-axis position (2 bytes)
-credre_btimer		= objoff_34 ; (2 bytes)
-credre_last		= objoff_39 ; (1 byte)
-credre_radius		= objoff_3A ; radius of circle (2 bytes)
-credre_speed		= objoff_40 ; speed (2 bytes)
+
+	dsset animations								; pretend we're in the RAM
+
+creditsrobotnik_emeralds.origX		ds.w 1						; original x-axis position (2 bytes)
+creditsrobotnik_emeralds.origY		ds.w 1						; original y-axis position (2 bytes)
+creditsrobotnik_emeralds.delay		ds.w 1						; (2 bytes)
+creditsrobotnik_emeralds.radius		ds.w 1						; radius of circular (2 bytes)
+creditsrobotnik_emeralds.speed		ds.w 1						; rotation speed (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -509,24 +517,24 @@ Obj_CreditsRobotnik_Emeralds:
 		add.w	d0,d0
 		add.w	d0,d0
 		add.w	d1,d0
-		move.w	d0,credre_timer(a0)
-		move.w	d0,credre_btimer(a0)
+		move.w	d0,wait_timer(a0)						; set wait timer
+		move.w	d0,creditsrobotnik_emeralds.delay(a0)
 
 		; init
 		movem.l	ObjDat_CreditsRobotnik_Emeralds(pc),d0-d3			; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
-		move.w	x_pos(a0),credre_origX(a0)
+		move.w	x_pos(a0),creditsrobotnik_emeralds.origX(a0)
 		moveq	#-12,d0
 		add.w	y_pos(a0),d0
-		move.w	d0,credre_origY(a0)
+		move.w	d0,creditsrobotnik_emeralds.origY(a0)
 		move.b	#$80,angle(a0)
-		move.b	#28,credre_radius(a0)
+		move.b	#28,creditsrobotnik_emeralds.radius(a0)
 
 .main
 
 		; check flag
 		movea.w	parent3(a0),a1							; load Robotnik address
-		tst.b	crdre_drop(a1)
+		tst.b	creditsrobotnik.drop_flag(a1)
 		beq.s	.circular
 		move.l	#.move,code_addr(a0)
 
@@ -537,18 +545,18 @@ Obj_CreditsRobotnik_Emeralds:
 		neg.w	d0
 
 .mset
-		move.b	d0,credre_speed(a0)
+		move.b	d0,creditsrobotnik_emeralds.speed(a0)
 		asl.w	#3,d0
 		add.b	d0,angle(a0)
 
 .move
-		tst.w	credre_timer(a0)
-		beq.s	.aradius
-		subq.w	#1,credre_timer(a0)
-		bne.s	.cangle
+		tst.w	wait_timer(a0)							; is timer over?
+		beq.s	.aradius							; if yes, branch
+		subq.w	#1,wait_timer(a0)						; decrement timer
+		bne.s	.cangle								; if time remains, branch
 
 .aradius
-		move.b	credre_speed(a0),d0
+		move.b	creditsrobotnik_emeralds.speed(a0),d0
 		add.b	d0,angle(a0)
 
 .cangle
@@ -558,8 +566,8 @@ Obj_CreditsRobotnik_Emeralds:
 		bne.s	.circular							; if not, branch
 
 .clrs
-		clr.b	credre_speed(a0)
-		move.w	credre_btimer(a0),credre_timer(a0)
+		clr.b	creditsrobotnik_emeralds.speed(a0)
+		move.w	creditsrobotnik_emeralds.delay(a0),wait_timer(a0)
 		move.l	#.main,code_addr(a0)
 
 		; check
@@ -568,21 +576,21 @@ Obj_CreditsRobotnik_Emeralds:
 
 		; clear flag
 		movea.w	parent3(a0),a1							; load Robotnik address
-		clr.b	crdre_drop(a1)
+		clr.b	creditsrobotnik.drop_flag(a1)
 
 .circular
 		move.b	angle(a0),d0
 		jsr	(GetSineCosine).w
-		move.w	credre_radius(a0),d2
+		move.w	creditsrobotnik_emeralds.radius(a0),d2
 		move.w	d2,d3
 		muls.w	d0,d2
 		swap	d2
 		muls.w	d1,d3
 		swap	d3
-		move.w	credre_origY(a0),d0
+		move.w	creditsrobotnik_emeralds.origY(a0),d0
 		add.w	d2,d0
 		move.w	d0,y_pos(a0)							; move object circularly
-		move.w	credre_origX(a0),d1
+		move.w	creditsrobotnik_emeralds.origX(a0),d1
 		add.w	d3,d1
 		move.w	d1,x_pos(a0)
 
@@ -620,17 +628,17 @@ Obj_CreditsEggRobo:
 .wait
 		btst	#2,state_flags(a0)
 		beq.s	.draw
-		move.w	#$1F,wait_timer(a0)
+		move.w	#$1F,wait_timer(a0)						; set wait timer
 		move.l	#.rise,code_addr(a0)
 
 .rise
 		subq.w	#1,y_pos(a0)
-		subq.w	#1,wait_timer(a0)
-		bpl.s	.draw
+		subq.w	#1,wait_timer(a0)						; decrement timer
+		bpl.s	.draw								; if time remains, branch
 		move.l	#.animate,code_addr(a0)
 
 .riseskip
-		move.w	#(20*60)-1,wait_timer(a0)
+		move.w	#(20*60)-1,wait_timer(a0)					; set wait timer
 
 .animate
 		jsr	(Animate_Raw).w
@@ -641,8 +649,8 @@ Obj_CreditsEggRobo:
 		bmi.s	.finish								; if start was pressed, skip ahead
 
 		; wait
-		subq.w	#1,wait_timer(a0)
-		bmi.s	.finish
+		subq.w	#1,wait_timer(a0)						; decrement timer
+		bmi.s	.finish								; if time remains, branch
 
 .draw
 		jmp	(Draw_Sprite).w
@@ -725,11 +733,14 @@ CreditsEggRobo_LoadEmeralds:
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
-cere_origX		= objoff_32 ; original x-axis position (2 bytes)
-cere_origY		= objoff_30 ; original y-axis position (2 bytes)
 
-cere_radius		= objoff_3A ; radius of circle (2 bytes)
-cere_speed		= objoff_40 ; speed (2 bytes)
+	dsset animations								; pretend we're in the RAM
+
+creditseggrobo_emeralds.origX		ds.w 1						; original x-axis position (2 bytes)
+creditseggrobo_emeralds.origY		ds.w 1						; original y-axis position (2 bytes)
+creditseggrobo_emeralds.radius		ds.w 1						; radius of circular (2 bytes)
+
+	dsreset										; stop pretending and reset the program counter
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -738,26 +749,26 @@ Obj_CreditsEggRobo_Emeralds:
 		; init
 		movem.l	ObjDat_CreditsEggRobo_Emeralds(pc),d0-d3			; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
-		move.w	x_pos(a0),cere_origX(a0)
+		move.w	x_pos(a0),creditseggrobo_emeralds.origX(a0)
 		moveq	#-72,d0
 		add.w	y_pos(a0),d0
-		move.w	d0,credre_origY(a0)
-		move.b	#24,cere_radius(a0)
+		move.w	d0,creditseggrobo_emeralds.origY(a0)
+		move.b	#24,creditseggrobo_emeralds.radius(a0)
 
 .circular
 		move.b	angle(a0),d0
 		addq.b	#1,angle(a0)
 		jsr	(GetSineCosine).w
-		move.w	cere_radius(a0),d2
+		move.w	creditseggrobo_emeralds.radius(a0),d2
 		move.w	d2,d3
 		muls.w	d0,d2
 		swap	d2
 		muls.w	d1,d3
 		swap	d3
-		move.w	cere_origY(a0),d0
+		move.w	creditseggrobo_emeralds.origY(a0),d0
 		add.w	d2,d0
 		move.w	d0,y_pos(a0)							; move object circularly
-		move.w	cere_origX(a0),d1
+		move.w	creditseggrobo_emeralds.origX(a0),d1
 		add.w	d3,d1
 		move.w	d1,x_pos(a0)
 
@@ -798,12 +809,12 @@ Obj_CreditsEggRobo_Eyes:
 		move.b	#2,mapping_frame(a0)
 		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
 		bne.s	.setframe							; if not, branch
-		move.w	#(2*60)-1,wait_timer(a0)
+		move.w	#(2*60)-1,wait_timer(a0)					; set wait timer
 		move.l	#.main,code_addr(a0)
 
 .main
-		subq.w	#1,wait_timer(a0)
-		bpl.s	.return
+		subq.w	#1,wait_timer(a0)						; decrement timer
+		bpl.s	.return								; if time remains, branch
 		move.l	#.animate,code_addr(a0)
 		move.l	#.setf,wait_addr(a0)
 

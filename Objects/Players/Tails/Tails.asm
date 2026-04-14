@@ -230,8 +230,8 @@ loc_1388C:
 		btst	#1,object_control(a0)
 		bne.s	.touch
 		bsr.w	Animate_Tails
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	.plc
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	.plc								; if not, branch
 		eori.b	#setBit(render_flags.y_flip),render_flags(a0)
 
 .plc
@@ -403,8 +403,8 @@ loc_13B50:
 		move.w	y_pos(a1),d0
 		move.w	d0,(Tails_CPU_target_Y).w
 		subi.w	#$C0,d0
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_13B78
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_13B78							; if not, branch
 		addi.w	#$C0+$C0,d0
 
 loc_13B78:
@@ -1172,8 +1172,8 @@ loc_14474:
 		moveq	#28,d0
 		add.w	y_pos(a0),d0
 		move.w	d0,y_pos(a1)
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_14492
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_14492							; if not, branch
 		subi.w	#28+28,y_pos(a1)
 
 loc_14492:
@@ -1194,8 +1194,8 @@ loc_14492:
 		and.b	status(a0),d0
 		or.b	d0,render_flags(a1)
 		or.b	d0,status(a1)
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_144BA
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_144BA							; if not, branch
 		eori.b	#setBit(render_flags.y_flip),render_flags(a1)
 
 loc_144BA:
@@ -1249,8 +1249,8 @@ loc_14542:
 		move.w	y_pos(a1),d1
 		sub.w	y_pos(a0),d1
 		subi.w	#32,d1
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_1456C
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_1456C							; if not, branch
 		addi.w	#32+32+16,d1
 
 loc_1456C:
@@ -1316,8 +1316,8 @@ sub_1459E:
 		move.w	x_vel(a0),x_vel(a1)
 		move.w	y_vel(a0),(Flying_carrying_saved_Y_vel).w
 		move.w	y_vel(a0),y_vel(a1)
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	locret_14630
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	locret_14630							; if not, branch
 		subi.w	#56,y_pos(a1)
 		eori.b	#setBit(render_flags.y_flip),render_flags(a1)
 
@@ -1827,8 +1827,8 @@ loc_14AA0:
 		cmpi.b	#2*60,scroll_delay_counter(a0)
 		blo.s	loc_14B1A
 		move.b	#2*60,scroll_delay_counter(a0)
-		tst.b	(Reverse_gravity_flag).w
-		bne.s	loc_14AD0
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		bne.s	loc_14AD0							; if yes, branch
 		cmpi.w	#tile_height,(a5)
 		beq.s	loc_14B26
 		subq.w	#2,(a5)
@@ -1850,8 +1850,8 @@ loc_14ADA:
 		cmpi.b	#2*60,scroll_delay_counter(a0)
 		blo.s	loc_14B1A
 		move.b	#2*60,scroll_delay_counter(a0)
-		tst.b	(Reverse_gravity_flag).w
-		bne.s	loc_14B0A
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		bne.s	loc_14B0A							; if yes, branch
 		cmpi.w	#screen_height-(block_height+tile_height),(a5)
 		beq.s	loc_14B26
 		addq.w	#2,(a5)
@@ -2158,8 +2158,8 @@ loc_14D9A:
 .skip
 		sub.b	default_y_radius(a0),d0
 		ext.w	d0
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_14DD8
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_14DD8							; if not, branch
 		neg.w	d0
 
 loc_14DD8:
@@ -2380,8 +2380,8 @@ Tails_DoRoll:
 		move.w	#bytes_to_word(28/2,14/2),y_radius(a0)				; set y_radius and x_radius
 		move.b	#AniIDSonAni_Roll,anim(a0)					; enter roll animation
 		addq.w	#1,y_pos(a0)
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_14FEA
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_14FEA							; if not, branch
 		subq.w	#2,y_pos(a0)
 
 loc_14FEA:
@@ -2407,8 +2407,8 @@ Tails_Jump:
 		beq.s	locret_15000
 		moveq	#0,d0
 		move.b	angle(a0),d0
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_15024
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_15024							; if not, branch
 		addi.b	#$40,d0
 		neg.b	d0
 		subi.b	#$40,d0
@@ -2450,8 +2450,8 @@ loc_1504C:
 		move.b	y_radius(a0),d0
 		sub.b	default_y_radius(a0),d0
 		ext.w	d0
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_150CC
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_150CC							; if not, branch
 		neg.w	d0
 
 loc_150CC:
@@ -2532,8 +2532,8 @@ loc_1515C:
 		move.w	default_y_radius(a0),y_radius(a0)
 		sub.b	default_y_radius(a0),d1
 		ext.w	d1
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_15188
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_15188							; if not, branch
 		neg.w	d0
 
 loc_15188:
@@ -2616,8 +2616,8 @@ loc_1527C:
 		move.w	#bytes_to_word(28/2,14/2),y_radius(a0)				; set y_radius and x_radius
 		move.b	#AniIDSonAni_Roll,anim(a0)
 		addq.w	#1,y_pos(a0)
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_152A8
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_152A8							; if not, branch
 		subq.w	#2,y_pos(a0)
 
 loc_152A8:
@@ -2800,8 +2800,8 @@ loc_1542C:
 
 loc_15444:
 		move.b	d3,angle(a0)
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_15450
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_15450							; if not, branch
 		neg.w	d1
 
 loc_15450:
@@ -2856,8 +2856,8 @@ loc_154C4:
 		neg.w	d1
 		cmpi.w	#$14,d1
 		bhs.s	loc_154EE
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_154DC
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_154DC							; if not, branch
 		neg.w	d1
 
 loc_154DC:
@@ -2891,8 +2891,8 @@ loc_1550E:
 		bsr.w	sub_11FD6
 		tst.w	d1
 		bpl.s	locret_15500
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_1551E
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_1551E							; if not, branch
 		neg.w	d1
 
 loc_1551E:
@@ -2921,8 +2921,8 @@ loc_1555C:
 		bsr.w	sub_11FEE
 		tst.w	d1
 		bpl.s	locret_1559A
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_1556C
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_1556C							; if not, branch
 		neg.w	d1
 
 loc_1556C:
@@ -2959,8 +2959,8 @@ loc_155B4:
 		bsr.w	sub_11FEE
 		tst.w	d1
 		bpl.s	loc_155D6
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_155C4
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_155C4							; if not, branch
 		neg.w	d1
 
 loc_155C4:
@@ -2983,8 +2983,8 @@ loc_155E2:
 		bsr.w	sub_11FD6
 		tst.w	d1
 		bpl.s	locret_155D4
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_155F2
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_155F2							; if not, branch
 		neg.w	d1
 
 loc_155F2:
@@ -3009,8 +3009,8 @@ Tails_TouchFloor:
 		clr.b	anim(a0)							; AniIDSonAni_Walk
 		sub.b	default_y_radius(a0),d0
 		ext.w	d0
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_1564A
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_1564A							; if not, branch
 		neg.w	d0
 
 loc_1564A:
@@ -3097,8 +3097,8 @@ loc_15700:
 sub_15716:
 		tst.b	(Disable_death_plane).w
 		bne.s	loc_15742
-		tst.b	(Reverse_gravity_flag).w
-		bne.s	loc_15734
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		bne.s	loc_15734							; if yes, branch
 		move.w	(Camera_max_Y_pos).w,d0
 		addi.w	#screen_height,d0
 		cmp.w	y_pos(a0),d0
@@ -3230,8 +3230,8 @@ loc_15828:
 
 sub_15842:
 		bsr.s	Animate_Tails
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_15856
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_15856							; if not, branch
 		eori.b	#setBit(render_flags.y_flip),render_flags(a0)
 
 loc_15856:
@@ -3514,8 +3514,8 @@ loc_15A7A:
 
 		eor.b	d1,d2
 		or.b	d2,render_flags(a0)
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	loc_15A92
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	loc_15A92							; if not, branch
 		eori.b	#setBit(render_flags.y_flip),render_flags(a0)
 
 loc_15A92:

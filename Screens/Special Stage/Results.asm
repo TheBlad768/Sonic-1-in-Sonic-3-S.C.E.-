@@ -59,7 +59,7 @@ Obj_SpecialStageResults:
 .wait
 		tst.w	wait_timer(a0)							; is timer over?
 		beq.s	.countdown							; if yes, branch
-		subq.w	#1,wait_timer(a0)						; subtract 1
+		subq.w	#1,wait_timer(a0)						; decrement timer
 
 		; check timer
 		tst.b	(Music_disable_flag).w
@@ -119,7 +119,7 @@ Obj_SpecialStageResults:
 		; next
 		tst.w	wait_timer(a0)							; is timer over?
 		beq.s	.continue							; if yes, branch
-		subq.w	#1,wait_timer(a0)						; subtract 1
+		subq.w	#1,wait_timer(a0)						; decrement timer
 
 .return2
 		rts
@@ -142,7 +142,7 @@ Obj_SpecialStageResults:
 .endtimer
 		tst.w	wait_timer(a0)							; is timer over?
 		beq.s	.checksuper							; if yes, branch
-		subq.w	#1,wait_timer(a0)						; subtract 1
+		subq.w	#1,wait_timer(a0)						; decrement timer
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -198,7 +198,7 @@ Obj_SpecialStageResults:
 .endtimer2
 		tst.w	wait_timer(a0)							; is timer over?
 		beq.s	.endr								; if yes, branch
-		subq.w	#1,wait_timer(a0)						; subtract 1
+		subq.w	#1,wait_timer(a0)						; decrement timer
 		rts
 
 ; =============== S U B R O U T I N E =======================================
@@ -447,7 +447,7 @@ Obj_2EC1E:
 		; wait
 		tst.w	wait_timer(a0)							; is timer over?
 		beq.s	.check_delete							; if yes, branch
-		subq.w	#1,wait_timer(a0)						; subtract 1
+		subq.w	#1,wait_timer(a0)						; decrement timer
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
 
