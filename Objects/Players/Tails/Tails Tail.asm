@@ -70,8 +70,8 @@ Obj_Tails_Tail:
 .prev
 		lea	(AniTails_Tail).l,a1
 		bsr.w	Animate_Tails_Part2
-		tst.b	(Reverse_gravity_flag).w
-		beq.s	.dplc
+		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
+		beq.s	.dplc								; if not, branch
 		cmpi.b	#3,anim(a0)							; is this the Directional animation?
 		beq.s	.dplc								; if so, skip the mirroring
 		eori.b	#setBit(render_flags.y_flip),render_flags(a0)			; reverse the vertical mirror render_flag bit (On if Off beforehand and vice versa)

@@ -144,7 +144,7 @@ Obj_BreakablePole:
 .grab
 		tst.b	breakablepole_p1_attached.timer-breakablepole_p1_attached(a2)		; is timer over?
 		beq.s	.check									; if yes, branch
-		subq.b	#1,breakablepole_p1_attached.timer-breakablepole_p1_attached(a2)	; subtract 1
+		subq.b	#1,breakablepole_p1_attached.timer-breakablepole_p1_attached(a2)	; decrement timer
 
 .return2
 		rts
