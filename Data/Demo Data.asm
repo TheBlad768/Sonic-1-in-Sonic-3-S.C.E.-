@@ -27,7 +27,7 @@
 ;		Attribute	| Filename	| Folder
 
 	if ~~SpecialStageRotation
-		incfile.ia	DemoDat_SS, "Screens/Special Stage/Object Data/Demo/SS1 - Demo.asm"
+		incfile.ia	DemoDat_SS, "Screens/Special Stage/Object Data/Demo/Special Stage 1 - Demo.asm"
 	else
-		incfile.ia	DemoDat_SS, "Screens/Special Stage/Object Data/Demo/SS1 - Demo(Smooth).asm"
+		incfile.ia	DemoDat_SS, "Screens/Special Stage/Object Data/Demo/Special Stage 1 - Demo (Smooth).asm"
 	endif

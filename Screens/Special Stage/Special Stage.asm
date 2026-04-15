@@ -5,82 +5,86 @@
 ; Constants
 
 ; Background
-ArtTile_SS_Background_Clouds =				0
-ArtTile_SS_Background_Fish =				$51
+ArtTile_SpecialStage_Background_Clouds =		0
+ArtTile_SpecialStage_Background_BirdsFish =		$51
 
 ; Items
-ArtTile_SS_Wall =					$142
-ArtTile_SS_Bumper =					$152
-ArtTile_SS_Goal =					$168
-ArtTile_SS_Up_Down =					$17A
-ArtTile_SS_R_Block =					$195
-ArtTile_SS_Emerald_Sparkle =				$19E
-ArtTile_SS_Red_White_Block =				$1A7
-ArtTile_SS_Ghost_Block =				$1B0
-ArtTile_SS_Glass =					$1B9
-ArtTile_SS_Emerald =					$1C2
+ArtTile_SpecialStage_Wall =				$142
+ArtTile_SpecialStage_Bumper =				$152
+ArtTile_SpecialStage_Goal =				$168
+ArtTile_SpecialStage_Up_Down =				$17A
+ArtTile_SpecialStage_R_Block =				$195
+ArtTile_SpecialStage_Emerald_Sparkle =			$19E
+ArtTile_SpecialStage_Red_White_Block =			$1A7
+ArtTile_SpecialStage_Ghost_Block =			$1B0
+ArtTile_SpecialStage_Glass =				$1B9
+ArtTile_SpecialStage_Emerald =				$1C2
 
 ; Unused
-ArtTile_SS_Extra_Life =					$370
-ArtTile_SS_W_Block =					$570
-ArtTile_SS_Zone_1 =					$797
-ArtTile_SS_Zone_2 =					$7A0
-ArtTile_SS_Zone_3 =					$7A9
-ArtTile_SS_Zone_4 =					$797
-ArtTile_SS_Zone_5 =					$7A0
-ArtTile_SS_Zone_6 =					$7A9
+ArtTile_SpecialStage_Extra_Life =			$370
+ArtTile_SpecialStage_W_Block =				$570
+ArtTile_SpecialStage_Zone_1 =				$797
+ArtTile_SpecialStage_Zone_2 =				$7A0
+ArtTile_SpecialStage_Zone_3 =				$7A9
+ArtTile_SpecialStage_Zone_4 =				$797
+ArtTile_SpecialStage_Zone_5 =				$7A0
+ArtTile_SpecialStage_Zone_6 =				$7A9
 
 ; Misc
-ArtTile_SS_Ring =					$258
-ArtTile_SS_Ring_Sparks =				ArtTile_SS_Ring+8
-ArtTile_SS_HUD =					$264
+ArtTile_SpecialStage_Ring =				$258
+ArtTile_SpecialStage_Ring_Sparks =			ArtTile_SpecialStage_Ring+8
+ArtTile_SpecialStage_HUD =				$264
 
 ; RAM
 
 	dsset ramaddr(RAM_start)							; pretend we're in the RAM
 
-SStage_Buffer1						ds.b $4000			; S1: $0000-$3FFF
-SStage_Buffer1_end =					*				; S1: ($4000 bytes)
-SStage_BlockBuffer =					SStage_Buffer1+$1020		; S1: $1020-$31FF
-SStage_BlockBuffer_end =				SStage_BlockBuffer+$80*$40	; S1: ($2000 bytes)
+SpecialStage.buffer					ds.b $4000			; S1: $0000-$3FFF
+SpecialStage.buffer_end =				*				; S1: ($4000 bytes)
+SpecialStage.blockbuffer =				SpecialStage.buffer+$1020	; S1: $1020-$31FF
+SpecialStage.blockbuffer_end =				SpecialStage.blockbuffer+$80*$40	; S1: ($2000 bytes)
 
-SStage_Buffer2						ds.b $1000			; S1: layout data ; ($1000 bytes)
-SStage_BlockTypes =					SStage_Buffer2			; S1: $4000-$43FF ; ($400 bytes)
-SStage_ItemBuffer =					SStage_Buffer2+$400		; S1: $4400-$44FF ; ($100 bytes)
-SStage_ItemBuffer_end =					SStage_Buffer2+$500
+SpecialStage.buffer2					ds.b $1000			; S1: layout data ; ($1000 bytes)
+SpecialStage.blocktypes =				SpecialStage.buffer2		; S1: $4000-$43FF ; ($400 bytes)
+SpecialStage.itembuffer =				SpecialStage.buffer2+$400	; S1: $4400-$44FF ; ($100 bytes)
+SpecialStage.itembuffer_end =				SpecialStage.buffer2+$500
 
-SStage_Buffer3						ds.b $400			; S1: $5000-$53FF ; item xypos ; ($400 bytes)
+SpecialStage.buffer3					ds.b $400			; S1: $5000-$53FF ; item xypos ; ($400 bytes)
 
-SStage_Scroll_Buffer					ds.b $100			; S1: $1C bytes used?
-SStage_Scroll_Buffer2					ds.b $100			; S1: $28 bytes used?
+SpecialStage.scroll_buffer				ds.b $100			; S1: $1C bytes used?
+SpecialStage.scroll_buffer2				ds.b $100			; S1: $28 bytes used?
 
-SStage_Ghost_Buffer					ds.w 14+2			; max ghost solids + header
+SpecialStage.ghost_buffer				ds.w 14+2			; max ghost solids + header
 
 	dsreset										; stop pretending and reset the program counter
 
 	dsset ramaddr(Palette_cycle_counters)						; pretend we're in the RAM
 
-SStage_scalar_index_0					ds.w 1
-SStage_scalar_index_1					ds.w 1
-v_palss_num						ds.w 1
-v_palss_time						ds.w 1
-v_ssbganim						ds.w 1
+; palette
+SpecialStage.pcycle_counter0				ds.w 1
+SpecialStage.pcycle_counter1				ds.w 1
+SpecialStage.pcycle_counter2				ds.w 1
 
-v_bg3screenposx						ds.l 1
-v_ani0_time						ds.b 1
-v_ani0_frame						ds.b 1
-v_ani2_time						ds.b 1
-v_ani2_frame						ds.b 1
-v_ani3_time						ds.b 1
-v_ani3_frame						ds.b 1
-Special_stage_flag					ds.b 1
-							ds.b 1				; even
+; anim
+SpecialStage.angle					ds.w 1
+SpecialStage.speed					ds.w 1
+SpecialStage.wall_angle					ds.w 1
+SpecialStage.rings_frame_timer				ds.b 1
+SpecialStage.rings_frame				ds.b 1
+SpecialStage.main_frame_timer				ds.b 1
+SpecialStage.main_frame					ds.b 1
+SpecialStage.glass_frame_timer				ds.b 1
+SpecialStage.glass_frame				ds.b 1
+SpecialStage.wall_frame_timer				ds.b 1
+SpecialStage.wall_frame					ds.b 1
 
-Special_stage_ring_count				ds.w 1
-Emerald_flicker_flag					ds.w 1
-Special_stage_spheres_left				ds.w 1
-Special_stage_rings_left				ds.w 1
-Saved_special_stage					ds.b 1
+; main
+SpecialStage.ring_count					ds.w 1
+SpecialStage.emerald_flicker_flag			ds.w 1
+SpecialStage.spheres_left				ds.w 1
+SpecialStage.rings_left					ds.w 1
+SpecialStage.saved_special_stage			ds.b 1
+SpecialStage.exit_flag					ds.b 1
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -134,8 +138,8 @@ SpecialStageScreen:
 
 		; set
 		moveq	#-1,d0
-		move.w	d0,(Anim_Counters).w						; reset block frame
-		move.w	d0,(Special_stage_spheres_left).w				; set -1 (0 = Got)
+		move.w	d0,(SpecialStage.wall_angle).w					; reset block frame
+		move.w	d0,(SpecialStage.spheres_left).w				; set -1 (0 = Got)
 		move.w	#$7FF,(Screen_Y_wrap_value).w
 		move.w	#$7F0,(Camera_Y_pos_mask).w
 		move.w	#$7F0,(Camera_target_max_Y_pos).w				; set level size for debug mode
@@ -144,22 +148,22 @@ SpecialStageScreen:
 		move.b	d0,(Level_started_flag).w
 
 	if (GameDebug)&&(~~GameDebugAlt)
-		move.l	#Debug_Special,(Level_data_addr_RAM.Debug).w			; set debug mode items
+		move.l	#Debug_SpecialStage,(Level_data_addr_RAM.Debug).w		; set debug mode items
 	endif
 
 		; load BG
-		bsr.w	SS_BGLoad
+		bsr.w	SpecialStage_BGLoad
 
 		; load art
 		lea	PLC_SpecialStage(pc),a5
 		jsr	(LoadPLC_Raw_KosPlusM).w					; load special stage patterns
 
 		; load special stage palette
-		lea	(Pal_SSSonic).l,a1
+		lea	(Pal_SpecialStageSonic).l,a1
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
 		blo.s	.notKnux
 
-.palssk		:= Pal_SSKnuckles-Pal_SSSonic						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+.palssk		:= Pal_SpecialStageKnuckles-Pal_SpecialStageSonic			; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
 
 		lea	(.palssk)(a1),a1						; Pal_SSKnuckles
 
@@ -197,21 +201,21 @@ SpecialStageScreen:
 		bne.s	.waitplc							; wait for KosPlusM queue to clear
 
 		; load layout
-		bsr.w	SS_Load								; load SS layout data
+		bsr.w	SpecialStage_Load						; load SS layout data
 
 		; load character
-		move.l	#Obj_PlayerSpecial,(Player_1+code_addr).w			; load special stage player object
+		move.l	#Obj_SpecialStagePlayer,(Player_1+code_addr).w			; load special stage player object
 
 		; update palette
 		lea	(VDP_data_port).l,a6						; load VDP data address to a6
 		lea	VDP_control_port-VDP_data_port(a6),a5				; load VDP control address to a5
-		bsr.w	PalCycle_SS
+		bsr.w	AnPal_SpecialStage
 
 		; set
 		moveq	#0,d0
 		move.w	d0,(Ring_count).w
-		move.w	d0,(SStage_scalar_index_0).w					; set stage angle to "upright"
-		move.w	#$40,(SStage_scalar_index_1).w					; set stage rotation speed
+		move.w	d0,(SpecialStage.angle).w					; set stage angle to "upright"
+		move.w	#$40,(SpecialStage.speed).w					; set stage rotation speed
 		move.b	#1,(HUD_RAM.status).w						; load HUD
 		lea	SSExtraRender_Data(pc),a1
 		jsr	(Load_ExtraRender).w
@@ -256,8 +260,8 @@ SpecialStageScreen:
 		move.w	(Camera_X_pos).w,(Camera_X_pos_copy).w
 		move.w	(Camera_Y_pos).w,(Camera_Y_pos_copy).w
 		jsr	(Render_Sprites).w
-		bsr.w	SS_ShowLayout
-		bsr.w	SS_BGAnimate
+		bsr.w	SpecialStage_ShowLayout
+		bsr.w	SpecialStage_BGAnimate
 
 		; check demo
 		tst.b	(Demo_mode_flag).w
@@ -266,9 +270,9 @@ SpecialStageScreen:
 		beq.s	.exit
 
 .notdemo
-		tst.b	(Special_stage_flag).w
+		tst.b	(SpecialStage.exit_flag).w
 		beq.s	.loop
-		clr.b	(Special_stage_flag).w
+		clr.b	(SpecialStage.exit_flag).w
 
 		; check demo
 		tst.b	(Demo_mode_flag).w
@@ -295,8 +299,8 @@ SpecialStageScreen:
 		move.w	(Camera_X_pos).w,(Camera_X_pos_copy).w
 		move.w	(Camera_Y_pos).w,(Camera_Y_pos_copy).w
 		jsr	(Render_Sprites).w
-		bsr.w	SS_ShowLayout
-		bsr.w	SS_BGAnimate
+		bsr.w	SpecialStage_ShowLayout
+		bsr.w	SpecialStage_BGAnimate
 
 		; fade to white
 		subq.w	#1,(Pal_fade_delay).w						; decrement timer
@@ -375,17 +379,17 @@ SpecialStageScreen:
 		jsr	(Queue_KosPlus_Module).w
 
 	if SuperHyperSonKnux
-		lea	(ArtKosPM_SSResultsHYPER).l,a1
+		lea	(ArtKosPM_SpecialStageResultsHYPER).l,a1
 		cmpi.w	#PlayerModeID_Tails,(Player_mode).w				; is Tails?
 		bne.s	.notTails							; if not, branch
 
-.artss		:= ArtKosPM_SSResultsSUPER-ArtKosPM_SSResultsHYPER			; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+.artss		:= ArtKosPM_SpecialStageResultsSUPER-ArtKosPM_SpecialStageResultsHYPER	; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
 
 		lea	(.artss)(a1),a1
 
 .notTails
 	else
-		lea	(ArtKosPM_SSResultsSUPER).l,a1
+		lea	(ArtKosPM_SpecialStageResultsSUPER).l,a1
 	endif
 
 		move.w	#tiles_to_bytes($4E0),d2
@@ -403,14 +407,14 @@ SpecialStageScreen:
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync.skip).w
 		addq.w	#1,(Level_frame_counter).w
-		move.w	(Emerald_flicker_flag).w,d1
+		move.w	(SpecialStage.emerald_flicker_flag).w,d1
 		addq.w	#1,d1
 		cmpi.w	#3,d1
 		blo.s	.flicker
 		moveq	#0,d1
 
 .flicker
-		move.w	d1,(Emerald_flicker_flag).w
+		move.w	d1,(SpecialStage.emerald_flicker_flag).w
 		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		jsr	(Process_KosPlus_Module_Queue).w
@@ -427,11 +431,11 @@ SSExtraRender_Data:
 
 ; =============== S U B R O U T I N E =======================================
 
-SS_BGLoad:
+SpecialStage_BGLoad:
 
 		; load mappings for the birds and fish
-		EniDecomp	MapEni_SSBg1, RAM_start, ArtTile_SS_Background_Fish, 2, FALSE		; decompress Enigma mappings
-		locVRAM	$5000,d3									; set nametable address
+		EniDecomp	MapEni_SpecialStageBGBirdsFish, RAM_start, ArtTile_SpecialStage_Background_BirdsFish, 2, FALSE	; decompress Enigma mappings
+		locVRAM	$5000,d3							; set nametable address
 		lea	(RAM_start+$80).l,a2
 		moveq	#7-1,d7
 
@@ -478,7 +482,7 @@ loc_491C:
 		dbf	d7,loc_48BE
 
 		; load mappings for the clouds
-		EniDecomp	MapEni_SSBg2, RAM_start, ArtTile_SS_Background_Clouds, 2, FALSE		; decompress Enigma mappings
+		EniDecomp	MapEni_SpecialStageBGClouds, RAM_start, ArtTile_SpecialStage_Background_Clouds, 2, FALSE	; decompress Enigma mappings
 		copyTilemap	VRAM_Plane_A_Name_Table, 512, 256
 		lea	-VRAM_Plane_Table_Size(a1),a1
 		copyTilemap	(VRAM_Plane_A_Name_Table+$1000), 512, 512, 1
@@ -489,8 +493,8 @@ loc_491C:
 
 ; =============== S U B R O U T I N E =======================================
 
-SS_BGAnimate:
-		move.w	(v_ssbganim).w,d0
+SpecialStage_BGAnimate:
+		move.w	(SpecialStage.pcycle_counter2).w,d0
 		bne.s	loc_4BF6
 		clr.w	(Camera_Y_pos_BG_copy).w
 		move.w	(Camera_Y_pos_BG_copy).w,(V_scroll_value_BG).w
@@ -500,13 +504,13 @@ loc_4BF6:
 		bhs.s	loc_4C4E
 		cmpi.w	#6,d0
 		bne.s	loc_4C10
-		addq.w	#1,(v_bg3screenposx).w
+		addq.w	#1,(Camera_X_pos_BG_copy).w
 		addq.w	#1,(Camera_Y_pos_BG_copy).w
 		move.w	(Camera_Y_pos_BG_copy).w,(V_scroll_value_BG).w
 
 loc_4C10:
 		lea	byte_4CCC(pc),a1
-		lea	(SStage_Scroll_Buffer2).l,a3
+		lea	(SpecialStage.scroll_buffer2).l,a3
 		moveq	#10-1,d3
 
 .loop
@@ -521,7 +525,7 @@ loc_4C10:
 		dbf	d3,.loop
 
 		; next
-		lea	(SStage_Scroll_Buffer2).l,a3
+		lea	(SpecialStage.scroll_buffer2).l,a3
 		lea	byte_4CB8(pc),a2
 		bra.s	loc_4C7E
 ; ---------------------------------------------------------------------------
@@ -529,8 +533,8 @@ loc_4C10:
 loc_4C4E:
 		cmpi.w	#$C,d0
 		bne.s	loc_4C74
-		subq.w	#1,(v_bg3screenposx).w
-		lea	(SStage_Scroll_Buffer).l,a3
+		subq.w	#1,(Camera_X_pos_BG_copy).w
+		lea	(SpecialStage.scroll_buffer).l,a3
 		move.l	#$18000,d2
 		moveq	#7-1,d1
 
@@ -542,12 +546,12 @@ loc_4C64:
 		dbf	d1,loc_4C64
 
 loc_4C74:
-		lea	(SStage_Scroll_Buffer).l,a3
+		lea	(SpecialStage.scroll_buffer).l,a3
 		lea	byte_4CC4(pc),a2
 
 loc_4C7E:
 		lea	(H_scroll_buffer).w,a1
-		move.w	(v_bg3screenposx).w,d0
+		move.w	(Camera_X_pos_BG_copy).w,d0
 		neg.w	d0
 		swap	d0
 		moveq	#0,d3
@@ -574,14 +578,14 @@ loc_4CA4:
 		rts
 ; ---------------------------------------------------------------------------
 
-byte_4CB8:				; SStage_Scroll_Buffer2
+byte_4CB8:				; SpecialStage.scroll_buffer2
 		dc.b 9, $28		; d3, d1
 		dc.b $18, $10
 		dc.b $28, $18
 		dc.b $10, $30
 		dc.b $18, 8
 		dc.b $10, 0
-byte_4CC4:				; SStage_Scroll_Buffer
+byte_4CC4:				; SpecialStage.scroll_buffer
 		dc.b 6, $30		; d3, d1
 		dc.b $30, $30
 		dc.b $28, $18
@@ -604,16 +608,16 @@ byte_4CCC:
 
 ; =============== S U B R O U T I N E =======================================
 
-SS_ShowLayout:
-		bsr.w	SS_AniWallsRings
-		bsr.w	SS_AniItems
-		lea	(SStage_Buffer3).l,a1
+SpecialStage_ShowLayout:
+		bsr.w	SpecialStage_AniWallsRings
+		bsr.w	SpecialStage_AniItems
+		lea	(SpecialStage.buffer3).l,a1
 
 	if ~~SpecialStageRotation
 		moveq	#-4,d0
-		and.b	(SStage_scalar_index_0).w,d0					; original rotation
+		and.b	(SpecialStage.angle).w,d0					; original rotation
 	else
-		move.b	(SStage_scalar_index_0).w,d0					; smooth rotation
+		move.b	(SpecialStage.angle).w,d0					; smooth rotation
 	endif
 
 		jsr	(GetSineCosine).w
@@ -664,7 +668,7 @@ loc_1B1C0:
 		addi.w	#$18,d3
 		dbf	d7,loc_1B19E
 
-		lea	(SStage_Buffer1).l,a0
+		lea	(SpecialStage.buffer).l,a0
 		moveq	#0,d0
 		move.w	(Camera_Y_pos_copy).w,d0
 		divu.w	#$18,d0
@@ -679,14 +683,14 @@ loc_1B1C0:
 		adda.w	d0,a0
 
 ; Render_Sprites:
-		lea	(SStage_Buffer2).l,a2						; load layout
-		lea	SStage_Buffer3-SStage_Buffer2(a2),a1				; load object xypos
+		lea	(SpecialStage.buffer2).l,a2					; load layout
+		lea	SpecialStage.buffer3-SpecialStage.buffer2(a2),a1		; load object xypos
 		lea	(Sprite_table_buffer).w,a6					; set address for sprite table
 		moveq	#80-1,d7							; max sprites
 		moveq	#0,d6
 		move.b	(Sprites_drawn).w,d6						; load sprite count
 		sub.b	d6,d7
-		lsl.w	#3,d6								; 1=8
+		lsl.w	#3,d6								; multiply by 8
 		adda.w	d6,a6
 		moveq	#16-1,d2
 
@@ -697,7 +701,7 @@ loc_1B1C0:
 		moveq	#0,d0
 		move.b	(a0)+,d0							; load mapping ID
 		beq.s	.nextlevel							; if null, branch
-		cmpi.b	#(SS_MapIndex_end-SS_MapIndex)/6,d0				; is last mapping?
+		cmpi.b	#(SpecialStage_MapIndex_end-SpecialStage_MapIndex)/6,d0		; is last mapping?
 		bhi.s	.nextlevel							; if yes, branch
 
 		; check xpos
@@ -711,17 +715,18 @@ loc_1B1C0:
 		; check ypos
 		move.w	2(a1),d5							; get ypos
 		addi.w	#240,d5
+		and.w	(Screen_Y_wrap_value).w,d5
 		cmpi.w	#112,d5
 		blo.s	.nextlevel
 		cmpi.w	#368,d5
 		bhs.s	.nextlevel
 
 		; load mapping
-		lsl.w	#3,d0								; 1=8
+		lsl.w	#3,d0								; multiply by 8
 		lea	(a2,d0.w),a4
 		movea.l	(a4)+,a3							; address of mappings
 		move.w	(a4)+,d6							; frame number
-		add.w	d6,d6								; 1+1
+		add.w	d6,d6								; multiply by 2
 		adda.w	(a3,d6.w),a3							; get mappings frame address
 		move.w	(a4),d6								; VRAM
 		move.w	(a3)+,d1							; number of sprite pieces
@@ -778,25 +783,25 @@ loc_1B1C0:
 
 ; =============== S U B R O U T I N E =======================================
 
-SS_AniWallsRings:
+SpecialStage_AniWallsRings:
 
-.frames =	16										; walls frames
-.size =	($200/$20)>>2								; art size (32x32) ; rotation in 16 frames(&$FC00)
+.frames =	16									; walls frames
+.size =	($200/$20)>>2									; art size (32x32) ; rotation in 16 frames(&$FC00)
 
-		; dynamic blocks graphics
-		moveq	#0,d1								; VRAM
-		move.w	(SStage_scalar_index_0).w,d1
+		; dynamic wall graphics
+		moveq	#0,d1								; clear d1 for Add_To_DMA_Queue
+		move.w	(SpecialStage.angle).w,d1
 		andi.w	#(((.frames-1)*(.size))<<8)&$FC00,d1				; calc frames and art size
 
-		; check frame
-		cmp.w	(Anim_Counters).w,d1
+		; check wall angle
+		cmp.w	(SpecialStage.wall_angle).w,d1
 		beq.s	.ranim
-		move.w	d1,(Anim_Counters).w						; set prev_anim	; save art pos
+		move.w	d1,(SpecialStage.wall_angle).w					; set prev_angle ; save art pos
 
 		; load art
 		lsr.w	#2,d1								; /2 = $0100 (AssumeSourceAddressIsRAMSafe) ; $400>>1
-		addi.l	#dmaSource(ArtUnc_SSWalls),d1					; get next frame
-		move.w	#tiles_to_bytes(ArtTile_SS_Wall),d2				; load art destination
+		addi.l	#dmaSource(ArtUnc_SpecialStageWalls),d1				; get next frame
+		move.w	#tiles_to_bytes(ArtTile_SpecialStage_Wall),d2			; load art destination
 
 		; size of art (in words) ; we only need one frame
 		move.w	#tiles_to_bytes( \
@@ -808,18 +813,18 @@ SS_AniWallsRings:
 .ranim
 
 		; ring anim
-		subq.b	#1,(Rings_frame_timer).w
-		bpl.s	loc_1B2C8
-		addq.b	#4+1,(Rings_frame_timer).w
-		addq.b	#1,(Rings_frame).w
-		andi.b	#7,(Rings_frame).w
+		subq.b	#1,(SpecialStage.rings_frame_timer).w				; decrement timer
+		bpl.s	.manim								; if time remains, branch
+		addq.b	#4+1,(SpecialStage.rings_frame_timer).w				; reset timer to 4 frames
+		addq.b	#1,(SpecialStage.rings_frame).w					; change frame
+		andi.b	#7,(SpecialStage.rings_frame).w					; max 8 frames
 
 		; dynamic ring graphics
 		moveq	#0,d1
-		move.b	(Rings_frame).w,d1
-		lsl.w	#6,d1
-		add.l	#dmaSource(ArtUnc_SSRing),d1					; get next frame
-		move.w	#tiles_to_bytes(ArtTile_SS_Ring),d2				; load art destination
+		move.b	(SpecialStage.rings_frame).w,d1
+		lsl.w	#6,d1								; multiply by $40
+		add.l	#dmaSource(ArtUnc_SpecialStageRing),d1				; get next frame
+		move.w	#tiles_to_bytes(ArtTile_SpecialStage_Ring),d2			; load art destination
 
 		; size of art (in words) ; we only need one frame
 		moveq	#tiles_to_bytes( \
@@ -828,16 +833,17 @@ SS_AniWallsRings:
 
 		jsr	(Add_To_DMA_Queue).w
 
-loc_1B2C8:
-		lea	(SStage_Buffer2+5).l,a1
-		subq.b	#1,(v_ani2_time).w
-		bpl.s	loc_1B2E4
-		addq.b	#7+1,(v_ani2_time).w
-		addq.b	#1,(v_ani2_frame).w
-		andi.b	#1,(v_ani2_frame).w
+.manim
 
-loc_1B2E4:
-		move.b	(v_ani2_frame).w,d0
+		; main anim
+		subq.b	#1,(SpecialStage.main_frame_timer).w				; decrement timer
+		bpl.s	.setmain							; if time remains, branch
+		addq.b	#7+1,(SpecialStage.main_frame_timer).w				; reset timer to 7 frames
+		bchg	#0,(SpecialStage.main_frame).w					; change frame (0 or 1)
+
+.setmain
+		lea	(SpecialStage.buffer2+5).l,a1
+		move.b	(SpecialStage.main_frame).w,d0
 		move.b	d0,$27*8(a1)							; goal ($27)
 		move.b	d0,$29*8(a1)							; up/down ($29)	; (up)
 		move.b	d0,$2A*8(a1)							; up/down ($2A)	; (down)
@@ -850,35 +856,33 @@ loc_1B2E4:
 		move.b	d0,$40*8(a1)							; emerald 6 ($40)
 		move.b	d0,$4F*8(a1)							; emerald 7 ($4F)
 
-		; next anim
-		subq.b	#1,(v_ani3_time).w
-		bpl.s	loc_1B326
-		addq.b	#4+1,(v_ani3_time).w
-		addq.b	#1,(v_ani3_frame).w
-		andi.b	#3,(v_ani3_frame).w
+		; glass anim
+		subq.b	#1,(SpecialStage.glass_frame_timer).w				; decrement timer
+		bpl.s	.setglass							; if time remains, branch
+		addq.b	#4+1,(SpecialStage.glass_frame_timer).w				; reset timer to 4 frames
+		addq.b	#1,(SpecialStage.glass_frame).w					; change frame
+		andi.b	#3,(SpecialStage.glass_frame).w					; max 4 frames
 
-loc_1B326:
-		move.b	(v_ani3_frame).w,d0
+.setglass
+		move.b	(SpecialStage.glass_frame).w,d0
 		move.b	d0,$2D*8(a1)							; glass ($2D)
 		move.b	d0,$2E*8(a1)							; glass ($2E)
 		move.b	d0,$2F*8(a1)							; glass ($2F)
 		move.b	d0,$30*8(a1)							; glass ($30)
 
-		; next anim
-		subq.b	#1,(v_ani0_time).w
-		bpl.s	loc_1B350
-		addq.b	#7+1,(v_ani0_time).w
-		subq.b	#1,(v_ani0_frame).w
-		andi.b	#7,(v_ani0_frame).w
+		; wall color anim (blue, yellow, purple)
+		subq.b	#1,(SpecialStage.wall_frame_timer).w				; decrement timer
+		bpl.s	.setwall							; if time remains, branch
+		addq.b	#7+1,(SpecialStage.wall_frame_timer).w				; reset timer to 7 frames
+		subq.b	#1,(SpecialStage.wall_frame).w					; change frame
+		andi.b	#7,(SpecialStage.wall_frame).w					; max 8 frames
 
-loc_1B350:
-
-		; wall anim (blue, yellow, purple)
-		lea	(SStage_Buffer2+$16).l,a1
-		lea	SS_WaRiVramSet(pc),a0
+.setwall
+		lea	(SpecialStage.buffer2+$16).l,a1
+		lea	SpecialStage_WallsVRAMSet(pc),a0
 		moveq	#0,d0
-		move.b	(v_ani0_frame).w,d0
-		add.w	d0,d0
+		move.b	(SpecialStage.wall_frame).w,d0
+		add.w	d0,d0								; multiply by 2
 		adda.w	d0,a0
 
 		set	.a,0
@@ -930,7 +934,7 @@ Process_SSSprites:
 		; tails for Tails
 		lea	(Tails_tails).w,a0
 		move.l	code_addr(a0),d0
-		beq.s	SS_RemoveCollectedItem.return
+		beq.s	SpecialStage_RemoveCollectedItem.return
 		movea.l	d0,a1
 		jmp	(a1)
 
@@ -940,9 +944,9 @@ Process_SSSprites:
 
 ; =============== S U B R O U T I N E =======================================
 
-SS_RemoveCollectedItem:
-		lea	(SStage_ItemBuffer).l,a2
-		moveq	#bytesToXcnt((SStage_ItemBuffer_end-SStage_ItemBuffer),8),d0	; check $100 bytes
+SpecialStage_RemoveCollectedItem:
+		lea	(SpecialStage.itembuffer).l,a2
+		moveq	#bytesToXcnt((SpecialStage.itembuffer_end-SpecialStage.itembuffer),8),d0	; check $100 bytes
 
 .loop
 		tst.b	(a2)
@@ -959,17 +963,17 @@ SS_RemoveCollectedItem:
 
 ; =============== S U B R O U T I N E =======================================
 
-SS_AniItems:
-		lea	(SStage_ItemBuffer).l,a0
-		moveq	#bytesToXcnt((SStage_ItemBuffer_end-SStage_ItemBuffer),8),d7	; check $100 bytes
+SpecialStage_AniItems:
+		lea	(SpecialStage.itembuffer).l,a0
+		moveq	#bytesToXcnt((SpecialStage.itembuffer_end-SpecialStage.itembuffer),8),d7	; check $100 bytes
 
 .loop
 		moveq	#0,d0
 		move.b	(a0),d0
 		beq.s	.next
 		add.w	d0,d0
-		move.w	SS_AniItems_Index-2(pc,d0.w),d0
-		jsr	SS_AniItems_Index(pc,d0.w)
+		move.w	SpecialStage_AniItems_Index-2(pc,d0.w),d0
+		jsr	SpecialStage_AniItems_Index(pc,d0.w)
 
 .next
 		addq.w	#8,a0								; next
@@ -977,22 +981,23 @@ SS_AniItems:
 		rts
 ; ---------------------------------------------------------------------------
 
-SS_AniItems_Index: offsetTable
-		offsetTableEntry.w SS_AniRingSparks					; 1
-		offsetTableEntry.w SS_AniBumper						; 2
-		offsetTableEntry.w SS_Ani1Up						; 3 (unused)
-		offsetTableEntry.w SS_AniReverse					; 4
-		offsetTableEntry.w SS_AniEmeraldSparks					; 5
-		offsetTableEntry.w SS_AniGlassBlock					; 6
+SpecialStage_AniItems_Index: offsetTable
+		offsetTableEntry.w SpecialStage_AniRingSparks				; 1
+		offsetTableEntry.w SpecialStage_AniBumper				; 2
+		offsetTableEntry.w SpecialStage_Ani1Up					; 3 (unused)
+		offsetTableEntry.w SpecialStage_AniReverse				; 4
+		offsetTableEntry.w SpecialStage_AniEmeraldSparks			; 5
+		offsetTableEntry.w SpecialStage_AniGlassBlock				; 6
 ; ---------------------------------------------------------------------------
 
-SS_AniRingSparks:
+SpecialStage_AniRingSparks:
 
 		; wait
 		subq.b	#1,2(a0)							; decrement timer
 		bpl.s	.return								; if time remains, branch
 		addq.b	#5+1,2(a0)							; reset timer to 5+1 frames
 
+		; anim
 		moveq	#0,d0
 		move.b	3(a0),d0
 		addq.b	#1,3(a0)
@@ -1016,7 +1021,7 @@ SS_AniRingSparks:
 	even
 ; ---------------------------------------------------------------------------
 
-SS_AniBumper:
+SpecialStage_AniBumper:
 
 		; wait
 		subq.b	#1,2(a0)							; decrement timer
@@ -1052,7 +1057,7 @@ SS_AniBumper:
 	even
 ; ---------------------------------------------------------------------------
 
-SS_Ani1Up:
+SpecialStage_Ani1Up:
 
 		; wait
 		subq.b	#1,2(a0)							; decrement timer
@@ -1083,7 +1088,7 @@ SS_Ani1Up:
 	even
 ; ---------------------------------------------------------------------------
 
-SS_AniReverse:
+SpecialStage_AniReverse:
 
 		; wait
 		subq.b	#1,2(a0)							; decrement timer
@@ -1119,11 +1124,11 @@ SS_AniReverse:
 	even
 ; ---------------------------------------------------------------------------
 
-SS_AniEmeraldSparks:
+SpecialStage_AniEmeraldSparks:
 
 		; wait
 		subq.b	#1,2(a0)							; decrement timer
-		bpl.s	SS_AniReverse.return						; if time remains, branch
+		bpl.s	SpecialStage_AniReverse.return					; if time remains, branch
 		addq.b	#5+1,2(a0)							; reset timer to 5+1 frames
 
 		; anim
@@ -1133,7 +1138,7 @@ SS_AniEmeraldSparks:
 		movea.l	4(a0),a1
 		move.b	.anim(pc,d0.w),d0
 		move.b	d0,(a1)
-		bne.s	SS_AniReverse.return
+		bne.s	SpecialStage_AniReverse.return
 		clr.l	(a0)
 		clr.l	4(a0)
 		move.b	#4,(Player_1+routine).w
@@ -1149,7 +1154,7 @@ SS_AniEmeraldSparks:
 	even
 ; ---------------------------------------------------------------------------
 
-SS_AniGlassBlock:
+SpecialStage_AniGlassBlock:
 
 		; wait
 		subq.b	#1,2(a0)							; decrement timer
@@ -1196,54 +1201,54 @@ SS_AniGlassBlock:
 
 ; =============== S U B R O U T I N E =======================================
 
-SS_Load:
+SpecialStage_Load:
 		moveq	#0,d0
 		move.b	(Current_special_stage).w,d0					; load number of last Special Stage entered
-		move.b	d0,(Saved_special_stage).w
+		move.b	d0,(SpecialStage.saved_special_stage).w
 		addq.b	#1,(Current_special_stage).w
 		cmpi.b	#ChaosEmeralds_Count,(Current_special_stage).w
-		blo.s	SS_ChkEmldNum
+		blo.s	SpecialStage_ChkEmldNum
 		clr.b	(Current_special_stage).w					; reset if higher than 6/7
 
-SS_ChkEmldNum:
+SpecialStage_ChkEmldNum:
 		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all emeralds?
-		beq.s	SS_LoadData							; if yes, branch
+		beq.s	SpecialStage_LoadData						; if yes, branch
 		moveq	#0,d1
 		move.b	(Chaos_emerald_count).w,d1
 		subq.w	#1,d1
-		blo.s	SS_LoadData
+		blo.s	SpecialStage_LoadData
 		lea	(Collected_emeralds_array).w,a3					; check which emeralds you have
 
-SS_ChkEmldLoop:
+SpecialStage_ChkEmldLoop:
 		cmpi.b	#1,(a3,d0.w)
-		bne.s	SS_ChkEmldRepeat
-		bra.s	SS_Load
+		bne.s	SpecialStage_ChkEmldRepeat
+		bra.s	SpecialStage_Load
 ; ---------------------------------------------------------------------------
 
 		include "Screens/Special Stage/Layout/Layout Pointers - Special Stages.asm"
 ; ---------------------------------------------------------------------------
 
-SS_ChkEmldRepeat:
-		dbf	d1,SS_ChkEmldLoop
+SpecialStage_ChkEmldRepeat:
+		dbf	d1,SpecialStage_ChkEmldLoop
 
-SS_LoadData:
+SpecialStage_LoadData:
+		add.w	d0,d0								; multiply by 4
 		add.w	d0,d0
-		add.w	d0,d0
-		lea	SS_StartLoc(pc,d0.w),a1						; load player's start location
+		lea	SpecialStage_StartLocation(pc,d0.w),a1				; load player's start location
 		move.w	(a1)+,(Player_1+x_pos).w					; set player's position on x-axis
 		move.w	(a1)+,(Player_1+y_pos).w					; set player's position on y-axis
 
 		; load layout
-		movea.l	SS_LayoutIndex(pc,d0.w),a0
-		lea	(SStage_Buffer2).l,a1
+		movea.l	SpecialStage_LayoutIndex(pc,d0.w),a0
+		lea	(SpecialStage.buffer2).l,a1
 		jsr	(KosPlus_Decomp).w
 
 		; clear items buffer
-		clearRAM SStage_Buffer1, SStage_Buffer1_end
+		clearRAM SpecialStage.buffer, SpecialStage.buffer_end
 
 		; items
-		lea	(SStage_BlockBuffer).l,a1
-		lea	(SStage_Buffer2-SStage_BlockBuffer)(a1),a0
+		lea	(SpecialStage.blockbuffer).l,a1
+		lea	(SpecialStage.buffer2-SpecialStage.blockbuffer)(a1),a0
 		moveq	#$40-1,d1
 
 .nexti
@@ -1256,9 +1261,9 @@ SS_LoadData:
 		dbf	d1,.nexti
 
 		; load mapping
-		lea	(SStage_Buffer2+8).l,a1
-		lea	SS_MapIndex(pc),a0
-		moveq	#(SS_MapIndex_end-SS_MapIndex)/6-1,d1				; number of objects
+		lea	(SpecialStage.buffer2+8).l,a1
+		lea	SpecialStage_MapIndex(pc),a0
+		moveq	#(SpecialStage_MapIndex_end-SpecialStage_MapIndex)/6-1,d1	; number of objects
 
 .loadm
 		move.l	(a0)+,(a1)+							; address of mappings
@@ -1268,8 +1273,8 @@ SS_LoadData:
 		dbf	d1,.loadm
 
 		; find all ghost solids and rings
-		lea	(SStage_Ghost_Buffer).l,a1
-		lea	(SStage_BlockBuffer-SStage_Ghost_Buffer)(a1),a0
+		lea	(SpecialStage.ghost_buffer).l,a1
+		lea	(SpecialStage.blockbuffer-SpecialStage.ghost_buffer)(a1),a0
 		moveq	#$40-1,d1
 
 .gloop2
@@ -1283,7 +1288,7 @@ SS_LoadData:
 .gring
 		cmpi.b	#$3A,(a0)							; is the item a	ring?
 		bne.s	.notgb								; if not, branch
-		addq.w	#1,(Special_stage_rings_left).w					; add ring to counter
+		addq.w	#1,(SpecialStage.rings_left).w					; add ring to counter
 
 .notgb
 		addq.w	#1,a0
@@ -1295,31 +1300,31 @@ SS_LoadData:
 		clr.w	(a1)
 
 		; clear items buffer
-		clearRAM SStage_ItemBuffer, SStage_ItemBuffer_end
+		clearRAM SpecialStage.itembuffer, SpecialStage.itembuffer_end
 		rts
 
 ; =============== S U B R O U T I N E =======================================
 
 PLC_SpecialStage: plrlistheader
-		plreq ArtTile_SS_Background_Clouds, ArtKosPM_SSBgCloud
-		plreq ArtTile_SS_Background_Fish, ArtKosPM_SSBgFish
-		plreq ArtTile_SS_Bumper, ArtKosPM_Bumper
-		plreq ArtTile_SS_Goal, ArtKosPM_SSGOAL
-		plreq ArtTile_SS_Up_Down, ArtKosPM_SSUpDown
-		plreq ArtTile_SS_R_Block, ArtKosPM_SSRBlock
-		plreq ArtTile_SS_HUD, ArtKosPM_SSHUD
-		plreq ArtTile_SS_Emerald_Sparkle, ArtKosPM_SSEmStars
-		plreq ArtTile_SS_Red_White_Block, ArtKosPM_SSRedWhite
-		plreq ArtTile_SS_Ghost_Block, ArtKosPM_SSGhost
-		plreq ArtTile_SS_Glass, ArtKosPM_SSGlass
-		plreq ArtTile_SS_Emerald, ArtKosPM_SSEmerald
-		plreq ArtTile_SS_Ring_Sparks, ArtKosPM_Ring_Sparks
+		plreq ArtTile_SpecialStage_Background_Clouds, ArtKosPM_SpecialStageBGClouds
+		plreq ArtTile_SpecialStage_Background_BirdsFish, ArtKosPM_SpecialStageBGBirdsFish
+		plreq ArtTile_SpecialStage_Bumper, ArtKosPM_Bumper
+		plreq ArtTile_SpecialStage_Goal, ArtKosPM_SpecialStageGOAL
+		plreq ArtTile_SpecialStage_Up_Down, ArtKosPM_SpecialStageUpDown
+		plreq ArtTile_SpecialStage_R_Block, ArtKosPM_SpecialStageRBlock
+		plreq ArtTile_SpecialStage_HUD, ArtKosPM_SpecialStageHUD
+		plreq ArtTile_SpecialStage_Emerald_Sparkle, ArtKosPM_SpecialStageEmeraldStars
+		plreq ArtTile_SpecialStage_Red_White_Block, ArtKosPM_SpecialStageRedWhite
+		plreq ArtTile_SpecialStage_Ghost_Block, ArtKosPM_SpecialStageGhost
+		plreq ArtTile_SpecialStage_Glass, ArtKosPM_SpecialStageGlass
+		plreq ArtTile_SpecialStage_Emerald, ArtKosPM_SpecialStageEmerald
+		plreq ArtTile_SpecialStage_Ring_Sparks, ArtKosPM_Ring_Sparks
 		plrlistend
 
 PLC_SpecialStageResults: plrlistheader
 		plreq $500, ArtKosPM_ResultsGeneral
-		plreq $570, ArtKosPM_SSResults
-		plreq $680, ArtKosPM_SSResultsTKIcons
+		plreq $570, ArtKosPM_SpecialStageResults
+		plreq $680, ArtKosPM_SpecialStageResultsTKIcons
 		plreq ArtTile_HUD, ArtKosPM_HUD
 		plrlistend
 ; ---------------------------------------------------------------------------
@@ -1332,11 +1337,10 @@ PLC_SpecialStageResults: plrlistheader
 		include "Screens/Special Stage/Results.asm"
 
 		; mappings
-		include "Screens/Special Stage/Object Data/Special Stage Mappings & VRAM Pointers.asm"
+		include "Screens/Special Stage/Object Data/Mappings & VRAM Pointers.asm"
 		include "Screens/Special Stage/Object Data/R Block.asm"
 		include "Screens/Special Stage/Object Data/Glass Block.asm"
 		include "Screens/Special Stage/Object Data/UP Block.asm"
 		include "Screens/Special Stage/Object Data/DOWN Block.asm"
 		include "Screens/Special Stage/Object Data/Chaos Emeralds.asm"
 		include "Screens/Special Stage/Object Data/Walls.asm"
-		include "Screens/Special Stage/Object Data/Bumper.asm"

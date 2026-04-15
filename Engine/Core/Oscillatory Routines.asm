@@ -9,20 +9,20 @@ ChangeRingFrame:
 		bhs.s	.syncend							; if yes, branch
 
 		; used for spike pole
-		subq.b	#1,(Spikes_frame_timer).w
-		bpl.s	.syncrings
-		move.b	#$B,(Spikes_frame_timer).w
-		subq.b	#1,(Spikes_frame).w
-		andi.b	#7,(Spikes_frame).w
+		subq.b	#1,(Spikes_frame_timer).w					; decrement timer
+		bpl.s	.syncrings							; if time remains, branch
+		move.b	#$B,(Spikes_frame_timer).w					; reset timer to $B frames
+		subq.b	#1,(Spikes_frame).w						; change frame
+		andi.b	#7,(Spikes_frame).w						; max 8 frames
 
 .syncrings
 
 		; used for rings and giant rings
-		subq.b	#1,(Rings_frame_timer).w
-		bpl.s	.syncrings2
-		addq.b	#4+1,(Rings_frame_timer).w
-		addq.b	#1,(Rings_frame).w
-		andi.b	#7,(Rings_frame).w
+		subq.b	#1,(Rings_frame_timer).w					; decrement timer
+		bpl.s	.syncrings2							; if time remains, branch
+		addq.b	#4+1,(Rings_frame_timer).w					; reset timer to 4 frames
+		addq.b	#1,(Rings_frame).w						; change frame
+		andi.b	#7,(Rings_frame).w						; max 8 frames
 
 		; dynamic ring graphics
 		moveq	#0,d1

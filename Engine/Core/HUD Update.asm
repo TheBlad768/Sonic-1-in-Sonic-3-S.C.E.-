@@ -233,7 +233,7 @@ HUD_DrawZeroRingsSS:
 HUD_DrawZeroRingsSS2:
 
 		; init
-		locVRAM	tiles_to_bytes(ArtTile_SS_HUD+$14),VDP_control_port-VDP_control_port(a5)
+		locVRAM	tiles_to_bytes(ArtTile_SpecialStage_HUD+$14),VDP_control_port-VDP_control_port(a5)
 		lea	HUD_Zero_Rings(pc),a2
 		moveq	#3-1,d2
 		bra.s	HUD_DrawInitial.main
@@ -528,9 +528,9 @@ HUD_UpdateSpecialStage:
 
 .notzero
 		clr.b	(Update_HUD_ring_count).w
-		locVRAM	tiles_to_bytes(ArtTile_SS_HUD+$14),d0				; set VRAM address
+		locVRAM	tiles_to_bytes(ArtTile_SpecialStage_HUD+$14),d0			; set VRAM address
 		moveq	#0,d1
-		move.w	(Special_stage_rings_left).w,d1					; load number of rings
+		move.w	(SpecialStage.rings_left).w,d1					; load number of rings
 		bra.w	DrawThreeDigitNumber
 
 ; ---------------------------------------------------------------------------

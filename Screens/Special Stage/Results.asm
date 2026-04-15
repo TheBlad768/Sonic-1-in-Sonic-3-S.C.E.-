@@ -16,7 +16,7 @@ specialstageresults.destination =	parent3						; (2 bytes)
 ; =============== S U B R O U T I N E =======================================
 
 Obj_SpecialStageResults:
-		move.w	(Special_stage_ring_count).w,d0
+		move.w	(SpecialStage.ring_count).w,d0
 		add.w	d0,d0								; multiply by 10
 		move.w	d0,d1
 		add.w	d0,d0
@@ -24,7 +24,7 @@ Obj_SpecialStageResults:
 		add.w	d1,d0
 		move.w	d0,(Ring_bonus_countdown).w					; get the ring bonus
 		clr.w	(Time_bonus_countdown).w
-		tst.w	(Special_stage_rings_left).w
+		tst.w	(SpecialStage.rings_left).w
 		bne.s	.notperf
 		move.w	#5000,(Time_bonus_countdown).w					; set the time bonus
 
@@ -113,7 +113,7 @@ Obj_SpecialStageResults:
 		move.l	#.wait2,code_addr(a0)
 
 .wait2
-		cmpi.w	#50,(Special_stage_ring_count).w
+		cmpi.w	#50,(SpecialStage.ring_count).w
 		blo.s	.setend								; skip perfect
 
 		; next
@@ -268,7 +268,7 @@ loc_2EA6C:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_2EA7C:
-		cmpi.w	#50,(Special_stage_ring_count).w
+		cmpi.w	#50,(SpecialStage.ring_count).w
 		blo.w	loc_2EC7A
 		bra.s	loc_2EA4A
 
@@ -282,7 +282,7 @@ Obj_2EAA6:
 		bne.w	loc_2EC7A							; if not, delete
 
 		; draw
-		tst.w	(Emerald_flicker_flag).w
+		tst.w	(SpecialStage.emerald_flicker_flag).w
 		beq.s	.return
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
@@ -293,7 +293,7 @@ Obj_2EAA6:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_2EAC8:
-		tst.w	(Special_stage_spheres_left).w
+		tst.w	(SpecialStage.spheres_left).w
 		beq.w	loc_2EC7A
 		bsr.w	sub_2ECBC
 		bra.s	loc_2EA50
@@ -301,7 +301,7 @@ Obj_2EAC8:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_2EAD8:
-		tst.w	(Special_stage_spheres_left).w
+		tst.w	(SpecialStage.spheres_left).w
 		bne.w	loc_2EC7A
 		bsr.w	sub_2ECA8
 		cmpi.b	#ChaosEmeralds_Count,(a1)
@@ -321,7 +321,7 @@ Obj_2EAF6:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_2EB30:
-		tst.w	(Special_stage_spheres_left).w
+		tst.w	(SpecialStage.spheres_left).w
 		bne.w	loc_2EC7A
 		bsr.w	sub_2ECBC
 		bsr.w	sub_2EC80
@@ -337,7 +337,7 @@ Obj_2EB30:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_2EB64:
-		tst.w	(Special_stage_spheres_left).w
+		tst.w	(SpecialStage.spheres_left).w
 		bne.s	loc_2EC7A
 		bsr.w	sub_2ECBC
 		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w
@@ -349,7 +349,7 @@ Obj_2EB64:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_2EBA4:
-		tst.w	(Special_stage_spheres_left).w
+		tst.w	(SpecialStage.spheres_left).w
 		bne.s	loc_2EC7A
 		bsr.w	sub_2ECBC
 		bsr.w	sub_2ECA8
@@ -363,7 +363,7 @@ Obj_2EBA4:
 ; =============== S U B R O U T I N E =======================================
 
 Obj_2EBCC:
-		tst.w	(Special_stage_spheres_left).w
+		tst.w	(SpecialStage.spheres_left).w
 		bne.s	loc_2EC7A
 		bsr.s	sub_2ECBC
 		bsr.s	sub_2ECA8

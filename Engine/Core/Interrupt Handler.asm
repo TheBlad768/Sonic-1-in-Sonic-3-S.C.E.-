@@ -247,7 +247,7 @@ VInt_Continue:
 
 VInt_SpecialStage:
 		bsr.w	Do_ControllerPal
-		jsr	(PalCycle_SS).l
+		jsr	(AnPal_SpecialStage).l
 		jsr	(HUD_UpdateSpecialStage).w
 		clr.w	(Lag_frame_count).w
 

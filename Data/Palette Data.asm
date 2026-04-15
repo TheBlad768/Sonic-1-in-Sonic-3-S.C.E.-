@@ -102,8 +102,8 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	Pal_SSSonic, "Screens/Special Stage/Palettes/Sonic.pal"
-		incfile.ba	Pal_SSKnuckles, "Screens/Special Stage/Palettes/Knuckles.pal"
+		incfile.ba	Pal_SpecialStageSonic, "Screens/Special Stage/Palettes/Sonic.pal"
+		incfile.ba	Pal_SpecialStageKnuckles, "Screens/Special Stage/Palettes/Knuckles.pal"
 		incfile.ba	Pal_SpecialStage, "Screens/Special Stage/Palettes/Special Stage.pal"
 		incfile.ba	Pal_SpecialStageEmeralds, "Screens/Special Stage/Palettes/Special Stage Emeralds.pal"
 		incfile.ba	Pal_SpecialStageResults, "Screens/Special Stage/Palettes/Special Stage Results.pal"
@@ -151,5 +151,5 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	Pal_SSCyc1, "Screens/Special Stage/Palettes/Animated/Palettes/1.pal"
-		incfile.ba	Pal_SSCyc2, "Screens/Special Stage/Palettes/Animated/Palettes/2.pal"
+		incfile.ba	Pal_SpecialStageCyc1, "Screens/Special Stage/Palettes/Animated/Palettes/1.pal"
+		incfile.ba	Pal_SpecialStageCyc2, "Screens/Special Stage/Palettes/Animated/Palettes/2.pal"

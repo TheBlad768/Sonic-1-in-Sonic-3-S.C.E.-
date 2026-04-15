@@ -49,5 +49,5 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	MapEni_SSBg1, "Screens/Special Stage/Enigma Map/Background 1.eni"
-		incfile.ba	MapEni_SSBg2, "Screens/Special Stage/Enigma Map/Background 2.eni"
+		incfile.ba	MapEni_SpecialStageBGBirdsFish, "Screens/Special Stage/Enigma Map/Background Birds and Fish.eni"
+		incfile.ba	MapEni_SpecialStageBGClouds, "Screens/Special Stage/Enigma Map/Background Clouds.eni"

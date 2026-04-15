@@ -224,21 +224,21 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_SSHUD, "Screens/Special Stage/KosinskiPM Art/HUD.kospm"
-		incfile.ba	ArtKosPM_SSBgFish, "Screens/Special Stage/KosinskiPM Art/Birds & Fish.kospm"
-		incfile.ba	ArtKosPM_SSBgCloud, "Screens/Special Stage/KosinskiPM Art/Clouds.kospm"
-		incfile.ba	ArtKosPM_SSGOAL, "Screens/Special Stage/KosinskiPM Art/GOAL.kospm"
-		incfile.ba	ArtKosPM_SSRBlock, "Screens/Special Stage/KosinskiPM Art/R.kospm"
-		incfile.ba	ArtKosPM_SSEmStars, "Screens/Special Stage/KosinskiPM Art/Emerald Twinkle.kospm"
-		incfile.ba	ArtKosPM_SSRedWhite, "Screens/Special Stage/KosinskiPM Art/Red-White.kospm"
-		incfile.ba	ArtKosPM_SSUpDown, "Screens/Special Stage/KosinskiPM Art/UP-DOWN.kospm"
-		incfile.ba	ArtKosPM_SSEmerald, "Screens/Special Stage/KosinskiPM Art/Emeralds.kospm"
-		incfile.ba	ArtKosPM_SSGhost, "Screens/Special Stage/KosinskiPM Art/Ghost.kospm"
-		incfile.ba	ArtKosPM_SSGlass, "Screens/Special Stage/KosinskiPM Art/Glass.kospm"
-		incfile.ba	ArtKosPM_SSResults, "Screens/Special Stage/KosinskiPM Art/Results General.kospm"
-		incfile.ba	ArtKosPM_SSResultsTKIcons, "Screens/Special Stage/KosinskiPM Art/Results Tails Knuckles Icons.kospm"
-		incfile.ba	ArtKosPM_SSResultsSUPER, "Screens/Special Stage/KosinskiPM Art/Results SUPER.kospm"
-		incfile.ba	ArtKosPM_SSResultsHYPER, "Screens/Special Stage/KosinskiPM Art/Results HYPER.kospm"
+		incfile.ba	ArtKosPM_SpecialStageHUD, "Screens/Special Stage/KosinskiPM Art/HUD.kospm"
+		incfile.ba	ArtKosPM_SpecialStageBGBirdsFish, "Screens/Special Stage/KosinskiPM Art/Background Birds and Fish.kospm"
+		incfile.ba	ArtKosPM_SpecialStageBGClouds, "Screens/Special Stage/KosinskiPM Art/Background Clouds.kospm"
+		incfile.ba	ArtKosPM_SpecialStageGOAL, "Screens/Special Stage/KosinskiPM Art/GOAL.kospm"
+		incfile.ba	ArtKosPM_SpecialStageRBlock, "Screens/Special Stage/KosinskiPM Art/R.kospm"
+		incfile.ba	ArtKosPM_SpecialStageEmeraldStars, "Screens/Special Stage/KosinskiPM Art/Emerald Twinkle.kospm"
+		incfile.ba	ArtKosPM_SpecialStageRedWhite, "Screens/Special Stage/KosinskiPM Art/Red-White.kospm"
+		incfile.ba	ArtKosPM_SpecialStageUpDown, "Screens/Special Stage/KosinskiPM Art/UP-DOWN.kospm"
+		incfile.ba	ArtKosPM_SpecialStageEmerald, "Screens/Special Stage/KosinskiPM Art/Emeralds.kospm"
+		incfile.ba	ArtKosPM_SpecialStageGhost, "Screens/Special Stage/KosinskiPM Art/Ghost.kospm"
+		incfile.ba	ArtKosPM_SpecialStageGlass, "Screens/Special Stage/KosinskiPM Art/Glass.kospm"
+		incfile.ba	ArtKosPM_SpecialStageResults, "Screens/Special Stage/KosinskiPM Art/Results General.kospm"
+		incfile.ba	ArtKosPM_SpecialStageResultsTKIcons, "Screens/Special Stage/KosinskiPM Art/Results Tails Knuckles Icons.kospm"
+		incfile.ba	ArtKosPM_SpecialStageResultsSUPER, "Screens/Special Stage/KosinskiPM Art/Results SUPER.kospm"
+		incfile.ba	ArtKosPM_SpecialStageResultsHYPER, "Screens/Special Stage/KosinskiPM Art/Results HYPER.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Ending screen graphics
@@ -246,9 +246,9 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_FlowersEnding, "Screens/Ending/KosinskiPM Art/Flowers Ending.kospm"
-		incfile.ba	ArtKosPM_EmeraldsEnding, "Screens/Ending/KosinskiPM Art/Emeralds Ending.kospm"
-		incfile.ba	ArtKosPM_StHLogoEnding, "Screens/Ending/KosinskiPM Art/StH Logo Ending.kospm"
+		incfile.ba	ArtKosPM_EndingFlowers, "Screens/Ending/KosinskiPM Art/Flowers Ending.kospm"
+		incfile.ba	ArtKosPM_EndingEmeralds, "Screens/Ending/KosinskiPM Art/Emeralds Ending.kospm"
+		incfile.ba	ArtKosPM_EndingStHLogo, "Screens/Ending/KosinskiPM Art/StH Logo Ending.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Credits screen graphics
@@ -256,6 +256,6 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_SmallTextCredits, "Screens/Credits/KosinskiPM Art/8x16 Font.kospm"
-		incfile.ba	ArtKosPM_RobotnikCredits, "Screens/Credits/KosinskiPM Art/Robotnik.kospm"
-		incfile.ba	ArtKosPM_EggRoboCredits, "Screens/Credits/KosinskiPM Art/Egg Robo.kospm"
+		incfile.ba	ArtKosPM_CreditsSmallText, "Screens/Credits/KosinskiPM Art/8x16 Font.kospm"
+		incfile.ba	ArtKosPM_CreditsRobotnik, "Screens/Credits/KosinskiPM Art/Robotnik.kospm"
+		incfile.ba	ArtKosPM_CreditsEggRobo, "Screens/Credits/KosinskiPM Art/Egg Robo.kospm"
