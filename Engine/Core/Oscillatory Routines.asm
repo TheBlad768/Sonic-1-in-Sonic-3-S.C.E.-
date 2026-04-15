@@ -25,7 +25,7 @@ ChangeRingFrame:
 		andi.b	#7,(Rings_frame).w						; max 8 frames
 
 		; dynamic ring graphics
-		moveq	#0,d1
+		moveq	#0,d1								; clear d1 for Add_To_DMA_Queue
 		move.b	(Rings_frame).w,d1
 		lsl.w	#6,d1								; multiply by $40
 		addi.l	#dmaSource(ArtUnc_Ring),d1					; get next frame
@@ -53,7 +53,7 @@ ChangeRingFrame:
 		subq.b	#1,(Ring_spill_anim_counter).w
 
 		; dynamic ring graphics
-		moveq	#0,d1
+		moveq	#0,d1								; clear d1 for Add_To_DMA_Queue
 		move.b	(Ring_spill_anim_frame).w,d1
 		lsl.w	#6,d1								; multiply by $40
 		addi.l	#dmaSource(ArtUnc_Ring),d1					; get next frame
