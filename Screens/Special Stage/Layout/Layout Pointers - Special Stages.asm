@@ -2,7 +2,7 @@
 ; Special Stage layout pointers
 ; ---------------------------------------------------------------------------
 
-SS_LayoutIndex:
+SpecialStage_LayoutIndex:
 		dc.l SS_1
 		dc.l SS_2
 		dc.l SS_3

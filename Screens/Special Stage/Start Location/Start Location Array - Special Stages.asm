@@ -2,7 +2,7 @@
 ; Special Stage start locations
 ; ---------------------------------------------------------------------------
 
-SS_StartLoc:
+SpecialStage_StartLocation:
 		binclude "Screens/Special Stage/Start Location/1.bin"
 		binclude "Screens/Special Stage/Start Location/2.bin"
 		binclude "Screens/Special Stage/Start Location/3.bin"

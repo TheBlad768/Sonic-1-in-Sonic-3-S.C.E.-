@@ -59,8 +59,8 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtUnc_SSRing, "Screens/Special Stage/Uncompressed Art/Rings.unc"
-		incfile.ba	ArtUnc_SSWalls, "Screens/Special Stage/Uncompressed Art/Walls.unc"
+		incfile.ba	ArtUnc_SpecialStageRing, "Screens/Special Stage/Uncompressed Art/Rings.unc"
+		incfile.ba	ArtUnc_SpecialStageWalls, "Screens/Special Stage/Uncompressed Art/Walls.unc"
 
 ; ===========================================================================
 ; Uncompressed Ending screen graphics

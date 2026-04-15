@@ -39,7 +39,7 @@ Debug_Mode:
 		bclr	#status.player.pushing,status(a0)
 		cmpi.b	#GameModeID_SpecialStageScreen,(Game_mode).w			; is game mode Special Stage?
 		bne.s	.notspecial							; if yes, branch
-		move.l	d0,(SStage_scalar_index_0).w					; clear stage angle to "upright" and stage rotation speed
+		move.l	d0,(SpecialStage.angle).w					; clear stage angle to "upright" and stage rotation speed
 		bra.s	.control
 ; ---------------------------------------------------------------------------
 
@@ -72,8 +72,8 @@ Debug_Mode:
 		enableInts
 		cmpi.b	#GameModeID_SpecialStageScreen,(Game_mode).w			; is game mode Special Stage?
 		bne.s	.notspecial2							; if not, branch
-		clr.w	(SStage_scalar_index_0).w					; set stage angle to "upright"
-		move.w	#$40,(SStage_scalar_index_1).w					; set stage rotation speed
+		clr.w	(SpecialStage.angle).w						; set stage angle to "upright"
+		move.w	#$40,(SpecialStage.speed).w					; set stage rotation speed
 
 .notspecial2
 		move.l	(Debug_saved_mappings).w,mappings(a0)				; restore mappings

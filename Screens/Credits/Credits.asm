@@ -919,10 +919,10 @@ ObjDat_CreditsEggRobo_ScrapMetal:	subObjMainData Draw_Sprite, setBit(render_flag
 ObjDat_CreditsEggRobo_Eyes:		subObjMainData Obj_CreditsEggRobo_Eyes.refresh, setBit(render_flags.level), 0, 16, 16, 3, $232, 0, FALSE, Map_CreditsEggRobo
 
 PLC_Credits: plrlistheader
-		plreq $100, ArtKosPM_SmallTextCredits
-		plreq $182, ArtKosPM_RobotnikCredits
-		plreq $232, ArtKosPM_EggRoboCredits
-		plreq $2D3, ArtKosPM_EmeraldsEnding
+		plreq $100, ArtKosPM_CreditsSmallText
+		plreq $182, ArtKosPM_CreditsRobotnik
+		plreq $232, ArtKosPM_CreditsEggRobo
+		plreq $2D3, ArtKosPM_EndingEmeralds
 		plrlistend
 ; ---------------------------------------------------------------------------
 
