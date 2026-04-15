@@ -721,43 +721,8 @@ Obj_Continue_EggRobo_Gun:
 		bclr	#render_flags.level,render_flags(a0)				; clear screen coordinates flag
 
 .main
-		pea	(Child_Draw_Sprite).w
-
-; =============== S U B R O U T I N E =======================================
-
-Refresh_ChildPositionAdjusted_Continue:
-		movea.w	parent3(a0),a1							; a1=parent object
-
-.skipp
-		move.w	x_pos(a1),d0
-		move.b	child_dx(a0),d1
-		ext.w	d1
-		bclr	#render_flags.x_flip,render_flags(a0)
-		btst	#render_flags.x_flip,render_flags(a1)
-		beq.s	.notflipx
-		neg.w	d1
-		bset	#render_flags.x_flip,render_flags(a0)
-
-.notflipx
-		add.w	d1,d0
-		move.w	d0,x_pos(a0)
-		move.w	objoff_32(a1),d0
-		bne.s	.skipypos
-		move.w	y_pos(a1),d0
-
-.skipypos
-		move.b	child_dy(a0),d1
-		ext.w	d1
-		bclr	#render_flags.y_flip,render_flags(a0)
-		btst	#render_flags.y_flip,render_flags(a1)
-		beq.s	.notflipy
-		neg.w	d1
-		bset	#render_flags.y_flip,render_flags(a0)
-
-.notflipy
-		add.w	d1,d0
-		move.w	d0,y_pos(a0)
-		rts
+		jsr	(Refresh_ChildPositionAdjusted).w
+		jmp	(Child_Draw_Sprite).w
 
 ; ---------------------------------------------------------------------------
 ; Stars (Object)
