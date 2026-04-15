@@ -820,7 +820,7 @@ SpecialStage_AniWallsRings:
 		andi.b	#7,(SpecialStage.rings_frame).w					; max 8 frames
 
 		; dynamic ring graphics
-		moveq	#0,d1
+		moveq	#0,d1								; clear d1 for Add_To_DMA_Queue
 		move.b	(SpecialStage.rings_frame).w,d1
 		lsl.w	#6,d1								; multiply by $40
 		add.l	#dmaSource(ArtUnc_SpecialStageRing),d1				; get next frame
