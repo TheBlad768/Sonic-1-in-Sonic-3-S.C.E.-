@@ -269,8 +269,8 @@ Obj_SidewaysStomper_Spikes:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_SidewaysStomper:	subObjData Map_SidewaysStomper, $328, 0, FALSE, 64, 256, 3, 1, 0
-ObjDat_SidewaysStomper_Spikes:	subObjData FALSE, FALSE, 0, FALSE, 40, 32, 4, 2, 0
+ObjDat_SidewaysStomper:	subObjData Map_SidewaysStomper, $328, 0, FALSE, 64, 256, 3, 1, collision_type.npc.none, 0, 0
+ObjDat_SidewaysStomper_Spikes:	subObjData FALSE, FALSE, 0, FALSE, 40, 32, 4, 2, collision_type.npc.none, 0, 0
 
 Child6_SidewaysStomper_Spikes:
 		dc.w 1-1

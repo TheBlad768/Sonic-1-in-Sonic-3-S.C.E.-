@@ -352,7 +352,7 @@ ObjDat_ChainedStomper:	subObjMainData \
 					setBit(render_flags.multi_sprite), \
 				0, 424, 112, 4, $328, 0, FALSE, Map_ChainedStomper
 
-ObjDat_ChainedStomper_Spikes:	subObjData FALSE, FALSE, 0, FALSE, 32, 96, 5, 2, 0
+ObjDat_ChainedStomper_Spikes:	subObjData FALSE, FALSE, 0, FALSE, 32, 96, 5, 2, collision_type.npc.none, 0, 0
 
 Child6_ChainedStomper_Spikes:
 		dc.w 1-1

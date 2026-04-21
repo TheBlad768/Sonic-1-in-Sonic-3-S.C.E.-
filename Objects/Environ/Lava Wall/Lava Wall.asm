@@ -20,9 +20,13 @@ Obj_LavaWall:
 		movem.l	ObjDat_LavaWall(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
-		move.b	#1,mapping_frame(a0)
-		move.b	#$14|collision_flags.npc.hurt,collision_flags(a0)			; set lava wall collision
-		move.w	#1,mainspr_childsprites(a0)					; set sub objects
+		move.b	#collision_type.npc.hurt,collision_type(a0)			; set lava wall collision type
+		move.w	#bytes_to_word(64/2,128/2),collision_height(a0)			; set height and width collision
+
+		; set
+		moveq	#1,d0
+		move.b	d0,mapping_frame(a0)
+		move.w	d0,mainspr_childsprites(a0)					; set sub objects
 
 		; set sub object xpos
 		moveq	#signextendB(128),d1						; subtract 128 pixels

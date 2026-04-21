@@ -444,7 +444,7 @@ angle							ds.w 1				; byte/word ; angle about axis into plane of the screen (0
 ; Extended object variables
 ; ---------------------------------------------------------------------------
 
-collision_flags						ds.b 1				; byte ; collision response type ; TT SSSSSS ; TT = collision type, SSSSSS = size
+collision_type						ds.b 1				; byte ; collision type
 collision_property					ds.b 1				; byte ; usage varies, bosses use it as a hit counter
 collision_height					ds.b 1				; byte ; collision height / 2
 collision_width						ds.b 1				; byte ; collision width / 2
@@ -539,7 +539,7 @@ ground_vel =						objoff_1C			; word ; overall velocity along ground, not update
 double_jump_property					ds.b 1				; byte ; remaining frames of flight / 2 for Tails, gliding-related for Knuckles
 							ds.b 1				; skip angle
 flip_angle						ds.b 1				; byte ; angle about horizontal axis (360 degrees = 256)
-							ds.b 5				; skip collision_flags, collision_property, collision_height, collision_width, status
+							ds.b 5				; skip collision_type, collision_property, collision_height, collision_width, status
 status_secondary					ds.b 1				; byte
 air_left						ds.b 1				; byte
 flip_type						ds.b 1				; byte ; bit 7 set means flipping is inverted, lower bits control flipping type
@@ -595,7 +595,7 @@ obFrame =						mapping_frame			; byte ; current frame displayed
 obAniFrame =						anim_frame			; byte
 obTimeFrame =						anim_frame_timer		; byte
 obAngle =						angle				; byte/word
-obColType =						collision_flags			; byte ; collision response type ; TT SSSSSS ; TT = collision type, SSSSSS = size
+obColType =						collision_type			; byte ; collision type
 obColProp =						collision_property		; byte ; usage varies, bosses use it as a hit counter
 obStatus =						status				; byte ; orientation or mode
 obSubtype =						subtype				; byte/word ; object subtype
@@ -653,7 +653,7 @@ sub3_y_pos						ds.w 1				; (2 bytes) ; anim and prev_anim
 sub3_mapframe						ds.b 1				; (1 byte) ; anim_frame
 sub4_x_pos						ds.w 1				; (2 bytes) ; anim_frame_timer and boss_saved_collision
 sub4_y_pos						ds.w 1				; (2 bytes) ; angle
-							ds.b 1				; even ; collision_flags
+							ds.b 1				; even ; collision_type
 sub4_mapframe						ds.b 1				; (1 byte) ; collision_property
 sub5_x_pos						ds.w 1				; (2 bytes) ; status and shield_reaction
 sub5_y_pos						ds.w 1				; (2 bytes) ; subtype
@@ -804,13 +804,18 @@ status.npc.defeated =					7				; set if a player defeated the enemy or boss
 ; Object collision variables
 ; ---------------------------------------------------------------------------
 
-collision_flags.npc.touch =				(0<<6)
-collision_flags.npc.item =				(1<<6)
-collision_flags.npc.hurt =				(2<<6)
-collision_flags.npc.special =				(3<<6)
+offset := Touch_Index
+ptrsize := 1
+idstart := 2
 
-collision_flags.npc.size_mask =				$3F
-collision_flags.npc.type_mask =				$C0
+collision_type.npc.none =				0				; 00
+collision_type.npc.touch =				id(ptr_Touch_Enemy)		; 06
+collision_type.npc.hurt =				id(ptr_Touch_Harmful)		; 08
+collision_type.npc.double =				id(ptr_Touch_ChkDouble)		; 0A
+collision_type.npc.ring =				id(ptr_Touch_Ring)		; 02
+collision_type.npc.monitor =				id(ptr_Touch_Monitor)		; 04
+collision_type.npc.caterkiller =			id(ptr_Touch_Caterkiller)	; 0C
+collision_type.npc.yadrin =				id(ptr_Touch_Yadrin)		; 0E
 
 ; ---------------------------------------------------------------------------
 ; Object respawn variables

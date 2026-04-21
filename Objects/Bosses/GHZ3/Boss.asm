@@ -141,7 +141,7 @@ BossBall_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 		; check touch
-		tst.b	collision_flags(a0)						; are boss's collisions enabled?
+		tst.b	collision_type(a0)						; are boss's collisions enabled?
 		bne.s	.return								; if yes, branch
 		tst.b	collision_property(a0)						; has boss run out of hits?
 		beq.s	BossBall_Defeated						; if yes, branch
@@ -162,7 +162,7 @@ BossBall_MainProcess:
 		subq.b	#1,boss_invulnerable_time(a0)					; decrease boss invincibility timer
 		bne.s	.return
 		bclr	#status.npc.touch,status(a0)					; clear "boss hit" flag
-		move.b	boss_saved_collision(a0),collision_flags(a0)			; if invincibility ended, allow collision again
+		move.b	boss_saved_collision(a0),collision_type(a0)			; if invincibility ended, allow collision again
 
 .return
 		rts
@@ -402,7 +402,7 @@ Obj_BossBall_Ball:
 		addq.w	#1,y_pos(a0)
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.angle
-		move.b	#$F|collision_flags.npc.hurt,collision_flags(a0)		; set collision
+		move.b	#collision_type.npc.hurt,collision_type(a0)			; set ball collision type
 		move.l	#.circular,code_addr(a0)
 
 .circular
@@ -515,10 +515,10 @@ Obj_BossBall_Scaled:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BossBall_Crane:		subObjData Map_GiantBall_Crane, $494, 0, FALSE, 16, 16, 6, 0, 0
-ObjDat_BossBall_Chain:		subObjData Map_GiantBall_Crane, $498, 0, FALSE, 16, 16, 6, 0, 0
-ObjDat_BossBall_Ball:		subObjData Map_GiantBall, $49C, 2, FALSE, 64, 64, 5, 0, 0
-ObjDat_BossBall_Scaled:		subObjData Map_ScaledArt, $340, 0, FALSE, 128, 128, 1, 0, 0
+ObjDat_BossBall_Crane:		subObjData Map_GiantBall_Crane, $494, 0, FALSE, 16, 16, 6, 0, collision_type.npc.none, 0, 0
+ObjDat_BossBall_Chain:		subObjData Map_GiantBall_Crane, $498, 0, FALSE, 16, 16, 6, 0, collision_type.npc.none, 0, 0
+ObjDat_BossBall_Ball:		subObjData Map_GiantBall, $49C, 2, FALSE, 64, 64, 5, 0, collision_type.npc.none, 48, 48
+ObjDat_BossBall_Scaled:		subObjData Map_ScaledArt, $340, 0, FALSE, 128, 128, 1, 0, collision_type.npc.none, 0, 0
 
 ; dplc
 PLCPtr_BossBall_Ball:		DPLCEntry ArtUnc_GiantBall, DPLC_GiantBall

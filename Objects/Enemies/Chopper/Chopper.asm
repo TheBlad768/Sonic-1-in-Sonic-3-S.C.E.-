@@ -48,7 +48,7 @@ Obj_Chopper:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Chopper:		subObjData Map_Chopper, $4EC, 0, FALSE, 32, 32, 4, 0, 9|collision_flags.npc.touch
+ObjDat_Chopper:		subObjData Map_Chopper, $4EC, 0, FALSE, 32, 32, 4, 0, collision_type.npc.touch, 32, 24
 ; ---------------------------------------------------------------------------
 
 		; mappings

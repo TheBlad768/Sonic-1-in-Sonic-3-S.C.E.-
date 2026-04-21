@@ -20,7 +20,8 @@ Obj_SpikeBall_LZ:
 		movem.l	ObjDat_SpikeBall_LZ(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.b	#1,mapping_frame(a0)
-		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
+		move.b	#collision_type.npc.hurt,collision_type(a0)			; set spike ball collision type
+		move.w	#bytes_to_word(16/2,16/2),collision_height(a0)			; set height and width collision
 		move.w	x_pos(a0),spikeball_lz.origX(a0)
 		move.w	y_pos(a0),spikeball_lz.origY(a0)
 

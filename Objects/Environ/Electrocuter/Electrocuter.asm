@@ -54,7 +54,7 @@ Obj_Electrocuter:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Electrocuter:		subObjData Map_Electrocuter, $529, 0, FALSE, 32, 80, 1, 0, $24|collision_flags.npc.hurt
+ObjDat_Electrocuter:		subObjData Map_Electrocuter, $529, 0, FALSE, 32, 80, 1, 0, collision_type.npc.hurt, 16, 144
 ; ---------------------------------------------------------------------------
 
 		; mappings

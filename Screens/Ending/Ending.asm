@@ -648,11 +648,11 @@ Redraw_EndingChunks:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_SonicEnding:	subObjData Map_SonicEnding, $3E1, 0, FALSE, 38, 18, 2, 0, 0
+ObjDat_SonicEnding:	subObjData Map_SonicEnding, $3E1, 0, FALSE, 38, 18, 2, 0, collision_type.npc.none, 0, 0
 			dc.l Ani_ESonic, PLCPtr_SonicEnding
-ObjDat_TailsEnding:	subObjData Map_TailsEnding, $3E1, 0, FALSE, 30, 18, 2, 0, 0
+ObjDat_TailsEnding:	subObjData Map_TailsEnding, $3E1, 0, FALSE, 30, 18, 2, 0, collision_type.npc.none, 0, 0
 			dc.l Ani_ETails, PLCPtr_TailsEnding
-ObjDat_KnuxEnding:	subObjData Map_KnucklesEnding, $3E1, 0, FALSE, 38, 18, 2, 0, 0
+ObjDat_KnuxEnding:	subObjData Map_KnucklesEnding, $3E1, 0, FALSE, 38, 18, 2, 0, collision_type.npc.none, 0, 0
 			dc.l Ani_EKnuckles, PLCPtr_KnucklesEnding
 
 ; dplc

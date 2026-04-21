@@ -61,7 +61,7 @@ Obj_Waterfall:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Waterfalls:	subObjData Map_Waterfall, $259, 2, FALSE, 48, 48, 1, 0, 0
+ObjDat_Waterfalls:	subObjData Map_Waterfall, $259, 2, FALSE, 48, 48, 1, 0, collision_type.npc.none, 0, 0
 
 AniRaw_WFall:	dc.b 5, 9, $A, $B, arfEnd
 	even

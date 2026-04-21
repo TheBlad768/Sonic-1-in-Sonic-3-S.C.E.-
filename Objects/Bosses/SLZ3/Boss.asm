@@ -172,7 +172,7 @@ BossSpikeBall_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 		; check touch
-		tst.b	collision_flags(a0)						; are boss's collisions enabled?
+		tst.b	collision_type(a0)						; are boss's collisions enabled?
 		bne.s	.return								; if yes, branch
 		tst.b	collision_property(a0)						; has boss run out of hits?
 		beq.s	BossSpikeBall_Defeated						; if yes, branch
@@ -193,7 +193,7 @@ BossSpikeBall_MainProcess:
 		subq.b	#1,boss_invulnerable_time(a0)					; decrease boss invincibility timer
 		bne.s	.return
 		bclr	#status.npc.touch,status(a0)					; clear "boss hit" flag
-		move.b	boss_saved_collision(a0),collision_flags(a0)			; if invincibility ended, allow collision again
+		move.b	boss_saved_collision(a0),collision_type(a0)			; if invincibility ended, allow collision again
 
 .return
 		rts
@@ -511,8 +511,8 @@ Obj_BossSpikeBall_SpikeBall:
 		beq.s	.loc_18F38
 		move.l	#BossSpikeBall_SpikeBall_Explode,code_addr(a0)
 		clr.w	wait_timer(a0)							; timer
-		move.b	collision_flags(a1),boss_saved_collision(a1)
-		clr.b	collision_flags(a1)
+		move.b	collision_type(a1),boss_saved_collision(a1)
+		clr.b	collision_type(a1)						; remove collision
 		subq.b	#1,collision_property(a1)
 		bne.s	.loc_18F38
 		bset	#status.npc.defeated,status(a1)
@@ -703,9 +703,9 @@ Obj_BossSpikeBall_SpikeBall_Shrapnel:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BossSpikeBall_Ship:			subObjData Map_RobotnikShip, $3B0, 1, FALSE, 64, 64, 4, $C, $F|collision_flags.npc.touch
-ObjDat_BossSpikeBall_ShipTube:			subObjData Map_BossSpikeBall_Tube, $440, 1, FALSE, 8, 32, 3, 0, 0
-ObjDat_RobotnikShip_SpikeBall_Shrapnel:		subObjData Map_Bomb, $4C1, 0, TRUE, 8, 8, 2, $A, $18|collision_flags.npc.hurt
+ObjDat_BossSpikeBall_Ship:			subObjData Map_RobotnikShip, $3B0, 1, FALSE, 64, 64, 4, $C, collision_type.npc.touch, 48, 48
+ObjDat_BossSpikeBall_ShipTube:			subObjData Map_BossSpikeBall_Tube, $440, 1, FALSE, 8, 32, 3, 0, collision_type.npc.none, 0, 0
+ObjDat_RobotnikShip_SpikeBall_Shrapnel:		subObjData Map_Bomb, $4C1, 0, TRUE, 8, 8, 2, $A, collision_type.npc.hurt, 8, 8
 
 Child1_BossSpikeBall_ShipTube:
 		dc.w 1-1

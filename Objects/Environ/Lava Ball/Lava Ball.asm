@@ -90,7 +90,8 @@ Obj_LavaBall:
 		move.w	#make_art_tile($434,0,FALSE),art_tile(a0)			; SLZ specific code
 
 .notSLZ
-		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
+		move.b	#collision_type.npc.hurt,collision_type(a0)			; set lava ball collision type
+		move.w	#bytes_to_word(16/2,16/2),collision_height(a0)			; set height and width collision
 		bset	#shield_reaction.fire_shield,shield_reaction(a0)
 
 		; check MZ boss

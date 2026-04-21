@@ -146,7 +146,7 @@ Obj_Burrobot:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Burrobot:	subObjData Map_Burrobot, $510, 0, FALSE, 38, 16, 4, 0, 5|collision_flags.npc.touch
+ObjDat_Burrobot:	subObjData Map_Burrobot, $510, 0, FALSE, 38, 16, 4, 0, collision_type.npc.touch, 36, 24
 ; ---------------------------------------------------------------------------
 
 		; mappings

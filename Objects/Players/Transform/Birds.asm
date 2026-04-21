@@ -182,14 +182,14 @@ SuperTailsBirds_GetDestination:
 		sub.w	d2,d0
 		addi.w	#12,d0
 		cmpi.w	#12*2,d0
-		bhs.s	.enemy_out_of_range
+		bhs.s	.return
 
 		; check ypos
 		move.w	y_pos(a0),d1
 		sub.w	d3,d1
 		addi.w	#12,d1
 		cmpi.w	#12*2,d1
-		bhs.s	.enemy_out_of_range
+		bhs.s	.return
 		bsr.s	.hit_enemy
 
 .enemy_off_screen
@@ -200,21 +200,27 @@ SuperTailsBirds_GetDestination:
 		move.b	d0,superTailsBirds.found(a0)
 		move.b	#2*60,superTailsBirds.timer(a0)					; only search for enemies every two seconds (probably to reduce lag)
 
-.enemy_out_of_range
+.return
 		rts
 
 ; =============== S U B R O U T I N E =======================================
 
-.hit_enemy
-		move.b	collision_flags(a1),d0
-		beq.s	.no_collision							; if object has no collision, give up
-		andi.b	#$C0,d0
-		beq.s	.enemy
-		cmpi.b	#$C0,d0
-		beq.s	.special
+.index
+		bra.s	.enemy								; 2
+		bra.s	.return								; 4
+		bra.s	.special							; 6
+		bra.s	.return								; 8
+		bra.s	.return								; A
+		bra.s	.special							; C
+		bra.s	.special							; E
+; ---------------------------------------------------------------------------
 
-.no_collision
-		rts
+.hit_enemy
+
+		; load
+		moveq	#0,d0
+		move.b	collision_type(a1),d0
+		jmp	.index-2(pc,d0.w)
 ; ---------------------------------------------------------------------------
 
 .enemy
@@ -222,9 +228,9 @@ SuperTailsBirds_GetDestination:
 		; boss related? could be special enemies in general
 		tst.b	collision_property(a1)
 		beq.s	.destroy_enemy
-		move.b	collision_flags(a1),boss_saved_collision(a1)			; save current collision
+		move.b	collision_type(a1),boss_saved_collision(a1)			; save current collision type
 		move.b	#Player_2&$FF,boss_saved_player(a1)				; save value of RAM address of which player hit the boss
-		clr.b	collision_flags(a1)
+		clr.b	collision_type(a1)						; remove collision
 
 	if BossDebug
 		clr.b	boss_hitcount(a1)
@@ -363,7 +369,7 @@ SuperTailsBirds_FindTarget:
 		movea.w	(a4)+,a1							; get address of first object's RAM
 		tst.b	render_flags(a1)						; is the object visible on the screen?
 		bpl.s	.ignore_object							; if not, branch
-		move.b	collision_flags(a1),d0						; get its collision flags
+		tst.b	collision_type(a1)						; test collision type
 		beq.s	.ignore_object							; if there is no collision here, branch
 		bsr.s	.check_if_object_valid
 
@@ -376,13 +382,27 @@ SuperTailsBirds_FindTarget:
 
 ; =============== S U B R O U T I N E =======================================
 
+.index
+		bra.s	.valid								; 2
+		bra.s	.return								; 4
+		bra.s	.valid								; 6
+		bra.s	.return								; 8
+		bra.s	.return								; A
+		bra.s	.valid								; C
+		bra.s	.valid								; E
+; ---------------------------------------------------------------------------
+
 .check_if_object_valid
+
+		; check
 		tst.b	superTailsBirds.locked(a1)
 		bne.s	.return
-		andi.b	#$C0,d0
-		beq.s	.valid
-		cmpi.b	#$C0,d0
-		bne.s	.return
+
+		; load
+		moveq	#0,d0
+		move.b	collision_type(a1),d0
+		jmp	.index-2(pc,d0.w)
+; ---------------------------------------------------------------------------
 
 .valid
 		st	superTailsBirds.locked(a1)

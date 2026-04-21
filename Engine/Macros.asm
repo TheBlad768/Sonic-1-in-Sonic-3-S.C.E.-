@@ -240,7 +240,7 @@ msbzcount_{"\{msbzcur}"} = msbzcount - 1
 ; ---------------------------------------------------------------------------
 
 ; macro to declare sub-object data
-subObjData macro mappings=FALSE,vram=FALSE,pal,pri,height,width,prio,frame,collision
+subObjData macro mappings=FALSE,vram=FALSE,pal,pri,height,width,prio,frame,coltype,colh,colw
     if upstring("mappings")<>"FALSE"
 	dc.l mappings
     endif
@@ -249,20 +249,20 @@ subObjData macro mappings=FALSE,vram=FALSE,pal,pri,height,width,prio,frame,colli
     endif
 	dc.b (height/2),(width/2)
 	dc.w sprite_priority(prio)
-	dc.b frame,collision
+	dc.b frame,coltype,(colh/2),(colw/2)
     endm
 
 ; macro to declare sub-object slotted data
-subObjSlotData macro slots,vram,pal,pri,offset,index,mappings,height,width,prio,frame,collision
+subObjSlotData macro slots,vram,pal,pri,offset,index,mappings,height,width,prio,frame,coltype,colh,colw
 	dc.w slots,make_art_tile(vram,pal,pri),offset,index
 	dc.l mappings
 	dc.b (height/2),(width/2)
 	dc.w sprite_priority(prio)
-	dc.b frame,collision
+	dc.b frame,coltype,(colh/2),(colw/2)
     endm
 
 ; macro to declare sub-object data
-subObjMainData macro addr=FALSE,render,routine,height,width,prio,vram,pal,pri,mappings,frame,collision
+subObjMainData macro addr=FALSE,render,routine,height,width,prio,vram,pal,pri,mappings,frame,coltype,colh,colw
     if upstring("addr")<>"FALSE"
 	dc.l addr
     endif
@@ -272,8 +272,8 @@ subObjMainData macro addr=FALSE,render,routine,height,width,prio,vram,pal,pri,ma
     ifnb frame
 	dc.b frame
     endif
-    ifnb collision
-	dc.b collision
+    ifnb coltype
+	dc.b coltype,(colh/2),(colw/2)
     endif
     endm
 

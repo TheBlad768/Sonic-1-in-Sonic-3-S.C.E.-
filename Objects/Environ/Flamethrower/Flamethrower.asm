@@ -73,7 +73,7 @@ Obj_Flamethrower:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Flamethrower:		subObjData Map_Flamethrower, $562, 0, TRUE, 40, 24, 1, 0, $23|collision_flags.npc.hurt
+ObjDat_Flamethrower:		subObjData Map_Flamethrower, $562, 0, TRUE, 40, 24, 1, 0, collision_type.npc.hurt, 48, 24
 ; ---------------------------------------------------------------------------
 
 		; mappings

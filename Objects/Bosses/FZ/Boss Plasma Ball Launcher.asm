@@ -203,8 +203,8 @@ Obj_BossFinal_PlasmaBall:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BossFinal_Plasma:	subObjData Map_PLaunch, $300, 0, FALSE, 16, 16, 3, 0, 0
-ObjDat_BossFinal_PlasmaBall:	subObjData Map_Plasma, $300, 1, FALSE, 24, 24, 3, 0, $1A|collision_flags.npc.hurt
+ObjDat_BossFinal_Plasma:	subObjData Map_PLaunch, $300, 0, FALSE, 16, 16, 3, 0, collision_type.npc.none, 0, 0
+ObjDat_BossFinal_PlasmaBall:	subObjData Map_Plasma, $300, 1, FALSE, 24, 24, 3, 0, collision_type.npc.hurt, 24, 24
 
 Child6_BossFinal_Plasma:
 		dc.w 1-1

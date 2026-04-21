@@ -114,7 +114,7 @@ Yadrin_CheckWall:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Yadrin:		subObjData Map_Yadrin, $3BE, 1, FALSE, 34, 40, 4, 0, $C|collision_flags.npc.special
+ObjDat_Yadrin:		subObjData Map_Yadrin, $3BE, 1, FALSE, 34, 40, 4, 0, collision_type.npc.caterkiller, 32, 40
 ; ---------------------------------------------------------------------------
 
 		; mappings
