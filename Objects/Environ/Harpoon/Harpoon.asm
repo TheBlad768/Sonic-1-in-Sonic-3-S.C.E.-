@@ -23,16 +23,28 @@ Obj_Harpoon:
 		jsr	(Animate_SpriteNoSST).w
 		moveq	#0,d0
 		move.b	mapping_frame(a0),d0						; get frame number
-		move.b	.types(pc,d0.w),collision_flags(a0)				; get collision type
+		add.w	d0,d0
+		move.w	.sizes(pc,d0.w),collision_height(a0)				; get collision height and width
+
+		; check
 		tst.b	routine(a0)							; changed by Animate_Sprite
 		bne.s	.routine
 		jmp	(Sprite_OnScreen_Test_Collision).w
 ; ---------------------------------------------------------------------------
 
-.types
-		dc.b $1B|collision_flags.npc.hurt, $1C|collision_flags.npc.hurt, $1D|collision_flags.npc.hurt	; horizontal
-		dc.b $1E|collision_flags.npc.hurt, $1F|collision_flags.npc.hurt, $20|collision_flags.npc.hurt	; vertical
-	even
+.sizes
+
+		; height, width
+
+		; horizontal
+		dc.b 8/2, 16/2
+		dc.b 8/2, 48/2
+		dc.b 8/2, 80/2
+
+		; vertical
+		dc.b 16/2, 8/2
+		dc.b 48/2, 8/2
+		dc.b 80/2, 8/2
 ; ---------------------------------------------------------------------------
 
 .routine
@@ -58,7 +70,7 @@ Obj_Harpoon_end
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Harpoon:		subObjData Map_Harpoon, $3CC, 0, FALSE, 40, 16, 4, 0, 0
+ObjDat_Harpoon:		subObjData Map_Harpoon, $3CC, 0, FALSE, 40, 16, 4, 0, collision_type.npc.hurt, 8, 8
 ; ---------------------------------------------------------------------------
 
 		; mappings

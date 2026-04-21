@@ -55,7 +55,7 @@ Obj_Roller:
 		move.l	#.chkjump,wait_addr(a0)
 		move.b	#2,anim(a0)
 		move.w	#$700,x_vel(a0)							; move Roller horizontally
-		move.b	#$E|collision_flags.npc.hurt,collision_flags(a0)		; make Roller invincible
+		move.b	#collision_type.npc.hurt,collision_type(a0)			; set roller collision type
 
 .skip
 		addq.w	#4,sp								; exit from current object
@@ -69,7 +69,7 @@ Obj_Roller:
 		bpl.s	.return
 		move.b	#1,anim(a0)
 		move.w	#$700,x_vel(a0)
-		move.b	#$E|collision_flags.npc.hurt,collision_flags(a0)
+		move.b	#collision_type.npc.hurt,collision_type(a0)			; set roller collision type
 
 .return
 		rts
@@ -81,7 +81,7 @@ Obj_Roller:
 ; ---------------------------------------------------------------------------
 
 .chkjump
-		bsr.s	Roll_Stop
+		bsr.s	Roller_Stop
 		jsr	(MoveSprite2).w
 		jsr	(ObjCheckFloorDist).w
 		cmpi.w	#-8,d1
@@ -118,7 +118,7 @@ Obj_Roller:
 
 ; =============== S U B R O U T I N E =======================================
 
-Roll_Stop:
+Roller_Stop:
 		tst.b	roller.mode(a0)
 		bmi.s	.return
 		moveq	#-(96/2),d0
@@ -126,8 +126,8 @@ Roll_Stop:
 		sub.w	x_pos(a0),d0
 		bhs.s	.return
 		clr.b	anim(a0)
-		move.b	#$E|collision_flags.npc.touch,collision_flags(a0)
 		clr.w	x_vel(a0)
+		move.b	#collision_type.npc.touch,collision_type(a0)			; set roller collision type
 		move.w	#2*60,roller.timer(a0)						; set waiting time to 2 seconds
 		bset	#7,roller.mode(a0)
 		move.l	#Obj_Roller.rollnochk,wait_addr(a0)
@@ -138,7 +138,7 @@ Roll_Stop:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Roller:		subObjData Map_Roller, $4F0, 0, FALSE, 28, 32, 4, 0, 0
+ObjDat_Roller:		subObjData Map_Roller, $4F0, 0, FALSE, 28, 32, 4, 0, collision_type.npc.hurt, 28, 28
 ; ---------------------------------------------------------------------------
 
 		; mappings

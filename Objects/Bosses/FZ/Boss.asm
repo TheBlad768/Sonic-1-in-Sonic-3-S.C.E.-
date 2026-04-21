@@ -124,7 +124,7 @@ BossFinal_MoveCylinders:
 
 		; set
 		clr.b	boss_invulnerable_time(a0)
-		st	collision_flags(a0)
+		st	collision_type(a0)
 		move.b	#2,count(a0)							; set 2 cylinders count
 		sfx	sfx_Rumbling
 
@@ -204,7 +204,7 @@ BossFinal_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 		; check touch flag
-		tst.b	collision_flags(a0)
+		tst.b	collision_type(a0)
 		beq.s	.return
 
 		; check touch
@@ -257,7 +257,7 @@ BossFinal_MainProcess:
 		bne.s	.return
 		bclr	#status.npc.touch,status(a0)					; clear "boss hit" flag
 		move.b	#1,anim(a0)							; set laugh anim
-		clr.b	collision_flags(a0)
+		clr.b	collision_type(a0)						; remove collision
 
 .return
 		rts
@@ -541,12 +541,13 @@ Obj_BossFinal_RobotnikShip:
 		move.w	d0,y_pos(a0)
 		move.l	#words_to_long($180,-$18),x_vel(a0)				; x_vel + y_vel
 		move.l	#.checktouch,code_addr(a0)
-		move.b	#$F|collision_flags.npc.touch,collision_flags(a0)
+		move.b	#collision_type.npc.touch,collision_type(a0)			; set ship collision type
+		move.w	#bytes_to_word(48/2,48/2),collision_height(a0)			; set height and width collision
 
 .checktouch
 		tst.b	collision_property(a0)
 		bne.s	.chkdel
-		clr.b	collision_flags(a0)
+		clr.b	collision_type(a0)						; remove collision
 		bset	#status.npc.defeated,status(a0)					; set defeated flag
 		move.l	#.chkdel,code_addr(a0)
 		move.w	#$60,y_vel(a0)
@@ -677,11 +678,11 @@ Obj_BossFinal_CheckPlayers:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BossFinal_Eggman:		subObjData Map_ScrapEggman, $2B0, 0, FALSE, 56, 56, 4, 0, 0
-ObjDat_BossFinal_EggRobo:		subObjData Map_ScrapEggRobo, $2B0, 0, FALSE, 56, 56, 4, 0, 0
-ObjDat_BossFinal_ControlDesk:		subObjData Map_EggCyl, $300, 0, FALSE, 16, 32, 0, $B, 0
-ObjDat_BossFinal_RobotnikShip:		subObjData Map_RobotnikShip, $3A0, 0, FALSE, 64, 64, 4, $C, 0
-ObjDat_BossFinal_RobotnikShipStand:	subObjData Map_RobotnikShipStand, $420, 0, FALSE, 24, 56, 3, 0, 0
+ObjDat_BossFinal_Eggman:		subObjData Map_ScrapEggman, $2B0, 0, FALSE, 56, 56, 4, 0, collision_type.npc.none, 0, 0
+ObjDat_BossFinal_EggRobo:		subObjData Map_ScrapEggRobo, $2B0, 0, FALSE, 56, 56, 4, 0, collision_type.npc.none, 0, 0
+ObjDat_BossFinal_ControlDesk:		subObjData Map_EggCyl, $300, 0, FALSE, 16, 32, 0, $B, collision_type.npc.none, 0, 0
+ObjDat_BossFinal_RobotnikShip:		subObjData Map_RobotnikShip, $3A0, 0, FALSE, 64, 64, 4, $C, collision_type.npc.none, 0, 0
+ObjDat_BossFinal_RobotnikShipStand:	subObjData Map_RobotnikShipStand, $420, 0, FALSE, 24, 56, 3, 0, collision_type.npc.none, 0, 0
 
 Child11_BossFinal_AfterBoss:
 		dc.w 3-1

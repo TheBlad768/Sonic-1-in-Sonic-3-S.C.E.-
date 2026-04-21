@@ -344,7 +344,7 @@ Seesaw_LaunchCharacter:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Seesaw_SpikeBall:	subObjData Map_SeesawSpikeBall, $4EE, 0, FALSE, 24, 24, 4, 1, $B|collision_flags.npc.hurt
+ObjDat_Seesaw_SpikeBall:	subObjData Map_SeesawSpikeBall, $4EE, 0, FALSE, 24, 24, 4, 1, collision_type.npc.hurt, 16, 16
 
 Child6_Seesaw_SpikeBall:
 		dc.w 1-1

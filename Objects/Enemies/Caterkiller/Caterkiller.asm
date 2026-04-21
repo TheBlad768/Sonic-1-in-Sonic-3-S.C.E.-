@@ -355,8 +355,8 @@ Caterkiller_FragHead:									; head
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Caterkiller:		subObjData Map_Caterkiller, $552, 1, FALSE, 32, 16, 4, 0, $B|collision_flags.npc.touch
-ObjDat3_Caterkiller_BodySeg:	subObjData FALSE, FALSE, 0, FALSE, 32, 16, 5, 8, $B|collision_flags.npc.special
+ObjDat_Caterkiller:		subObjData Map_Caterkiller, $552, 1, FALSE, 32, 16, 4, 0, collision_type.npc.touch, 16, 16
+ObjDat3_Caterkiller_BodySeg:	subObjData FALSE, FALSE, 0, FALSE, 32, 16, 5, 8, collision_type.npc.caterkiller, 16, 16
 
 Child8_Caterkiller_FragBody:
 		dc.w 3-1

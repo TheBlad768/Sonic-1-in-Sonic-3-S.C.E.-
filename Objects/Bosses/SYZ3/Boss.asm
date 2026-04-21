@@ -324,7 +324,7 @@ BossBlock_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 		; check touch
-		tst.b	collision_flags(a0)						; are boss's collisions enabled?
+		tst.b	collision_type(a0)						; are boss's collisions enabled?
 		bne.s	.return								; if yes, branch
 		tst.b	collision_property(a0)						; has boss run out of hits?
 		beq.s	BossBlock_Defeated						; if yes, branch
@@ -345,7 +345,7 @@ BossBlock_MainProcess:
 		subq.b	#1,boss_invulnerable_time(a0)					; decrease boss invincibility timer
 		bne.s	.return
 		bclr	#status.npc.touch,status(a0)					; clear "boss hit" flag
-		move.b	boss_saved_collision(a0),collision_flags(a0)			; if invincibility ended, allow collision again
+		move.b	boss_saved_collision(a0),collision_type(a0)			; if invincibility ended, allow collision again
 
 .return
 		rts
@@ -648,8 +648,8 @@ BossBlock_BreakChunkBlock:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BossBlock_Spike:		subObjData Map_BossSYZBlockSpike, $400, 0, FALSE, 32, 32, 5, 0, 4|collision_flags.npc.hurt
-ObjDat_BossBlock_Block:		subObjData Map_BossSYZBlock, $406, 2, TRUE, 32, 32, 4, 0, 0
+ObjDat_BossBlock_Spike:		subObjData Map_BossSYZBlockSpike, $400, 0, FALSE, 32, 32, 5, 0, collision_type.npc.hurt, 32, 8
+ObjDat_BossBlock_Block:		subObjData Map_BossSYZBlock, $406, 2, TRUE, 32, 32, 4, 0, collision_type.npc.none, 0, 0
 
 Child1_BossBlock_Spike:
 		dc.w 1-1

@@ -141,8 +141,8 @@ Obj_Orbinaut_Orb:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Orbinaut:		subObjData Map_Orbinaut, $55B, 0, FALSE, 24, 24, 4, 0, $B|collision_flags.npc.touch
-ObjDat3_Orbinaut_Orb:		subObjData FALSE, FALSE, 0, FALSE, 16, 16, 4, 0, $18|collision_flags.npc.hurt
+ObjDat_Orbinaut:		subObjData Map_Orbinaut, $55B, 0, FALSE, 24, 24, 4, 0, collision_type.npc.touch, 16, 16
+ObjDat3_Orbinaut_Orb:		subObjData FALSE, FALSE, 0, FALSE, 16, 16, 4, 0, collision_type.npc.hurt, 8, 8
 
 Child6_Orbinaut_Orb:
 		dc.w 4-1

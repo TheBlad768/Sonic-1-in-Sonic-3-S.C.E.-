@@ -229,7 +229,7 @@ BossFire_MainProcess:
 ; =============== S U B R O U T I N E =======================================
 
 		; check touch
-		tst.b	collision_flags(a0)						; are boss's collisions enabled?
+		tst.b	collision_type(a0)						; are boss's collisions enabled?
 		bne.s	.return								; if yes, branch
 		tst.b	collision_property(a0)						; has boss run out of hits?
 		beq.s	BossFire_Defeated						; if yes, branch
@@ -250,7 +250,7 @@ BossFire_MainProcess:
 		subq.b	#1,boss_invulnerable_time(a0)					; decrease boss invincibility timer
 		bne.s	.return
 		bclr	#status.npc.touch,status(a0)					; clear "boss hit" flag
-		move.b	boss_saved_collision(a0),collision_flags(a0)			; if invincibility ended, allow collision again
+		move.b	boss_saved_collision(a0),collision_type(a0)			; if invincibility ended, allow collision again
 
 .return
 		rts
@@ -415,7 +415,8 @@ Obj_BossFire_Fire:
 		; check
 		tst.b	subtype(a0)
 		bne.s	loc_1870A
-		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
+		move.b	#collision_type.npc.hurt,collision_type(a0)			; set fire collision type
+		move.w	#bytes_to_word(16/2,16/2),collision_height(a0)			; set height and width collision
 		move.l	#loc_18886,code_addr(a0)
 		bra.w	loc_18886
 ; ---------------------------------------------------------------------------
@@ -441,7 +442,8 @@ Obj74_Drop:
 		; check
 		subq.b	#1,bossfire_fire.timer(a0)
 		bpl.s	.return
-		move.b	#$B|collision_flags.npc.hurt,collision_flags(a0)
+		move.b	#collision_type.npc.hurt,collision_type(a0)			; set fire collision type
+		move.w	#bytes_to_word(16/2,16/2),collision_height(a0)			; set height and width collision
 		clr.b	subtype(a0)
 		addi.w	#$18,y_vel(a0)
 		bclr	#status.npc.y_flip,status(a0)
@@ -584,7 +586,7 @@ loc_18886:
 		bne.s	.anim
 		move.b	#1,anim(a0)
 		subq.w	#4,y_pos(a0)
-		clr.b	collision_flags(a0)
+		clr.b	collision_type(a0)						; remove collision
 
 .anim
 		lea	Ani_LavaBall(pc),a1
@@ -675,10 +677,10 @@ Obj_BossFire_Scaled:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BossFire_Fire:			subObjData Map_LavaBall, $298, 0, FALSE, 16, 16, 5, 0, 0
-ObjDat_BossFire_ShipTube:		subObjData Map_BossFire_Tube, $420, 1, FALSE, 32, 48, 3, 0, 0
-ObjDat_BossFire_ShipTubeFlame:		subObjData Map_BossFire_Tube, $420, 1, FALSE, 8, 16, 5, 1, 0
-ObjDat_BossFire_Scaled:			subObjData Map_ScaledArt, $340, 0, FALSE, 128, 128, 6, 0, 0
+ObjDat_BossFire_Fire:			subObjData Map_LavaBall, $298, 0, FALSE, 16, 16, 5, 0, collision_type.npc.none, 0, 0
+ObjDat_BossFire_ShipTube:		subObjData Map_BossFire_Tube, $420, 1, FALSE, 32, 48, 3, 0, collision_type.npc.none, 0, 0
+ObjDat_BossFire_ShipTubeFlame:		subObjData Map_BossFire_Tube, $420, 1, FALSE, 8, 16, 5, 1, collision_type.npc.none, 0, 0
+ObjDat_BossFire_Scaled:			subObjData Map_ScaledArt, $340, 0, FALSE, 128, 128, 6, 0, collision_type.npc.none, 0, 0
 
 Child1_BossFire_ShipTube:
 		dc.w 2-1

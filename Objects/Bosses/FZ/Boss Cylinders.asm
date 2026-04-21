@@ -267,7 +267,7 @@ EggmanCylinder_Movement:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BossFinal_Cylinder:	subObjData Map_EggCyl, $300, 0, FALSE, 192, 64, 3, 0, 0
+ObjDat_BossFinal_Cylinder:	subObjData Map_EggCyl, $300, 0, FALSE, 192, 64, 3, 0, collision_type.npc.none, 0, 0
 
 Child6_BossFinal_Cylinder:
 		dc.w 4-1

@@ -86,7 +86,8 @@ Obj_Newtron:
 .fall
 		cmpi.b	#1,mapping_frame(a0)
 		bne.s	.checkfall
-		move.b	#$C|collision_flags.npc.touch,collision_flags(a0)
+		move.b	#collision_type.npc.touch,collision_type(a0)			; set newtron collision type
+		move.w	#bytes_to_word(32/2,40/2),collision_height(a0)			; set height and width collision
 
 .checkfall
 		MoveSpriteYOnly
@@ -102,7 +103,10 @@ Obj_Newtron:
 		addq.b	#1,anim(a0)
 
 .notgreen
-		move.b	#$D|collision_flags.npc.touch,collision_flags(a0)
+		move.b	#collision_type.npc.touch,collision_type(a0)			; set newtron collision type
+		move.w	#bytes_to_word(16/2,40/2),collision_height(a0)			; set height and width collision
+
+		; set x velocity
 		move.w	#$200,x_vel(a0)							; move newtron horizontally
 		btst	#status.npc.x_flip,status(a0)
 		bne.s	.keepfalling
@@ -132,7 +136,8 @@ Obj_Newtron:
 .type01
 		cmpi.b	#1,mapping_frame(a0)
 		bne.s	.firemissile
-		move.b	#$C|collision_flags.npc.touch,collision_flags(a0)
+		move.b	#collision_type.npc.touch,collision_type(a0)			; set newtron collision type
+		move.w	#bytes_to_word(32/2,40/2),collision_height(a0)			; set height and width collision
 
 .firemissile
 		cmpi.b	#2,mapping_frame(a0)
@@ -176,7 +181,7 @@ Obj_Newtron:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Newtron:		subObjData Map_Newtron, $50C, 0, FALSE, 32, 40, 4, 0, 0
+ObjDat_Newtron:		subObjData Map_Newtron, $50C, 0, FALSE, 32, 40, 4, 0, collision_type.npc.none, 0, 0
 ; ---------------------------------------------------------------------------
 
 		; mappings

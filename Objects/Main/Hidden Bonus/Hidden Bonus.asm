@@ -52,7 +52,7 @@ Obj_HiddenBonus:
 
 .draw
 		subq.w	#1,wait_timer(a0)						; decrement display time
-		bmi.s	.delete								; if time is zero, branch
+		bmi.s	.delete								; if timer has run out, branch
 
 		; delete the object and do not create it again
 		out_of_xrange.s	.delete
@@ -65,7 +65,7 @@ Obj_HiddenBonus:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_HiddenBonus:	subObjData Map_HiddenBonus, $460, 0, TRUE, 32, 32, 1, 0, 0
+ObjDat_HiddenBonus:	subObjData Map_HiddenBonus, $460, 0, TRUE, 32, 32, 1, 0, collision_type.npc.none, 0, 0
 ; ---------------------------------------------------------------------------
 
 		; mappings

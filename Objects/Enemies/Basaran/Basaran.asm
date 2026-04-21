@@ -130,7 +130,7 @@ Obj_Basaran:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Basaran:		subObjData Map_Basaran, $529, 0, TRUE, 24, 32, 2, 0, $B|collision_flags.npc.touch
+ObjDat_Basaran:		subObjData Map_Basaran, $529, 0, TRUE, 24, 32, 2, 0, collision_type.npc.touch, 16, 16
 ; ---------------------------------------------------------------------------
 
 		; mappings

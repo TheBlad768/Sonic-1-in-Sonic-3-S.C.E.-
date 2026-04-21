@@ -40,7 +40,8 @@ Obj_SwingingPlatform:
 		move.l	#Map_SwingingPlatform_SLZ,d1
 		move.w	#make_art_tile($3A6,2,FALSE),d0
 		move.w	#bytes_to_word(32/2,64/2),height_pixels(a0)			; set height and width
-		move.b	#$19|collision_flags.npc.hurt,collision_flags(a0)
+		move.b	#collision_type.npc.hurt,collision_type(a0)			; set swinging spike platform collision type
+		move.w	#bytes_to_word(16/2,64/2),collision_height(a0)			; set height and width collision
 
 .notSLZ
 
@@ -50,7 +51,8 @@ Obj_SwingingPlatform:
 		move.l	#Map_SwingingPlatform_SBZ,d1
 		move.w	#make_art_tile($448,0,FALSE),d0
 		move.w	#bytes_to_word(48/2,48/2),height_pixels(a0)			; set height and width
-		move.b	#6|collision_flags.npc.hurt,collision_flags(a0)
+		move.b	#collision_type.npc.hurt,collision_type(a0)			; set swinging spike collision type
+		move.w	#bytes_to_word(32/2,32/2),collision_height(a0)			; set height and width collision
 
 .notSBZ
 		move.w	d0,art_tile(a0)

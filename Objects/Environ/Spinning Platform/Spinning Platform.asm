@@ -156,8 +156,8 @@ Obj_SpinningPlatform:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Trapdoor:		subObjData Map_Trapdoor, $43F8, 2, FALSE, 128, 128, 1, 0, 0
-ObjDat_SpinningPlatform:	subObjData Map_SpinningPlatform, $3C8, 0, FALSE, 14, 32, 1, 0, 0
+ObjDat_Trapdoor:		subObjData Map_Trapdoor, $43F8, 2, FALSE, 128, 128, 1, 0, collision_type.npc.none, 0, 0
+ObjDat_SpinningPlatform:	subObjData Map_SpinningPlatform, $3C8, 0, FALSE, 14, 32, 1, 0, collision_type.npc.none, 0, 0
 ; ---------------------------------------------------------------------------
 
 		; mappings

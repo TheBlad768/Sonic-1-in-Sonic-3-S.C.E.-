@@ -110,7 +110,7 @@ Obj_BuzzBomber:
 		rts
 
 ; ---------------------------------------------------------------------------
-; Object 23 - missile that Buzz Bomber throws
+; Object 23 - missile that Buzz Bomber and Newtron throws
 ; ---------------------------------------------------------------------------
 
 ; dynamic object variables
@@ -135,7 +135,6 @@ Obj_Missile:
 .wait
 		subq.w	#1,buzzbomber.timer(a0)						; subtract 1 from time delay
 		bpl.s	.notdraw
-		move.b	#7|collision_flags.npc.hurt,collision_flags(a0)
 		move.l	#.frombuzz,code_addr(a0)
 
 		; check
@@ -178,8 +177,8 @@ Obj_Missile:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_BuzzBomber:		subObjData Map_BuzzBomber, $440, 0, FALSE, 48, 48, 3, 0, 8|collision_flags.npc.touch
-ObjDat_BuzzBomber_Missile:	subObjData Map_Missile, $440, 1, FALSE, 16, 16, 3, 0, 0
+ObjDat_BuzzBomber:		subObjData Map_BuzzBomber, $440, 0, FALSE, 48, 48, 3, 0, collision_type.npc.touch, 24, 48
+ObjDat_BuzzBomber_Missile:	subObjData Map_Missile, $440, 1, FALSE, 16, 16, 3, 0, collision_type.npc.hurt, 12, 12
 ; ---------------------------------------------------------------------------
 
 		; mappings

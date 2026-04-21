@@ -76,7 +76,7 @@ Obj_Jaws:
 ; =============== S U B R O U T I N E =======================================
 
 ; init
-ObjDat_Jaws:	subObjData Map_Jaws, $4F0, 1, FALSE, 32, 64, 4, 0, $A|collision_flags.npc.touch
+ObjDat_Jaws:	subObjData Map_Jaws, $4F0, 1, FALSE, 32, 64, 4, 0, collision_type.npc.touch, 16, 32
 ; ---------------------------------------------------------------------------
 
 		; mappings

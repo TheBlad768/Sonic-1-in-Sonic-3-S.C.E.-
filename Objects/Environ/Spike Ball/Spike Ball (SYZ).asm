@@ -17,7 +17,8 @@ Obj_SpikeBall_SYZ:
 		; init
 		movem.l	ObjDat_SpikeBall_SYZ(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
-		move.b	#$18|collision_flags.npc.hurt,collision_flags(a0)		; SYZ specific code (chain hurts Sonic)
+		move.b	#collision_type.npc.hurt,collision_type(a0)			; set spike ball collision type
+		move.w	#bytes_to_word(8/2,8/2),collision_height(a0)			; set height and width collision
 
 		; subtype
 		moveq	#signextendB($F0),d1						; read only the 1st digit
@@ -72,7 +73,8 @@ Obj_SpikeBall_SYZ_Child:
 		movea.w	parent4(a0),a1							; a1=parent object
 		move.b	render_flags(a1),render_flags(a0)				; copy render flags
 		move.l	height_pixels(a1),height_pixels(a0)				; copy height, width and priority
-		move.b	collision_flags(a1),collision_flags(a0)				; copy collision flags
+		move.b	collision_type(a1),collision_type(a0)				; copy collision type
+		move.w	collision_height(a1),collision_height(a0)			; copy collision height and width
 		move.l	#.main,code_addr(a0)
 
 .main
