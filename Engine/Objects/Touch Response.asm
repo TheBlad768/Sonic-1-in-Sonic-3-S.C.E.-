@@ -524,7 +524,7 @@ HurtCharacter:
 ;.notfire
 ;		move.b	d0,anim(a0)							; set hurt anim
 
-		move.b	#AniIDSonAni_Hurt2,anim(a0)
+		move.b	#AniIDSonAni_Hurt2,anim(a0)					; set hurt anim
 		move.b	#2*60,invulnerability_timer(a0)					; set temp invincible time to 2 seconds
 
 		; check
