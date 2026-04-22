@@ -809,11 +809,11 @@ ptrsize := 1
 idstart := 2
 
 collision_type.npc.none =				0				; 00
-collision_type.npc.touch =				id(ptr_Touch_Enemy)		; 06
-collision_type.npc.hurt =				id(ptr_Touch_Harmful)		; 08
-collision_type.npc.double =				id(ptr_Touch_ChkDouble)		; 0A
-collision_type.npc.ring =				id(ptr_Touch_Ring)		; 02
-collision_type.npc.monitor =				id(ptr_Touch_Monitor)		; 04
+collision_type.npc.touch =				id(ptr_Touch_Enemy)		; 02
+collision_type.npc.hurt =				id(ptr_Touch_Harmful)		; 04
+collision_type.npc.double =				id(ptr_Touch_ChkDouble)		; 06
+collision_type.npc.ring =				id(ptr_Touch_Ring)		; 08
+collision_type.npc.monitor =				id(ptr_Touch_Monitor)		; 0A
 collision_type.npc.caterkiller =			id(ptr_Touch_Caterkiller)	; 0C
 collision_type.npc.yadrin =				id(ptr_Touch_Yadrin)		; 0E
 
