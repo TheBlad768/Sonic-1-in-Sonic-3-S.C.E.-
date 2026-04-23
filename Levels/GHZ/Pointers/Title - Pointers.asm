@@ -17,8 +17,8 @@ LevelLoadPointer_Title:
 
 		; Level setup
 		dc.l 0									; Foreground init
-		dc.l Title_BackgroundInit						; Background init
 		dc.l 0									; Foreground event
+		dc.l Title_BackgroundInit						; Background init
 		dc.l Title_BackgroundEvent						; Background event
 
 		; Animate tiles

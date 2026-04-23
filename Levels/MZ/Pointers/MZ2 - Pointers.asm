@@ -13,8 +13,8 @@
 
 		; Level setup
 		dc.l MZ1_ForegroundInit							; Foreground init
-		dc.l MZ1_BackgroundInit							; Background init
 		dc.l Draw_FGAsYouMove							; Foreground event
+		dc.l MZ1_BackgroundInit							; Background init
 		dc.l MZ1_BackgroundEvent						; Background event
 
 		; Animate tiles

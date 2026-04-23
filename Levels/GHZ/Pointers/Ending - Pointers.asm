@@ -17,8 +17,8 @@ LevelLoadPointer_Ending:
 
 		; Level setup
 		dc.l GHZ1_ForegroundInit						; Foreground init
-		dc.l Ending_BackgroundInit						; Background init
 		dc.l Draw_FGAsYouMove							; Foreground event
+		dc.l Ending_BackgroundInit						; Background init
 		dc.l Ending_BackgroundEvent						; Background event
 
 		; Animate tiles

@@ -13,8 +13,8 @@
 
 		; Level setup
 		dc.l SBZ2_ForegroundInit						; Foreground init
-		dc.l SBZ2_BackgroundInit						; Background init
 		dc.l SBZ2_ForegroundEvent						; Foreground event
+		dc.l SBZ2_BackgroundInit						; Background init
 		dc.l SBZ2_BackgroundEvent						; Background event
 
 		; Animate tiles

@@ -13,8 +13,8 @@
 
 		; Level setup
 		dc.l SLZ1_ForegroundInit						; Foreground init
-		dc.l SLZ1_BackgroundInit						; Background init
 		dc.l Draw_FGAsYouMove							; Foreground event
+		dc.l SLZ1_BackgroundInit						; Background init
 		dc.l SLZ1_BackgroundEvent						; Background event
 
 		; Animate tiles
