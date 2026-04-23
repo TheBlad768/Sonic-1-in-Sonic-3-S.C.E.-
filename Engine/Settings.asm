@@ -19,6 +19,7 @@ GameDebug =						1				; if 1, enable debug mode for player
 GameDebugAlt =						0				; if 1, enable alt debug mode for player
 RollInAir =						1				; if 1, enable roll in air for players
 PlayerMoveLock =					0				; if 1, lock control during the fall animation (Android, Mania, Origins style...)
+PlayerBWanim =						0				; if 1, enable black and white hurt/death animation
 OriginalMode =						0				; if 1, disable Spin Dash and Insta Shield (Sonic 1 style)
 SonKnuxTransform =					1				; if 1, enable Super/Hyper transformation
 CheckChaosEmer =					0				; if 1, check the number of emeralds to transformation
