@@ -515,16 +515,19 @@ HurtCharacter:
 .isleft
 		clr.w	ground_vel(a0)
 
+	if PlayerBWanim
 		; set anim
-;		moveq	#AniIDSonAni_Hurt2,d0						; normal anim
-;		btst	#status_secondary.fire_shield,shield_reaction(a2)
-;		beq.s	.notfire
-;		moveq	#AniIDSonAni_HurtBW,d0						; fire anim
+		moveq	#AniIDSonAni_Hurt2,d0						; normal anim
+		btst	#status_secondary.fire_shield,shield_reaction(a2)
+		beq.s	.notfire
+		moveq	#AniIDSonAni_HurtBW,d0						; fire anim
 
-;.notfire
-;		move.b	d0,anim(a0)							; set hurt anim
-
+.notfire
+		move.b	d0,anim(a0)							; set hurt anim
+	else
 		move.b	#AniIDSonAni_Hurt2,anim(a0)					; set hurt anim
+	endif
+
 		move.b	#2*60,invulnerability_timer(a0)					; set temp invincible time to 2 seconds
 
 		; check
@@ -580,16 +583,19 @@ Kill_Character:
 		clr.w	x_vel(a0)
 		clr.w	ground_vel(a0)
 
+	if PlayerBWanim
 		; set anim
-;		moveq	#AniIDSonAni_Death,d1						; normal anim
-;		btst	#status_secondary.fire_shield,shield_reaction(a2)
-;		beq.s	.notfire
-;		moveq	#AniIDSonAni_DeathBW,d1						; fire anim
+		moveq	#AniIDSonAni_Death,d1						; normal anim
+		btst	#status_secondary.fire_shield,shield_reaction(a2)
+		beq.s	.notfire
+		moveq	#AniIDSonAni_DeathBW,d1						; fire anim
 
-;.notfire
-;		move.b	d1,anim(a0)							; set death anim
-
+.notfire
+		move.b	d1,anim(a0)							; set death anim
+	else
 		move.b	#AniIDSonAni_Death,anim(a0)
+	endif
+
 		cmpa.w	#Player_1,a0							; is this the main character?
 		bne.s	.notp1								; if not, branch
 		move.l	priority(a0),(Debug_saved_priority).w				; save priority and art_tile
