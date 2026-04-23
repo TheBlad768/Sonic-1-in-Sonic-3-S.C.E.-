@@ -171,7 +171,7 @@ loc_165D8:
 .anim
 		btst	#1,object_control(a0)
 		bne.s	.touch
-		bsr.w	Animate_Knuckles
+		bsr.w	Knuckles_Animate
 		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
 		beq.s	.plc								; if not, branch
 		eori.b	#setBit(render_flags.y_flip),render_flags(a0)
@@ -2669,7 +2669,7 @@ Knuckles_Drown:
 ; =============== S U B R O U T I N E =======================================
 
 sub_17D1E:
-		bsr.s	Animate_Knuckles
+		bsr.s	Knuckles_Animate
 		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
 		beq.s	loc_17D2C							; if not, branch
 		eori.b	#setBit(render_flags.y_flip),render_flags(a0)
@@ -2679,7 +2679,7 @@ loc_17D2C:
 
 ; =============== S U B R O U T I N E =======================================
 
-Animate_Knuckles:
+Knuckles_Animate:
 		lea	(AniKnuckles).l,a1
 		moveq	#0,d0
 		move.b	anim(a0),d0

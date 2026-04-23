@@ -299,7 +299,7 @@ Obj_Continue_SonicWTails:
 ; ---------------------------------------------------------------------------
 
 .waitrun
-		jsr	(Animate_Sonic).l
+		jsr	(Sonic_Animate).l
 		subq.w	#1,wait_timer(a0)
 		bmi.s	.startrun
 		bra.s	.draw
@@ -311,7 +311,7 @@ Obj_Continue_SonicWTails:
 ; ---------------------------------------------------------------------------
 
 .run
-		jsr	(Animate_Sonic).l
+		jsr	(Sonic_Animate).l
 		addq.w	#6,x_pos(a0)
 		cmpi.w	#$80+(320+32),x_pos(a0)
 		bhs.s	.stoprun
@@ -456,7 +456,7 @@ Obj_Continue_TailsWSonic:
 		move.l	#.run,code_addr(a0)
 
 .anim
-		jsr	(Animate_Tails).l
+		jsr	(Tails_Animate).l
 		jsr	(Tails_Load_PLC).l
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
