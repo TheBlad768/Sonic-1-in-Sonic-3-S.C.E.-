@@ -55,17 +55,17 @@ SpecialStagePlayer_Animate:
 		; check character
 		move.b	character_id(a0),d0						; is Sonic?
 		bne.s	.isTails							; if not, branch
-		jmp	(Animate_Sonic).l
+		jmp	(Sonic_Animate).l
 ; ---------------------------------------------------------------------------
 
 .isTails
 		cmpi.b	#PlayerID_Tails,d0						; is Tails?
 		bne.s	.isKnux								; if not, branch
-		jmp	(Animate_Tails).l
+		jmp	(Tails_Animate).l
 ; ---------------------------------------------------------------------------
 
 .isKnux
-		jmp	(Animate_Knuckles).l
+		jmp	(Knuckles_Animate).l
 
 ; ---------------------------------------------------------------------------
 ; Player index

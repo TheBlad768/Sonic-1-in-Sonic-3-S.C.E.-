@@ -229,7 +229,7 @@ loc_1388C:
 .anim
 		btst	#1,object_control(a0)
 		bne.s	.touch
-		bsr.w	Animate_Tails
+		bsr.w	Tails_Animate
 		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
 		beq.s	.plc								; if not, branch
 		eori.b	#setBit(render_flags.y_flip),render_flags(a0)
@@ -3229,7 +3229,7 @@ loc_15828:
 ; =============== S U B R O U T I N E =======================================
 
 sub_15842:
-		bsr.s	Animate_Tails
+		bsr.s	Tails_Animate
 		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
 		beq.s	loc_15856							; if not, branch
 		eori.b	#setBit(render_flags.y_flip),render_flags(a0)
@@ -3239,7 +3239,7 @@ loc_15856:
 
 ; =============== S U B R O U T I N E =======================================
 
-Animate_Tails:
+Tails_Animate:
 		lea	(AniTails).l,a1
 
 Animate_Tails_Part2:
