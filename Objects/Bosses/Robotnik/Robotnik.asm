@@ -83,7 +83,7 @@ Load_EggRoboHead:
 		move.w	art_tile(a1),d2
 		andi.w	#$7FF,d2
 		lsl.w	#5,d2								; multiply by $20
-		lea	(ArtKosPM_EggRoboHead).l,a1
+		lea	(ArtKosPlusM_EggRoboHead).l,a1
 		jmp	(Queue_KosPlus_Module).w
 
 ; ---------------------------------------------------------------------------

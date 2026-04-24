@@ -690,9 +690,9 @@ Child1_BossFire_ShipTube:
 		dc.b 29, 10
 
 PLC_BossFire: plrlistheader
-		plreq $380, ArtKosPM_RobotnikShip2
-		plreq $420, ArtKosPM_BossFireTube
-		plreq $500, ArtKosPM_BossExplosion
+		plreq $380, ArtKosPlusM_RobotnikShip2
+		plreq $420, ArtKosPlusM_BossFireTube
+		plreq $500, ArtKosPlusM_BossExplosion
 		plrlistend
 ; ---------------------------------------------------------------------------
 

@@ -660,10 +660,10 @@ Child6_BossSYZBlock_FlickerMove:
 		dc.l Obj_BossSYZBlock_FlickerMove
 
 PLC_BossBlock: plrlistheader
-		plreq $380, ArtKosPM_RobotnikShip2
-		plreq $400, ArtKosPM_SYZSpike
-		plreq $406, ArtKosPM_SYZBlock
-		plreq $500, ArtKosPM_BossExplosion
+		plreq $380, ArtKosPlusM_RobotnikShip2
+		plreq $400, ArtKosPlusM_SYZSpike
+		plreq $406, ArtKosPlusM_SYZBlock
+		plreq $500, ArtKosPlusM_BossExplosion
 		plrlistend
 ; ---------------------------------------------------------------------------
 

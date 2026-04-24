@@ -12,9 +12,9 @@ namespace S3KObjectDefinitions.MZ
 
 		public override void Init(ObjectData data)
 		{
-			byte[] blocks = ObjectHelper.OpenArtFile("../../Objects/Environ/Chained Stomper/KosinskiPM Art/Metal Blocks.kospm", CompressionType.KosinskiPlusM);
+			byte[] blocks = ObjectHelper.OpenArtFile("../../Objects/Environ/Chained Stomper/KosinskiPlusM Art/Metal Blocks.kospm", CompressionType.KosinskiPlusM);
 			byte[] padding = new byte[0x2B80-blocks.Length];
-			byte[] spikes = ObjectHelper.OpenArtFile("../../Objects/Main/Spikes/KosinskiPM Art/Spikes and Springs.kospm", CompressionType.KosinskiPlusM);
+			byte[] spikes = ObjectHelper.OpenArtFile("../../Objects/Main/Spikes/KosinskiPlusM Art/Spikes and Springs.kospm", CompressionType.KosinskiPlusM);
 			List<byte> tmpartfile = new List<byte>();
 			tmpartfile.AddRange(blocks);
 			tmpartfile.AddRange(padding);

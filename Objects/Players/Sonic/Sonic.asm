@@ -2746,7 +2746,7 @@ loc_12478:
 		music	mus_GameOver							; play the Game Over song
 
 		; load game over art
-		QueueKosPlusModule	ArtKosPM_GameOver, ArtTile_Shield, 1
+		QueueKosPlusModule	ArtKosPlusM_GameOver, ArtTile_Shield, 1
 ; ---------------------------------------------------------------------------
 
 loc_12498:

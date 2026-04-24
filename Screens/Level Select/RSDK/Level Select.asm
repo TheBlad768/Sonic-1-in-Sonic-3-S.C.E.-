@@ -704,7 +704,7 @@ LevelSelectRSDK_MainText:
 ; =============== S U B R O U T I N E =======================================
 
 PLC_LevelSelectRSDK: plrlistheader
-		plreq 1, ArtKosPM_OptionsText
-		plreq $30, ArtKosPM_LevelSelectRSDKIcons
-		plreq $60, ArtKosPM_LevelSelectRSDKBG
+		plreq 1, ArtKosPlusM_OptionsText
+		plreq $30, ArtKosPlusM_LevelSelectRSDKIcons
+		plreq $60, ArtKosPlusM_LevelSelectRSDKBG
 		plrlistend

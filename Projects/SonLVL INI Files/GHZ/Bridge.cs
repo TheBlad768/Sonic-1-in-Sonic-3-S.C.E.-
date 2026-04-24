@@ -12,7 +12,7 @@ namespace S3KObjectDefinitions.GHZ
 
 		public override void Init(ObjectData data)
 		{
-			byte[] artfile = ObjectHelper.OpenArtFile("../../Objects/Environ/Bridge/KosinskiPM Art/Bridge.kospm", CompressionType.KosinskiPlusM);
+			byte[] artfile = ObjectHelper.OpenArtFile("../../Objects/Environ/Bridge/KosinskiPlusM Art/Bridge.kospm", CompressionType.KosinskiPlusM);
 			img = ObjectHelper.MapASMToBmp(artfile, "../../Objects/Environ/Bridge/Object Data/Map - Tension Bridge.asm", 0, 2);
 		}
 

@@ -156,7 +156,7 @@ BigRing_Display:
 		move.w	#$EE,(Normal_palette_line_2+$E).w				; restore the part of the palette that was changed
 
 		; restore explosion art
-		QueueKosPlusModule	ArtKosPM_Explosion, ArtTile_Explosion		; restore the overwritten badnik explosion art
+		QueueKosPlusModule	ArtKosPlusM_Explosion, ArtTile_Explosion		; restore the overwritten badnik explosion art
 
 		; delete
 		jmp	(Go_Delete_SpriteSlotted).w

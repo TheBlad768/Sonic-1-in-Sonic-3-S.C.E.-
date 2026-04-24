@@ -11,7 +11,7 @@ namespace S3KObjectDefinitions.SBZ
 
 		public override void Init(ObjectData data)
 		{
-			byte[] artfile = ObjectHelper.OpenArtFile("../../Objects/Environ/Flamethrower/KosinskiPM Art/Flaming Pipe.kospm", CompressionType.KosinskiPlusM);
+			byte[] artfile = ObjectHelper.OpenArtFile("../../Objects/Environ/Flamethrower/KosinskiPlusM Art/Flaming Pipe.kospm", CompressionType.KosinskiPlusM);
 			for (int i = 0; i < labels.Length; i++)
 				imgs.Add(ObjectHelper.MapASMToBmp(artfile, "../../Objects/Environ/Flamethrower/Object Data/Map - Flamethrower.asm", labels[i], 0));
 		}

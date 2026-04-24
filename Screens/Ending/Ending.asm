@@ -670,16 +670,16 @@ PLCPtr_KnucklesEnding:	DPLCEntry ArtUnc_KnucklesEnding, DPLC_KnucklesEnding
 
 PLC_Ending: plrlistheader
 		plreq 0, GHZ_8x8_KosPM
-		plreq $3A0, ArtKosPM_EndingFlowers
-		plreq $3C5, ArtKosPM_EndingEmeralds
-		plreq $480, ArtKosPM_EndingStHLogo
-		plreq $553, ArtKosPM_Rabbit
-		plreq $565, ArtKosPM_Chicken
-		plreq $573, ArtKosPM_Penguin
-		plreq $585, ArtKosPM_Seal
-		plreq $593, ArtKosPM_Pig
-		plreq $5A5, ArtKosPM_BlueFlicky
-		plreq $5B3, ArtKosPM_Squirrel
+		plreq $3A0, ArtKosPlusM_EndingFlowers
+		plreq $3C5, ArtKosPlusM_EndingEmeralds
+		plreq $480, ArtKosPlusM_EndingStHLogo
+		plreq $553, ArtKosPlusM_Rabbit
+		plreq $565, ArtKosPlusM_Chicken
+		plreq $573, ArtKosPlusM_Penguin
+		plreq $585, ArtKosPlusM_Seal
+		plreq $593, ArtKosPlusM_Pig
+		plreq $5A5, ArtKosPlusM_BlueFlicky
+		plreq $5B3, ArtKosPlusM_Squirrel
 		plrlistend
 ; ---------------------------------------------------------------------------
 

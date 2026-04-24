@@ -52,7 +52,7 @@ TitleScreen:
 		jsr	(LoadLevelPointer.load).w
 
 		; load text art
-		lea	(ArtKosPM_TitleText).l,a1
+		lea	(ArtKosPlusM_TitleText).l,a1
 		tst.b	(Japan_credits_flag).w						; check cheat
 		beq.s	.notcheat
 
@@ -61,7 +61,7 @@ TitleScreen:
 		copyTilemap	VRAM_Plane_B_Name_Table, 320, 224
 
 		; load credits text art
-		lea	(ArtKosPM_TitleCredits).l,a1
+		lea	(ArtKosPlusM_TitleCredits).l,a1
 
 .notcheat
 		move.w	#tiles_to_bytes($540),d2
@@ -613,8 +613,8 @@ PLCPtr_TSon:	DPLCEntry ArtUnc_TitleSonic, DPLC_TSon
 
 PLC_Title: plrlistheader
 		plreq 0, GHZ_8x8_KosPM
-		plreq $200, ArtKosPM_TitleFG
-		plreq $510, ArtKosPM_OptionsText
+		plreq $200, ArtKosPlusM_TitleFG
+		plreq $510, ArtKosPlusM_OptionsText
 		plrlistend
 ; ---------------------------------------------------------------------------
 

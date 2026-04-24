@@ -2,7 +2,7 @@
 <ObjDef xmlns="http://www.sonicretro.org" Name="Jaws" Image="jaws">
   <Images>
     <ImageFromMappings id="jaws">
-      <ArtFile filename="../../Objects/Enemies/Jaws/KosinskiPM Art/Enemy Jaws.kospm" compression="KosinskiPlusM" />
+      <ArtFile filename="../../Objects/Enemies/Jaws/KosinskiPlusM Art/Enemy Jaws.kospm" compression="KosinskiPlusM" />
       <MapFile type="ASM" filename="../../Objects/Enemies/Jaws/Object Data/Map - Jaws.asm" frame="0" startpal="1"/>
     </ImageFromMappings>
   </Images>

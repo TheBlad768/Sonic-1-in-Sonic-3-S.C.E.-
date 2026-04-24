@@ -530,9 +530,9 @@ Child9_GHZBall:
 		dc.l Obj_BossBall_Ball		; A
 
 PLC_BossBall: plrlistheader
-		plreq $380, ArtKosPM_RobotnikShip2
-		plreq $494, ArtKosPM_BossCrane
-		plreq $500, ArtKosPM_BossExplosion
+		plreq $380, ArtKosPlusM_RobotnikShip2
+		plreq $494, ArtKosPlusM_BossCrane
+		plreq $500, ArtKosPlusM_BossExplosion
 		plrlistend
 ; ---------------------------------------------------------------------------
 

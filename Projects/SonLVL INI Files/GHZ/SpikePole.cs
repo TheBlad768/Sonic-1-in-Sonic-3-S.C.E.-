@@ -12,7 +12,7 @@ namespace S3KObjectDefinitions.GHZ
 
 		public override void Init(ObjectData data)
 		{
-			byte[] artfile = ObjectHelper.OpenArtFile("../../Objects/Environ/Spike Pole/KosinskiPM Art/Spike Pole.kospm", CompressionType.KosinskiPlusM);
+			byte[] artfile = ObjectHelper.OpenArtFile("../../Objects/Environ/Spike Pole/KosinskiPlusM Art/Spike Pole.kospm", CompressionType.KosinskiPlusM);
 			for (int i = 0; i < 8; i++)
 			{
 				imgs.Add(ObjectHelper.MapASMToBmp(artfile, "../../Objects/Environ/Spike Pole/Object Data/Map - Spike Pole.asm", i, 2));
@@ -58,7 +58,7 @@ namespace S3KObjectDefinitions.GHZ
 		{
 			if (imgs.Count < 8) return new Sprite();
 			List<Sprite> sprs = new List<Sprite>();
-			int spikeoffset = 64; 
+			int spikeoffset = 64;
 			for (int i = 0; i < 8; i++)
 			{
 				Sprite tmp = new Sprite(imgs[i]);

@@ -654,6 +654,6 @@ Options_Text:
 ; =============== S U B R O U T I N E =======================================
 
 PLC_Options: plrlistheader
-		plreq 1, ArtKosPM_OptionsBG
-		plreq $510, ArtKosPM_OptionsText
+		plreq 1, ArtKosPlusM_OptionsBG
+		plreq $510, ArtKosPlusM_OptionsText
 		plrlistend

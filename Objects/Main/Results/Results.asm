@@ -18,18 +18,18 @@ levelresults.destination =		parent3						; (2 bytes)
 ; =============== S U B R O U T I N E =======================================
 
 PlayerResults_Index:
-		dc.l ArtKosPM_ResultsSONIC	; 0
-		dc.l ArtKosPM_ResultsSONIC	; 1
-		dc.l ArtKosPM_ResultsTAILS	; 2
-		dc.l ArtKosPM_ResultsKNUCKLES	; 3
-		dc.l ArtKosPM_ResultsKNUCKLES	; 4
+		dc.l ArtKosPlusM_ResultsSONIC	; 0
+		dc.l ArtKosPlusM_ResultsSONIC	; 1
+		dc.l ArtKosPlusM_ResultsTAILS	; 2
+		dc.l ArtKosPlusM_ResultsKNUCKLES	; 3
+		dc.l ArtKosPlusM_ResultsKNUCKLES	; 4
 ; ---------------------------------------------------------------------------
 
 Obj_LevelResults:
 		music	mus_FadeOut							; fade out music
 
 		; load general art
-		QueueKosPlusModule	ArtKosPM_ResultsGeneral, $500
+		QueueKosPlusModule	ArtKosPlusM_ResultsGeneral, $500
 
 		; load act number art
 		moveq	#0,d0
@@ -53,7 +53,7 @@ Obj_LevelResults:
 		bne.s	.notMiles
 		tst.b	(Graphics_flags).w						; check console region
 		bmi.s	.notMiles
-		lea	(ArtKosPM_ResultsMILES).l,a1
+		lea	(ArtKosPlusM_ResultsMILES).l,a1
 
 .notMiles
 		move.w	#tiles_to_bytes($548),d2

@@ -2,11 +2,11 @@
 <ObjDef xmlns="http://www.sonicretro.org" Name="Door" Image="vertical">
   <Images>
     <ImageFromMappings id="vertical">
-      <ArtFile filename="../../Objects/Environ/Floating Blocks and Doors/KosinskiPM Art/LZ Vertical Door.kospm" compression="KosinskiPlusM" />
+      <ArtFile filename="../../Objects/Environ/Floating Blocks and Doors/KosinskiPlusM Art/LZ Vertical Door.kospm" compression="KosinskiPlusM" />
       <MapFile type="ASM" filename="../../Objects/Environ/Floating Blocks and Doors/Object Data/Map - Floating Blocks and Doors.asm" frame="6" startpal="2"/>
     </ImageFromMappings>
     <ImageFromMappings id="horizontal">
-      <ArtFile filename="../../Objects/Environ/Floating Blocks and Doors/KosinskiPM Art/LZ Horizontal Door.kospm" offset="1088" compression="KosinskiPlusM" />
+      <ArtFile filename="../../Objects/Environ/Floating Blocks and Doors/KosinskiPlusM Art/LZ Horizontal Door.kospm" offset="1088" compression="KosinskiPlusM" />
       <MapFile type="ASM" filename="../../Objects/Environ/Floating Blocks and Doors/Object Data/Map - Floating Blocks and Doors.asm" frame="7" startpal="2"/>
     </ImageFromMappings>
   </Images>

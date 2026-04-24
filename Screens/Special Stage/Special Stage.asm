@@ -372,24 +372,24 @@ SpecialStageScreen:
 		bne.s	.notMiles
 		tst.b	(Graphics_flags).w						; check console region
 		bmi.s	.notMiles
-		lea	(ArtKosPM_ResultsMILES).l,a1
+		lea	(ArtKosPlusM_ResultsMILES).l,a1
 
 .notMiles
 		move.w	#tiles_to_bytes($548),d2
 		jsr	(Queue_KosPlus_Module).w
 
 	if SuperHyperSonKnux
-		lea	(ArtKosPM_SpecialStageResultsHYPER).l,a1
+		lea	(ArtKosPlusM_SpecialStageResultsHYPER).l,a1
 		cmpi.w	#PlayerModeID_Tails,(Player_mode).w				; is Tails?
 		bne.s	.notTails							; if not, branch
 
-.artss		:= ArtKosPM_SpecialStageResultsSUPER-ArtKosPM_SpecialStageResultsHYPER	; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+.artss		:= ArtKosPlusM_SpecialStageResultsSUPER-ArtKosPlusM_SpecialStageResultsHYPER	; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
 
 		lea	(.artss)(a1),a1
 
 .notTails
 	else
-		lea	(ArtKosPM_SpecialStageResultsSUPER).l,a1
+		lea	(ArtKosPlusM_SpecialStageResultsSUPER).l,a1
 	endif
 
 		move.w	#tiles_to_bytes($4E0),d2
@@ -1306,26 +1306,26 @@ SpecialStage_LoadData:
 ; =============== S U B R O U T I N E =======================================
 
 PLC_SpecialStage: plrlistheader
-		plreq ArtTile_SpecialStage_Background_Clouds, ArtKosPM_SpecialStageBGClouds
-		plreq ArtTile_SpecialStage_Background_BirdsFish, ArtKosPM_SpecialStageBGBirdsFish
-		plreq ArtTile_SpecialStage_Bumper, ArtKosPM_Bumper
-		plreq ArtTile_SpecialStage_Goal, ArtKosPM_SpecialStageGOAL
-		plreq ArtTile_SpecialStage_Up_Down, ArtKosPM_SpecialStageUpDown
-		plreq ArtTile_SpecialStage_R_Block, ArtKosPM_SpecialStageRBlock
-		plreq ArtTile_SpecialStage_HUD, ArtKosPM_SpecialStageHUD
-		plreq ArtTile_SpecialStage_Emerald_Sparkle, ArtKosPM_SpecialStageEmeraldStars
-		plreq ArtTile_SpecialStage_Red_White_Block, ArtKosPM_SpecialStageRedWhite
-		plreq ArtTile_SpecialStage_Ghost_Block, ArtKosPM_SpecialStageGhost
-		plreq ArtTile_SpecialStage_Glass, ArtKosPM_SpecialStageGlass
-		plreq ArtTile_SpecialStage_Emerald, ArtKosPM_SpecialStageEmerald
-		plreq ArtTile_SpecialStage_Ring_Sparks, ArtKosPM_Ring_Sparks
+		plreq ArtTile_SpecialStage_Background_Clouds, ArtKosPlusM_SpecialStageBGClouds
+		plreq ArtTile_SpecialStage_Background_BirdsFish, ArtKosPlusM_SpecialStageBGBirdsFish
+		plreq ArtTile_SpecialStage_Bumper, ArtKosPlusM_Bumper
+		plreq ArtTile_SpecialStage_Goal, ArtKosPlusM_SpecialStageGOAL
+		plreq ArtTile_SpecialStage_Up_Down, ArtKosPlusM_SpecialStageUpDown
+		plreq ArtTile_SpecialStage_R_Block, ArtKosPlusM_SpecialStageRBlock
+		plreq ArtTile_SpecialStage_HUD, ArtKosPlusM_SpecialStageHUD
+		plreq ArtTile_SpecialStage_Emerald_Sparkle, ArtKosPlusM_SpecialStageEmeraldStars
+		plreq ArtTile_SpecialStage_Red_White_Block, ArtKosPlusM_SpecialStageRedWhite
+		plreq ArtTile_SpecialStage_Ghost_Block, ArtKosPlusM_SpecialStageGhost
+		plreq ArtTile_SpecialStage_Glass, ArtKosPlusM_SpecialStageGlass
+		plreq ArtTile_SpecialStage_Emerald, ArtKosPlusM_SpecialStageEmerald
+		plreq ArtTile_SpecialStage_Ring_Sparks, ArtKosPlusM_Ring_Sparks
 		plrlistend
 
 PLC_SpecialStageResults: plrlistheader
-		plreq $500, ArtKosPM_ResultsGeneral
-		plreq $570, ArtKosPM_SpecialStageResults
-		plreq $680, ArtKosPM_SpecialStageResultsTKIcons
-		plreq ArtTile_HUD, ArtKosPM_HUD
+		plreq $500, ArtKosPlusM_ResultsGeneral
+		plreq $570, ArtKosPlusM_SpecialStageResults
+		plreq $680, ArtKosPlusM_SpecialStageResultsTKIcons
+		plreq ArtTile_HUD, ArtKosPlusM_HUD
 		plrlistend
 ; ---------------------------------------------------------------------------
 

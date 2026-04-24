@@ -13,7 +13,7 @@ namespace S3KObjectDefinitions.SBZ
 
 		public override void Init(ObjectData data)
 		{
-			byte[] artfile = ObjectHelper.OpenArtFile("../../Objects/Main/Monitor/KosinskiPM Art/Monitors.kospm", CompressionType.KosinskiPlusM);
+			byte[] artfile = ObjectHelper.OpenArtFile("../../Objects/Main/Monitor/KosinskiPlusM Art/Monitors.kospm", CompressionType.KosinskiPlusM);
 			img = ObjectHelper.MapASMToBmp(artfile, "../../Objects/Main/Invisible Blocks/Object Data/Map - Invisible Block.asm", 0, 0);
 
 			properties[0] = new PropertySpec("Direction", typeof(int), "Extended",
@@ -24,7 +24,7 @@ namespace S3KObjectDefinitions.SBZ
 				},
 				(obj) => obj.SubType & 0x80,
 				(obj, value) => obj.SubType = (byte)((obj.SubType & ~0x80) | (int)value));
-			
+
 			properties[1] = new PropertySpec("Speed", typeof(int), "Extended",
 				"How fast this Conveyor Belt should push the player.", null,
 				(obj) => (obj.SubType & 0x70) >> 4,
@@ -91,7 +91,7 @@ namespace S3KObjectDefinitions.SBZ
 		{
 			return img;
 		}
-		
+
 		public override Sprite GetDebugOverlay(ObjectEntry obj)
 		{
 			int width = ((obj.SubType & 0x0f) == 0) ? 256 : 112;

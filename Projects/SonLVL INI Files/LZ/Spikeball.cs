@@ -14,7 +14,7 @@ namespace S3KObjectDefinitions.LZ
 
 		public override void Init(ObjectData data)
 		{
-			byte[] artfile = ObjectHelper.OpenArtFile("../../Objects/Environ/Spike Ball/KosinskiPM Art/Spike Ball and Chain.kospm", CompressionType.KosinskiPlusM);
+			byte[] artfile = ObjectHelper.OpenArtFile("../../Objects/Environ/Spike Ball/KosinskiPlusM Art/Spike Ball and Chain.kospm", CompressionType.KosinskiPlusM);
 			img = ObjectHelper.MapASMToBmp(artfile, "../../Objects/Environ/Spike Ball/Object Data/Map - Spike Ball (LZ).asm", 1, 0);
 			for (int i = 0; i < labels.Length; i++)
 				imgs.Add(ObjectHelper.MapASMToBmp(artfile, "../../Objects/Environ/Spike Ball/Object Data/Map - Spike Ball (LZ).asm", labels[i], 0));
