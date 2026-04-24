@@ -4,13 +4,13 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_HUD, "Objects/Renders/HUD/KosinskiPM Art/HUD.kospm"
-		incfile.ba	ArtKosPM_SonicLifeIcon, "Objects/Renders/HUD/KosinskiPM Art/Sonic Life Icon.kospm"
-		incfile.ba	ArtKosPM_MilesLifeIcon, "Objects/Renders/HUD/KosinskiPM Art/Miles Life Icon.kospm"
-		incfile.ba	ArtKosPM_TailsLifeIcon, "Objects/Renders/HUD/KosinskiPM Art/Tails Life Icon.kospm"
-		incfile.ba	ArtKosPM_KnucklesLifeIcon, "Objects/Renders/HUD/KosinskiPM Art/Knuckles Life Icon.kospm"
-		incfile.ba	ArtKosPM_GameOver, "Objects/Renders/Game Over/KosinskiPM Art/Game Over.kospm"
-		incfile.ba	ArtKosPM_Pylon, "Objects/Renders/Pylon/KosinskiPM Art/Pylon.kospm"
+		incfile.ba	ArtKosPlusM_HUD, "Objects/Renders/HUD/KosinskiPlusM Art/HUD.kospm"
+		incfile.ba	ArtKosPlusM_SonicLifeIcon, "Objects/Renders/HUD/KosinskiPlusM Art/Sonic Life Icon.kospm"
+		incfile.ba	ArtKosPlusM_MilesLifeIcon, "Objects/Renders/HUD/KosinskiPlusM Art/Miles Life Icon.kospm"
+		incfile.ba	ArtKosPlusM_TailsLifeIcon, "Objects/Renders/HUD/KosinskiPlusM Art/Tails Life Icon.kospm"
+		incfile.ba	ArtKosPlusM_KnucklesLifeIcon, "Objects/Renders/HUD/KosinskiPlusM Art/Knuckles Life Icon.kospm"
+		incfile.ba	ArtKosPlusM_GameOver, "Objects/Renders/Game Over/KosinskiPlusM Art/Game Over.kospm"
+		incfile.ba	ArtKosPlusM_Pylon, "Objects/Renders/Pylon/KosinskiPlusM Art/Pylon.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Main graphics
@@ -18,36 +18,36 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_Ring_Sparks, "Objects/Main/Rings/KosinskiPM Art/Sparks.kospm"
-		incfile.ba	ArtKosPM_Monitors, "Objects/Main/Monitor/KosinskiPM Art/Monitors.kospm"
-		incfile.ba	ArtKosPM_MonitorsEggRobo, "Objects/Main/Monitor/KosinskiPM Art/Egg Robo Icon.kospm"
-		incfile.ba	ArtKosPM_SpikesSprings, "Objects/Main/Spikes/KosinskiPM Art/Spikes and Springs.kospm"
-		incfile.ba	ArtKosPM_HiddenBonus, "Objects/Main/Hidden Bonus/KosinskiPM Art/Hidden Bonus.kospm"
-		incfile.ba	ArtKosPM_BossExplosion, "Objects/Main/Explosion/KosinskiPM Art/Boss Explosion.kospm"
-		incfile.ba	ArtKosPM_Explosion, "Objects/Main/Explosion/KosinskiPM Art/Explosion.kospm"
-		incfile.ba	ArtKosPM_EnemyScoreStarPost, "Objects/Main/Enemy Score/KosinskiPM Art/Enemy Score and Star Post.kospm"
-		incfile.ba	ArtKosPM_GrayButton, "Objects/Main/Button/KosinskiPM Art/Gray Button.kospm"
-		incfile.ba	ArtKosPM_MZGrayButton, "Objects/Main/Button/KosinskiPM Art/MZ Gray Button.kospm"
-		incfile.ba	ArtKosPM_DiagonalSpring, "Objects/Main/Spring/KosinskiPM Art/Diagonal Spring.kospm"
-		incfile.ba	ArtKosPM_Bubbles, "Objects/Main/Bubbler/KosinskiPM Art/Bubbles.kospm"
-		incfile.ba	ArtKosPM_WaveSplash, "Objects/Main/Wave Splash/KosinskiPM Art/Wave Splash.kospm"
-		incfile.ba	ArtKosPM_WaveSplashLZ, "Objects/Main/Wave Splash/KosinskiPM Art/Wave Splash(LZ).kospm"
-		incfile.ba	ArtKosPM_EggCapsule, "Objects/Main/Egg Capsule/KosinskiPM Art/Egg Capsule.kospm"
-		incfile.ba	ArtKosPM_Seal, "Objects/Main/Animals/KosinskiPM Art/Seal.kospm"
-		incfile.ba	ArtKosPM_Pig, "Objects/Main/Animals/KosinskiPM Art/Pig.kospm"
-		incfile.ba	ArtKosPM_BlueFlicky, "Objects/Main/Animals/KosinskiPM Art/Blue Flicky.kospm"
-		incfile.ba	ArtKosPM_Chicken, "Objects/Main/Animals/KosinskiPM Art/Chicken.kospm"
-		incfile.ba	ArtKosPM_Penguin, "Objects/Main/Animals/KosinskiPM Art/Penguin.kospm"
-		incfile.ba	ArtKosPM_Squirrel, "Objects/Main/Animals/KosinskiPM Art/Squirrel.kospm"
-		incfile.ba	ArtKosPM_Rabbit, "Objects/Main/Animals/KosinskiPM Art/Rabbit.kospm"
-		incfile.ba	ArtKosPM_ResultsGeneral, "Objects/Main/Results/KosinskiPM Art/General.kospm"
-		incfile.ba	ArtKosPM_ResultsSONIC, "Objects/Main/Results/KosinskiPM Art/SONIC.kospm"
-		incfile.ba	ArtKosPM_ResultsMILES, "Objects/Main/Results/KosinskiPM Art/MILES.kospm"
-		incfile.ba	ArtKosPM_ResultsTAILS, "Objects/Main/Results/KosinskiPM Art/TAILS.kospm"
-		incfile.ba	ArtKosPM_ResultsKNUCKLES, "Objects/Main/Results/KosinskiPM Art/KNUCKLES.kospm"
-		incfile.ba	ArtKosPM_StarPostStars1, "Objects/Main/Star Post/KosinskiPM Art/Star Post Stars 1.kospm"
-		incfile.ba	ArtKosPM_StarPostStars2, "Objects/Main/Star Post/KosinskiPM Art/Star Post Stars 2.kospm"
-		incfile.ba	ArtKosPM_StarPostStars3, "Objects/Main/Star Post/KosinskiPM Art/Star Post Stars 3.kospm"
+		incfile.ba	ArtKosPlusM_Ring_Sparks, "Objects/Main/Rings/KosinskiPlusM Art/Sparks.kospm"
+		incfile.ba	ArtKosPlusM_Monitors, "Objects/Main/Monitor/KosinskiPlusM Art/Monitors.kospm"
+		incfile.ba	ArtKosPlusM_MonitorsEggRobo, "Objects/Main/Monitor/KosinskiPlusM Art/Egg Robo Icon.kospm"
+		incfile.ba	ArtKosPlusM_SpikesSprings, "Objects/Main/Spikes/KosinskiPlusM Art/Spikes and Springs.kospm"
+		incfile.ba	ArtKosPlusM_HiddenBonus, "Objects/Main/Hidden Bonus/KosinskiPlusM Art/Hidden Bonus.kospm"
+		incfile.ba	ArtKosPlusM_BossExplosion, "Objects/Main/Explosion/KosinskiPlusM Art/Boss Explosion.kospm"
+		incfile.ba	ArtKosPlusM_Explosion, "Objects/Main/Explosion/KosinskiPlusM Art/Explosion.kospm"
+		incfile.ba	ArtKosPlusM_EnemyScoreStarPost, "Objects/Main/Enemy Score/KosinskiPlusM Art/Enemy Score and Star Post.kospm"
+		incfile.ba	ArtKosPlusM_GrayButton, "Objects/Main/Button/KosinskiPlusM Art/Gray Button.kospm"
+		incfile.ba	ArtKosPlusM_MZGrayButton, "Objects/Main/Button/KosinskiPlusM Art/MZ Gray Button.kospm"
+		incfile.ba	ArtKosPlusM_DiagonalSpring, "Objects/Main/Spring/KosinskiPlusM Art/Diagonal Spring.kospm"
+		incfile.ba	ArtKosPlusM_Bubbles, "Objects/Main/Bubbler/KosinskiPlusM Art/Bubbles.kospm"
+		incfile.ba	ArtKosPlusM_WaveSplash, "Objects/Main/Wave Splash/KosinskiPlusM Art/Wave Splash.kospm"
+		incfile.ba	ArtKosPlusM_WaveSplashLZ, "Objects/Main/Wave Splash/KosinskiPlusM Art/Wave Splash(LZ).kospm"
+		incfile.ba	ArtKosPlusM_EggCapsule, "Objects/Main/Egg Capsule/KosinskiPlusM Art/Egg Capsule.kospm"
+		incfile.ba	ArtKosPlusM_Seal, "Objects/Main/Animals/KosinskiPlusM Art/Seal.kospm"
+		incfile.ba	ArtKosPlusM_Pig, "Objects/Main/Animals/KosinskiPlusM Art/Pig.kospm"
+		incfile.ba	ArtKosPlusM_BlueFlicky, "Objects/Main/Animals/KosinskiPlusM Art/Blue Flicky.kospm"
+		incfile.ba	ArtKosPlusM_Chicken, "Objects/Main/Animals/KosinskiPlusM Art/Chicken.kospm"
+		incfile.ba	ArtKosPlusM_Penguin, "Objects/Main/Animals/KosinskiPlusM Art/Penguin.kospm"
+		incfile.ba	ArtKosPlusM_Squirrel, "Objects/Main/Animals/KosinskiPlusM Art/Squirrel.kospm"
+		incfile.ba	ArtKosPlusM_Rabbit, "Objects/Main/Animals/KosinskiPlusM Art/Rabbit.kospm"
+		incfile.ba	ArtKosPlusM_ResultsGeneral, "Objects/Main/Results/KosinskiPlusM Art/General.kospm"
+		incfile.ba	ArtKosPlusM_ResultsSONIC, "Objects/Main/Results/KosinskiPlusM Art/SONIC.kospm"
+		incfile.ba	ArtKosPlusM_ResultsMILES, "Objects/Main/Results/KosinskiPlusM Art/MILES.kospm"
+		incfile.ba	ArtKosPlusM_ResultsTAILS, "Objects/Main/Results/KosinskiPlusM Art/TAILS.kospm"
+		incfile.ba	ArtKosPlusM_ResultsKNUCKLES, "Objects/Main/Results/KosinskiPlusM Art/KNUCKLES.kospm"
+		incfile.ba	ArtKosPlusM_StarPostStars1, "Objects/Main/Star Post/KosinskiPlusM Art/Star Post Stars 1.kospm"
+		incfile.ba	ArtKosPlusM_StarPostStars2, "Objects/Main/Star Post/KosinskiPlusM Art/Star Post Stars 2.kospm"
+		incfile.ba	ArtKosPlusM_StarPostStars3, "Objects/Main/Star Post/KosinskiPlusM Art/Star Post Stars 3.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Title Card graphics
@@ -55,11 +55,11 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_TitleCardRedAct, "Objects/Main/Title Card/KosinskiPM Art/Title Card Red ACT.kospm"
-		incfile.ba	ArtKosPM_TitleCardNum1, "Objects/Main/Title Card/KosinskiPM Art/Title Card Number 1.kospm"
-		incfile.ba	ArtKosPM_TitleCardNum2, "Objects/Main/Title Card/KosinskiPM Art/Title Card Number 2.kospm"
-		incfile.ba	ArtKosPM_TitleCardNum3, "Objects/Main/Title Card/KosinskiPM Art/Title Card Number 3.kospm"
-		incfile.ba	ArtKosPM_TitleCardNum4, "Objects/Main/Title Card/KosinskiPM Art/Title Card Number 4.kospm"
+		incfile.ba	ArtKosPlusM_TitleCardRedAct, "Objects/Main/Title Card/KosinskiPlusM Art/Title Card Red ACT.kospm"
+		incfile.ba	ArtKosPlusM_TitleCardNum1, "Objects/Main/Title Card/KosinskiPlusM Art/Title Card Number 1.kospm"
+		incfile.ba	ArtKosPlusM_TitleCardNum2, "Objects/Main/Title Card/KosinskiPlusM Art/Title Card Number 2.kospm"
+		incfile.ba	ArtKosPlusM_TitleCardNum3, "Objects/Main/Title Card/KosinskiPlusM Art/Title Card Number 3.kospm"
+		incfile.ba	ArtKosPlusM_TitleCardNum4, "Objects/Main/Title Card/KosinskiPlusM Art/Title Card Number 4.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Sega screen graphics
@@ -68,11 +68,11 @@
 ;		Attribute	| Filename	| Folder
 
 	if SegaVersion=0
-		incfile.ba	ArtKosPM_Sega, "Screens/Sega/S3K/KosinskiPM Art/Foreground.kospm"
+		incfile.ba	ArtKosPlusM_Sega, "Screens/Sega/S3K/KosinskiPlusM Art/Foreground.kospm"
 	elseif SegaVersion=1
-		incfile.ba	ArtKosPM_Sega, "Screens/Sega/S1/KosinskiPM Art/Foreground.kospm"
+		incfile.ba	ArtKosPlusM_Sega, "Screens/Sega/S1/KosinskiPlusM Art/Foreground.kospm"
 	else
-		incfile.ba	ArtKosPM_SegaProto, "Screens/Sega/Proto/KosinskiPM Art/Foreground.kospm"
+		incfile.ba	ArtKosPlusM_SegaProto, "Screens/Sega/Proto/KosinskiPlusM Art/Foreground.kospm"
 	endif
 
 ; ===========================================================================
@@ -81,9 +81,9 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_TitleFG, "Screens/Title/KosinskiPM Art/Foreground.kospm"
-		incfile.ba	ArtKosPM_TitleCredits, "Screens/Title/KosinskiPM Art/Hidden Credits.kospm"
-		incfile.ba	ArtKosPM_TitleText, "Screens/Title/KosinskiPM Art/Text.kospm"
+		incfile.ba	ArtKosPlusM_TitleFG, "Screens/Title/KosinskiPlusM Art/Foreground.kospm"
+		incfile.ba	ArtKosPlusM_TitleCredits, "Screens/Title/KosinskiPlusM Art/Hidden Credits.kospm"
+		incfile.ba	ArtKosPlusM_TitleText, "Screens/Title/KosinskiPlusM Art/Text.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Options screen graphics
@@ -91,8 +91,8 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_OptionsBG, "Screens/Options/KosinskiPM Art/Background.kospm"
-		incfile.ba	ArtKosPM_OptionsText, "Screens/Options/KosinskiPM Art/Text.kospm"
+		incfile.ba	ArtKosPlusM_OptionsBG, "Screens/Options/KosinskiPlusM Art/Background.kospm"
+		incfile.ba	ArtKosPlusM_OptionsText, "Screens/Options/KosinskiPlusM Art/Text.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Level Select screen graphics
@@ -100,7 +100,7 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_LevelSelectText, "Screens/Level Select/SCE/KosinskiPM Art/Text.kospm"
+		incfile.ba	ArtKosPlusM_LevelSelectText, "Screens/Level Select/SCE/KosinskiPlusM Art/Text.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Level Select RSDK screen graphics
@@ -108,8 +108,8 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_LevelSelectRSDKBG, "Screens/Level Select/RSDK/KosinskiPM Art/Background.kospm"
-		incfile.ba	ArtKosPM_LevelSelectRSDKIcons, "Screens/Level Select/RSDK/KosinskiPM Art/Icon.kospm"
+		incfile.ba	ArtKosPlusM_LevelSelectRSDKBG, "Screens/Level Select/RSDK/KosinskiPlusM Art/Background.kospm"
+		incfile.ba	ArtKosPlusM_LevelSelectRSDKIcons, "Screens/Level Select/RSDK/KosinskiPlusM Art/Icon.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Level screen graphics (Environment)
@@ -117,55 +117,55 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_GHZBreakableWall, "Objects/Environ/Breakable Wall/KosinskiPM Art/GHZ Breakable Wall.kospm"
-		incfile.ba	ArtKosPM_GHZEdgeWalls, "Objects/Environ/Edge Wall/KosinskiPM Art/GHZ Edge Wall.kospm"
-		incfile.ba	ArtKosPM_PplRock, "Objects/Environ/Purple Rock/KosinskiPM Art/Purple Rock.kospm"
-		incfile.ba	ArtKosPM_SpikePole, "Objects/Environ/Spike Pole/KosinskiPM Art/Spike Pole.kospm"
-		incfile.ba	ArtKosPM_Bridge, "Objects/Environ/Bridge/KosinskiPM Art/Bridge.kospm"
-		incfile.ba	ArtKosPM_Swing, "Objects/Environ/Swinging Platform/KosinskiPM Art/GHZ Swinging Platform.kospm"
-		incfile.ba	ArtKosPM_Fireballs, "Objects/Environ/Lava Ball/KosinskiPM Art/Lava Ball.kospm"
-		incfile.ba	ArtKosPM_LavaWall, "Objects/Environ/Lava Wall/KosinskiPM Art/Lava Wall.kospm"
-		incfile.ba	ArtKosPM_MZBlock, "Objects/Environ/Pushable Block/KosinskiPM Art/Pushable Block.kospm"
-		incfile.ba	ArtKosPM_MZMetal, "Objects/Environ/Chained Stomper/KosinskiPM Art/Metal Blocks.kospm"
-		incfile.ba	ArtKosPM_MZGlass, "Objects/Environ/Glass Block/KosinskiPM Art/Glass Block.kospm"
-		incfile.ba	ArtKosPM_Bumper, "Objects/Environ/Bumper/KosinskiPM Art/Bumper.kospm"
-		incfile.ba	ArtKosPM_LargeSpikeball, "Objects/Environ/Big Spike Ball/KosinskiPM Art/Large Spikeball.kospm"
-		incfile.ba	ArtKosPM_SmallSpikeball, "Objects/Environ/Spike Ball/KosinskiPM Art/Small Spikeball.kospm"
-		incfile.ba	ArtKosPM_SpikeBallChain, "Objects/Environ/Spike Ball/KosinskiPM Art/Spike Ball and Chain.kospm"
-		incfile.ba	ArtKosPM_LZBlock1, "Levels/LZ/KosinskiPM Art/LZ 32x32 Block.kospm"
-		incfile.ba	ArtKosPM_LZBlock2, "Levels/LZ/KosinskiPM Art/LZ Block.kospm"
-		incfile.ba	ArtKosPM_LZBlock3, "Levels/LZ/KosinskiPM Art/LZ 32x16 Block.kospm"
-		incfile.ba	ArtKosPM_LZDoor1, "Objects/Environ/Floating Blocks and Doors/KosinskiPM Art/LZ Vertical Door.kospm"
-		incfile.ba	ArtKosPM_LZDoor2, "Objects/Environ/Floating Blocks and Doors/KosinskiPM Art/LZ Horizontal Door.kospm"
-		incfile.ba	ArtKosPM_Cork, "Objects/Environ/Labyrinth Block/KosinskiPM Art/Cork.kospm"
-		incfile.ba	ArtKosPM_LZPlatform, "Objects/Environ/Labyrinth Block/KosinskiPM Art/Rising Platform.kospm"
-		incfile.ba	ArtKosPM_Gargoyle, "Objects/Environ/Gargoyle/KosinskiPM Art/Gargoyle and Fireball.kospm"
-		incfile.ba	ArtKosPM_BreakablePole, "Objects/Environ/Breakable Pole/KosinskiPM Art/Breakable Pole.kospm"
-		incfile.ba	ArtKosPM_FlappingDoor, "Objects/Environ/Flapping Door/KosinskiPM Art/Flapping Door.kospm"
-		incfile.ba	ArtKosPM_Harpoon, "Objects/Environ/Harpoon/KosinskiPM Art/Harpoon.kospm"
-		incfile.ba	ArtKosPM_WaterSplashes, "Objects/Environ/Labyrinth Waterfall/KosinskiPM Art/Water and Splash.kospm"
-		incfile.ba	ArtKosPM_LabyrinthConveyor, "Objects/Environ/Labyrinth Conveyor/KosinskiPM Art/Labyrinth Conveyor.kospm"
-		incfile.ba	ArtKosPM_SLZBreakableWall, "Objects/Environ/Breakable Wall/KosinskiPM Art/SLZ Breakable Wall.kospm"
-		incfile.ba	ArtKosPM_Fan, "Objects/Environ/Fan/KosinskiPM Art/Fan.kospm"
-		incfile.ba	ArtKosPM_Seesaw, "Objects/Environ/Seesaw/KosinskiPM Art/Seesaw.kospm"
-		incfile.ba	ArtKosPM_LittleSpikeball, "Objects/Environ/Seesaw/KosinskiPM Art/Little Spikeball.kospm"
-		incfile.ba	ArtKosPM_SLZCannon, "Objects/Environ/Lava Ball/KosinskiPM Art/Cannon.kospm"
-		incfile.ba	ArtKosPM_SLZBlock, "Objects/Environ/Collapsing Floor/KosinskiPM Art/SLZ 32x32 Block.kospm"
-		incfile.ba	ArtKosPM_SLZSwing, "Objects/Environ/Swinging Platform/KosinskiPM Art/SLZ Swinging Platform.kospm"
-		incfile.ba	ArtKosPM_Electric, "Objects/Environ/Electrocuter/KosinskiPM Art/Electrocuter.kospm"
-		incfile.ba	ArtKosPM_FlamePipe, "Objects/Environ/Flamethrower/KosinskiPM Art/Flaming Pipe.kospm"
-		incfile.ba	ArtKosPM_SpinPform, "Objects/Environ/Spinning Platform/KosinskiPM Art/Spinning Platform.kospm"
-		incfile.ba	ArtKosPM_TrapDoor, "Objects/Environ/Spinning Platform/KosinskiPM Art/Trapdoor.kospm"
-		incfile.ba	ArtKosPM_SBZFloor, "Objects/Environ/Collapsing Floor/KosinskiPM Art/SBZ Collapsing Floor.kospm"
-		incfile.ba	ArtKosPM_Stomper, "Objects/Environ/Stomper and Door/KosinskiPM Art/SBZ Stomper.kospm"
-		incfile.ba	ArtKosPM_SlideFloor, "Objects/Environ/Stomper and Door/KosinskiPM Art/SBZ Sliding Floor Trap.kospm"
-		incfile.ba	ArtKosPM_Cutter, "Objects/Environ/Saw/KosinskiPM Art/Saw.kospm"
-		incfile.ba	ArtKosPM_SBZWheel1, "Objects/Environ/Running Disc/KosinskiPM Art/Running Disc.kospm"
-		incfile.ba	ArtKosPM_SBZWheel2, "Objects/Environ/Rotating Junction/KosinskiPM Art/Junction Wheel.kospm"
-		incfile.ba	ArtKosPM_Girder, "Objects/Environ/Girder Block/KosinskiPM Art/Crushing Girder.kospm"
-		incfile.ba	ArtKosPM_SBZBlock, "Objects/Environ/Vanishing Platform/KosinskiPM Art/Vanishing Platform.kospm"
-		incfile.ba	ArtKosPM_SBZDoor1, "Objects/Environ/Small Door/KosinskiPM Art/Small Vertical Door.kospm"
-		incfile.ba	ArtKosPM_SBZDoor2, "Objects/Environ/Stomper and Door/KosinskiPM Art/SBZ Large Horizontal Door.kospm"
+		incfile.ba	ArtKosPlusM_GHZBreakableWall, "Objects/Environ/Breakable Wall/KosinskiPlusM Art/GHZ Breakable Wall.kospm"
+		incfile.ba	ArtKosPlusM_GHZEdgeWalls, "Objects/Environ/Edge Wall/KosinskiPlusM Art/GHZ Edge Wall.kospm"
+		incfile.ba	ArtKosPlusM_PplRock, "Objects/Environ/Purple Rock/KosinskiPlusM Art/Purple Rock.kospm"
+		incfile.ba	ArtKosPlusM_SpikePole, "Objects/Environ/Spike Pole/KosinskiPlusM Art/Spike Pole.kospm"
+		incfile.ba	ArtKosPlusM_Bridge, "Objects/Environ/Bridge/KosinskiPlusM Art/Bridge.kospm"
+		incfile.ba	ArtKosPlusM_Swing, "Objects/Environ/Swinging Platform/KosinskiPlusM Art/GHZ Swinging Platform.kospm"
+		incfile.ba	ArtKosPlusM_Fireballs, "Objects/Environ/Lava Ball/KosinskiPlusM Art/Lava Ball.kospm"
+		incfile.ba	ArtKosPlusM_LavaWall, "Objects/Environ/Lava Wall/KosinskiPlusM Art/Lava Wall.kospm"
+		incfile.ba	ArtKosPlusM_MZBlock, "Objects/Environ/Pushable Block/KosinskiPlusM Art/Pushable Block.kospm"
+		incfile.ba	ArtKosPlusM_MZMetal, "Objects/Environ/Chained Stomper/KosinskiPlusM Art/Metal Blocks.kospm"
+		incfile.ba	ArtKosPlusM_MZGlass, "Objects/Environ/Glass Block/KosinskiPlusM Art/Glass Block.kospm"
+		incfile.ba	ArtKosPlusM_Bumper, "Objects/Environ/Bumper/KosinskiPlusM Art/Bumper.kospm"
+		incfile.ba	ArtKosPlusM_LargeSpikeball, "Objects/Environ/Big Spike Ball/KosinskiPlusM Art/Large Spikeball.kospm"
+		incfile.ba	ArtKosPlusM_SmallSpikeball, "Objects/Environ/Spike Ball/KosinskiPlusM Art/Small Spikeball.kospm"
+		incfile.ba	ArtKosPlusM_SpikeBallChain, "Objects/Environ/Spike Ball/KosinskiPlusM Art/Spike Ball and Chain.kospm"
+		incfile.ba	ArtKosPlusM_LZBlock1, "Levels/LZ/KosinskiPlusM Art/LZ 32x32 Block.kospm"
+		incfile.ba	ArtKosPlusM_LZBlock2, "Levels/LZ/KosinskiPlusM Art/LZ Block.kospm"
+		incfile.ba	ArtKosPlusM_LZBlock3, "Levels/LZ/KosinskiPlusM Art/LZ 32x16 Block.kospm"
+		incfile.ba	ArtKosPlusM_LZDoor1, "Objects/Environ/Floating Blocks and Doors/KosinskiPlusM Art/LZ Vertical Door.kospm"
+		incfile.ba	ArtKosPlusM_LZDoor2, "Objects/Environ/Floating Blocks and Doors/KosinskiPlusM Art/LZ Horizontal Door.kospm"
+		incfile.ba	ArtKosPlusM_Cork, "Objects/Environ/Labyrinth Block/KosinskiPlusM Art/Cork.kospm"
+		incfile.ba	ArtKosPlusM_LZPlatform, "Objects/Environ/Labyrinth Block/KosinskiPlusM Art/Rising Platform.kospm"
+		incfile.ba	ArtKosPlusM_Gargoyle, "Objects/Environ/Gargoyle/KosinskiPlusM Art/Gargoyle and Fireball.kospm"
+		incfile.ba	ArtKosPlusM_BreakablePole, "Objects/Environ/Breakable Pole/KosinskiPlusM Art/Breakable Pole.kospm"
+		incfile.ba	ArtKosPlusM_FlappingDoor, "Objects/Environ/Flapping Door/KosinskiPlusM Art/Flapping Door.kospm"
+		incfile.ba	ArtKosPlusM_Harpoon, "Objects/Environ/Harpoon/KosinskiPlusM Art/Harpoon.kospm"
+		incfile.ba	ArtKosPlusM_WaterSplashes, "Objects/Environ/Labyrinth Waterfall/KosinskiPlusM Art/Water and Splash.kospm"
+		incfile.ba	ArtKosPlusM_LabyrinthConveyor, "Objects/Environ/Labyrinth Conveyor/KosinskiPlusM Art/Labyrinth Conveyor.kospm"
+		incfile.ba	ArtKosPlusM_SLZBreakableWall, "Objects/Environ/Breakable Wall/KosinskiPlusM Art/SLZ Breakable Wall.kospm"
+		incfile.ba	ArtKosPlusM_Fan, "Objects/Environ/Fan/KosinskiPlusM Art/Fan.kospm"
+		incfile.ba	ArtKosPlusM_Seesaw, "Objects/Environ/Seesaw/KosinskiPlusM Art/Seesaw.kospm"
+		incfile.ba	ArtKosPlusM_LittleSpikeball, "Objects/Environ/Seesaw/KosinskiPlusM Art/Little Spikeball.kospm"
+		incfile.ba	ArtKosPlusM_SLZCannon, "Objects/Environ/Lava Ball/KosinskiPlusM Art/Cannon.kospm"
+		incfile.ba	ArtKosPlusM_SLZBlock, "Objects/Environ/Collapsing Floor/KosinskiPlusM Art/SLZ 32x32 Block.kospm"
+		incfile.ba	ArtKosPlusM_SLZSwing, "Objects/Environ/Swinging Platform/KosinskiPlusM Art/SLZ Swinging Platform.kospm"
+		incfile.ba	ArtKosPlusM_Electric, "Objects/Environ/Electrocuter/KosinskiPlusM Art/Electrocuter.kospm"
+		incfile.ba	ArtKosPlusM_FlamePipe, "Objects/Environ/Flamethrower/KosinskiPlusM Art/Flaming Pipe.kospm"
+		incfile.ba	ArtKosPlusM_SpinPform, "Objects/Environ/Spinning Platform/KosinskiPlusM Art/Spinning Platform.kospm"
+		incfile.ba	ArtKosPlusM_TrapDoor, "Objects/Environ/Spinning Platform/KosinskiPlusM Art/Trapdoor.kospm"
+		incfile.ba	ArtKosPlusM_SBZFloor, "Objects/Environ/Collapsing Floor/KosinskiPlusM Art/SBZ Collapsing Floor.kospm"
+		incfile.ba	ArtKosPlusM_Stomper, "Objects/Environ/Stomper and Door/KosinskiPlusM Art/SBZ Stomper.kospm"
+		incfile.ba	ArtKosPlusM_SlideFloor, "Objects/Environ/Stomper and Door/KosinskiPlusM Art/SBZ Sliding Floor Trap.kospm"
+		incfile.ba	ArtKosPlusM_Cutter, "Objects/Environ/Saw/KosinskiPlusM Art/Saw.kospm"
+		incfile.ba	ArtKosPlusM_SBZWheel1, "Objects/Environ/Running Disc/KosinskiPlusM Art/Running Disc.kospm"
+		incfile.ba	ArtKosPlusM_SBZWheel2, "Objects/Environ/Rotating Junction/KosinskiPlusM Art/Junction Wheel.kospm"
+		incfile.ba	ArtKosPlusM_Girder, "Objects/Environ/Girder Block/KosinskiPlusM Art/Crushing Girder.kospm"
+		incfile.ba	ArtKosPlusM_SBZBlock, "Objects/Environ/Vanishing Platform/KosinskiPlusM Art/Vanishing Platform.kospm"
+		incfile.ba	ArtKosPlusM_SBZDoor1, "Objects/Environ/Small Door/KosinskiPlusM Art/Small Vertical Door.kospm"
+		incfile.ba	ArtKosPlusM_SBZDoor2, "Objects/Environ/Stomper and Door/KosinskiPlusM Art/SBZ Large Horizontal Door.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Level screen graphics (Bosses)
@@ -173,17 +173,17 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_RobotnikShip1, "Objects/Bosses/Robotnik/KosinskiPM Art/Robotnik Ship 1.kospm"
-		incfile.ba	ArtKosPM_RobotnikShip2, "Objects/Bosses/Robotnik/KosinskiPM Art/Robotnik Ship 2.kospm"
-		incfile.ba	ArtKosPM_EggRoboHead, "Objects/Bosses/Robotnik/KosinskiPM Art/Egg Robo Head.kospm"
-		incfile.ba	ArtKosPM_RobotnikShipStand, "Objects/Bosses/Robotnik/KosinskiPM Art/Robotnik Ship Stand.kospm"
-		incfile.ba	ArtKosPM_BossCrane, "Objects/Bosses/GHZ3/KosinskiPM Art/Crane.kospm"
-		incfile.ba	ArtKosPM_BossFireTube, "Objects/Bosses/MZ3/KosinskiPM Art/Tube.kospm"
-		incfile.ba	ArtKosPM_SYZBlock, "Objects/Bosses/SYZ3/KosinskiPM Art/Boss Block.kospm"
-		incfile.ba	ArtKosPM_SYZSpike, "Objects/Bosses/SYZ3/KosinskiPM Art/Spike.kospm"
-		incfile.ba	ArtKosPM_BossSpikeBallTube, "Objects/Bosses/SLZ3/KosinskiPM Art/Tube.kospm"
-		incfile.ba	ArtKosPM_SE_ControlDesk, "Objects/Bosses/Scrap Eggman/KosinskiPM Art/Control Desk.kospm"
-		incfile.ba	ArtKosPM_FZBoss, "Objects/Bosses/FZ/KosinskiPM Art/Boss - Final Zone.kospm"
+		incfile.ba	ArtKosPlusM_RobotnikShip1, "Objects/Bosses/Robotnik/KosinskiPlusM Art/Robotnik Ship 1.kospm"
+		incfile.ba	ArtKosPlusM_RobotnikShip2, "Objects/Bosses/Robotnik/KosinskiPlusM Art/Robotnik Ship 2.kospm"
+		incfile.ba	ArtKosPlusM_EggRoboHead, "Objects/Bosses/Robotnik/KosinskiPlusM Art/Egg Robo Head.kospm"
+		incfile.ba	ArtKosPlusM_RobotnikShipStand, "Objects/Bosses/Robotnik/KosinskiPlusM Art/Robotnik Ship Stand.kospm"
+		incfile.ba	ArtKosPlusM_BossCrane, "Objects/Bosses/GHZ3/KosinskiPlusM Art/Crane.kospm"
+		incfile.ba	ArtKosPlusM_BossFireTube, "Objects/Bosses/MZ3/KosinskiPlusM Art/Tube.kospm"
+		incfile.ba	ArtKosPlusM_SYZBlock, "Objects/Bosses/SYZ3/KosinskiPlusM Art/Boss Block.kospm"
+		incfile.ba	ArtKosPlusM_SYZSpike, "Objects/Bosses/SYZ3/KosinskiPlusM Art/Spike.kospm"
+		incfile.ba	ArtKosPlusM_BossSpikeBallTube, "Objects/Bosses/SLZ3/KosinskiPlusM Art/Tube.kospm"
+		incfile.ba	ArtKosPlusM_SE_ControlDesk, "Objects/Bosses/Scrap Eggman/KosinskiPlusM Art/Control Desk.kospm"
+		incfile.ba	ArtKosPlusM_FZBoss, "Objects/Bosses/FZ/KosinskiPlusM Art/Boss - Final Zone.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Level screen graphics (Enemies)
@@ -191,21 +191,21 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_Crabmeat, "Objects/Enemies/Crabmeat/KosinskiPM Art/Enemy Crabmeat.kospm"
-		incfile.ba	ArtKosPM_Chopper, "Objects/Enemies/Chopper/KosinskiPM Art/Enemy Chopper.kospm"
-		incfile.ba	ArtKosPM_Buzz, "Objects/Enemies/Buzz Bomber/KosinskiPM Art/Enemy Buzz Bomber.kospm"
-		incfile.ba	ArtKosPM_Motobug, "Objects/Enemies/Moto Bug/KosinskiPM Art/Enemy Moto Bug.kospm"
-		incfile.ba	ArtKosPM_Newtron, "Objects/Enemies/Newtron/KosinskiPM Art/Enemy Newtron.kospm"
-		incfile.ba	ArtKosPM_Basaran, "Objects/Enemies/Basaran/KosinskiPM Art/Enemy Basaran.kospm"
-		incfile.ba	ArtKosPM_Caterkiller, "Objects/Enemies/Caterkiller/KosinskiPM Art/Enemy Caterkiller.kospm"
-		incfile.ba	ArtKosPM_Yadrin, "Objects/Enemies/Yadrin/KosinskiPM Art/Enemy Yadrin.kospm"
-		incfile.ba	ArtKosPM_Roller, "Objects/Enemies/Roller/KosinskiPM Art/Enemy Roller.kospm"
-		incfile.ba	ArtKosPM_Splats, "Objects/Enemies/Splats/KosinskiPM Art/Enemy Splats.kospm"
-		incfile.ba	ArtKosPM_Burrobot, "Objects/Enemies/Burrobot/KosinskiPM Art/Enemy Burrobot.kospm"
-		incfile.ba	ArtKosPM_Jaws, "Objects/Enemies/Jaws/KosinskiPM Art/Enemy Jaws.kospm"
-		incfile.ba	ArtKosPM_Orbinaut, "Objects/Enemies/Orbinaut/KosinskiPM Art/Enemy Orbinaut.kospm"
-		incfile.ba	ArtKosPM_Bomb, "Objects/Enemies/Bomb/KosinskiPM Art/Enemy Bomb.kospm"
-		incfile.ba	ArtKosPM_BallHog, "Objects/Enemies/Ball Hog/KosinskiPM Art/Enemy Ball Hog.kospm"
+		incfile.ba	ArtKosPlusM_Crabmeat, "Objects/Enemies/Crabmeat/KosinskiPlusM Art/Enemy Crabmeat.kospm"
+		incfile.ba	ArtKosPlusM_Chopper, "Objects/Enemies/Chopper/KosinskiPlusM Art/Enemy Chopper.kospm"
+		incfile.ba	ArtKosPlusM_Buzz, "Objects/Enemies/Buzz Bomber/KosinskiPlusM Art/Enemy Buzz Bomber.kospm"
+		incfile.ba	ArtKosPlusM_Motobug, "Objects/Enemies/Moto Bug/KosinskiPlusM Art/Enemy Moto Bug.kospm"
+		incfile.ba	ArtKosPlusM_Newtron, "Objects/Enemies/Newtron/KosinskiPlusM Art/Enemy Newtron.kospm"
+		incfile.ba	ArtKosPlusM_Basaran, "Objects/Enemies/Basaran/KosinskiPlusM Art/Enemy Basaran.kospm"
+		incfile.ba	ArtKosPlusM_Caterkiller, "Objects/Enemies/Caterkiller/KosinskiPlusM Art/Enemy Caterkiller.kospm"
+		incfile.ba	ArtKosPlusM_Yadrin, "Objects/Enemies/Yadrin/KosinskiPlusM Art/Enemy Yadrin.kospm"
+		incfile.ba	ArtKosPlusM_Roller, "Objects/Enemies/Roller/KosinskiPlusM Art/Enemy Roller.kospm"
+		incfile.ba	ArtKosPlusM_Splats, "Objects/Enemies/Splats/KosinskiPlusM Art/Enemy Splats.kospm"
+		incfile.ba	ArtKosPlusM_Burrobot, "Objects/Enemies/Burrobot/KosinskiPlusM Art/Enemy Burrobot.kospm"
+		incfile.ba	ArtKosPlusM_Jaws, "Objects/Enemies/Jaws/KosinskiPlusM Art/Enemy Jaws.kospm"
+		incfile.ba	ArtKosPlusM_Orbinaut, "Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm"
+		incfile.ba	ArtKosPlusM_Bomb, "Objects/Enemies/Bomb/KosinskiPlusM Art/Enemy Bomb.kospm"
+		incfile.ba	ArtKosPlusM_BallHog, "Objects/Enemies/Ball Hog/KosinskiPlusM Art/Enemy Ball Hog.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Continue screen graphics
@@ -213,10 +213,10 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_ContinueSprites, "Screens/Continue/KosinskiPM Art/Player Sprites.kospm"
-		incfile.ba	ArtKosPM_ContinueIcons, "Screens/Continue/KosinskiPM Art/Player Icons.kospm"
-		incfile.ba	ArtKosPM_ContinueDigits, "Screens/Continue/KosinskiPM Art/Digits.kospm"
-		incfile.ba	ArtKosPM_EggRoboBadnik, "Screens/Continue/KosinskiPM Art/Egg Robo Badnik.kospm"
+		incfile.ba	ArtKosPlusM_ContinueSprites, "Screens/Continue/KosinskiPlusM Art/Player Sprites.kospm"
+		incfile.ba	ArtKosPlusM_ContinueIcons, "Screens/Continue/KosinskiPlusM Art/Player Icons.kospm"
+		incfile.ba	ArtKosPlusM_ContinueDigits, "Screens/Continue/KosinskiPlusM Art/Digits.kospm"
+		incfile.ba	ArtKosPlusM_EggRoboBadnik, "Screens/Continue/KosinskiPlusM Art/Egg Robo Badnik.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Special Stage screen graphics
@@ -224,21 +224,21 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_SpecialStageHUD, "Screens/Special Stage/KosinskiPM Art/HUD.kospm"
-		incfile.ba	ArtKosPM_SpecialStageBGBirdsFish, "Screens/Special Stage/KosinskiPM Art/Background Birds and Fish.kospm"
-		incfile.ba	ArtKosPM_SpecialStageBGClouds, "Screens/Special Stage/KosinskiPM Art/Background Clouds.kospm"
-		incfile.ba	ArtKosPM_SpecialStageGOAL, "Screens/Special Stage/KosinskiPM Art/GOAL.kospm"
-		incfile.ba	ArtKosPM_SpecialStageRBlock, "Screens/Special Stage/KosinskiPM Art/R.kospm"
-		incfile.ba	ArtKosPM_SpecialStageEmeraldStars, "Screens/Special Stage/KosinskiPM Art/Emerald Twinkle.kospm"
-		incfile.ba	ArtKosPM_SpecialStageRedWhite, "Screens/Special Stage/KosinskiPM Art/Red-White.kospm"
-		incfile.ba	ArtKosPM_SpecialStageUpDown, "Screens/Special Stage/KosinskiPM Art/UP-DOWN.kospm"
-		incfile.ba	ArtKosPM_SpecialStageEmerald, "Screens/Special Stage/KosinskiPM Art/Emeralds.kospm"
-		incfile.ba	ArtKosPM_SpecialStageGhost, "Screens/Special Stage/KosinskiPM Art/Ghost.kospm"
-		incfile.ba	ArtKosPM_SpecialStageGlass, "Screens/Special Stage/KosinskiPM Art/Glass.kospm"
-		incfile.ba	ArtKosPM_SpecialStageResults, "Screens/Special Stage/KosinskiPM Art/Results General.kospm"
-		incfile.ba	ArtKosPM_SpecialStageResultsTKIcons, "Screens/Special Stage/KosinskiPM Art/Results Tails Knuckles Icons.kospm"
-		incfile.ba	ArtKosPM_SpecialStageResultsSUPER, "Screens/Special Stage/KosinskiPM Art/Results SUPER.kospm"
-		incfile.ba	ArtKosPM_SpecialStageResultsHYPER, "Screens/Special Stage/KosinskiPM Art/Results HYPER.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageHUD, "Screens/Special Stage/KosinskiPlusM Art/HUD.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageBGBirdsFish, "Screens/Special Stage/KosinskiPlusM Art/Background Birds and Fish.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageBGClouds, "Screens/Special Stage/KosinskiPlusM Art/Background Clouds.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageGOAL, "Screens/Special Stage/KosinskiPlusM Art/GOAL.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageRBlock, "Screens/Special Stage/KosinskiPlusM Art/R.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageEmeraldStars, "Screens/Special Stage/KosinskiPlusM Art/Emerald Twinkle.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageRedWhite, "Screens/Special Stage/KosinskiPlusM Art/Red-White.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageUpDown, "Screens/Special Stage/KosinskiPlusM Art/UP-DOWN.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageEmerald, "Screens/Special Stage/KosinskiPlusM Art/Emeralds.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageGhost, "Screens/Special Stage/KosinskiPlusM Art/Ghost.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageGlass, "Screens/Special Stage/KosinskiPlusM Art/Glass.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageResults, "Screens/Special Stage/KosinskiPlusM Art/Results General.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageResultsTKIcons, "Screens/Special Stage/KosinskiPlusM Art/Results Tails Knuckles Icons.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageResultsSUPER, "Screens/Special Stage/KosinskiPlusM Art/Results SUPER.kospm"
+		incfile.ba	ArtKosPlusM_SpecialStageResultsHYPER, "Screens/Special Stage/KosinskiPlusM Art/Results HYPER.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Ending screen graphics
@@ -246,9 +246,9 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_EndingFlowers, "Screens/Ending/KosinskiPM Art/Flowers Ending.kospm"
-		incfile.ba	ArtKosPM_EndingEmeralds, "Screens/Ending/KosinskiPM Art/Emeralds Ending.kospm"
-		incfile.ba	ArtKosPM_EndingStHLogo, "Screens/Ending/KosinskiPM Art/StH Logo Ending.kospm"
+		incfile.ba	ArtKosPlusM_EndingFlowers, "Screens/Ending/KosinskiPlusM Art/Flowers Ending.kospm"
+		incfile.ba	ArtKosPlusM_EndingEmeralds, "Screens/Ending/KosinskiPlusM Art/Emeralds Ending.kospm"
+		incfile.ba	ArtKosPlusM_EndingStHLogo, "Screens/Ending/KosinskiPlusM Art/StH Logo Ending.kospm"
 
 ; ===========================================================================
 ; Kosinski Plus Module compressed Credits screen graphics
@@ -256,6 +256,6 @@
 
 ;		Attribute	| Filename	| Folder
 
-		incfile.ba	ArtKosPM_CreditsSmallText, "Screens/Credits/KosinskiPM Art/8x16 Font.kospm"
-		incfile.ba	ArtKosPM_CreditsRobotnik, "Screens/Credits/KosinskiPM Art/Robotnik.kospm"
-		incfile.ba	ArtKosPM_CreditsEggRobo, "Screens/Credits/KosinskiPM Art/Egg Robo.kospm"
+		incfile.ba	ArtKosPlusM_CreditsSmallText, "Screens/Credits/KosinskiPlusM Art/8x16 Font.kospm"
+		incfile.ba	ArtKosPlusM_CreditsRobotnik, "Screens/Credits/KosinskiPlusM Art/Robotnik.kospm"
+		incfile.ba	ArtKosPlusM_CreditsEggRobo, "Screens/Credits/KosinskiPlusM Art/Egg Robo.kospm"

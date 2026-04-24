@@ -365,7 +365,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Explosion/KosinskiPM Art/Boss Explosion.kospm",
+                        "path": "../Objects/Main/Explosion/KosinskiPlusM Art/Boss Explosion.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -394,7 +394,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Bosses/Robotnik/KosinskiPM Art/Egg Robo Head.kospm",
+                        "path": "../Objects/Bosses/Robotnik/KosinskiPlusM Art/Egg Robo Head.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -419,7 +419,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Bosses/Robotnik/KosinskiPM Art/Robotnik Ship 1.kospm",
+                        "path": "../Objects/Bosses/Robotnik/KosinskiPlusM Art/Robotnik Ship 1.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -444,7 +444,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Bosses/MZ3/KosinskiPM Art/Tube.kospm",
+                        "path": "../Objects/Bosses/MZ3/KosinskiPlusM Art/Tube.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -477,7 +477,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Spring/KosinskiPM Art/Diagonal Spring.kospm",
+                        "path": "../Objects/Main/Spring/KosinskiPlusM Art/Diagonal Spring.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -502,7 +502,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Spring/KosinskiPM Art/Diagonal Spring.kospm",
+                        "path": "../Objects/Main/Spring/KosinskiPlusM Art/Diagonal Spring.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -527,7 +527,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Egg Capsule/KosinskiPM Art/Egg Capsule.kospm",
+                        "path": "../Objects/Main/Egg Capsule/KosinskiPlusM Art/Egg Capsule.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -552,7 +552,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Explosion/KosinskiPM Art/Explosion.kospm",
+                        "path": "../Objects/Main/Explosion/KosinskiPlusM Art/Explosion.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -577,7 +577,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Monitor/KosinskiPM Art/Monitors.kospm",
+                        "path": "../Objects/Main/Monitor/KosinskiPlusM Art/Monitors.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -602,7 +602,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Monitor/KosinskiPM Art/Monitors.kospm",
+                        "path": "../Objects/Main/Monitor/KosinskiPlusM Art/Monitors.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -702,7 +702,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Spikes/KosinskiPM Art/Spikes and Springs.kospm",
+                        "path": "../Objects/Main/Spikes/KosinskiPlusM Art/Spikes and Springs.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -727,7 +727,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Spikes/KosinskiPM Art/Spikes and Springs.kospm",
+                        "path": "../Objects/Main/Spikes/KosinskiPlusM Art/Spikes and Springs.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -752,7 +752,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Spikes/KosinskiPM Art/Spikes and Springs.kospm",
+                        "path": "../Objects/Main/Spikes/KosinskiPlusM Art/Spikes and Springs.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -777,7 +777,7 @@
                         }
                     ],
                     "art": {
-                        "path": "..\\Objects\\Main\\Enemy Score\\KosinskiPM Art\\Enemy Score and Star Post.kospm",
+                        "path": "..\\Objects\\Main\\Enemy Score\\KosinskiPlusM Art\\Enemy Score and Star Post.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -802,7 +802,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Star Post/KosinskiPM Art/Star Post Stars 1.kospm",
+                        "path": "../Objects/Main/Star Post/KosinskiPlusM Art/Star Post Stars 1.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -827,7 +827,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Star Post/KosinskiPM Art/Star Post Stars 2.kospm",
+                        "path": "../Objects/Main/Star Post/KosinskiPlusM Art/Star Post Stars 2.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -852,7 +852,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Star Post/KosinskiPM Art/Star Post Stars 3.kospm",
+                        "path": "../Objects/Main/Star Post/KosinskiPlusM Art/Star Post Stars 3.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -885,7 +885,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Animals/KosinskiPM Art/Blue Flicky.kospm",
+                        "path": "../Objects/Main/Animals/KosinskiPlusM Art/Blue Flicky.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -910,7 +910,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Animals/KosinskiPM Art/Chicken.kospm",
+                        "path": "../Objects/Main/Animals/KosinskiPlusM Art/Chicken.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -935,7 +935,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Animals/KosinskiPM Art/Penguin.kospm",
+                        "path": "../Objects/Main/Animals/KosinskiPlusM Art/Penguin.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -960,7 +960,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Animals/KosinskiPM Art/Pig.kospm",
+                        "path": "../Objects/Main/Animals/KosinskiPlusM Art/Pig.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -985,7 +985,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Animals/KosinskiPM Art/Rabbit.kospm",
+                        "path": "../Objects/Main/Animals/KosinskiPlusM Art/Rabbit.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1010,7 +1010,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Animals/KosinskiPM Art/Seal.kospm",
+                        "path": "../Objects/Main/Animals/KosinskiPlusM Art/Seal.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1035,7 +1035,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Animals/KosinskiPM Art/Squirrel.kospm",
+                        "path": "../Objects/Main/Animals/KosinskiPlusM Art/Squirrel.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1101,7 +1101,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Breakable Wall/KosinskiPM Art/GHZ Breakable Wall.kospm",
+                        "path": "../Objects/Environ/Breakable Wall/KosinskiPlusM Art/GHZ Breakable Wall.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1130,7 +1130,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Bridge/KosinskiPM Art/Bridge.kospm",
+                        "path": "../Objects/Environ/Bridge/KosinskiPlusM Art/Bridge.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1159,7 +1159,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Bridge/KosinskiPM Art/Bridge.kospm",
+                        "path": "../Objects/Environ/Bridge/KosinskiPlusM Art/Bridge.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1188,7 +1188,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Buzz Bomber/KosinskiPM Art/Enemy Buzz Bomber.kospm",
+                        "path": "../Objects/Enemies/Buzz Bomber/KosinskiPlusM Art/Enemy Buzz Bomber.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1217,7 +1217,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Chopper/KosinskiPM Art/Enemy Chopper.kospm",
+                        "path": "../Objects/Enemies/Chopper/KosinskiPlusM Art/Enemy Chopper.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1246,7 +1246,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Crabmeat/KosinskiPM Art/Enemy Crabmeat.kospm",
+                        "path": "../Objects/Enemies/Crabmeat/KosinskiPlusM Art/Enemy Crabmeat.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1333,7 +1333,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Spike Pole/KosinskiPM Art/Spike Pole.kospm",
+                        "path": "../Objects/Environ/Spike Pole/KosinskiPlusM Art/Spike Pole.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1362,7 +1362,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Moto Bug/KosinskiPM Art/Enemy Moto Bug.kospm",
+                        "path": "../Objects/Enemies/Moto Bug/KosinskiPlusM Art/Enemy Moto Bug.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1391,7 +1391,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Enemies/Newtron/KosinskiPM Art/Enemy Newtron.kospm",
+                        "path": "../Objects/Enemies/Newtron/KosinskiPlusM Art/Enemy Newtron.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1420,7 +1420,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Purple Rock/KosinskiPM Art/Purple Rock.kospm",
+                        "path": "../Objects/Environ/Purple Rock/KosinskiPlusM Art/Purple Rock.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1449,7 +1449,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Swinging Platform/KosinskiPM Art/GHZ Swinging Platform.kospm",
+                        "path": "../Objects/Environ/Swinging Platform/KosinskiPlusM Art/GHZ Swinging Platform.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1478,7 +1478,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Edge Wall/KosinskiPM Art/GHZ Edge Wall.kospm",
+                        "path": "../Objects/Environ/Edge Wall/KosinskiPlusM Art/GHZ Edge Wall.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1515,7 +1515,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Basaran/KosinskiPM Art/Enemy Basaran.kospm",
+                        "path": "../Objects/Enemies/Basaran/KosinskiPlusM Art/Enemy Basaran.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1573,7 +1573,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Button/KosinskiPM Art/MZ Gray Button.kospm",
+                        "path": "../Objects/Main/Button/KosinskiPlusM Art/MZ Gray Button.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1602,7 +1602,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Buzz Bomber/KosinskiPM Art/Enemy Buzz Bomber.kospm",
+                        "path": "../Objects/Enemies/Buzz Bomber/KosinskiPlusM Art/Enemy Buzz Bomber.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1631,7 +1631,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Caterkiller/KosinskiPM Art/Enemy Caterkiller.kospm",
+                        "path": "../Objects/Enemies/Caterkiller/KosinskiPlusM Art/Enemy Caterkiller.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1660,7 +1660,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Chained Stomper/KosinskiPM Art/Metal Blocks.kospm",
+                        "path": "../Objects/Environ/Chained Stomper/KosinskiPlusM Art/Metal Blocks.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1689,7 +1689,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Pushable Block/KosinskiPM Art/Pushable Block.kospm",
+                        "path": "../Objects/Environ/Pushable Block/KosinskiPlusM Art/Pushable Block.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1718,7 +1718,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Lava Ball/KosinskiPM Art/Lava Ball.kospm",
+                        "path": "../Objects/Environ/Lava Ball/KosinskiPlusM Art/Lava Ball.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1776,7 +1776,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Glass Block/KosinskiPM Art/Glass Block.kospm",
+                        "path": "../Objects/Environ/Glass Block/KosinskiPlusM Art/Glass Block.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1805,7 +1805,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Pushable Block/KosinskiPM Art/Pushable Block.kospm",
+                        "path": "../Objects/Environ/Pushable Block/KosinskiPlusM Art/Pushable Block.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1834,7 +1834,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Pushable Block/KosinskiPM Art/Pushable Block.kospm",
+                        "path": "../Objects/Environ/Pushable Block/KosinskiPlusM Art/Pushable Block.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1863,7 +1863,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Chained Stomper/KosinskiPM Art/Metal Blocks.kospm",
+                        "path": "../Objects/Environ/Chained Stomper/KosinskiPlusM Art/Metal Blocks.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1892,7 +1892,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Pushable Block/KosinskiPM Art/Pushable Block.kospm",
+                        "path": "../Objects/Environ/Pushable Block/KosinskiPlusM Art/Pushable Block.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1921,7 +1921,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Lava Wall/KosinskiPM Art/Lava Wall.kospm",
+                        "path": "../Objects/Environ/Lava Wall/KosinskiPlusM Art/Lava Wall.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1958,7 +1958,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Big Spike Ball/KosinskiPM Art/Large Spikeball.kospm",
+                        "path": "../Objects/Environ/Big Spike Ball/KosinskiPlusM Art/Large Spikeball.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -1987,7 +1987,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Bumper/KosinskiPM Art/Bumper.kospm",
+                        "path": "../Objects/Environ/Bumper/KosinskiPlusM Art/Bumper.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2016,7 +2016,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Button/KosinskiPM Art/Gray Button.kospm",
+                        "path": "../Objects/Main/Button/KosinskiPlusM Art/Gray Button.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2045,7 +2045,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Buzz Bomber/KosinskiPM Art/Enemy Buzz Bomber.kospm",
+                        "path": "../Objects/Enemies/Buzz Bomber/KosinskiPlusM Art/Enemy Buzz Bomber.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2074,7 +2074,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Caterkiller/KosinskiPM Art/Enemy Caterkiller.kospm",
+                        "path": "../Objects/Enemies/Caterkiller/KosinskiPlusM Art/Enemy Caterkiller.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2104,7 +2104,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Crabmeat/KosinskiPM Art/Enemy Crabmeat.kospm",
+                        "path": "../Objects/Enemies/Crabmeat/KosinskiPlusM Art/Enemy Crabmeat.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2191,7 +2191,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Roller/KosinskiPM Art/Enemy Roller.kospm",
+                        "path": "../Objects/Enemies/Roller/KosinskiPlusM Art/Enemy Roller.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2249,7 +2249,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Spike Ball/KosinskiPM Art/Small Spikeball.kospm",
+                        "path": "../Objects/Environ/Spike Ball/KosinskiPlusM Art/Small Spikeball.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2278,7 +2278,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Yadrin/KosinskiPM Art/Enemy Yadrin.kospm",
+                        "path": "../Objects/Enemies/Yadrin/KosinskiPlusM Art/Enemy Yadrin.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2315,7 +2315,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Floating Blocks and Doors/KosinskiPM Art/LZ Horizontal Door.kospm",
+                        "path": "../Objects/Environ/Floating Blocks and Doors/KosinskiPlusM Art/LZ Horizontal Door.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2344,7 +2344,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Breakable Pole/KosinskiPM Art/Breakable Pole.kospm",
+                        "path": "../Objects/Environ/Breakable Pole/KosinskiPlusM Art/Breakable Pole.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2373,7 +2373,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Bubbler/KosinskiPM Art/Bubbles.kospm",
+                        "path": "../Objects/Main/Bubbler/KosinskiPlusM Art/Bubbles.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2402,7 +2402,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Burrobot/KosinskiPM Art/Enemy Burrobot.kospm",
+                        "path": "../Objects/Enemies/Burrobot/KosinskiPlusM Art/Enemy Burrobot.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2431,7 +2431,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Button/KosinskiPM Art/Gray Button.kospm",
+                        "path": "../Objects/Main/Button/KosinskiPlusM Art/Gray Button.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2460,7 +2460,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Labyrinth Conveyor/KosinskiPM Art/Labyrinth Conveyor.kospm",
+                        "path": "../Objects/Environ/Labyrinth Conveyor/KosinskiPlusM Art/Labyrinth Conveyor.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2518,7 +2518,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Floating Blocks and Doors/KosinskiPM Art/LZ Vertical Door.kospm",
+                        "path": "../Objects/Environ/Floating Blocks and Doors/KosinskiPlusM Art/LZ Vertical Door.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2547,7 +2547,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Flapping Door/KosinskiPM Art/Flapping Door.kospm",
+                        "path": "../Objects/Environ/Flapping Door/KosinskiPlusM Art/Flapping Door.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2576,7 +2576,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Gargoyle/KosinskiPM Art/Gargoyle and Fireball.kospm",
+                        "path": "../Objects/Environ/Gargoyle/KosinskiPlusM Art/Gargoyle and Fireball.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2605,7 +2605,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Harpoon/KosinskiPM Art/Harpoon.kospm",
+                        "path": "../Objects/Environ/Harpoon/KosinskiPlusM Art/Harpoon.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2634,7 +2634,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Enemies/Jaws/KosinskiPM Art/Enemy Jaws.kospm",
+                        "path": "../Objects/Enemies/Jaws/KosinskiPlusM Art/Enemy Jaws.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2663,7 +2663,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Levels/LZ/KosinskiPM Art/LZ 32x16 Block.kospm",
+                        "path": "../Levels/LZ/KosinskiPlusM Art/LZ 32x16 Block.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2692,7 +2692,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Enemies/Orbinaut/KosinskiPM Art/Enemy Orbinaut.kospm",
+                        "path": "../Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2721,7 +2721,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Enemies/Orbinaut/KosinskiPM Art/Enemy Orbinaut.kospm",
+                        "path": "../Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2750,7 +2750,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Spike Ball/KosinskiPM Art/Spike Ball and Chain.kospm",
+                        "path": "../Objects/Environ/Spike Ball/KosinskiPlusM Art/Spike Ball and Chain.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2779,7 +2779,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Labyrinth Waterfall/KosinskiPM Art/Water and Splash.kospm",
+                        "path": "../Objects/Environ/Labyrinth Waterfall/KosinskiPlusM Art/Water and Splash.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2816,7 +2816,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Bomb/KosinskiPM Art/Enemy Bomb.kospm",
+                        "path": "../Objects/Enemies/Bomb/KosinskiPlusM Art/Enemy Bomb.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2845,7 +2845,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Breakable Wall/KosinskiPM Art/SLZ Breakable Wall.kospm",
+                        "path": "../Objects/Environ/Breakable Wall/KosinskiPlusM Art/SLZ Breakable Wall.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2874,7 +2874,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Collapsing Floor/KosinskiPM Art/SLZ 32x32 Block.kospm",
+                        "path": "../Objects/Environ/Collapsing Floor/KosinskiPlusM Art/SLZ 32x32 Block.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2932,7 +2932,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Fan/KosinskiPM Art/Fan.kospm",
+                        "path": "../Objects/Environ/Fan/KosinskiPlusM Art/Fan.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2961,7 +2961,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Lava Ball/KosinskiPM Art/Lava Ball.kospm",
+                        "path": "../Objects/Environ/Lava Ball/KosinskiPlusM Art/Lava Ball.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -2990,7 +2990,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Lava Ball/KosinskiPM Art/Cannon.kospm",
+                        "path": "../Objects/Environ/Lava Ball/KosinskiPlusM Art/Cannon.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3077,7 +3077,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Enemies/Orbinaut/KosinskiPM Art/Enemy Orbinaut.kospm",
+                        "path": "../Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3106,7 +3106,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Enemies/Orbinaut/KosinskiPM Art/Enemy Orbinaut.kospm",
+                        "path": "../Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3135,7 +3135,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Seesaw/KosinskiPM Art/Seesaw.kospm",
+                        "path": "../Objects/Environ/Seesaw/KosinskiPlusM Art/Seesaw.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3193,7 +3193,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Swinging Platform/KosinskiPM Art/SLZ Swinging Platform.kospm",
+                        "path": "../Objects/Environ/Swinging Platform/KosinskiPlusM Art/SLZ Swinging Platform.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3230,7 +3230,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Enemies/Ball Hog/KosinskiPM Art/Enemy Ball Hog.kospm",
+                        "path": "../Objects/Enemies/Ball Hog/KosinskiPlusM Art/Enemy Ball Hog.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3259,7 +3259,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Bomb/KosinskiPM Art/Enemy Bomb.kospm",
+                        "path": "../Objects/Enemies/Bomb/KosinskiPlusM Art/Enemy Bomb.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3288,7 +3288,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Main/Button/KosinskiPM Art/Gray Button.kospm",
+                        "path": "../Objects/Main/Button/KosinskiPlusM Art/Gray Button.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3317,7 +3317,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Enemies/Caterkiller/KosinskiPM Art/Enemy Caterkiller.kospm",
+                        "path": "../Objects/Enemies/Caterkiller/KosinskiPlusM Art/Enemy Caterkiller.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3346,7 +3346,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Collapsing Floor/KosinskiPM Art/SBZ Collapsing Floor.kospm",
+                        "path": "../Objects/Environ/Collapsing Floor/KosinskiPlusM Art/SBZ Collapsing Floor.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3375,7 +3375,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Electrocuter/KosinskiPM Art/Electrocuter.kospm",
+                        "path": "../Objects/Environ/Electrocuter/KosinskiPlusM Art/Electrocuter.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3404,7 +3404,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Flamethrower/KosinskiPM Art/Flaming Pipe.kospm",
+                        "path": "../Objects/Environ/Flamethrower/KosinskiPlusM Art/Flaming Pipe.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3433,7 +3433,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Girder Block/KosinskiPM Art/Crushing Girder.kospm",
+                        "path": "../Objects/Environ/Girder Block/KosinskiPlusM Art/Crushing Girder.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3462,7 +3462,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Stomper and Door/KosinskiPM Art/SBZ Sliding Floor Trap.kospm",
+                        "path": "../Objects/Environ/Stomper and Door/KosinskiPlusM Art/SBZ Sliding Floor Trap.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3491,7 +3491,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Enemies/Orbinaut/KosinskiPM Art/Enemy Orbinaut.kospm",
+                        "path": "../Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3520,7 +3520,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Enemies/Orbinaut/KosinskiPM Art/Enemy Orbinaut.kospm",
+                        "path": "../Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3549,7 +3549,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Rotating Junction/KosinskiPM Art/Junction Wheel.kospm",
+                        "path": "../Objects/Environ/Rotating Junction/KosinskiPlusM Art/Junction Wheel.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3636,7 +3636,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Vanishing Platform/KosinskiPM Art/Vanishing Platform.kospm",
+                        "path": "../Objects/Environ/Vanishing Platform/KosinskiPlusM Art/Vanishing Platform.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3665,7 +3665,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Vanishing Platform/KosinskiPM Art/Vanishing Platform.kospm",
+                        "path": "../Objects/Environ/Vanishing Platform/KosinskiPlusM Art/Vanishing Platform.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3694,7 +3694,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Small Door/KosinskiPM Art/Small Vertical Door.kospm",
+                        "path": "../Objects/Environ/Small Door/KosinskiPlusM Art/Small Vertical Door.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3723,7 +3723,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Spinning Platform/KosinskiPM Art/Spinning Platform.kospm",
+                        "path": "../Objects/Environ/Spinning Platform/KosinskiPlusM Art/Spinning Platform.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3752,7 +3752,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Big Spike Ball/KosinskiPM Art/Large Spikeball.kospm",
+                        "path": "../Objects/Environ/Big Spike Ball/KosinskiPlusM Art/Large Spikeball.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3781,7 +3781,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Environ/Spinning Platform/KosinskiPM Art/Trapdoor.kospm",
+                        "path": "../Objects/Environ/Spinning Platform/KosinskiPlusM Art/Trapdoor.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3810,7 +3810,7 @@
                     ],
                     "format": "Sonic 3&K Object.js",
                     "art": {
-                        "path": "../Objects/Environ/Vanishing Platform/KosinskiPM Art/Vanishing Platform.kospm",
+                        "path": "../Objects/Environ/Vanishing Platform/KosinskiPlusM Art/Vanishing Platform.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3918,7 +3918,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Screens/Ending/KosinskiPM Art/Emeralds Ending.kospm",
+                        "path": "../Screens/Ending/KosinskiPlusM Art/Emeralds Ending.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -3947,7 +3947,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Screens/Ending/KosinskiPM Art/StH Logo Ending.kospm",
+                        "path": "../Screens/Ending/KosinskiPlusM Art/StH Logo Ending.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -4005,7 +4005,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Screens/Title/KosinskiPM Art/Text.kospm",
+                        "path": "../Screens/Title/KosinskiPlusM Art/Text.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -4030,7 +4030,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Screens/Title/KosinskiPM Art/Foreground.kospm",
+                        "path": "../Screens/Title/KosinskiPlusM Art/Foreground.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -4067,7 +4067,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Screens/Continue/KosinskiPM Art/Egg Robo Badnik.kospm",
+                        "path": "../Screens/Continue/KosinskiPlusM Art/Egg Robo Badnik.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -4096,7 +4096,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Screens/Continue/KosinskiPM Art/Player Icons.kospm",
+                        "path": "../Screens/Continue/KosinskiPlusM Art/Player Icons.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -4125,7 +4125,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Screens/Continue/KosinskiPM Art/Player Sprites.kospm",
+                        "path": "../Screens/Continue/KosinskiPlusM Art/Player Sprites.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -4162,7 +4162,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Screens/Credits/KosinskiPM Art/Egg Robo.kospm",
+                        "path": "../Screens/Credits/KosinskiPlusM Art/Egg Robo.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -4191,7 +4191,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Screens/Credits/KosinskiPM Art/Robotnik.kospm",
+                        "path": "../Screens/Credits/KosinskiPlusM Art/Robotnik.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },
@@ -4224,7 +4224,7 @@
                         }
                     ],
                     "art": {
-                        "path": "../Objects/Enemies/Splats/KosinskiPM Art/Enemy Splats.kospm",
+                        "path": "../Objects/Enemies/Splats/KosinskiPlusM Art/Enemy Splats.kospm",
                         "compression": "KosinskiPlus-M",
                         "offset": 0
                     },

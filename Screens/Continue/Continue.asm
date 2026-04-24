@@ -646,7 +646,7 @@ Obj_Continue_EggRobo:
 		jsr	(CreateChild1_Normal).w
 
 		; load egg robo badnik art
-		QueueKosPlusModule	ArtKosPM_EggRoboBadnik, $500, 1
+		QueueKosPlusModule	ArtKosPlusM_EggRoboBadnik, $500, 1
 ; ---------------------------------------------------------------------------
 
 .main
@@ -964,9 +964,9 @@ Credits_TextCONTINUE:
 		creditstr_end
 
 PLC_Continue: plrlistheader
-		plreq 1, ArtKosPM_ContinueDigits
-		plreq $8C, ArtKosPM_ContinueSprites
-		plreq $D9, ArtKosPM_ContinueIcons
+		plreq 1, ArtKosPlusM_ContinueDigits
+		plreq $8C, ArtKosPlusM_ContinueSprites
+		plreq $D9, ArtKosPlusM_ContinueIcons
 		plrlistend
 ; ---------------------------------------------------------------------------
 

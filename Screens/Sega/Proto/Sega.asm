@@ -49,7 +49,7 @@ SegaScreen:
 		move.b	d0,(Japan_credits_flag).w
 
 		; load main art
-		QueueKosPlusModule	ArtKosPM_SegaProto, 1
+		QueueKosPlusModule	ArtKosPlusM_SegaProto, 1
 
 		; load mapping
 		EniDecomp	MapEni_SegaProto, RAM_start, 0, 0, FALSE		; decompress Enigma mappings

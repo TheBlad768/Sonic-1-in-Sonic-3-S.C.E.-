@@ -20,16 +20,16 @@ titlecard.process =			parent2						; (1 byte)
 ; =============== S U B R O U T I N E =======================================
 
 TitleCardAct_Index:
-		dc.l ArtKosPM_TitleCardNum1	; 0
-		dc.l ArtKosPM_TitleCardNum2	; 1
-		dc.l ArtKosPM_TitleCardNum3	; 2
-		dc.l ArtKosPM_TitleCardNum4	; 3
+		dc.l ArtKosPlusM_TitleCardNum1	; 0
+		dc.l ArtKosPlusM_TitleCardNum2	; 1
+		dc.l ArtKosPlusM_TitleCardNum3	; 2
+		dc.l ArtKosPlusM_TitleCardNum4	; 3
 ; ---------------------------------------------------------------------------
 
 Obj_TitleCard:
 
 		; load general art
-		QueueKosPlusModule	ArtKosPM_TitleCardRedAct, $500
+		QueueKosPlusModule	ArtKosPlusM_TitleCardRedAct, $500
 
 		; load act number art
 		moveq	#0,d0
@@ -41,7 +41,7 @@ Obj_TitleCard:
 		; check
 		cmpi.w	#bytes_to_word(LevelID_LZ,ACT_4),(Current_zone_and_act).w	; is level Labyrinth Zone 4?
 		bne.s	.notSBZ03							; if not, branch
-		lea	(ArtKosPM_TitleCardNum3).l,a1
+		lea	(ArtKosPlusM_TitleCardNum3).l,a1
 
 .notSBZ03
 		move.w	#tiles_to_bytes($53D),d2

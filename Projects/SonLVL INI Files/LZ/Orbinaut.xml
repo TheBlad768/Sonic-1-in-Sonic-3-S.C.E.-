@@ -2,11 +2,11 @@
 <ObjDef xmlns="http://www.sonicretro.org" Name="Orbinaut">
   <Images>
     <ImageFromMappings id="spikeball">
-      <ArtFile filename="../../Objects/Enemies/Orbinaut/KosinskiPM Art/Enemy Orbinaut.kospm" compression="KosinskiPlusM" />
+      <ArtFile filename="../../Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm" compression="KosinskiPlusM" />
       <MapFile type="ASM" filename="LZ/Mappings/Map - Orbinaut Orb.asm" label="Map_Orbinaut_Orb" startpal="0" />
     </ImageFromMappings>
     <ImageFromMappings id="body">
-      <ArtFile filename="../../Objects/Enemies/Orbinaut/KosinskiPM Art/Enemy Orbinaut.kospm" compression="KosinskiPlusM" />
+      <ArtFile filename="../../Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm" compression="KosinskiPlusM" />
       <MapFile type="ASM" filename="../../Objects/Enemies/Orbinaut/Object Data/Map - Orbinaut.asm" frame="0" startpal="0" />
     </ImageFromMappings>
   </Images>

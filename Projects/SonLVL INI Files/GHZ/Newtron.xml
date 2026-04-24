@@ -2,11 +2,11 @@
 <ObjDef xmlns="http://www.sonicretro.org" Name="Newtron" Image="img1">
   <Images>
     <ImageFromMappings id="img1">
-      <ArtFile filename="../../Objects/Enemies/Newtron/KosinskiPM Art/Enemy Newtron.kospm" compression="KosinskiPlusM" />
+      <ArtFile filename="../../Objects/Enemies/Newtron/KosinskiPlusM Art/Enemy Newtron.kospm" compression="KosinskiPlusM" />
       <MapFile type="ASM" filename="../../Objects/Enemies/Newtron/Object Data/Map - Newtron.asm" frame="3" startpal="0"/>
     </ImageFromMappings>
     <ImageFromMappings id="img2">
-      <ArtFile filename="../../Objects/Enemies/Newtron/KosinskiPM Art/Enemy Newtron.kospm" compression="KosinskiPlusM" />
+      <ArtFile filename="../../Objects/Enemies/Newtron/KosinskiPlusM Art/Enemy Newtron.kospm" compression="KosinskiPlusM" />
       <MapFile type="ASM" filename="../../Objects/Enemies/Newtron/Object Data/Map - Newtron.asm" frame="1" startpal="1"/>
     </ImageFromMappings>
   </Images>

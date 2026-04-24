@@ -2,7 +2,7 @@
 <ObjDef xmlns="http://www.sonicretro.org" Name="Ball Hog" Image="ballhog">
   <Images>
     <ImageFromMappings id="ballhog">
-      <ArtFile filename="../../Objects/Enemies/Ball Hog/KosinskiPM Art/Enemy Ball Hog.kospm" compression="KosinskiPlusM" />
+      <ArtFile filename="../../Objects/Enemies/Ball Hog/KosinskiPlusM Art/Enemy Ball Hog.kospm" compression="KosinskiPlusM" />
       <MapFile type="ASM" filename="../../Objects/Enemies/Ball Hog/Object Data/Map - Ball Hog.asm" frame="0" startpal="1" />
     </ImageFromMappings>
   </Images>

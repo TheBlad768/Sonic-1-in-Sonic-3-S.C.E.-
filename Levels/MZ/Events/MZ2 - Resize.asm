@@ -15,7 +15,7 @@ MZ2_Resize:
 		move.l	#.main,(Level_data_addr_RAM.Resize).w
 
 		; load hidden bonus art
-		QueueKosPlusModule	ArtKosPM_HiddenBonus, $460
+		QueueKosPlusModule	ArtKosPlusM_HiddenBonus, $460
 
 		; create signpost
 		jsr	(Create_New_Object).w

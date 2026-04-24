@@ -723,10 +723,10 @@ Child6_BossSpikeBall_ShipTubePieces:
 		dc.l Obj_BossSpikeBall_ShipTubePieces
 
 PLC_BossSpikeBall: plrlistheader
-		plreq $3B0, ArtKosPM_RobotnikShip2
-		plreq $440, ArtKosPM_BossSpikeBallTube
-		plreq $4C1, ArtKosPM_Bomb
-		plreq $500, ArtKosPM_BossExplosion
+		plreq $3B0, ArtKosPlusM_RobotnikShip2
+		plreq $440, ArtKosPlusM_BossSpikeBallTube
+		plreq $4C1, ArtKosPlusM_Bomb
+		plreq $500, ArtKosPlusM_BossExplosion
 		plrlistend
 ; ---------------------------------------------------------------------------
 

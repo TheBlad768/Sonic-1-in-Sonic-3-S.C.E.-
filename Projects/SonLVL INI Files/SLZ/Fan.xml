@@ -2,7 +2,7 @@
 <ObjDef xmlns="http://www.sonicretro.org" Name="Fan" Image="img1">
   <Images>
     <ImageFromMappings id="img1">
-      <ArtFile filename="../../Objects/Environ/Fan/KosinskiPM Art/Fan.kospm" compression="KosinskiPlusM" />
+      <ArtFile filename="../../Objects/Environ/Fan/KosinskiPlusM Art/Fan.kospm" compression="KosinskiPlusM" />
       <MapFile type="ASM" filename="../../Objects/Environ/Fan/Object Data/Map - Fan.asm" frame="0" startpal="2" />
     </ImageFromMappings>
   </Images>

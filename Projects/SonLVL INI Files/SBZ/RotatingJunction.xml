@@ -2,11 +2,11 @@
 <ObjDef xmlns="http://www.sonicretro.org" Name="Rotating Junction">
   <Images>
     <ImageFromMappings id="gap">
-      <ArtFile filename="../../Objects/Environ/Rotating Junction/KosinskiPM Art/Junction Wheel.kospm" compression="KosinskiPlusM" />
+      <ArtFile filename="../../Objects/Environ/Rotating Junction/KosinskiPlusM Art/Junction Wheel.kospm" compression="KosinskiPlusM" />
       <MapFile type="ASM" filename="../../Objects/Environ/Rotating Junction/Object Data/Map - Rotating Junction.asm" frame="0" startpal="2" />
     </ImageFromMappings>
     <ImageFromMappings id="circle">
-      <ArtFile filename="../../Objects/Environ/Rotating Junction/KosinskiPM Art/Junction Wheel.kospm" compression="KosinskiPlusM" />
+      <ArtFile filename="../../Objects/Environ/Rotating Junction/KosinskiPlusM Art/Junction Wheel.kospm" compression="KosinskiPlusM" />
       <MapFile type="ASM" filename="../../Objects/Environ/Rotating Junction/Object Data/Map - Rotating Junction.asm" frame="16" startpal="2" />
     </ImageFromMappings>
   </Images>

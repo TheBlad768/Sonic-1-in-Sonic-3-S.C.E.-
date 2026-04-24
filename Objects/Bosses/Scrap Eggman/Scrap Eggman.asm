@@ -280,7 +280,7 @@ AniRaw_ScrapEggman_Laugh:
 	even
 
 PLC_SE_ControlDesk: plrlistheader
-		plreq $340, ArtKosPM_SE_ControlDesk
+		plreq $340, ArtKosPlusM_SE_ControlDesk
 		plrlistend
 ; ---------------------------------------------------------------------------
 

@@ -2,7 +2,7 @@
 <ObjDef xmlns="http://www.sonicretro.org" Name="Lavaball Spawner" Image="lavaball" Debug="true">
   <Images>
     <ImageFromMappings id="lavaball">
-      <ArtFile filename="../../Objects/Environ/Lava Ball/KosinskiPM Art/Lava Ball.kospm" compression="KosinskiPlusM" />
+      <ArtFile filename="../../Objects/Environ/Lava Ball/KosinskiPlusM Art/Lava Ball.kospm" compression="KosinskiPlusM" />
       <MapFile type="ASM" filename="../../Objects/Environ/Lava Ball/Object Data/Map - Lava Ball.asm" frame="1" startpal="0" />
     </ImageFromMappings>
   </Images>
