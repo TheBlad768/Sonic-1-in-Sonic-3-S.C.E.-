@@ -30,7 +30,7 @@ Obj_FloatingPlatform:
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; check if level is SLZ
 		bne.s	.notSLZ								; if not, branch
 		move.l	#Map_FloatingPlatform_SLZ,d0
-		move.b	#3,subtype(a0)
+		move.b	#3,subtype.byte(a0)
 
 .notSLZ
 		move.l	d0,mappings(a0)
@@ -43,20 +43,20 @@ Obj_FloatingPlatform:
 
 		; check
 		moveq	#$F,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		cmpi.b	#10,d0
 		bne.s	.skip
 		move.b	#1,mapping_frame(a0)						; large platform
 
 .skip
 		add.b	d0,d0
-		move.b	d0,subtype(a0)
+		move.b	d0,subtype.byte(a0)
 		move.l	#loc_255F4,code_addr(a0)
 
 loc_255F4:
 		move.w	x_pos(a0),-(sp)
 		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		move.w	FloatingPlatform_TypeIndex(pc,d0.w),d0
 		jsr	FloatingPlatform_TypeIndex(pc,d0.w)
 		move.w	(sp)+,d4
@@ -192,7 +192,7 @@ FloatingPlatform_CheckFalling:								; type03
 		subq.w	#1,floatingplatform.timer(a0)
 		bne.s	.return
 		move.w	#32,floatingplatform.timer(a0)
-		addq.b	#2,subtype(a0)
+		addq.b	#2,subtype.byte(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -288,7 +288,7 @@ FloatingPlatform_Button:								; type07
 		tst.w	floatingplatform.timer(a0)
 		bne.s	.wait
 		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		lsr.w	#4,d0
 		lea	(Level_trigger_array).w,a3
 
@@ -304,7 +304,7 @@ FloatingPlatform_Button:								; type07
 .wait
 		subq.w	#1,floatingplatform.timer(a0)
 		bne.s	.return
-		addq.b	#2,subtype(a0)
+		addq.b	#2,subtype.byte(a0)
 		rts
 
 ; =============== S U B R O U T I N E =======================================
@@ -316,7 +316,7 @@ FloatingPlatform_Raise:									; type08
 		cmp.w	y_pos(a0),d1
 		bne.s	.return
 		move.w	y_pos(a0),floatingplatform.origY(a0)
-		clr.b	subtype(a0)
+		clr.b	subtype.byte(a0)
 
 .return
 		rts

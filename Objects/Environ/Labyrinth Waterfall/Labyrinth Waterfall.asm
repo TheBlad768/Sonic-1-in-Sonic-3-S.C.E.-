@@ -14,7 +14,7 @@ Obj_Waterfall:
 		move.l	#.chkdel,code_addr(a0)
 
 		; set
-		move.b	subtype(a0),d0							; get object type
+		move.b	subtype.byte(a0),d0						; get object type
 		bpl.s	.under80							; branch if $00-$7F
 		bset	#high_priority_bit,art_tile(a0)					; high priority
 
@@ -25,12 +25,12 @@ Obj_Waterfall:
 		bne.s	.chkdel								; if not, branch
 		clr.w	priority(a0)							; object is in front of Sonic
 		move.l	#.anim,code_addr(a0)
-		btst	#6,subtype(a0)							; is object type $49?
+		btst	#6,subtype.byte(a0)						; is object type $49?
 		beq.s	.not49								; if not, branch
 		move.l	#.onwater,code_addr(a0)
 
 .not49
-		btst	#5,subtype(a0)							; is object type $A9?
+		btst	#5,subtype.byte(a0)						; is object type $A9?
 		beq.s	.anim								; if not, branch
 		move.l	#.checkchunk,code_addr(a0)
 

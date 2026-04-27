@@ -369,7 +369,7 @@ SuperTailsBirds_FindTarget:
 		movea.w	(a4)+,a1							; get address of first object's RAM
 		tst.b	render_flags(a1)						; is the object visible on the screen?
 		bpl.s	.ignore_object							; if not, branch
-		tst.b	collision_type(a1)						; test collision type
+		tst.b	collision_type(a1)						; check collision type
 		beq.s	.ignore_object							; if there is no collision here, branch
 		bsr.s	.check_if_object_valid
 

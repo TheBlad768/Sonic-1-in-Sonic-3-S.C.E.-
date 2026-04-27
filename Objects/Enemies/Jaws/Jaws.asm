@@ -27,8 +27,7 @@ Obj_Jaws:
 		move.l	#.turn,code_addr(a0)
 
 		; set
-		moveq	#0,d0
-		move.b	subtype(a0),d0							; load object subtype number
+		move.w	subtype(a0),d0							; load object subtype number
 		lsl.w	#6,d0								; multiply d0 by 64
 		subq.w	#1,d0
 		move.w	d0,jaws.timer(a0)						; set turn delay time

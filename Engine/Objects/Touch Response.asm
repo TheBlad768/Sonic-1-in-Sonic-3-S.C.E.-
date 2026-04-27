@@ -68,7 +68,7 @@ Touch_Loop:
 		movea.w	(a4)+,a1							; get address of first object's RAM
 		tst.b	render_flags(a1)						; is the object visible on the screen?
 		bpl.s	Touch_NextObj							; if not, branch
-		tst.b	collision_type(a1)						; get its collision type
+		tst.b	collision_type(a1)						; check collision type
 		bne.s	Touch_Width							; if it actually has collision, branch
 
 Touch_NextObj:
@@ -793,7 +793,7 @@ HyperTouch_Loop:
 		movea.w	(a4)+,a1							; get address of first object's RAM
 		tst.b	render_flags(a1)						; is the object visible on the screen?
 		bpl.s	HyperTouch_NextObj						; if not, branch
-		tst.b	collision_type(a1)						; test collision type
+		tst.b	collision_type(a1)						; check collision type
 		beq.s	HyperTouch_NextObj						; if it doesn't have collision, branch
 		bsr.s	HyperTouch_ChkValue						; else, process object
 
@@ -813,18 +813,17 @@ HyperTouch_ChkValue:
 		; load
 		moveq	#0,d0
 		move.b	collision_type(a1),d0
-		move.w	HyperTouch_Index-2(pc,d0.w),d0
-		jmp	HyperTouch_Index(pc,d0.w)
+		jmp	.index-2(pc,d0.w)
 ; ---------------------------------------------------------------------------
 
-HyperTouch_Index: offsetTable
-		offsetTableEntry.w HyperTouch_Enemy					; 2
-		offsetTableEntry.w HyperTouch_Harmful					; 4
-		offsetTableEntry.w HyperTouch_Special					; 6
-		offsetTableEntry.w HyperTouch_Return					; 8
-		offsetTableEntry.w HyperTouch_Return					; A
-		offsetTableEntry.w HyperTouch_Special					; C
-		offsetTableEntry.w HyperTouch_Special					; E
+.index
+		bra.s	HyperTouch_Enemy						; 2
+		bra.s	HyperTouch_Harmful						; 4
+		bra.s	HyperTouch_Special						; 6
+		bra.s	HyperTouch_Return						; 8
+		bra.s	HyperTouch_Return						; A
+		bra.s	HyperTouch_Special						; C
+		bra.s	HyperTouch_Special						; E
 
 ; ---------------------------------------------------------------------------
 ; Touch enemy

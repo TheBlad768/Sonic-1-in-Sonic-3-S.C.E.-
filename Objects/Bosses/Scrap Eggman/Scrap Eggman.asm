@@ -118,8 +118,7 @@ Obj_ScrapEggman_Block:
 		move.w	d0,y_pos(a0)
 
 		; calc xpos
-		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.w	subtype(a0),d0
 		move.w	d0,d1
 		addq.w	#2,d1
 		asl.w	#4,d0
@@ -217,14 +216,13 @@ Obj_ScrapEggman_BlockPieces:
 		move.l	#.fall,code_addr(a0)
 
 		; get subtype
-		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.w	subtype(a0),d0
 
 		; set yvel
 		move.w	.speed(pc,d0.w),y_vel(a0)
 
 		; set frame
-		lsr.b	d0								; division by 2
+		lsr.w	d0								; division by 2
 		move.b	d0,mapping_frame(a0)
 
 .fall

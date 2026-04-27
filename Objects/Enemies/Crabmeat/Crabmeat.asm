@@ -198,7 +198,7 @@ Obj_Crabmeat_Missile:
 
 		; set x_vel and y_vel
 		move.l	#words_to_long(-$100,-$400),x_vel(a0)				; x_vel and y_vel
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		beq.s	.main
 		neg.w	x_vel(a0)
 
@@ -207,7 +207,7 @@ Obj_Crabmeat_Missile:
 
 		; animate
 		moveq	#8,d0
-		btst	#1,(V_int_run_count+3).w					; 0 or 2
+		btst	#1,(V_int_run_count.byte).w					; 0 or 2
 		beq.s	.setframe
 		addq.b	#1,d0
 

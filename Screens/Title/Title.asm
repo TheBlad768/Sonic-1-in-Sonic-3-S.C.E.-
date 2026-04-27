@@ -392,7 +392,7 @@ Obj_TitleSonic:
 			$A0 + \
 				setBit(3) + \
 			1 \
-		),subtype(a1)
+		),subtype.byte(a1)
 
 		move.w	a0,parent3(a1)							; save parent
 

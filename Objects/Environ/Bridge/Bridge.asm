@@ -30,9 +30,9 @@ Obj_TensionBridge:
 		move.w	#make_art_tile($33E,2,FALSE),art_tile(a0)
 
 		; check
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		bpl.s	.normal
-		andi.b	#$7F,subtype(a0)
+		andi.b	#$7F,subtype.byte(a0)
 		move.l	#TensionBridge_CheckExplosion,code_addr(a0)			; bridge explosion
 
 .normal
@@ -41,7 +41,7 @@ Obj_TensionBridge:
 		move.w	y_pos(a0),d2
 		move.w	d2,tensionbridge.origY(a0)					; save ypos
 		move.w	x_pos(a0),d3
-		lea	subtype(a0),a2							; copy bridge subtype to a2
+		lea	subtype.byte(a0),a2						; copy bridge subtype to a2
 		moveq	#0,d1
 		move.b	(a2),d1								; d1 = subtype
 		move.w	d1,d0
@@ -146,7 +146,7 @@ TensionBridge_Nudge:
 
 .solid
 		moveq	#0,d1
-		move.b	subtype(a0),d1
+		move.b	subtype.byte(a0),d1
 		lsl.w	#3,d1								; multiply by 8
 		move.w	d1,d2								; width
 		addq.w	#8,d1
@@ -163,7 +163,7 @@ TensionBridge_Nudge:
 		jsr	(Delete_Referenced_Object).w
 
 		; check second subsprite object
-		cmpi.b	#tensionbridge.logcount,subtype(a0)
+		cmpi.b	#tensionbridge.logcount,subtype.byte(a0)
 		bls.s	.chkdel								; if bridge has more than 8 logs, delete second subsprite object
 		movea.w	parent4(a0),a1							; a1=object
 		jsr	(Delete_Referenced_Object).w
@@ -201,7 +201,7 @@ Obj_TensionBridge_LogFall:
 
 TensionBridge_CheckExplosion:								; check bridge explosion
 		moveq	#$F,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		lea	(Level_trigger_array).w,a3
 
 		; check
@@ -244,7 +244,7 @@ TensionBridge_BreakObjectToPieces:
 		bsr.s	.main
 
 		; check second subsprite object
-		cmpi.b	#tensionbridge.logcount,subtype(a0)
+		cmpi.b	#tensionbridge.logcount,subtype.byte(a0)
 		bls.s	TensionBridge_CheckExplosion.return				; if bridge has more than 8 logs, create second subsprite object pieces
 		movea.w	parent4(a0),a3							; a3=object
 
@@ -405,7 +405,7 @@ TensionBridge_Bend:
 
 		; first block
 		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		lsl.w	#4,d0								; multiply by $10
 		moveq	#0,d3
 		move.b	tensionbridge.p1_index(a0),d3
@@ -441,7 +441,7 @@ TensionBridge_Bend:
 
 		; second block
 		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		moveq	#1,d3
 		add.b	tensionbridge.p1_index(a0),d3
 		sub.b	d0,d3

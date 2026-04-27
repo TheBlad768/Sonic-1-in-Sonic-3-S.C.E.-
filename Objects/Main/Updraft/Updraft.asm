@@ -63,14 +63,14 @@ Obj_Updraft:
 
 		; play sfx
 		moveq	#$F,d0
-		and.b	(V_int_run_count+3).w,d0
+		and.b	(V_int_run_count.byte).w,d0
 		bne.s	.notplay
 		sfx	sfx_WindQuiet
 
 .notplay
 
 		; check
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		bmi.s	.alt
 
 		; set

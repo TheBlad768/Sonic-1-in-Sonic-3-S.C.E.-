@@ -22,7 +22,7 @@ Obj_Fan:
 		move.l	#.main,code_addr(a0)
 
 .main
-		btst	#1,subtype(a0)							; is object type 02/03 (always on)?
+		btst	#1,subtype.byte(a0)						; is object type 02/03 (always on)?
 		bne.s	.blow								; if yes, branch
 
 		; wait
@@ -65,7 +65,7 @@ Obj_Fan:
 
 .noreset
 		moveq	#0,d0
-		btst	#0,subtype(a0)
+		btst	#0,subtype.byte(a0)
 		beq.s	.noflip
 		addq.b	#2,d0
 
@@ -113,7 +113,7 @@ Fan_Check:
 .right
 		neg.b	d0
 		asr.w	#4,d0
-		btst	#0,subtype(a0)
+		btst	#0,subtype.byte(a0)
 		beq.s	.movesonic
 		neg.w	d0
 

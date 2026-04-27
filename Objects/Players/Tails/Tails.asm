@@ -274,7 +274,7 @@ Tails_ChkInvin:										; checks if invincibility has expired and disables it i
 		tst.b	invincibility_timer(a0)
 		beq.s	Tails_ChkShoes							; if there wasn't any time left, that means we're in Super/Hyper mode
 		moveq	#7,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	Tails_ChkShoes
 		subq.b	#1,invincibility_timer(a0)					; reduce invincibility_timer only on every 8th frame
 		bne.s	Tails_ChkShoes							; if time is still left, branch
@@ -296,7 +296,7 @@ Tails_ChkShoes:										; checks if Speed Shoes have expired and disables them 
 		tst.b	speed_shoes_timer(a0)
 		beq.s	Tails_ExitChk
 		moveq	#7,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	Tails_ExitChk
 		subq.b	#1,speed_shoes_timer(a0)					; reduce speed_shoes_timer only on every 8th frame
 		bne.s	Tails_ExitChk
@@ -676,7 +676,7 @@ loc_13E8C:
 
 loc_13E9C:
 		moveq	#$3F,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	loc_13EB8
 		cmpi.b	#AniIDSonAni_Duck,anim(a0)
 		beq.s	loc_13EB8
@@ -763,7 +763,7 @@ loc_13F40:
 loc_13F74:
 		move.w	#bytes_to_word(btnDn,btnDn),(Ctrl_2_logical).w
 		moveq	#$7F,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		beq.s	loc_13FA4
 		cmpi.b	#AniIDSonAni_Duck,anim(a0)
 		bne.s	locret_13FBE
@@ -774,7 +774,7 @@ loc_13F74:
 loc_13F94:
 		move.w	#bytes_to_word(btnDn,btnDn),(Ctrl_2_logical).w
 		moveq	#$7F,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	loc_13FB2
 
 loc_13FA4:
@@ -807,7 +807,7 @@ loc_13FFA:
 		clr.w	(Tails_CPU_idle_timer).w
 		clr.w	(Ctrl_2_logical).w
 		moveq	#$1F,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	loc_14016
 		ori.w	#bytes_to_word(btnR,btnR),(Ctrl_2_logical).w
 
@@ -844,7 +844,7 @@ loc_1408A:
 		move.b	#(8*60)/2,double_jump_property(a0)
 		clr.w	(Ctrl_2_logical).w
 		moveq	#$F,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	loc_140AC
 		ori.w	#bytes_to_word(btnR+btnABC,btnR+btnABC),(Ctrl_2_logical).w
 
@@ -884,7 +884,7 @@ loc_14106:
 		move.b	#(8*60)/2,double_jump_property(a0)
 		clr.w	(Ctrl_2_logical).w
 		moveq	#7,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	loc_14128
 		ori.w	#bytes_to_word(btnABC,btnABC),(Ctrl_2_logical).w
 
@@ -970,7 +970,7 @@ loc_1421C:
 		move.b	#(8*60)/2,double_jump_property(a0)
 		clr.w	(Ctrl_2_logical).w
 		moveq	#7,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	loc_1423E
 		ori.w	#bytes_to_word(btnABC,btnABC),(Ctrl_2_logical).w
 
@@ -1002,7 +1002,7 @@ loc_14286:
 		clr.w	(Tails_CPU_idle_timer).w
 		clr.w	(Ctrl_2_logical).w
 		moveq	#$1F,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	loc_142A2
 		ori.w	#bytes_to_word(btnR,btnR),(Ctrl_2_logical).w
 
@@ -1529,7 +1529,7 @@ locret_14820:
 
 Tails_Move_FlySwim:
 		moveq	#1,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		beq.s	loc_14836
 		tst.b	double_jump_property(a0)
 		beq.s	loc_14836
@@ -1602,7 +1602,7 @@ loc_148CC:
 		move.b	d0,anim(a0)
 		tst.b	render_flags(a0)						; is the player visible on the screen?
 		bpl.s	locret_148F2							; if not, branch
-		move.b	(Level_frame_counter+1).w,d0
+		move.b	(Level_frame_counter.byte).w,d0
 		addq.b	#8,d0
 		andi.b	#$F,d0
 		bne.s	locret_148F2
@@ -1617,7 +1617,7 @@ loc_148F4:
 		move.b	d0,anim(a0)
 		tst.b	render_flags(a0)						; is the player visible on the screen?
 		bpl.s	locret_148F2							; if not, branch
-		move.b	(Level_frame_counter+1).w,d0
+		move.b	(Level_frame_counter.byte).w,d0
 		addq.b	#8,d0
 		andi.b	#$F,d0
 		bne.s	locret_148F2

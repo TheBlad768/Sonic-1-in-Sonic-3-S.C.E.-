@@ -23,14 +23,14 @@ Obj_Saw:
 		move.w	y_pos(a0),saw.origY(a0)
 
 		; check
-		cmpi.b	#3,subtype(a0)							; is object a ground saw?
+		cmpi.b	#3,subtype.byte(a0)						; is object a ground saw?
 		bhs.s	.action								; if yes, branch
 		move.b	#collision_type.npc.hurt,collision_type(a0)			; set saw collision type
 		move.w	#bytes_to_word(48/2,48/2),collision_height(a0)			; set height and width collision
 
 .action
 		moveq	#7,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		beq.s	.draw								; if zero, branch
 		add.w	d0,d0
 		move.w	Saw_TypeIndex-2(pc,d0.w),d0

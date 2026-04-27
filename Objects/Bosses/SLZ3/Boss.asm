@@ -214,7 +214,7 @@ BossSpikeBall_Defeated:
 		lea	(Child6_CreateBossExplosion).l,a2
 		jsr	(CreateChild1_Normal).w
 		bne.s	.notfree
-		move.b	#4,subtype(a1)
+		move.w	#4,subtype(a1)
 
 .notfree
 		jmp	(BossDefeated_StopTimer).w
@@ -329,7 +329,7 @@ Obj_BossSpikeBall_ShipTubePieces:
 		jsr	(SetUp_ObjAttributes).w
 		jsr	(Change_FlipXUseParent).w
 		move.l	#Obj_FlickerMove,code_addr(a0)
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		lsr.b	d0								; division by 2
 		addq.b	#1,d0
 		move.b	d0,mapping_frame(a0)
@@ -675,8 +675,7 @@ BossSpikeBall_FragSpeed:		; xyvel
 Obj_BossSpikeBall_SpikeBall_Shrapnel:
 
 		; set xyvel
-		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.w	subtype(a0),d0
 		add.w	d0,d0								; multiply by 2
 		move.l	BossSpikeBall_FragSpeed(pc,d0.w),x_vel(a0)
 
@@ -692,7 +691,7 @@ Obj_BossSpikeBall_SpikeBall_Shrapnel:
 
 		; animate
 		moveq	#$A,d0
-		btst	#2,(V_int_run_count+3).w					; 0 or 4
+		btst	#2,(V_int_run_count.byte).w					; 0 or 4
 		beq.s	.setframe
 		addq.b	#1,d0
 

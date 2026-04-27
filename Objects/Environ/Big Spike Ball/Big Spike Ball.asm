@@ -27,7 +27,7 @@ Obj_BigSpikeBall:
 
 		; subtype
 		moveq	#signextendB($F0),d1						; read only the 1st digit
-		and.b	subtype(a0),d1							; get object type
+		and.b	subtype.byte(a0),d1						; get object type
 		ext.w	d1
 		asl.w	#3,d1								; multiply by 8
 		move.w	d1,bigspikeball.speed(a0)					; set object speed
@@ -41,7 +41,7 @@ Obj_BigSpikeBall:
 
 		; types
 		moveq	#7,d0								; read only the 2nd digit
-		and.b	subtype(a0),d0							; get object type
+		and.b	subtype.byte(a0),d0						; get object type
 		beq.s	.draw								; if zero, branch
 		add.w	d0,d0
 		jsr	.index-2(pc,d0.w)

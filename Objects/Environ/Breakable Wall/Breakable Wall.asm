@@ -31,7 +31,7 @@ Obj_BreakableWall:
 		move.w	#make_art_tile($414,2,FALSE),art_tile(a0)
 
 .notSLZ
-		move.b	subtype(a0),mapping_frame(a0)
+		move.b	subtype.byte(a0),mapping_frame(a0)
 		move.l	#BreakableWall_FragSpd1,breakablewall.fragright_ptr(a0)		; fragments that move right
 		move.l	#BreakableWall_FragSpd2,breakablewall.fragleft_ptr(a0)		; fragments that move left
 

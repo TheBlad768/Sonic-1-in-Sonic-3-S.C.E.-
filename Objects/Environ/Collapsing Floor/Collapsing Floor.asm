@@ -18,7 +18,7 @@ Obj_CollapseFloor:
 
 		; init
 		move.l	#CollapseFloor_Data2,d0
-		btst	#0,subtype(a0)
+		btst	#0,subtype.byte(a0)
 		beq.s	.set
 		move.l	#CollapseFloor_Data3,d0
 

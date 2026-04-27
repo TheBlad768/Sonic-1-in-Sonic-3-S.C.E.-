@@ -363,7 +363,7 @@ BossWater_Defeated:
 		lea	(Child6_CreateBossExplosion).l,a2
 		jsr	(CreateChild1_Normal).w
 		bne.s	.notfree
-		move.b	#4,subtype(a1)
+		move.w	#4,subtype(a1)
 
 .notfree
 		clr.b	(Update_HUD_timer).w

@@ -36,7 +36,7 @@ Obj_WaterSplash:
 		bsr.s	sub_38534
 		tst.b	status(a0)
 		beq.s	loc_384F8
-		move.b	(Level_frame_counter+1).w,d0
+		move.b	(Level_frame_counter.byte).w,d0
 		addq.b	#2,d0
 		andi.b	#$F,d0
 		bne.s	loc_384DA

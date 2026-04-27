@@ -26,14 +26,14 @@ Obj_VanishPlatform:
 
 		; set wait
 		moveq	#$F,d0								; read only the 2nd digit
-		and.b	subtype(a0),d0							; get object type
+		and.b	subtype.byte(a0),d0						; get object type
 		addq.w	#1,d0								; add 1
 		lsl.w	#7,d0								; multiply by $80
 		move.w	d0,d1
 		subq.w	#1,d0
 		move.w	d0,vanishplatform.timer(a0)
 		move.w	d0,vanishplatform.delay(a0)
-		move.b	subtype(a0),d0							; get object type
+		move.b	subtype.byte(a0),d0						; get object type
 		andi.w	#$F0,d0								; read only the 1st digit
 		addi.w	#$80,d1
 		mulu.w	d1,d0

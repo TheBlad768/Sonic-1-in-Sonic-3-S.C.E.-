@@ -50,7 +50,7 @@ Obj_MovingBlock:
 		cmpi.b	#LevelID_SBZ,(Current_zone).w					; check if level is SBZ
 		bne.s	.notSBZ								; if not, branch
 		move.w	#make_art_tile($2B2,1,FALSE),d1					; SBZ specific code (object 5228)
-		cmpi.b	#$28,subtype(a0)						; is object 5228?
+		cmpi.b	#$28,subtype.byte(a0)						; is object 5228?
 		beq.s	.notSBZ								; if yes, branch
 		move.w	#make_art_tile($380,2,FALSE),d1					; SBZ specific code (object 523x)
 
@@ -58,7 +58,7 @@ Obj_MovingBlock:
 		move.w	d1,art_tile(a0)
 
 		; get
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		lsr.w	#3,d0
 		andi.w	#$1E,d0
 		lea	MovingBlock_Var(pc,d0.w),a2
@@ -68,13 +68,13 @@ Obj_MovingBlock:
 		move.w	#priority_4,priority(a0)
 		move.w	x_pos(a0),movingblock.origX(a0)
 		move.w	y_pos(a0),movingblock.origY(a0)
-		andi.b	#$F,subtype(a0)
+		andi.b	#$F,subtype.byte(a0)
 		move.l	#.platform,code_addr(a0)
 
 .platform
 		move.w	x_pos(a0),-(sp)
 		moveq	#$F,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		beq.s	.skipt								; if zero, branch
 		add.w	d0,d0
 		move.w	MBlock_TypeIndex-2(pc,d0.w),d0
@@ -139,7 +139,7 @@ MBlock_Type02:
 		moveq	#standing_mask,d0
 		and.b	status(a0),d0							; is Sonic standing on the platform?
 		beq.s	MBlock_02_Wait							; if not, branch
-		addq.b	#1,subtype(a0)							; if yes, add 1 to type
+		addq.b	#1,subtype.byte(a0)						; if yes, add 1 to type
 
 MBlock_02_Wait:
 		rts
@@ -157,7 +157,7 @@ MBlock_Type03:
 ; ---------------------------------------------------------------------------
 
 MBlock_03_End:
-		clr.b	subtype(a0)							; change to type 00 (non-moving	type)
+		clr.b	subtype.byte(a0)						; change to type 00 (non-moving	type)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -173,7 +173,7 @@ MBlock_Type05:
 ; ---------------------------------------------------------------------------
 
 MBlock_05_End:
-		addq.b	#1,subtype(a0)							; change to type 06 (falling)
+		addq.b	#1,subtype.byte(a0)						; change to type 06 (falling)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -184,7 +184,7 @@ MBlock_Type06:
 		bpl.s	.return								; if not, branch
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)							; stop platform falling
-		clr.b	subtype(a0)							; change to type 00 (non-moving)
+		clr.b	subtype.byte(a0)						; change to type 00 (non-moving)
 
 .return
 		rts
@@ -193,7 +193,7 @@ MBlock_Type06:
 MBlock_Type07:
 		tst.b	(Level_trigger_array+2).w					; has switch number 02 been pressed?
 		beq.s	MBlock_07_ChkDel
-		subq.b	#3,subtype(a0)							; if yes, change object type to 04
+		subq.b	#3,subtype.byte(a0)						; if yes, change object type to 04
 
 MBlock_07_ChkDel:
 		addq.w	#4+2,sp								; x_pos from (sp)+
@@ -260,7 +260,7 @@ MBlock_0A_Back:
 
 MBlock_0A_Reset:
 		clr.b	movingblock.flag(a0)
-		subq.b	#1,subtype(a0)
+		subq.b	#1,subtype.byte(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -295,7 +295,7 @@ MBlock_Type0F:
 ; ---------------------------------------------------------------------------
 
 MBlock_0F_End:
-		subq.b	#2,subtype(a0)							; MBlock_Type0D
+		subq.b	#2,subtype.byte(a0)						; MBlock_Type0D
 		rts
 ; ---------------------------------------------------------------------------
 

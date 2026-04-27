@@ -25,7 +25,7 @@ MZ2_Resize:
 		addi.w	#screen_width/2,d2
 		move.w	d2,x_pos(a1)
 		move.w	#$200+$A0,y_pos(a1)
-		st	subtype(a1)							; flag for the standing signpost
+		st	subtype.byte(a1)						; flag for the standing signpost
 
 .main
 		move.w	#$520,d0							; set lower y-boundary

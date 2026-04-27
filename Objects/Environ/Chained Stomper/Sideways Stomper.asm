@@ -32,7 +32,7 @@ Obj_SidewaysStomper:
 
 		; set length
 		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		move.b	SidewaysStomper_Length(pc,d0.w),sidewaysstomper.length(a0)
 ;		clr.b	sidewaysstomper.length+1(a0)
 
@@ -108,7 +108,7 @@ Obj_SidewaysStomper:
 		; solid
 		move.w	x_pos(a0),-(sp)
 		moveq	#$F,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		add.w	d0,d0
 		move.w	SidewaysStomper_TypeIndex(pc,d0.w),d0
 		jsr	SidewaysStomper_TypeIndex(pc,d0.w)

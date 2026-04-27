@@ -22,7 +22,7 @@ elevator.flag				ds.b 1						; (1 byte)
 Obj_Elevator:
 
 		; check
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		bpl.s	.normal								; branch for types 00-7F
 
 		; set alt
@@ -66,7 +66,7 @@ Obj_Elevator:
 		move.b	(a2),height_pixels(a0)						; set height
 		move.b	(a2)+,width_pixels(a0)						; set width
 		move.b	(a2)+,mapping_frame(a0)						; set frame
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		add.w	d0,d0								; multiply by 2
 		andi.w	#$1E,d0
 		lea	.var2(pc,d0.w),a2
@@ -74,7 +74,7 @@ Obj_Elevator:
 		add.w	d0,d0								; multiply by 4
 		add.w	d0,d0
 		move.w	d0,elevator.dist(a0)						; set distance to move
-		move.b	(a2)+,subtype(a0)						; set type
+		move.b	(a2)+,subtype.byte(a0)						; set type
 
 		; init
 		move.l	#Map_Elevator,mappings(a0)
@@ -93,7 +93,7 @@ Obj_Elevator:
 .main
 		move.w	x_pos(a0),-(sp)
 		moveq	#$F,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		beq.s	.skipt								; if zero, branch
 		add.w	d0,d0								; multiply by 2
 		jsr	.index-2(pc,d0.w)
@@ -133,7 +133,7 @@ Obj_Elevator:
 		neg.w	d0
 		add.w	elevator.origY(a0),d0
 		move.w	d0,y_pos(a0)
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		beq.s	.typereset
 		rts
 ; ---------------------------------------------------------------------------
@@ -142,7 +142,7 @@ Obj_Elevator:
 		moveq	#standing_mask,d0
 		and.b	status(a0),d0							; check if Sonic or Tails is standing on the object
 		beq.s	.return
-		addq.b	#1,subtype(a0)							; if yes, add 1 to type
+		addq.b	#1,subtype.byte(a0)						; if yes, add 1 to type
 
 .return
 		rts
@@ -235,7 +235,7 @@ loc_10CF0:
 		add.w	d2,d2
 		cmp.w	d2,d0
 		bne.s	locret_10CFA
-		clr.b	subtype(a0)
+		clr.b	subtype.byte(a0)
 
 locret_10CFA:
 		rts
@@ -259,7 +259,7 @@ Elevator_MakeMulti:
 		move.l	#Obj_Elevator,code_addr(a1)					; duplicate the object
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
-		move.b	#$E,subtype(a1)							; set $E subtype
+		move.b	#$E,subtype.byte(a1)						; set $E subtype
 
 .chkdel
 		jmp	(Delete_Sprite_If_Not_In_Range).w

@@ -27,7 +27,7 @@ Obj_SmashBlock:
 		movem.l	ObjDat_SmashBlock(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.l	#Smab_Speeds,smashblock.frag_ptr(a0)				; fragments that move
-		move.b	subtype(a0),mapping_frame(a0)
+		move.b	subtype.byte(a0),mapping_frame(a0)
 
 .solid
 		move.w	(Chain_bonus_counter).w,smashblock.bonus(a0)			; copy chain bonus counter

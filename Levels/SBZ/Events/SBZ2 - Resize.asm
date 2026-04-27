@@ -26,7 +26,7 @@ SBZ2_Resize:
 		addi.w	#screen_width/2,d2
 		move.w	d2,x_pos(a1)
 		move.w	#$510+$90,y_pos(a1)
-		st	subtype(a1)							; flag for the standing signpost
+		st	subtype.byte(a1)						; flag for the standing signpost
 
 .load_boss
 

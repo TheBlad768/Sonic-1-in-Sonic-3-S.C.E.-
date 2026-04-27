@@ -37,14 +37,14 @@ Obj_GlassBlock:
 		move.w	x_pos(a0),(a1)+							; xpos
 		move.w	y_pos(a0),(a1)+							; ypos
 		move.w	#1,(a1)								; frame (block)
-		cmpi.b	#3,subtype(a0)							; is object type 0/1/2?
+		cmpi.b	#3,subtype.byte(a0)						; is object type 0/1/2?
 		blo.s	.block012							; if yes, branch
 		move.w	#3,(a1)								; frame (block)
 		move.b	#112/2,height_pixels(a0)
 
 .block012
 		moveq	#7,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		beq.s	.solid								; if zero, branch
 		add.w	d0,d0
 		move.w	Glass_TypeIndex-2(pc,d0.w),d0
@@ -154,7 +154,7 @@ Glass_Type04:
 		bne.s	loc_B5E0
 		lea	(Level_trigger_array).w,a2
 		moveq	#0,d0
-		move.b	subtype(a0),d0							; load object type number
+		move.b	subtype.byte(a0),d0						; load object type number
 		lsr.w	#4,d0								; read only the first nybble
 		tst.b	(a2,d0.w)							; has switch number d0 been pressed?
 		beq.s	loc_B5EA							; if not, branch

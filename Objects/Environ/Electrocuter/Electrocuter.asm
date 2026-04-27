@@ -15,8 +15,7 @@ electrocuter.freq			ds.w 1						; frequency (2 bytes)
 Obj_Electrocuter:
 
 		; set freq
-		moveq	#0,d0
-		move.b	subtype(a0),d0							; read object type
+		move.w	subtype(a0),d0							; read object type
 		lsl.w	#4,d0								; multiply by $10
 		subq.w	#1,d0
 		move.w	d0,electrocuter.freq(a0)

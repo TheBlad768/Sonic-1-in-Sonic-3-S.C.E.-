@@ -199,7 +199,7 @@ Obj_Caterkiller_BodySegments:
 		moveq	#0,d0
 		movea.w	parent4(a0),a1							; head address
 		move.w	x_pos(a1),d2
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		move.w	d0,d1
 		add.b	d0,d0
 		move.b	d0,caterkiller_bodysegments.count(a0)
@@ -225,7 +225,7 @@ Obj_Caterkiller_BodySegments:
 		move.b	status(a1),render_flags(a0)
 		move.w	#bytes_to_word(14/2,16/2),y_radius(a0)				; set y_radius and x_radius
 		move.l	#Cat_BodySeg1,code_addr(a0)
-		cmpi.b	#4,subtype(a0)
+		cmpi.b	#4,subtype.byte(a0)
 		bne.s	Cat_BodySeg1
 		move.l	#Cat_BodySeg2,code_addr(a0)
 
@@ -326,7 +326,7 @@ Caterkiller_FragBody:									; body
 
 Caterkiller_FragHead:									; head
 		moveq	#6,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		move.w	Cat_FragSpeed(pc,d0.w),d0
 		btst	#status.npc.x_flip,status(a0)
 		beq.s	.notflipx

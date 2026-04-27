@@ -15,7 +15,7 @@ Obj_Harpoon:
 		move.l	#.move,code_addr(a0)
 
 		; set
-		move.b	subtype(a0),anim(a0)						; get type (vert/horiz)
+		move.b	subtype.byte(a0),anim(a0)					; get type (vert/horiz)
 		move.w	#1*60,wait_timer(a0)						; set time to 1 second
 
 .move

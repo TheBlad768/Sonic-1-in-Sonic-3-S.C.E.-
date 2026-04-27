@@ -19,7 +19,7 @@ junction.status				ds.b 1						; status (1 byte)
 Obj_Junction:
 
 		; set
-		move.b	subtype(a0),junction.switch(a0)
+		move.b	subtype.byte(a0),junction.switch(a0)
 
 		; init
 		movem.l	ObjDat_Junction(pc),d0-d3					; copy data to d0-d3

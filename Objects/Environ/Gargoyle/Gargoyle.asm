@@ -29,10 +29,9 @@ Obj_Gargoyle:
 
 		; set
 		moveq	#$F,d0								; read only the 2nd digit
-		and.b	subtype(a0),d0							; get object type
+		and.w	subtype(a0),d0							; get object type
 		move.b	Gar_SpitRate(pc,d0.w),gargoyle.delay(a0)			; set fireball spit rate
 		move.b	gargoyle.delay(a0),gargoyle.timer(a0)
-		andi.b	#$F,subtype(a0)
 
 .makefire
 		subq.b	#1,gargoyle.timer(a0)						; decrement timer
@@ -81,7 +80,7 @@ Obj_Gargoyle_FireBall:
 
 .anifire
 		moveq	#7,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	.nochg
 		bchg	#0,mapping_frame(a0)						; change every 8 frames
 

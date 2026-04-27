@@ -18,7 +18,7 @@ flamethrower.frame			ds.b 1						; (1 byte)
 Obj_Flamethrower:
 
 		; flaming time
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		move.b	d0,d1
 		andi.w	#$F0,d0								; read 1st digit of object type
 		add.w	d0,d0								; multiply by 2

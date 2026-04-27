@@ -18,7 +18,7 @@ Obj_BigRing:
 		move.l	#AniRaw_BigRing,animations(a0)
 
 		; check
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		bpl.s	.main								; if positive, then ALWAYS make this a normal Emerald ring
 
 		; set cycle
@@ -62,7 +62,7 @@ Obj_BigRing:
 		; check
 		bra.s	.alt
 
-;		tst.b	subtype(a0)
+;		tst.b	subtype.byte(a0)
 ;		bmi.s	.alt
 
 		; check emeralds
@@ -156,7 +156,7 @@ BigRing_Display:
 		move.w	#$EE,(Normal_palette_line_2+$E).w				; restore the part of the palette that was changed
 
 		; restore explosion art
-		QueueKosPlusModule	ArtKosPlusM_Explosion, ArtTile_Explosion		; restore the overwritten badnik explosion art
+		QueueKosPlusModule	ArtKosPlusM_Explosion, ArtTile_Explosion	; restore the overwritten badnik explosion art
 
 		; delete
 		jmp	(Go_Delete_SpriteSlotted).w
@@ -180,7 +180,7 @@ Obj_BigRing_Flash:
 		movea.w	parent3(a0),a1							; a1=parent object
 		move.w	x_pos(a1),x_pos(a0)
 		move.w	y_pos(a1),y_pos(a0)
-		move.b	subtype(a1),subtype(a0)						; copy positional data from parent ring
+		move.b	subtype.byte(a1),subtype.byte(a0)				; copy positional data from parent ring
 
 		; check
 		move.w	(Player_1+x_pos).w,d0

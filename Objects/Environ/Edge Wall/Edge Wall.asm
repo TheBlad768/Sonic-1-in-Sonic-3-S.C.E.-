@@ -16,7 +16,7 @@ Obj_EdgeWall:
 		move.w	#make_art_tile($3A4,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(64/2,16/2,priority_6),height_pixels(a0)	; set height, width and priority
-		move.b	subtype(a0),mapping_frame(a0)
+		move.b	subtype.byte(a0),mapping_frame(a0)
 
 		; check
 		move.l	#Sprite_OnScreen_Test,code_addr(a0)

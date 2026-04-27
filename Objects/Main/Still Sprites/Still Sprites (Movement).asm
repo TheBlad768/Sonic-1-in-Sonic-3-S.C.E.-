@@ -23,7 +23,7 @@ Obj_MovementStillSprite:
 
 		; get
 		moveq	#$F,d0
-		and.b	subtype(a0),d0
+		and.w	subtype(a0),d0
 		move.b	d0,mapping_frame(a0)
 		add.w	d0,d0								; multiply by 6
 		move.w	d0,d1
@@ -34,7 +34,7 @@ Obj_MovementStillSprite:
 		move.w	(a1),height_pixels(a0)						; set height and width
 
 		; load
-		move.b	subtype(a0),d0
+		move.w	subtype(a0),d0
 		lsr.w	#2,d0
 		andi.w	#$3C,d0
 		movea.l	.load(pc,d0.w),a1

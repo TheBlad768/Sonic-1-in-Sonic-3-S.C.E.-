@@ -17,7 +17,7 @@ sinkingmud.p2_depth			ds.b 1						; Tails's depth of the mud (1 byte)
 Obj_SinkingMud:
 
 		; calc
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		lsl.b	#3,d0								; multiply by 8
 		move.b	d0,width_pixels(a0)
 

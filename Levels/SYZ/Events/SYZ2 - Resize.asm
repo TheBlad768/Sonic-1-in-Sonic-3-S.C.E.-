@@ -43,7 +43,7 @@ SYZ2_Resize:
 		move.w	(Camera_target_max_Y_pos).w,d2
 		addi.w	#$91,d2
 		move.w	d2,y_pos(a1)
-		st	subtype(a1)
+		st	subtype.byte(a1)						; flag for the standing signpost
 
 .check_xpos
 

@@ -36,7 +36,7 @@ Obj_BreakablePole:
 
 		; set time
 		moveq	#$F,d0
-		and.b	subtype(a0),d0							; get object type
+		and.b	subtype.byte(a0),d0						; get object type
 		add.w	d0,d0								; multiply by 60 (1 second)
 		add.w	d0,d0
 		move.w	d0,d1
@@ -132,7 +132,7 @@ Obj_BreakablePole:
 		move.b	#1*60,breakablepole_p1_attached.timer-breakablepole_p1_attached(a2)
 		bclr	d2,(WindTunnel_holding_flag).w					; enable wind tunnel
 		andi.b	#$FE,object_control(a1)
-		btst	#6,subtype(a0)							; $40?
+		btst	#6,subtype.byte(a0)						; $40?
 		bne.s	.return
 		st	breakablepole.grabbed(a0)					; begin countdown to breakage
 

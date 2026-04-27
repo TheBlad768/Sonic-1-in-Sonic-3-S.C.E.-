@@ -27,7 +27,7 @@ Obj_CirclingPlatform:
 .main
 		move.w	x_pos(a0),-(sp)
 		moveq	#$C,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		lsr.w	d0								; division by 2
 		jsr	.index(pc,d0.w)
 		move.w	(sp)+,d4
@@ -71,13 +71,13 @@ Obj_CirclingPlatform:
 		ext.w	d2
 	endif
 
-		btst	#0,subtype(a0)
+		btst	#0,subtype.byte(a0)
 		beq.s	.noshift04a
 		neg.w	d1
 		neg.w	d2
 
 .noshift04a
-		btst	#1,subtype(a0)
+		btst	#1,subtype.byte(a0)
 		beq.s	.noshift04b
 		neg.w	d1
 		exg	d1,d2
@@ -109,13 +109,13 @@ Obj_CirclingPlatform:
 		ext.w	d2
 	endif
 
-		btst	#0,subtype(a0)
+		btst	#0,subtype.byte(a0)
 		beq.s	.noshift00a
 		neg.w	d1
 		neg.w	d2
 
 .noshift00a
-		btst	#1,subtype(a0)
+		btst	#1,subtype.byte(a0)
 		beq.s	.noshift00b
 		neg.w	d1
 		exg	d1,d2

@@ -43,7 +43,7 @@ Obj_GeyserMaker:
 
 .chktype
 		move.l	#.checkanim,code_addr(a0)
-		tst.b	subtype(a0)							; is object type 00 (geyser) ?
+		tst.b	subtype.byte(a0)						; is object type 00 (geyser) ?
 		beq.s	.draw								; if yes, branch
 		move.l	#.makelava,code_addr(a0)
 		bra.s	.range
@@ -59,11 +59,11 @@ Obj_GeyserMaker:
 		lea	Child6_LavaGeyser(pc),a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.fail
-		move.b	subtype(a0),subtype(a1)
+		move.b	subtype.byte(a0),subtype.byte(a1)
 
 .fail
 		move.b	#1,anim(a0)							; bubble2 anim
-		tst.b	subtype(a0)							; is object type 0 (geyser) ?
+		tst.b	subtype.byte(a0)						; is object type 0 (geyser) ?
 		beq.s	.isgeyser							; if yes, branch
 		move.b	#4,anim(a0)							; null frame
 		bra.s	.draw
@@ -93,7 +93,7 @@ Obj_GeyserMaker:
 .delete
 		clr.b	anim(a0)							; bubble1 anim
 		move.l	#.wait,code_addr(a0)
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		bne.s	.range
 		jmp	(Sprite_CheckDelete.offscreen).w				; Delete_Sprite_If_Not_In_RangeCheck.offscreen
 
@@ -118,7 +118,7 @@ Obj_LavaGeyser:
 
 		; get y velocity
 		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		add.w	d0,d0								; multiply by 2
 		move.w	Geyser_Speeds(pc,d0.w),y_vel(a0)
 
@@ -131,7 +131,7 @@ Obj_LavaGeyser:
 
 		; check
 		move.b	#5,anim(a0)							; bubble4 anim
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		beq.s	.isgeyser
 		move.b	#2,anim(a0)							; end anim
 		subi.w	#$250,y_pos(a0)
@@ -140,7 +140,7 @@ Obj_LavaGeyser:
 		lea	Child6_LavaGeyser_Extra(pc),a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.fail
-		move.b	subtype(a0),subtype(a1)
+		move.b	subtype.byte(a0),subtype.byte(a1)
 		moveq	#96,d0
 		add.w	d0,y_pos(a1)
 		add.w	lavageyser.origY(a0),d0
@@ -148,17 +148,17 @@ Obj_LavaGeyser:
 
 		; check
 		move.b	#5,anim(a1)							; bubble4 anim
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		beq.s	.fail
 		move.b	#2,anim(a1)							; end anim
 
 .fail
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		beq.s	.action
 		lea	Child6_LavaGeyser_Extra2(pc),a2
 		jsr	(CreateChild6_Simple).w
 		bne.s	.fail2
-		move.b	subtype(a0),subtype(a1)
+		move.b	subtype.byte(a0),subtype.byte(a1)
 		bset	#flip_bit_y,art_tile(a1)					; flipy
 		addi.w	#$100,y_pos(a1)
 		move.w	lavageyser.origY(a0),lavageyser.origY(a1)
@@ -166,16 +166,16 @@ Obj_LavaGeyser:
 
 		; check
 		move.b	#5,anim(a1)							; bubble4 anim
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		beq.s	.fail2
 		move.b	#2,anim(a1)							; end anim
 
 .fail2
-		clr.b	subtype(a0)
+		clr.b	subtype.byte(a0)
 
 .action
 		moveq	#7,d0								; read only the 1st digit
-		and.b	subtype(a0),d0							; get object type
+		and.b	subtype.byte(a0),d0						; get object type
 		add.w	d0,d0
 		jsr	.index(pc,d0.w)
 

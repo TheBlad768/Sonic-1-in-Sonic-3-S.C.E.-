@@ -18,12 +18,12 @@ spinningplatform.flag			ds.b 1						; (1 byte)
 Obj_SpinningPlatform:
 
 		; check
-		tst.b	subtype(a0)							; is subtype $8x? (Spinner)
+		tst.b	subtype.byte(a0)						; is subtype $8x? (Spinner)
 		bmi.s	.alt								; if yes, branch
 
 		; set time
 		moveq	#$F,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		add.w	d0,d0								; multiply by 60 (1 second)
 		add.w	d0,d0
 		move.w	d0,d1
@@ -43,7 +43,7 @@ Obj_SpinningPlatform:
 .alt
 
 		; set time
-		move.b	subtype(a0),d0							; get object type
+		move.b	subtype.byte(a0),d0						; get object type
 		move.b	d0,d1
 		andi.w	#$F,d0								; read only the 2nd digit
 		add.w	d0,d0								; multiply by 6

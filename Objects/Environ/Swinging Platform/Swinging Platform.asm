@@ -74,7 +74,7 @@ Obj_SwingingPlatform:
 		move.w	y_pos(a0),d3
 		move.w	d3,y_pos(a1)
 		moveq	#$F,d1
-		and.b	subtype(a0),d1
+		and.b	subtype.byte(a0),d1
 		move.b	d1,d0
 		addq.b	#1,d0
 		lsl.b	#4,d0								; multiply by $10
@@ -167,7 +167,7 @@ Obj_SwingingPlatform:
 
 SwingingPlatform_Move:
 		move.b	(Oscillating_Data+$18).w,d0
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		bpl.s	.normal
 		move.b	(AIZ_vine_angle).w,d0
 
