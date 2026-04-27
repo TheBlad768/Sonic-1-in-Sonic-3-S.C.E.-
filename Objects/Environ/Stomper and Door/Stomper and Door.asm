@@ -31,7 +31,7 @@ ScrapStomp_Var:
 Obj_ScrapStomp:
 
 		; set
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		lsr.w	#2,d0
 		andi.w	#$1C,d0
 		lea	ScrapStomp_Var(pc,d0.w),a3
@@ -80,16 +80,16 @@ Obj_ScrapStomp:
 		moveq	#0,d0
 		move.b	(a3)+,d0
 		move.w	d0,scrapstomp.dist(a0)
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		bpl.s	.action
 		andi.b	#$F,d0
 		move.b	d0,scrapstomp.switch(a0)
-		move.b	(a3),subtype(a0)
+		move.b	(a3),subtype.byte(a0)
 
 .action
 		move.w	x_pos(a0),-(sp)
 		moveq	#$F,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		beq.s	.skipt								; if zero, branch
 		add.w	d0,d0
 		move.w	ScrapStomp_TypeIndex-2(pc,d0.w),d0
@@ -172,7 +172,7 @@ ScrapStomp_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .loc_15DE0
-		addq.b	#1,subtype(a0)
+		addq.b	#1,subtype.byte(a0)
 		move.w	#3*60,scrapstomp.timer(a0)
 		clr.b	scrapstomp.active(a0)
 		move.w	respawn_addr(a0),d0						; get address in respawn table
@@ -209,7 +209,7 @@ ScrapStomp_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .loc_15E3C
-		subq.b	#1,subtype(a0)
+		subq.b	#1,subtype.byte(a0)
 		clr.b	scrapstomp.active(a0)
 		move.w	respawn_addr(a0),d0						; get address in respawn table
 		beq.s	.loc_15E1E							; if it's zero, it isn't remembered
@@ -332,7 +332,7 @@ ScrapStomp_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .loc_15F5E
-		clr.b	subtype(a0)
+		clr.b	subtype.byte(a0)
 		clr.b	scrapstomp.active(a0)
 		move.w	#(ScreenShakeArray2-ScreenShakeArray),(Screen_shaking_flag).w
 		sfx	sfx_Crash, 1

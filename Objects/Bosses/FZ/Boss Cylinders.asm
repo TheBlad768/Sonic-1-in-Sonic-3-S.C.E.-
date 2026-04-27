@@ -19,10 +19,9 @@ bossfinal_cylinder.grab			ds.b 1						; grab Eggman (1 byte)
 Obj_BossFinal_Cylinder:
 
 		; get boss data
-		moveq	#0,d0
 		lea	(Boss_events).w,a2
 		lea	BossFinal_Cylinder_PosData(pc),a1
-		move.b	subtype(a0),d0
+		move.w	subtype(a0),d0
 		adda.w	d0,a2
 		move.w	a0,(a2)								; save cylinder address for boss
 		add.w	d0,d0
@@ -45,7 +44,7 @@ Obj_BossFinal_Cylinder:
 		move.l	#.main,code_addr(a0)
 
 		; check flipy
-		cmpi.b	#2,subtype(a0)
+		cmpi.w	#2,subtype(a0)
 		ble.s	.main
 		bset	#render_flags.y_flip,render_flags(a0)				; 4 and 6 only (flipy sprite)
 
@@ -71,7 +70,7 @@ Obj_BossFinal_Cylinder:
 		; load address
 		movea.w	parent3(a0),a1							; load Eggman address
 		moveq	#-10,d0								; 0 and 2 (down pos)
-		cmpi.b	#2,subtype(a0)
+		cmpi.w	#2,subtype(a0)
 		ble.s	.downcyl
 		moveq	#14,d0								; 4 and 6 (up pos)
 
@@ -136,7 +135,7 @@ EggmanCylinder_Movement:
 
 		; set jmp
 		lea	.moveup(pc),a1							; move up
-		cmpi.b	#2,subtype(a0)
+		cmpi.w	#2,subtype(a0)
 		ble.s	.downcyl
 		lea	.movedown(pc),a1						; move down
 

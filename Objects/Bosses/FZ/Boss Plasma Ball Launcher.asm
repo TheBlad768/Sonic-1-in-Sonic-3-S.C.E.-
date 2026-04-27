@@ -113,8 +113,7 @@ Obj_BossFinal_PlasmaBall:
 
 		; calc xpos
 		jsr	(Random_Number).w
-		moveq	#0,d1
-		move.b	subtype(a0),d1
+		move.w	subtype(a0),d1
 		lsr.w	d1								; division by 2
 		muls.w	#-$59,d1							; devon fix
 		move.w	(Camera_max_X_pos).w,d2

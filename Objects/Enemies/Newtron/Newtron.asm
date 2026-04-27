@@ -59,7 +59,7 @@ Obj_Newtron:
 		bne.s	.outofrange							; if yes, branch
 		move.l	#.type00,wait_addr(a0)						; goto .type00 next
 		move.b	#1,anim(a0)
-		tst.b	subtype(a0)							; check object type
+		tst.b	subtype.byte(a0)						; check object type
 		beq.s	.istype00							; if type is 00, branch
 		ori.w	#palette_line_1,art_tile(a0)
 		move.l	#.type01,wait_addr(a0)						; goto .type01 next
@@ -167,7 +167,7 @@ Obj_Newtron:
 		add.w	d0,x_pos(a1)
 		move.b	status(a0),status(a1)
 		move.w	a0,parent3(a1)
-		st	subtype(a1)
+		st	subtype.byte(a1)
 
 .fail
 		rts

@@ -112,7 +112,7 @@ Obj73_MakeLava:
 		add.w	(Camera_max_X_pos).w,d1
 		add.w	d1,d0
 		move.w	d0,x_pos(a1)
-		clr.b	subtype(a1)
+		clr.b	subtype.byte(a1)
 		st	lavaball.boss_flag(a1)
 
 loc_1844A:
@@ -182,7 +182,7 @@ BossFire_AttackFire2:
 		move.w	y_pos(a0),d0
 		addq.w	#8,d0
 		move.w	d0,y_pos(a1)
-		st	subtype(a1)
+		st	subtype.byte(a1)
 
 .skip
 		subq.w	#1,bossfire.timer(a0)
@@ -272,7 +272,7 @@ BossFire_Defeated:
 		lea	(Child6_CreateBossExplosion).l,a2
 		jsr	(CreateChild1_Normal).w
 		bne.s	.notfree
-		move.b	#4,subtype(a1)
+		move.w	#4,subtype(a1)
 
 .notfree
 		jmp	(BossDefeated_StopTimer).w
@@ -370,7 +370,7 @@ Obj_BossFire_ShipTubeFlame:
 
 		; anim
 		moveq	#1,d0
-		btst	#0,(V_int_run_count+3).w					; 0 or 1
+		btst	#0,(V_int_run_count.byte).w					; 0 or 1
 		bne.s	.setf
 		tst.w	x_vel(a1)
 		beq.s	.setf
@@ -413,7 +413,7 @@ Obj_BossFire_Fire:
 		move.l	#Obj74_Action,code_addr(a0)
 
 		; check
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		bne.s	loc_1870A
 		move.b	#collision_type.npc.hurt,collision_type(a0)			; set fire collision type
 		move.w	#bytes_to_word(16/2,16/2),collision_height(a0)			; set height and width collision
@@ -444,7 +444,7 @@ Obj74_Drop:
 		bpl.s	.return
 		move.b	#collision_type.npc.hurt,collision_type(a0)			; set fire collision type
 		move.w	#bytes_to_word(16/2,16/2),collision_height(a0)			; set height and width collision
-		clr.b	subtype(a0)
+		clr.b	subtype.byte(a0)
 		addi.w	#$18,y_vel(a0)
 		bclr	#status.npc.y_flip,status(a0)
 		jsr	(ObjCheckFloorDist).w
@@ -535,7 +535,7 @@ Obj74_Duplicate2:
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		move.b	#$67,bossfire_fire.timer(a1)					; set wait
-		clr.b	subtype(a1)
+		clr.b	subtype.byte(a1)
 
 .return
 		rts
@@ -644,7 +644,7 @@ Obj_BossFire_Scaled:
 
 .main
 		moveq	#$6F,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	.frame
 		cmpi.b	#$10,scaling_scale_factor(a0)
 		beq.s	.frame

@@ -28,7 +28,7 @@ Obj_CorkFloor:
 		move.l	#CorkFloor_Speeds,corkfloor.frag_ptr(a0)
 
 		; check
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		bne.s	.solid
 		move.l	#CorkFloor_Bottom,code_addr(a0)					; break from the bottom
 		bra.w	CorkFloor_Bottom

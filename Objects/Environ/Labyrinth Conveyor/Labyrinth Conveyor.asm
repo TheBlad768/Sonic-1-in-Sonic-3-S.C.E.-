@@ -15,7 +15,7 @@ labyrinthconveyor.index			ds.b 1						; (1 byte)
 labyrinthconveyor.limit			ds.b 1						; (1 byte)
 labyrinthconveyor.offset		ds.b 1						; (1 byte)
 labyrinthconveyor.rev_flag		ds.b 1						; (1 byte)
-labyrinthconveyor.subtype		ds.b 1						; save subtype (1 byte)
+labyrinthconveyor.subtype.byte		ds.b 1						; save subtype (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -24,8 +24,8 @@ labyrinthconveyor.subtype		ds.b 1						; save subtype (1 byte)
 Obj_LabyrinthConveyor:
 
 		; set
-		move.b	subtype(a0),d0
-		move.b	d0,labyrinthconveyor.subtype(a0)
+		move.b	subtype.byte(a0),d0
+		move.b	d0,labyrinthconveyor.subtype.byte(a0)
 		andi.w	#$7F,d0
 
 		; check same object subtype
@@ -61,7 +61,7 @@ Obj_LabyrinthConveyor:
 		move.w	d2,labyrinthconveyor.origX(a1)
 		move.w	d3,labyrinthconveyor.origY(a1)
 		move.w	(a3)+,d5
-		move.b	d5,subtype(a1)
+		move.b	d5,subtype.byte(a1)
 		move.b	status(a0),status(a1)
 
 		; create next object
@@ -92,7 +92,7 @@ Obj_LabyrinthConveyor_Platforms:
 		move.l	#.main,code_addr(a0)
 
 		; set
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		move.b	d0,d1
 		lsr.w	#3,d0
 		andi.w	#$1E,d0
@@ -171,7 +171,7 @@ Obj_LabyrinthConveyor_Platforms:
 		bhs.s	.draw
 
 .checkbuffer
-		move.b	labyrinthconveyor.subtype(a0),d0
+		move.b	labyrinthconveyor.subtype.byte(a0),d0
 		bpl.s	.chkdel
 		andi.w	#$7F,d0
 		lea	(Convey_rev_buffer).w,a2

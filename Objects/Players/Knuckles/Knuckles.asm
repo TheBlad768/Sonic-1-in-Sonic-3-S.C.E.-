@@ -217,7 +217,7 @@ Knux_ChkInvin:										; checks if invincibility has expired and disables it if
 		tst.b	invincibility_timer(a0)
 		beq.s	Knux_ChkShoes							; if there wasn't any time left, that means we're in Super/Hyper mode
 		moveq	#7,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	Knux_ChkShoes
 		subq.b	#1,invincibility_timer(a0)					; reduce invincibility_timer only on every 8th frame
 		bne.s	Knux_ChkShoes							; if time is still left, branch
@@ -239,7 +239,7 @@ Knux_ChkShoes:										; checks if Speed Shoes have expired and disables them i
 		tst.b	speed_shoes_timer(a0)
 		beq.s	locret_166F4
 		moveq	#7,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	locret_166F4
 		subq.b	#1,speed_shoes_timer(a0)					; reduce speed_shoes_timer only on every 8th frame
 		bne.s	locret_166F4
@@ -733,7 +733,7 @@ Knuckles_Sliding:
 
 		; play the sliding sound every 8 frames
 		moveq	#7,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	.skip3
 		sfx	sfx_GroundSlide, 1
 ; ---------------------------------------------------------------------------

@@ -27,7 +27,7 @@ Obj_HyperSonicKnux_Trail:
 
 		; set
 		moveq	#4*3,d1								; this will be subtracted from Pos_table_index, giving the object an older entry
-		btst	#0,(Level_frame_counter+1).w					; even frame? (Think of it as 'every other number' logic)
+		btst	#0,(Level_frame_counter.byte).w					; even frame? (Think of it as 'every other number' logic)
 		beq.s	.evenframe							; if so, branch
 		moveq	#4*5,d1								; on every other frame, use a different number to subtract, giving the object an even older entry
 

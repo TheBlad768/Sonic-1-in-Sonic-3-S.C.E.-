@@ -16,8 +16,7 @@ soundstillsprite.frame			ds.b 1						; (1 byte)
 Obj_SoundStillSprite:
 
 		; get
-		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.w	subtype(a0),d0
 		add.w	d0,d0								; multiply by 2
 		move.w	.index(pc,d0.w),soundstillsprite.play(a0)			; set play and wait
 		move.l	#.main,code_addr(a0)

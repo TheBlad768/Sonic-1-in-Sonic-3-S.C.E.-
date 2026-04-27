@@ -25,7 +25,7 @@ Obj_CollapsingPlatform:
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(112/2,96/2,priority_4),height_pixels(a0)	; set height, width and priority
 		move.b	#7,collapsingplatform.delay(a0)
-		move.b	subtype(a0),mapping_frame(a0)
+		move.b	subtype.byte(a0),mapping_frame(a0)
 		ori.b	#$80,status(a0)
 		move.l	#.check,code_addr(a0)
 

@@ -25,7 +25,7 @@ Obj_Seesaw:
 		move.l	#.main,code_addr(a0)
 
 		; check boss
-		move.b	subtype(a0),d0							; is object type $80-$FF?
+		move.b	subtype.byte(a0),d0						; is object type $80-$FF?
 		bpl.s	.noboss								; if not, branch
 
 		; SLZ boss

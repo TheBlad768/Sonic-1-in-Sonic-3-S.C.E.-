@@ -13,8 +13,7 @@ Obj_StillSprite:
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 
 		; get
-		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.w	subtype(a0),d0
 		move.b	d0,mapping_frame(a0)
 		add.w	d0,d0								; multiply by 6
 		move.w	d0,d1

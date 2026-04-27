@@ -379,7 +379,7 @@ BossBlock_Defeated:
 		lea	(Child6_CreateBossExplosion).l,a2
 		jsr	(CreateChild1_Normal).w
 		bne.s	.notfree
-		move.b	#4,subtype(a1)
+		move.w	#4,subtype(a1)
 
 .notfree
 		jmp	(BossDefeated_StopTimer).w
@@ -564,7 +564,7 @@ Obj_BossSYZBlock_FlickerMove:
 		lea	ObjDat_BossBlock_Block(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#Obj_FlickerMove,code_addr(a0)
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		lsr.b	d0								; division by 2
 		addq.b	#1,d0
 		move.b	d0,mapping_frame(a0)

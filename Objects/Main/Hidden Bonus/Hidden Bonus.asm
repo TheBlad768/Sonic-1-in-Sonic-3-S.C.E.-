@@ -24,13 +24,13 @@ Obj_HiddenBonus:
 		lea	ObjDat_HiddenBonus(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.draw,code_addr(a0)
-		move.b	subtype(a0),mapping_frame(a0)
+		move.b	subtype.byte(a0),mapping_frame(a0)
 		move.w	#(2*60)-1,wait_timer(a0)					; set display time to 2 seconds
 		sfx	sfx_HiddenBonus							; play bonus sound
 
 		; add score
 		moveq	#0,d0								; clear d0 for HUD_AddToScore
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		add.w	d0,d0								; multiply by 2
 		move.w	.points(pc,d0.w),d0						; load bonus points array
 		jsr	(HUD_AddToScore).w

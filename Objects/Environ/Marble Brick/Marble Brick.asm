@@ -29,7 +29,7 @@ Obj_MarbleBrick:
 
 		; type
 		moveq	#7,d0								; read only the 1st digit
-		and.b	subtype(a0),d0							; get object type
+		and.b	subtype.byte(a0),d0						; get object type
 		beq.s	.solid								; if zero, branch
 		add.w	d0,d0
 		jsr	.index-2(pc,d0.w)
@@ -73,12 +73,12 @@ Obj_MarbleBrick:
 		jsr	(Find_SonicTails).w
 		cmpi.w	#144,d2								; is Sonic within $90 pixels of the block?
 		bhs.s	.type01								; if not, resume wobbling
-		move.b	#3,subtype(a0)							; if yes, make the block fall
+		move.b	#3,subtype.byte(a0)						; if yes, make the block fall
 
 .type01
 		moveq	#0,d0
 		move.b	(Oscillating_Data+$14).w,d0
-		btst	#3,subtype(a0)
+		btst	#3,subtype.byte(a0)
 		beq.s	.set
 		neg.w	d0
 		addi.w	#$10,d0
@@ -98,14 +98,14 @@ Obj_MarbleBrick:
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)							; stop the block falling
 		move.w	y_pos(a0),marblebrick.origY(a0)
-		move.b	#4,subtype(a0)
+		move.b	#4,subtype.byte(a0)
 
 		; check lava
 		move.w	(a1),d0								; get id of the 16x16 block
 		andi.w	#$3FF,d0
 		cmpi.w	#$16A,d0							; brick has touched the lava?
 		bhs.s	.return								; if yes, branch
-		clr.b	subtype(a0)
+		clr.b	subtype.byte(a0)
 
 .return
 		rts

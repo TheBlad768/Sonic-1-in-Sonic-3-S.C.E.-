@@ -195,7 +195,7 @@ BossBall_Defeated:
 		lea	(Child6_CreateBossExplosion).l,a2
 		jsr	(CreateChild1_Normal).w
 		bne.s	.notfree
-		move.b	#4,subtype(a1)
+		move.w	#4,subtype(a1)
 
 .notfree
 		jmp	(BossDefeated_StopTimer).w
@@ -338,8 +338,7 @@ Obj_BossBall_Crane:
 ; =============== S U B R O U T I N E =======================================
 
 BossBall_GetWaitTime:
-		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.w	subtype(a0),d0
 		move.w	.time(pc,d0.w),wait_timer(a0)
 		rts
 ; ---------------------------------------------------------------------------
@@ -475,7 +474,7 @@ Obj_BossBall_Scaled:
 
 .frame
 		moveq	#1,d0
-		and.b	(Level_frame_counter+1).w,d0
+		and.b	(Level_frame_counter.byte).w,d0
 		bne.s	.scale
 		cmpi.b	#5,scaling_frame(a0)
 		bhs.s	.scale

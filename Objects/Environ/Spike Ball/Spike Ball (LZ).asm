@@ -27,7 +27,7 @@ Obj_SpikeBall_LZ:
 
 		; subtype
 		moveq	#signextendB($F0),d1						; read only the 1st digit
-		and.b	subtype(a0),d1							; get object type
+		and.b	subtype.byte(a0),d1						; get object type
 		ext.w	d1
 		asl.w	#3,d1								; multiply by 8
 		move.w	d1,spikeball_lz.speed(a0)					; set object twirl speed
@@ -52,7 +52,7 @@ Obj_SpikeBall_LZ:
 		move.w	y_pos(a0),d3
 		move.w	d3,y_pos(a1)
 		moveq	#$F,d1
-		and.b	subtype(a0),d1
+		and.b	subtype.byte(a0),d1
 		move.w	d1,d0
 		lsl.w	#4,d0								; multiply by $10
 		move.b	d0,width_pixels(a1)						; set width

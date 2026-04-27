@@ -22,7 +22,7 @@ Obj_SpikeBall_SYZ:
 
 		; subtype
 		moveq	#signextendB($F0),d1						; read only the 1st digit
-		and.b	subtype(a0),d1							; get object type
+		and.b	subtype.byte(a0),d1						; get object type
 		ext.w	d1
 		asl.w	#3,d1								; multiply by 8
 		move.w	d1,spikeball_syz.speed(a0)					; set object twirl speed
@@ -33,10 +33,10 @@ Obj_SpikeBall_SYZ:
 
 		; get number of spike balls for CreateChild8_TreeListRepeated
 		moveq	#7,d6								; read only the 2nd digit
-		and.b	subtype(a0),d6							; get object type
+		and.b	subtype.byte(a0),d6						; get object type
 		subq.w	#1,d6								; set chain length (type-1)
 		blo.s	.main
-		btst	#3,subtype(a0)							; 8?
+		btst	#3,subtype.byte(a0)						; 8?
 		beq.s	.create
 		subq.w	#1,d6
 		blo.s	.main

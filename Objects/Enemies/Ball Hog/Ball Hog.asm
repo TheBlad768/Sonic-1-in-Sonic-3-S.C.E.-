@@ -73,7 +73,7 @@ Obj_BallHog:
 		move.w	d1,x_vel(a1)
 		add.w	d0,x_pos(a1)
 		addi.w	#12,y_pos(a1)
-		move.b	subtype(a0),subtype(a1)						; copy object type from Ball Hog
+		move.w	subtype(a0),subtype(a1)						; copy object type from Ball Hog
 
 .fail
 		bra.s	.remember
@@ -89,8 +89,7 @@ Obj_BallHog:
 Obj_BallHog_Cannonball:
 
 		; set
-		moveq	#0,d0
-		move.b	subtype(a0),d0							; move subtype to d0
+		move.w	subtype.byte(a0),d0						; move subtype to d0
 		add.w	d0,d0								; multiply by 60 frames (1 second)
 		add.w	d0,d0
 		move.w	d0,d1

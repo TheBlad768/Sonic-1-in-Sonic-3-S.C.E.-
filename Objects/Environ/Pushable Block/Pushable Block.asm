@@ -55,14 +55,14 @@ Obj_PushableBlock:
 		move.l	#.action,code_addr(a0)
 
 		; set
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		add.w	d0,d0
 		andi.w	#$E,d0
 		lea	PushableBlock_Var(pc,d0.w),a2
 		move.b	(a2),x_radius(a0)
 		move.b	(a2)+,width_pixels(a0)
 		move.b	(a2),mapping_frame(a0)
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		beq.s	.chkgone
 		move.w	#make_art_tile($562,2,TRUE),art_tile(a0)
 
@@ -97,7 +97,7 @@ Obj_PushableBlock:
 
 		; clr bit
 		moveq	#7,d1								; 7 bit
-		bclr	d1,subtype(a0)							; clr $80
+		bclr	d1,subtype.byte(a0)						; clr $80
 
 		; check xpos (chain stomper range)
 		move.w	x_pos(a0),d0
@@ -107,7 +107,7 @@ Obj_PushableBlock:
 		bhs.s	.draw
 
 		; set bit
-		bset	d1,subtype(a0)							; set $80 for block
+		bset	d1,subtype.byte(a0)						; set $80 for block
 
 		; set ypos
 		moveq	#-28,d0
@@ -442,7 +442,7 @@ PushableBlock_MovePush:									; push block normal
 .pushl
 
 		; check press button block
-		tst.b	subtype(a0)							; is that a special block for the button?
+		tst.b	subtype.byte(a0)						; is that a special block for the button?
 		bmi.s	.endl								; if yes, branch
 
 		; check floor
@@ -496,7 +496,7 @@ PushableBlock_MovePush:									; push block normal
 .pushr
 
 		; check press button block
-		tst.b	subtype(a0)							; is that a special block for the button?
+		tst.b	subtype.byte(a0)						; is that a special block for the button?
 		bmi.s	.endr								; if yes, branch
 
 		; check floor

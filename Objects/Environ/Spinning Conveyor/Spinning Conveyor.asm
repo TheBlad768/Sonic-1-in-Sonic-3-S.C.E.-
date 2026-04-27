@@ -22,7 +22,7 @@ spinningconveyor.offset			ds.b 1						; (1 byte)
 Obj_SpinningConveyor:
 
 		; set
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		andi.w	#$7F,d0
 
 		; create platforms
@@ -53,7 +53,7 @@ Obj_SpinningConveyor:
 		move.w	d2,spinningconveyor.origX(a1)
 		move.w	d3,spinningconveyor.origY(a1)
 		move.w	(a3)+,d5
-		move.b	d5,subtype(a1)
+		move.b	d5,subtype.byte(a1)
 		move.b	status(a0),status(a1)
 
 		; create next object
@@ -77,7 +77,7 @@ Obj_SpinningConveyor_Platforms:
 		move.l	#.main,code_addr(a0)
 
 		; set
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		move.b	d0,d1
 		lsr.w	#3,d0
 		andi.w	#$1E,d0

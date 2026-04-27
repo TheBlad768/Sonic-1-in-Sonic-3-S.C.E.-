@@ -137,7 +137,7 @@ Obj_Bomb_Fuse:
 
 		; animate
 		moveq	#8,d0
-		btst	#2,(V_int_run_count+3).w					; 0 or 4
+		btst	#2,(V_int_run_count.byte).w					; 0 or 4
 		beq.s	.setframe
 		addq.b	#1,d0
 
@@ -183,7 +183,7 @@ Obj_Bomb_Shrapnel:
 
 		; set xyvel
 		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		add.w	d0,d0								; multiply by 2
 		move.l	Bomb_Shrapnel_Speed(pc,d0.w),x_vel(a0)				; x_vel and y_vel
 
@@ -199,7 +199,7 @@ Obj_Bomb_Shrapnel:
 
 		; animate
 		moveq	#$A,d0
-		btst	#2,(V_int_run_count+3).w					; 0 or 4
+		btst	#2,(V_int_run_count.byte).w					; 0 or 4
 		beq.s	.setframe
 		addq.b	#1,d0
 

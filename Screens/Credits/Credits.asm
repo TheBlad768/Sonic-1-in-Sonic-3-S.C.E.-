@@ -477,7 +477,7 @@ CreditsRobotnik_LoadEmeralds:
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		move.b	d1,mapping_frame(a1)
-		move.b	d2,subtype(a1)
+		move.b	d2,subtype.byte(a1)
 		addq.b	#2,d2
 
 .next
@@ -512,7 +512,7 @@ Obj_CreditsRobotnik_Emeralds:
 
 		; set wait
 		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		move.w	d0,d1								; multiply by $0A
 		add.w	d0,d0
 		add.w	d0,d0
@@ -571,7 +571,7 @@ Obj_CreditsRobotnik_Emeralds:
 		move.l	#.main,code_addr(a0)
 
 		; check
-		tst.b	subtype(a0)							; is first emerald?
+		tst.b	subtype.byte(a0)						; is first emerald?
 		bne.s	.circular							; if not, branch
 
 		; clear flag
@@ -713,7 +713,7 @@ CreditsEggRobo_LoadEmeralds:
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		move.b	d1,mapping_frame(a1)
-		move.b	d2,subtype(a1)
+		move.b	d2,subtype.byte(a1)
 		addq.b	#2,d2
 		move.b	d3,angle(a1)
 		add.b	d4,d3

@@ -41,7 +41,7 @@ Obj_FloatingBlock:
 .notLZ
 
 		; set
-		move.b	subtype(a0),d0							; get subtype
+		move.b	subtype.byte(a0),d0						; get subtype
 		lsr.w	#3,d0
 		andi.w	#$E,d0								; read only the 1st digit
 		lea	FloatingBlock_Var(pc,d0.w),a2					; get size data
@@ -54,7 +54,7 @@ Obj_FloatingBlock:
 		move.b	(a2),d0
 		add.w	d0,d0
 		move.w	d0,floatingblock.height(a0)
-		cmpi.b	#$37,subtype(a0)
+		cmpi.b	#$37,subtype.byte(a0)
 		bne.s	.dontdelete
 		cmpi.w	#$1BB8+$200,x_pos(a0)
 		bne.s	.notatpos
@@ -64,7 +64,7 @@ Obj_FloatingBlock:
 ; ---------------------------------------------------------------------------
 
 .notatpos
-		clr.b	subtype(a0)
+		clr.b	subtype.byte(a0)
 		tst.b	(Float_block_flag).w
 		bne.s	.dontdelete
 		bra.w	.delete
@@ -74,7 +74,7 @@ Obj_FloatingBlock:
 		cmpi.b	#LevelID_LZ,(Current_zone).w					; check if level is LZ
 		beq.s	.stillnotLZ							; if so, branch
 		moveq	#$F,d0
-		and.b	subtype(a0),d0							; SYZ/SLZ specific code
+		and.b	subtype.byte(a0),d0						; SYZ/SLZ specific code
 		subq.w	#8,d0
 		blo.s	.stillnotLZ
 		add.w	d0,d0
@@ -85,14 +85,14 @@ Obj_FloatingBlock:
 		bchg	#status.npc.x_flip,status(a0)
 
 .stillnotLZ
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		bpl.s	.action
 		andi.b	#$F,d0
 		move.b	d0,floatingblock.type(a0)
-		move.b	#5,subtype(a0)
+		move.b	#5,subtype.byte(a0)
 		cmpi.b	#7,mapping_frame(a0)
 		bne.s	.chkstate
-		move.b	#$C,subtype(a0)
+		move.b	#$C,subtype.byte(a0)
 		move.w	#$80,floatingblock.height(a0)
 
 .chkstate
@@ -101,13 +101,13 @@ Obj_FloatingBlock:
 		movea.w	d0,a2								; load address into a2
 		btst	#0,(a2)
 		beq.s	.action
-		addq.b	#1,subtype(a0)
+		addq.b	#1,subtype.byte(a0)
 		clr.w	floatingblock.height(a0)
 
 .action
 		move.w	x_pos(a0),-(sp)
 		moveq	#$F,d0								; read only the 2nd digit
-		and.b	subtype(a0),d0							; get object subtype
+		and.b	subtype.byte(a0),d0						; get object subtype
 		beq.s	.skipt								; if zero, branch
 		add.w	d0,d0
 		move.w	BlocksDoors_TypeIndex-2(pc,d0.w),d0
@@ -135,7 +135,7 @@ Obj_FloatingBlock:
 ; ---------------------------------------------------------------------------
 
 .chkdel2
-		cmpi.b	#$37,subtype(a0)
+		cmpi.b	#$37,subtype.byte(a0)
 		bne.s	.delete
 		tst.b	floatingblock.flag(a0)
 		bne.s	.draw
@@ -279,7 +279,7 @@ BlocksDoors_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .loc_104C8
-		addq.b	#1,subtype(a0)
+		addq.b	#1,subtype.byte(a0)
 		clr.b	floatingblock.flag(a0)
 		move.w	respawn_addr(a0),d0						; get address in respawn table
 		beq.s	.loc_104AE							; if it's zero, it isn't remembered
@@ -320,7 +320,7 @@ BlocksDoors_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .loc_1052C
-		subq.b	#1,subtype(a0)
+		subq.b	#1,subtype.byte(a0)
 		clr.b	floatingblock.flag(a0)
 		move.w	respawn_addr(a0),d0						; get address in respawn table
 		beq.s	.loc_10512							; if it's zero, it isn't remembered
@@ -345,7 +345,7 @@ BlocksDoors_TypeIndex: offsetTable
 		bne.s	.locret_10578
 		st	(Float_block_flag).w
 		clr.b	floatingblock.flag(a0)
-		clr.b	subtype(a0)
+		clr.b	subtype.byte(a0)
 
 .locret_10578
 		rts
@@ -381,7 +381,7 @@ BlocksDoors_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .loc_105C0
-		addq.b	#1,subtype(a0)
+		addq.b	#1,subtype.byte(a0)
 		clr.b	floatingblock.flag(a0)
 		move.w	respawn_addr(a0),d0						; get address in respawn table
 		beq.s	.loc_105A2							; if it's zero, it isn't remembered
@@ -421,7 +421,7 @@ BlocksDoors_TypeIndex: offsetTable
 ; ---------------------------------------------------------------------------
 
 .loc_10624
-		subq.b	#1,subtype(a0)
+		subq.b	#1,subtype.byte(a0)
 		clr.b	floatingblock.flag(a0)
 		move.w	respawn_addr(a0),d0						; get address in respawn table
 		beq.s	.wtf								; if it's zero, it isn't remembered

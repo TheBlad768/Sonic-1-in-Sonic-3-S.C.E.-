@@ -138,7 +138,7 @@ Obj_Missile:
 		move.l	#.frombuzz,code_addr(a0)
 
 		; check
-		tst.b	subtype(a0)							; was object created by	a Newtron?
+		tst.b	subtype.byte(a0)						; was object created by	a Newtron?
 		beq.s	.animatebuzz							; if not, branch
 		sfx	sfx_Projectile
 		move.b	#1,anim(a0)

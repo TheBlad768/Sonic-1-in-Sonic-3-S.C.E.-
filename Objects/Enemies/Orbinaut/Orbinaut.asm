@@ -49,7 +49,7 @@ Obj_Orbinaut:
 
 		; set
 		move.l	#.chksonic,code_addr(a0)
-		tst.b	subtype(a0)
+		tst.b	subtype.byte(a0)
 		beq.s	.load
 		move.l	#.move,code_addr(a0)
 
@@ -91,7 +91,7 @@ Obj_Orbinaut:
 Obj_Orbinaut_Orb:
 
 		; set pos
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		lsl.b	#5,d0								; multiply by $20
 		move.b	d0,circular_angle(a0)
 

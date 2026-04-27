@@ -182,7 +182,7 @@ Obj_RobotnikShipFlame:
 		btst	#5,state_flags(a1)						; 4
 		bne.s	Obj_RobotnikHead4.delete
 		jsr	(Refresh_ChildPositionAdjusted).w
-		btst	#0,(V_int_run_count+3).w					; 0 or 1
+		btst	#0,(V_int_run_count.byte).w					; 0 or 1
 		bne.s	.return
 		tst.w	x_vel(a1)
 		beq.s	.return
@@ -208,8 +208,8 @@ Obj_RobotnikShipPieces:
 		lea	ObjDat_RobotnikShipPieces(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#Obj_FlickerMove,code_addr(a0)
-		move.b	subtype(a0),d0
-		lsr.b	d0								; division by 2
+		move.w	subtype(a0),d0
+		lsr.w	d0								; division by 2
 		move.b	d0,mapping_frame(a0)
 		moveq	#2<<2,d0							; set index velocity
 		jsr	(Set_IndexedVelocity).w

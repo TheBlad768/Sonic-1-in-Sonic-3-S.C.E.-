@@ -389,7 +389,7 @@ Obj_2EBE8:										; (Continue Sonic Icon)
 		move.b	.framearray(pc,d0.w),mapping_frame(a0)
 
 .draw
-		btst	#3,(Level_frame_counter+1).w
+		btst	#3,(Level_frame_counter.byte).w
 		beq.s	.return
 		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------

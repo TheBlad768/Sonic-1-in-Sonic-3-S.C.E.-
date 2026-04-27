@@ -556,7 +556,7 @@ Obj_BossFinal_RobotnikShip:
 		lea	(Child6_CreateBossExplosion).l,a2
 		jsr	(CreateChild1_Normal).w
 		bne.s	.chkdel
-		move.b	#4,subtype(a1)
+		move.w	#4,subtype(a1)
 
 .chkdel
 

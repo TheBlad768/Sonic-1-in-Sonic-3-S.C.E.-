@@ -34,7 +34,7 @@ Obj_LargeGrassPlatform:
 		move.w	y_pos(a0),largegrassplatform.origY(a0)
 
 		; set
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		lsr.w	#2,d0
 		andi.w	#$1C,d0
 		lea	LargeGrassPlatform_Data(pc,d0.w),a1
@@ -43,11 +43,11 @@ Obj_LargeGrassPlatform:
 		move.l	a2,largegrassplatform.slope_ptr(a0)				; save ROM address
 		move.b	(a1)+,mapping_frame(a0)
 		move.b	(a1),width_pixels(a0)
-		andi.b	#$F,subtype(a0)
+		andi.b	#$F,subtype.byte(a0)
 
 .action
 		moveq	#7,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		beq.s	.solid								; if zero, branch
 		add.w	d0,d0
 		jsr	.index-2(pc,d0.w)
@@ -114,7 +114,7 @@ Obj_LargeGrassPlatform:
 		moveq	#$60,d1
 
 .move
-		btst	#3,subtype(a0)
+		btst	#3,subtype.byte(a0)
 		beq.s	.loc_AFF2
 		neg.w	d0
 		add.w	d1,d0

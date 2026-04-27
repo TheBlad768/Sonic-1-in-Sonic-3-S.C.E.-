@@ -32,7 +32,7 @@ ChainedStomper_Var2:
 Obj_ChainedStomper:
 
 		; set
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		move.b	d0,d1
 		andi.w	#$F0,d1
 		cmpi.w	#$20,d1
@@ -41,7 +41,7 @@ Obj_ChainedStomper:
 		; check
 		tst.b	d0
 		bpl.s	.plus
-		clr.b	subtype(a0)
+		clr.b	subtype.byte(a0)
 		andi.w	#$7F,d0
 		beq.s	.plus
 		addq.b	#1,chainedstomper.switch(a0)					; set 1
@@ -63,7 +63,7 @@ Obj_ChainedStomper:
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 
 		; set
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		lsr.w	#3,d0
 		andi.w	#$E,d0
 		lea	ChainedStomper_Var2(pc,d0.w),a1
@@ -114,7 +114,7 @@ Obj_ChainedStomper:
 
 .action
 		moveq	#$F,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		add.w	d0,d0
 		move.w	ChainedStomper_TypeIndex(pc,d0.w),d0
 		jsr	ChainedStomper_TypeIndex(pc,d0.w)
@@ -280,7 +280,7 @@ ChainedStomper_Type03:
 		jsr	(Find_SonicObject).w
 		cmpi.w	#144,d2								; is object within $90 pixels of Sonic?
 		bhs.s	loc_B996							; if not, branch
-		addq.b	#1,subtype(a0)
+		addq.b	#1,subtype.byte(a0)
 
 loc_B996:
 		moveq	#0,d0

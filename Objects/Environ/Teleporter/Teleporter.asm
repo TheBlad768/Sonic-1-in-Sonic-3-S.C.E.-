@@ -44,7 +44,7 @@ Obj_Teleport:
 
 		; init
 		moveq	#$F,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		add.w	d0,d0
 		lea	Teleport_Data(pc),a2
 		adda.w	(a2,d0.w),a2
@@ -65,7 +65,7 @@ Obj_Teleport:
 		move.l	d2,(a4)								; save saveXY
 
 .main
-		cmpi.b	#7,subtype(a0)
+		cmpi.b	#7,subtype.byte(a0)
 		bne.s	.players
 		cmpi.w	#50,(Ring_count).w						; does Sonic have at least 50 rings?
 		blo.s	.chkdel								; if not, branch

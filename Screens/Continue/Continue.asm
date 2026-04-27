@@ -236,7 +236,7 @@ Obj_Continue_SonicWTails:
 
 		; anim
 		moveq	#0,d0
-		btst	#4,(V_int_run_count+3).w					; 0 or $10
+		btst	#4,(V_int_run_count.byte).w					; 0 or $10
 		beq.s	.setanim
 		addq.b	#1,d0
 
@@ -403,7 +403,7 @@ Obj_Continue_TailsWSonic:
 
 		; anim
 		moveq	#5,d0
-		btst	#5,(V_int_run_count+3).w					; 0 or $20
+		btst	#5,(V_int_run_count.byte).w					; 0 or $20
 		beq.s	.setframe
 		addq.b	#1,d0
 
@@ -656,7 +656,7 @@ Obj_Continue_EggRobo:
 
 		; anim
 		moveq	#1,d0
-		btst	#0,(V_int_run_count+3).w					; 0 or 1
+		btst	#0,(V_int_run_count.byte).w					; 0 or 1
 		beq.s	.skip
 		moveq	#3,d0
 
@@ -766,7 +766,7 @@ Continue_LoadIcons:
 
 .loop
 		move.l	#Obj_Continue_Icons,code_addr(a1)
-		move.b	d2,subtype(a1)
+		move.w	d2,subtype(a1)
 		addq.w	#2,d2
 
 		; create next object
@@ -821,7 +821,7 @@ Obj_Continue_Icons:
 
 .main
 		moveq	#0,d0
-		btst	#4,(V_int_run_count+3).w					; 0 or $10
+		btst	#4,(V_int_run_count.byte).w					; 0 or $10
 		beq.s	.skip
 		addq.w	#1,d0
 
@@ -833,8 +833,7 @@ Obj_Continue_Icons:
 ; =============== S U B R O U T I N E =======================================
 
 Continue_Icons_GetPos:
-		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.w	subtype(a0),d0
 		move.w	.xpos(pc,d0.w),x_pos(a0)
 		rts
 ; ---------------------------------------------------------------------------

@@ -28,7 +28,7 @@ Obj_RunningDisc:
 		; set circular
 		move.b	#24,runningdisc.distance(a0)					; set radius circular
 		move.b	#144/2,runningdisc.radius(a0)
-		move.b	subtype(a0),d0							; get object type
+		move.b	subtype.byte(a0),d0						; get object type
 		move.b	d0,d1								; save object type
 		andi.b	#$F,d0								; read only the 2nd digit
 		beq.s	.typeis0							; branch if 0

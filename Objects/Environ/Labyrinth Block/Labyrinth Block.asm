@@ -34,7 +34,7 @@ Obj_LabyrinthBlock:
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 
 		; set
-		move.b	subtype(a0),d0							; get block type
+		move.b	subtype.byte(a0),d0						; get block type
 		lsr.w	#3,d0								; read only the 1st digit
 		andi.w	#$E,d0
 		move.w	LabyrinthBlock_Var(pc,d0.w),d1
@@ -47,7 +47,7 @@ Obj_LabyrinthBlock:
 
 		; check
 		moveq	#$F,d0								; read only the 2nd digit
-		and.b	subtype(a0),d0							; get block type
+		and.b	subtype.byte(a0),d0						; get block type
 		beq.s	.action								; branch if 0
 		cmpi.b	#7,d0
 		beq.s	.action								; branch if 7
@@ -56,7 +56,7 @@ Obj_LabyrinthBlock:
 .action
 		move.w	x_pos(a0),-(sp)
 		moveq	#$F,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		beq.s	.skipt								; if zero, branch
 		add.w	d0,d0
 		move.w	LabyrinthBlock_TypeIndex-2(pc,d0.w),d0
@@ -146,7 +146,7 @@ LabyrinthBlock_TypeIndex: offsetTable
 .wait01
 		subq.w	#1,labyrinthblock.timer(a0)					; decrement waiting time
 		bne.s	.donothing01							; if time remains, branch
-		addq.b	#1,subtype(a0)							; goto .type02 or .type04
+		addq.b	#1,subtype.byte(a0)						; goto .type02 or .type04
 		clr.b	labyrinthblock.touch_flag(a0)					; flag block as touched
 		rts
 ; ---------------------------------------------------------------------------
@@ -160,7 +160,7 @@ LabyrinthBlock_TypeIndex: offsetTable
 		addq.w	#1,d1
 		add.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)							; stop when it touches the floor
-		clr.b	subtype(a0)							; set type to 00 (non-moving type)
+		clr.b	subtype.byte(a0)						; set type to 00 (non-moving type)
 
 .nofloor02
 		rts
@@ -173,7 +173,7 @@ LabyrinthBlock_TypeIndex: offsetTable
 		bpl.s	.noceiling04							; if not, branch
 		sub.w	d1,y_pos(a0)
 		clr.w	y_vel(a0)							; stop when it touches the ceiling
-		clr.b	subtype(a0)							; set type to 00 (non-moving type)
+		clr.b	subtype.byte(a0)						; set type to 00 (non-moving type)
 
 .noceiling04
 		rts
@@ -182,7 +182,7 @@ LabyrinthBlock_TypeIndex: offsetTable
 .type05
 		cmpi.b	#1,labyrinthblock.solid(a0)					; is Sonic touching the block?
 		bne.s	.notouch05							; if not, branch
-		addq.b	#1,subtype(a0)							; goto .type06
+		addq.b	#1,subtype.byte(a0)						; goto .type06
 		clr.b	labyrinthblock.touch_flag(a0)
 
 .notouch05

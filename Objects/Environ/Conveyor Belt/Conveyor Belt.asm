@@ -21,7 +21,7 @@ Obj_Conveyor:
 		; init
 		move.l	#.action,code_addr(a0)
 		move.b	#128,conveyor.width(a0)						; set width to 128 pixels
-		move.b	subtype(a0),d0							; get object type
+		move.b	subtype.byte(a0),d0						; get object type
 		move.b	d0,d1								; save object type
 		andi.b	#$F,d0								; read only the 2nd digit
 		beq.s	.typeis0							; if zero, branch

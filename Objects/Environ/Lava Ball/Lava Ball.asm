@@ -23,13 +23,13 @@ Obj_LavaMaker:
 		jsr	(Obj_WaitOffscreen).w
 
 		; set
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		lsr.w	#3,d0
 		andi.w	#$E,d0
 		move.w	LavaMaker_Rates(pc,d0.w),d0
 		move.w	d0,lavamaker.timer(a0)						; set time delay for lava balls
 		move.w	d0,lavamaker.delay(a0)
-		andi.b	#$F,subtype(a0)
+		andi.b	#$F,subtype.byte(a0)
 
 		; init
 		movem.l	ObjDat_LavaMaker(pc),d0-d3					; copy data to d0-d3
@@ -52,7 +52,7 @@ Obj_LavaMaker:
 		move.l	#Obj_LavaBall,code_addr(a1)					; load lava ball object
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
-		move.b	subtype(a0),subtype(a1)
+		move.b	subtype.byte(a0),subtype.byte(a1)
 
 .draw
 		jmp	(Sprite_OnScreen_Test).w
@@ -103,13 +103,13 @@ Obj_LavaBall:
 
 		; set
 		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		add.w	d0,d0								; multiply by 2
 		move.w	LavaBall_Speeds(pc,d0.w),y_vel(a0)				; load object speed (vertical)
 		move.w	#bytes_to_word(16/2,32/2),y_radius(a0)				; set y_radius and x_radius
 
 		; check
-		cmpi.b	#6,subtype(a0)							; is object type below $06?
+		cmpi.b	#6,subtype.byte(a0)						; is object type below $06?
 		blo.s	.sound								; if yes, branch
 		move.w	#bytes_to_word(32/2,16/2),y_radius(a0)				; set y_radius and x_radius
 		move.b	#2,anim(a0)							; use horizontal animation
@@ -121,7 +121,7 @@ Obj_LavaBall:
 
 .action
 		moveq	#0,d0
-		move.b	subtype(a0),d0
+		move.b	subtype.byte(a0),d0
 		add.w	d0,d0								; multiply by 2
 		move.w	LavaBall_TypeIndex(pc,d0.w),d0
 		jsr	LavaBall_TypeIndex(pc,d0.w)
@@ -175,7 +175,7 @@ LavaBall_Type04:
 		jsr	(ObjCheckCeilingDist).w
 		tst.w	d1
 		bpl.s	.return
-		move.b	#8,subtype(a0)
+		move.b	#8,subtype.byte(a0)
 		move.b	#1,anim(a0)
 		clr.w	y_vel(a0)							; stop the object when it touches the ceiling
 
@@ -189,7 +189,7 @@ LavaBall_Type05:
 		jsr	(ObjCheckFloorDist).w
 		tst.w	d1
 		bpl.s	.return
-		move.b	#8,subtype(a0)
+		move.b	#8,subtype.byte(a0)
 		move.b	#1,anim(a0)
 		clr.w	y_vel(a0)							; stop the object when it touches the floor
 
@@ -207,7 +207,7 @@ LavaBall_Type06:
 		jsr	(ObjCheckLeftWallDist).w
 		tst.w	d1
 		bpl.s	.return
-		move.b	#8,subtype(a0)
+		move.b	#8,subtype.byte(a0)
 		move.b	#3,anim(a0)
 		clr.w	x_vel(a0)							; stop object when it touches a wall
 
@@ -223,7 +223,7 @@ LavaBall_Type07:
 		jsr	(ObjCheckRightWallDist).w
 		tst.w	d1
 		bpl.s	.return
-		move.b	#8,subtype(a0)
+		move.b	#8,subtype.byte(a0)
 		move.b	#3,anim(a0)
 		clr.w	x_vel(a0)							; stop object when it touches a wall
 

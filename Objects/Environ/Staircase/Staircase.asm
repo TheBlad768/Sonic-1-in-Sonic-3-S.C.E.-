@@ -29,7 +29,7 @@ Obj_Staircase:
 
 		; check
 		moveq	#7,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		cmpi.w	#4,d0
 		blo.s	.skip
 		bchg	#render_flags.x_flip,render_flags(a0)
@@ -67,7 +67,7 @@ Obj_Staircase:
 		move.w	#make_art_tile(0,2,FALSE),art_tile(a1)
 		move.b	render_flags(a0),render_flags(a1)
 		move.l	#bytes_word_to_long(32/2,32/2,priority_3),height_pixels(a1)	; set height, width and priority
-		move.b	subtype(a0),subtype(a1)
+		move.b	subtype.byte(a0),subtype.byte(a1)
 		move.w	d2,x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
 		move.w	x_pos(a0),staircase.origX(a1)
@@ -86,7 +86,7 @@ Obj_Staircase:
 
 .move
 		moveq	#7,d0
-		and.b	subtype(a0),d0
+		and.b	subtype.byte(a0),d0
 		add.w	d0,d0
 		move.w	Staircase_TypeIndex(pc,d0.w),d0
 		jsr	Staircase_TypeIndex(pc,d0.w)
@@ -149,7 +149,7 @@ Staircase_Type00:
 		; wait
 		subq.w	#1,staircase.timer(a0)						; is timer over?
 		bne.s	.return								; if not, branch
-		addq.b	#1,subtype(a0)							; next type
+		addq.b	#1,subtype.byte(a0)						; next type
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -174,7 +174,7 @@ Staircase_Type02:
 		; wait
 		subq.w	#1,staircase.timer(a0)						; is timer over?
 		bne.s	.shaking							; if not, branch
-		addq.b	#1,subtype(a0)							; next type
+		addq.b	#1,subtype.byte(a0)						; next type
 		rts
 ; ---------------------------------------------------------------------------
 
