@@ -11,16 +11,16 @@
 		dc.l AnPal_SBZ								; Animate palette main code
 		dc.l 0									; Animate palette scripts
 
+		; Animate tiles
+		dc.l 0									; Animate tiles init
+		dc.l AnimateTiles_DoAniPLC						; Animate tiles main code
+		dc.l AniPLC_SBZ								; Animate tiles PLC scripts
+
 		; Level setup
 		dc.l SBZ1_ForegroundInit						; Foreground init
 		dc.l Draw_FGAsYouMove							; Foreground event
 		dc.l SBZ1_BackgroundInit						; Background init
 		dc.l SBZ1_BackgroundEvent						; Background event
-
-		; Animate tiles
-		dc.l 0									; Animate tiles init
-		dc.l AnimateTiles_DoAniPLC						; Animate tiles main code
-		dc.l AniPLC_SBZ								; Animate tiles PLC scripts
 
 		; Art 1st 8x8 data, 2nd 8x8 data
 		; Blocks pointer, 1st 16x16 data, 2nd 16x16 data

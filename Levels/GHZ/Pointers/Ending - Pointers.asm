@@ -15,16 +15,16 @@ LevelLoadPointer_Ending:
 		dc.l AnPal_GHZ								; Animate palette main code
 		dc.l 0									; Animate palette scripts
 
+		; Animate tiles
+		dc.l 0									; Animate tiles init
+		dc.l AnimateTiles_DoAniPLC						; Animate tiles main code
+		dc.l AniPLC_Ending							; Animate tiles PLC scripts
+
 		; Level setup
 		dc.l GHZ1_ForegroundInit						; Foreground init
 		dc.l Draw_FGAsYouMove							; Foreground event
 		dc.l Ending_BackgroundInit						; Background init
 		dc.l Ending_BackgroundEvent						; Background event
-
-		; Animate tiles
-		dc.l 0									; Animate tiles init
-		dc.l AnimateTiles_DoAniPLC						; Animate tiles main code
-		dc.l AniPLC_Ending							; Animate tiles PLC scripts
 
 		; Art 1st 8x8 data, 2nd 8x8 data
 		; Blocks pointer, 1st 16x16 data, 2nd 16x16 data
