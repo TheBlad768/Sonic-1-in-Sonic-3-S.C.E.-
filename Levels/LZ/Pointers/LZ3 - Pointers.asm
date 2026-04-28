@@ -11,16 +11,16 @@
 		dc.l AnPal_LZ								; Animate palette main code
 		dc.l 0									; Animate palette scripts
 
+		; Animate tiles
+		dc.l 0									; Animate tiles init
+		dc.l AnimateTiles_LZ							; Animate tiles main code
+		dc.l -1									; Animate tiles PLC scripts
+
 		; Level setup
 		dc.l LZ3_ForegroundInit							; Foreground init
 		dc.l LZ1_ForegroundEvent						; Foreground event
 		dc.l LZ1_BackgroundInit							; Background init
 		dc.l LZ1_BackgroundEvent						; Background event
-
-		; Animate tiles
-		dc.l 0									; Animate tiles init
-		dc.l AnimateTiles_LZ							; Animate tiles main code
-		dc.l -1									; Animate tiles PLC scripts
 
 		; Art 1st 8x8 data, 2nd 8x8 data
 		; Blocks pointer, 1st 16x16 data, 2nd 16x16 data
