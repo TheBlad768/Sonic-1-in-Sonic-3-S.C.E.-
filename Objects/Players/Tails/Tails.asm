@@ -2506,7 +2506,7 @@ Tails_Test_For_Flight:
 		tst.b	(Super_Tails_flag).w
 		bne.s	loc_1515C
 
-	if CheckChaosEmer
+	if CheckChaosEmerald
 		cmpi.b	#7,(Chaos_emerald_count).w
 		blo.s	loc_1515C
 	endif

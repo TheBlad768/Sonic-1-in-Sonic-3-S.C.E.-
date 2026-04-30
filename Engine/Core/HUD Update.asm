@@ -102,6 +102,8 @@ HUD_Update:
 		moveq	#0,d1
 		move.b	(Timer_second).w,d1						; load seconds
 		bsr.w	DrawTwoDigitNumber
+
+	if HUDCentiseconds
 		locVRAM	tiles_to_bytes(ArtTile_HUD+$2E),d0
 		moveq	#0,d1
 		move.b	(Timer_frame).w,d1						; load centiseconds
@@ -114,6 +116,7 @@ HUD_Update:
 
 .skipt
 		bsr.w	DrawTwoDigitNumber
+	endif
 
 .chklives
 		tst.b	(Update_HUD_life_count).w
@@ -137,6 +140,7 @@ UpdateHUD_TimeOver:
 		rts
 ; ---------------------------------------------------------------------------
 
+	if HUDCentiseconds
 LUT_HUDCentiseconds:
 
 		set	.a,0
@@ -147,6 +151,7 @@ LUT_HUDCentiseconds:
 	endr
 
 	even
+	endif
 
 	if GameDebug
 
@@ -291,7 +296,13 @@ HUD_DrawInitial:
 
 HUD_Initial_Parts:
 		dc.b "E      0"
-		dc.b "0*00:00"
+
+	if HUDCentiseconds
+		dc.b "0*00;00"
+	else
+		dc.b "0:00   "
+	endif
+
 HUD_Zero_Rings:
 		dc.b "  0"								; (zero rings)
 HUD_Initial_Parts_end

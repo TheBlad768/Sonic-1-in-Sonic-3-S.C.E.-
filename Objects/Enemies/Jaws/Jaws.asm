@@ -2,9 +2,6 @@
 ; Object 2C - Jaws enemy (LZ)
 ; ---------------------------------------------------------------------------
 
-; options
-_JAWSWATER_FIX_ =			1						; hide jaws if it is above water
-
 ; dynamic object variables
 
 	dsset animations								; pretend we're in the RAM
@@ -46,7 +43,7 @@ Obj_Jaws:
 
 .animate
 
-	if _JAWSWATER_FIX_
+	if JawsWater
 		move.w	(Water_level).w,d0
 		cmp.w	y_pos(a0),d0							; is Jaws above the water?
 		bge.s	.delete								; if yes, branch
@@ -67,7 +64,7 @@ Obj_Jaws:
 		jmp	(Sprite_CheckDeleteTouch).w
 ; ---------------------------------------------------------------------------
 
-	if _JAWSWATER_FIX_
+	if JawsWater
 .delete
 		jmp	(Sprite_CheckDelete.offscreen).w
 	endif

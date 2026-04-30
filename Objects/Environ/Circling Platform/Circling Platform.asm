@@ -2,9 +2,6 @@
 ; Object 5A - platforms moving in circles (SLZ)
 ; ---------------------------------------------------------------------------
 
-; options
-_CPLATFORM_VER_ =			0						; S1 or S2/S3K version
-
 ; dynamic object variables
 
 	dsset animations								; pretend we're in the RAM
@@ -55,7 +52,7 @@ Obj_CirclingPlatform:
 
 		; type04								; 2
 
-	if ~~_CPLATFORM_VER_
+	if ~~CirclingPlatformVersion
 		moveq	#-$50,d1							; set radius of circle
 		add.b	(Oscillating_Data+$40).w,d1					; get rotating value (S1)
 		ext.w	d1
@@ -93,7 +90,7 @@ Obj_CirclingPlatform:
 
 .type00
 
-	if ~~_CPLATFORM_VER_
+	if ~~CirclingPlatformVersion
 		moveq	#-$50,d1							; set radius of circle
 		add.b	(Oscillating_Data+$40).w,d1					; get rotating value (S1)
 		ext.w	d1

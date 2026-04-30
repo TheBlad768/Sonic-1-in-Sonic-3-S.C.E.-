@@ -76,7 +76,13 @@ SegaScreen:
 		move.l	#PalCycle_Sega,(a0)
 
 		; load palette
+
+	if SegaScreenFade
 		lea	(Target_palette).w,a1
+	else
+		lea	(Normal_palette).w,a1
+	endif
+
 		move.l	#words_to_long(cWhite,cWhite),d0
 		moveq	#bytesToXcnt(64,(2*4)),d1
 
@@ -103,7 +109,10 @@ SegaScreen:
 		move.l	#VInt_Main,(V_int_ptr).w					; set VInt pointer
 		jsr	(Wait_VSync).w
 		enableDisplay
+
+	if SegaScreenFade
 		jsr	(Pal_FadeFromBlack).w
+	endif
 
 .anipal
 		jsr	(Wait_VSync).w

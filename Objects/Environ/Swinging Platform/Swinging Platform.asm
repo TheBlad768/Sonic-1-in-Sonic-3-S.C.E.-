@@ -3,9 +3,6 @@
 ; - spiked ball on a chain (SBZ)
 ; ---------------------------------------------------------------------------
 
-; options
-_SPLATFORM_POS_ =			1						; if 1, enable S1 version
-
 ; dynamic object variables
 
 	dsset animations								; pretend we're in the RAM
@@ -216,7 +213,7 @@ SwingingPlatform_Move:
 		add.l	d1,d5
 		dbf	d6,.loop
 
-	if _SPLATFORM_POS_
+	if ~~SwingingPlatformChain
 		; sonic 1 fix pos
 		asr.l	d0
 		asr.l	d1

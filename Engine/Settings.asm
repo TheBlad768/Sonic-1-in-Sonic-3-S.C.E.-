@@ -7,9 +7,11 @@ ChecksumCheck =						0				; if 1, enable checksum checking
 OptimiseStopZ80 =					2				; if 1, remove stopZ80 and startZ80, if 2, use only for controllers (no effect on sound driver)
 MSUMode =						0				; if 1, enable MSU
 
-; screen misc options
+; screen options
 SegaVersion =						0				; if 0, enable Sonic 3 & Knuckles version, if 1, enable Sonic 1 version, if 2, enable Sonic 1 prototype version
-LevelSelectVer =					1				; if 1, enable Level Select screen RSDK version
+SegaScreenFade =					1				; if 0, the SEGA screen shows immediately and doesn't fade in
+TitleScreenMenu =					1				; if 0, disable menu options and PSB text, if 1, enable menu options and PSB text, if 2, disable menu options but enable PSB text
+LevelSelectVersion =					0				; if 0, enable Level Select screen RSDK version
 LevelSelectCheat =					1				; if 1, enable level select cheat check
 GameDebugCheat =					1				; if 1, enable debug mode cheat check
 SpecialStageRotation =					1				; if 1, enable smooth rotation for Special Stage
@@ -18,20 +20,35 @@ SpecialStageRotation =					1				; if 1, enable smooth rotation for Special Stage
 GameDebug =						1				; if 1, enable debug mode for player
 GameDebugAlt =						0				; if 1, enable alt debug mode for player
 RollInAir =						1				; if 1, enable roll in air for players
-PlayerMoveLock =					0				; if 1, lock control during the fall animation (Android, Mania, Origins style...)
-PlayerBWanim =						0				; if 1, enable black and white hurt/death animation
-OriginalMode =						0				; if 1, disable Spin Dash and Insta Shield (Sonic 1 style)
+PlayerMoveLock =					0				; if 1, lock control during the fall animation (Android, Mania, Origins style)
+PlayerFallAnim =					1				; if 1, enable fall animation triggers for falling platforms
+PlayerBWAnim =						0				; if 1, enable black and white hurt/death animation
+KnuxBreakableWall =					0				; if 1, change the animation of Knuckles after breaking the wall
 SonKnuxTransform =					1				; if 1, enable Super/Hyper transformation
-CheckChaosEmer =					0				; if 1, check the number of emeralds to transformation
+CheckChaosEmerald =					1				; if 1, check the number of emeralds to transformation
 SuperHyperSonKnux =					1				; if 1, enable Hyper transformation
 ExtendedCamera =					0				; if 1, enable extended camera
 LevelBoundCheckTop =					1				; if 1, enable check up boundary
+OriginalMode =						0				; if 1, disable Spin Dash and Insta Shield (Sonic 1 style)
 
-; level options
+; level main options
 ZoneCount =						6				; set discrete zones are: GHZ, MZ, SYZ, LZ, SLZ, SBZ
+HUDScroll =						1				; if 1, enable HUD scrolling movement on level start/finish
+HUDCentiseconds =					1				; if 1, enable centiseconds in the HUD
+
+; level misc options
+MonitorFall =						0				; if 1, monitor will fall after being hit from below
+EnemyProjectileSFX =					1				; if 1, enable additional projectile sound effects added to badniks (Sonic 3 style)
+CrabmeatSlope =						0				; if 1, enable crabmeat slope animation (GHZ)
+SwingingPlatformChain =					0				; if 1, enable alternate swinging platform chain position (Android, Mania, Origins style)
+GlassBlockReflect =					1				; if 1, fix glass block reflect movement (MZ)
+JawsWater =						1				; if 1, hide jaws if it is above water (LZ)
+CirclingPlatformVersion =				0				; if 1, enable S2/S3K version of circling platform (SLZ)
+
+; level boss options
 BossDebug =						0				; if 1, set one hit on all bosses
 BossIntro =						1				; if 1, enable boss intro (GHZ, MZ)
-MonitorFall =						0				; if 1, monitor will fall after being hit from below
+BossBallCollision =					1				; if 1, enable GHZ boss collision as in the original game
 
 ; SRAM options
 EnableSRAM =						0				; if 1, enable SRAM

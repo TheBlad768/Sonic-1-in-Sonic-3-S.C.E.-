@@ -127,8 +127,12 @@ BossBall_Setup:
 ; =============== S U B R O U T I N E =======================================
 
 BossBall_MainProcess:
+
+	if ~~BossBallCollision
 		btst	#bossball.attack_bit,state_flags(a0)				; wait boss attack flag
 		beq.s	.draw
+	endif
+
 		jsr	(Add_SpriteToCollisionResponseList).w
 
 .draw
@@ -401,7 +405,11 @@ Obj_BossBall_Ball:
 		addq.w	#1,y_pos(a0)
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.angle
+
+	if ~~BossBallCollision
 		move.b	#collision_type.npc.hurt,collision_type(a0)			; set ball collision type
+	endif
+
 		move.l	#.circular,code_addr(a0)
 
 .circular
@@ -516,7 +524,13 @@ Obj_BossBall_Scaled:
 ; init
 ObjDat_BossBall_Crane:		subObjData Map_GiantBall_Crane, $494, 0, FALSE, 16, 16, 6, 0, collision_type.npc.none, 0, 0
 ObjDat_BossBall_Chain:		subObjData Map_GiantBall_Crane, $498, 0, FALSE, 16, 16, 6, 0, collision_type.npc.none, 0, 0
+
+	if ~~BossBallCollision
 ObjDat_BossBall_Ball:		subObjData Map_GiantBall, $49C, 2, FALSE, 64, 64, 5, 0, collision_type.npc.none, 48, 48
+	else
+ObjDat_BossBall_Ball:		subObjData Map_GiantBall, $49C, 2, FALSE, 64, 64, 5, 0, collision_type.npc.hurt, 48, 48
+	endif
+
 ObjDat_BossBall_Scaled:		subObjData Map_ScaledArt, $340, 0, FALSE, 128, 128, 1, 0, collision_type.npc.none, 0, 0
 
 ; dplc

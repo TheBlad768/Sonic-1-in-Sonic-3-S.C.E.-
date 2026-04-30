@@ -2,9 +2,6 @@
 ; Object 30 - large green glass blocks (MZ)
 ; ---------------------------------------------------------------------------
 
-; options
-_GLASSBLOCK_YPOS_ =			1						; fixed version
-
 ; dynamic object variables
 
 	dsset animations								; pretend we're in the RAM
@@ -182,7 +179,7 @@ loc_B5EE:
 		moveq	#0,d0
 		move.b	(Oscillating_Data+$10).w,d0
 
-	if _GLASSBLOCK_YPOS_
+	if GlassBlockReflect
 		; fix ypos
 		subi.w	#$10-2,d0
 	else
