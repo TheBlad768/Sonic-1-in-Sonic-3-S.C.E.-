@@ -172,7 +172,10 @@ TitleScreen:
 
 		; set
 		move.l	#Obj_TitleSonic,(Player_2+code_addr).w				; load big Sonic object
+
+	if TitleScreenMenu
 		move.l	#Obj_TitlePSB,(Reserved_object_3+code_addr).w			; load "PRESS START BUTTON" object
+	endif
 
 		; check console region
 		tst.b	(Graphics_flags).w
@@ -214,8 +217,12 @@ TitleScreen:
 		; check exit
 		tst.w	(Demo_timer).w
 		beq.w	.demo
+
+	if TitleScreenMenu=1
 		tst.b	(Title.end).w
 		beq.s	.notexit
+	endif
+
 		tst.b	(Ctrl_1_pressed).w						; is Start pressed?
 		bmi.s	.exit								; if yes, branch
 
@@ -273,7 +280,7 @@ TitleScreen:
 		btst	#button_A,d0							; is A button held?
 		beq.s	.return								; if not, branch
 
-	if LevelSelectVer
+	if LevelSelectVersion
 		move.b	#GameModeID_LevelSelectRSDKScreen,(Game_mode).w			; set screen mode to Level Select RSDK
 		rts
 	else
@@ -422,6 +429,7 @@ Obj_TitleSonic:
 		; draw
 		jmp	(Draw_Sprite).w
 
+	if TitleScreenMenu
 ; ---------------------------------------------------------------------------
 ; Object 0F - "PRESS START BUTTON" from title screen
 ; ---------------------------------------------------------------------------
@@ -452,8 +460,11 @@ Obj_TitlePSB:
 		move.l	#.cstart,code_addr(a0)
 
 .cstart
+
+	if TitleScreenMenu<>2
 		bclr	#button_start,(Ctrl_1_pressed).w				; is Start pressed? ; clear Start button so we don't exit the title screen early
 		bne.s	.soptions							; if yes, branch
+	endif
 
 .anim
 		addq.w	#1,titlepsb.counter(a0)						; alternative for "Level_frame_counter"
@@ -468,6 +479,7 @@ Obj_TitlePSB:
 		rts
 ; ---------------------------------------------------------------------------
 
+	    if TitleScreenMenu<>2
 .soptions
 
 		; fix options xpos
@@ -553,7 +565,12 @@ Title_DrawVIcon:
 		moveq	#0,d3								; space
 		cmp.w	d0,d6
 		bne.s	.skip
-		move.l	#$053B053C,d3							; icon
+
+		; icon
+		move.l	#words_to_long( \
+			make_art_tile($53B,0,FALSE), \
+			make_art_tile($53C,0,FALSE) \
+		),d3
 
 .skip
 		move.l	d3,VDP_data_port-VDP_data_port(a6)
@@ -563,6 +580,8 @@ Title_DrawVIcon:
 		; exit
 		enableIntsSave
 		rts
+	    endif
+	endif
 
 ; ---------------------------------------------------------------------------
 ; Level Select code

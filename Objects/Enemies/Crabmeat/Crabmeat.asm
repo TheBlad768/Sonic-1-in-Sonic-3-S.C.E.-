@@ -2,9 +2,6 @@
 ; Object 1F - Crabmeat enemy (GHZ, SYZ)
 ; ---------------------------------------------------------------------------
 
-; options
-_CRABMEAT_SLOPE_ =			0						; if 1, enable slope animation
-
 ; dynamic object variables
 
 	dsset animations								; pretend we're in the RAM
@@ -31,7 +28,7 @@ Obj_Crabmeat:
 		bpl.s	.floornotfound							; if not, branch
 		add.w	d1,y_pos(a0)
 
-	if _CRABMEAT_SLOPE_
+	if CrabmeatSlope
 		move.b	d3,angle(a0)
 	endif
 
@@ -67,7 +64,7 @@ Obj_Crabmeat:
 		move.w	#128-1,crabmeat.timer(a0)					; set time delay to approx 2 seconds
 		move.w	#$80,x_vel(a0)							; move crabmeat to the right
 
-	if _CRABMEAT_SLOPE_
+	if CrabmeatSlope
 		bsr.w	Crabmeat_SetAni
 		addq.b	#3,d0
 		move.b	d0,anim(a0)
@@ -88,8 +85,11 @@ Obj_Crabmeat:
 		move.w	#60-1,crabmeat.timer(a0)
 		move.b	#6,anim(a0)							; use firing animation
 
-		; create
+	if EnemyProjectileSFX
 		sfx	sfx_Projectile
+	endif
+
+		; create
 		lea	Child1_Crabmeat_Missile(pc),a2
 		jmp	(CreateChild1_Normal).w
 ; ---------------------------------------------------------------------------
@@ -120,7 +120,7 @@ Obj_Crabmeat:
 		jsr	(ObjCheckFloorDist).w
 		add.w	d1,y_pos(a0)
 
-	if _CRABMEAT_SLOPE_
+	if CrabmeatSlope
 		move.b	d3,angle(a0)
 		bsr.s	Crabmeat_SetAni
 		addq.b	#3,d0
@@ -137,7 +137,7 @@ Obj_Crabmeat:
 		move.w	#60-1,crabmeat.timer(a0)
 		clr.w	x_vel(a0)
 
-	if _CRABMEAT_SLOPE_
+	if CrabmeatSlope
 		bsr.s	Crabmeat_SetAni
 		move.b	d0,anim(a0)
 	else
@@ -146,7 +146,7 @@ Obj_Crabmeat:
 
 		rts
 
-	if _CRABMEAT_SLOPE_
+	if CrabmeatSlope
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to set the correct animation for a Crabmeat

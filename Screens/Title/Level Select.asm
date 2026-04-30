@@ -39,6 +39,8 @@ TitleLevelSelect.vertical_count				ds.w 1
 TitleLevelSelectScreen:
 
 		; clear
+		jsr	(Clear_KosPlus_Module_Queue).w					; clear KosPlusM PLCs
+		ResetDMAQueue								; clear DMA queue
 		clearRAM RAM_start, (RAM_start+$2000)					; clear foreground buffers
 		clearRAM Object_RAM, Object_RAM_end					; clear the object RAM
 		clearRAM Lag_frame_count, Lag_frame_count_end				; clear variables

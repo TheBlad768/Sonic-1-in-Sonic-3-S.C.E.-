@@ -1638,7 +1638,7 @@ Sonic_CheckTransform:
 
 		if SonKnuxTransform
 
-	if CheckChaosEmer
+	if CheckChaosEmerald
 		cmpi.b	#7,(Chaos_emerald_count).w					; does Sonic have all 7 Chaos Emeralds?
 		blo.s	Sonic_InstaShield						; if not, branch
 	endif

@@ -140,7 +140,11 @@ Obj_Missile:
 		; check
 		tst.b	subtype.byte(a0)						; was object created by	a Newtron?
 		beq.s	.animatebuzz							; if not, branch
+
+	if EnemyProjectileSFX
 		sfx	sfx_Projectile
+	endif
+
 		move.b	#1,anim(a0)
 		move.l	#.move,code_addr(a0)
 		bra.s	.move
@@ -154,7 +158,11 @@ Obj_Missile:
 		tst.b	routine(a0)							; changed by Animate_Sprite
 		beq.s	.animatebuzz_child
 		clr.b	routine(a0)
+
+	if EnemyProjectileSFX
 		sfx	sfx_Projectile
+	endif
+
 		move.b	#1,anim(a0)
 		move.l	#.move,code_addr(a0)
 		bra.s	.animatebuzz

@@ -2,9 +2,6 @@
 ; Object 3C - smashable wall (GHZ, SLZ)
 ; ---------------------------------------------------------------------------
 
-; options
-_BWALL_KNUX_ =				0						; if 1, change the animation of Knuckles after breaking the wall
-
 ; dynamic object variables
 
 	dsset animations								; pretend we're in the RAM
@@ -125,7 +122,7 @@ BreakableWall_CreateFragments:
 		move.w	x_vel(a1),ground_vel(a1)
 		bclr	#status.player.pushing,status(a1)				; set sonic as not pushing an object
 
-	if _BWALL_KNUX_
+	if KnuxBreakableWall
 		; check Knuckles
 		cmpi.b	#PlayerID_Knuckles,character_id(a1)				; is player Knuckles?
 		bne.s	.notKnux							; if not, branch

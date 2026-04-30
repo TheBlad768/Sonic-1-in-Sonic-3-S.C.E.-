@@ -161,7 +161,11 @@ Obj_ScrapEggman_Block:
 		bclr	#status.player.pushing,status(a1)
 		bset	#status.player.in_air,status(a1)
 		bne.s	.notp1								; if the player is already in the air, branch
+
+	if ~~PlayerFallAnim
 		move.b	#AniIDSonAni_Hurt,anim(a1)
+	endif
+
 		clr.b	spin_dash_flag(a1)						; clear spin dash flag
 
 .notp1
@@ -175,7 +179,11 @@ Obj_ScrapEggman_Block:
 		bclr	#status.player.pushing,status(a1)
 		bset	#status.player.in_air,status(a1)
 		bne.s	.notrelease							; if the player is already in the air, branch
+
+	if ~~PlayerFallAnim
 		move.b	#AniIDSonAni_Hurt,anim(a1)
+	endif
+
 		clr.b	spin_dash_flag(a1)						; clear spin dash flag
 
 .notrelease

@@ -515,7 +515,7 @@ HurtCharacter:
 .isleft
 		clr.w	ground_vel(a0)
 
-	if PlayerBWanim
+	if PlayerBWAnim
 		; set anim
 		moveq	#AniIDSonAni_Hurt2,d0						; normal anim
 		btst	#status_secondary.fire_shield,shield_reaction(a2)
@@ -583,7 +583,7 @@ Kill_Character:
 		clr.w	x_vel(a0)
 		clr.w	ground_vel(a0)
 
-	if PlayerBWanim
+	if PlayerBWAnim
 		; set anim
 		moveq	#AniIDSonAni_Death,d1						; normal anim
 		btst	#status_secondary.fire_shield,shield_reaction(a2)
