@@ -195,16 +195,16 @@ LZ_WaterTunnels:
 		bhs.w	.chknext
 		move.w	y_pos(a1),d1
 		cmp.w	2(a2),d1
-		blo.s	.chknext
+		blo.w	.chknext
 		cmp.w	6(a2),d1
-		bhs.s	.chknext
+		bhs.w	.chknext
 
 		; play continuous sfx
 		sfxcont	sfx_Waterfall, $3F						; play water sound every 64th frame
 
 		; check
 		cmpi.b	#PlayerID_Hurt,routine(a1)					; is Sonic falling back from getting hurt?
-		bhs.s	.clr								; if yes, branch
+		bhs.w	.clr								; if yes, branch
 		btst	d5,(WindTunnel_holding_flag).w
 		bne.s	.return
 		tst.b	object_control(a1)
@@ -227,6 +227,8 @@ LZ_WaterTunnels:
 		move.l	#words_to_long($400,0),x_vel(a1)
 		move.b	#AniIDSonAni_Float2,anim(a1)
 		bset	#status.player.in_air,status(a1)
+		bclr	#status.player.rolling,status(a1)
+		bclr	#status.player.pushing,status(a1)
 
 		; clear
 		moveq	#0,d0
@@ -355,6 +357,15 @@ loc_725E:
 
 loc_3F9A:
 		move.b	#AniIDSonAni_Slide,anim(a1)					; use Sonic's "sliding" animation
+		bclr	#status.player.in_air,status(a1)
+		bclr	#status.player.rolling,status(a1)
+		bclr	#status.player.pushing,status(a1)
+
+		; clear
+		moveq	#0,d0
+		move.b	d0,spin_dash_flag(a1)
+		move.b	d0,jumping(a1)
+		move.b	d0,double_jump_flag(a1)
 
 		; set water slide flag
 		ori.b	#( \

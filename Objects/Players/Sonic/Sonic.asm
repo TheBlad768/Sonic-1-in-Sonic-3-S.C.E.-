@@ -555,6 +555,18 @@ Sonic_MdJump:
 		beq.s	loc_11056							; if not, branch
 		subi.w	#$28,y_vel(a0)							; reduce gravity by $28 ($38-$28=$10)
 
+	if WaterSkimming
+		; water skimming (original by Vladikcomper)
+		mvabs.w	x_vel(a0),d0							; move Sonic's X-velocity to d0
+		cmpi.w	#$250,d0							; if Sonic speed less than $250?
+		blo.s	loc_11056							; if yes, branch
+		moveq	#$F,d0
+		add.w	(Water_level).w,d0
+		cmp.w	y_pos(a0),d0							; is Sonic slightly in the water?
+		blt.s	loc_11056							; if not, branch
+		subi.w	#$90,y_vel(a0)							; jump out of water
+	endif
+
 loc_11056:
 		cmpi.w	#$1000,y_vel(a0)
 		ble.s	.maxy
