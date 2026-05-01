@@ -1458,6 +1458,18 @@ Knux_MdJump:
 		beq.s	loc_17138							; if not, branch
 		subi.w	#$28,y_vel(a0)							; reduce gravity by $28 ($38-$28=$10)
 
+	if WaterSkimming
+		; water skimming (original by Vladikcomper)
+		mvabs.w	x_vel(a0),d0							; move Knuckles's X-velocity to d0
+		cmpi.w	#$250,d0							; if Knuckles speed less than $250?
+		blo.s	loc_17138							; if yes, branch
+		moveq	#$F,d0
+		add.w	(Water_level).w,d0
+		cmp.w	y_pos(a0),d0							; is Knuckles slightly in the water?
+		blt.s	loc_17138							; if not, branch
+		subi.w	#$90,y_vel(a0)							; jump out of water
+	endif
+
 loc_17138:
 		cmpi.w	#$1000,y_vel(a0)
 		ble.s	.maxy
