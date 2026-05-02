@@ -55,6 +55,11 @@
 		PalID_WaterSLZ, \
 		mus_SLZ
 
+		; Floor
+		dc.l AngleArray								; Angle map
+		dc.l HeightMaps								; Height maps
+		dc.l HeightMapsRot							; Height maps rotated
+
 		; PLC
 		dc.l PLC1_SLZ1_Before							; PLC1
 		dc.l PLC2_SLZ1_After							; PLC2
