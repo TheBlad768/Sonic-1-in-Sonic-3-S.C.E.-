@@ -228,6 +228,11 @@ LZ_WaterTunnels:
 		move.b	#AniIDSonAni_Float2,anim(a1)
 		bset	#status.player.in_air,status(a1)
 		bclr	#status.player.rolling,status(a1)
+
+	if PlayerRollJumpLock
+		bclr	#status.player.rolljumping,status(a1)
+	endif
+
 		bclr	#status.player.pushing,status(a1)
 
 		; clear
@@ -359,6 +364,11 @@ loc_3F9A:
 		move.b	#AniIDSonAni_Slide,anim(a1)					; use Sonic's "sliding" animation
 		bclr	#status.player.in_air,status(a1)
 		bclr	#status.player.rolling,status(a1)
+
+	if PlayerRollJumpLock
+		bclr	#status.player.rolljumping,status(a1)
+	endif
+
 		bclr	#status.player.pushing,status(a1)
 
 		; clear

@@ -65,7 +65,7 @@ Obj_Junction:
 
 .pushing
 		btst	d6,junction.status(a0)
-		bne.s	.release
+		bne.w	.release
 		btst	d6,status(a0)
 		beq.s	.return
 
@@ -87,6 +87,11 @@ Obj_Junction:
 		move.w	#$800,ground_vel(a1)
 		move.b	#1,object_control(a1)						; lock controls
 		bclr	#status.player.pushing,status(a1)				; clear character push bit
+
+	if PlayerRollJumpLock
+		bclr	#status.player.rolljumping,status(a1)
+	endif
+
 		bset	#status.player.in_air,status(a1)				; set character in air bit
 		clr.b	jumping(a1)							; clear character jumping flag
 		clr.b	double_jump_flag(a1)						; clear character double jumping flag

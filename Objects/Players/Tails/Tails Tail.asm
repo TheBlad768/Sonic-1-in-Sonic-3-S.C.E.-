@@ -49,8 +49,8 @@ Obj_Tails_Tail:
 .nothighpriority
 		moveq	#0,d0
 		move.b	anim(a2),d0
-		btst	#status.player.pushing,status(a2)
-		beq.s	.check
+		btst	#status.player.pushing,status(a2)				; is Tails hitting a solid?
+		beq.s	.check								; if not, branch
 		tst.b	(WindTunnel_flag_P2).w
 		bne.s	.check
 

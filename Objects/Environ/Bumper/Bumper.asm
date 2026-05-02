@@ -75,6 +75,11 @@ Obj_Bumper:
 .notcarry
 		bset	#status.player.in_air,status(a1)
 		bclr	#status.player.pushing,status(a1)
+
+	if PlayerRollJumpLock
+		bclr	#status.player.rolljumping,status(a1)
+	endif
+
 		btst	#status.player.rolling,status(a1)				; is the player rolling?
 		bne.s	.notroll							; if yes, branch
 		clr.b	anim(a1)							; AniIDSonAni_Walk
