@@ -292,7 +292,13 @@ Obj_Bubbler_Bubbles:
 		clr.b	jumping(a1)
 		clr.b	double_jump_flag(a1)
 		clr.b	spin_dash_flag(a1)
+		bset	#status.player.in_air,status(a1)
 		bclr	#status.player.pushing,status(a1)
+
+	if PlayerRollJumpLock
+		bclr	#status.player.rolljumping,status(a1)
+	endif
+
 		bclr	#status.player.rolling,status(a1)
 		beq.s	.back
 

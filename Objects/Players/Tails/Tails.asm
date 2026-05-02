@@ -1147,6 +1147,11 @@ loc_14428:
 		move.w	#bytes_to_word(28/2,14/2),y_radius(a1)				; set y_radius and x_radius
 		move.b	#AniIDSonAni_Roll,anim(a1)
 		bset	#status.player.rolling,status(a1)
+
+	if PlayerRollJumpLock
+		bclr	#status.player.rolljumping,status(a1)
+	endif
+
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -1294,6 +1299,11 @@ sub_1459E:
 		clr.b	anim_frame(a1)
 		move.b	#3,object_control(a1)
 		bset	#status.player.in_air,status(a1)
+
+	if PlayerRollJumpLock
+		bclr	#status.player.rolljumping,status(a1)
+	endif
+
 		clr.b	spin_dash_flag(a1)
 
 		andi.b	#~( \
@@ -2267,6 +2277,12 @@ Tails_ChgJumpDir:
 		move.w	Max_speed_P2-Max_speed_P2(a4),d6
 		move.w	Acceleration_P2-Max_speed_P2(a4),d5
 		asl.w	d5
+
+	if PlayerRollJumpLock
+		btst	#status.player.rolljumping,status(a0)				; did Tails jump from rolling?
+		bne.s	Tails_Jump_ResetScr						; if yes, branch to skip midair control
+	endif
+
 		move.w	x_vel(a0),d0
 		btst	#button_left,(Ctrl_2_logical).w
 		beq.s	loc_14EAC							; if not holding left, branch
@@ -2313,7 +2329,7 @@ loc_14ED6:
 		subq.w	#2,(a5)								; or subtract 2
 
 Tails_JumpPeakDecelerate:
-		cmpi.w	#-$400,y_vel(a0)						; is Sonic moving faster than -$400 upwards?
+		cmpi.w	#-$400,y_vel(a0)						; is Tails moving faster than -$400 upwards?
 		blo.s	locret_14F06							; if yes, return
 		move.w	x_vel(a0),d0
 		move.w	d0,d1
@@ -2455,7 +2471,13 @@ loc_1504C:
 		sfx	sfx_Jump
 		move.w	default_y_radius(a0),y_radius(a0)
 		btst	#status.player.rolling,status(a0)
+
+	if PlayerRollJumpLock
+		bne.s	Tails_RollJump
+	else
 		bne.s	locret_150D0
+	endif
+
 		move.w	#bytes_to_word(28/2,14/2),y_radius(a0)				; set y_radius and x_radius
 		move.b	#AniIDSonAni_Roll,anim(a0)					; use "jumping" animation
 		bset	#status.player.rolling,status(a0)
@@ -2471,6 +2493,13 @@ loc_150CC:
 
 locret_150D0:
 		rts
+; ---------------------------------------------------------------------------
+
+	if PlayerRollJumpLock
+Tails_RollJump:
+		bset	#status.player.rolljumping,status(a0)				; set the rolling+jumping flag
+		rts
+	endif
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -2552,6 +2581,11 @@ loc_15188:
 		add.w	d1,y_pos(a0)
 
 loc_1518C:
+
+	if PlayerRollJumpLock
+		bclr	#status.player.rolljumping,status(a0)
+	endif
+
 		move.b	#1,double_jump_flag(a0)
 		move.b	#(8*60)/2,double_jump_property(a0)
 		bra.w	Tails_Set_Flying_Animation
@@ -3039,6 +3073,11 @@ loc_15658:
 loc_1565E:
 		bclr	#status.player.in_air,status(a0)
 		bclr	#status.player.pushing,status(a0)
+
+	if PlayerRollJumpLock
+		bclr	#status.player.rolljumping,status(a0)
+	endif
+
 		moveq	#0,d0
 		move.b	d0,jumping(a0)
 
