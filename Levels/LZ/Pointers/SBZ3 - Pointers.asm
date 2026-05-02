@@ -56,6 +56,11 @@
 		mus_SBZ, \
 		TRUE
 
+		; Floor
+		dc.l AngleArray								; Angle map
+		dc.l HeightMaps								; Height maps
+		dc.l HeightMapsRot							; Height maps rotated
+
 		; PLC
 		dc.l PLC1_LZ4_Before							; PLC1
 		dc.l PLC2_LZ4_After							; PLC2

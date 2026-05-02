@@ -55,6 +55,11 @@
 		PalID_WaterGHZ, \
 		mus_GHZ
 
+		; Floor
+		dc.l AngleArray								; Angle map
+		dc.l HeightMaps								; Height maps
+		dc.l HeightMapsRot							; Height maps rotated
+
 		; PLC
 		dc.l PLC1_GHZ2_Before							; PLC1
 		dc.l PLC2_GHZ2_After							; PLC2

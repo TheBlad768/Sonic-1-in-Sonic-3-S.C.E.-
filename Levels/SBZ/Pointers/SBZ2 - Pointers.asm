@@ -55,6 +55,11 @@
 		PalID_WaterSBZ3, \
 		mus_SBZ
 
+		; Floor
+		dc.l AngleArray								; Angle map
+		dc.l HeightMaps								; Height maps
+		dc.l HeightMapsRot							; Height maps rotated
+
 		; PLC
 		dc.l PLC1_SBZ2_Before							; PLC1
 		dc.l PLC2_SBZ2_After							; PLC2

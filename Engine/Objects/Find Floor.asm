@@ -481,7 +481,7 @@ loc_F282:
 		move.b	(a2,d0.w),d0
 		andi.w	#$FF,d0
 		beq.s	loc_F274
-		lea	(AngleArray).l,a2
+		movea.l	(Level_data_addr_RAM.AngleArray).w,a2
 		move.b	(a2,d0.w),(a4)
 		lsl.w	#4,d0
 		move.w	d3,d1
@@ -500,7 +500,7 @@ loc_F2AA:
 loc_F2BA:
 		andi.w	#$F,d1
 		add.w	d0,d1
-		lea	(HeightMaps).l,a2
+		movea.l	(Level_data_addr_RAM.HeightMaps).w,a2
 		move.b	(a2,d1.w),d0
 		ext.w	d0
 		eor.w	d6,d4
@@ -560,7 +560,7 @@ loc_F32A:
 		move.b	(a2,d0.w),d0
 		andi.w	#$FF,d0
 		beq.s	loc_F31C
-		lea	(AngleArray).l,a2
+		movea.l	(Level_data_addr_RAM.AngleArray).w,a2
 		move.b	(a2,d0.w),(a4)
 		lsl.w	#4,d0
 		move.w	d3,d1
@@ -579,7 +579,7 @@ loc_F352:
 loc_F362:
 		andi.w	#$F,d1
 		add.w	d0,d1
-		lea	(HeightMaps).l,a2
+		movea.l	(Level_data_addr_RAM.HeightMaps).w,a2
 		move.b	(a2,d1.w),d0
 		ext.w	d0
 		eor.w	d6,d4
@@ -653,7 +653,7 @@ loc_F3F4:
 		move.b	(a2,d0.w),d0
 		andi.w	#$FF,d0
 		beq.s	loc_F3EE
-		lea	(AngleArray).l,a2
+		movea.l	(Level_data_addr_RAM.AngleArray).w,a2
 		move.b	(a2,d0.w),(a4)
 		lsl.w	#4,d0
 		move.w	d3,d1
@@ -672,7 +672,7 @@ loc_F41C:
 loc_F42C:
 		andi.w	#$F,d1
 		add.w	d0,d1
-		lea	(HeightMaps).l,a2
+		movea.l	(Level_data_addr_RAM.HeightMaps).w,a2
 		move.b	(a2,d1.w),d0
 		ext.w	d0
 		eor.w	d6,d4
@@ -778,7 +778,7 @@ loc_F4FA:
 		move.b	(a2,d0.w),d0
 		andi.w	#$FF,d0
 		beq.s	loc_F4EC
-		lea	(AngleArray).l,a2
+		movea.l	(Level_data_addr_RAM.AngleArray).w,a2
 		move.b	(a2,d0.w),(a4)
 		lsl.w	#4,d0
 		move.w	d2,d1
@@ -797,7 +797,7 @@ loc_F52A:
 loc_F532:
 		andi.w	#$F,d1
 		add.w	d0,d1
-		lea	(HeightMapsRot).l,a2
+		movea.l	(Level_data_addr_RAM.HeightMapsRot).w,a2
 		move.b	(a2,d1.w),d0
 		ext.w	d0
 		eor.w	d6,d4
@@ -857,7 +857,7 @@ loc_F5A2:
 		move.b	(a2,d0.w),d0
 		andi.w	#$FF,d0
 		beq.s	loc_F594
-		lea	(AngleArray).l,a2
+		movea.l	(Level_data_addr_RAM.AngleArray).w,a2
 		move.b	(a2,d0.w),(a4)
 		lsl.w	#4,d0
 		move.w	d2,d1
@@ -876,7 +876,7 @@ loc_F5D2:
 loc_F5DA:
 		andi.w	#$F,d1
 		add.w	d0,d1
-		lea	(HeightMapsRot).l,a2
+		movea.l	(Level_data_addr_RAM.HeightMapsRot).w,a2
 		move.b	(a2,d1.w),d0
 		ext.w	d0
 		eor.w	d6,d4

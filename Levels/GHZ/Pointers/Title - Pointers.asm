@@ -59,6 +59,11 @@ LevelLoadPointer_Title:
 		PalID_WaterGHZ, \
 		mus_Title
 
+		; Floor
+		dc.l 0									; Angle map
+		dc.l 0									; Height maps
+		dc.l 0									; Height maps rotated
+
 		; PLC
 		dc.l -1									; PLC1
 		dc.l -1									; PLC2

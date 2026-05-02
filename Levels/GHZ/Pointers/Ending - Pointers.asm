@@ -59,6 +59,11 @@ LevelLoadPointer_Ending:
 		PalID_WaterGHZ, \
 		mus_Ending
 
+		; Floor
+		dc.l AngleArray								; Angle map
+		dc.l HeightMaps								; Height maps
+		dc.l HeightMapsRot							; Height maps rotated
+
 		; PLC
 		dc.l -1									; PLC1
 		dc.l -1									; PLC2
