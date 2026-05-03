@@ -257,6 +257,10 @@ Obj_Bubbler_Bubbles:
 		tst.b	render_flags(a0)						; object visible on the screen?
 		bpl.w	Obj_Bubbler.delete						; if not, branch
 		jmp	(Draw_Sprite).w
+; ---------------------------------------------------------------------------
+
+.return
+		rts
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -316,10 +320,6 @@ Obj_Bubbler_Bubbles:
 .back
 		move.w	default_y_radius(a1),y_radius(a1)				; set y_radius and x_radius
 		bra.w	Obj_Bubbler_Bubbles.burst
-; ---------------------------------------------------------------------------
-
-.return
-		rts
 ; ---------------------------------------------------------------------------
 
 .range
