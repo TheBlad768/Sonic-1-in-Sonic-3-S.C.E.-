@@ -377,7 +377,7 @@ Obj_SonicEnding:
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.notp2								; if yes, branch
-		move.b	#$2A,anim(a1)							; use "looks left/right" animation
+		move.b	#AniIDTailsAni_Ending,anim(a1)					; use "looks left/right" animation
 
 .notp2
 

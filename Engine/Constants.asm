@@ -267,7 +267,17 @@ ptrsize := 2
 idstart := 0
 
 AniIDTailsAni_Run2 =					id(ptr_TailsAni_Run2)		; 1F
+AniIDTailsAni_Flying =					id(ptr_TailsAni_Flying)		; 20
+AniIDTailsAni_Flying2 =					id(ptr_TailsAni_Flying2)	; 21
+AniIDTailsAni_Flying3 =					id(ptr_TailsAni_Flying3)	; 22
+AniIDTailsAni_FlyingCarry =				id(ptr_TailsAni_FlyingCarry)	; 23
+AniIDTailsAni_FlyingTired =				id(ptr_TailsAni_FlyingTired)	; 24
+AniIDTailsAni_Swimming =				id(ptr_TailsAni_Swimming)	; 25
+AniIDTailsAni_Swimming2 =				id(ptr_TailsAni_Swimming2)	; 26
+AniIDTailsAni_SwimmingCarry =				id(ptr_TailsAni_SwimmingCarry)	; 27
+AniIDTailsAni_SwimmingTired =				id(ptr_TailsAni_SwimmingTired)	; 28
 AniIDTailsAni_Transform =				id(ptr_TailsAni_Transform)	; 29
+AniIDTailsAni_Ending =					id(ptr_TailsAni_Ending)		; 2A
 
 ; ---------------------------------------------------------------------------
 ; Knuckles animation IDs
@@ -277,6 +287,11 @@ offset := AniKnuckles
 ptrsize := 2
 idstart := 0
 
+AniIDKnuxAni_Gliding =					id(ptr_KnuxAni_Gliding)		; 20
+AniIDKnuxAni_FallFromGlide =				id(ptr_KnuxAni_FallFromGlide)	; 21
+AniIDKnuxAni_GetUpAfterSlide =				id(ptr_KnuxAni_GetUpAfterSlide)	; 22
+AniIDKnuxAni_Duck2 =					id(ptr_KnuxAni_Duck2)		; 23
+AniIDKnuxAni_Landing2 =					id(ptr_KnuxAni_Landing2)	; 24
 AniIDKnuxAni_Carry =					id(ptr_KnuxAni_Carry)		; 25
 AniIDKnuxAni_Carry2 =					id(ptr_KnuxAni_Carry2)		; 26
 

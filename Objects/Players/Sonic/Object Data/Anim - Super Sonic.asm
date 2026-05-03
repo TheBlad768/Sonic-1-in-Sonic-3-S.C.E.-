@@ -40,10 +40,10 @@ AniSuperSonic: offsetTable
 		offsetTableEntry.w SonAni_Carry		; 22
 		offsetTableEntry.w SonAni_Carry2	; 23
 
-SuperSonAni_Walk:	dc.b $FF, 1, 2, 3, 4, 5, 6, 7, 8, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd
-SuperSonAni_Run:	dc.b $FF, $21, $22, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd
-SuperSonAni_Push:	dc.b $FD, $B6, $B7, $B8, $B9, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd
-SuperSonAni_Wait:	dc.b 7, $BA, $BB, afEnd
-SuperSonAni_Balance:	dc.b 9, $A1, $A2, $A3, afEnd
-SuperSonAni_Duck:	dc.b 5, $9B, afEnd
+SuperSonAni_Walk:		dc.b $FF, 1, 2, 3, 4, 5, 6, 7, 8, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd
+SuperSonAni_Run:		dc.b $FF, $21, $22, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd
+SuperSonAni_Push:		dc.b $FD, $B6, $B7, $B8, $B9, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd, afEnd
+SuperSonAni_Wait:		dc.b 7, $BA, $BB, afEnd
+SuperSonAni_Balance:		dc.b 9, $A1, $A2, $A3, afEnd
+SuperSonAni_Duck:		dc.b 5, $9B, afEnd
 	even
