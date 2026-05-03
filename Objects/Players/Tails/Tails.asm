@@ -562,7 +562,7 @@ loc_13D4A:
 		clr.w	spin_dash_counter(a0)
 		move.b	#$81,object_control(a0)
 		move.b	#setBit(status.player.in_air),status(a0)
-		move.b	#$20,anim(a0)
+		move.b	#AniIDTailsAni_Flying,anim(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -1595,23 +1595,25 @@ loc_14892:
 Tails_Set_Flying_Animation:
 		btst	#status.player.underwater,status(a0)
 		bne.s	loc_14914
-		moveq	#$20,d0
+		moveq	#AniIDTailsAni_Flying,d0
 		tst.w	y_vel(a0)
 		bpl.s	loc_148C4
-		moveq	#$21,d0
+		moveq	#AniIDTailsAni_Flying2,d0
 
 loc_148C4:
 		tst.b	(Flying_carrying_Sonic_flag).w
 		beq.s	loc_148CC
-		addq.b	#2,d0
+		addq.b	#2,d0								; add to anim
 
 loc_148CC:
 		tst.b	double_jump_property(a0)
 		bne.s	loc_148F4
-		moveq	#$24,d0
-		move.b	d0,anim(a0)
+		moveq	#AniIDTailsAni_FlyingTired,d0
+		move.b	d0,anim(a0)							; set anim
 		tst.b	render_flags(a0)						; is the player visible on the screen?
 		bpl.s	locret_148F2							; if not, branch
+
+		; play sfx
 		move.b	(Level_frame_counter.byte).w,d0
 		addq.b	#8,d0
 		andi.b	#$F,d0
@@ -1624,9 +1626,11 @@ locret_148F2:
 ; ---------------------------------------------------------------------------
 
 loc_148F4:
-		move.b	d0,anim(a0)
+		move.b	d0,anim(a0)							; set anim
 		tst.b	render_flags(a0)						; is the player visible on the screen?
 		bpl.s	locret_148F2							; if not, branch
+
+		; play sfx
 		move.b	(Level_frame_counter.byte).w,d0
 		addq.b	#8,d0
 		andi.b	#$F,d0
@@ -1635,23 +1639,23 @@ loc_148F4:
 ; ---------------------------------------------------------------------------
 
 loc_14914:
-		moveq	#$25,d0
+		moveq	#AniIDTailsAni_Swimming,d0
 		tst.w	y_vel(a0)
 		bpl.s	loc_1491E
-		moveq	#$26,d0
+		moveq	#AniIDTailsAni_Swimming2,d0
 
 loc_1491E:
 		tst.b	(Flying_carrying_Sonic_flag).w
 		beq.s	loc_14926
-		moveq	#$27,d0
+		moveq	#AniIDTailsAni_SwimmingCarry,d0
 
 loc_14926:
 		tst.b	double_jump_property(a0)
 		bne.s	loc_1492E
-		moveq	#$28,d0
+		moveq	#AniIDTailsAni_SwimmingTired,d0
 
 loc_1492E:
-		move.b	d0,anim(a0)
+		move.b	d0,anim(a0)							; set anim
 		rts
 
 ; ---------------------------------------------------------------------------

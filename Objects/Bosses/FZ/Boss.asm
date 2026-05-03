@@ -279,7 +279,7 @@ BossFinal_MainProcess:
 		cmpi.b	#1,double_jump_flag(a1)						; is Knuckles gliding?
 		bne.s	.return2							; if not, return
 		move.b	#2,double_jump_flag(a1)						; make him stop gliding
-		move.b	#$21,anim(a1)							; put Knuckles in his falling animation
+		move.b	#AniIDKnuxAni_FallFromGlide,anim(a1)				; put Knuckles in his falling animation
 
 		; decide which direction to make Knuckles face
 		bclr	#status.player.x_flip,status(a1)

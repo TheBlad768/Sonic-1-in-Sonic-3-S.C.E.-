@@ -449,7 +449,7 @@ Knuckles_Glide:
 		; the player has let go of the jump button, so exit the gliding state
 		; and enter the falling state.
 		move.b	#2,double_jump_flag(a0)
-		move.b	#$21,anim(a0)							; put Knuckles in his falling animation
+		move.b	#AniIDKnuxAni_FallFromGlide,anim(a0)				; put Knuckles in his falling animation
 		bclr	#status.player.x_flip,status(a0)
 		tst.w	x_vel(a0)
 		bpl.s	.skip1
@@ -616,7 +616,7 @@ Knuckles_Gliding_HitWall:
 
 .fail
 		move.b	#2,double_jump_flag(a0)
-		move.b	#$21,anim(a0)							; put Knuckles in his falling animation
+		move.b	#AniIDKnuxAni_FallFromGlide,anim(a0)				; put Knuckles in his falling animation
 		move.w	default_y_radius(a0),y_radius(a0)				; set default_y_radius and default_x_radius
 		bset	#status.player.in_air,(Gliding_collision_flags).w
 		rts
@@ -664,7 +664,7 @@ Knuckles_Fall_From_Glide:
 .skip3
 		bsr.w	Knux_TouchFloor
 		move.w	#15,move_lock(a0)
-		move.b	#$23,anim(a0)
+		move.b	#AniIDKnuxAni_Duck2,anim(a0)
 
 .return
 		rts
@@ -708,7 +708,7 @@ Knuckles_Sliding:
 		add.w	d0,y_pos(a0)
 		bsr.w	Knux_TouchFloor
 		move.w	#15,move_lock(a0)
-		move.b	#$22,anim(a0)
+		move.b	#AniIDKnuxAni_GetUpAfterSlide,anim(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -744,7 +744,7 @@ Knuckles_Sliding:
 
 .fail
 		move.b	#2,double_jump_flag(a0)
-		move.b	#$21,anim(a0)							; put Knuckles in his falling animation
+		move.b	#AniIDKnuxAni_FallFromGlide,anim(a0)				; put Knuckles in his falling animation
 		move.w	default_y_radius(a0),y_radius(a0)				; set default_y_radius and default_x_radius
 		bset	#status.player.in_air,(Gliding_collision_flags).w
 		rts
@@ -1148,7 +1148,7 @@ Knuckles_ClimbUp:
 
 Knuckles_LetGoOfWall:
 		move.b	#2,double_jump_flag(a0)
-		move.w	#bytes_to_word($21,$21),anim(a0)
+		move.w	#bytes_to_word(AniIDKnuxAni_FallFromGlide,AniIDKnuxAni_FallFromGlide),anim(a0)
 		move.b	#$CB,mapping_frame(a0)
 		move.b	#7,anim_frame_timer(a0)
 		move.b	#1,anim_frame(a0)
@@ -1248,7 +1248,7 @@ Knuckles_Climb_Ledge:
 Knuckles_Set_Gliding_Animation:
 		move.b	#$20,anim_frame_timer(a0)
 		clr.b	anim_frame(a0)
-		move.w	#bytes_to_word($20,$20),anim(a0)
+		move.w	#bytes_to_word(AniIDKnuxAni_Gliding,AniIDKnuxAni_Gliding),anim(a0)
 		bclr	#status.player.pushing,status(a0)
 		bclr	#status.player.x_flip,status(a0)
 
@@ -2554,7 +2554,7 @@ loc_17B6A:
 		move.b	d0,flips_remaining(a0)
 		move.b	d0,scroll_delay_counter(a0)
 		move.b	d0,double_jump_flag(a0)
-		cmpi.b	#$20,anim(a0)
+		cmpi.b	#AniIDKnuxAni_Gliding,anim(a0)
 		blo.s	locret_17BB4
 		move.b	d0,anim(a0)
 
