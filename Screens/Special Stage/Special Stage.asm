@@ -1338,9 +1338,9 @@ PLC_SpecialStageResults: plrlistheader
 
 		; mappings
 		include "Screens/Special Stage/Object Data/Mappings & VRAM Pointers.asm"
-		include "Screens/Special Stage/Object Data/R Block.asm"
-		include "Screens/Special Stage/Object Data/Glass Block.asm"
-		include "Screens/Special Stage/Object Data/UP Block.asm"
-		include "Screens/Special Stage/Object Data/DOWN Block.asm"
-		include "Screens/Special Stage/Object Data/Chaos Emeralds.asm"
-		include "Screens/Special Stage/Object Data/Walls.asm"
+		include "Screens/Special Stage/Object Data/Map - R Block.asm"
+		include "Screens/Special Stage/Object Data/Map - Glass Block.asm"
+		include "Screens/Special Stage/Object Data/Map - UP Block.asm"
+		include "Screens/Special Stage/Object Data/Map - DOWN Block.asm"
+		include "Screens/Special Stage/Object Data/Map - Chaos Emeralds.asm"
+		include "Screens/Special Stage/Object Data/Map - Walls.asm"

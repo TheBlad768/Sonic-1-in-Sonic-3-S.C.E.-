@@ -43,16 +43,18 @@ Render_SSHUD:
 	endif
 
 .process
-		moveq	#6*2,d4								; frame #6
 		movem.w	HUD_RAM.xpos-HUD_RAM(a1),d0-d1					; xpos and ypos
 		move.w	#make_art_tile(ArtTile_SpecialStage_HUD,0,TRUE),d5		; VRAM
-		lea	Map_HUD(pc),a1
-		adda.w	(a1,d4.w),a1
-		move.w	(a1)+,d4
-		subq.w	#1,d4
-		bmi.s	.return
+
+		; draw HUD
+		moveq	#bytesToXcnt(Map_HUDSS_end-Map_HUDSS,6),d4			; tile count
+		lea	Map_HUDSS(pc),a1
 		jmp	(loc_1AF76).w							; draw
 ; ---------------------------------------------------------------------------
 
 .return
 		rts
+; ---------------------------------------------------------------------------
+
+		; mappings
+		include "Screens/Special Stage/Object Data/Map - HUD.asm"
