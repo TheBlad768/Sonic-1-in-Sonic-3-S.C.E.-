@@ -4,6 +4,14 @@
 
 
 ; ===========================================================================
+; Kosinski Plus compressed Level Select RSDK screen graphics
+; ===========================================================================
+
+;		Attribute	| Filename	| Folder
+
+		incfile.ba	ArtKosPlus_LevelSelectRSDKIcons, "Screens/Level Select/RSDK/KosinskiPlus Art/Zone Icons.kosp"
+
+; ===========================================================================
 ; Kosinski Plus compressed Special Stage screen data
 ; ===========================================================================
 

@@ -36,14 +36,6 @@
 		incfile.ba	ArtUnc_TitleSonic, "Screens/Title/Uncompressed Art/Sonic.unc"
 
 ; ===========================================================================
-; Uncompressed Level Select RSDK screen graphics
-; ===========================================================================
-
-;		Attribute	| Filename	| Folder
-
-		incfile.ba	ArtUnc_LevelSelectRSDKIcons, "Screens/Level Select/RSDK/Uncompressed Art/Zone Icons.unc"
-
-; ===========================================================================
 ; Uncompressed Level screen graphics
 ; ===========================================================================
 
