@@ -41,7 +41,7 @@ DemoPtrs:
 		dc.l DemoDat_SonicTailsGHZ1, DemoDat_SonicGHZ1, DemoDat_TailsGHZ1, DemoDat_KnucklesGHZ1, DemoDat_KnucklesTailsGHZ1	; 0
 		dc.l DemoDat_SonicTailsMZ1, DemoDat_SonicMZ1, DemoDat_TailsMZ1, DemoDat_KnucklesMZ1, DemoDat_KnucklesTailsMZ1		; 1
 		dc.l DemoDat_SonicTailsSYZ1, DemoDat_SonicSYZ1, DemoDat_TailsSYZ1, DemoDat_KnucklesSYZ1, DemoDat_KnucklesTailsSYZ1	; 2
-		dc.l DemoDat_SS, DemoDat_SS, DemoDat_SS, DemoDat_SS, DemoDat_SS														; 3
+		dc.l DemoDat_SS, DemoDat_SS, DemoDat_SS, DemoDat_SS, DemoDat_SS								; 3
 
 ; =============== S U B R O U T I N E =======================================
 
