@@ -9,7 +9,6 @@ Map_HUD:
 		dc.w word_DC6A-Map_HUD	; 3 ; hide rings and time
 		dc.w word_DC96-Map_HUD	; 4 ; draw rings only (Bonus Stage)
 		dc.w word_DCB6-Map_HUD	; 5 ; hide rings (Bonus Stage)
-		dc.w word_DCBE-Map_HUD	; 6 ; normal (Special Stage)
 word_DBC2:
 		dc.w $A
 		dc.b $80, $D, $20, 0, 0, 0
@@ -64,9 +63,4 @@ word_DCB6:
 		dc.b $80, 9, $20, $32, 0, $30
 		dc.b $40, 5, 1, $C, 0, 0
 		dc.b $40, $D, $21, $10, 0, $10
-word_DCBE:
-		dc.w 3
-		dc.b $80, $D, $20, 6, 0, 0
-		dc.b $80, 1, $20, 0, 0, $20
-		dc.b $80, 9, 0, $14, 0, $30
 	even
