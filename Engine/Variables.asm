@@ -446,7 +446,7 @@ Current_act						ds.b 1
 Apparent_zone_and_act =					*
 Apparent_zone						ds.b 1
 Apparent_act						ds.b 1
-Player_mode						ds.w 1				; 0 = Sonic and Tails, 1 = Sonic alone, 2 = Tails alone, 3 = Knuckles alone
+Player_mode						ds.w 1				; 0 = Sonic and Tails, 1 = Sonic alone, 2 = Tails alone, 3 = Knuckles alone, 4 = Knuckles and Tails
 Player_option						ds.w 1
 Life_count						ds.b 1
 Current_special_stage					ds.b 1
