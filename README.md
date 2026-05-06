@@ -319,7 +319,7 @@ Try to keep 2 passes at all times. If you see 3, 4 or more passes, you should fi
 
 - joshyflip for consulting on the artwork
 - Flamewing, devon, RealMalachi and others for bug fixing guides
-- Clownacy for work on the disassemblies
+- Clownacy and other contributors for work on the Sonic Retro disassemblies
 - SSRG and Sonic Retro
 
 ## Links
