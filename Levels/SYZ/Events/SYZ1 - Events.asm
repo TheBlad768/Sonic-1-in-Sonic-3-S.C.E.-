@@ -73,12 +73,12 @@ SYZ1_Deform:
 
 		; yscroll
 		move.l	(Camera_Y_pos_copy).w,d0					; 100% to d0 ($10000)
-		asr.l	#3,d0								; get 12.5% ($2000)
-		move.l	d0,d1								; copy 12.5% to d1 ($2000)
-		asr.l	d1								; get 6.25% ($1000)
-		add.l	d1,d0								; add 6.25% to d0 ($3000)
-		swap	d0
-		move.w	d0,(Camera_Y_pos_BG_copy).w					; save 18.75% ($3000)
+		asr.l	#4,d0								; get 6.25% ($1000)
+		move.l	d0,d1								; copy 6.25% to d2 ($1000)
+		add.l	d0,d1								; add 6.25% to d2 ($2000)
+		add.l	d0,d1								; add 6.25% to d2 ($3000)
+		swap	d1
+		move.w	d1,(Camera_Y_pos_BG_copy).w					; save 18.75% ($3000)
 
 		; xscroll
 		lea	(H_scroll_table).w,a1
@@ -88,18 +88,16 @@ SYZ1_Deform:
 		move.l	d0,d1								; copy 100% to d1 ($10000)
 		asr.l	d1								; get 50% ($8000)
 		move.l	d1,d2								; copy 50% to d2 ($8000)
-		asr.l	#4,d2								; get 3.125% ($800)
-		move.l	d2,d3								; copy 3.125% to d3 ($800)
-		asr.l	#2,d3								; get 0.78125% ($200)
-		add.l	d3,d2								; add 3.125% to d2 ($A00)
-		add.l	d3,d3								; calc 1.5625% ($400)
-		add.l	d3,d2								; add 5.46875% to d2 ($E00)
+		asr.l	#3,d2								; get 6.25% ($1000)
+		move.l	d2,d3								; copy 6.25% to d3 ($1000)
+		asr.l	#3,d2								; get 0.78125% ($200)
+		sub.l	d2,d3								; sub 0.78125% to d3 ($E00)
 
 	rept 7
 		swap	d1
 		move.w	d1,(a1)+							; save 50% - 5.46875%
 		swap	d1
-		sub.l	d2,d1								; sub 5.46875% to d1 ($E00)
+		sub.l	d3,d1								; sub 5.46875% to d1 ($E00)
 	endr
 
 		; last cloud

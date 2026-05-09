@@ -106,11 +106,11 @@ MZ1_Deform:
 		asr.l	#3,d2								; get 6.25% ($1000)
 	endif
 
-		move.l	d2,d3								; copy 3.125% to d3 ($800)
-		asr.l	#4,d3								; get 0.1953125% ($80)
-		add.l	d3,d2								; add 0.1953125% to d2 ($880)
-		add.l	d3,d3								; calc 0.390625% ($100)
-		add.l	d3,d2								; add 0.390625% to d2 ($980)
+		move.l	d2,d3								; copy 3.125% to d3 ($800/$1000)
+		asr.l	#4,d3								; get 0.1953125% ($80/$100)
+		add.l	d3,d2								; add 0.1953125% to d2 ($880/$1100)
+		add.l	d3,d2								; add 0.1953125% to d2 ($900/$1200)
+		add.l	d3,d2								; add 0.1953125% to d2 ($980/$1300)
 
 	if .setBG
 
@@ -125,9 +125,9 @@ MZ1_Deform:
 
 		rept 4
 			swap	d1
-			move.w	d1,(a1)+						; save 50% - 3.7109375%
+			move.w	d1,(a1)+						; save 50% - 7.421875%
 			swap	d1
-			sub.l	d2,d1							; sub 3.7109375% to d1 ($980)
+			sub.l	d2,d1							; sub 7.421875% to d1 ($1300)
 		endr
 
 	endif

@@ -116,10 +116,9 @@ GHZ1_Deform:
 
 		; cloud 2
 		move.l	d2,d1								; 100% to d1 ($10000)
-		asr.l	#2,d1								; get 25% ($4000)
-		move.l	d1,d3								; copy 25% to d3 ($4000)
-		add.l	d3,d3								; calc 50% ($8000)
-		add.l	d3,d1								; add 50% to d1 ($C000)
+		move.l	d2,d3								; 100% to d3 ($10000)
+		asr.l	#2,d3								; get 25% ($4000)
+		sub.l	d3,d1								; sub 25% to d1 ($C000)
 		add.l	d4,d1								; add 37.5% to d1 ($6000) ; v_bg3screenposx
 		swap	d1
 		move.w	d1,(a1)+							; save 112.5%
