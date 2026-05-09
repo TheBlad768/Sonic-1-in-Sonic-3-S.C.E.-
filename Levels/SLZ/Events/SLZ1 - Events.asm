@@ -84,12 +84,12 @@ SLZ1_Deform:
 
 		; distant black buildings
 		move.l	d0,d1								; copy 100% to d1 ($10000)
-		asr.l	#3,d1								; get 12.5% ($2000)
-		move.l	d1,d2								; copy 12.5% to d2 ($2000)
-		asr.l	d2								; get 6.25% ($1000)
-		add.l	d2,d1								; add 6.25% to d1 ($3000)
-		swap	d1
-		move.w	d1,(a1)+							; save 18.75% ($3000)
+		asr.l	#4,d1								; get 6.25% ($1000)
+		move.l	d1,d2								; copy 6.25% to d2 ($1000)
+		add.l	d1,d2								; add 6.25% to d2 ($2000)
+		add.l	d1,d2								; add 6.25% to d2 ($3000)
+		swap	d2
+		move.w	d2,(a1)+							; save 18.75% ($3000)
 
 		; closer buildings
 		asr.l	d0								; get 50% ($8000)
