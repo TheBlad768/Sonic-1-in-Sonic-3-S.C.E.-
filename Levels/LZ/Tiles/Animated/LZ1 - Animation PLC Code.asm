@@ -11,7 +11,7 @@ AnimateTiles_LZ:
 
 		; anim
 		moveq	#1,d0
-		tst.b	(Convey_rev_flag).w
+		tst.b	(Conveyor_reverse_flag).w
 		beq.s	.skip
 		neg.b	d0
 

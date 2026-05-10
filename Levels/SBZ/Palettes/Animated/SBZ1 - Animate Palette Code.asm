@@ -63,7 +63,7 @@ loc_1B06:
 
 loc_1B2E:
 		moveq	#-1,d1
-		tst.b	(Convey_rev_flag).w
+		tst.b	(Conveyor_reverse_flag).w
 		beq.s	loc_1B38
 		neg.w	d1
 
