@@ -55,20 +55,20 @@ LabyrinthConveyor_Group03: conveyorheader
 LabyrinthConveyor_Group04: conveyorheader
 
 		; xpos, ypos
-		conveyorobjdata -$54, -$3E
-		conveyorobjdata $DE, -$3E
-		conveyorobjdata $DE, $15E
-		conveyorobjdata -$AE, $15E
-		conveyorobjdata -$AE, $1C
+		conveyorobjdata -$6C, -$3E
+		conveyorobjdata $C6, -$3E
+		conveyorobjdata $C6, $15E
+		conveyorobjdata -$C6, $15E
+		conveyorobjdata -$C6, $1C
 		conveyorend
 
 LabyrinthConveyor_Group05: conveyorheader
 
 		; xpos, ypos
-		conveyorobjdata -$AE, -$76
-		conveyorobjdata $DE, -$76
-		conveyorobjdata $DE, $3E
-		conveyorobjdata -$AE, $3E
+		conveyorobjdata -$C6, -$76
+		conveyorobjdata $C6, -$76
+		conveyorobjdata $C6, $3E
+		conveyorobjdata -$C6, $3E
 		conveyorend
 
 ; ---------------------------------------------------------------------------
@@ -143,30 +143,30 @@ LabyrinthConveyor_Platform_LZ202: conveyorplatformheader
 LabyrinthConveyor_Platform_LZ301: conveyorplatformheader
 
 		; xpos, ypos, subtype
-		conveyorplatformobjdata -$53, -$3E, $41
-		conveyorplatformobjdata $2D, -$3E, $41
-		conveyorplatformobjdata $AC, -$3E, $41
-		conveyorplatformobjdata $DE, $F, $42
-		conveyorplatformobjdata $DE, $8E, $42
-		conveyorplatformobjdata $DE, $10D, $42
-		conveyorplatformobjdata $B0, $15E, $43
-		conveyorplatformobjdata $31, $15E, $43
-		conveyorplatformobjdata -$4E, $15E, $43
-		conveyorplatformobjdata -$AE, $13F, $44
-		conveyorplatformobjdata -$AE, $C0, $44
-		conveyorplatformobjdata -$AE, $41, $44
+		conveyorplatformobjdata -$6B, -$3E, $41
+		conveyorplatformobjdata $15, -$3E, $41
+		conveyorplatformobjdata $94, -$3E, $41
+		conveyorplatformobjdata $C6, $F, $42
+		conveyorplatformobjdata $C6, $8E, $42
+		conveyorplatformobjdata $C6, $10D, $42
+		conveyorplatformobjdata $98, $15E, $43
+		conveyorplatformobjdata $19, $15E, $43
+		conveyorplatformobjdata -$66, $15E, $43
+		conveyorplatformobjdata -$C6, $13F, $44
+		conveyorplatformobjdata -$C6, $C0, $44
+		conveyorplatformobjdata -$C6, $41, $44
 		conveyorplatformend
 
 LabyrinthConveyor_Platform_LZ302: conveyorplatformheader
 
 		; xpos, ypos, subtype
-		conveyorplatformobjdata -$AE, -$76, $50
-		conveyorplatformobjdata -$2E, -$76, $51
-		conveyorplatformobjdata $52, -$76, $51
-		conveyorplatformobjdata $D2, -$76, $51
-		conveyorplatformobjdata $DE, -2, $52
-		conveyorplatformobjdata $9E, $3E, $53
-		conveyorplatformobjdata $1E, $3E, $53
-		conveyorplatformobjdata -$62, $3E, $53
-		conveyorplatformobjdata -$AE, $A, $50
+		conveyorplatformobjdata -$C6, -$76, $50
+		conveyorplatformobjdata -$46, -$76, $51
+		conveyorplatformobjdata $3A, -$76, $51
+		conveyorplatformobjdata $BA, -$76, $51
+		conveyorplatformobjdata $C6, -2, $52
+		conveyorplatformobjdata $86, $3E, $53
+		conveyorplatformobjdata 6, $3E, $53
+		conveyorplatformobjdata -$7A, $3E, $53
+		conveyorplatformobjdata -$C6, $A, $50
 		conveyorplatformend

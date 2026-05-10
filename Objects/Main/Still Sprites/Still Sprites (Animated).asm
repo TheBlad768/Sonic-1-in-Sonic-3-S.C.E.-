@@ -8,6 +8,9 @@
 
 Obj_AnimatedStillSprite:
 
+		; wait
+		jsr	(Obj_WaitOffscreen).w
+
 		; init
 		move.l	#Map_AnimatedStillSprites,mappings(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
