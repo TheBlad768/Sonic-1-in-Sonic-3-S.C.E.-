@@ -58,8 +58,7 @@ Obj_LabyrinthConveyor:
 		move.w	(a3)+,d0
 		add.w	d3,d0
 		move.w	d0,y_pos(a1)
-		move.w	d2,labyrinthconveyor.origX(a1)
-		move.w	d3,labyrinthconveyor.origY(a1)
+		movem.w	d2-d3,labyrinthconveyor.origX(a1)
 		move.w	(a3)+,d5
 		move.b	d5,subtype.byte(a1)
 		move.b	status(a0),status(a1)
@@ -88,7 +87,6 @@ Obj_LabyrinthConveyor_Platforms:
 		),render_flags(a0)
 
 		move.l	#bytes_word_to_long(32/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority
-		addq.b	#1,mapping_frame(a0)						; platform frame
 		move.l	#.main,code_addr(a0)
 
 		; set
@@ -106,42 +104,23 @@ Obj_LabyrinthConveyor_Platforms:
 		move.b	d1,labyrinthconveyor.index(a0)
 		move.b	#4,labyrinthconveyor.offset(a0)					; set next conveyor positions
 
-		; check
+		; check reverse flag
+		lea	LabyrinthConveyor_Platforms_Move.load(pc),a1
 		tst.b	(Convey_rev_flag).w
-		beq.s	.loc_1244C
+		beq.s	.jump
 		st	labyrinthconveyor.rev_flag(a0)
 		neg.b	labyrinthconveyor.offset(a0)					; change direction
+		lea	LabyrinthConveyor_Platforms_Move.main(pc),a1
 
-		; set
-		moveq	#0,d1
-		move.b	labyrinthconveyor.index(a0),d1
-		add.b	labyrinthconveyor.offset(a0),d1					; next conveyor positions
-		cmp.b	labyrinthconveyor.limit(a0),d1					; are there still conveyor positions left here?
-		blo.s	.loc_12448							; if so, branch
-		move.b	d1,d0
-		moveq	#0,d1
-		tst.b	d0
-		bpl.s	.loc_12448
-		move.b	labyrinthconveyor.limit(a0),d1
-		subq.b	#4,d1
-
-.loc_12448
-		move.b	d1,labyrinthconveyor.index(a0)
-
-.loc_1244C
-		move.w	(a2,d1.w),d0
-		add.w	labyrinthconveyor.origX(a0),d0
-		move.w	d0,labyrinthconveyor.saveX(a0)
-		move.w	2(a2,d1.w),d0
-		add.w	labyrinthconveyor.origY(a0),d0
-		move.w	d0,labyrinthconveyor.saveY(a0)
-		bsr.w	LabyrinthConveyor_ChangeDir
+.jump
+		jsr	(a1)
 
 .main
 
 		; move
 		move.w	x_pos(a0),-(sp)
-		bsr.s	sub_12502
+		bsr.s	LabyrinthConveyor_Platforms_Move
+		jsr	(MoveSprite2).w
 		move.w	(sp)+,d4
 
 		; check
@@ -186,88 +165,100 @@ Obj_LabyrinthConveyor_Platforms:
 .delete
 		jmp	(Delete_Current_Object).w
 
+; ---------------------------------------------------------------------------
+; Labyrinth conveyor platforms move
+; ---------------------------------------------------------------------------
+
 ; =============== S U B R O U T I N E =======================================
 
-sub_12502:
-		tst.b	(Level_trigger_array+$E).w
-		beq.s	.loc_12520
+LabyrinthConveyor_Platforms_Move:
+
+		; check button flag
+		tst.b	(Level_trigger_array+$E).w					; has switch number $0E been pressed?
+		beq.s	.check								; if not, branch
+
+		; check reverse flag
 		tst.b	labyrinthconveyor.rev_flag(a0)
-		bne.s	.loc_12520
+		bne.s	.check
 		st	labyrinthconveyor.rev_flag(a0)
 		st	(Convey_rev_flag).w
 		neg.b	labyrinthconveyor.offset(a0)
-		bra.s	.loc_12534
+		bra.s	.main
 ; ---------------------------------------------------------------------------
 
-.loc_12520
-		move.w	x_pos(a0),d0
-		cmp.w	labyrinthconveyor.saveX(a0),d0
-		bne.s	.loc_1256A
-		move.w	y_pos(a0),d0
-		cmp.w	labyrinthconveyor.saveY(a0),d0
-		bne.s	.loc_1256A
+.check
 
-.loc_12534
+		; check xypos
+		move.w	x_pos(a0),d0
+		sub.w	labyrinthconveyor.saveX(a0),d0
+		move.w	y_pos(a0),d1
+		sub.w	labyrinthconveyor.saveY(a0),d1
+		or.w	d0,d1
+		beq.s	.main
+		rts
+; ---------------------------------------------------------------------------
+
+.main
 
 		; set
 		moveq	#0,d1
 		move.b	labyrinthconveyor.index(a0),d1
 		add.b	labyrinthconveyor.offset(a0),d1					; next conveyor positions
 		cmp.b	labyrinthconveyor.limit(a0),d1					; are there still conveyor positions left here?
-		blo.s	.loc_12552							; if so, branch
+		blo.s	.set								; if so, branch
 		move.b	d1,d0
 		moveq	#0,d1
 		tst.b	d0
-		bpl.s	.loc_12552
+		bpl.s	.set
 		move.b	labyrinthconveyor.limit(a0),d1
 		subq.b	#4,d1
 
-.loc_12552
+.set
 		move.b	d1,labyrinthconveyor.index(a0)
-		movea.l	labyrinthconveyor.save_ptr(a0),a1
-		move.w	(a1,d1.w),d0
-		add.w	labyrinthconveyor.origX(a0),d0
-		move.w	d0,labyrinthconveyor.saveX(a0)
-		move.w	2(a1,d1.w),d0
-		add.w	labyrinthconveyor.origY(a0),d0
-		move.w	d0,labyrinthconveyor.saveY(a0)
-		bsr.s	LabyrinthConveyor_ChangeDir
 
-.loc_1256A
-		jmp	(MoveSprite2).w
+.load
+		movea.l	labyrinthconveyor.save_ptr(a0),a1
+		movem.w	(a1,d1.w),d0/d2
+		add.w	labyrinthconveyor.origX(a0),d0
+		add.w	labyrinthconveyor.origY(a0),d2
+		movem.w	d0/d2,labyrinthconveyor.saveX(a0)
+
+; ---------------------------------------------------------------------------
+; Labyrinth conveyor change direction
+; ---------------------------------------------------------------------------
 
 ; =============== S U B R O U T I N E =======================================
 
-LabyrinthConveyor_ChangeDir:
+LabyrinthConveyor_ChangeDirection:
 		moveq	#0,d0
 		move.w	#-$100,d2
 		move.w	x_pos(a0),d0
 		sub.w	labyrinthconveyor.saveX(a0),d0
-		bhs.s	.loc_12584
+		bhs.s	.absx
 		neg.w	d0
 		neg.w	d2
 
-.loc_12584
+.absx
 		moveq	#0,d1
 		move.w	#-$100,d3
 		move.w	y_pos(a0),d1
 		sub.w	labyrinthconveyor.saveY(a0),d1
-		bhs.s	.loc_12598
+		bhs.s	.absy
 		neg.w	d1
 		neg.w	d3
 
-.loc_12598
+.absy
 		cmp.w	d0,d1
-		blo.s	.loc_125C2
+		blo.s	.move_xaxis
 		move.w	x_pos(a0),d0
 		sub.w	labyrinthconveyor.saveX(a0),d0
-		beq.s	.loc_125AE							; if zero, skip
+		beq.s	.set_yvel							; if zero, skip
 		ext.l	d0
 		asl.l	#8,d0
 		divs.w	d1,d0
 		neg.w	d0
 
-.loc_125AE
+.set_yvel
 		movem.w	d0/d3,x_vel(a0)
 		swap	d0
 		move.w	d0,x_sub(a0)
@@ -275,16 +266,16 @@ LabyrinthConveyor_ChangeDir:
 		rts
 ; ---------------------------------------------------------------------------
 
-.loc_125C2
+.move_xaxis
 		move.w	y_pos(a0),d1
 		sub.w	labyrinthconveyor.saveY(a0),d1
-		beq.s	.loc_125D4							; if zero, skip
+		beq.s	.set_xvel							; if zero, skip
 		ext.l	d1
 		asl.l	#8,d1
 		divs.w	d0,d1
 		neg.w	d1
 
-.loc_125D4
+.set_xvel
 		move.w	d1,y_vel(a0)
 		move.w	d2,x_vel(a0)
 		swap	d1

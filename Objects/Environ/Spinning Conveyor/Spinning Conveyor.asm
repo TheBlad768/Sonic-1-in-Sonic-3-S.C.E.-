@@ -50,8 +50,7 @@ Obj_SpinningConveyor:
 		move.w	(a3)+,d0
 		add.w	d3,d0
 		move.w	d0,y_pos(a1)
-		move.w	d2,spinningconveyor.origX(a1)
-		move.w	d3,spinningconveyor.origY(a1)
+		movem.w	d2-d3,spinningconveyor.origX(a1)
 		move.w	(a3)+,d5
 		move.b	d5,subtype.byte(a1)
 		move.b	status(a0),status(a1)
@@ -92,46 +91,14 @@ Obj_SpinningConveyor_Platforms:
 		move.b	#4,spinningconveyor.offset(a0)					; set next conveyor positions
 
 		; check
+		lea	SpinningConveyor_Platforms_Move.load(pc),a1
 		btst	#status.npc.x_flip,status(a0)
-		beq.s	.loc_16356
+		beq.s	.jump
 		neg.b	spinningconveyor.offset(a0)					; change direction
+		lea	SpinningConveyor_Platforms_Move.main(pc),a1
 
-		; set
-		moveq	#0,d1
-		move.b	spinningconveyor.index(a0),d1
-		add.b	spinningconveyor.offset(a0),d1					; next conveyor positions
-		cmp.b	spinningconveyor.limit(a0),d1					; are there still conveyor positions left here?
-		blo.s	.loc_16352							; if so, branch
-		move.b	d1,d0
-		moveq	#0,d1
-		tst.b	d0
-		bpl.s	.loc_16352
-		move.b	spinningconveyor.limit(a0),d1
-		subq.b	#4,d1
-
-.loc_16352
-		move.b	d1,spinningconveyor.index(a0)
-
-.loc_16356
-		move.w	(a2,d1.w),d0
-		add.w	spinningconveyor.origX(a0),d0
-		move.w	d0,spinningconveyor.saveX(a0)
-		move.w	2(a2,d1.w),d0
-		add.w	spinningconveyor.origY(a0),d0
-		move.w	d0,spinningconveyor.saveY(a0)
-
-		; check
-		tst.w	d1
-		bne.s	.loc_1636C
-		move.b	#1,anim(a0)
-
-.loc_1636C
-		cmpi.w	#8,d1
-		bne.s	.loc_16378
-		clr.b	anim(a0)
-
-.loc_16378
-		bsr.w	LabyrinthConveyor_ChangeDir
+.jump
+		jsr	(a1)
 
 .main
 		lea	Ani_SpinningConveyor(pc),a1
@@ -143,7 +110,8 @@ Obj_SpinningConveyor_Platforms:
 
 		; move
 		move.w	x_pos(a0),-(sp)
-		bsr.s	sub_16424
+		bsr.s	SpinningConveyor_Platforms_Move
+		jsr	(MoveSprite2).w
 		move.w	(sp)+,d4
 
 		; check
@@ -170,55 +138,63 @@ Obj_SpinningConveyor_Platforms:
 
 .notsolid
 		jsr	(Displace_PlayerOffObject).w					; release Sonic from object
-		bsr.s	sub_16424
+		bsr.s	SpinningConveyor_Platforms_Move
+		jsr	(MoveSprite2).w
 		bra.s	.checkdelete
+
+; ---------------------------------------------------------------------------
+; Spinning conveyor platforms move
+; ---------------------------------------------------------------------------
 
 ; =============== S U B R O U T I N E =======================================
 
-sub_16424:
+SpinningConveyor_Platforms_Move:
+
+		; check xypos
 		move.w	x_pos(a0),d0
-		cmp.w	spinningconveyor.saveX(a0),d0
-		bne.s	.loc_16484
-		move.w	y_pos(a0),d0
-		cmp.w	spinningconveyor.saveY(a0),d0
-		bne.s	.loc_16484
+		sub.w	spinningconveyor.saveX(a0),d0
+		move.w	y_pos(a0),d1
+		sub.w	spinningconveyor.saveY(a0),d1
+		or.w	d0,d1
+		beq.s	.main
+		rts
+; ---------------------------------------------------------------------------
+
+.main
+
+		; set
 		moveq	#0,d1
 		move.b	spinningconveyor.index(a0),d1
 		add.b	spinningconveyor.offset(a0),d1					; next conveyor positions
 		cmp.b	spinningconveyor.limit(a0),d1					; are there still conveyor positions left here?
-		blo.s	.loc_16456							; if so, branch
+		blo.s	.set								; if so, branch
 		move.b	d1,d0
 		moveq	#0,d1
 		tst.b	d0
-		bpl.s	.loc_16456
+		bpl.s	.set
 		move.b	spinningconveyor.limit(a0),d1
 		subq.b	#4,d1
 
-.loc_16456
+.set
 		move.b	d1,spinningconveyor.index(a0)
+
+.load
 		movea.l	spinningconveyor.save_ptr(a0),a1
-		move.w	(a1,d1.w),d0
+		movem.w	(a1,d1.w),d0/d2
 		add.w	spinningconveyor.origX(a0),d0
-		move.w	d0,spinningconveyor.saveX(a0)
-		move.w	2(a1,d1.w),d0
-		add.w	spinningconveyor.origY(a0),d0
-		move.w	d0,spinningconveyor.saveY(a0)
+		add.w	spinningconveyor.origY(a0),d2
+		movem.w	d0/d2,spinningconveyor.saveX(a0)
 
-		; check
-		tst.w	d1
-		bne.s	.loc_16474
-		move.b	#1,anim(a0)
+		; set frame
+		lsr.w	#2,d1								; division by 4
+		move.b	.framearray(pc,d1.w),anim(a0)
 
-.loc_16474
-		cmpi.w	#8,d1
-		bne.s	.loc_16480
-		clr.b	anim(a0)
+		; move
+		bra.w	LabyrinthConveyor_ChangeDirection
+; ---------------------------------------------------------------------------
 
-.loc_16480
-		bsr.w	LabyrinthConveyor_ChangeDir
-
-.loc_16484
-		jmp	(MoveSprite2).w
+.framearray	dc.b 1, 1, 0, 0
+	even
 ; ---------------------------------------------------------------------------
 
 		; mappings
