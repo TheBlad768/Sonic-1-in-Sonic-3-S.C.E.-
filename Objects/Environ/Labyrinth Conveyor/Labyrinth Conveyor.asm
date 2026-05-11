@@ -15,7 +15,6 @@ labyrinthconveyor.index			ds.b 1						; (1 byte)
 labyrinthconveyor.limit			ds.b 1						; (1 byte)
 labyrinthconveyor.offset		ds.b 1						; (1 byte)
 labyrinthconveyor.rev_flag		ds.b 1						; (1 byte)
-labyrinthconveyor.subtype.byte		ds.b 1						; save subtype (1 byte)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -24,14 +23,8 @@ labyrinthconveyor.subtype.byte		ds.b 1						; save subtype (1 byte)
 Obj_LabyrinthConveyor:
 
 		; set
-		move.b	subtype.byte(a0),d0
-		move.b	d0,labyrinthconveyor.subtype.byte(a0)
-		andi.w	#$7F,d0
-
-		; check same object subtype
-		lea	(Convey_rev_buffer).w,a2
-		bset	#0,(a2,d0.w)
-		bne.w	Obj_LabyrinthConveyor_Platforms.chkdel				; if the same object subtype already exists, delete it
+		moveq	#$7F,d0
+		and.b	subtype.byte(a0),d0
 
 		; create platforms
 		add.w	d0,d0								; multiply by 2
@@ -106,7 +99,7 @@ Obj_LabyrinthConveyor_Platforms:
 
 		; check reverse flag
 		lea	LabyrinthConveyor_Platforms_Move.load(pc),a1
-		tst.b	(Convey_rev_flag).w
+		tst.b	(Conveyor_reverse_flag).w
 		beq.s	.jump
 		st	labyrinthconveyor.rev_flag(a0)
 		neg.b	labyrinthconveyor.offset(a0)					; change direction
@@ -137,33 +130,13 @@ Obj_LabyrinthConveyor_Platforms:
 		sfxcont	sfx_ChainTick, $F						; play chain tick sound every 16th frame
 
 .checkdelete
-		out_of_xrange.s	.offscreen,labyrinthconveyor.origX(a0)
+		moveq	#-$80,d0							; round down to nearest $80
+		and.w	spinningconveyor.origX(a0),d0					; get object position
+		jmp	(Sprite_OnScreen_Test2).w
 
-.draw
-		jmp	(Draw_Sprite).w
 ; ---------------------------------------------------------------------------
-
-.offscreen
-		cmpi.b	#ACT_3,(Current_act).w						; check if act is 3
-		bne.s	.checkbuffer							; if not, branch
-		cmpi.w	#-$80,d0
-		bhs.s	.draw
-
-.checkbuffer
-		move.b	labyrinthconveyor.subtype.byte(a0),d0
-		bpl.s	.chkdel
-		andi.w	#$7F,d0
-		lea	(Convey_rev_buffer).w,a2
-		bclr	#0,(a2,d0.w)
-
-.chkdel
-		move.w	respawn_addr(a0),d0						; get address in respawn table
-		beq.s	.delete								; if it's zero, it isn't remembered
-		movea.w	d0,a2								; load address into a2
-		bclr	#respawn_addr.state,(a2)					; turn on the slot
-
-.delete
-		jmp	(Delete_Current_Object).w
+; Labyrinth conveyor platforms move
+; ---------------------------------------------------------------------------
 
 ; ---------------------------------------------------------------------------
 ; Labyrinth conveyor platforms move
@@ -181,7 +154,7 @@ LabyrinthConveyor_Platforms_Move:
 		tst.b	labyrinthconveyor.rev_flag(a0)
 		bne.s	.check
 		st	labyrinthconveyor.rev_flag(a0)
-		st	(Convey_rev_flag).w
+		st	(Conveyor_reverse_flag).w
 		neg.b	labyrinthconveyor.offset(a0)
 		bra.s	.main
 ; ---------------------------------------------------------------------------

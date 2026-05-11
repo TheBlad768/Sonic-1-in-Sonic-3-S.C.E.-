@@ -22,8 +22,8 @@ spinningconveyor.offset			ds.b 1						; (1 byte)
 Obj_SpinningConveyor:
 
 		; set
-		move.b	subtype.byte(a0),d0
-		andi.w	#$7F,d0
+		moveq	#$7F,d0
+		and.b	subtype.byte(a0),d0
 
 		; create platforms
 		add.w	d0,d0								; multiply by 2

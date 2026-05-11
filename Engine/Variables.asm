@@ -251,8 +251,7 @@ Push_block_addr						ds.w 1
 Float_block_flag					ds.b 1
 Scrap_stomp_flag					ds.b 1
 Flying_catch_Sonic_flag					ds.b 1
-Convey_rev_flag						ds.b 1
-Convey_rev_buffer					ds.b 6
+Conveyor_reverse_flag					ds.b 1
 Palette_cycle_counters					ds.b $40
 Palette_frame						ds.w 1
 Palette_timer						ds.b 1

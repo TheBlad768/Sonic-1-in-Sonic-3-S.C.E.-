@@ -45,7 +45,7 @@ AnPal_LZ:
 		move.b	PCycLZ_Seq(pc,d0.w),d0						; get byte from palette sequence
 		beq.s	.return								; if byte is 0, branch
 		moveq	#1,d1
-		tst.b	(Convey_rev_flag).w						; have conveyor belts been reversed?
+		tst.b	(Conveyor_reverse_flag).w					; have conveyor belts been reversed?
 		beq.s	.norev								; if not, branch
 		neg.w	d1
 
