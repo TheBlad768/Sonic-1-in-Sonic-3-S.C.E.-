@@ -144,7 +144,7 @@
 		incfile.ba	ArtKosPlusM_FlappingDoor, "Objects/Environ/Flapping Door/KosinskiPlusM Art/Flapping Door.kospm"
 		incfile.ba	ArtKosPlusM_Harpoon, "Objects/Environ/Harpoon/KosinskiPlusM Art/Harpoon.kospm"
 		incfile.ba	ArtKosPlusM_WaterSplashes, "Objects/Environ/Labyrinth Waterfall/KosinskiPlusM Art/Water and Splash.kospm"
-		incfile.ba	ArtKosPlusM_LabyrinthConveyor, "Objects/Environ/Labyrinth Conveyor/KosinskiPlusM Art/Labyrinth Conveyor.kospm"
+		incfile.ba	ArtKosPlusM_LabyrinthConveyor, "Objects/Environ/Platform Conveyor/KosinskiPlusM Art/Labyrinth Platform Conveyor.kospm"
 		incfile.ba	ArtKosPlusM_SLZBreakableWall, "Objects/Environ/Breakable Wall/KosinskiPlusM Art/SLZ Breakable Wall.kospm"
 		incfile.ba	ArtKosPlusM_Fan, "Objects/Environ/Fan/KosinskiPlusM Art/Fan.kospm"
 		incfile.ba	ArtKosPlusM_Seesaw, "Objects/Environ/Seesaw/KosinskiPlusM Art/Seesaw.kospm"

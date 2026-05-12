@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ObjDef xmlns="http://www.sonicretro.org" Name="Spinning Conveyor" Image="platform">
+<ObjDef xmlns="http://www.sonicretro.org" Name="Spinning Platform Conveyor" Image="platform">
   <Images>
     <ImageFromMappings id="platform">
       <ArtFile filename="../../Objects/Environ/Spinning Platform/KosinskiPlusM Art/Spinning Platform.kospm" compression="KosinskiPlusM" />

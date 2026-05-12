@@ -32,7 +32,6 @@ Debug_SBZ1: dbglistheader
 	dbglistobj Obj_Spikes, Map_Spikes, 0, 0, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Spikes, Map_Spikes, $10, 1, ArtTile_SpikesSprings, 0, FALSE
 	dbglistobj Obj_Bomb, Map_Bomb, 0, 0, $500, 0, FALSE
-	dbglistobj Obj_Orbinaut, Map_Orbinaut, 0, 0, $429, 0, FALSE
 	dbglistobj Obj_Caterkiller, Map_Caterkiller, 0, 0, $552, 1, FALSE
 	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SBZ, 1, 0, $448, 0, FALSE
 	dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_SBZ, 2, 0, $448, 0, FALSE
