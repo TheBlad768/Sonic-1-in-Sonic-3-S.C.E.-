@@ -2447,35 +2447,6 @@
                     "uuid": "f43f5ed1-3c29-458b-9f0d-2c6bdae612ef"
                 },
                 {
-                    "format": "Sonic 3&K Object Static.js",
-                    "name": "Conveyor Belt Platform",
-                    "palettes": [
-                        {
-                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
-                            "length": 1
-                        },
-                        {
-                            "path": "../Levels/LZ/Palettes/Labyrinth Zone.pal",
-                            "length": 3
-                        }
-                    ],
-                    "art": {
-                        "path": "../Objects/Environ/Labyrinth Conveyor/KosinskiPlusM Art/Labyrinth Conveyor.kospm",
-                        "compression": "KosinskiPlus-M",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "../Objects/Environ/Labyrinth Conveyor/Object Data/Map - Labyrinth Conveyor Platform.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "cb3949d8-8f3f-466e-8c57-920b484fc301"
-                },
-                {
                     "name": "Conveyor Belt Wheel",
                     "format": "Sonic 3&K Object Static.js",
                     "palettes": [
@@ -2735,6 +2706,35 @@
                         "label": ""
                     },
                     "uuid": "cc3bc109-9146-432b-b504-5c03b24981e4"
+                },
+                {
+                    "format": "Sonic 3&K Object Static.js",
+                    "name": "Platform Conveyor Platform",
+                    "palettes": [
+                        {
+                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
+                            "length": 1
+                        },
+                        {
+                            "path": "../Levels/LZ/Palettes/Labyrinth Zone.pal",
+                            "length": 3
+                        }
+                    ],
+                    "art": {
+                        "path": "../Objects/Environ/Platform Conveyor/KosinskiPlusM Art/Labyrinth Platform Conveyor.kospm",
+                        "compression": "KosinskiPlus-M",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "../Objects/Environ/Platform Conveyor/Object Data/Map - Labyrinth Platform Conveyor Platform.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "cb3949d8-8f3f-466e-8c57-920b484fc301"
                 },
                 {
                     "name": "Spikeball on Chain",

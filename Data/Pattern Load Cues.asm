@@ -567,7 +567,6 @@ PLC1_SBZ1_Before: plrlistheader
 
 PLC2_SBZ1_After: plrlistheader
 		plreq $2EC, ArtKosPlusM_BallHog						; ball hog enemy
-		plreq $429, ArtKosPlusM_Orbinaut					; orbinaut enemy
 		plreq $500, ArtKosPlusM_Bomb						; bomb enemy
 		plreq $529, ArtKosPlusM_Electric					; electrocution orbs
 		plreq $552, ArtKosPlusM_Caterkiller					; caterkiller enemy
@@ -599,7 +598,6 @@ PLC1_SBZ2_Before: plrlistheader
 
 PLC2_SBZ2_After: plrlistheader
 		plreq $2EC, ArtKosPlusM_BallHog						; ball hog enemy
-		plreq $429, ArtKosPlusM_Orbinaut					; orbinaut enemy
 		plreq $500, ArtKosPlusM_Bomb						; bomb enemy
 		plreq $529, ArtKosPlusM_Electric					; electrocution orbs
 		plreq $552, ArtKosPlusM_Caterkiller					; caterkiller enemy

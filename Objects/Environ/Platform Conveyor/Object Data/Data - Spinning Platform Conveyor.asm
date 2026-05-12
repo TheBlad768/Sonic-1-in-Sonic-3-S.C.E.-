@@ -4,16 +4,16 @@
 
 ; =============== S U B R O U T I N E =======================================
 
-SpinningConveyor_Data: offsetTable
-		offsetTableEntry.w SpinningConveyor_Group00				; 0
-		offsetTableEntry.w SpinningConveyor_Group01				; 2
-		offsetTableEntry.w SpinningConveyor_Group02				; 4
-		offsetTableEntry.w SpinningConveyor_Group03				; 6
-		offsetTableEntry.w SpinningConveyor_Group04				; 8
-		offsetTableEntry.w SpinningConveyor_Group05				; A
+SpinningPlatformConveyor_Data: offsetTable
+		offsetTableEntry.w SpinningPlatformConveyor_Group00			; 0
+		offsetTableEntry.w SpinningPlatformConveyor_Group01			; 2
+		offsetTableEntry.w SpinningPlatformConveyor_Group02			; 4
+		offsetTableEntry.w SpinningPlatformConveyor_Group03			; 6
+		offsetTableEntry.w SpinningPlatformConveyor_Group04			; 8
+		offsetTableEntry.w SpinningPlatformConveyor_Group05			; A
 ; ---------------------------------------------------------------------------
 
-SpinningConveyor_Group00: conveyorheader
+SpinningPlatformConveyor_Group00: conveyorheader
 
 		; xpos, ypos
 		conveyorobjdata -$6C, -$10
@@ -22,7 +22,7 @@ SpinningConveyor_Group00: conveyorheader
 		conveyorobjdata -$6C, $2E
 		conveyorend
 
-SpinningConveyor_Group01: conveyorheader
+SpinningPlatformConveyor_Group01: conveyorheader
 
 		; xpos, ypos
 		conveyorobjdata -$6C, -$20
@@ -31,7 +31,7 @@ SpinningConveyor_Group01: conveyorheader
 		conveyorobjdata -$6C, $1E
 		conveyorend
 
-SpinningConveyor_Group02: conveyorheader
+SpinningPlatformConveyor_Group02: conveyorheader
 
 		; xpos, ypos
 		conveyorobjdata -$6C, -$10
@@ -40,7 +40,7 @@ SpinningConveyor_Group02: conveyorheader
 		conveyorobjdata -$6C, $2E
 		conveyorend
 
-SpinningConveyor_Group03: conveyorheader
+SpinningPlatformConveyor_Group03: conveyorheader
 
 		; xpos, ypos
 		conveyorobjdata -$6C, $70
@@ -49,7 +49,7 @@ SpinningConveyor_Group03: conveyorheader
 		conveyorobjdata -$6C, $AE
 		conveyorend
 
-SpinningConveyor_Group04: conveyorheader
+SpinningPlatformConveyor_Group04: conveyorheader
 
 		; xpos, ypos
 		conveyorobjdata -$6C, $70
@@ -58,7 +58,7 @@ SpinningConveyor_Group04: conveyorheader
 		conveyorobjdata -$6C, $AE
 		conveyorend
 
-SpinningConveyor_Group05: conveyorheader
+SpinningPlatformConveyor_Group05: conveyorheader
 
 		; xpos, ypos
 		conveyorobjdata -$6C, $60
@@ -73,18 +73,18 @@ SpinningConveyor_Group05: conveyorheader
 
 ; =============== S U B R O U T I N E =======================================
 
-SpinningConveyor_Platform_Index: offsetTable
-		offsetTableEntry.w SpinningConveyor_Platform_SBZ101			; 0 (SBZ1)
-		offsetTableEntry.w SpinningConveyor_Platform_SBZ102			; 2 (SBZ1)
-		offsetTableEntry.w SpinningConveyor_Platform_SBZ103			; 4 (SBZ1)
-		offsetTableEntry.w SpinningConveyor_Platform_SBZ104			; 6 (SBZ1)
-		offsetTableEntry.w SpinningConveyor_Platform_SBZ105			; 8 (SBZ1)
-		offsetTableEntry.w SpinningConveyor_Platform_SBZ106			; A (SBZ1)
-		offsetTableEntry.w SpinningConveyor_Platform_SBZ101			; C (SBZ1)
-		offsetTableEntry.w SpinningConveyor_Platform_SBZ102			; E (SBZ1)
+SpinningPlatformConveyor_Platform_Index: offsetTable
+		offsetTableEntry.w SpinningPlatformConveyor_Platform_SBZ101		; 0 (SBZ1)
+		offsetTableEntry.w SpinningPlatformConveyor_Platform_SBZ102		; 2 (SBZ1)
+		offsetTableEntry.w SpinningPlatformConveyor_Platform_SBZ103		; 4 (SBZ1)
+		offsetTableEntry.w SpinningPlatformConveyor_Platform_SBZ104		; 6 (SBZ1)
+		offsetTableEntry.w SpinningPlatformConveyor_Platform_SBZ105		; 8 (SBZ1)
+		offsetTableEntry.w SpinningPlatformConveyor_Platform_SBZ106		; A (SBZ1)
+		offsetTableEntry.w SpinningPlatformConveyor_Platform_SBZ101		; C (SBZ1)
+		offsetTableEntry.w SpinningPlatformConveyor_Platform_SBZ102		; E (SBZ1)
 ; ---------------------------------------------------------------------------
 
-SpinningConveyor_Platform_SBZ101: conveyorplatformheader
+SpinningPlatformConveyor_Platform_SBZ101: conveyorplatformheader
 
 		; xpos, ypos, subtype
 		conveyorplatformobjdata -$6C, -$10, 0
@@ -97,7 +97,7 @@ SpinningConveyor_Platform_SBZ101: conveyorplatformheader
 		conveyorplatformobjdata -$64, $29, 3
 		conveyorplatformend
 
-SpinningConveyor_Platform_SBZ102: conveyorplatformheader
+SpinningPlatformConveyor_Platform_SBZ102: conveyorplatformheader
 
 		; xpos, ypos, subtype
 		conveyorplatformobjdata -$6C, -$20, $10
@@ -110,7 +110,7 @@ SpinningConveyor_Platform_SBZ102: conveyorplatformheader
 		conveyorplatformobjdata -$64, $19, $13
 		conveyorplatformend
 
-SpinningConveyor_Platform_SBZ103: conveyorplatformheader
+SpinningPlatformConveyor_Platform_SBZ103: conveyorplatformheader
 
 		; xpos, ypos, subtype
 		conveyorplatformobjdata -$6C, -$10, $20
@@ -123,7 +123,7 @@ SpinningConveyor_Platform_SBZ103: conveyorplatformheader
 		conveyorplatformobjdata -$64, $29, $23
 		conveyorplatformend
 
-SpinningConveyor_Platform_SBZ104: conveyorplatformheader
+SpinningPlatformConveyor_Platform_SBZ104: conveyorplatformheader
 
 		; xpos, ypos, subtype
 		conveyorplatformobjdata -$6C, $70, $30
@@ -136,7 +136,7 @@ SpinningConveyor_Platform_SBZ104: conveyorplatformheader
 		conveyorplatformobjdata -$64, $A9, $33
 		conveyorplatformend
 
-SpinningConveyor_Platform_SBZ105: conveyorplatformheader
+SpinningPlatformConveyor_Platform_SBZ105: conveyorplatformheader
 
 		; xpos, ypos, subtype
 		conveyorplatformobjdata -$6C, $70, $40
@@ -149,7 +149,7 @@ SpinningConveyor_Platform_SBZ105: conveyorplatformheader
 		conveyorplatformobjdata -$64, $A9, $43
 		conveyorplatformend
 
-SpinningConveyor_Platform_SBZ106: conveyorplatformheader
+SpinningPlatformConveyor_Platform_SBZ106: conveyorplatformheader
 
 		; xpos, ypos, subtype
 		conveyorplatformobjdata -$6C, $60, $50

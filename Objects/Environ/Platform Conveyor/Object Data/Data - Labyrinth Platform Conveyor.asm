@@ -4,16 +4,16 @@
 
 ; =============== S U B R O U T I N E =======================================
 
-LabyrinthConveyor_Data: offsetTable
-		offsetTableEntry.w LabyrinthConveyor_Group00				; 0
-		offsetTableEntry.w LabyrinthConveyor_Group01				; 2
-		offsetTableEntry.w LabyrinthConveyor_Group02				; 4
-		offsetTableEntry.w LabyrinthConveyor_Group03				; 6
-		offsetTableEntry.w LabyrinthConveyor_Group04				; 8
-		offsetTableEntry.w LabyrinthConveyor_Group05				; A
+LabyrinthPlatformConveyor_Data: offsetTable
+		offsetTableEntry.w LabyrinthPlatformConveyor_Group00			; 0
+		offsetTableEntry.w LabyrinthPlatformConveyor_Group01			; 2
+		offsetTableEntry.w LabyrinthPlatformConveyor_Group02			; 4
+		offsetTableEntry.w LabyrinthPlatformConveyor_Group03			; 6
+		offsetTableEntry.w LabyrinthPlatformConveyor_Group04			; 8
+		offsetTableEntry.w LabyrinthPlatformConveyor_Group05			; A
 ; ---------------------------------------------------------------------------
 
-LabyrinthConveyor_Group00: conveyorheader
+LabyrinthPlatformConveyor_Group00: conveyorheader
 
 		; xpos, ypos
 		conveyorobjdata 8, -$66
@@ -24,7 +24,7 @@ LabyrinthConveyor_Group00: conveyorheader
 		conveyorobjdata -$4E, -$3C
 		conveyorend
 
-LabyrinthConveyor_Group01: conveyorheader
+LabyrinthPlatformConveyor_Group01: conveyorheader
 
 		; xpos, ypos
 		conveyorobjdata -2, -$80
@@ -34,7 +34,7 @@ LabyrinthConveyor_Group01: conveyorheader
 		conveyorobjdata -$4E, -$34
 		conveyorend
 
-LabyrinthConveyor_Group02: conveyorheader
+LabyrinthPlatformConveyor_Group02: conveyorheader
 
 		; xpos, ypos
 		conveyorobjdata -$46, 2
@@ -43,7 +43,7 @@ LabyrinthConveyor_Group02: conveyorheader
 		conveyorobjdata $46, 2
 		conveyorend
 
-LabyrinthConveyor_Group03: conveyorheader
+LabyrinthPlatformConveyor_Group03: conveyorheader
 
 		; xpos, ypos
 		conveyorobjdata -$3E, $22
@@ -52,7 +52,7 @@ LabyrinthConveyor_Group03: conveyorheader
 		conveyorobjdata -$3E, $15E
 		conveyorend
 
-LabyrinthConveyor_Group04: conveyorheader
+LabyrinthPlatformConveyor_Group04: conveyorheader
 
 		; xpos, ypos
 		conveyorobjdata -$6C, -$3E
@@ -62,7 +62,7 @@ LabyrinthConveyor_Group04: conveyorheader
 		conveyorobjdata -$C6, $1C
 		conveyorend
 
-LabyrinthConveyor_Group05: conveyorheader
+LabyrinthPlatformConveyor_Group05: conveyorheader
 
 		; xpos, ypos
 		conveyorobjdata -$C6, -$76
@@ -77,18 +77,18 @@ LabyrinthConveyor_Group05: conveyorheader
 
 ; =============== S U B R O U T I N E =======================================
 
-LabyrinthConveyor_Platform_Index: offsetTable
-		offsetTableEntry.w LabyrinthConveyor_Platform_LZ101			; 0 (LZ1)
-		offsetTableEntry.w LabyrinthConveyor_Platform_LZ102			; 2 (LZ1)
-		offsetTableEntry.w LabyrinthConveyor_Platform_LZ201			; 4 (LZ2)
-		offsetTableEntry.w LabyrinthConveyor_Platform_LZ202			; 6 (LZ2)
-		offsetTableEntry.w LabyrinthConveyor_Platform_LZ301			; 8 (LZ3)
-		offsetTableEntry.w LabyrinthConveyor_Platform_LZ302			; A (LZ3)
-		offsetTableEntry.w LabyrinthConveyor_Platform_LZ101			; C (LZ1)
-		offsetTableEntry.w LabyrinthConveyor_Platform_LZ102			; E (LZ1)
+LabyrinthPlatformConveyor_Platform_Index: offsetTable
+		offsetTableEntry.w LabyrinthPlatformConveyor_Platform_LZ101		; 0 (LZ1)
+		offsetTableEntry.w LabyrinthPlatformConveyor_Platform_LZ102		; 2 (LZ1)
+		offsetTableEntry.w LabyrinthPlatformConveyor_Platform_LZ201		; 4 (LZ2)
+		offsetTableEntry.w LabyrinthPlatformConveyor_Platform_LZ202		; 6 (LZ2)
+		offsetTableEntry.w LabyrinthPlatformConveyor_Platform_LZ301		; 8 (LZ3)
+		offsetTableEntry.w LabyrinthPlatformConveyor_Platform_LZ302		; A (LZ3)
+		offsetTableEntry.w LabyrinthPlatformConveyor_Platform_LZ101		; C (LZ1)
+		offsetTableEntry.w LabyrinthPlatformConveyor_Platform_LZ102		; E (LZ1)
 ; ---------------------------------------------------------------------------
 
-LabyrinthConveyor_Platform_LZ101: conveyorplatformheader
+LabyrinthPlatformConveyor_Platform_LZ101: conveyorplatformheader
 
 		; xpos, ypos, subtype
 		conveyorplatformobjdata 8, -$66, 0
@@ -101,7 +101,7 @@ LabyrinthConveyor_Platform_LZ101: conveyorplatformheader
 		conveyorplatformobjdata -$4E, -$1B, 5
 		conveyorplatformend
 
-LabyrinthConveyor_Platform_LZ102: conveyorplatformheader
+LabyrinthPlatformConveyor_Platform_LZ102: conveyorplatformheader
 
 		; xpos, ypos, subtype
 		conveyorplatformobjdata -2, -$80, $10
@@ -114,7 +114,7 @@ LabyrinthConveyor_Platform_LZ102: conveyorplatformheader
 		conveyorplatformobjdata -$4E, 5, $14
 		conveyorplatformend
 
-LabyrinthConveyor_Platform_LZ201: conveyorplatformheader
+LabyrinthPlatformConveyor_Platform_LZ201: conveyorplatformheader
 
 		; xpos, ypos, subtype
 		conveyorplatformobjdata -$46, 3, $21
@@ -127,7 +127,7 @@ LabyrinthConveyor_Platform_LZ201: conveyorplatformheader
 		conveyorplatformobjdata -$46, $7C, $21
 		conveyorplatformend
 
-LabyrinthConveyor_Platform_LZ202: conveyorplatformheader
+LabyrinthPlatformConveyor_Platform_LZ202: conveyorplatformheader
 
 		; xpos, ypos, subtype
 		conveyorplatformobjdata -$3E, $22, $30
@@ -140,7 +140,7 @@ LabyrinthConveyor_Platform_LZ202: conveyorplatformheader
 		conveyorplatformobjdata -$3E, $94, $30
 		conveyorplatformend
 
-LabyrinthConveyor_Platform_LZ301: conveyorplatformheader
+LabyrinthPlatformConveyor_Platform_LZ301: conveyorplatformheader
 
 		; xpos, ypos, subtype
 		conveyorplatformobjdata -$6B, -$3E, $41
@@ -157,7 +157,7 @@ LabyrinthConveyor_Platform_LZ301: conveyorplatformheader
 		conveyorplatformobjdata -$C6, $41, $44
 		conveyorplatformend
 
-LabyrinthConveyor_Platform_LZ302: conveyorplatformheader
+LabyrinthPlatformConveyor_Platform_LZ302: conveyorplatformheader
 
 		; xpos, ypos, subtype
 		conveyorplatformobjdata -$C6, -$76, $50

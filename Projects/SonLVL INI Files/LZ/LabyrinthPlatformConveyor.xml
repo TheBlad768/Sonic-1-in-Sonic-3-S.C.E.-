@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<ObjDef xmlns="http://www.sonicretro.org" Name="Labyrinth Conveyor" Image="platform">
+<ObjDef xmlns="http://www.sonicretro.org" Name="Labyrinth Platform Conveyor" Image="platform">
   <Images>
     <ImageFromMappings id="platform">
-      <ArtFile filename="../../Objects/Environ/Labyrinth Conveyor/KosinskiPlusM Art/Labyrinth Conveyor.kospm" compression="KosinskiPlusM" />
-      <MapFile type="ASM" filename="LZ/Mappings/Map - Labyrinth Conveyor Platform.asm" label="Map_LabyrinthConveyor_Platform" startpal="2"/>
+      <ArtFile filename="../../Objects/Environ/Platform Conveyor/KosinskiPlusM Art/Labyrinth Platform Conveyor.kospm" compression="KosinskiPlusM" />
+      <MapFile type="ASM" filename="LZ/Mappings/Map - Labyrinth Platform Conveyor Platform.asm" label="Map_LabyrinthPlatformConveyor_Platform" startpal="2"/>
     </ImageFromMappings>
   </Images>
   <Subtypes>

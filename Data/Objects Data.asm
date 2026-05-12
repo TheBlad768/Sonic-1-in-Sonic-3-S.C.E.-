@@ -86,7 +86,7 @@
 		include "Objects/Environ/Breakable Pole/Breakable Pole.asm"
 		include "Objects/Environ/Labyrinth Block/Labyrinth Block.asm"
 		include "Objects/Environ/Labyrinth Waterfall/Labyrinth Waterfall.asm"
-		include "Objects/Environ/Labyrinth Conveyor/Labyrinth Conveyor.asm"
+		include "Objects/Environ/Platform Conveyor/Platform Conveyor.asm"
 		include "Objects/Environ/Stomper and Door/Stomper and Door.asm"
 		include "Objects/Environ/Gargoyle/Gargoyle.asm"
 		include "Objects/Environ/Harpoon/Harpoon.asm"
@@ -105,7 +105,6 @@
 		include "Objects/Environ/Conveyor Belt/Conveyor Belt.asm"
 		include "Objects/Environ/Vanishing Platform/Vanishing Platform.asm"
 		include "Objects/Environ/Small Door/Small Door.asm"
-		include "Objects/Environ/Spinning Conveyor/Spinning Conveyor.asm"
 		include "Objects/Environ/Teleporter/Teleporter.asm"
 
 ; ===========================================================================
