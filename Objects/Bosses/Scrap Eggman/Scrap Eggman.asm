@@ -32,7 +32,7 @@ Obj_ScrapEggman:
 		move.l	#.checkxcam,code_addr(a0)
 		move.w	#$4F,wait_timer(a0)
 		move.l	#.wait,wait_addr(a0)
-		move.l	#AniRaw_ScrapEggman_Stand,animations(a0)
+		move.l	#AniRaw_ScrapEggman_Stand,animations_addr(a0)
 
 		; load control desk
 		lea	Child1_ScrapEggman_ControlDesk(pc),a2

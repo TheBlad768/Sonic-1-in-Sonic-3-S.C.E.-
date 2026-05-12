@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 vanishplatform.timer			ds.w 1						; counter for time until event (2 bytes)
 vanishplatform.delay			ds.w 1						; time between events (general) (2 bytes)
@@ -18,7 +18,7 @@ vanishplatform.counter_mask		ds.w 1						; (2 bytes)
 Obj_VanishPlatform:
 
 		; init
-		move.l	#Map_VanishPlatform,mappings(a0)
+		move.l	#Map_VanishPlatform,mappings_addr(a0)
 		move.w	#make_art_tile($364,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(32/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority

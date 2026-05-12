@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 crabmeat.timer				ds.w 1						; (2 bytes)
 crabmeat.mode				ds.b 1						; (1 byte)

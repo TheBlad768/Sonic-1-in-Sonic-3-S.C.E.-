@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 junction.save_frame			ds.b 1						; save frame (1 byte)
 junction.frame				ds.b 1						; add or sub frame (1 byte)

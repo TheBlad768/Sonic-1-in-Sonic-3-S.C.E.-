@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 ballhog.launchflag			ds.b 1						; 0 to launch a cannonball (1 byte)
 

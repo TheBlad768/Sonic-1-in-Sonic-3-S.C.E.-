@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 ; players
 breakablewall.p1_speed			ds.w 1						; Sonic's horizontal speed (2 bytes)
@@ -168,7 +168,7 @@ BreakObjectToPieces2:
 		moveq	#0,d0
 		move.b	mapping_frame(a0),d0
 		add.w	d0,d0
-		movea.l	mappings(a0),a3							; get mapping pointer
+		movea.l	mappings_addr(a0),a3						; get mapping pointer
 		adda.w	(a3,d0.w),a3
 		move.w	(a3)+,d1
 		subq.w	#1,d1								; fix dbf
@@ -200,7 +200,7 @@ BreakObjectToPieces2:
 		move.w	height_pixels(a0),height_pixels(a1)				; set height and width
 
 .load
-		move.l	a3,mappings(a1)							; get mappings pointer
+		move.l	a3,mappings_addr(a1)						; get mappings pointer
 		ori.w	#high_priority,art_tile(a1)					; change fragments priority
 		move.l	(a4)+,x_vel(a1)							; set xyvel
 

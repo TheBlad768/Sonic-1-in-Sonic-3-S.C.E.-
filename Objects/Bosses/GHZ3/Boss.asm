@@ -270,7 +270,7 @@ BossBall_Defeated:
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 bossball_crane.speed			ds.w 1						; (2 bytes)
 bossball_crane.moving			ds.b 1						; (1 byte)

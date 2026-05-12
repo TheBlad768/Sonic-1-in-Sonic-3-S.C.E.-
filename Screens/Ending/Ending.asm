@@ -309,7 +309,7 @@ Obj_SonicEnding:
 .loadobja
 		clr.b	render_flags(a0)
 		jsr	(SetUp_ObjAttributes).w
-		move.l	(a1)+,animations(a0)
+		move.l	(a1)+,animations_addr(a0)
 		move.l	(a1),sonicending.dplc_addr(a0)
 		st	ros_prev_frame(a0)						; reset DPLC prev frame (used by Perform_DPLC)
 		clr.b	routine(a0)
@@ -454,7 +454,7 @@ Obj_SonicEnding:
 .loadobja2
 		clr.b	render_flags(a0)
 		jsr	(SetUp_ObjAttributes).w
-		move.l	(a1)+,animations(a0)
+		move.l	(a1)+,animations_addr(a0)
 		move.l	(a1),sonicending.dplc_addr(a0)
 		st	ros_prev_frame(a0)						; reset DPLC prev frame (used by Perform_DPLC)
 		clr.b	routine(a0)
@@ -476,7 +476,7 @@ Obj_SonicEnding:
 		move.l	#Obj_EndSTH,code_addr(a1)
 
 .anim
-		movea.l	animations(a0),a1
+		movea.l	animations_addr(a0),a1
 		jsr	(Animate_SpriteNoSST).w
 
 .dplc
@@ -492,7 +492,7 @@ Obj_SonicEnding:
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 endchaos.origX				ds.w 1						; original x-axis position (2 bytes)
 endchaos.origY				ds.w 1						; original y-axis position (2 bytes)
@@ -528,7 +528,7 @@ Obj_EndChaos:
 .cloop
 		move.w	a0,parent3(a1)
 		move.l	#.circular,code_addr(a1)
-		move.l	#Map_ECha,mappings(a1)
+		move.l	#Map_ECha,mappings_addr(a1)
 		move.w	#make_art_tile($3C5,0,TRUE),art_tile(a1)
 		move.b	#setBit(render_flags.level),render_flags(a1)			; use screen coordinates
 		move.w	x_pos(a0),x_pos(a1)
@@ -595,7 +595,7 @@ Obj_EndChaos:
 Obj_EndSTH:
 
 		; init
-		move.l	#Map_ESth,mappings(a0)
+		move.l	#Map_ESth,mappings_addr(a0)
 		move.w	#make_art_tile($480,3,TRUE),art_tile(a0)
 		move.w	#$80+88,y_pos(a0)
 		move.b	(Player_mode+1).w,mapping_frame(a0)

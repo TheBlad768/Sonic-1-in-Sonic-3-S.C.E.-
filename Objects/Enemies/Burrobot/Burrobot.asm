@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 burrobot.timer				ds.w 1						; time between direction changes (2 bytes)
 burrobot.mode				ds.b 1						; (1 byte)

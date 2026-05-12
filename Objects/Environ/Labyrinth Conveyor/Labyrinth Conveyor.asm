@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 labyrinthconveyor.origX			ds.w 1						; original x-axis position (2 bytes)
 labyrinthconveyor.origY			ds.w 1						; original y-axis position (2 bytes)
@@ -70,7 +70,7 @@ Obj_LabyrinthConveyor:
 Obj_LabyrinthConveyor_Platforms:
 
 		; init
-		move.l	#Map_LabyrinthConveyor_Platform,mappings(a0)
+		move.l	#Map_LabyrinthConveyor_Platform,mappings_addr(a0)
 		move.w	#make_art_tile($406,2,FALSE),art_tile(a0)
 
 		; set static mapping and screen coordinates flag

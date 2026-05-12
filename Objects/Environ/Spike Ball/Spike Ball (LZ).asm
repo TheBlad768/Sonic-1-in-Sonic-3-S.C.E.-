@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 spikeball_lz.origX			ds.w 1						; original x-axis position (2 bytes)
 spikeball_lz.origY			ds.w 1						; original y-axis position (2 bytes)
@@ -40,7 +40,7 @@ Obj_SpikeBall_LZ:
 		jsr	(Create_New_Object_3).w
 		bne.w	.chkdel
 		move.l	#Draw_Sprite,code_addr(a1)
-		move.l	mappings(a0),mappings(a1)
+		move.l	mappings_addr(a0),mappings_addr(a1)
 		move.w	art_tile(a0),art_tile(a1)
 		moveq	#setBit(render_flags.multi_sprite),d0				; set multi-draw flag
 		or.b	render_flags(a0),d0

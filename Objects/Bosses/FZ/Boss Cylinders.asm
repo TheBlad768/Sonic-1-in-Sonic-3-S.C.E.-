@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 bossfinal_cylinder.origY		ds.l 1						; original y-axis position (4 bytes)
 bossfinal_cylinder.yvel			ds.l 1						; (4 bytes)

@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 staircase.origX				ds.w 1						; original x-axis position (2 bytes)
 staircase.origY				ds.w 1						; original y-axis position (2 bytes)
@@ -63,7 +63,7 @@ Obj_Staircase:
 		move.l	#.solid,code_addr(a1)
 
 .load
-		move.l	#Map_Staircase,mappings(a1)
+		move.l	#Map_Staircase,mappings_addr(a1)
 		move.w	#make_art_tile(0,2,FALSE),art_tile(a1)
 		move.b	render_flags(a0),render_flags(a1)
 		move.l	#bytes_word_to_long(32/2,32/2,priority_3),height_pixels(a1)	; set height, width and priority

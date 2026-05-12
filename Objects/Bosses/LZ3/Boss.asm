@@ -9,7 +9,7 @@ bosswater.ypos =			$C0
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 bosswater.origX				ds.l 1						; original x-axis position (4 bytes)
 					ds.b 6						; skip wait_addr, state_flags and count (6 bytes)

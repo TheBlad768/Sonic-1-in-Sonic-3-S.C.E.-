@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 ; players
 sinkingmud.p1_depth			ds.b 1						; Sonic's depth of the mud (1 byte)

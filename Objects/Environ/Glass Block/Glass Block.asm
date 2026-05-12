@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 glassblock.origY			ds.w 1						; original y-axis position (2 bytes)
 glassblock.dist				ds.w 1						; distance block moves when switch is pressed (2 bytes)

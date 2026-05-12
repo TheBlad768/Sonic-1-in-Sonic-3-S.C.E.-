@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 tails_tail.prev_anim			ds.b 1						; (1 byte)
 
@@ -15,7 +15,7 @@ tails_tail.prev_anim			ds.b 1						; (1 byte)
 Obj_Tails_Tail:
 
 		; init
-		move.l	#Map_Tails_Tail,mappings(a0)
+		move.l	#Map_Tails_Tail,mappings_addr(a0)
 		move.w	#make_art_tile(ArtTile_Player_2_Tail,0,FALSE),d0		; normal
 		cmpi.b	#GameModeID_SpecialStageScreen,(Game_mode).w			; is game mode Special Stage?
 		bne.s	.notspecial							; if not, branch

@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 orbinaut.rotation			ds.b 1						; (1 byte)
 
@@ -96,7 +96,7 @@ Obj_Orbinaut_Orb:
 		move.b	d0,circular_angle(a0)
 
 		; init
-		move.l	#Map_Orbinaut_Orb,mappings(a0)
+		move.l	#Map_Orbinaut_Orb,mappings_addr(a0)
 		lea	ObjDat3_Orbinaut_Orb(pc),a1
 		jsr	(SetUp_ObjAttributes3).w
 		bset	#render_flags.static_mappings,render_flags(a0)			; set flag to "static mappings flag"

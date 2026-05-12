@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 collapsefloor.time_ptr			ds.l 1						; collapsing floor time (4 bytes)
 collapsefloor.delay			ds.b 1						; (1 byte)
@@ -24,7 +24,7 @@ Obj_CollapseFloor:
 
 .set
 		move.l	d0,collapsefloor.time_ptr(a0)
-		move.l	#Map_CollapseFloor,mappings(a0)
+		move.l	#Map_CollapseFloor,mappings_addr(a0)
 		move.w	#make_art_tile($562,2,FALSE),d0
 		cmpi.b	#LevelID_SLZ,(Current_zone).w					; is level Star Light Zone?
 		bne.s	.notSLZ								; if not, branch

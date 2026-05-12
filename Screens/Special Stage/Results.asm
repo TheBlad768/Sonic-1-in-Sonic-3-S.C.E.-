@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 specialstageresults.elements_count	ds.b 1						; (1 byte)
 specialstageresults.exit_phase		ds.b 1						; (1 byte)
@@ -214,7 +214,7 @@ SpecialStageResults_Load:
 		move.b	(a2)+,mapping_frame(a1)
 		move.b	(a2)+,width_pixels(a1)
 		move.b	#setBit(render_flags.multi_sprite),render_flags(a1)
-		move.l	#Map_Results,mappings(a1)
+		move.l	#Map_Results,mappings_addr(a1)
 		move.w	#make_art_tile($500,0,FALSE),art_tile(a1)
 		move.w	a0,parent2(a1)
 		lea	next_object(a1),a1
@@ -380,7 +380,7 @@ loc_2EC7A:
 Obj_2EBE8:										; (Continue Sonic Icon)
 
 		; init
-		move.l	#Map_Results,mappings(a0)
+		move.l	#Map_Results,mappings_addr(a0)
 		move.w	#make_art_tile($500,0,FALSE),art_tile(a0)
 		move.w	#$17C,x_pos(a0)
 		move.w	#$14C,y_pos(a0)

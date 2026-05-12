@@ -7,7 +7,7 @@ _PUSHB_XPOS_				= $200						; add pixels
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 ; players
 movingblock.p1_status			ds.b 1						; Sonic's status (1 byte)
@@ -38,7 +38,7 @@ Obj_PushableBlock:
 		jsr	(Obj_WaitOffscreen).w
 
 		; init
-		move.l	#Map_PushableBlock,mappings(a0)
+		move.l	#Map_PushableBlock,mappings_addr(a0)
 		move.w	#make_art_tile($562,2,FALSE),d0					; MZ specific code
 		cmpi.b	#LevelID_LZ,(Current_zone).w					; check if level is LZ
 		bne.s	.notLZ								; if not, branch

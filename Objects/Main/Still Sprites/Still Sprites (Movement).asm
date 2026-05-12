@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 movementstillsprite.origX		ds.w 1						; original x-axis position (2 bytes)
 movementstillsprite.origY		ds.w 1						; original y-axis position (2 bytes)
@@ -16,7 +16,7 @@ movementstillsprite.origY		ds.w 1						; original y-axis position (2 bytes)
 Obj_MovementStillSprite:
 
 		; init
-		move.l	#Map_MovementStillSprite,mappings(a0)
+		move.l	#Map_MovementStillSprite,mappings_addr(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.w	x_pos(a0),movementstillsprite.origX(a0)
 		move.w	y_pos(a0),movementstillsprite.origY(a0)

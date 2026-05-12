@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 collapsingplatform.time_ptr		ds.l 1						; collapsing floor time (4 bytes)
 collapsingplatform.delay		ds.b 1						; (1 byte)
@@ -18,7 +18,7 @@ collapsingplatform.slope_ptr		ds.l 1						; solid object slope pointer (4 bytes)
 Obj_CollapsingPlatform:
 
 		; init
-		move.l	#Map_CollapsingPlatform,mappings(a0)
+		move.l	#Map_CollapsingPlatform,mappings_addr(a0)
 		move.w	#make_art_tile(0,2,FALSE),art_tile(a0)
 		move.l	#CollapseFloor_Data1,collapsingplatform.time_ptr(a0)
 		move.l	#CollapsingPlatform_Data,collapsingplatform.slope_ptr(a0)
@@ -106,7 +106,7 @@ ObjPlatformCollapse_SmashObject:
 		moveq	#0,d0
 		move.b	mapping_frame(a0),d0
 		add.w	d0,d0
-		movea.l	mappings(a0),a3
+		movea.l	mappings_addr(a0),a3
 		adda.w	(a3,d0.w),a3
 		move.w	(a3)+,d1
 		subq.w	#1,d1								; fix dbf
@@ -131,7 +131,7 @@ ObjPlatformCollapse_SmashObject:
 		move.l	height_pixels(a0),height_pixels(a1)				; set height, width and priority
 
 .load
-		move.l	a3,mappings(a1)
+		move.l	a3,mappings_addr(a1)
 		move.b	(a4)+,collapsingplatform.delay(a1)
 
 		; create next object

@@ -5,7 +5,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 girder.origX				ds.w 1						; original x-axis position (2 bytes)
 girder.timer				ds.w 1						; duration for movement in a direction (2 bytes)
@@ -19,7 +19,7 @@ girder.settings				ds.b 1						; which movement settings to use (0/8/$10/$18) (1
 Obj_Girder:
 
 		; init
-		move.l	#Map_Girder,mappings(a0)
+		move.l	#Map_Girder,mappings_addr(a0)
 		move.w	#make_art_tile($2DA,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(48/2,192/2,priority_4),height_pixels(a0)	; set height, width and priority

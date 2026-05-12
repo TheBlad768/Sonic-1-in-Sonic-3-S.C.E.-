@@ -91,7 +91,7 @@ TitleScreen:
 		; create
 		lea	(Reserved_object_3).w,a1					; load "SONIC TEAM PRESENTS" object
 		move.l	#Draw_Sprite,code_addr(a1)
-		move.l	#Map_TText,mappings(a1)
+		move.l	#Map_TText,mappings_addr(a1)
 		move.w	#make_art_tile($540,0,FALSE),art_tile(a1)
 		move.w	#$120,x_pos(a1)
 		move.w	#$F0,y_pos(a1)
@@ -183,7 +183,7 @@ TitleScreen:
 
 		; create "TM" object
 		lea	(Breathing_bubbles+code_addr).w,a1
-		move.l	#Map_TTM,mappings(a1)
+		move.l	#Map_TTM,mappings_addr(a1)
 		move.b	#setBit(render_flags.static_mappings),render_flags(a1)		; set static mapping
 		move.w	#$178,x_pos(a1)
 		move.w	#$F8,y_pos(a1)
@@ -373,7 +373,7 @@ DemoLevels_end
 Obj_TitleSonic:
 
 		; init
-		move.l	#Map_TSon,mappings(a0)
+		move.l	#Map_TSon,mappings_addr(a0)
 
 		; set priority and art_tile
 		move.l	#words_to_long( \
@@ -436,7 +436,7 @@ Obj_TitleSonic:
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 titlepsb.counter			ds.w 1						; (2 bytes)
 
@@ -447,7 +447,7 @@ titlepsb.counter			ds.w 1						; (2 bytes)
 Obj_TitlePSB:
 
 		; init
-		move.l	#Map_TPSB,mappings(a0)
+		move.l	#Map_TPSB,mappings_addr(a0)
 		move.w	#make_art_tile($200,0,FALSE),art_tile(a0)
 		move.w	#$D8,x_pos(a0)
 		move.w	#$130,y_pos(a0)

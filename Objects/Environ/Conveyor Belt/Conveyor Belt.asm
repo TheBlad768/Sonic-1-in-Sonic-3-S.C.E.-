@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 conveyor.speed				ds.w 1						; (2 bytes)
 conveyor.width				ds.b 1						; (1 byte)
