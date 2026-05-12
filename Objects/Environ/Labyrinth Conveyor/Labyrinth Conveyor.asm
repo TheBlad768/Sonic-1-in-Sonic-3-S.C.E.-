@@ -131,7 +131,7 @@ Obj_LabyrinthConveyor_Platforms:
 
 .checkdelete
 		moveq	#-$80,d0							; round down to nearest $80
-		and.w	spinningconveyor.origX(a0),d0					; get object position
+		and.w	labyrinthconveyor.origX(a0),d0					; get object position
 		jmp	(Sprite_OnScreen_Test2).w
 
 ; ---------------------------------------------------------------------------
@@ -177,19 +177,23 @@ LabyrinthConveyor_Platforms_Move:
 		moveq	#0,d1
 		move.b	labyrinthconveyor.index(a0),d1
 		add.b	labyrinthconveyor.offset(a0),d1					; next conveyor positions
-		cmp.b	labyrinthconveyor.limit(a0),d1					; are there still conveyor positions left here?
-		blo.s	.set								; if so, branch
-		move.b	d1,d0
-		moveq	#0,d1
-		tst.b	d0
-		bpl.s	.set
+		bpl.s	.checkmax
 		move.b	labyrinthconveyor.limit(a0),d1
 		subq.b	#4,d1
+		bra.s	.set
+; ---------------------------------------------------------------------------
+
+.checkmax
+		cmp.b	labyrinthconveyor.limit(a0),d1					; are there still conveyor positions left here?
+		blo.s	.set								; if so, branch
+		moveq	#0,d1
 
 .set
 		move.b	d1,labyrinthconveyor.index(a0)
 
 .load
+
+		; load pointer
 		movea.l	labyrinthconveyor.save_ptr(a0),a1
 		movem.w	(a1,d1.w),d0/d2
 		add.w	labyrinthconveyor.origX(a0),d0
