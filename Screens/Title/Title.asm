@@ -227,12 +227,12 @@ TitleScreen:
 		bmi.s	.exit								; if yes, branch
 
 .notexit
-		bsr.w	Title_Code
 		jsr	(DeformBgLayer).w
 		jsr	(Level_Events).w
 		jsr	(Animate_Palette).w
 		jsr	(Process_KosPlus_Module_Queue).w
 		jsr	(Render_Sprites).w
+		bsr.w	Title_Code
 		bra.s	.loop
 ; ---------------------------------------------------------------------------
 
