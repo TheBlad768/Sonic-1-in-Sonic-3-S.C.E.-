@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 spinningplatform.timer			ds.w 1						; time counter until change (2 bytes)
 spinningplatform.delay			ds.w 1						; time between changes (general) (2 bytes)

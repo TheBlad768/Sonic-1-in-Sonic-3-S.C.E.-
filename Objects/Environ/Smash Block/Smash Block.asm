@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 ; players
 smashblock.p1_anim			ds.b 1						; Sonic's animation (1 byte)

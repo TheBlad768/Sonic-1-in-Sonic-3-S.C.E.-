@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 seesaw.origX				ds.w 1						; original x-axis position (2 bytes)
 seesaw.speed				ds.w 1						; speed of collision (2 bytes)
@@ -17,7 +17,7 @@ seesaw.frame				ds.b 1						; (1 byte)
 Obj_Seesaw:
 
 		; init
-		move.l	#Map_Seesaw,mappings(a0)
+		move.l	#Map_Seesaw,mappings_addr(a0)
 		move.w	#make_art_tile($37A,0,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(96/2,96/2,priority_3),height_pixels(a0)	; set height, width and priority
@@ -178,7 +178,7 @@ Seesaw_ChgFrame:
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 seesaw_spikeball.origX			ds.w 1						; original x-axis position (2 bytes)
 seesaw_spikeball.origY			ds.w 1						; original y-axis position (2 bytes)

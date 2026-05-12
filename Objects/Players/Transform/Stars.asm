@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 superSonicKnux_stars.flag1		ds.b 1						; (1 byte)
 superSonicKnux_stars.flag2		ds.b 1						; (1 byte)
@@ -96,7 +96,7 @@ Obj_SuperSonicKnux_Stars:
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 hyperSonic_stars.xdiff			ds.w 1						; (2 bytes)
 hyperSonic_stars.ydiff			ds.w 1						; (2 bytes)

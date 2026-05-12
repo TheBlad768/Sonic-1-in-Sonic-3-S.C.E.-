@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 floatingplatform.origX			ds.w 1						; original x-axis position (2 bytes)
 floatingplatform.copyX			ds.w 1						; copy x-axis position (2 bytes)
@@ -33,7 +33,7 @@ Obj_FloatingPlatform:
 		move.b	#3,subtype.byte(a0)
 
 .notSLZ
-		move.l	d0,mappings(a0)
+		move.l	d0,mappings_addr(a0)
 		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(34/2,64/2,priority_4),height_pixels(a0)	; set height, width and priority
 		move.w	x_pos(a0),floatingplatform.origX(a0)

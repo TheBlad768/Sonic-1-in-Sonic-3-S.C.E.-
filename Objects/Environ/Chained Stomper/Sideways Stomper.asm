@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 sidewaysstomper.origX			ds.w 1						; original x-axis position (2 bytes)
 sidewaysstomper.xoffset			ds.w 1						; (2 bytes)

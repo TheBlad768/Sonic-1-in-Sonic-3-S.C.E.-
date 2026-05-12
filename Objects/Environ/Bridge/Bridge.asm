@@ -7,7 +7,7 @@ tensionbridge.logcount =		8						; number of logs
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 ; players
 tensionbridge.p1_index			ds.b 1						; Sonic log index (1 byte)
@@ -26,7 +26,7 @@ Obj_TensionBridge:
 
 		; init
 		move.l	#TensionBridge_Nudge,code_addr(a0)				; normal bridge
-		move.l	#Map_TensionBridge,mappings(a0)
+		move.l	#Map_TensionBridge,mappings_addr(a0)
 		move.w	#make_art_tile($33E,2,FALSE),art_tile(a0)
 
 		; check
@@ -83,7 +83,7 @@ TensionBridge_CreateSegments:
 		move.l	#Draw_Sprite,code_addr(a1)
 		move.w	x_pos(a0),x_pos(a1)
 		move.w	y_pos(a0),y_pos(a1)
-		move.l	mappings(a0),mappings(a1)
+		move.l	mappings_addr(a0),mappings_addr(a1)
 		move.w	art_tile(a0),art_tile(a1)
 		moveq	#setBit(render_flags.multi_sprite),d0				; set multi-draw flag
 		or.b	render_flags(a0),d0
@@ -264,7 +264,7 @@ TensionBridge_BreakObjectToPieces:
 
 .load
 		move.l	d4,code_addr(a1)
-		move.l	mappings(a3),mappings(a1)
+		move.l	mappings_addr(a3),mappings_addr(a1)
 		move.b	render_flags(a3),render_flags(a1)
 		move.w	art_tile(a3),art_tile(a1)
 		move.l	height_pixels(a3),height_pixels(a1)				; set height, width and priority

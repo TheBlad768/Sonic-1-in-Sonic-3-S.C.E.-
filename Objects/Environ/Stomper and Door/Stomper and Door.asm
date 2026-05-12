@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 scrapstomp.origX			ds.w 1						; original x-axis position (2 bytes)
 scrapstomp.origY			ds.w 1						; original y-axis position (2 bytes)
@@ -39,7 +39,7 @@ Obj_ScrapStomp:
 		lsr.w	#2,d0								; division by 4
 		move.b	d0,mapping_frame(a0)
 		move.l	#.action,code_addr(a0)
-		move.l	#Map_Stomp,mappings(a0)
+		move.l	#Map_Stomp,mappings_addr(a0)
 		move.w	#make_art_tile($2B2,1,FALSE),art_tile(a0)
 
 		; check level

@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 gargoyle.timer				ds.b 1						; (1 byte)
 gargoyle.delay				ds.b 1						; (1 byte)

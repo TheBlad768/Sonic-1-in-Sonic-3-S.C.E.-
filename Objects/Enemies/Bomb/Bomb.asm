@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 bomb.timer				ds.w 1						; time of fuse (2 bytes)
 bomb.origY				ds.w 1						; original y-axis position (2 bytes)
@@ -116,7 +116,7 @@ Obj_Bomb:
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 bomb_fuse.timer				ds.w 1						; time of fuse (2 bytes)
 bomb_fuse.origY				ds.w 1						; original y-axis position (2 bytes)

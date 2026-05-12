@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 ; players
 corkfloor.p1_yvel			ds.w 1						; Sonic's y velocity (2 bytes)

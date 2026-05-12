@@ -12,7 +12,7 @@ Obj_RobotnikHead3:
 		lea	ObjDat_RobotnikHead(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.main,code_addr(a0)
-		move.l	#Ani_RobotnikHead,animations(a0)
+		move.l	#Ani_RobotnikHead,animations_addr(a0)
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w			; is player Knuckles?
 		bne.s	.notKnux							; if not, branch
 		bsr.s	Load_EggRoboHead						; load Egg Robo art
@@ -56,7 +56,7 @@ Obj_RobotnikHead3:
 
 .draw
 		jsr	(Refresh_ChildPositionAdjusted_Animate2).w
-		movea.l	animations(a0),a1
+		movea.l	animations_addr(a0),a1
 		jsr	(Animate_SpriteNoSST).w
 		jmp	(Child_Draw_Sprite2).w
 ; ---------------------------------------------------------------------------
@@ -73,10 +73,10 @@ Obj_RobotnikHead3:
 ; =============== S U B R O U T I N E =======================================
 
 Load_EggRoboHead:
-		move.l	#Map_EggRoboHead,mappings(a0)					; if player is Knuckles, use Egg Robo head
+		move.l	#Map_EggRoboHead,mappings_addr(a0)				; if player is Knuckles, use Egg Robo head
 
 .skip
-		move.l	#Ani_EggRoboHead,animations(a0)
+		move.l	#Ani_EggRoboHead,animations_addr(a0)
 
 		; load Egg Robo head art
 		movea.w	parent3(a0),a1							; a1=parent object
@@ -100,7 +100,7 @@ Obj_RobotnikHead4:
 		lea	ObjDat_RobotnikHead(pc),a1
 		jsr	(SetUp_ObjAttributes).w
 		move.l	#.main,code_addr(a0)
-		move.l	#Ani_RobotnikHead,animations(a0)
+		move.l	#Ani_RobotnikHead,animations_addr(a0)
 		cmpi.b	#PlayerID_Knuckles,(Player_1+character_id).w			; is player Knuckles?
 		bne.s	.notKnux							; if not, branch
 		bsr.s	Load_EggRoboHead						; load Egg Robo art
@@ -140,7 +140,7 @@ Obj_RobotnikHead4:
 .draw
 		jsr	(Refresh_ChildPositionAdjusted_Animate2).w
 		jsr	(Child_GetPriority.skipp).w
-		movea.l	animations(a0),a1
+		movea.l	animations_addr(a0),a1
 		jsr	(Animate_SpriteNoSST).w
 
 		; check delete flag

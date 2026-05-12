@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 movingblock.origX			ds.w 1						; original x-axis position (2 bytes)
 movingblock.origY			ds.w 1						; original y-axis position (2 bytes)
@@ -44,7 +44,7 @@ Obj_MovingBlock:
 .notLZ
 		move.b	d0,height_pixels(a0)
 		move.b	d0,y_radius(a0)
-		move.l	d2,mappings(a0)
+		move.l	d2,mappings_addr(a0)
 
 		; check level
 		cmpi.b	#LevelID_SBZ,(Current_zone).w					; check if level is SBZ

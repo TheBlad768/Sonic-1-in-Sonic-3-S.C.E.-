@@ -15,7 +15,7 @@ Obj_BigRing:
 		lea	ObjSlot_BigRing(pc),a1
 		jsr	(SetUp_ObjAttributesSlotted).w					; only one special stage ring can be loaded at one time, period
 		move.l	#.main,code_addr(a0)
-		move.l	#AniRaw_BigRing,animations(a0)
+		move.l	#AniRaw_BigRing,animations_addr(a0)
 
 		; check
 		tst.b	subtype.byte(a0)
@@ -174,7 +174,7 @@ Obj_BigRing_Flash:
 		jsr	(SetUp_ObjAttributesSlotted).w
 		move.l	#.main,code_addr(a0)
 		move.l	#.finished,wait_addr(a0)
-		move.l	#AniRaw_BigRingFlash,animations(a0)
+		move.l	#AniRaw_BigRingFlash,animations_addr(a0)
 
 		; copy
 		movea.w	parent3(a0),a1							; a1=parent object

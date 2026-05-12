@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 chainedstomper.origY			ds.w 1						; original y-axis position (2 bytes)
 chainedstomper.yoffset			ds.w 1						; (2 bytes)
@@ -295,7 +295,7 @@ loc_B996:
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 chainedstomper_spikes.spike_yoffset	ds.w 1						; (2 bytes)
 

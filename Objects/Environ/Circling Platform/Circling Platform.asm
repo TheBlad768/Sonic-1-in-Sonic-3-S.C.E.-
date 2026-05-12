@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 circlingplatform.origX			ds.w 1						; original x-axis position (2 bytes)
 circlingplatform.origY			ds.w 1						; original y-axis position (2 bytes)

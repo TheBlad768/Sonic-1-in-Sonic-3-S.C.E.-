@@ -15,7 +15,7 @@ Obj_HyperSonicKnux_Trail:
 		; check player
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w				; are we playing as Knuckles?
 		bhs.s	.main								; if so, branch
-		move.l	#Map_SuperSonic,mappings(a0)					; if not, you must be Hyper Sonic, load Super/Hyper Sonic mappings
+		move.l	#Map_SuperSonic,mappings_addr(a0)				; if not, you must be Hyper Sonic, load Super/Hyper Sonic mappings
 
 .main
 

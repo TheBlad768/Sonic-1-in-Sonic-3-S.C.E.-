@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 fan.switch				ds.b 1						; on/off switch (1 byte)
 
@@ -15,7 +15,7 @@ fan.switch				ds.b 1						; on/off switch (1 byte)
 Obj_Fan:
 
 		; init
-		move.l	#Map_Fan,mappings(a0)
+		move.l	#Map_Fan,mappings_addr(a0)
 		move.w	#make_art_tile($3E8,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.l	#bytes_word_to_long(32/2,32/2,priority_4),height_pixels(a0)	; set height, width and priority

@@ -247,7 +247,7 @@ Obj_Continue_SonicWTails:
 
 .pstart
 		move.l	#.rotation,code_addr(a0)
-		move.l	#Map_Sonic,mappings(a0)
+		move.l	#Map_Sonic,mappings_addr(a0)
 		move.w	#make_art_tile(ArtTile_Player_1,0,FALSE),art_tile(a0)
 		clr.b	(Player_prev_frame).w
 		move.b	#$5A,mapping_frame(a0)
@@ -425,7 +425,7 @@ Obj_Continue_TailsWSonic:
 
 .main
 		move.l	#.wait,code_addr(a0)
-		move.l	#Map_Tails,mappings(a0)
+		move.l	#Map_Tails,mappings_addr(a0)
 
 		; set priority and art_tile
 		move.l	#words_to_long( \
@@ -826,7 +826,7 @@ Obj_Continue_Icons:
 		addq.w	#1,d0
 
 .skip
-		movea.l	animations(a0),a1
+		movea.l	animations_addr(a0),a1
 		move.b	(a1,d0.w),mapping_frame(a0)
 		jmp	(Draw_Sprite).w
 
@@ -863,7 +863,7 @@ Continue_Icons_LoadAnim:
 .notTails
 		add.w	d4,d4
 		add.w	d4,d4
-		move.l	.index(pc,d4.w),animations(a0)
+		move.l	.index(pc,d4.w),animations_addr(a0)
 		rts
 ; ---------------------------------------------------------------------------
 

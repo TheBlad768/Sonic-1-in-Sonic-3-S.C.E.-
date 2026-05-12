@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 elevator.origX				ds.w 1						; original x-axis position (2 bytes)
 elevator.origY				ds.w 1						; original y-axis position (2 bytes)
@@ -77,7 +77,7 @@ Obj_Elevator:
 		move.b	(a2)+,subtype.byte(a0)						; set type
 
 		; init
-		move.l	#Map_Elevator,mappings(a0)
+		move.l	#Map_Elevator,mappings_addr(a0)
 		move.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 
 		; set priority and art_tile

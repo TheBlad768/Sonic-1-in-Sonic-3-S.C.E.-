@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 bossfinal_plasma.count			ds.b 1						; (1 byte)
 bossfinal_plasma.count2			ds.b 1						; (1 byte)
@@ -101,7 +101,7 @@ Obj_BossFinal_Plasma:
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 bossfinal_plasmaball.xpos		ds.w 1						; (2 bytes)
 

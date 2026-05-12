@@ -16,7 +16,7 @@ flapdoor.delay				ds.w 1						; time between opening/closing (2 bytes)
 Obj_FlapDoor:
 
 		; init
-		move.l	#Map_FlapDoor,mappings(a0)
+		move.l	#Map_FlapDoor,mappings_addr(a0)
 		move.w	#make_art_tile($328,2,FALSE),art_tile(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 		move.w	#bytes_to_word(80/2,80/2),height_pixels(a0)			; set height and width

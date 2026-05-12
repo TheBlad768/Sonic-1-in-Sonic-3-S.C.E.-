@@ -5,7 +5,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 bossfire.timer				ds.w 1						; (2 bytes)
 
@@ -388,7 +388,7 @@ Obj_BossFire_ShipTubeFlame:
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 bossfire_fire.origX			ds.w 1						; original x-axis position (2 bytes)
 bossfire_fire.copyX			ds.w 1						; copy x-axis position (2 bytes)
@@ -630,7 +630,7 @@ Obj_BossFire_Scaled:
 		jsr	(Create_New_Object_3).w
 		bne.s	.wait
 		move.l	#Child_Draw_Sprite,code_addr(a1)
-		move.l	#Map_BossFire_Pillar,mappings(a1)
+		move.l	#Map_BossFire_Pillar,mappings_addr(a1)
 		move.b	#setBit(render_flags.level),render_flags(a1)			; use screen coordinates
 		move.w	#priority_3,priority(a1)
 		move.w	#$1C20,x_pos(a1)

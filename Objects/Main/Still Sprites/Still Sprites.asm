@@ -12,7 +12,7 @@ Obj_StillSprite:
 		jsr	(Obj_WaitOffscreen).w
 
 		; init
-		move.l	#Map_StillSprites,mappings(a0)
+		move.l	#Map_StillSprites,mappings_addr(a0)
 		ori.b	#setBit(render_flags.level),render_flags(a0)			; use screen coordinates
 
 		; get

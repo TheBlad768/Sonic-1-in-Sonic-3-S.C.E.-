@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 lavawall.xvel				ds.w 1						; (2 bytes)
 lavawall.lava_xoffset			ds.w 1						; (2 bytes)

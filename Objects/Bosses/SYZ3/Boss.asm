@@ -5,7 +5,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 bossblock.origY				ds.w 1						; original y-axis position (2 bytes)
 bossblock.camXpos			ds.b 1						; (1 byte)
@@ -446,7 +446,7 @@ BossBlock_Defeated:
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 bossblock_spike.ypos			ds.w 1						; y-axis position (2 bytes)
 

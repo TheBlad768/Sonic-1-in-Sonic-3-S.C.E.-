@@ -496,7 +496,7 @@ CreditsRobotnik_LoadEmeralds:
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 creditsrobotnik_emeralds.origX		ds.w 1						; original x-axis position (2 bytes)
 creditsrobotnik_emeralds.origY		ds.w 1						; original y-axis position (2 bytes)
@@ -614,12 +614,12 @@ Obj_CreditsEggRobo:
 		move.w	#screen_height/2,y_pos(a0)
 
 		; Try Again
-		move.l	#AniRaw_CreditsEggRoboEnd,animations(a0)
+		move.l	#AniRaw_CreditsEggRoboEnd,animations_addr(a0)
 		cmpi.b	#ChaosEmeralds_Count,(Chaos_emerald_count).w			; do you have all the emeralds?
 		bne.s	.createemrl							; if not, branch
 
 		; END
-		move.l	#AniRaw_CreditsEggRobo,animations(a0)
+		move.l	#AniRaw_CreditsEggRobo,animations_addr(a0)
 		move.w	#(screen_height/2)+32,y_pos(a0)
 		move.l	#.wait,code_addr(a0)
 		lea	Child1_CreditsEggRobo_Misc(pc),a2
@@ -734,7 +734,7 @@ CreditsEggRobo_LoadEmeralds:
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 creditseggrobo_emeralds.origX		ds.w 1						; original x-axis position (2 bytes)
 creditseggrobo_emeralds.origY		ds.w 1						; original y-axis position (2 bytes)

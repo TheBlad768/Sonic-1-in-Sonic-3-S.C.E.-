@@ -4,7 +4,7 @@
 
 ; dynamic object variables
 
-	dsset animations								; pretend we're in the RAM
+	dsset animations_addr								; pretend we're in the RAM
 
 playerspecial.touched_block		ds.b 1						; (1 byte)
 playerspecial.ghost_state		ds.b 1						; (1 byte)
@@ -113,7 +113,7 @@ SpecialStagePlayer_Init:								; Routine 0
 .notTails
 		add.w	d0,d0								; multiply by 4
 		add.w	d0,d0
-		move.l	SpecialStagePlayer_MapIndex(pc,d0.w),mappings(a0)
+		move.l	SpecialStagePlayer_MapIndex(pc,d0.w),mappings_addr(a0)
 
 		; init
 		move.w	#make_art_tile($79C,0,FALSE),art_tile(a0)
