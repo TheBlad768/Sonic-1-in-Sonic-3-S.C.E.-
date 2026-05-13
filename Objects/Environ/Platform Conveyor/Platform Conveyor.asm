@@ -353,4 +353,3 @@ ObjDat_SpinningPlatformConveyor:	subObjMainData SpinningPlatformConveyor_Platfor
 		include "Objects/Environ/Platform Conveyor/Object Data/Map - Labyrinth Platform Conveyor Platform.asm"
 		include "Objects/Environ/Platform Conveyor/Object Data/Data - Labyrinth Platform Conveyor.asm"
 		include "Objects/Environ/Platform Conveyor/Object Data/Data - Spinning Platform Conveyor.asm"
-
