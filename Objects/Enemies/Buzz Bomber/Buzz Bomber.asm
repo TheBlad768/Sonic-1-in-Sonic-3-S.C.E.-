@@ -169,7 +169,7 @@ Obj_Missile:
 ; ---------------------------------------------------------------------------
 
 .move
-		jsr	(MoveSprite2).w
+		MoveSprite2
 
 .animatebuzz
 		lea	Ani_Missile(pc),a1

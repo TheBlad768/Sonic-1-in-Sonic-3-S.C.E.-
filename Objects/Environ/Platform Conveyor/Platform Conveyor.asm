@@ -48,14 +48,14 @@ Obj_PlatformConveyorMaker:
 
 .create
 
-		; create LZ platform object
+		; create platform object
 		move.l	d4,code_addr(a1)
-		move.w	(a3)+,d0
-		add.w	d2,d0
-		move.w	d0,x_pos(a1)
-		move.w	(a3)+,d0
-		add.w	d3,d0
-		move.w	d0,y_pos(a1)
+		move.w	(a3)+,d5
+		add.w	d2,d5
+		move.w	d5,x_pos(a1)
+		move.w	(a3)+,d5
+		add.w	d3,d5
+		move.w	d5,y_pos(a1)
 		movem.w	d2-d3,platformconveyor.origX(a1)
 		move.w	(a3)+,d5
 		move.b	d5,subtype.byte(a1)
@@ -124,7 +124,7 @@ Obj_PlatformConveyor_Platforms:
 		; move
 		move.w	x_pos(a0),-(sp)
 		bsr.w	PlatformConveyor_Platforms_LabyrinthMove
-		jsr	(MoveSprite2).w
+		MoveSprite2
 		move.w	(sp)+,d4
 
 		; check
@@ -169,7 +169,7 @@ SpinningPlatformConveyor_Platforms:
 		; move
 		move.w	x_pos(a0),-(sp)
 		bsr.s	PlatformConveyor_Platforms_Move
-		jsr	(MoveSprite2).w
+		MoveSprite2
 		move.w	(sp)+,d4
 
 		; check
@@ -199,7 +199,7 @@ SpinningPlatformConveyor_Platforms:
 .notsolid
 		jsr	(Displace_PlayerOffObject).w					; release Sonic from object
 		bsr.s	PlatformConveyor_Platforms_Move
-		jsr	(MoveSprite2).w
+		MoveSprite2
 		bra.s	.checkdelete
 
 ; ---------------------------------------------------------------------------
