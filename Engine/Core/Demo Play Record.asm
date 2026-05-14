@@ -69,10 +69,10 @@ Demo_PlayRecord:
 		or.b	(Demo_hold_buttons).w,d1
 		move.b	d2,(Demo_hold_buttons).w
 		moveq	#signextendB($80),d0
-		and.b	(Ctrl_1).w,d0
+		and.b	(Ctrl_1_held).w,d0
 		sne	(Demo_start_button).w
 		or.b	d2,d0
-		move.b	d0,(Ctrl_1).w
+		move.b	d0,(Ctrl_1_held).w
 		eor.b	d0,d1
 		and.b	d0,d1
 		move.b	d1,(Ctrl_1_pressed).w
@@ -103,7 +103,7 @@ Demo_Record:
 
 		; save length and button
 		moveq	#$7F,d0
-		and.b	(Ctrl_1).w,d0							; load input of player 1
+		and.b	(Ctrl_1_held).w,d0						; load input of player 1
 		cmp.b	1(a0),d0							; is same button held?
 		bne.s	.next								; if not, branch
 		addq.b	#1,(a0)								; increment press length counter

@@ -155,7 +155,7 @@ Water_WindTunnels:
 		; check p1
 		lea	(Player_1).w,a1							; a1=character
 		lea	(WindTunnel_flag).w,a3
-		move.b	(Ctrl_1_logical).w,d6
+		move.b	(Ctrl_1_held_logical).w,d6
 		moveq	#WindTunnel_holding_flag.player_1,d5
 		bsr.s	LZ_WaterTunnels
 
@@ -164,7 +164,7 @@ Water_WindTunnels:
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	LoadWaterPalette.return						; if yes, branch
-		move.b	(Ctrl_2_logical).w,d6
+		move.b	(Ctrl_2_held_logical).w,d6
 		moveq	#WindTunnel_holding_flag.player_2,d5
 		bra.s	LZ_WaterTunnels
 ; ---------------------------------------------------------------------------
@@ -174,7 +174,7 @@ Water_WindTunnels:
 		; check p1
 		lea	(Player_1).w,a1							; a1=character
 		lea	(WindTunnel_flag_P2).w,a3
-		move.b	(Ctrl_1_logical).w,d6
+		move.b	(Ctrl_1_held_logical).w,d6
 		moveq	#WindTunnel_holding_flag.player_1,d5
 
 ; =============== S U B R O U T I N E =======================================
@@ -278,12 +278,12 @@ Water_WaterSlides:
 
 		; check
 		lea	(Player_1).w,a1							; a1=character
-		move.b	(Ctrl_1_logical).w,d2
+		move.b	(Ctrl_1_held_logical).w,d2
 		bsr.s	sub_71E4
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	locret_3F7A							; if yes, branch
-		move.b	(Ctrl_2_logical).w,d2
+		move.b	(Ctrl_2_held_logical).w,d2
 
 sub_71E4:
 		btst	#status.player.in_air,status(a1)				; is the player in the air?
