@@ -594,10 +594,9 @@ Title_Code:
 		and.b	(Ctrl_1_pressed).w,d0
 		beq.s	.return
 		lea	(Title.cheat_counter).w,a2
-		moveq	#0,d0
-		move.b	(a2),d0
-		lea	.codedat(pc,d0.w),a1
-		move.b	(Ctrl_1).w,d0
+		moveq	#0,d1
+		move.b	(a2),d1
+		lea	.codedat(pc,d1.w),a1
 		cmp.b	(a1)+,d0
 		bne.s	.fail
 		addq.b	#1,(a2)
