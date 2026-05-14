@@ -80,9 +80,9 @@ SpecialStagePlayer_Index: offsetTable
 ; ---------------------------------------------------------------------------
 
 SpecialStagePlayer_MapIndex:
-		dc.l Map_Sonic		; 0/1 (player mode)
-		dc.l Map_Tails		; 2 (player mode)
-		dc.l Map_Knuckles	; 3/4 (player mode)
+		dc.l Map_Sonic								; 0/1 (player mode)
+		dc.l Map_Tails								; 2 (player mode)
+		dc.l Map_Knuckles							; 3/4 (player mode)
 ; ---------------------------------------------------------------------------
 
 SpecialStagePlayer_Init:								; Routine 0
@@ -157,18 +157,18 @@ SpecialStagePlayer_InAir:
 ; =============== S U B R O U T I N E =======================================
 
 SpecialStagePlayer_Move:
-		btst	#button_left,(Ctrl_1_logical).w					; is left being pressed?
+		btst	#button_left,(Ctrl_1_held_logical).w				; is left being pressed?
 		beq.s	.chkright							; if not, branch
 		bsr.w	SpecialStagePlayer_MoveLeft
 
 .chkright
-		btst	#button_right,(Ctrl_1_logical).w				; is right being pressed?
+		btst	#button_right,(Ctrl_1_held_logical).w				; is right being pressed?
 		beq.s	loc_1BA78							; if not, branch
 		bsr.w	SpecialStagePlayer_MoveRight
 
 loc_1BA78:
 		moveq	#btnLR,d0
-		and.b	(Ctrl_1_logical).w,d0
+		and.b	(Ctrl_1_held_logical).w,d0
 		bne.s	loc_1BAA8
 		move.w	ground_vel(a0),d0
 		beq.s	loc_1BAA8
@@ -300,7 +300,7 @@ SpecialStagePlayer_Jump:
 		asr.l	#8,d0
 		move.w	d0,y_vel(a0)
 		bset	#status.player.in_air,status(a0)
-		sfx	sfx_Jump,1							; play jumping sound
+		sfx	sfx_Jump, 1							; play jumping sound
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to fix the camera on player's position
@@ -738,7 +738,7 @@ SpecialStagePlayer_ChkBumper:
 		move.l	d0,4(a2)
 
 .sfx
-		sfx	sfx_Bumper,1							; play bumper sound
+		sfx	sfx_Bumper, 1							; play bumper sound
 ; ---------------------------------------------------------------------------
 
 SpecialStagePlayer_GOAL:
@@ -750,7 +750,7 @@ SpecialStagePlayer_GOAL:
 		; exit from Special Stage
 		addq.b	#2,routine(a0)							; run routine "SpecialStagePlayer_ExitStage"
 		st	(HUD_RAM.status).w
-		sfx	sfx_SSGoal,1							; play "GOAL" sound
+		sfx	sfx_SSGoal, 1							; play "GOAL" sound
 ; ---------------------------------------------------------------------------
 
 SpecialStagePlayer_UPblock:
@@ -773,7 +773,7 @@ SpecialStagePlayer_UPblock:
 		move.b	#$2A,(a1)							; change item to a "DOWN" block
 
 .sfx
-		sfx	sfx_SSItem,1							; play up/down sound
+		sfx	sfx_SSItem, 1							; play up/down sound
 ; ---------------------------------------------------------------------------
 
 SpecialStagePlayer_DOWNblock:
@@ -796,7 +796,7 @@ SpecialStagePlayer_DOWNblock:
 		move.b	#$29,(a1)							; change item to an "UP" block
 
 .sfx
-		sfx	sfx_SSItem,1							; play up/down sound
+		sfx	sfx_SSItem, 1							; play up/down sound
 ; ---------------------------------------------------------------------------
 
 SpecialStagePlayer_Rblock:
@@ -820,7 +820,7 @@ SpecialStagePlayer_Rblock:
 
 .revstage
 		neg.w	(SpecialStage.speed).w						; reverse stage rotation
-		sfx	sfx_SSItem,1							; play sound
+		sfx	sfx_SSItem, 1							; play sound
 ; ---------------------------------------------------------------------------
 
 SpecialStagePlayer_ChkGlass:
@@ -852,7 +852,7 @@ SpecialStagePlayer_ChkGlass:
 		move.b	d0,4(a2)							; update the stage layout
 
 .sfx
-		sfx	sfx_SSGlass,1							; play glass block sound
+		sfx	sfx_SSGlass, 1							; play glass block sound
 ; ---------------------------------------------------------------------------
 
 .return

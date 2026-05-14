@@ -321,7 +321,7 @@ Tails_ExitChk:
 
 Tails_CPU_Control:
 		moveq	#btnDir+btnABC,d0
-		and.b	(Ctrl_2_logical).w,d0
+		and.b	(Ctrl_2_held_logical).w,d0
 		beq.s	.skip
 		move.w	#10*60,(Tails_CPU_idle_timer).w					; set wait
 
@@ -380,7 +380,7 @@ locret_13B1E:
 
 Tails_Catch_Up_Flying:
 		moveq	#signextendB(btnABCS),d0
-		and.b	(Ctrl_2_logical).w,d0
+		and.b	(Ctrl_2_held_logical).w,d0
 		bne.s	loc_13B50
 		moveq	#$3F,d0
 		and.w	(Level_frame_counter).w,d0
@@ -916,7 +916,7 @@ loc_14164:
 		tst.b	(Flying_carrying_Sonic_flag).w
 		beq.w	loc_142E2
 		clr.b	(Flying_catch_Sonic_flag).w
-		btst	#button_down,(Ctrl_1).w
+		btst	#button_down,(Ctrl_1_held).w
 		beq.s	loc_14198
 		addq.b	#1,(Tails_CPU_auto_fly_timer).w
 		cmpi.b	#192,(Tails_CPU_auto_fly_timer).w
@@ -927,7 +927,7 @@ loc_14164:
 ; ---------------------------------------------------------------------------
 
 loc_14198:
-		btst	#button_up,(Ctrl_1).w
+		btst	#button_up,(Ctrl_1_held).w
 		beq.s	loc_141BA
 		addq.b	#1,(Tails_CPU_auto_fly_timer).w
 		cmpi.b	#32,(Tails_CPU_auto_fly_timer).w
@@ -946,9 +946,9 @@ loc_141BA:
 
 loc_141D2:
 		moveq	#btnLR,d0
-		and.b	(Ctrl_1).w,d0
-		or.b	(Ctrl_2_logical).w,d0
-		move.b	d0,(Ctrl_2_logical).w
+		and.b	(Ctrl_1_held).w,d0
+		or.b	(Ctrl_2_held_logical).w,d0
+		move.b	d0,(Ctrl_2_held_logical).w
 
 loc_141E2:
 		lea	(Flying_carrying_Sonic_flag).w,a2
@@ -1773,12 +1773,12 @@ Tails_InputAcceleration_Path:
 		bmi.w	loc_14B5C
 		tst.w	move_lock(a0)
 		bne.w	loc_14B14
-		btst	#button_left,(Ctrl_2_logical).w
+		btst	#button_left,(Ctrl_2_held_logical).w
 		beq.s	loc_14A0A
 		bsr.w	sub_14C20
 
 loc_14A0A:
-		btst	#button_right,(Ctrl_2_logical).w
+		btst	#button_right,(Ctrl_2_held_logical).w
 		beq.s	loc_14A16
 		bsr.w	sub_14CAC
 
@@ -1846,7 +1846,7 @@ loc_14A98:
 loc_14AA0:
 		tst.w	(Camera_H_scroll_shift).w
 		bne.s	loc_14ADA
-		btst	#button_down,(Ctrl_2_logical).w
+		btst	#button_down,(Ctrl_2_held_logical).w
 		beq.s	loc_14ADA
 		move.b	#AniIDSonAni_Duck,anim(a0)
 		addq.b	#1,scroll_delay_counter(a0)
@@ -1869,7 +1869,7 @@ loc_14AD0:
 ; ---------------------------------------------------------------------------
 
 loc_14ADA:
-		btst	#button_up,(Ctrl_2_logical).w
+		btst	#button_up,(Ctrl_2_held_logical).w
 		beq.s	loc_14B14
 		move.b	#AniIDSonAni_LookUp,anim(a0)
 		addq.b	#1,scroll_delay_counter(a0)
@@ -1910,7 +1910,7 @@ loc_14B26:
 
 loc_14B30:
 		moveq	#btnLR,d0
-		and.b	(Ctrl_2_logical).w,d0
+		and.b	(Ctrl_2_held_logical).w,d0
 		bne.s	loc_14B5C
 		move.w	ground_vel(a0),d0
 		beq.s	loc_14B5C
@@ -2135,12 +2135,12 @@ loc_14D46:
 		bne.s	loc_14D78
 		tst.w	(Camera_H_scroll_shift).w
 		bne.s	loc_14D78
-		btst	#button_left,(Ctrl_2_logical).w
+		btst	#button_left,(Ctrl_2_held_logical).w
 		beq.s	loc_14D6C
 		bsr.w	sub_14E32
 
 loc_14D6C:
-		btst	#button_right,(Ctrl_2_logical).w
+		btst	#button_right,(Ctrl_2_held_logical).w
 		beq.s	loc_14D78
 		bsr.w	sub_14E56
 
@@ -2288,7 +2288,7 @@ Tails_ChgJumpDir:
 	endif
 
 		move.w	x_vel(a0),d0
-		btst	#button_left,(Ctrl_2_logical).w
+		btst	#button_left,(Ctrl_2_held_logical).w
 		beq.s	loc_14EAC							; if not holding left, branch
 		bset	#status.player.x_flip,status(a0)
 
@@ -2309,7 +2309,7 @@ Tails_ChgJumpDir:
 		move.w	d1,d0
 
 loc_14EAC:
-		btst	#button_right,(Ctrl_2_logical).w
+		btst	#button_right,(Ctrl_2_held_logical).w
 		beq.s	loc_14EC8							; if not holding right, branch
 		bclr	#status.player.x_flip,status(a0)
 		add.w	d5,d0								; accelerate right in the air
@@ -2377,9 +2377,9 @@ Tails_Roll:
 		tst.w	(Camera_H_scroll_shift).w
 		bne.s	locret_14FA8
 		moveq	#btnLR,d0							; is left/right being pressed?
-		and.b	(Ctrl_2_logical).w,d0
+		and.b	(Ctrl_2_held_logical).w,d0
 		bne.s	locret_14FA8
-		btst	#button_down,(Ctrl_2_logical).w					; is down being pressed?
+		btst	#button_down,(Ctrl_2_held_logical).w				; is down being pressed?
 		beq.s	Tails_ChkWalk							; if not, branch
 		mvabs.w	ground_vel(a0),d0
 		cmpi.w	#$100,d0							; is Tails moving at $100 speed or faster?
@@ -2519,7 +2519,7 @@ loc_150F0:
 		cmp.w	y_vel(a0),d1
 		ble.s	Tails_Test_For_Flight
 		moveq	#btnABC,d0
-		and.b	(Ctrl_2_logical).w,d0
+		and.b	(Ctrl_2_held_logical).w,d0
 		bne.s	locret_15104
 		move.w	d1,y_vel(a0)
 
@@ -2661,7 +2661,7 @@ locret_1527A:
 ; ---------------------------------------------------------------------------
 
 loc_1527C:
-		btst	#button_down,(Ctrl_2_logical).w
+		btst	#button_down,(Ctrl_2_held_logical).w
 		bne.w	loc_15332
 		move.w	#bytes_to_word(28/2,14/2),y_radius(a0)				; set y_radius and x_radius
 		move.b	#AniIDSonAni_Roll,anim(a0)
