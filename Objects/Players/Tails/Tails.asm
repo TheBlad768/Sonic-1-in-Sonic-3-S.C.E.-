@@ -835,7 +835,7 @@ loc_14068:
 		move.w	#$10,(Tails_CPU_routine).w
 
 loc_14082:
-		move.w	(Ctrl_1).w,d0
+		move.w	(Ctrl_1_logical).w,d0
 		bra.w	Tails_Carry_Sonic
 ; ---------------------------------------------------------------------------
 
@@ -898,7 +898,7 @@ loc_14128:
 loc_1413C:
 		lea	(Flying_carrying_Sonic_flag).w,a2
 		lea	(Player_1).w,a1							; a1=character
-		move.w	(Ctrl_1).w,d0
+		move.w	(Ctrl_1_logical).w,d0
 		bra.w	Tails_Carry_Sonic
 ; ---------------------------------------------------------------------------
 
@@ -953,7 +953,7 @@ loc_141D2:
 loc_141E2:
 		lea	(Flying_carrying_Sonic_flag).w,a2
 		lea	(Player_1).w,a1							; a1=character
-		move.w	(Ctrl_1).w,d0
+		move.w	(Ctrl_1_logical).w,d0
 		bra.w	Tails_Carry_Sonic
 ; ---------------------------------------------------------------------------
 
@@ -1100,7 +1100,7 @@ loc_143A6:
 loc_143AA:
 		lea	(Flying_carrying_Sonic_flag).w,a2
 		lea	(Player_1).w,a1							; a1=character
-		move.w	(Ctrl_1).w,d0
+		move.w	(Ctrl_1_logical).w,d0
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -1528,7 +1528,7 @@ Tails_FlyingSwimming:
 .load
 		lea	(Flying_carrying_Sonic_flag).w,a2
 		lea	(Player_1).w,a1							; a1=character
-		move.w	(Ctrl_1).w,d0
+		move.w	(Ctrl_1_logical).w,d0
 		bra.w	Tails_Carry_Sonic
 ; ---------------------------------------------------------------------------
 
