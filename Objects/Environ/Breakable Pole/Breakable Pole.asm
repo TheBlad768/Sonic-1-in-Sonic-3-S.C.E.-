@@ -57,7 +57,7 @@ Obj_BreakablePole:
 
 		; check p1
 		lea	(Player_1).w,a1							; a1=character
-		move.w	(Ctrl_1).w,d1
+		move.w	(Ctrl_1_logical).w,d1
 		moveq	#WindTunnel_holding_flag.player_1,d2
 		bsr.s	.control
 
@@ -66,7 +66,7 @@ Obj_BreakablePole:
 		lea	(Player_2).w,a1							; a1=character
 		tst.l	code_addr(a1)							; is player RAM empty?
 		beq.s	.rcheck								; if yes, branch
-		move.w	(Ctrl_2).w,d1
+		move.w	(Ctrl_2_logical).w,d1
 		moveq	#WindTunnel_holding_flag.player_2,d2
 		bsr.s	.control
 
