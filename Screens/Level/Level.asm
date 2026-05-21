@@ -90,27 +90,34 @@ LevelScreen:
 		move.w	d1,d0
 		jsr	(LoadPalette_Immediate).w
 
-		; load HUD art
+		; load main art
+		lea	(PLC1_Main).l,a5
+		jsr	(LoadPLC_Raw_KosPlusM).w
+
+		; load life icon art
 		move.w	(Player_mode).w,d0
 		subq.w	#1,d0
 		bhs.s	.loadplc
 		moveq	#0,d0
 
 .loadplc
+		add.w	d0,d0								; multiply by 4
 		add.w	d0,d0
-		add.w	d0,d0
-		lea	PLC_PlayerIndex(pc),a5
-		movea.l	(a5,d0.w),a5
+		lea	PLC_PlayerLifeIconIndex(pc),a1
+		movea.l	(a1,d0.w),a1
 
 		; check Miles
 		cmpi.w	#(PlayerModeID_Tails-1)*4,d0
 		bne.s	.notMiles
 		tst.b	(Graphics_flags).w						; check console region
 		bmi.s	.notMiles
-		lea	(PLC1_Miles).l,a5
+		lea	(ArtKosPlusM_MilesLifeIcon).l,a1
 
 .notMiles
-		jsr	(LoadPLC_Raw_KosPlusM).w					; load HUD and ring art
+		move.w	#tiles_to_bytes(ArtTile_LifeIcon),d2
+		jsr	(Queue_KosPlus_Module).w					; load life icon art
+
+		; next
 		jsrb	CheckLevelForWater
 		clearRAM Water_palette_line_2, Normal_palette
 		tst.b	(Water_flag).w
@@ -282,15 +289,15 @@ LevelScreen:
 		rts
 ; ---------------------------------------------------------------------------
 
-PLC_PlayerIndex:
-		dc.l PLC1_Sonic		; 0
-		dc.l PLC1_Tails		; 1
-		dc.l PLC1_Knuckles	; 2
-		dc.l PLC1_Knuckles	; 3
+PLC_PlayerLifeIconIndex:
+		dc.l ArtKosPlusM_SonicLifeIcon		; 0
+		dc.l ArtKosPlusM_TailsLifeIcon		; 1
+		dc.l ArtKosPlusM_KnucklesLifeIcon	; 2
+		dc.l ArtKosPlusM_KnucklesLifeIcon	; 3
 LevelExtraRender_Data:
 		dc.w 2-1
-		dc.l Render_HUD		; 0
-		dc.l Render_Rings	; 1
+		dc.l Render_HUD				; 0
+		dc.l Render_Rings			; 1
 
 ; ---------------------------------------------------------------------------
 ; Spawn level main objects
