@@ -4,47 +4,13 @@
 ; ===========================================================================
 
 ; ===========================================================================
-; Pattern load cues - Sonic
+; Pattern load cues - Main
 ; ===========================================================================
 
-PLC1_Sonic: plrlistheader
+PLC1_Main: plrlistheader
 		plreq ArtTile_StarPost, ArtKosPlusM_EnemyScoreStarPost			; starpost
 		plreq ArtTile_Ring_Sparks, ArtKosPlusM_Ring_Sparks			; rings
 		plreq ArtTile_HUD, ArtKosPlusM_HUD					; HUD
-		plreq ArtTile_LifeIcon, ArtKosPlusM_SonicLifeIcon			; life icon
-		plrlistend
-
-; ===========================================================================
-; Pattern load cues - Miles
-; ===========================================================================
-
-PLC1_Miles: plrlistheader
-		plreq ArtTile_StarPost, ArtKosPlusM_EnemyScoreStarPost			; starpost
-		plreq ArtTile_Ring_Sparks, ArtKosPlusM_Ring_Sparks			; rings
-		plreq ArtTile_HUD, ArtKosPlusM_HUD					; HUD
-		plreq ArtTile_LifeIcon, ArtKosPlusM_MilesLifeIcon			; life icon
-		plrlistend
-
-; ===========================================================================
-; Pattern load cues - Tails
-; ===========================================================================
-
-PLC1_Tails: plrlistheader
-		plreq ArtTile_StarPost, ArtKosPlusM_EnemyScoreStarPost			; starpost
-		plreq ArtTile_Ring_Sparks, ArtKosPlusM_Ring_Sparks			; rings
-		plreq ArtTile_HUD, ArtKosPlusM_HUD					; HUD
-		plreq ArtTile_LifeIcon, ArtKosPlusM_TailsLifeIcon			; life icon
-		plrlistend
-
-; ===========================================================================
-; Pattern load cues - Knuckles
-; ===========================================================================
-
-PLC1_Knuckles: plrlistheader
-		plreq ArtTile_StarPost, ArtKosPlusM_EnemyScoreStarPost			; starpost
-		plreq ArtTile_Ring_Sparks, ArtKosPlusM_Ring_Sparks			; rings
-		plreq ArtTile_HUD, ArtKosPlusM_HUD					; HUD
-		plreq ArtTile_LifeIcon, ArtKosPlusM_KnucklesLifeIcon			; life icon
 		plrlistend
 
 ; ===========================================================================
