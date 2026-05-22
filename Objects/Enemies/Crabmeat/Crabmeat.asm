@@ -28,7 +28,7 @@ Obj_Crabmeat:
 		bpl.s	.floornotfound							; if not, branch
 		add.w	d1,y_pos(a0)
 
-	if CrabmeatSlope
+	if ~~CrabmeatSlope
 		move.b	d3,angle(a0)
 	endif
 
@@ -64,7 +64,7 @@ Obj_Crabmeat:
 		move.w	#128-1,crabmeat.timer(a0)					; set time delay to approx 2 seconds
 		move.w	#$80,x_vel(a0)							; move crabmeat to the right
 
-	if CrabmeatSlope
+	if ~~CrabmeatSlope
 		bsr.w	Crabmeat_SetAni
 		addq.b	#3,d0
 		move.b	d0,anim(a0)
@@ -120,7 +120,7 @@ Obj_Crabmeat:
 		jsr	(ObjCheckFloorDist).w
 		add.w	d1,y_pos(a0)
 
-	if CrabmeatSlope
+	if ~~CrabmeatSlope
 		move.b	d3,angle(a0)
 		bsr.s	Crabmeat_SetAni
 		addq.b	#3,d0
@@ -137,7 +137,7 @@ Obj_Crabmeat:
 		move.w	#60-1,crabmeat.timer(a0)
 		clr.w	x_vel(a0)
 
-	if CrabmeatSlope
+	if ~~CrabmeatSlope
 		bsr.s	Crabmeat_SetAni
 		move.b	d0,anim(a0)
 	else
@@ -146,7 +146,7 @@ Obj_Crabmeat:
 
 		rts
 
-	if CrabmeatSlope
+	if ~~CrabmeatSlope
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to set the correct animation for a Crabmeat

@@ -40,7 +40,7 @@ HUDCentiseconds =					1				; if 1, enable centiseconds in the HUD
 ; level misc options
 MonitorFall =						0				; if 1, monitor will fall after being hit from below
 EnemyProjectileSFX =					1				; if 1, enable additional projectile sound effects added to badniks (Sonic 3 style)
-CrabmeatSlope =						0				; if 1, enable crabmeat slope animation (GHZ)
+CrabmeatSlope =						1				; if 1, disable crabmeat slope animation (GHZ)
 SwingingPlatformChain =					0				; if 1, enable alternate swinging platform chain position (Android, Mania, Origins style)
 GlassBlockReflect =					1				; if 1, fix glass block reflect movement (MZ)
 JawsWater =						1				; if 1, hide jaws if it is above water (LZ)
@@ -49,7 +49,7 @@ CirclingPlatformVersion =				0				; if 1, enable S2/S3K version of circling plat
 ; level boss options
 BossDebug =						0				; if 1, set one hit on all bosses
 BossIntro =						1				; if 1, enable boss intro (GHZ, MZ)
-BossBallCollision =					1				; if 1, enable GHZ boss collision as in the original game
+BossBallCollision =					1				; if 1, disable GHZ boss collision (Android, Mania, Origins style)
 
 ; SRAM options
 EnableSRAM =						0				; if 1, enable SRAM

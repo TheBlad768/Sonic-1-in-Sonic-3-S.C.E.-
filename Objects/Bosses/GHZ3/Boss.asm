@@ -128,7 +128,7 @@ BossBall_Setup:
 
 BossBall_MainProcess:
 
-	if ~~BossBallCollision
+	if BossBallCollision
 		btst	#bossball.attack_bit,state_flags(a0)				; wait boss attack flag
 		beq.s	.draw
 	endif
@@ -406,7 +406,7 @@ Obj_BossBall_Ball:
 		subq.w	#1,wait_timer(a0)
 		bpl.s	.angle
 
-	if ~~BossBallCollision
+	if BossBallCollision
 		move.b	#collision_type.npc.hurt,collision_type(a0)			; set ball collision type
 	endif
 
@@ -525,7 +525,7 @@ Obj_BossBall_Scaled:
 ObjDat_BossBall_Crane:		subObjData Map_GiantBall_Crane, $494, 0, FALSE, 16, 16, 6, 0, collision_type.npc.none, 0, 0
 ObjDat_BossBall_Chain:		subObjData Map_GiantBall_Crane, $498, 0, FALSE, 16, 16, 6, 0, collision_type.npc.none, 0, 0
 
-	if ~~BossBallCollision
+	if BossBallCollision
 ObjDat_BossBall_Ball:		subObjData Map_GiantBall, $49C, 2, FALSE, 64, 64, 5, 0, collision_type.npc.none, 48, 48
 	else
 ObjDat_BossBall_Ball:		subObjData Map_GiantBall, $49C, 2, FALSE, 64, 64, 5, 0, collision_type.npc.hurt, 48, 48
