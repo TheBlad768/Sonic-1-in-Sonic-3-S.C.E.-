@@ -3478,64 +3478,6 @@
                     "uuid": "676a0423-8a07-46b3-911a-57a1e8ddd81c"
                 },
                 {
-                    "name": "Orbinaut",
-                    "format": "Sonic 3&K Object.js",
-                    "palettes": [
-                        {
-                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
-                            "length": 1
-                        },
-                        {
-                            "path": "../Levels/SBZ/Palettes/Scrap Brain Zone Act 2.pal",
-                            "length": 3
-                        }
-                    ],
-                    "art": {
-                        "path": "../Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm",
-                        "compression": "KosinskiPlus-M",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "../Objects/Enemies/Orbinaut/Object Data/Map - Orbinaut.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "238a0756-b351-4a57-a1e8-ddd81c539e89"
-                },
-                {
-                    "format": "Sonic 3&K Object Static.js",
-                    "name": "Orbinaut Orb",
-                    "palettes": [
-                        {
-                            "path": "../Objects/Players/Sonic/Palettes/Sonic.pal",
-                            "length": 1
-                        },
-                        {
-                            "path": "../Levels/SBZ/Palettes/Scrap Brain Zone Act 2.pal",
-                            "length": 3
-                        }
-                    ],
-                    "art": {
-                        "path": "../Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm",
-                        "compression": "KosinskiPlus-M",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "../Objects/Enemies/Orbinaut/Object Data/Map - Orbinaut Orb.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "49103458-668f-4c9c-aa7e-c10d36aa302c"
-                },
-                {
                     "name": "Rotating Junction",
                     "format": "Sonic 3&K Object.js",
                     "palettes": [
