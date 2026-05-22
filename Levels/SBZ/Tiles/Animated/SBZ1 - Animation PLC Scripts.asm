@@ -21,28 +21,28 @@
 
 AniPLC_SBZ: zoneanimstart
 
-	; background smoke 1
-	zoneanimplcdecl -1, ArtUnc_SBZSmoke, $448, 8, 12
-	dc.b 12, 7
-	dc.b 24, 7
-	dc.b 36, 7
-	dc.b 48, 7
-	dc.b 60, 7
-	dc.b 72, 7
-	dc.b 84, 7
-	dc.b 0, (3*60)	; wait
-	even
+		; background smoke 1
+		zoneanimplcdecl -1, ArtUnc_SBZSmoke, $448, 8, 12
+		dc.b 12, 7
+		dc.b 24, 7
+		dc.b 36, 7
+		dc.b 48, 7
+		dc.b 60, 7
+		dc.b 72, 7
+		dc.b 84, 7
+		dc.b 0, (3*60)	; wait
+		even
 
-	; background smoke 2
-	zoneanimplcdecl -1, ArtUnc_SBZSmoke, $454, 8, 12
-	dc.b 12, 7
-	dc.b 24, 7
-	dc.b 36, 7
-	dc.b 48, 7
-	dc.b 60, 7
-	dc.b 72, 7
-	dc.b 84, 7
-	dc.b 0, (2*60)	; wait
-	even
+		; background smoke 2
+		zoneanimplcdecl -1, ArtUnc_SBZSmoke, $454, 8, 12
+		dc.b 12, 7
+		dc.b 24, 7
+		dc.b 36, 7
+		dc.b 48, 7
+		dc.b 60, 7
+		dc.b 72, 7
+		dc.b 84, 7
+		dc.b 0, (2*60)	; wait
+		even
 
-	zoneanimend
+		zoneanimend								; end marker

@@ -21,24 +21,24 @@
 
 AniPLC_GHZ: zoneanimstart
 
-	; flower (Large)
-	zoneanimplcdecl $12, ArtUnc_GHZFlower1, $35C, 2, 16
-	dc.b 0
-	dc.b 16
-	even
+		; flower (Large)
+		zoneanimplcdecl $12, ArtUnc_GHZFlower1, $35C, 2, 16
+		dc.b 0
+		dc.b 16
+		even
 
-	; flower (Small)
-	zoneanimplcdecl -1, ArtUnc_GHZFlower2, $36C, 4, 12
-	dc.b 0, $A2
-	dc.b 12, $A
-	dc.b 24, $A2
-	dc.b 12, $A
-	even
+		; flower (Small)
+		zoneanimplcdecl -1, ArtUnc_GHZFlower2, $36C, 4, 12
+		dc.b 0, $A2
+		dc.b 12, $A
+		dc.b 24, $A2
+		dc.b 12, $A
+		even
 
-	; water
-	zoneanimplcdecl 5, ArtUnc_GHZWater, $378, 2, 8
-	dc.b 0
-	dc.b 8
-	even
+		; water
+		zoneanimplcdecl 5, ArtUnc_GHZWater, $378, 2, 8
+		dc.b 0
+		dc.b 8
+		even
 
-	zoneanimend
+		zoneanimend								; end marker

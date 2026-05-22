@@ -664,7 +664,7 @@ PLC_BossBlock: plrlistheader
 		plreq $400, ArtKosPlusM_SYZSpike
 		plreq $406, ArtKosPlusM_SYZBlock
 		plreq $500, ArtKosPlusM_BossExplosion
-		plrlistend
+		plrlistend								; end marker
 ; ---------------------------------------------------------------------------
 
 		; mappings

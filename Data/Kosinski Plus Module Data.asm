@@ -154,7 +154,7 @@
 		incfile.ba	ArtKosPlusM_SLZSwing, "Objects/Environ/Swinging Platform/KosinskiPlusM Art/SLZ Swinging Platform.kospm"
 		incfile.ba	ArtKosPlusM_Electric, "Objects/Environ/Electrocuter/KosinskiPlusM Art/Electrocuter.kospm"
 		incfile.ba	ArtKosPlusM_FlamePipe, "Objects/Environ/Flamethrower/KosinskiPlusM Art/Flaming Pipe.kospm"
-		incfile.ba	ArtKosPlusM_SpinPform, "Objects/Environ/Spinning Platform/KosinskiPlusM Art/Spinning Platform.kospm"
+		incfile.ba	ArtKosPlusM_SpinPlatform, "Objects/Environ/Spinning Platform/KosinskiPlusM Art/Spinning Platform.kospm"
 		incfile.ba	ArtKosPlusM_TrapDoor, "Objects/Environ/Spinning Platform/KosinskiPlusM Art/Trapdoor.kospm"
 		incfile.ba	ArtKosPlusM_SBZFloor, "Objects/Environ/Collapsing Floor/KosinskiPlusM Art/SBZ Collapsing Floor.kospm"
 		incfile.ba	ArtKosPlusM_Stomper, "Objects/Environ/Stomper and Door/KosinskiPlusM Art/SBZ Stomper.kospm"

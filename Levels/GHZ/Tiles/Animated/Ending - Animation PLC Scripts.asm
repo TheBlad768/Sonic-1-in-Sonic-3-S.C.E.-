@@ -21,40 +21,40 @@
 
 AniPLC_Ending: zoneanimstart
 
-	; flower (Large)
-	zoneanimplcdecl 7, ArtUnc_GHZFlower1, $35C, 2, 16
-	dc.b 0
-	dc.b 16
-	even
+		; flower (Large)
+		zoneanimplcdecl 7, ArtUnc_GHZFlower1, $35C, 2, 16
+		dc.b 0
+		dc.b 16
+		even
 
-	; flower 2 (Large)
-	zoneanimplcdecl 7, ArtUnc_EndingFlowers, $390, 2, 16
-	dc.b 0
-	dc.b 16
-	even
+		; flower 2 (Large)
+		zoneanimplcdecl 7, ArtUnc_EndingFlowers, $390, 2, 16
+		dc.b 0
+		dc.b 16
+		even
 
-	; flower (Small)
-	zoneanimplcdecl -1, ArtUnc_GHZFlower2, $36C, 4, 12
-	dc.b 0, 24
-	dc.b 12, 8
-	dc.b 24, 24
-	dc.b 12, 8
-	even
+		; flower (Small)
+		zoneanimplcdecl -1, ArtUnc_GHZFlower2, $36C, 4, 12
+		dc.b 0, 24
+		dc.b 12, 8
+		dc.b 24, 24
+		dc.b 12, 8
+		even
 
-	; flower 3
-	zoneanimplcdecl $13, ArtUnc_EndingFlowers+$400, $380, 4, 16
-	dc.b 0
-	dc.b 16
-	dc.b 32
-	dc.b 16
-	even
+		; flower 3
+		zoneanimplcdecl $13, ArtUnc_EndingFlowers+$400, $380, 4, 16
+		dc.b 0
+		dc.b 16
+		dc.b 32
+		dc.b 16
+		even
 
-	; flower 4
-	zoneanimplcdecl $10, ArtUnc_EndingFlowers+$A00, $340, 4, 16
-	dc.b 0
-	dc.b 16
-	dc.b 32
-	dc.b 16
-	even
+		; flower 4
+		zoneanimplcdecl $10, ArtUnc_EndingFlowers+$A00, $340, 4, 16
+		dc.b 0
+		dc.b 16
+		dc.b 32
+		dc.b 16
+		even
 
-	zoneanimend
+		zoneanimend								; end marker

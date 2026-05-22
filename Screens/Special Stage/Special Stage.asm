@@ -163,7 +163,10 @@ SpecialStageScreen:
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
 		blo.s	.notKnux
 
-.palssk		:= Pal_SpecialStageKnuckles-Pal_SpecialStageSonic			; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; so we will use :=/set
+
+.palssk		:= Pal_SpecialStageKnuckles-Pal_SpecialStageSonic
 
 		lea	(.palssk)(a1),a1						; Pal_SSKnuckles
 
@@ -344,7 +347,10 @@ SpecialStageScreen:
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
 		blo.s	.notKnux2
 
-.palk		:= Pal_Knuckles-Pal_Sonic						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; so we will use :=/set
+
+.palk		:= Pal_Knuckles-Pal_Sonic
 
 		lea	(.palk)(a1),a1							; Pal_Knuckles
 
@@ -383,7 +389,10 @@ SpecialStageScreen:
 		cmpi.w	#PlayerModeID_Tails,(Player_mode).w				; is Tails?
 		bne.s	.notTails							; if not, branch
 
-.artss		:= ArtKosPlusM_SpecialStageResultsSUPER-ArtKosPlusM_SpecialStageResultsHYPER	; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; so we will use :=/set
+
+.artss		:= ArtKosPlusM_SpecialStageResultsSUPER-ArtKosPlusM_SpecialStageResultsHYPER
 
 		lea	(.artss)(a1),a1
 
@@ -1319,14 +1328,14 @@ PLC_SpecialStage: plrlistheader
 		plreq ArtTile_SpecialStage_Glass, ArtKosPlusM_SpecialStageGlass
 		plreq ArtTile_SpecialStage_Emerald, ArtKosPlusM_SpecialStageEmerald
 		plreq ArtTile_SpecialStage_Ring_Sparks, ArtKosPlusM_Ring_Sparks
-		plrlistend
+		plrlistend								; end marker
 
 PLC_SpecialStageResults: plrlistheader
 		plreq $500, ArtKosPlusM_ResultsGeneral
 		plreq $570, ArtKosPlusM_SpecialStageResults
 		plreq $680, ArtKosPlusM_SpecialStageResultsTKIcons
 		plreq ArtTile_HUD, ArtKosPlusM_HUD
-		plrlistend
+		plrlistend								; end marker
 ; ---------------------------------------------------------------------------
 
 		; animate palette

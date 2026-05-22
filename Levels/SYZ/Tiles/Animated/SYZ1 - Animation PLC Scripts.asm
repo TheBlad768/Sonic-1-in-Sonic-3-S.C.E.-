@@ -21,14 +21,14 @@
 
 AniPLC_SYZ: zoneanimstart
 
-	; siren
-	zoneanimplcdecl 7, ArtUnc_SYZSpinLight, $11, 6, 8
-	dc.b 0
-	dc.b 8
-	dc.b 16
-	dc.b 24
-	dc.b 32
-	dc.b 40
-	even
+		; siren
+		zoneanimplcdecl 7, ArtUnc_SYZSpinLight, $11, 6, 8
+		dc.b 0
+		dc.b 8
+		dc.b 16
+		dc.b 24
+		dc.b 32
+		dc.b 40
+		even
 
-	zoneanimend
+		zoneanimend								; end marker

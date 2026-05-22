@@ -140,12 +140,15 @@ Obj_TitleCard:
 
 .not_in_level_2
 
-		; load second main plc
-		lea	(PLC2_Sonic).l,a5
+		; load main secondary art
+		lea	(PLC_Main_Secondary).l,a5
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
 		blo.s	.notKnux
 
-.kplc2		:= PLC2_Knuckles-PLC2_Sonic						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; so we will use :=/set
+
+.kplc2		:= PLC_Main_Knux_Secondary-PLC_Main_Secondary
 
 		lea	(.kplc2)(a5),a5
 
@@ -301,12 +304,12 @@ ObjArray_TitleCard: titlecardresultsheader
 		titlecardresultsobjdata	Obj_TitleCardElement, 252, 636, 128, 3, 72, 5		; 2
 		titlecardresultsobjdata	Obj_TitleCardAct, 260, 708, 160, 2, 56, 7		; 3
 		titlecardresultsobjdata	Obj_TitleCardRedBanner, 64, 96, 16-128, 1, 0, 1		; 4
-		titlecardresultsend
+		titlecardresultsend								; end marker
 
 ObjArray_TitleCard_Bonus: titlecardresultsheader
 		titlecardresultsobjdata	Obj_TitleCardElement, 72, 264, 104, $13, 256, 1		; 1
 		titlecardresultsobjdata	Obj_TitleCardElement, 168, 360, 104, $14, 256, 1	; 2
-		titlecardresultsend
+		titlecardresultsend								; end marker
 
 ; ---------------------------------------------------------------------------
 ; Title Card load letters to VRAM

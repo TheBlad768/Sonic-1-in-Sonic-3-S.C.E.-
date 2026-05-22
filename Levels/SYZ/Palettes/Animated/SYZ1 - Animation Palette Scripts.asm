@@ -18,28 +18,28 @@
 
 AniPalette_SYZ: zoneanimstart
 
-	; flashing light and text
-	zoneanimpaldecl 5, Pal_SYZCyc1, Normal_palette_line_4+$E, 4, 4
-	dc.b 0
-	dc.b 4
-	dc.b 8
-	dc.b 12
-	even
+		; flashing light and text
+		zoneanimpaldecl 5, Pal_SYZCyc1, Normal_palette_line_4+$E, 4, 4
+		dc.b 0
+		dc.b 4
+		dc.b 8
+		dc.b 12
+		even
 
-	; flashing light
-	zoneanimpaldecl 5, Pal_SYZCyc2, Normal_palette_line_4+$16, 4, 1
-	dc.b 0
-	dc.b 2
-	dc.b 4
-	dc.b 6
-	even
+		; flashing light
+		zoneanimpaldecl 5, Pal_SYZCyc2, Normal_palette_line_4+$16, 4, 1
+		dc.b 0
+		dc.b 2
+		dc.b 4
+		dc.b 6
+		even
 
-	; lamp
-	zoneanimpaldecl 5, Pal_SYZCyc2, Normal_palette_line_4+$1A, 4, 1
-	dc.b 1
-	dc.b 3
-	dc.b 5
-	dc.b 7
-	even
+		; lamp
+		zoneanimpaldecl 5, Pal_SYZCyc2, Normal_palette_line_4+$1A, 4, 1
+		dc.b 1
+		dc.b 3
+		dc.b 5
+		dc.b 7
+		even
 
-	zoneanimend
+		zoneanimend								; end marker

@@ -680,7 +680,7 @@ PLC_Ending: plrlistheader
 		plreq $593, ArtKosPlusM_Pig
 		plreq $5A5, ArtKosPlusM_BlueFlicky
 		plreq $5B3, ArtKosPlusM_Squirrel
-		plrlistend
+		plrlistend								; end marker
 ; ---------------------------------------------------------------------------
 
 		; mappings

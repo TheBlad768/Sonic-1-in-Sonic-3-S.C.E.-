@@ -90,8 +90,8 @@ LevelScreen:
 		move.w	d1,d0
 		jsr	(LoadPalette_Immediate).w
 
-		; load main art
-		lea	(PLC1_Main).l,a5
+		; load main primary art
+		lea	(PLC_Main_Primary).l,a5
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
 		; load life icon art
