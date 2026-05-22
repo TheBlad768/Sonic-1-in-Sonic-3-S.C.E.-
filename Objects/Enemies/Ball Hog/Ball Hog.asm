@@ -89,7 +89,7 @@ Obj_BallHog:
 Obj_BallHog_Cannonball:
 
 		; set
-		move.w	subtype.byte(a0),d0						; move subtype to d0
+		move.w	subtype(a0),d0							; move subtype to d0
 		add.w	d0,d0								; multiply by 60 frames (1 second)
 		add.w	d0,d0
 		move.w	d0,d1
