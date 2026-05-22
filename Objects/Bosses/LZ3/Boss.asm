@@ -377,4 +377,4 @@ ObjDat_BossWater_ShipGlass:	subObjData Map_RobotnikShip, $1F0, 1, FALSE, 64, 64,
 PLC_BossWater: plrlistheader
 		plreq $1F0, ArtKosPlusM_RobotnikShip2
 		plreq $500, ArtKosPlusM_BossExplosion
-		plrlistend
+		plrlistend								; end marker

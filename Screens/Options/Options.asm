@@ -656,4 +656,4 @@ Options_Text:
 PLC_Options: plrlistheader
 		plreq 1, ArtKosPlusM_OptionsBG
 		plreq $510, ArtKosPlusM_OptionsText
-		plrlistend
+		plrlistend								; end marker

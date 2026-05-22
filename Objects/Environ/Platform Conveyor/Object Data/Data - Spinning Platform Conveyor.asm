@@ -20,7 +20,7 @@ SpinningPlatformConveyor_Group00: conveyorheader
 		conveyorobjdata $6F, -$7E
 		conveyorobjdata $6F, -$40
 		conveyorobjdata -$6C, $2E
-		conveyorend
+		conveyorend								; end marker
 
 SpinningPlatformConveyor_Group01: conveyorheader
 
@@ -29,7 +29,7 @@ SpinningPlatformConveyor_Group01: conveyorheader
 		conveyorobjdata $6F, -$8E
 		conveyorobjdata $6F, -$50
 		conveyorobjdata -$6C, $1E
-		conveyorend
+		conveyorend								; end marker
 
 SpinningPlatformConveyor_Group02: conveyorheader
 
@@ -38,7 +38,7 @@ SpinningPlatformConveyor_Group02: conveyorheader
 		conveyorobjdata $6F, -$7E
 		conveyorobjdata $6F, -$40
 		conveyorobjdata -$6C, $2E
-		conveyorend
+		conveyorend								; end marker
 
 SpinningPlatformConveyor_Group03: conveyorheader
 
@@ -47,7 +47,7 @@ SpinningPlatformConveyor_Group03: conveyorheader
 		conveyorobjdata $6F, 2
 		conveyorobjdata $6F, $40
 		conveyorobjdata -$6C, $AE
-		conveyorend
+		conveyorend								; end marker
 
 SpinningPlatformConveyor_Group04: conveyorheader
 
@@ -56,7 +56,7 @@ SpinningPlatformConveyor_Group04: conveyorheader
 		conveyorobjdata $6F, 2
 		conveyorobjdata $6F, $40
 		conveyorobjdata -$6C, $AE
-		conveyorend
+		conveyorend								; end marker
 
 SpinningPlatformConveyor_Group05: conveyorheader
 
@@ -65,7 +65,7 @@ SpinningPlatformConveyor_Group05: conveyorheader
 		conveyorobjdata $6F, -$E
 		conveyorobjdata $6F, $30
 		conveyorobjdata -$6C, $9E
-		conveyorend
+		conveyorend								; end marker
 
 ; ---------------------------------------------------------------------------
 ; Scrap Brain Zone - Platform positions
@@ -95,7 +95,7 @@ SpinningPlatformConveyor_Platform_SBZ101: conveyorplatformheader
 		conveyorplatformobjdata $29, -$1D, 3
 		conveyorplatformobjdata -$1D, 6, 3
 		conveyorplatformobjdata -$64, $29, 3
-		conveyorplatformend
+		conveyorplatformend							; end marker
 
 SpinningPlatformConveyor_Platform_SBZ102: conveyorplatformheader
 
@@ -108,7 +108,7 @@ SpinningPlatformConveyor_Platform_SBZ102: conveyorplatformheader
 		conveyorplatformobjdata $29, -$2D, $13
 		conveyorplatformobjdata -$1D, -$A, $13
 		conveyorplatformobjdata -$64, $19, $13
-		conveyorplatformend
+		conveyorplatformend							; end marker
 
 SpinningPlatformConveyor_Platform_SBZ103: conveyorplatformheader
 
@@ -121,7 +121,7 @@ SpinningPlatformConveyor_Platform_SBZ103: conveyorplatformheader
 		conveyorplatformobjdata $29, -$1D, $23
 		conveyorplatformobjdata -$1D, 6, $23
 		conveyorplatformobjdata -$64, $29, $23
-		conveyorplatformend
+		conveyorplatformend							; end marker
 
 SpinningPlatformConveyor_Platform_SBZ104: conveyorplatformheader
 
@@ -134,7 +134,7 @@ SpinningPlatformConveyor_Platform_SBZ104: conveyorplatformheader
 		conveyorplatformobjdata $29, $63, $33
 		conveyorplatformobjdata -$1D, $86, $33
 		conveyorplatformobjdata -$64, $A9, $33
-		conveyorplatformend
+		conveyorplatformend							; end marker
 
 SpinningPlatformConveyor_Platform_SBZ105: conveyorplatformheader
 
@@ -147,7 +147,7 @@ SpinningPlatformConveyor_Platform_SBZ105: conveyorplatformheader
 		conveyorplatformobjdata $29, $63, $43
 		conveyorplatformobjdata -$1D, $86, $43
 		conveyorplatformobjdata -$64, $A9, $43
-		conveyorplatformend
+		conveyorplatformend							; end marker
 
 SpinningPlatformConveyor_Platform_SBZ106: conveyorplatformheader
 
@@ -160,4 +160,4 @@ SpinningPlatformConveyor_Platform_SBZ106: conveyorplatformheader
 		conveyorplatformobjdata $29, $53, $53
 		conveyorplatformobjdata -$1D, $76, $53
 		conveyorplatformobjdata -$64, $99, $53
-		conveyorplatformend
+		conveyorplatformend							; end marker

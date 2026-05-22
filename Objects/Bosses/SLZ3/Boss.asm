@@ -619,7 +619,10 @@ BossSpikeBall_SpikeBall_LaunchCharacter:
 		cmpi.b	#PlayerID_Tails,character_id(a0)				; is player Tails?
 		bne.s	.proll								; if not, branch
 
-.troll		:= Tails_ChkRoll-SonicKnux_ChkRoll					; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; so we will use :=/set
+
+.troll		:= Tails_ChkRoll-SonicKnux_ChkRoll
 
 		lea	(.troll)(a3),a3							; Tails
 
@@ -726,7 +729,7 @@ PLC_BossSpikeBall: plrlistheader
 		plreq $440, ArtKosPlusM_BossSpikeBallTube
 		plreq $4C1, ArtKosPlusM_Bomb
 		plreq $500, ArtKosPlusM_BossExplosion
-		plrlistend
+		plrlistend								; end marker
 ; ---------------------------------------------------------------------------
 
 		; mappings

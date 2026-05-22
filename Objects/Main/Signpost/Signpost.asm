@@ -249,12 +249,15 @@ Obj_Signpost:
 
 .offscreen
 
-		; load second main plc
-		lea	(PLC2_Sonic).l,a5
+		; load main secondary art
+		lea	(PLC_Main_Secondary).l,a5
 		cmpi.w	#PlayerModeID_Knuckles,(Player_mode).w
 		blo.s	.notKnux2
 
-.kplc2		:= PLC2_Knuckles-PLC2_Sonic						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; so we will use :=/set
+
+.kplc2		:= PLC_Main_Knux_Secondary-PLC_Main_Secondary
 
 		lea	(.kplc2)(a5),a5
 

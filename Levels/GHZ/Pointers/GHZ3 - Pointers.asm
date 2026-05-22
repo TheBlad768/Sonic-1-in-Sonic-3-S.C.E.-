@@ -61,9 +61,9 @@
 		dc.l HeightMapsRot							; Height maps rotated
 
 		; PLC
-		dc.l PLC1_GHZ3_Before							; PLC1
-		dc.l PLC2_GHZ3_After							; PLC2
-		dc.l PLCAnimals_GHZ1							; PLC animals
+		dc.l PLC_GHZ3_Primary							; PLC1
+		dc.l PLC_GHZ3_Secondary							; PLC2
+		dc.l PLC_Animals_GHZ1							; PLC animals
 
 		; Level size
 		dc.w $100								; Level xstart

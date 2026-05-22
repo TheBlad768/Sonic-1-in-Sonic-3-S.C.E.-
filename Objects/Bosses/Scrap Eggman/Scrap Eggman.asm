@@ -287,7 +287,7 @@ AniRaw_ScrapEggman_Laugh:
 
 PLC_SE_ControlDesk: plrlistheader
 		plreq $340, ArtKosPlusM_SE_ControlDesk
-		plrlistend
+		plrlistend								; end marker
 ; ---------------------------------------------------------------------------
 
 		; mappings

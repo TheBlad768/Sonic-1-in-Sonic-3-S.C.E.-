@@ -817,8 +817,8 @@ LevelSelect_MainText:
 		; scroll data
 
 LSScroll_Data: HScroll_Header
-		HScroll_Data 8, 8, -$100, FG	; start pos, size, velocity, plane
-		HScroll_End
+		HScroll_Data 8, 8, -$100, FG						; start pos, size, velocity, plane
+		HScroll_End								; end marker
 
 ; ---------------------------------------------------------------------------
 ; Debug Mode and Chaos emeralds code

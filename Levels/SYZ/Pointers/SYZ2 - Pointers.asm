@@ -61,9 +61,9 @@
 		dc.l HeightMapsRot							; Height maps rotated
 
 		; PLC
-		dc.l PLC1_SYZ2_Before							; PLC1
-		dc.l PLC2_SYZ2_After							; PLC2
-		dc.l PLCAnimals_SYZ1							; PLC animals
+		dc.l PLC_SYZ2_Primary							; PLC1
+		dc.l PLC_SYZ2_Secondary							; PLC2
+		dc.l PLC_Animals_SYZ1							; PLC animals
 
 		; Level size
 		dc.w 0									; Level xstart

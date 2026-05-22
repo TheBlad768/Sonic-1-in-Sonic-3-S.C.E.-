@@ -708,4 +708,4 @@ PLC_LevelSelectRSDK: plrlistheader
 		plreq 1, ArtKosPlusM_OptionsText
 		plreq $30, ArtKosPlusM_LevelSelectRSDKIcons
 		plreq $60, ArtKosPlusM_LevelSelectRSDKBG
-		plrlistend
+		plrlistend								; end marker

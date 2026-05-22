@@ -960,13 +960,13 @@ AniRaw_5CBC5:	dc.b $B, $BD, $BE, arfIndex, arfEnd
 
 Credits_TextCONTINUE:
 		creditstr $F292, "C O N T I N U E"
-		creditstr_end
+		creditstr_end								; end marker
 
 PLC_Continue: plrlistheader
 		plreq 1, ArtKosPlusM_ContinueDigits
 		plreq $8C, ArtKosPlusM_ContinueSprites
 		plreq $D9, ArtKosPlusM_ContinueIcons
-		plrlistend
+		plrlistend								; end marker
 ; ---------------------------------------------------------------------------
 
 		; mappings

@@ -923,7 +923,7 @@ PLC_Credits: plrlistheader
 		plreq $182, ArtKosPlusM_CreditsRobotnik
 		plreq $232, ArtKosPlusM_CreditsEggRobo
 		plreq $2D3, ArtKosPlusM_EndingEmeralds
-		plrlistend
+		plrlistend								; end marker
 ; ---------------------------------------------------------------------------
 
 		; mappings

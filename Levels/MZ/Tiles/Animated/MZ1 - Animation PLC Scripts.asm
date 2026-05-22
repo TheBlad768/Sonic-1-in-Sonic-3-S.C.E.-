@@ -21,19 +21,19 @@
 
 AniPLC_MZ: zoneanimstart
 
-	; lava1
-	zoneanimplcdecl $13, ArtUnc_MZLava1, $2E2, 3, 8
-	dc.b 0
-	dc.b 8
-	dc.b 16
-	even
+		; lava1
+		zoneanimplcdecl $13, ArtUnc_MZLava1, $2E2, 3, 8
+		dc.b 0
+		dc.b 8
+		dc.b 16
+		even
 
-	; torch
-	zoneanimplcdecl $F, ArtUnc_MZTorch, $2F2, 4, 6
-	dc.b 0
-	dc.b 6
-	dc.b 12
-	dc.b 18
-	even
+		; torch
+		zoneanimplcdecl $F, ArtUnc_MZTorch, $2F2, 4, 6
+		dc.b 0
+		dc.b 6
+		dc.b 12
+		dc.b 18
+		even
 
-	zoneanimend
+		zoneanimend								; end marker

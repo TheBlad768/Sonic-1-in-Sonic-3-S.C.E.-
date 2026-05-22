@@ -22,7 +22,7 @@ LabyrinthPlatformConveyor_Group00: conveyorheader
 		conveyorobjdata $1C, $145
 		conveyorobjdata -$4E, $110
 		conveyorobjdata -$4E, -$3C
-		conveyorend
+		conveyorend								; end marker
 
 LabyrinthPlatformConveyor_Group01: conveyorheader
 
@@ -32,7 +32,7 @@ LabyrinthPlatformConveyor_Group01: conveyorheader
 		conveyorobjdata $4E, $16E
 		conveyorobjdata -$4E, $120
 		conveyorobjdata -$4E, -$34
-		conveyorend
+		conveyorend								; end marker
 
 LabyrinthPlatformConveyor_Group02: conveyorheader
 
@@ -41,7 +41,7 @@ LabyrinthPlatformConveyor_Group02: conveyorheader
 		conveyorobjdata -$46, $15E
 		conveyorobjdata $46, $15E
 		conveyorobjdata $46, 2
-		conveyorend
+		conveyorend								; end marker
 
 LabyrinthPlatformConveyor_Group03: conveyorheader
 
@@ -50,7 +50,7 @@ LabyrinthPlatformConveyor_Group03: conveyorheader
 		conveyorobjdata $4E, $22
 		conveyorobjdata $4E, $15E
 		conveyorobjdata -$3E, $15E
-		conveyorend
+		conveyorend								; end marker
 
 LabyrinthPlatformConveyor_Group04: conveyorheader
 
@@ -60,7 +60,7 @@ LabyrinthPlatformConveyor_Group04: conveyorheader
 		conveyorobjdata $C6, $15E
 		conveyorobjdata -$C6, $15E
 		conveyorobjdata -$C6, $1C
-		conveyorend
+		conveyorend								; end marker
 
 LabyrinthPlatformConveyor_Group05: conveyorheader
 
@@ -69,7 +69,7 @@ LabyrinthPlatformConveyor_Group05: conveyorheader
 		conveyorobjdata $C6, -$76
 		conveyorobjdata $C6, $3E
 		conveyorobjdata -$C6, $3E
-		conveyorend
+		conveyorend								; end marker
 
 ; ---------------------------------------------------------------------------
 ; Labyrinth Zone - Platform positions
@@ -99,7 +99,7 @@ LabyrinthPlatformConveyor_Platform_LZ101: conveyorplatformheader
 		conveyorplatformobjdata -$4E, $D2, 5
 		conveyorplatformobjdata -$4E, $5B, 5
 		conveyorplatformobjdata -$4E, -$1B, 5
-		conveyorplatformend
+		conveyorplatformend							; end marker
 
 LabyrinthPlatformConveyor_Platform_LZ102: conveyorplatformheader
 
@@ -112,7 +112,7 @@ LabyrinthPlatformConveyor_Platform_LZ102: conveyorplatformheader
 		conveyorplatformobjdata -$4E, $10F, $14
 		conveyorplatformobjdata -$4E, $8A, $14
 		conveyorplatformobjdata -$4E, 5, $14
-		conveyorplatformend
+		conveyorplatformend							; end marker
 
 LabyrinthPlatformConveyor_Platform_LZ201: conveyorplatformheader
 
@@ -125,7 +125,7 @@ LabyrinthPlatformConveyor_Platform_LZ201: conveyorplatformheader
 		conveyorplatformobjdata -$34, $15E, $22
 		conveyorplatformobjdata -$46, $F6, $21
 		conveyorplatformobjdata -$46, $7C, $21
-		conveyorplatformend
+		conveyorplatformend							; end marker
 
 LabyrinthPlatformConveyor_Platform_LZ202: conveyorplatformheader
 
@@ -138,7 +138,7 @@ LabyrinthPlatformConveyor_Platform_LZ202: conveyorplatformheader
 		conveyorplatformobjdata -$24, $15E, $33
 		conveyorplatformobjdata -$3E, $106, $30
 		conveyorplatformobjdata -$3E, $94, $30
-		conveyorplatformend
+		conveyorplatformend							; end marker
 
 LabyrinthPlatformConveyor_Platform_LZ301: conveyorplatformheader
 
@@ -155,7 +155,7 @@ LabyrinthPlatformConveyor_Platform_LZ301: conveyorplatformheader
 		conveyorplatformobjdata -$C6, $13F, $44
 		conveyorplatformobjdata -$C6, $C0, $44
 		conveyorplatformobjdata -$C6, $41, $44
-		conveyorplatformend
+		conveyorplatformend							; end marker
 
 LabyrinthPlatformConveyor_Platform_LZ302: conveyorplatformheader
 
@@ -169,4 +169,4 @@ LabyrinthPlatformConveyor_Platform_LZ302: conveyorplatformheader
 		conveyorplatformobjdata 6, $3E, $53
 		conveyorplatformobjdata -$7A, $3E, $53
 		conveyorplatformobjdata -$C6, $A, $50
-		conveyorplatformend
+		conveyorplatformend							; end marker

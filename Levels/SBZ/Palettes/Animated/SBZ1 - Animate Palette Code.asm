@@ -56,7 +56,10 @@ loc_1B06:
 		tst.b	(Current_act).w							; is act number 1?
 		beq.s	loc_1B2E							; if yes, branch
 
-.palSBZ		:= Pal_SBZCyc10-Pal_SBZCyc4						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; so we will use :=/set
+
+.palSBZ		:= Pal_SBZCyc10-Pal_SBZCyc4
 
 		lea	(.palSBZ)(a1),a1
 		clr.w	(a0)
@@ -108,7 +111,7 @@ Pal_SBZCycList1: mSBZh
 	mSBZp 3, 3, Pal_SBZCyc8, Normal_palette_line_4+$18
 	mSBZp 3, 3, Pal_SBZCyc8+2, Normal_palette_line_4+$1A
 	mSBZp 3, 3, Pal_SBZCyc8+4, Normal_palette_line_4+$1C
-	mSBZe
+	mSBZe										; end marker
 
 Pal_SBZCycList2: mSBZh
 	mSBZp 7, 8, Pal_SBZCyc1, Normal_palette_line_3+$10
@@ -118,4 +121,4 @@ Pal_SBZCycList2: mSBZh
 	mSBZp 3, 3, Pal_SBZCyc8, Normal_palette_line_4+$18
 	mSBZp 3, 3, Pal_SBZCyc8+2, Normal_palette_line_4+$1A
 	mSBZp 3, 3, Pal_SBZCyc8+4, Normal_palette_line_4+$1C
-	mSBZe
+	mSBZe										; end marker

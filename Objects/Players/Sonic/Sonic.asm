@@ -2865,7 +2865,10 @@ Sonic_Animate:
 		tst.b	(Super_Sonic_Knux_flag).w
 		beq.s	.nots
 
-.ssani		:= AniSuperSonic-AniSonic						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; So we will use :=/set
+
+.ssani		:= AniSuperSonic-AniSonic
 
 		lea	(.ssani)(a1),a1
 
@@ -3000,7 +3003,10 @@ loc_1270A:
 		cmpi.w	#$600,d2
 		bhs.s	loc_12724
 
-.sani		:= SonAni_Walk-SonAni_Run						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; so we will use :=/set
+
+.sani		:= SonAni_Walk-SonAni_Run
 
 		lea	(.sani)(a1),a1							; use walking animation
 		add.b	d0,d0
@@ -3043,7 +3049,10 @@ loc_12766:
 		cmpi.w	#$800,d2
 		bhs.s	loc_1277E
 
-.sani		:= SuperSonAni_Walk-SuperSonAni_Run					; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; so we will use :=/set
+
+.sani		:= SuperSonAni_Walk-SuperSonAni_Run
 
 		lea	(.sani)(a1),a1
 		add.b	d0,d0
@@ -3409,7 +3418,10 @@ loc_12A2A:
 		cmpi.w	#$600,d2
 		bhs.s	loc_12A5E
 
-.sani		:= SonAni_Roll-SonAni_Roll2						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; so we will use :=/set
+
+.sani		:= SonAni_Roll-SonAni_Roll2
 
 		lea	(.sani)(a1),a1							; use roll animation
 
@@ -3447,7 +3459,10 @@ loc_12A8A:
 		tst.b	(Super_Sonic_Knux_flag).w
 		beq.s	loc_12AA2
 
-.sani		:= SuperSonAni_Push-SonAni_Push						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; so we will use :=/set
+
+.sani		:= SuperSonAni_Push-SonAni_Push
 
 		lea	(.sani)(a1),a1
 
@@ -3471,7 +3486,10 @@ Sonic_Load_PLC2:
 		tst.b	(Super_Sonic_Knux_flag).w
 		beq.s	.nots
 
-.sdplc		:= DPLC_SuperSonic-DPLC_Sonic						; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times. So we will use :=/set
+		; Macro AS hack: if you use subtraction directly in lea it will slow down the assembly several times
+		; so we will use :=/set
+
+.sdplc		:= DPLC_SuperSonic-DPLC_Sonic
 
 		lea	(.sdplc)(a2),a2
 
