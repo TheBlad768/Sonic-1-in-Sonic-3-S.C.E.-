@@ -162,7 +162,7 @@ Obj_ScrapEggman_Block:
 		bset	#status.player.in_air,status(a1)
 		bne.s	.notp1								; if the player is already in the air, branch
 
-	if ~~PlayerFallAnim
+	if PlayerFallAnim
 		move.b	#AniIDSonAni_Hurt,anim(a1)
 	endif
 
@@ -180,7 +180,7 @@ Obj_ScrapEggman_Block:
 		bset	#status.player.in_air,status(a1)
 		bne.s	.notrelease							; if the player is already in the air, branch
 
-	if ~~PlayerFallAnim
+	if PlayerFallAnim
 		move.b	#AniIDSonAni_Hurt,anim(a1)
 	endif
 

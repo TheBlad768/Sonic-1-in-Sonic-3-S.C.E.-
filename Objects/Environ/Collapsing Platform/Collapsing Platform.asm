@@ -78,7 +78,7 @@ CollapsingPlatform_PlayerRelease:
 		bclr	#status.player.pushing,status(a1)
 		bset	#status.player.in_air,status(a1)
 
-	if ~~PlayerFallAnim
+	if PlayerFallAnim
 		bne.s	.return								; if the player is already in the air, branch
 
 		; set anim

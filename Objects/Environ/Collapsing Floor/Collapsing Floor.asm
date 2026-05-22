@@ -100,7 +100,7 @@ CollapseFloor_PlayerRelease:
 		bclr	#status.player.pushing,status(a1)
 		bset	#status.player.in_air,status(a1)
 
-	if ~~PlayerFallAnim
+	if PlayerFallAnim
 		; set anim
 		tst.b	spin_dash_flag(a1)
 		bne.s	.return
