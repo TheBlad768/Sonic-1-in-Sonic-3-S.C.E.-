@@ -69,15 +69,15 @@ SBZ2_Transition:
 
 SBZ2_Deform:
 
-.wrap =	$800										; wrap size
-
 		; yscroll
 		lea	(Events_bg).w,a1
 		move.w	(Camera_Y_pos_copy).w,d0
-		move.w	#.wrap/2,d2							; wrap half size
-		move.w	#.wrap,d3							; wrap size
+		move.w	(Screen_Y_wrap_value).w,d3
+		addq.w	#1,d3								; wrap size
+		move.w	d3,d2
+		lsr.w	d2								; wrap half size
 		jsr	(Adjust_BGDuringLoop).w
-		move.w	(Events_bg+2).w,d0						; 100% to d0 ($1000)
+		move.w	-(a1),d0							; 100% to d0 ($1000) ; Events_bg+2
 		move.w	(Screen_shaking_offset).w,d1					; shake data to d1
 		sub.w	d1,d0
 		asr.w	#3,d0								; get 12.5% ($200)
