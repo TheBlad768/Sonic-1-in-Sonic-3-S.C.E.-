@@ -17,7 +17,8 @@ runningdisc.origX			ds.w 1						; original x-axis position (2 bytes)
 runningdisc.origY			ds.w 1						; original y-axis position (2 bytes)
 runningdisc.distance			ds.w 1						; distance (2 bytes)
 runningdisc.speed			ds.w 1						; speed (2 bytes)
-runningdisc.radius			ds.b 1						; radius of circle (1 byte)
+runningdisc.radius			ds.w 1						; radius of circle, square radius (2 bytes)
+runningdisc.radius_circle		ds.l 1						; radius of circle, circle radius  (4 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -27,13 +28,13 @@ Obj_RunningDisc:
 
 		; set circular
 		move.b	#24,runningdisc.distance(a0)					; set radius circular
-		move.b	#144/2,runningdisc.radius(a0)
+		moveq	#144/2,d2							; radius of circle
 		move.b	subtype.byte(a0),d0						; get object type
 		move.b	d0,d1								; save object type
 		andi.b	#$F,d0								; read only the 2nd digit
 		beq.s	.typeis0							; branch if 0
 		move.b	#16,runningdisc.distance(a0)					; set radius circular
-		move.b	#112/2,runningdisc.radius(a0)
+		moveq	#112/2,d2							; radius of circle
 
 .typeis0
 		andi.b	#$F0,d1								; read only the 1st digit
@@ -44,6 +45,12 @@ Obj_RunningDisc:
 		ror.b	#2,d0
 		andi.b	#$C0,d0
 		move.b	d0,angle(a0)
+
+		; set radius of circle, circle radius
+		move.b	d2,runningdisc.radius(a0)
+		subq.w	#1,d2
+		mulu.w	d2,d2
+		move.l	d2,runningdisc.radius_circle(a0)
 
 		; init
 		movem.l	ObjDat_RunningDisc(pc),d0-d3					; copy data to d0-d3
@@ -97,10 +104,11 @@ Obj_RunningDisc:
 ; =============== S U B R O U T I N E =======================================
 
 Disc_MovePlayer:
-		moveq	#0,d2
-		move.b	runningdisc.radius(a0),d2
+		move.w	runningdisc.radius(a0),d2
 		move.w	d2,d3
 		add.w	d3,d3								; multiply by 2
+
+		; check square radius
 		move.w	x_pos(a1),d0
 		sub.w	runningdisc.origX(a0),d0
 		add.w	d2,d0
@@ -111,11 +119,17 @@ Disc_MovePlayer:
 		add.w	d2,d1
 		cmp.w	d3,d1
 		bhs.s	.loc_3291A
+
+		; check circle radius
+		sub.w	d2,d0								; fix by Flamewing
+		sub.w	d2,d1
+		muls.w	d0,d0
+		muls.w	d1,d1
+		add.l	d0,d1
+		cmp.l	runningdisc.radius_circle(a0),d1
+		bhs.s	.loc_3291A
 		btst	#status.player.in_air,status(a1)				; is the player in the air?
 		beq.s	.loc_32926							; if not, branch
-		clr.b	runningdisc_p1_attached.touch-runningdisc_p1_attached(a2)
-		rts
-; ---------------------------------------------------------------------------
 
 .loc_3291A
 		tst.b	runningdisc_p1_attached.touch-runningdisc_p1_attached(a2)
