@@ -8,19 +8,19 @@ LevelLoadPointer:
 		include "Levels/GHZ/Pointers/GHZ1 - Pointers.asm"
 		include "Levels/GHZ/Pointers/GHZ2 - Pointers.asm"
 		include "Levels/GHZ/Pointers/GHZ3 - Pointers.asm"
-		include "Levels/GHZ/Pointers/GHZ1 - Pointers.asm"	; unused
+		include "Levels/GHZ/Pointers/GHZ1 - Pointers.asm"			; unused
 
 		; MZ
 		include "Levels/MZ/Pointers/MZ1 - Pointers.asm"
 		include "Levels/MZ/Pointers/MZ2 - Pointers.asm"
 		include "Levels/MZ/Pointers/MZ3 - Pointers.asm"
-		include "Levels/MZ/Pointers/MZ1 - Pointers.asm"		; unused
+		include "Levels/MZ/Pointers/MZ1 - Pointers.asm"				; unused
 
 		; SYZ
 		include "Levels/SYZ/Pointers/SYZ1 - Pointers.asm"
 		include "Levels/SYZ/Pointers/SYZ2 - Pointers.asm"
 		include "Levels/SYZ/Pointers/SYZ3 - Pointers.asm"
-		include "Levels/SYZ/Pointers/SYZ1 - Pointers.asm"	; unused
+		include "Levels/SYZ/Pointers/SYZ1 - Pointers.asm"			; unused
 
 		; LZ
 		include "Levels/LZ/Pointers/LZ1 - Pointers.asm"
@@ -32,13 +32,13 @@ LevelLoadPointer:
 		include "Levels/SLZ/Pointers/SLZ1 - Pointers.asm"
 		include "Levels/SLZ/Pointers/SLZ2 - Pointers.asm"
 		include "Levels/SLZ/Pointers/SLZ3 - Pointers.asm"
-		include "Levels/SLZ/Pointers/SLZ1 - Pointers.asm"	; unused
+		include "Levels/SLZ/Pointers/SLZ1 - Pointers.asm"			; unused
 
 		; SBZ
 		include "Levels/SBZ/Pointers/SBZ1 - Pointers.asm"
 		include "Levels/SBZ/Pointers/SBZ2 - Pointers.asm"
 		include "Levels/SBZ/Pointers/Final - Pointers.asm"
-		include "Levels/SBZ/Pointers/SBZ1 - Pointers.asm"	; unused
+		include "Levels/SBZ/Pointers/SBZ1 - Pointers.asm"			; unused
 
 		zonewarning LevelLoadPointer,((Level_data_addr_RAM_end-Level_data_addr_RAM)*4)
 
