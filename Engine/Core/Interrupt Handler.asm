@@ -348,14 +348,16 @@ VInt_Level:
 		tst.b	(Negative_flash_timer).w					; is negative flash timer over?
 		beq.w	.no_negative_flash						; if yes, branch
 		tst.b	(Game_paused).w							; is the game paused?
-		bne.s	.draw_negative_flash						; if yes, branch
+		bne.s	.check_negative_flash						; if yes, branch
 
 		; flash screen negative
 		subq.b	#1,(Negative_flash_timer).w
+
+.check_negative_flash
 		btst	#2,(Negative_flash_timer).w					; 0 or 4
 		beq.w	.no_negative_flash
 
-.draw_negative_flash
+		; draw negative flash
 		move.l	#vdpComm(0,CRAM,WRITE),VDP_control_port-VDP_control_port(a5)
 		move.l	#words_to_long($EEE,$EEE),d2
 		lea	(Normal_palette).w,a1
