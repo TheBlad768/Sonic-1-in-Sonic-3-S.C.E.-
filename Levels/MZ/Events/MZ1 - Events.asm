@@ -7,8 +7,8 @@
 MZ1_ForegroundInit:
 
 		; update FG
-		jsr	(Reset_TileOffsetPositionActual).w
-		jmp	(Refresh_PlaneFull).w
+		jsr	(Reset_FGTileOffsetPositionHScroll).w
+		jmp	(Refresh_PlaneFullHScroll).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -16,7 +16,7 @@ MZ1_BackgroundInit:
 		bsr.w	MZ1_Deform
 
 		; update BG
-		jsr	(Reset_TileOffsetPositionEff).w
+		jsr	(Reset_BGTileOffsetPositionHScroll).w
 		lea	MZ1_BGDrawArray(pc),a4
 		lea	(H_scroll_table+$100).w,a5
 		clr.l	(a5)								; sky, clouds (draw the starting position)
@@ -33,7 +33,7 @@ MZ1_BackgroundInit:
 		move.w	d4,$C(a5)							; wall
 		and.w	d3,d4								; align
 		move.w	d4,$E(a5)							; wall (copy for Draw_TileColumn)
-		jsr	(Refresh_PlaneTileDeform).w
+		jsr	(Refresh_PlaneTileDeformHScroll).w
 
 		; deform
 		lea	MZ1_BGDeformArray(pc),a4
@@ -56,7 +56,7 @@ MZ1_BackgroundEvent:
 		move.w	-$E6(a5),$C(a5)							; update wall
 		moveq	#gameplay_plane_width/block_width,d6
 		moveq	#(MZ1_BGDrawArray_end-MZ1_BGDrawArray)/2,d5
-		jsr	(Draw_BG).w
+		jsr	(Draw_BGHDeform).w
 
 		; deform
 		lea	MZ1_BGDeformArray(pc),a4

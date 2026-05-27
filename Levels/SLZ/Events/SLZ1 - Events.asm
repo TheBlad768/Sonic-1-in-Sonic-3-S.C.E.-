@@ -7,8 +7,8 @@
 SLZ1_ForegroundInit:
 
 		; update FG
-		jsr	(Reset_TileOffsetPositionActual).w
-		jmp	(Refresh_PlaneFull).w
+		jsr	(Reset_FGTileOffsetPositionHScroll).w
+		jmp	(Refresh_PlaneFullHScroll).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -16,9 +16,9 @@ SLZ1_BackgroundInit:
 		bsr.s	SLZ1_Deform
 
 		; update BG
-		jsr	(Reset_TileOffsetPositionEff).w
+		jsr	(Reset_BGTileOffsetPositionHScroll).w
 		moveq	#0,d1								; Camera_X_pos_BG_copy
-		jsr	(Refresh_PlaneFull).w
+		jsr	(Refresh_PlaneFullHScroll).w
 
 		; deform
 		lea	SLZ1_BGDeformArray(pc),a4

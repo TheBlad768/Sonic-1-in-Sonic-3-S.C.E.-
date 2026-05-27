@@ -8,7 +8,7 @@ Title_BackgroundInit:
 		bsr.w	Title_Deform
 
 		; update BG
-		jsr	(Reset_TileOffsetPositionEff).w
+		jsr	(Reset_BGTileOffsetPositionHScroll).w
 		lea	GHZ1_BGDrawArray(pc),a4
 		lea	(H_scroll_table+$100).w,a5
 		clr.l	(a5)								; update clouds (draw the starting position)
@@ -22,7 +22,7 @@ Title_BackgroundInit:
 		and.w	d3,d4								; align
 		move.w	d4,$A(a5)							; update mountains 2 (copy for Draw_TileColumn)
 		clr.l	$C(a5)								; update water (draw the starting position)
-		jsr	(Refresh_PlaneTileDeform).w
+		jsr	(Refresh_PlaneTileDeformHScroll).w
 
 		; deform
 		lea	GHZ1_BGDeformArray(pc),a4
@@ -45,7 +45,7 @@ Title_BackgroundEvent:
 		clr.w	$C(a6)								; water (not update)
 		moveq	#0,d6								; Camera_Y_pos_rounded
 		moveq	#(GHZ1_BGDrawArray_end-GHZ1_BGDrawArray)/2,d5
-		jsr	(Draw_BGNoVert).w
+		jsr	(Draw_BGHDeformNoVert).w
 
 		; deform
 		lea	GHZ1_BGDeformArray(pc),a4

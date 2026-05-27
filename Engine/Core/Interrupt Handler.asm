@@ -38,9 +38,9 @@ VInt:
 		st	(H_int_flag).w							; allow H Interrupt code to run
 
 		; check
-		move.l	(V_int_ptr).w,d0						; load VInt pointer to d0
+		move.l	(V_int_ptr).w,d0						; get VInt pointer to d0
 		beq.s	VInt_Music							; if zero, branch
-		movea.l	d0,a0
+		movea.l	d0,a0								; load VInt pointer to a0
 		jsr	(a0)								; jump to current VInt pointer
 
 VInt_Music:
