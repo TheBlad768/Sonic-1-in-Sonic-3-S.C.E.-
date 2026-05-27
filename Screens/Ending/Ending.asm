@@ -257,7 +257,7 @@ EndingScreen:
 		movea.l	(Level_data_addr_RAM.16x16RAM).w,a2
 		movea.l	(Level_layout_addr2_ROM).w,a3
 		move.w	#VRAM_Plane_A_Name_Table,d7					; PNT A base: $C000
-		jsr	(Refresh_PlaneScreenDirect).w
+		jsr	(Refresh_FGPlaneScreenDirectHScroll).w
 
 		; back to loop
 		jsr	(Pal_FadeFromWhite).w

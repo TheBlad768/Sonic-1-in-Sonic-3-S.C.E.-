@@ -7,8 +7,8 @@
 SYZ1_ForegroundInit:
 
 		; update FG
-		jsr	(Reset_TileOffsetPositionActual).w
-		jmp	(Refresh_PlaneFull).w
+		jsr	(Reset_FGTileOffsetPositionHScroll).w
+		jmp	(Refresh_PlaneFullHScroll).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -19,7 +19,7 @@ SYZ3_ForegroundEvent:
 		; redraw boss block
 		move.w	(Camera_X_pos_copy).w,d1
 		move.w	(Camera_Y_pos_copy).w,d2
-		jsr	(Draw_PlaneVertSingleBottomUp).w
+		jsr	(Draw_PlaneVertBottomUp).w					; refresh main plane
 		bpl.s	.draw
 		clr.b	(Screen_event_flag).w						; clear redraw flag
 
@@ -34,9 +34,9 @@ SYZ1_BackgroundInit:
 		bsr.s	SYZ1_Deform
 
 		; update BG
-		jsr	(Reset_TileOffsetPositionEff).w
+		jsr	(Reset_BGTileOffsetPositionHScroll).w
 		moveq	#0,d1								; Camera_X_pos_BG_copy
-		jsr	(Refresh_PlaneFull).w
+		jsr	(Refresh_PlaneFullHScroll).w
 
 		; deform
 		lea	SYZ1_BGDeformArray(pc),a4

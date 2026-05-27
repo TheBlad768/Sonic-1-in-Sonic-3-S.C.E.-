@@ -14,7 +14,7 @@ Obj_HiddenBonus:
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
 		bne.s	.chkdel								; if yes, branch
 
-		; check xypos
+		; check xy positions
 		lea	(Player_1).w,a1							; a1=character
 		lea	.range(pc),a2
 		jsr	(Check_InMyRange).w

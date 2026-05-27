@@ -225,7 +225,7 @@ PlatformConveyor_Platforms_LabyrinthMove:
 
 PlatformConveyor_Platforms_Move:
 
-		; check xypos
+		; check xy positions
 		move.w	x_pos(a0),d0
 		sub.w	platformconveyor.saveX(a0),d0
 		move.w	y_pos(a0),d1

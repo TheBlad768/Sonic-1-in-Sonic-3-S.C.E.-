@@ -17,8 +17,8 @@ SBZ2_ForegroundInit:
 		move.w	#$3C,(Layout_row_index_mask).w					; set layout y size: $7FF
 
 		; update FG
-		jsr	(Reset_TileOffsetPositionActual).w
-		jmp	(Refresh_PlaneFull).w
+		jsr	(Reset_FGTileOffsetPositionHScroll).w
+		jmp	(Refresh_PlaneFullHScroll).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -40,8 +40,8 @@ SBZ2_BackgroundInit:
 		bsr.s	SBZ2_Deform
 
 		; update BG
-		jsr	(Reset_TileOffsetPositionEff).w
-		jsr	(Refresh_PlaneFull).w
+		jsr	(Reset_BGTileOffsetPositionHScroll).w
+		jsr	(Refresh_PlaneFullHScroll).w
 
 		; deform
 		jmp	(PlainDeformation).w

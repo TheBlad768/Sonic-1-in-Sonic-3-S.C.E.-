@@ -7,8 +7,8 @@
 SBZ1_ForegroundInit:
 
 		; update FG
-		jsr	(Reset_TileOffsetPositionActual).w
-		jmp	(Refresh_PlaneFull).w
+		jsr	(Reset_FGTileOffsetPositionHScroll).w
+		jmp	(Refresh_PlaneFullHScroll).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -16,7 +16,7 @@ SBZ1_BackgroundInit:
 		bsr.w	SBZ1_Deform
 
 		; update BG
-		jsr	(Reset_TileOffsetPositionEff).w
+		jsr	(Reset_BGTileOffsetPositionHScroll).w
 		lea	SBZ1_BGDrawArray(pc),a4
 		lea	(H_scroll_table+$100).w,a5
 		clr.l	(a5)								; update clouds (draw the starting position)
@@ -33,7 +33,7 @@ SBZ1_BackgroundInit:
 		move.w	d4,$C(a5)							; update lower black buildings
 		and.w	d3,d4								; align
 		move.w	d4,$E(a5)							; update lower black buildings (copy for Draw_TileColumn)
-		jsr	(Refresh_PlaneTileDeform).w
+		jsr	(Refresh_PlaneTileDeformHScroll).w
 
 		; deform
 		lea	SBZ1_BGDeformArray(pc),a4
@@ -56,7 +56,7 @@ SBZ1_BackgroundEvent:
 		move.w	-$F4(a5),$C(a5)							; update lower black buildings
 		moveq	#gameplay_plane_width/block_width,d6
 		moveq	#(SBZ1_BGDrawArray_end-SBZ1_BGDrawArray)/2,d5
-		jsr	(Draw_BG).w
+		jsr	(Draw_BGHDeform).w
 
 		; deform
 		lea	SBZ1_BGDeformArray(pc),a4
