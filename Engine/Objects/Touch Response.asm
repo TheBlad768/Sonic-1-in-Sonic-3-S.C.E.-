@@ -36,9 +36,6 @@ TouchResponse:
 		moveq	#96/2,d5							; player's height
 		bsr.s	.Touch_Process
 		bclr	#status_secondary.invincible,status_secondary(a0)		; make the player vulnerable again
-
-.alreadyinvincible
-		moveq	#0,d0
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -74,7 +71,6 @@ Touch_Loop:
 Touch_NextObj:
 		subq.w	#2,d6								; count the object as done
 		bne.s	Touch_Loop							; if there are still objects left, loop
-		moveq	#0,d0
 
 Touch_Return:
 		rts
@@ -421,7 +417,6 @@ Touch_Harmful2:
 		beq.s	Touch_Hurt							; if not, branch
 
 Touch_Harmful_Return:
-		moveq	#-1,d0
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -454,7 +449,7 @@ Touch_Harmful_Bounce_Projectile:
 		asr.l	#8,d0
 		move.w	d0,y_vel(a1)
 		clr.b	collision_type(a1)						; remove collision
-		bra.s	Touch_Harmful_Return
+		rts
 ; ---------------------------------------------------------------------------
 
 Touch_Hurt:
@@ -540,9 +535,7 @@ HurtCharacter:
 		moveq	#signextendB(sfx_Death),d0					; load normal damage sound
 
 .sound
-		jsr	(Play_SFX).w
-		moveq	#-1,d0
-		rts
+		jmp	(Play_SFX).w
 ; ---------------------------------------------------------------------------
 
 .norings
@@ -606,7 +599,7 @@ Kill_Character:
 		beq.s	.notp1								; if not, branch
 
 .speed
-		pea	(a4)
+		pea	(a4)								; save a4
 		lea	(Max_speed).w,a4
 		cmpi.b	#PlayerID_Tails,character_id(a0)				; is player Tails?
 		bne.s	.revert								; if not, branch
@@ -614,14 +607,14 @@ Kill_Character:
 
 .revert
 		bsr.w	SonicKnux_SuperHyper.revertToNormal
-		movea.l	(sp)+,a4
+		movea.l	(sp)+,a4							; restore a4
 
 .notp1
 		bset	#high_priority_bit,art_tile(a0)					; high priority
-		jsr	(Play_SFX).w
+		jmp	(Play_SFX).w
+; ---------------------------------------------------------------------------
 
 .dontdie
-		moveq	#-1,d0
 		rts
 
 ; ---------------------------------------------------------------------------
@@ -800,7 +793,6 @@ HyperTouch_Loop:
 HyperTouch_NextObj:
 		subq.w	#2,d6								; count the object as done
 		bne.s	HyperTouch_Loop							; if there are still objects left, loop
-		moveq	#0,d0
 
 HyperTouch_Exit:
 		movem.l	(sp)+,a2-a4
