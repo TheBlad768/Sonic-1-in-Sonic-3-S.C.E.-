@@ -70,7 +70,7 @@ word_2FD60:	spriteHeader
 word_2FD60_End
 
 word_2FD7A:	spriteHeader
-	spritePiece	-8, -$C, 2, 3, $498, 0, 0, 0, 0
+	spritePiece	-8, -$C, 2, 3, $498, 0, 0, 0, 0		; air countdown (1P)
 word_2FD7A_End
 
 word_2FD82:	spriteHeader
@@ -89,7 +89,7 @@ word_2FD9A:	spriteHeader
 word_2FD9A_End
 
 word_2FD9C:	spriteHeader
-	spritePiece	-8, -$C, 2, 3, $4A8, 0, 0, 0, 0
+	spritePiece	-8, -$C, 2, 3, $4A8, 0, 0, 0, 0		; air countdown (2P)
 word_2FD9C_End
 
 	even
