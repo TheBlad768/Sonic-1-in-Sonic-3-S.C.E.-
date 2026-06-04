@@ -197,7 +197,7 @@ ObjDat_RunningDisc:	subObjMainData \
 				Obj_RunningDisc.action, \
 					setBit(render_flags.level) | \
 					setBit(render_flags.static_mappings), \
-				0, 16, 16, 4, 0, 0, FALSE, Map_Disc
+				0, 16, 16, 4, 0, 0, FALSE, Map_RunningDisc
 ; ---------------------------------------------------------------------------
 
 		; mappings

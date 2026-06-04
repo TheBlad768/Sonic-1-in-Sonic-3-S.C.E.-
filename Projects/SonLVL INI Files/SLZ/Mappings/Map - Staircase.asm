@@ -2,7 +2,8 @@
 ; Sprite mappings - blocks that form a staircase (SLZ)
 ; ---------------------------------------------------------------------------
 
-Map_Staircase:
-		dc.w 1
-		dc.b $F0, $F, 0, $21, $FF, $F0
+Map_Staircase:	spriteHeader
+	spritePiece	-$10, -$10, 4, 4, $21, 0, 0, 0, 0
+Map_Staircase_2_End
+
 	even

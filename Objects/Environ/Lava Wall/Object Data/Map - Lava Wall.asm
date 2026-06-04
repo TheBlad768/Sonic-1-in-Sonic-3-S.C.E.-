@@ -2,60 +2,71 @@
 ; Sprite mappings - advancing wall of lava (MZ)
 ; ---------------------------------------------------------------------------
 
-Map_LavaWall:
-		dc.w Map_LavaWall_A-Map_LavaWall		; 0 (duplicate)
-		dc.w Map_LavaWall_A-Map_LavaWall		; 1 (duplicate)
-		dc.w Map_LavaWall_42-Map_LavaWall		; 2
-		dc.w Map_LavaWall_7A-Map_LavaWall		; 3
-		dc.w Map_LavaWall_B2-Map_LavaWall		; 4
-		dc.w Map_LavaWall_EA-Map_LavaWall		; 5
-Map_LavaWall_A:	dc.b 0, 9
-		dc.b $E0, $F, 0, $60, 0, $20
-		dc.b 0, $F, 0, $70, 0, $3C
-		dc.b 0, $F, $FF, $65, 0, $20
-		dc.b $E0, $F, $FF, $65, 0, 0
-		dc.b 0, $F, $FF, $65, 0, 0
-		dc.b $E0, $F, $FF, $65, $FF, $E0
-		dc.b 0, $F, $FF, $65, $FF, $E0
-		dc.b $E0, $F, $FF, $65, $FF, $C0
-		dc.b 0, $F, $FF, $65, $FF, $C0
-Map_LavaWall_42:	dc.b 0, 9
-		dc.b $E0, $F, 0, $70, 0, $20
-		dc.b 0, $F, 0, $80, 0, $3C
-		dc.b 0, $F, $FF, $65, 0, $20
-		dc.b $E0, $F, $FF, $65, 0, 0
-		dc.b 0, $F, $FF, $65, 0, 0
-		dc.b $E0, $F, $FF, $65, $FF, $E0
-		dc.b 0, $F, $FF, $65, $FF, $E0
-		dc.b $E0, $F, $FF, $65, $FF, $C0
-		dc.b 0, $F, $FF, $65, $FF, $C0
-Map_LavaWall_7A:	dc.b 0, 9
-		dc.b $E0, $F, 0, $80, 0, $20
-		dc.b 0, $F, 0, $70, 0, $3C
-		dc.b 0, $F, $FF, $65, 0, $20
-		dc.b $E0, $F, $FF, $65, 0, 0
-		dc.b 0, $F, $FF, $65, 0, 0
-		dc.b $E0, $F, $FF, $65, $FF, $E0
-		dc.b 0, $F, $FF, $65, $FF, $E0
-		dc.b $E0, $F, $FF, $65, $FF, $C0
-		dc.b 0, $F, $FF, $65, $FF, $C0
-Map_LavaWall_B2:	dc.b 0, 9
-		dc.b $E0, $F, 0, $70, 0, $20
-		dc.b 0, $F, 0, $60, 0, $3C
-		dc.b 0, $F, $FF, $65, 0, $20
-		dc.b $E0, $F, $FF, $65, 0, 0
-		dc.b 0, $F, $FF, $65, 0, 0
-		dc.b $E0, $F, $FF, $65, $FF, $E0
-		dc.b 0, $F, $FF, $65, $FF, $E0
-		dc.b $E0, $F, $FF, $65, $FF, $C0
-		dc.b 0, $F, $FF, $65, $FF, $C0
-Map_LavaWall_EA:	dc.b 0, 8
-		dc.b $E0, $F, $FF, $65, 0, $20
-		dc.b 0, $F, $FF, $65, 0, $20
-		dc.b $E0, $F, $FF, $65, 0, 0
-		dc.b 0, $F, $FF, $65, 0, 0
-		dc.b $E0, $F, $FF, $65, $FF, $E0
-		dc.b 0, $F, $FF, $65, $FF, $E0
-		dc.b $E0, $F, $FF, $65, $FF, $C0
-		dc.b 0, $F, $FF, $65, $FF, $C0
+Map_LavaWall:	mappingsTable
+	mappingsTableEntry.w Map_LavaWall_A		; 0 (duplicate)
+	mappingsTableEntry.w Map_LavaWall_A		; 1 (duplicate)
+	mappingsTableEntry.w Map_LavaWall_42		; 2
+	mappingsTableEntry.w Map_LavaWall_7A		; 3
+	mappingsTableEntry.w Map_LavaWall_B2		; 4
+	mappingsTableEntry.w Map_LavaWall_EA		; 5
+
+Map_LavaWall_A:	spriteHeader
+	spritePiece	$20, -$20, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	$3C, 0, 4, 4, $70, 0, 0, 0, 0
+	spritePiece	$20, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	0, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	0, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$20, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$20, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$40, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$40, 0, 4, 4, $765, 1, 1, 3, 1
+Map_LavaWall_A_End
+
+Map_LavaWall_42:	spriteHeader
+	spritePiece	$20, -$20, 4, 4, $70, 0, 0, 0, 0
+	spritePiece	$3C, 0, 4, 4, $80, 0, 0, 0, 0
+	spritePiece	$20, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	0, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	0, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$20, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$20, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$40, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$40, 0, 4, 4, $765, 1, 1, 3, 1
+Map_LavaWall_42_End
+
+Map_LavaWall_7A:	spriteHeader
+	spritePiece	$20, -$20, 4, 4, $80, 0, 0, 0, 0
+	spritePiece	$3C, 0, 4, 4, $70, 0, 0, 0, 0
+	spritePiece	$20, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	0, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	0, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$20, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$20, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$40, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$40, 0, 4, 4, $765, 1, 1, 3, 1
+Map_LavaWall_7A_End
+
+Map_LavaWall_B2:	spriteHeader
+	spritePiece	$20, -$20, 4, 4, $70, 0, 0, 0, 0
+	spritePiece	$3C, 0, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	$20, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	0, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	0, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$20, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$20, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$40, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$40, 0, 4, 4, $765, 1, 1, 3, 1
+Map_LavaWall_B2_End
+
+Map_LavaWall_EA:	spriteHeader
+	spritePiece	$20, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	$20, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	0, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	0, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$20, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$20, 0, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$40, -$20, 4, 4, $765, 1, 1, 3, 1
+	spritePiece	-$40, 0, 4, 4, $765, 1, 1, 3, 1
+Map_LavaWall_EA_End
+
 		even

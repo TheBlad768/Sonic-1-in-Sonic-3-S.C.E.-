@@ -2,33 +2,44 @@
 ; Sprite mappings - ground saws	and pizza cutters (SBZ)
 ; ---------------------------------------------------------------------------
 
-Map_Saw:
-		dc.w Map_Saw_8-Map_Saw, Map_Saw_34-Map_Saw
-		dc.w Map_Saw_60-Map_Saw, Map_Saw_7A-Map_Saw
-Map_Saw_8:	dc.b 0, 7
-		dc.b $C4, 1, 0, $20, $FF, $FC
-		dc.b $D4, 1, 0, $20, $FF, $FC
-		dc.b $E4, 3, 0, $20, $FF, $FC
-		dc.b $E0, $F, 0, 0, $FF, $E0
-		dc.b $E0, $F, 8, 0, 0, 0
-		dc.b 0, $F, $10, 0, $FF, $E0
-		dc.b 0, $F, $18, 0, 0, 0
-Map_Saw_34:	dc.b 0, 7
-		dc.b $C4, 1, 0, $20, $FF, $FC
-		dc.b $D4, 1, 0, $20, $FF, $FC
-		dc.b $E4, 3, 0, $20, $FF, $FC
-		dc.b $E0, $F, 0, $10, $FF, $E0
-		dc.b $E0, $F, 8, $10, 0, 0
-		dc.b 0, $F, $10, $10, $FF, $E0
-		dc.b 0, $F, $18, $10, 0, 0
-Map_Saw_60:	dc.b 0, 4
-		dc.b $E0, $F, 0, 0, $FF, $E0
-		dc.b $E0, $F, 8, 0, 0, 0
-		dc.b 0, $F, $10, 0, $FF, $E0
-		dc.b 0, $F, $18, 0, 0, 0
-Map_Saw_7A:	dc.b 0, 4
-		dc.b $E0, $F, 0, $10, $FF, $E0
-		dc.b $E0, $F, 8, $10, 0, 0
-		dc.b 0, $F, $10, $10, $FF, $E0
-		dc.b 0, $F, $18, $10, 0, 0
+Map_Saw:	mappingsTable
+	mappingsTableEntry.w Map_Saw_8
+	mappingsTableEntry.w Map_Saw_34
+	mappingsTableEntry.w Map_Saw_60
+	mappingsTableEntry.w Map_Saw_7A
+
+Map_Saw_8:	spriteHeader
+	spritePiece	-4, -$3C, 1, 2, $20, 0, 0, 0, 0
+	spritePiece	-4, -$2C, 1, 2, $20, 0, 0, 0, 0
+	spritePiece	-4, -$1C, 1, 4, $20, 0, 0, 0, 0
+	spritePiece	-$20, -$20, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	0, -$20, 4, 4, 0, 1, 0, 0, 0
+	spritePiece	-$20, 0, 4, 4, 0, 0, 1, 0, 0
+	spritePiece	0, 0, 4, 4, 0, 1, 1, 0, 0
+Map_Saw_8_End
+
+Map_Saw_34:	spriteHeader
+	spritePiece	-4, -$3C, 1, 2, $20, 0, 0, 0, 0
+	spritePiece	-4, -$2C, 1, 2, $20, 0, 0, 0, 0
+	spritePiece	-4, -$1C, 1, 4, $20, 0, 0, 0, 0
+	spritePiece	-$20, -$20, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	0, -$20, 4, 4, $10, 1, 0, 0, 0
+	spritePiece	-$20, 0, 4, 4, $10, 0, 1, 0, 0
+	spritePiece	0, 0, 4, 4, $10, 1, 1, 0, 0
+Map_Saw_34_End
+
+Map_Saw_60:	spriteHeader
+	spritePiece	-$20, -$20, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	0, -$20, 4, 4, 0, 1, 0, 0, 0
+	spritePiece	-$20, 0, 4, 4, 0, 0, 1, 0, 0
+	spritePiece	0, 0, 4, 4, 0, 1, 1, 0, 0
+Map_Saw_60_End
+
+Map_Saw_7A:	spriteHeader
+	spritePiece	-$20, -$20, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	0, -$20, 4, 4, $10, 1, 0, 0, 0
+	spritePiece	-$20, 0, 4, 4, $10, 0, 1, 0, 0
+	spritePiece	0, 0, 4, 4, $10, 1, 1, 0, 0
+Map_Saw_7A_End
+
 		even

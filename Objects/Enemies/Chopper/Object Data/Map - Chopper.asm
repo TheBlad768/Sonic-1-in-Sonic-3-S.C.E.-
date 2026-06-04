@@ -2,13 +2,16 @@
 ; Sprite mappings - Chopper enemy (GHZ)
 ; ---------------------------------------------------------------------------
 
-Map_Chopper:
-		dc.w Map_Chopper_4-Map_Chopper
-		dc.w Map_Chopper_C-Map_Chopper
-Map_Chopper_4:
-		dc.w 1
-		dc.b $F0, $F, 0, 0, $FF, $F0
-Map_Chopper_C:
-		dc.w 1
-		dc.b $F0, $F, 0, $10, $FF, $F0
+Map_Chopper:	mappingsTable
+	mappingsTableEntry.w Map_Chopper_4
+	mappingsTableEntry.w Map_Chopper_C
+
+Map_Chopper_4:	spriteHeader
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_Chopper_4_End
+
+Map_Chopper_C:	spriteHeader
+	spritePiece	-$10, -$10, 4, 4, $10, 0, 0, 0, 0
+Map_Chopper_C_End
+
 	even

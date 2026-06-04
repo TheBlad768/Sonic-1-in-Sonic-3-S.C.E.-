@@ -2,12 +2,14 @@
 ; Sprite mappings - pillar for boss intro
 ; ---------------------------------------------------------------------------
 
-Map_BossFire_Pillar:
-Map_BossFire_Pillar_0: 	dc.w Map_BossFire_Pillar_2-Map_BossFire_Pillar
-Map_BossFire_Pillar_2: 	dc.b $0, $5
-	dc.b $F0, $0, $C2, $89, $FF, $E8
-	dc.b $F0, $E, $C2, $8A, $FF, $F0
-	dc.b $F0, $0, $C2, $96, $0, $10
-	dc.b $8, $4, $C1, $78, $FF, $F8
-	dc.b $10, $4, $C1, $78, $FF, $F8
+Map_BossFire_Pillar:	mappingsTable
+	mappingsTableEntry.w Map_BossFire_Pillar_2
+
+Map_BossFire_Pillar_2:	spriteHeader
+	spritePiece	-$18, -$10, 1, 1, $289, 0, 0, 2, 1
+	spritePiece	-$10, -$10, 4, 3, $28A, 0, 0, 2, 1
+	spritePiece	$10, -$10, 1, 1, $296, 0, 0, 2, 1
+	spritePiece	-8, 8, 2, 1, $178, 0, 0, 2, 1
+	spritePiece	-8, $10, 2, 1, $178, 0, 0, 2, 1
+Map_BossFire_Pillar_2_End
 	even

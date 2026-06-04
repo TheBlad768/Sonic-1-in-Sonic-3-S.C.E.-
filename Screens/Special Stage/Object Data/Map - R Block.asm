@@ -2,16 +2,20 @@
 ; Sprite mappings - special stage "R" block
 ; ---------------------------------------------------------------------------
 
-Map_SpecialStage_R:
-		dc.w Map_SpecialStage_R_6-Map_SpecialStage_R
-		dc.w Map_SpecialStage_R_E-Map_SpecialStage_R
-		dc.w Map_SpecialStage_R_16-Map_SpecialStage_R
-Map_SpecialStage_R_6:
-		dc.w 1
-		dc.b $F4, $A, 0, 0, $FF, $F4
-Map_SpecialStage_R_E:
-		dc.w 1
-		dc.b $F4, $A, 0, 9, $FF, $F4
-Map_SpecialStage_R_16:
-		dc.w 0
+Map_SpecialStage_R:	mappingsTable
+	mappingsTableEntry.w Map_SpecialStage_R_6
+	mappingsTableEntry.w Map_SpecialStage_R_E
+	mappingsTableEntry.w Map_SpecialStage_R_16
+
+Map_SpecialStage_R_6:	spriteHeader
+	spritePiece	-$C, -$C, 3, 3, 0, 0, 0, 0, 0
+Map_SpecialStage_R_6_End
+
+Map_SpecialStage_R_E:	spriteHeader
+	spritePiece	-$C, -$C, 3, 3, 9, 0, 0, 0, 0
+Map_SpecialStage_R_E_End
+
+Map_SpecialStage_R_16:	spriteHeader
+Map_SpecialStage_R_16_End
+
 	even

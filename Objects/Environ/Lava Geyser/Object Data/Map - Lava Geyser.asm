@@ -2,171 +2,222 @@
 ; Sprite mappings - lava geyser / lava that falls from the ceiling (MZ)
 ; ---------------------------------------------------------------------------
 
-Map_Geyser:
-		dc.w Map_Geyser_28-Map_Geyser, Map_Geyser_36-Map_Geyser
-		dc.w Map_Geyser_44-Map_Geyser, Map_Geyser_5E-Map_Geyser
-		dc.w Map_Geyser_78-Map_Geyser, Map_Geyser_9E-Map_Geyser
-		dc.w Map_Geyser_C4-Map_Geyser, Map_Geyser_D2-Map_Geyser
-		dc.w Map_Geyser_E0-Map_Geyser, Map_Geyser_11E-Map_Geyser
-		dc.w Map_Geyser_15C-Map_Geyser, Map_Geyser_19A-Map_Geyser
-		dc.w Map_Geyser_1C0-Map_Geyser, Map_Geyser_1E6-Map_Geyser
-		dc.w Map_Geyser_20C-Map_Geyser, Map_Geyser_26E-Map_Geyser
-		dc.w Map_Geyser_2D0-Map_Geyser, Map_Geyser_332-Map_Geyser
-		dc.w Map_Geyser_358-Map_Geyser, Map_Geyser_37E-Map_Geyser
-Map_Geyser_28:	dc.b 0, 2
-		dc.b $EC, $B, 0, 0, $FF, $E8
-		dc.b $EC, $B, 8, 0, 0, 0
-Map_Geyser_36:	dc.b 0, 2
-		dc.b $EC, $B, 0, $18, $FF, $E8
-		dc.b $EC, $B, 8, $18, 0, 0
-Map_Geyser_44:	dc.b 0, 4
-		dc.b $EC, $B, 0, 0, $FF, $C8
-		dc.b $F4, $E, 0, $C, $FF, $E0
-		dc.b $F4, $E, 8, $C, 0, 0
-		dc.b $EC, $B, 8, 0, 0, $20
-Map_Geyser_5E:	dc.b 0, 4
-		dc.b $EC, $B, 0, $18, $FF, $C8
-		dc.b $F4, $E, 0, $24, $FF, $E0
-		dc.b $F4, $E, 8, $24, 0, 0
-		dc.b $EC, $B, 8, $18, 0, $20
-Map_Geyser_78:	dc.b 0, 6
-		dc.b $EC, $B, 0, 0, $FF, $C8
-		dc.b $F4, $E, 0, $C, $FF, $E0
-		dc.b $F4, $E, 8, $C, 0, 0
-		dc.b $EC, $B, 8, 0, 0, $20
-		dc.b $E8, $E, 0, $90, $FF, $E0
-		dc.b $E8, $E, 8, $90, 0, 0
-Map_Geyser_9E:	dc.b 0, 6
-		dc.b $EC, $B, 0, $18, $FF, $C8
-		dc.b $F4, $E, 0, $24, $FF, $E0
-		dc.b $F4, $E, 8, $24, 0, 0
-		dc.b $EC, $B, 8, $18, 0, $20
-		dc.b $E8, $E, 8, $90, $FF, $E0
-		dc.b $E8, $E, 0, $90, 0, 0
-Map_Geyser_C4:	dc.b 0, 2
-		dc.b $E0, $F, 0, $30, $FF, $E0
-		dc.b $E0, $F, 8, $30, 0, 0
-Map_Geyser_D2:	dc.b 0, 2
-		dc.b $E0, $F, 8, $30, $FF, $E0
-		dc.b $E0, $F, 0, $30, 0, 0
-Map_Geyser_E0:	dc.b 0, $A
-		dc.b $90, $F, 0, $40, $FF, $E0
-		dc.b $90, $F, 8, $40, 0, 0
-		dc.b $B0, $F, 0, $40, $FF, $E0
-		dc.b $B0, $F, 8, $40, 0, 0
-		dc.b $D0, $F, 0, $40, $FF, $E0
-		dc.b $D0, $F, 8, $40, 0, 0
-		dc.b $F0, $F, 0, $40, $FF, $E0
-		dc.b $F0, $F, 8, $40, 0, 0
-		dc.b $10, $F, 0, $40, $FF, $E0
-		dc.b $10, $F, 8, $40, 0, 0
-Map_Geyser_11E:	dc.b 0, $A
-		dc.b $90, $F, 0, $50, $FF, $E0
-		dc.b $90, $F, 8, $50, 0, 0
-		dc.b $B0, $F, 0, $50, $FF, $E0
-		dc.b $B0, $F, 8, $50, 0, 0
-		dc.b $D0, $F, 0, $50, $FF, $E0
-		dc.b $D0, $F, 8, $50, 0, 0
-		dc.b $F0, $F, 0, $50, $FF, $E0
-		dc.b $F0, $F, 8, $50, 0, 0
-		dc.b $10, $F, 0, $50, $FF, $E0
-		dc.b $10, $F, 8, $50, 0, 0
-Map_Geyser_15C:	dc.b 0, $A
-		dc.b $90, $F, 0, $60, $FF, $E0
-		dc.b $90, $F, 8, $60, 0, 0
-		dc.b $B0, $F, 0, $60, $FF, $E0
-		dc.b $B0, $F, 8, $60, 0, 0
-		dc.b $D0, $F, 0, $60, $FF, $E0
-		dc.b $D0, $F, 8, $60, 0, 0
-		dc.b $F0, $F, 0, $60, $FF, $E0
-		dc.b $F0, $F, 8, $60, 0, 0
-		dc.b $10, $F, 0, $60, $FF, $E0
-		dc.b $10, $F, 8, $60, 0, 0
-Map_Geyser_19A:	dc.b 0, 6
-		dc.b $90, $F, 0, $40, $FF, $E0
-		dc.b $90, $F, 8, $40, 0, 0
-		dc.b $B0, $F, 0, $40, $FF, $E0
-		dc.b $B0, $F, 8, $40, 0, 0
-		dc.b $D0, $F, 0, $40, $FF, $E0
-		dc.b $D0, $F, 8, $40, 0, 0
-Map_Geyser_1C0:	dc.b 0, 6
-		dc.b $90, $F, 0, $50, $FF, $E0
-		dc.b $90, $F, 8, $50, 0, 0
-		dc.b $B0, $F, 0, $50, $FF, $E0
-		dc.b $B0, $F, 8, $50, 0, 0
-		dc.b $D0, $F, 0, $50, $FF, $E0
-		dc.b $D0, $F, 8, $50, 0, 0
-Map_Geyser_1E6:	dc.b 0, 6
-		dc.b $90, $F, 0, $60, $FF, $E0
-		dc.b $90, $F, 8, $60, 0, 0
-		dc.b $B0, $F, 0, $60, $FF, $E0
-		dc.b $B0, $F, 8, $60, 0, 0
-		dc.b $D0, $F, 0, $60, $FF, $E0
-		dc.b $D0, $F, 8, $60, 0, 0
-Map_Geyser_20C:	dc.b 0, $10
-		dc.b $90, $F, 0, $40, $FF, $E0
-		dc.b $90, $F, 8, $40, 0, 0
-		dc.b $B0, $F, 0, $40, $FF, $E0
-		dc.b $B0, $F, 8, $40, 0, 0
-		dc.b $D0, $F, 0, $40, $FF, $E0
-		dc.b $D0, $F, 8, $40, 0, 0
-		dc.b $F0, $F, 0, $40, $FF, $E0
-		dc.b $F0, $F, 8, $40, 0, 0
-		dc.b $10, $F, 0, $40, $FF, $E0
-		dc.b $10, $F, 8, $40, 0, 0
-		dc.b $30, $F, 0, $40, $FF, $E0
-		dc.b $30, $F, 8, $40, 0, 0
-		dc.b $50, $F, 0, $40, $FF, $E0
-		dc.b $50, $F, 8, $40, 0, 0
-		dc.b $70, $F, 0, $40, $FF, $E0
-		dc.b $70, $F, 8, $40, 0, 0
-Map_Geyser_26E:	dc.b 0, $10
-		dc.b $90, $F, 0, $50, $FF, $E0
-		dc.b $90, $F, 8, $50, 0, 0
-		dc.b $B0, $F, 0, $50, $FF, $E0
-		dc.b $B0, $F, 8, $50, 0, 0
-		dc.b $D0, $F, 0, $50, $FF, $E0
-		dc.b $D0, $F, 8, $50, 0, 0
-		dc.b $F0, $F, 0, $50, $FF, $E0
-		dc.b $F0, $F, 8, $50, 0, 0
-		dc.b $10, $F, 0, $50, $FF, $E0
-		dc.b $10, $F, 8, $50, 0, 0
-		dc.b $30, $F, 0, $50, $FF, $E0
-		dc.b $30, $F, 8, $50, 0, 0
-		dc.b $50, $F, 0, $50, $FF, $E0
-		dc.b $50, $F, 8, $50, 0, 0
-		dc.b $70, $F, 0, $50, $FF, $E0
-		dc.b $70, $F, 8, $50, 0, 0
-Map_Geyser_2D0:	dc.b 0, $10
-		dc.b $90, $F, 0, $60, $FF, $E0
-		dc.b $90, $F, 8, $60, 0, 0
-		dc.b $B0, $F, 0, $60, $FF, $E0
-		dc.b $B0, $F, 8, $60, 0, 0
-		dc.b $D0, $F, 0, $60, $FF, $E0
-		dc.b $D0, $F, 8, $60, 0, 0
-		dc.b $F0, $F, 0, $60, $FF, $E0
-		dc.b $F0, $F, 8, $60, 0, 0
-		dc.b $10, $F, 0, $60, $FF, $E0
-		dc.b $10, $F, 8, $60, 0, 0
-		dc.b $30, $F, 0, $60, $FF, $E0
-		dc.b $30, $F, 8, $60, 0, 0
-		dc.b $50, $F, 0, $60, $FF, $E0
-		dc.b $50, $F, 8, $60, 0, 0
-		dc.b $70, $F, 0, $60, $FF, $E0
-		dc.b $70, $F, 8, $60, 0, 0
-Map_Geyser_332:	dc.b 0, 6
-		dc.b $E0, $B, 0, 0, $FF, $C8
-		dc.b $E8, $E, 0, $C, $FF, $E0
-		dc.b $E8, $E, 8, $C, 0, 0
-		dc.b $E0, $B, 8, 0, 0, $20
-		dc.b $D8, $E, 0, $90, $FF, $E0
-		dc.b $D8, $E, 8, $90, 0, 0
-Map_Geyser_358:	dc.b 0, 6
-		dc.b $E0, $B, 0, $18, $FF, $C8
-		dc.b $E8, $E, 0, $24, $FF, $E0
-		dc.b $E8, $E, 8, $24, 0, 0
-		dc.b $E0, $B, 8, $18, 0, $20
-		dc.b $D8, $E, 8, $90, $FF, $E0
-		dc.b $D8, $E, 0, $90, 0, 0
-Map_Geyser_37E:	dc.b 0, 0
+Map_Geyser:	mappingsTable
+	mappingsTableEntry.w Map_Geyser_28
+	mappingsTableEntry.w Map_Geyser_36
+	mappingsTableEntry.w Map_Geyser_44
+	mappingsTableEntry.w Map_Geyser_5E
+	mappingsTableEntry.w Map_Geyser_78
+	mappingsTableEntry.w Map_Geyser_9E
+	mappingsTableEntry.w Map_Geyser_C4
+	mappingsTableEntry.w Map_Geyser_D2
+	mappingsTableEntry.w Map_Geyser_E0
+	mappingsTableEntry.w Map_Geyser_11E
+	mappingsTableEntry.w Map_Geyser_15C
+	mappingsTableEntry.w Map_Geyser_19A
+	mappingsTableEntry.w Map_Geyser_1C0
+	mappingsTableEntry.w Map_Geyser_1E6
+	mappingsTableEntry.w Map_Geyser_20C
+	mappingsTableEntry.w Map_Geyser_26E
+	mappingsTableEntry.w Map_Geyser_2D0
+	mappingsTableEntry.w Map_Geyser_332
+	mappingsTableEntry.w Map_Geyser_358
+	mappingsTableEntry.w Map_Geyser_37E
+
+Map_Geyser_28:	spriteHeader
+	spritePiece	-$18, -$14, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	0, -$14, 3, 4, 0, 1, 0, 0, 0
+Map_Geyser_28_End
+
+Map_Geyser_36:	spriteHeader
+	spritePiece	-$18, -$14, 3, 4, $18, 0, 0, 0, 0
+	spritePiece	0, -$14, 3, 4, $18, 1, 0, 0, 0
+Map_Geyser_36_End
+
+Map_Geyser_44:	spriteHeader
+	spritePiece	-$38, -$14, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-$20, -$C, 4, 3, $C, 0, 0, 0, 0
+	spritePiece	0, -$C, 4, 3, $C, 1, 0, 0, 0
+	spritePiece	$20, -$14, 3, 4, 0, 1, 0, 0, 0
+Map_Geyser_44_End
+
+Map_Geyser_5E:	spriteHeader
+	spritePiece	-$38, -$14, 3, 4, $18, 0, 0, 0, 0
+	spritePiece	-$20, -$C, 4, 3, $24, 0, 0, 0, 0
+	spritePiece	0, -$C, 4, 3, $24, 1, 0, 0, 0
+	spritePiece	$20, -$14, 3, 4, $18, 1, 0, 0, 0
+Map_Geyser_5E_End
+
+Map_Geyser_78:	spriteHeader
+	spritePiece	-$38, -$14, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-$20, -$C, 4, 3, $C, 0, 0, 0, 0
+	spritePiece	0, -$C, 4, 3, $C, 1, 0, 0, 0
+	spritePiece	$20, -$14, 3, 4, 0, 1, 0, 0, 0
+	spritePiece	-$20, -$18, 4, 3, $90, 0, 0, 0, 0
+	spritePiece	0, -$18, 4, 3, $90, 1, 0, 0, 0
+Map_Geyser_78_End
+
+Map_Geyser_9E:	spriteHeader
+	spritePiece	-$38, -$14, 3, 4, $18, 0, 0, 0, 0
+	spritePiece	-$20, -$C, 4, 3, $24, 0, 0, 0, 0
+	spritePiece	0, -$C, 4, 3, $24, 1, 0, 0, 0
+	spritePiece	$20, -$14, 3, 4, $18, 1, 0, 0, 0
+	spritePiece	-$20, -$18, 4, 3, $90, 1, 0, 0, 0
+	spritePiece	0, -$18, 4, 3, $90, 0, 0, 0, 0
+Map_Geyser_9E_End
+
+Map_Geyser_C4:	spriteHeader
+	spritePiece	-$20, -$20, 4, 4, $30, 0, 0, 0, 0
+	spritePiece	0, -$20, 4, 4, $30, 1, 0, 0, 0
+Map_Geyser_C4_End
+
+Map_Geyser_D2:	spriteHeader
+	spritePiece	-$20, -$20, 4, 4, $30, 1, 0, 0, 0
+	spritePiece	0, -$20, 4, 4, $30, 0, 0, 0, 0
+Map_Geyser_D2_End
+
+Map_Geyser_E0:	spriteHeader
+	spritePiece	-$20, -$70, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, -$70, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, -$50, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, -$50, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, -$30, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, -$30, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, -$10, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, -$10, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, $10, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, $10, 4, 4, $40, 1, 0, 0, 0
+Map_Geyser_E0_End
+
+Map_Geyser_11E:	spriteHeader
+	spritePiece	-$20, -$70, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, -$70, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, -$50, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, -$50, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, -$30, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, -$30, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, -$10, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, -$10, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, $10, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, $10, 4, 4, $50, 1, 0, 0, 0
+Map_Geyser_11E_End
+
+Map_Geyser_15C:	spriteHeader
+	spritePiece	-$20, -$70, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, -$70, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, -$50, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, -$50, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, -$30, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, -$30, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, -$10, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, -$10, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, $10, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, $10, 4, 4, $60, 1, 0, 0, 0
+Map_Geyser_15C_End
+
+Map_Geyser_19A:	spriteHeader
+	spritePiece	-$20, -$70, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, -$70, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, -$50, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, -$50, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, -$30, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, -$30, 4, 4, $40, 1, 0, 0, 0
+Map_Geyser_19A_End
+
+Map_Geyser_1C0:	spriteHeader
+	spritePiece	-$20, -$70, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, -$70, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, -$50, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, -$50, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, -$30, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, -$30, 4, 4, $50, 1, 0, 0, 0
+Map_Geyser_1C0_End
+
+Map_Geyser_1E6:	spriteHeader
+	spritePiece	-$20, -$70, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, -$70, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, -$50, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, -$50, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, -$30, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, -$30, 4, 4, $60, 1, 0, 0, 0
+Map_Geyser_1E6_End
+
+Map_Geyser_20C:	spriteHeader
+	spritePiece	-$20, -$70, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, -$70, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, -$50, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, -$50, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, -$30, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, -$30, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, -$10, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, -$10, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, $10, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, $10, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, $30, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, $30, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, $50, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, $50, 4, 4, $40, 1, 0, 0, 0
+	spritePiece	-$20, $70, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	0, $70, 4, 4, $40, 1, 0, 0, 0
+Map_Geyser_20C_End
+
+Map_Geyser_26E:	spriteHeader
+	spritePiece	-$20, -$70, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, -$70, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, -$50, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, -$50, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, -$30, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, -$30, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, -$10, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, -$10, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, $10, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, $10, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, $30, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, $30, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, $50, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, $50, 4, 4, $50, 1, 0, 0, 0
+	spritePiece	-$20, $70, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	0, $70, 4, 4, $50, 1, 0, 0, 0
+Map_Geyser_26E_End
+
+Map_Geyser_2D0:	spriteHeader
+	spritePiece	-$20, -$70, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, -$70, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, -$50, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, -$50, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, -$30, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, -$30, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, -$10, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, -$10, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, $10, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, $10, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, $30, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, $30, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, $50, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, $50, 4, 4, $60, 1, 0, 0, 0
+	spritePiece	-$20, $70, 4, 4, $60, 0, 0, 0, 0
+	spritePiece	0, $70, 4, 4, $60, 1, 0, 0, 0
+Map_Geyser_2D0_End
+
+Map_Geyser_332:	spriteHeader
+	spritePiece	-$38, -$20, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-$20, -$18, 4, 3, $C, 0, 0, 0, 0
+	spritePiece	0, -$18, 4, 3, $C, 1, 0, 0, 0
+	spritePiece	$20, -$20, 3, 4, 0, 1, 0, 0, 0
+	spritePiece	-$20, -$28, 4, 3, $90, 0, 0, 0, 0
+	spritePiece	0, -$28, 4, 3, $90, 1, 0, 0, 0
+Map_Geyser_332_End
+
+Map_Geyser_358:	spriteHeader
+	spritePiece	-$38, -$20, 3, 4, $18, 0, 0, 0, 0
+	spritePiece	-$20, -$18, 4, 3, $24, 0, 0, 0, 0
+	spritePiece	0, -$18, 4, 3, $24, 1, 0, 0, 0
+	spritePiece	$20, -$20, 3, 4, $18, 1, 0, 0, 0
+	spritePiece	-$20, -$28, 4, 3, $90, 1, 0, 0, 0
+	spritePiece	0, -$28, 4, 3, $90, 0, 0, 0, 0
+Map_Geyser_358_End
+
+Map_Geyser_37E:	spriteHeader
+Map_Geyser_37E_End
+
 		even

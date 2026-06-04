@@ -2,5 +2,5 @@
 ; Sprite mappings - solid blocks and blocks that fall from the ceiling (MZ)
 ; ---------------------------------------------------------------------------
 
-Map_MarbleBrick:	dc.b $F0, $F, 0, 1, $FF, $F0
+Map_MarbleBrick:	spritePiece	-$10, -$10, 4, 4, 1, 0, 0, 0, 0
 	even

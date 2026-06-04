@@ -2,61 +2,82 @@
 ; Sprite mappings - Sonic ending
 ; ---------------------------------------------------------------------------
 
-Map_SonicEnding:
-Map_SonicEnding_0: 	dc.w Map_SonicEnding_14-Map_SonicEnding
-Map_SonicEnding_2: 	dc.w Map_SonicEnding_22-Map_SonicEnding
-Map_SonicEnding_4: 	dc.w Map_SonicEnding_36-Map_SonicEnding
-Map_SonicEnding_6: 	dc.w Map_SonicEnding_44-Map_SonicEnding
-Map_SonicEnding_8: 	dc.w Map_SonicEnding_58-Map_SonicEnding
-Map_SonicEnding_A: 	dc.w Map_SonicEnding_6C-Map_SonicEnding
-Map_SonicEnding_C: 	dc.w Map_SonicEnding_80-Map_SonicEnding
-Map_SonicEnding_E: 	dc.w Map_SonicEnding_94-Map_SonicEnding
-Map_SonicEnding_10: 	dc.w Map_SonicEnding_A8-Map_SonicEnding
-Map_SonicEnding_12: 	dc.w Map_SonicEnding_CE-Map_SonicEnding
-Map_SonicEnding_14: 	dc.b $0, $2
-	dc.b $ED, $E, $0, $0, $FF, $F4
-	dc.b $5, $9, $0, $C, $FF, $F4
-Map_SonicEnding_22: 	dc.b $0, $3
-	dc.b $FD, $D, $0, $0, $FF, $F2
-	dc.b $ED, $E, $0, $8, $FF, $F4
-	dc.b $5, $9, $0, $14, $FF, $F4
-Map_SonicEnding_36: 	dc.b $0, $2
-	dc.b $FE, $E, $0, $0, $FF, $F0
-	dc.b $EE, $9, $0, $C, $FF, $F8
-Map_SonicEnding_44: 	dc.b $0, $3
-	dc.b $F5, $E, $0, $0, $FF, $F2
-	dc.b $D, $8, $0, $C, $FF, $F2
-	dc.b $ED, $8, $0, $F, $FF, $FA
-Map_SonicEnding_58: 	dc.b $0, $3
-	dc.b $F5, $E, $8, $0, $FF, $EF
-	dc.b $D, $8, $8, $C, $FF, $F7
-	dc.b $ED, $8, $8, $F, $FF, $EF
-Map_SonicEnding_6C: 	dc.b $0, $3
-	dc.b $FC, $E, $0, $0, $FF, $EE
-	dc.b $EC, $9, $0, $C, $FF, $F6
-	dc.b $4, $0, $0, $12, $0, $E
-Map_SonicEnding_80: 	dc.b $0, $3
-	dc.b $EC, $D, $0, $0, $FF, $EA
-	dc.b $FC, $E, $0, $8, $FF, $F2
-	dc.b $4, $0, $0, $14, $FF, $EA
-Map_SonicEnding_94: 	dc.b $0, $3
-	dc.b $F4, $E, $0, $0, $FF, $F0
-	dc.b $EC, $4, $0, $C, $FF, $F8
-	dc.b $C, $4, $0, $E, $FF, $F8
-Map_SonicEnding_A8: 	dc.b $0, $6
-	dc.b $AC, $F, $0, $0, $FF, $F8
-	dc.b $B4, $1, $0, $10, $0, $18
-	dc.b $B4, $2, $0, $12, $FF, $F0
-	dc.b $CC, $1, $0, $15, $FF, $F0
-	dc.b $CC, $E, $0, $17, $FF, $F8
-	dc.b $E4, $5, $0, $23, $FF, $F8
-Map_SonicEnding_CE: 	dc.b $0, $8
-	dc.b $A8, $F, $0, $0, $FF, $D4
-	dc.b $88, $F, $0, $10, $FF, $DC
-	dc.b $80, $C, $0, $20, $FF, $EC
-	dc.b $88, $F, $0, $24, $FF, $FC
-	dc.b $A8, $0, $0, $34, $0, $14
-	dc.b $A8, $F, $0, $35, $FF, $F4
-	dc.b $C8, $C, $0, $45, $FF, $F4
-	dc.b $D0, $9, $0, $49, $FF, $F4
+Map_SonicEnding:	mappingsTable
+	mappingsTableEntry.w Map_SonicEnding_14
+	mappingsTableEntry.w Map_SonicEnding_22
+	mappingsTableEntry.w Map_SonicEnding_36
+	mappingsTableEntry.w Map_SonicEnding_44
+	mappingsTableEntry.w Map_SonicEnding_58
+	mappingsTableEntry.w Map_SonicEnding_6C
+	mappingsTableEntry.w Map_SonicEnding_80
+	mappingsTableEntry.w Map_SonicEnding_94
+	mappingsTableEntry.w Map_SonicEnding_A8
+	mappingsTableEntry.w Map_SonicEnding_CE
+
+Map_SonicEnding_14:	spriteHeader
+	spritePiece	-$C, -$13, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$C, 5, 3, 2, $C, 0, 0, 0, 0
+Map_SonicEnding_14_End
+
+Map_SonicEnding_22:	spriteHeader
+	spritePiece	-$E, -3, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$C, -$13, 4, 3, 8, 0, 0, 0, 0
+	spritePiece	-$C, 5, 3, 2, $14, 0, 0, 0, 0
+Map_SonicEnding_22_End
+
+Map_SonicEnding_36:	spriteHeader
+	spritePiece	-$10, -2, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-8, -$12, 3, 2, $C, 0, 0, 0, 0
+Map_SonicEnding_36_End
+
+Map_SonicEnding_44:	spriteHeader
+	spritePiece	-$E, -$B, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$E, $D, 3, 1, $C, 0, 0, 0, 0
+	spritePiece	-6, -$13, 3, 1, $F, 0, 0, 0, 0
+Map_SonicEnding_44_End
+
+Map_SonicEnding_58:	spriteHeader
+	spritePiece	-$11, -$B, 4, 3, 0, 1, 0, 0, 0
+	spritePiece	-9, $D, 3, 1, $C, 1, 0, 0, 0
+	spritePiece	-$11, -$13, 3, 1, $F, 1, 0, 0, 0
+Map_SonicEnding_58_End
+
+Map_SonicEnding_6C:	spriteHeader
+	spritePiece	-$12, -4, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$A, -$14, 3, 2, $C, 0, 0, 0, 0
+	spritePiece	$E, 4, 1, 1, $12, 0, 0, 0, 0
+Map_SonicEnding_6C_End
+
+Map_SonicEnding_80:	spriteHeader
+	spritePiece	-$16, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$E, -4, 4, 3, 8, 0, 0, 0, 0
+	spritePiece	-$16, 4, 1, 1, $14, 0, 0, 0, 0
+Map_SonicEnding_80_End
+
+Map_SonicEnding_94:	spriteHeader
+	spritePiece	-$10, -$C, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-8, -$14, 2, 1, $C, 0, 0, 0, 0
+	spritePiece	-8, $C, 2, 1, $E, 0, 0, 0, 0
+Map_SonicEnding_94_End
+
+Map_SonicEnding_A8:	spriteHeader
+	spritePiece	-8, -$54, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	$18, -$4C, 1, 2, $10, 0, 0, 0, 0
+	spritePiece	-$10, -$4C, 1, 3, $12, 0, 0, 0, 0
+	spritePiece	-$10, -$34, 1, 2, $15, 0, 0, 0, 0
+	spritePiece	-8, -$34, 4, 3, $17, 0, 0, 0, 0
+	spritePiece	-8, -$1C, 2, 2, $23, 0, 0, 0, 0
+Map_SonicEnding_A8_End
+
+Map_SonicEnding_CE:	spriteHeader
+	spritePiece	-$2C, -$58, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	-$24, -$78, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$14, -$80, 4, 1, $20, 0, 0, 0, 0
+	spritePiece	-4, -$78, 4, 4, $24, 0, 0, 0, 0
+	spritePiece	$14, -$58, 1, 1, $34, 0, 0, 0, 0
+	spritePiece	-$C, -$58, 4, 4, $35, 0, 0, 0, 0
+	spritePiece	-$C, -$38, 4, 1, $45, 0, 0, 0, 0
+	spritePiece	-$C, -$30, 3, 2, $49, 0, 0, 0, 0
+Map_SonicEnding_CE_End
+
 	even

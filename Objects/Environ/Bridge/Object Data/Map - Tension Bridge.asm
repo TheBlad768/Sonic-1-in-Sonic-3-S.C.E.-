@@ -2,8 +2,11 @@
 ; Sprite mappings - GHZ bridge
 ; ---------------------------------------------------------------------------
 
-Map_TensionBridge:
-Map_TensionBridge_0: 	dc.w Map_TensionBridge_2-Map_TensionBridge
-Map_TensionBridge_2: 	dc.b $0, $1
-	dc.b $F8, $5, $0, $0, $FF, $F8
+Map_TensionBridge:	mappingsTable
+	mappingsTableEntry.w Map_TensionBridge_2
+
+Map_TensionBridge_2:	spriteHeader
+	spritePiece	-8, -8, 2, 2, 0, 0, 0, 0, 0
+Map_TensionBridge_2_End
+
 	even

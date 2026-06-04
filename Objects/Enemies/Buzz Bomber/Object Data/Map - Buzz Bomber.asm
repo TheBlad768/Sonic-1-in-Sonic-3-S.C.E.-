@@ -2,50 +2,66 @@
 ; Sprite mappings - Buzz Bomber enemy
 ; ---------------------------------------------------------------------------
 
-Map_BuzzBomber:
-		dc.w Map_BuzzBomber_C-Map_BuzzBomber, Map_BuzzBomber_32-Map_BuzzBomber
-		dc.w Map_BuzzBomber_58-Map_BuzzBomber, Map_BuzzBomber_84-Map_BuzzBomber
-		dc.w Map_BuzzBomber_B0-Map_BuzzBomber, Map_BuzzBomber_D6-Map_BuzzBomber
-Map_BuzzBomber_C:	dc.b 0, 6
-		dc.b $F4, 9, 0, 0, $FF, $E8
-		dc.b $F4, 9, 0, $F, 0, 0
-		dc.b 4, 8, 0, $15, $FF, $E8
-		dc.b 4, 4, 0, $18, 0, 0
-		dc.b $F1, 8, 0, $1A, $FF, $EC
-		dc.b $F1, 4, 0, $1D, 0, 4
-Map_BuzzBomber_32:	dc.b 0, 6
-		dc.b $F4, 9, 0, 0, $FF, $E8
-		dc.b $F4, 9, 0, $F, 0, 0
-		dc.b 4, 8, 0, $15, $FF, $E8
-		dc.b 4, 4, 0, $18, 0, 0
-		dc.b $F4, 8, 0, $1F, $FF, $EC
-		dc.b $F4, 4, 0, $22, 0, 4
-Map_BuzzBomber_58:	dc.b 0, 7
-		dc.b 4, 0, 0, $30, 0, $C
-		dc.b $F4, 9, 0, 0, $FF, $E8
-		dc.b $F4, 9, 0, $F, 0, 0
-		dc.b 4, 8, 0, $15, $FF, $E8
-		dc.b 4, 4, 0, $18, 0, 0
-		dc.b $F1, 8, 0, $1A, $FF, $EC
-		dc.b $F1, 4, 0, $1D, 0, 4
-Map_BuzzBomber_84:	dc.b 0, 7
-		dc.b 4, 4, 0, $31, 0, $C
-		dc.b $F4, 9, 0, 0, $FF, $E8
-		dc.b $F4, 9, 0, $F, 0, 0
-		dc.b 4, 8, 0, $15, $FF, $E8
-		dc.b 4, 4, 0, $18, 0, 0
-		dc.b $F4, 8, 0, $1F, $FF, $EC
-		dc.b $F4, 4, 0, $22, 0, 4
-Map_BuzzBomber_B0:	dc.b 0, 6
-		dc.b $F4, $D, 0, 0, $FF, $EC
-		dc.b 4, $C, 0, 8, $FF, $EC
-		dc.b 4, 0, 0, $C, 0, $C
-		dc.b $C, 4, 0, $D, $FF, $F4
-		dc.b $F1, 8, 0, $1A, $FF, $EC
-		dc.b $F1, 4, 0, $1D, 0, 4
-Map_BuzzBomber_D6:	dc.b 0, 4
-		dc.b $F4, $D, 0, 0, $FF, $EC
-		dc.b 4, $C, 0, 8, $FF, $EC
-		dc.b 4, 0, 0, $C, 0, $C
-		dc.b $C, 4, 0, $D, $FF, $F4
+Map_BuzzBomber:	mappingsTable
+	mappingsTableEntry.w Map_BuzzBomber_C
+	mappingsTableEntry.w Map_BuzzBomber_32
+	mappingsTableEntry.w Map_BuzzBomber_58
+	mappingsTableEntry.w Map_BuzzBomber_84
+	mappingsTableEntry.w Map_BuzzBomber_B0
+	mappingsTableEntry.w Map_BuzzBomber_D6
+
+Map_BuzzBomber_C:	spriteHeader
+	spritePiece	-$18, -$C, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	0, -$C, 3, 2, $F, 0, 0, 0, 0
+	spritePiece	-$18, 4, 3, 1, $15, 0, 0, 0, 0
+	spritePiece	0, 4, 2, 1, $18, 0, 0, 0, 0
+	spritePiece	-$14, -$F, 3, 1, $1A, 0, 0, 0, 0
+	spritePiece	4, -$F, 2, 1, $1D, 0, 0, 0, 0
+Map_BuzzBomber_C_End
+
+Map_BuzzBomber_32:	spriteHeader
+	spritePiece	-$18, -$C, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	0, -$C, 3, 2, $F, 0, 0, 0, 0
+	spritePiece	-$18, 4, 3, 1, $15, 0, 0, 0, 0
+	spritePiece	0, 4, 2, 1, $18, 0, 0, 0, 0
+	spritePiece	-$14, -$C, 3, 1, $1F, 0, 0, 0, 0
+	spritePiece	4, -$C, 2, 1, $22, 0, 0, 0, 0
+Map_BuzzBomber_32_End
+
+Map_BuzzBomber_58:	spriteHeader
+	spritePiece	$C, 4, 1, 1, $30, 0, 0, 0, 0
+	spritePiece	-$18, -$C, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	0, -$C, 3, 2, $F, 0, 0, 0, 0
+	spritePiece	-$18, 4, 3, 1, $15, 0, 0, 0, 0
+	spritePiece	0, 4, 2, 1, $18, 0, 0, 0, 0
+	spritePiece	-$14, -$F, 3, 1, $1A, 0, 0, 0, 0
+	spritePiece	4, -$F, 2, 1, $1D, 0, 0, 0, 0
+Map_BuzzBomber_58_End
+
+Map_BuzzBomber_84:	spriteHeader
+	spritePiece	$C, 4, 2, 1, $31, 0, 0, 0, 0
+	spritePiece	-$18, -$C, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	0, -$C, 3, 2, $F, 0, 0, 0, 0
+	spritePiece	-$18, 4, 3, 1, $15, 0, 0, 0, 0
+	spritePiece	0, 4, 2, 1, $18, 0, 0, 0, 0
+	spritePiece	-$14, -$C, 3, 1, $1F, 0, 0, 0, 0
+	spritePiece	4, -$C, 2, 1, $22, 0, 0, 0, 0
+Map_BuzzBomber_84_End
+
+Map_BuzzBomber_B0:	spriteHeader
+	spritePiece	-$14, -$C, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$14, 4, 4, 1, 8, 0, 0, 0, 0
+	spritePiece	$C, 4, 1, 1, $C, 0, 0, 0, 0
+	spritePiece	-$C, $C, 2, 1, $D, 0, 0, 0, 0
+	spritePiece	-$14, -$F, 3, 1, $1A, 0, 0, 0, 0
+	spritePiece	4, -$F, 2, 1, $1D, 0, 0, 0, 0
+Map_BuzzBomber_B0_End
+
+Map_BuzzBomber_D6:	spriteHeader
+	spritePiece	-$14, -$C, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$14, 4, 4, 1, 8, 0, 0, 0, 0
+	spritePiece	$C, 4, 1, 1, $C, 0, 0, 0, 0
+	spritePiece	-$C, $C, 2, 1, $D, 0, 0, 0, 0
+Map_BuzzBomber_D6_End
+
 		even

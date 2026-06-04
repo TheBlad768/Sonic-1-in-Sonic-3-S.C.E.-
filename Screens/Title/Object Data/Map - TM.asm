@@ -2,5 +2,5 @@
 ; Sprite mappings - "TM" from title screen
 ; ---------------------------------------------------------------------------
 
-Map_TTM:	dc.b $FC, 4, $22, $FE, $FF, $F8
+Map_TTM:	spritePiece	-8, -4, 2, 1, $2FE, 0, 0, 1, 0
 	even

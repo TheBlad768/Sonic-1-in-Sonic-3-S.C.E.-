@@ -2,27 +2,34 @@
 ; Sprite mappings - trapdoor (SBZ)
 ; ---------------------------------------------------------------------------
 
-Map_Trapdoor:
-		dc.w Map_Trapdoor_6-Map_Trapdoor
-		dc.w Map_Trapdoor_20-Map_Trapdoor
-		dc.w Map_Trapdoor_52-Map_Trapdoor
-Map_Trapdoor_6:	dc.b 0, 4
-		dc.b $F4, $E, 0, 0, $FF, $C0
-		dc.b $F4, $E, 8, 0, $FF, $E0
-		dc.b $F4, $E, 0, 0, 0, 0
-		dc.b $F4, $E, 8, 0, 0, $20
-Map_Trapdoor_20:	dc.b 0, 8
-		dc.b $F2, $F, 0, $C, $FF, $B6
-		dc.b $1A, $F, $18, $C, $FF, $D6
-		dc.b 2, $A, 0, $1C, $FF, $D6
-		dc.b $12, $A, $18, $1C, $FF, $BE
-		dc.b $F2, $F, 8, $C, 0, $2A
-		dc.b $1A, $F, $10, $C, 0, $A
-		dc.b 2, $A, 8, $1C, 0, $12
-		dc.b $12, $A, $10, $1C, 0, $2A
-Map_Trapdoor_52:	dc.b 0, 4
-		dc.b 0, $B, 0, $25, $FF, $B4
-		dc.b $20, $B, $10, $25, $FF, $B4
-		dc.b 0, $B, 0, $25, 0, $34
-		dc.b $20, $B, $10, $25, 0, $34
+Map_Trapdoor:	mappingsTable
+	mappingsTableEntry.w Map_Trapdoor_6
+	mappingsTableEntry.w Map_Trapdoor_20
+	mappingsTableEntry.w Map_Trapdoor_52
+
+Map_Trapdoor_6:	spriteHeader
+	spritePiece	-$40, -$C, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$20, -$C, 4, 3, 0, 1, 0, 0, 0
+	spritePiece	0, -$C, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	$20, -$C, 4, 3, 0, 1, 0, 0, 0
+Map_Trapdoor_6_End
+
+Map_Trapdoor_20:	spriteHeader
+	spritePiece	-$4A, -$E, 4, 4, $C, 0, 0, 0, 0
+	spritePiece	-$2A, $1A, 4, 4, $C, 1, 1, 0, 0
+	spritePiece	-$2A, 2, 3, 3, $1C, 0, 0, 0, 0
+	spritePiece	-$42, $12, 3, 3, $1C, 1, 1, 0, 0
+	spritePiece	$2A, -$E, 4, 4, $C, 1, 0, 0, 0
+	spritePiece	$A, $1A, 4, 4, $C, 0, 1, 0, 0
+	spritePiece	$12, 2, 3, 3, $1C, 1, 0, 0, 0
+	spritePiece	$2A, $12, 3, 3, $1C, 0, 1, 0, 0
+Map_Trapdoor_20_End
+
+Map_Trapdoor_52:	spriteHeader
+	spritePiece	-$4C, 0, 3, 4, $25, 0, 0, 0, 0
+	spritePiece	-$4C, $20, 3, 4, $25, 0, 1, 0, 0
+	spritePiece	$34, 0, 3, 4, $25, 0, 0, 0, 0
+	spritePiece	$34, $20, 3, 4, $25, 0, 1, 0, 0
+Map_Trapdoor_52_End
+
 		even

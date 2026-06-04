@@ -2,29 +2,42 @@
 ; Sprite mappings - Burrobot enemy (LZ)
 ; ---------------------------------------------------------------------------
 
-Map_Burrobot:
-Map_Burrobot_0: 	dc.w Map_Burrobot_C-Map_Burrobot
-Map_Burrobot_2: 	dc.w Map_Burrobot_1A-Map_Burrobot
-Map_Burrobot_4: 	dc.w Map_Burrobot_28-Map_Burrobot
-Map_Burrobot_6: 	dc.w Map_Burrobot_36-Map_Burrobot
-Map_Burrobot_8: 	dc.w Map_Burrobot_44-Map_Burrobot
-Map_Burrobot_A: 	dc.w Map_Burrobot_52-Map_Burrobot
-Map_Burrobot_C: 	dc.b $0, $2
-	dc.b $EC, $A, $0, $0, $FF, $F0
-	dc.b $4, $9, $0, $9, $FF, $F4
-Map_Burrobot_1A: 	dc.b $0, $2
-	dc.b $EC, $A, $0, $F, $FF, $F0
-	dc.b $4, $9, $0, $18, $FF, $F4
-Map_Burrobot_28: 	dc.b $0, $2
-	dc.b $E8, $A, $0, $1E, $FF, $F4
-	dc.b $0, $A, $0, $27, $FF, $F4
-Map_Burrobot_36: 	dc.b $0, $2
-	dc.b $E8, $A, $0, $30, $FF, $F4
-	dc.b $0, $A, $0, $39, $FF, $F4
-Map_Burrobot_44: 	dc.b $0, $2
-	dc.b $E8, $A, $0, $F, $FF, $F0
-	dc.b $0, $A, $0, $42, $FF, $F4
-Map_Burrobot_52: 	dc.b $0, $2
-	dc.b $EC, $A, $0, $F, $FF, $F0
-	dc.b $4, $9, $0, $9, $FF, $F4
+Map_Burrobot:	mappingsTable
+	mappingsTableEntry.w Map_Burrobot_C
+	mappingsTableEntry.w Map_Burrobot_1A
+	mappingsTableEntry.w Map_Burrobot_28
+	mappingsTableEntry.w Map_Burrobot_36
+	mappingsTableEntry.w Map_Burrobot_44
+	mappingsTableEntry.w Map_Burrobot_52
+
+Map_Burrobot_C:	spriteHeader
+	spritePiece	-$10, -$14, 3, 3, 0, 0, 0, 0, 0
+	spritePiece	-$C, 4, 3, 2, 9, 0, 0, 0, 0
+Map_Burrobot_C_End
+
+Map_Burrobot_1A:	spriteHeader
+	spritePiece	-$10, -$14, 3, 3, $F, 0, 0, 0, 0
+	spritePiece	-$C, 4, 3, 2, $18, 0, 0, 0, 0
+Map_Burrobot_1A_End
+
+Map_Burrobot_28:	spriteHeader
+	spritePiece	-$C, -$18, 3, 3, $1E, 0, 0, 0, 0
+	spritePiece	-$C, 0, 3, 3, $27, 0, 0, 0, 0
+Map_Burrobot_28_End
+
+Map_Burrobot_36:	spriteHeader
+	spritePiece	-$C, -$18, 3, 3, $30, 0, 0, 0, 0
+	spritePiece	-$C, 0, 3, 3, $39, 0, 0, 0, 0
+Map_Burrobot_36_End
+
+Map_Burrobot_44:	spriteHeader
+	spritePiece	-$10, -$18, 3, 3, $F, 0, 0, 0, 0
+	spritePiece	-$C, 0, 3, 3, $42, 0, 0, 0, 0
+Map_Burrobot_44_End
+
+Map_Burrobot_52:	spriteHeader
+	spritePiece	-$10, -$14, 3, 3, $F, 0, 0, 0, 0
+	spritePiece	-$C, 4, 3, 2, 9, 0, 0, 0, 0
+Map_Burrobot_52_End
+
 	even

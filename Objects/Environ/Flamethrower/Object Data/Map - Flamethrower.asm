@@ -2,120 +2,176 @@
 ; Sprite mappings - flame thrower (SBZ)
 ; ---------------------------------------------------------------------------
 
-Map_Flamethrower:
-		dc.w Map_Flamethrower_2C-Map_Flamethrower, Map_Flamethrower_34-Map_Flamethrower
-		dc.w Map_Flamethrower_42-Map_Flamethrower, Map_Flamethrower_50-Map_Flamethrower
-		dc.w Map_Flamethrower_64-Map_Flamethrower, Map_Flamethrower_78-Map_Flamethrower
-		dc.w Map_Flamethrower_92-Map_Flamethrower, Map_Flamethrower_AC-Map_Flamethrower
-		dc.w Map_Flamethrower_CC-Map_Flamethrower, Map_Flamethrower_EC-Map_Flamethrower
-		dc.w Map_Flamethrower_112-Map_Flamethrower, Map_Flamethrower_138-Map_Flamethrower
-		dc.w Map_Flamethrower_140-Map_Flamethrower, Map_Flamethrower_14E-Map_Flamethrower
-		dc.w Map_Flamethrower_15C-Map_Flamethrower, Map_Flamethrower_170-Map_Flamethrower
-		dc.w Map_Flamethrower_184-Map_Flamethrower, Map_Flamethrower_19E-Map_Flamethrower
-		dc.w Map_Flamethrower_1B8-Map_Flamethrower, Map_Flamethrower_1D8-Map_Flamethrower
-		dc.w Map_Flamethrower_1F8-Map_Flamethrower, Map_Flamethrower_21E-Map_Flamethrower
-Map_Flamethrower_2C:	dc.b 0, 1
-		dc.b $28, 5, $40, $14, $FF, $FB
-Map_Flamethrower_34:	dc.b 0, 2
-		dc.b $20, 1, 0, 0, $FF, $FD
-		dc.b $28, 5, $40, $14, $FF, $FB
-Map_Flamethrower_42:	dc.b 0, 2
-		dc.b $20, 1, 8, 0, $FF, $FC
-		dc.b $28, 5, $40, $14, $FF, $FB
-Map_Flamethrower_50:	dc.b 0, 3
-		dc.b $10, 6, 0, 2, $FF, $F8
-		dc.b $20, 1, 0, 0, $FF, $FD
-		dc.b $28, 5, $40, $14, $FF, $FB
-Map_Flamethrower_64:	dc.b 0, 3
-		dc.b $10, 6, 8, 2, $FF, $F8
-		dc.b $20, 1, 8, 0, $FF, $FC
-		dc.b $28, 5, $40, $14, $FF, $FB
-Map_Flamethrower_78:	dc.b 0, 4
-		dc.b 8, 6, 0, 2, $FF, $F8
-		dc.b $10, 6, 0, 2, $FF, $F8
-		dc.b $20, 1, 0, 0, $FF, $FD
-		dc.b $28, 5, $40, $14, $FF, $FB
-Map_Flamethrower_92:	dc.b 0, 4
-		dc.b 8, 6, 8, 2, $FF, $F8
-		dc.b $10, 6, 8, 2, $FF, $F8
-		dc.b $20, 1, 8, 0, $FF, $FC
-		dc.b $28, 5, $40, $14, $FF, $FB
-Map_Flamethrower_AC:	dc.b 0, 5
-		dc.b $F8, $B, 0, 8, $FF, $F4
-		dc.b 8, 6, 0, 2, $FF, $F8
-		dc.b $10, 6, 0, 2, $FF, $F8
-		dc.b $20, 1, 0, 0, $FF, $FD
-		dc.b $28, 5, $40, $14, $FF, $FB
-Map_Flamethrower_CC:	dc.b 0, 5
-		dc.b $F8, $B, 8, 8, $FF, $F4
-		dc.b 8, 6, 8, 2, $FF, $F8
-		dc.b $10, 6, 8, 2, $FF, $F8
-		dc.b $20, 1, 8, 0, $FF, $FC
-		dc.b $28, 5, $40, $14, $FF, $FB
-Map_Flamethrower_EC:	dc.b 0, 6
-		dc.b $E8, $B, 0, 8, $FF, $F4
-		dc.b $F7, $B, 0, 8, $FF, $F4
-		dc.b 8, 6, 0, 2, $FF, $F8
-		dc.b $F, 6, 0, 2, $FF, $F8
-		dc.b $20, 1, 0, 0, $FF, $FD
-		dc.b $28, 5, $40, $14, $FF, $FB
-Map_Flamethrower_112:	dc.b 0, 6
-		dc.b $E7, $B, 8, 8, $FF, $F4
-		dc.b $F8, $B, 8, 8, $FF, $F4
-		dc.b 7, 6, 8, 2, $FF, $F8
-		dc.b $10, 6, 8, 2, $FF, $F8
-		dc.b $20, 1, 8, 0, $FF, $FC
-		dc.b $28, 5, $40, $14, $FF, $FB
-Map_Flamethrower_138:	dc.b 0, 1
-		dc.b $28, 5, $40, $18, $FF, $F9
-Map_Flamethrower_140:	dc.b 0, 2
-		dc.b $28, 5, $40, $18, $FF, $F9
-		dc.b $20, 1, 0, 0, $FF, $FD
-Map_Flamethrower_14E:	dc.b 0, 2
-		dc.b $28, 5, $40, $18, $FF, $F9
-		dc.b $20, 1, 8, 0, $FF, $FC
-Map_Flamethrower_15C:	dc.b 0, 3
-		dc.b $10, 6, 0, 2, $FF, $F8
-		dc.b $28, 5, $40, $18, $FF, $F9
-		dc.b $20, 1, 0, 0, $FF, $FD
-Map_Flamethrower_170:	dc.b 0, 3
-		dc.b $10, 6, 8, 2, $FF, $F8
-		dc.b $28, 5, $40, $18, $FF, $F9
-		dc.b $20, 1, 8, 0, $FF, $FC
-Map_Flamethrower_184:	dc.b 0, 4
-		dc.b 8, 6, 0, 2, $FF, $F8
-		dc.b $10, 6, 0, 2, $FF, $F8
-		dc.b $28, 5, $40, $18, $FF, $F9
-		dc.b $20, 1, 0, 0, $FF, $FD
-Map_Flamethrower_19E:	dc.b 0, 4
-		dc.b 8, 6, 8, 2, $FF, $F8
-		dc.b $10, 6, 8, 2, $FF, $F8
-		dc.b $28, 5, $40, $18, $FF, $F9
-		dc.b $20, 1, 8, 0, $FF, $FC
-Map_Flamethrower_1B8:	dc.b 0, 5
-		dc.b $F8, $B, 0, 8, $FF, $F4
-		dc.b 8, 6, 0, 2, $FF, $F8
-		dc.b $10, 6, 0, 2, $FF, $F8
-		dc.b $28, 5, $40, $18, $FF, $F9
-		dc.b $20, 1, 0, 0, $FF, $FD
-Map_Flamethrower_1D8:	dc.b 0, 5
-		dc.b $F8, $B, 8, 8, $FF, $F4
-		dc.b 8, 6, 8, 2, $FF, $F8
-		dc.b $10, 6, 8, 2, $FF, $F8
-		dc.b $28, 5, $40, $18, $FF, $F9
-		dc.b $20, 1, 8, 0, $FF, $FC
-Map_Flamethrower_1F8:	dc.b 0, 6
-		dc.b $E8, $B, 0, 8, $FF, $F4
-		dc.b $F7, $B, 0, 8, $FF, $F4
-		dc.b 8, 6, 0, 2, $FF, $F8
-		dc.b $F, 6, 0, 2, $FF, $F8
-		dc.b $28, 5, $40, $18, $FF, $F9
-		dc.b $20, 1, 0, 0, $FF, $FD
-Map_Flamethrower_21E:	dc.b 0, 6
-		dc.b $E7, $B, 8, 8, $FF, $F4
-		dc.b $F8, $B, 8, 8, $FF, $F4
-		dc.b 7, 6, 8, 2, $FF, $F8
-		dc.b $10, 6, 8, 2, $FF, $F8
-		dc.b $28, 5, $40, $18, $FF, $F9
-		dc.b $20, 1, 8, 0, $FF, $FC
+Map_Flamethrower:	mappingsTable
+	mappingsTableEntry.w Map_Flamethrower_2C
+	mappingsTableEntry.w Map_Flamethrower_34
+	mappingsTableEntry.w Map_Flamethrower_42
+	mappingsTableEntry.w Map_Flamethrower_50
+	mappingsTableEntry.w Map_Flamethrower_64
+	mappingsTableEntry.w Map_Flamethrower_78
+	mappingsTableEntry.w Map_Flamethrower_92
+	mappingsTableEntry.w Map_Flamethrower_AC
+	mappingsTableEntry.w Map_Flamethrower_CC
+	mappingsTableEntry.w Map_Flamethrower_EC
+	mappingsTableEntry.w Map_Flamethrower_112
+	mappingsTableEntry.w Map_Flamethrower_138
+	mappingsTableEntry.w Map_Flamethrower_140
+	mappingsTableEntry.w Map_Flamethrower_14E
+	mappingsTableEntry.w Map_Flamethrower_15C
+	mappingsTableEntry.w Map_Flamethrower_170
+	mappingsTableEntry.w Map_Flamethrower_184
+	mappingsTableEntry.w Map_Flamethrower_19E
+	mappingsTableEntry.w Map_Flamethrower_1B8
+	mappingsTableEntry.w Map_Flamethrower_1D8
+	mappingsTableEntry.w Map_Flamethrower_1F8
+	mappingsTableEntry.w Map_Flamethrower_21E
+
+Map_Flamethrower_2C:	spriteHeader
+	spritePiece	-5, $28, 2, 2, $14, 0, 0, 2, 0
+Map_Flamethrower_2C_End
+
+Map_Flamethrower_34:	spriteHeader
+	spritePiece	-3, $20, 1, 2, 0, 0, 0, 0, 0
+	spritePiece	-5, $28, 2, 2, $14, 0, 0, 2, 0
+Map_Flamethrower_34_End
+
+Map_Flamethrower_42:	spriteHeader
+	spritePiece	-4, $20, 1, 2, 0, 1, 0, 0, 0
+	spritePiece	-5, $28, 2, 2, $14, 0, 0, 2, 0
+Map_Flamethrower_42_End
+
+Map_Flamethrower_50:	spriteHeader
+	spritePiece	-8, $10, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-3, $20, 1, 2, 0, 0, 0, 0, 0
+	spritePiece	-5, $28, 2, 2, $14, 0, 0, 2, 0
+Map_Flamethrower_50_End
+
+Map_Flamethrower_64:	spriteHeader
+	spritePiece	-8, $10, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-4, $20, 1, 2, 0, 1, 0, 0, 0
+	spritePiece	-5, $28, 2, 2, $14, 0, 0, 2, 0
+Map_Flamethrower_64_End
+
+Map_Flamethrower_78:	spriteHeader
+	spritePiece	-8, 8, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-8, $10, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-3, $20, 1, 2, 0, 0, 0, 0, 0
+	spritePiece	-5, $28, 2, 2, $14, 0, 0, 2, 0
+Map_Flamethrower_78_End
+
+Map_Flamethrower_92:	spriteHeader
+	spritePiece	-8, 8, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-8, $10, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-4, $20, 1, 2, 0, 1, 0, 0, 0
+	spritePiece	-5, $28, 2, 2, $14, 0, 0, 2, 0
+Map_Flamethrower_92_End
+
+Map_Flamethrower_AC:	spriteHeader
+	spritePiece	-$C, -8, 3, 4, 8, 0, 0, 0, 0
+	spritePiece	-8, 8, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-8, $10, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-3, $20, 1, 2, 0, 0, 0, 0, 0
+	spritePiece	-5, $28, 2, 2, $14, 0, 0, 2, 0
+Map_Flamethrower_AC_End
+
+Map_Flamethrower_CC:	spriteHeader
+	spritePiece	-$C, -8, 3, 4, 8, 1, 0, 0, 0
+	spritePiece	-8, 8, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-8, $10, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-4, $20, 1, 2, 0, 1, 0, 0, 0
+	spritePiece	-5, $28, 2, 2, $14, 0, 0, 2, 0
+Map_Flamethrower_CC_End
+
+Map_Flamethrower_EC:	spriteHeader
+	spritePiece	-$C, -$18, 3, 4, 8, 0, 0, 0, 0
+	spritePiece	-$C, -9, 3, 4, 8, 0, 0, 0, 0
+	spritePiece	-8, 8, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-8, $F, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-3, $20, 1, 2, 0, 0, 0, 0, 0
+	spritePiece	-5, $28, 2, 2, $14, 0, 0, 2, 0
+Map_Flamethrower_EC_End
+
+Map_Flamethrower_112:	spriteHeader
+	spritePiece	-$C, -$19, 3, 4, 8, 1, 0, 0, 0
+	spritePiece	-$C, -8, 3, 4, 8, 1, 0, 0, 0
+	spritePiece	-8, 7, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-8, $10, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-4, $20, 1, 2, 0, 1, 0, 0, 0
+	spritePiece	-5, $28, 2, 2, $14, 0, 0, 2, 0
+Map_Flamethrower_112_End
+
+Map_Flamethrower_138:	spriteHeader
+	spritePiece	-7, $28, 2, 2, $18, 0, 0, 2, 0
+Map_Flamethrower_138_End
+
+Map_Flamethrower_140:	spriteHeader
+	spritePiece	-7, $28, 2, 2, $18, 0, 0, 2, 0
+	spritePiece	-3, $20, 1, 2, 0, 0, 0, 0, 0
+Map_Flamethrower_140_End
+
+Map_Flamethrower_14E:	spriteHeader
+	spritePiece	-7, $28, 2, 2, $18, 0, 0, 2, 0
+	spritePiece	-4, $20, 1, 2, 0, 1, 0, 0, 0
+Map_Flamethrower_14E_End
+
+Map_Flamethrower_15C:	spriteHeader
+	spritePiece	-8, $10, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-7, $28, 2, 2, $18, 0, 0, 2, 0
+	spritePiece	-3, $20, 1, 2, 0, 0, 0, 0, 0
+Map_Flamethrower_15C_End
+
+Map_Flamethrower_170:	spriteHeader
+	spritePiece	-8, $10, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-7, $28, 2, 2, $18, 0, 0, 2, 0
+	spritePiece	-4, $20, 1, 2, 0, 1, 0, 0, 0
+Map_Flamethrower_170_End
+
+Map_Flamethrower_184:	spriteHeader
+	spritePiece	-8, 8, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-8, $10, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-7, $28, 2, 2, $18, 0, 0, 2, 0
+	spritePiece	-3, $20, 1, 2, 0, 0, 0, 0, 0
+Map_Flamethrower_184_End
+
+Map_Flamethrower_19E:	spriteHeader
+	spritePiece	-8, 8, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-8, $10, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-7, $28, 2, 2, $18, 0, 0, 2, 0
+	spritePiece	-4, $20, 1, 2, 0, 1, 0, 0, 0
+Map_Flamethrower_19E_End
+
+Map_Flamethrower_1B8:	spriteHeader
+	spritePiece	-$C, -8, 3, 4, 8, 0, 0, 0, 0
+	spritePiece	-8, 8, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-8, $10, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-7, $28, 2, 2, $18, 0, 0, 2, 0
+	spritePiece	-3, $20, 1, 2, 0, 0, 0, 0, 0
+Map_Flamethrower_1B8_End
+
+Map_Flamethrower_1D8:	spriteHeader
+	spritePiece	-$C, -8, 3, 4, 8, 1, 0, 0, 0
+	spritePiece	-8, 8, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-8, $10, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-7, $28, 2, 2, $18, 0, 0, 2, 0
+	spritePiece	-4, $20, 1, 2, 0, 1, 0, 0, 0
+Map_Flamethrower_1D8_End
+
+Map_Flamethrower_1F8:	spriteHeader
+	spritePiece	-$C, -$18, 3, 4, 8, 0, 0, 0, 0
+	spritePiece	-$C, -9, 3, 4, 8, 0, 0, 0, 0
+	spritePiece	-8, 8, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-8, $F, 2, 3, 2, 0, 0, 0, 0
+	spritePiece	-7, $28, 2, 2, $18, 0, 0, 2, 0
+	spritePiece	-3, $20, 1, 2, 0, 0, 0, 0, 0
+Map_Flamethrower_1F8_End
+
+Map_Flamethrower_21E:	spriteHeader
+	spritePiece	-$C, -$19, 3, 4, 8, 1, 0, 0, 0
+	spritePiece	-$C, -8, 3, 4, 8, 1, 0, 0, 0
+	spritePiece	-8, 7, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-8, $10, 2, 3, 2, 1, 0, 0, 0
+	spritePiece	-7, $28, 2, 2, $18, 0, 0, 2, 0
+	spritePiece	-4, $20, 1, 2, 0, 1, 0, 0, 0
+Map_Flamethrower_21E_End
+
 		even

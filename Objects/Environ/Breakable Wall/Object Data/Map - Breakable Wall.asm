@@ -2,35 +2,42 @@
 ; Sprite mappings - breakable walls (GHZ, SLZ)
 ; ---------------------------------------------------------------------------
 
-Map_BreakableWall:
-		dc.w Map_BreakableWall_6-Map_BreakableWall
-		dc.w Map_BreakableWall_38-Map_BreakableWall
-		dc.w Map_BreakableWall_6A-Map_BreakableWall
-Map_BreakableWall_6:	dc.b 0, 8
-		dc.b $E0, 5, 0, 0, $FF, $F0
-		dc.b $F0, 5, 0, 0, $FF, $F0
-		dc.b 0, 5, 0, 0, $FF, $F0
-		dc.b $10, 5, 0, 0, $FF, $F0
-		dc.b $E0, 5, 0, 4, 0, 0
-		dc.b $F0, 5, 0, 4, 0, 0
-		dc.b 0, 5, 0, 4, 0, 0
-		dc.b $10, 5, 0, 4, 0, 0
-Map_BreakableWall_38:	dc.b 0, 8
-		dc.b $E0, 5, 0, 4, $FF, $F0
-		dc.b $F0, 5, 0, 4, $FF, $F0
-		dc.b 0, 5, 0, 4, $FF, $F0
-		dc.b $10, 5, 0, 4, $FF, $F0
-		dc.b $E0, 5, 0, 4, 0, 0
-		dc.b $F0, 5, 0, 4, 0, 0
-		dc.b 0, 5, 0, 4, 0, 0
-		dc.b $10, 5, 0, 4, 0, 0
-Map_BreakableWall_6A:	dc.b 0, 8
-		dc.b $E0, 5, 0, 4, $FF, $F0
-		dc.b $F0, 5, 0, 4, $FF, $F0
-		dc.b 0, 5, 0, 4, $FF, $F0
-		dc.b $10, 5, 0, 4, $FF, $F0
-		dc.b $E0, 5, 0, 8, 0, 0
-		dc.b $F0, 5, 0, 8, 0, 0
-		dc.b 0, 5, 0, 8, 0, 0
-		dc.b $10, 5, 0, 8, 0, 0
+Map_BreakableWall:	mappingsTable
+	mappingsTableEntry.w Map_BreakableWall_6
+	mappingsTableEntry.w Map_BreakableWall_38
+	mappingsTableEntry.w Map_BreakableWall_6A
+
+Map_BreakableWall_6:	spriteHeader
+	spritePiece	-$10, -$20, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, 0, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, $10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	0, -$20, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	0, -$10, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	0, 0, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	0, $10, 2, 2, 4, 0, 0, 0, 0
+Map_BreakableWall_6_End
+
+Map_BreakableWall_38:	spriteHeader
+	spritePiece	-$10, -$20, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	-$10, -$10, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	-$10, 0, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	-$10, $10, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	0, -$20, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	0, -$10, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	0, 0, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	0, $10, 2, 2, 4, 0, 0, 0, 0
+Map_BreakableWall_38_End
+
+Map_BreakableWall_6A:	spriteHeader
+	spritePiece	-$10, -$20, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	-$10, -$10, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	-$10, 0, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	-$10, $10, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	0, -$20, 2, 2, 8, 0, 0, 0, 0
+	spritePiece	0, -$10, 2, 2, 8, 0, 0, 0, 0
+	spritePiece	0, 0, 2, 2, 8, 0, 0, 0, 0
+	spritePiece	0, $10, 2, 2, 8, 0, 0, 0, 0
+Map_BreakableWall_6A_End
+
 		even

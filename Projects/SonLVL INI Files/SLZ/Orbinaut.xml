@@ -3,7 +3,7 @@
   <Images>
     <ImageFromMappings id="spikeball">
       <ArtFile filename="../../Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm" compression="KosinskiPlusM" />
-      <MapFile type="ASM" filename="SLZ/Mappings/Map - Orbinaut Orb.asm" label="Map_Orb_Orb" startpal="1" />
+      <MapFile type="ASM" filename="SLZ/Mappings/Map - Orbinaut Orb.asm" label="Map_Orbinaut_Orb" startpal="1" />
     </ImageFromMappings>
     <ImageFromMappings id="body">
       <ArtFile filename="../../Objects/Enemies/Orbinaut/KosinskiPlusM Art/Enemy Orbinaut.kospm" compression="KosinskiPlusM" />

@@ -2,22 +2,32 @@
 ; Sprite mappings - still sprites
 ; ---------------------------------------------------------------------------
 
-Map_StillSprites:
-Map_StillSprites_0: 	dc.w Map_StillSprites_A-Map_StillSprites
-Map_StillSprites_2: 	dc.w Map_StillSprites_18-Map_StillSprites
-Map_StillSprites_4: 	dc.w Map_StillSprites_20-Map_StillSprites
-Map_StillSprites_6: 	dc.w Map_StillSprites_28-Map_StillSprites
-Map_StillSprites_8: 	dc.w Map_StillSprites_30-Map_StillSprites
+Map_StillSprites:	mappingsTable
+	mappingsTableEntry.w Map_StillSprites_A
+	mappingsTableEntry.w Map_StillSprites_18
+	mappingsTableEntry.w Map_StillSprites_20
+	mappingsTableEntry.w Map_StillSprites_28
+	mappingsTableEntry.w Map_StillSprites_30
 
-Map_StillSprites_A: 	dc.b $0, $2
-	dc.b $F8, $4, $0, $0, $FF, $F0
-	dc.b 0, $C, $0, $2, $FF, $F0
-Map_StillSprites_18: 	dc.b $0, $1
-	dc.b $F0, $F, 0, 0, $FF, $F0
-Map_StillSprites_20: 	dc.b $0, $1
-	dc.b $F8, $D, $0, $0, $FF, $F0
-Map_StillSprites_28: 	dc.b $0, $1
-	dc.b $F0, $F, $0, $0, $FF, $F0
-Map_StillSprites_30: 	dc.b $0, $1
-	dc.b $F0, $7, $0, $0, $FF, $F8
+Map_StillSprites_A:	spriteHeader
+	spritePiece	-$10, -8, 2, 1, 0, 0, 0, 0, 0
+	spritePiece	-$10, 0, 4, 1, 2, 0, 0, 0, 0
+Map_StillSprites_A_End
+
+Map_StillSprites_18:	spriteHeader
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_StillSprites_18_End
+
+Map_StillSprites_20:	spriteHeader
+	spritePiece	-$10, -8, 4, 2, 0, 0, 0, 0, 0
+Map_StillSprites_20_End
+
+Map_StillSprites_28:	spriteHeader
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_StillSprites_28_End
+
+Map_StillSprites_30:	spriteHeader
+	spritePiece	-8, -$10, 2, 4, 0, 0, 0, 0, 0
+Map_StillSprites_30_End
+
 	even

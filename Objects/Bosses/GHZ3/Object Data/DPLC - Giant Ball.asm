@@ -1,36 +1,58 @@
-DPLC_GiantBall:
-DPLC_GiantBall_0: 	dc.w DPLC_GiantBall_12-DPLC_GiantBall
-DPLC_GiantBall_2: 	dc.w DPLC_GiantBall_16-DPLC_GiantBall
-DPLC_GiantBall_4: 	dc.w DPLC_GiantBall_1C-DPLC_GiantBall
-DPLC_GiantBall_6: 	dc.w DPLC_GiantBall_22-DPLC_GiantBall
-DPLC_GiantBall_8: 	dc.w DPLC_GiantBall_28-DPLC_GiantBall
-DPLC_GiantBall_A: 	dc.w DPLC_GiantBall_2C-DPLC_GiantBall
-DPLC_GiantBall_C: 	dc.w DPLC_GiantBall_32-DPLC_GiantBall
-DPLC_GiantBall_E: 	dc.w DPLC_GiantBall_38-DPLC_GiantBall
-DPLC_GiantBall_10: 	dc.w DPLC_GiantBall_3E-DPLC_GiantBall
-DPLC_GiantBall_12: 	dc.b $0, $0
-	dc.b $0, $8
-DPLC_GiantBall_16: 	dc.b $0, $1
-	dc.b $0, $9F
-	dc.b $1, $91
-DPLC_GiantBall_1C: 	dc.b $0, $1
-	dc.b $1, $BF
-	dc.b $2, $B1
-DPLC_GiantBall_22: 	dc.b $0, $1
-	dc.b $2, $DF
-	dc.b $3, $D1
-DPLC_GiantBall_28: 	dc.b $0, $0
-	dc.b $3, $F8
-DPLC_GiantBall_2C: 	dc.b $0, $1
-	dc.b $4, $8F
-	dc.b $5, $81
-DPLC_GiantBall_32: 	dc.b $0, $1
-	dc.b $5, $AF
-	dc.b $6, $A1
-DPLC_GiantBall_38: 	dc.b $0, $1
-	dc.b $6, $CF
-	dc.b $7, $C1
-DPLC_GiantBall_3E: 	dc.b $0, $1
-	dc.b $7, $EF
-	dc.b $8, $E1
+; ---------------------------------------------------------------------------
+; DPLC mappings - swinging ball on a chain from GHZ boss
+; ---------------------------------------------------------------------------
+
+DPLC_GiantBall:	mappingsTable
+	mappingsTableEntry.w DPLC_GiantBall_12
+	mappingsTableEntry.w DPLC_GiantBall_16
+	mappingsTableEntry.w DPLC_GiantBall_1C
+	mappingsTableEntry.w DPLC_GiantBall_22
+	mappingsTableEntry.w DPLC_GiantBall_28
+	mappingsTableEntry.w DPLC_GiantBall_2C
+	mappingsTableEntry.w DPLC_GiantBall_32
+	mappingsTableEntry.w DPLC_GiantBall_38
+	mappingsTableEntry.w DPLC_GiantBall_3E
+
+DPLC_GiantBall_12:	dplcHeader
+	dplcEntry	9, 0
+DPLC_GiantBall_12_End
+
+DPLC_GiantBall_16:	dplcHeader
+	dplcEntry	$10, 9
+	dplcEntry	2, $19
+DPLC_GiantBall_16_End
+
+DPLC_GiantBall_1C:	dplcHeader
+	dplcEntry	$10, $1B
+	dplcEntry	2, $2B
+DPLC_GiantBall_1C_End
+
+DPLC_GiantBall_22:	dplcHeader
+	dplcEntry	$10, $2D
+	dplcEntry	2, $3D
+DPLC_GiantBall_22_End
+
+DPLC_GiantBall_28:	dplcHeader
+	dplcEntry	9, $3F
+DPLC_GiantBall_28_End
+
+DPLC_GiantBall_2C:	dplcHeader
+	dplcEntry	$10, $48
+	dplcEntry	2, $58
+DPLC_GiantBall_2C_End
+
+DPLC_GiantBall_32:	dplcHeader
+	dplcEntry	$10, $5A
+	dplcEntry	2, $6A
+DPLC_GiantBall_32_End
+
+DPLC_GiantBall_38:	dplcHeader
+	dplcEntry	$10, $6C
+	dplcEntry	2, $7C
+DPLC_GiantBall_38_End
+
+DPLC_GiantBall_3E:	dplcHeader
+	dplcEntry	$10, $7E
+	dplcEntry	2, $8E
+DPLC_GiantBall_3E_End
 	even

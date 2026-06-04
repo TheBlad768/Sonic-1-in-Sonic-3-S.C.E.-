@@ -2,5 +2,5 @@
 ; Sprite mappings - extra boss items
 ; ---------------------------------------------------------------------------
 
-Map_BossSYZBlockSpike:	dc.b $F0, 6, 0, 0, $FF, $F8
+Map_BossSYZBlockSpike:	spritePiece	-8, -$10, 2, 3, 0, 0, 0, 0, 0
 	even

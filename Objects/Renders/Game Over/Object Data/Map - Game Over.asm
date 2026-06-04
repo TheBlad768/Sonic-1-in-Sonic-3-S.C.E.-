@@ -4,22 +4,22 @@
 
 Map_GameOver:
 
-		; GAME
-		dc.b $F8, $D, 0, 0, $FF, $B8
-		dc.b $F8, $D, 0, 8, $FF, $D8
+	; GAME
+	spritePiece	-$48, -8, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$28, -8, 4, 2, 8, 0, 0, 0, 0
 
-		; OVER
-		dc.b $F8, $D, 0, $14, 0, 8
-		dc.b $F8, $D, 0, $C, 0, $28
+	; OVER
+	spritePiece	8, -8, 4, 2, $14, 0, 0, 0, 0
+	spritePiece	$28, -8, 4, 2, $C, 0, 0, 0, 0
 	even
 
 Map_TimeOver:
 
-		; TIME
-		dc.b $F8, 9, 0, $1C, $FF, $BA
-		dc.b $F8, $D, 0, 8, $FF, $D2
+	; TIME
+	spritePiece	-$46, -8, 3, 2, $1C, 0, 0, 0, 0
+	spritePiece	-$2E, -8, 4, 2, 8, 0, 0, 0, 0
 
-		; OVER
-		dc.b $F8, $D, 0, $14, 0, 2
-		dc.b $F8, $D, 0, $C, 0, $22
+	; OVER
+	spritePiece	2, -8, 4, 2, $14, 0, 0, 0, 0
+	spritePiece	$22, -8, 4, 2, $C, 0, 0, 0, 0
 	even
