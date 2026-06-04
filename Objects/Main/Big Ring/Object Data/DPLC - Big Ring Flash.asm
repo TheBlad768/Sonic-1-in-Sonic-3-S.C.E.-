@@ -1,24 +1,31 @@
-DPLC_BigRingFlash:
-		dc.w word_61C02-DPLC_BigRingFlash
-		dc.w word_61C0A-DPLC_BigRingFlash
-		dc.w word_61C12-DPLC_BigRingFlash
-		dc.w word_61C1C-DPLC_BigRingFlash
-word_61C02:	dc.w 2
-		dc.w $0002
-		dc.w $0035
-		dc.w $0090
-word_61C0A:	dc.w 2
-		dc.w $00A3
-		dc.w $00E7
-		dc.w $0161
-word_61C12:	dc.w 3
-		dc.w $0182
-		dc.w $01BB
-		dc.w $0273
-		dc.w $02B1
-word_61C1C:	dc.w 1
-		dc.w $0182
-		dc.w $01BB
-		dc.w 1
-		dc.w $0273
-		dc.w $02B1
+DPLC_BigRingFlash:	mappingsTable
+	mappingsTableEntry.w word_61C02
+	mappingsTableEntry.w word_61C0A
+	mappingsTableEntry.w word_61C12
+	mappingsTableEntry.w word_61C1C
+
+word_61C02:	dplcHeader
+	dplcEntry	3, 0
+	dplcEntry	6, 3
+	dplcEntry	1, 9
+word_61C02_End
+
+word_61C0A:	dplcHeader
+	dplcEntry	4, $A
+	dplcEntry	8, $E
+	dplcEntry	2, $16
+word_61C0A_End
+
+word_61C12:	dplcHeader
+	dplcEntry	3, $18
+	dplcEntry	$C, $1B
+	dplcEntry	4, $27
+	dplcEntry	2, $2B
+word_61C12_End
+
+word_61C1C:	dplcHeader
+	dplcEntry	3, $18
+	dplcEntry	$C, $1B
+word_61C1C_End
+
+	even

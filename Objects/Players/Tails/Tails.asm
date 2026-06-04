@@ -31,7 +31,7 @@ Obj_Tails:
 
 .next
 		addq.b	#1,mapping_frame(a0)						; next frame
-		cmpi.b	#((Map_Tails_end-Map_Tails)/2)-1,mapping_frame(a0)		; have we reached the end of Tails's frames?
+		cmpi.b	#((Map_Tails_End-Map_Tails)/2)-1,mapping_frame(a0)		; have we reached the end of Tails's frames?
 		blo.s	.draw
 		clr.b	mapping_frame(a0)						; if so, reset to Tails's first frame
 

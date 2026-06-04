@@ -2,342 +2,416 @@
 ; Sprite mappings - results
 ; ---------------------------------------------------------------------------
 
-Map_Results:
-		dc.w 0					; 0 Null
-		dc.w word_2F2E2-Map_Results		; 1 (Number 0)
-		dc.w word_2F2EA-Map_Results		; 2 (Number 1)
-		dc.w word_2F2F2-Map_Results		; 3 (Number 2)
-		dc.w word_2F2FA-Map_Results		; 4 (Number 3)
-		dc.w word_2F302-Map_Results		; 5 (Number 4)
-		dc.w word_2F30A-Map_Results		; 6 (Number 5)
-		dc.w word_2F312-Map_Results		; 7 (Number 6)
-		dc.w word_2F31A-Map_Results		; 8 (Number 7)
-		dc.w word_2F322-Map_Results		; 9 (Number 8)
-		dc.w word_2F32A-Map_Results		; A (Number 9)
-		dc.w word_2F332-Map_Results		; B (Total)
-		dc.w word_2F346-Map_Results		; C (Bonus)
-		dc.w word_2F35A-Map_Results		; D (Ring)
-		dc.w word_2F362-Map_Results		; E (Time)
-		dc.w word_2F36A-Map_Results		; F (ACT)
-		dc.w word_2F378-Map_Results		; 10
-		dc.w word_2F39E-Map_Results		; 11
-		dc.w word_2F3B2-Map_Results		; 12 (SUPER/HYPER)
-		dc.w word_2F3C6-Map_Results		; 13 (SONIC)
-		dc.w word_2F3DA-Map_Results		; 14 (MILES)
-		dc.w word_2F3EE-Map_Results		; 15 (TAILS)
-		dc.w word_2F3FC-Map_Results		; 16 (KNUCKLES)
-		dc.w word_2F416-Map_Results		; 17 (Score Special Stage)
-		dc.w word_2F436-Map_Results		; 18 (Bonus Special Stage)
-		dc.w word_2F450-Map_Results		; 19 (Perfect Special Stage)
-		dc.w word_2F464-Map_Results		; 1A (Continue Special Stage)
-		dc.w word_2F478-Map_Results		; 1B (Emerald 1 Art)
-		dc.w word_2F480-Map_Results		; 1C (Emerald 2 Art)
-		dc.w word_2F488-Map_Results		; 1D (Emerald 3 Art)
-		dc.w word_2F490-Map_Results		; 1E (Emerald 4 Art)
-		dc.w word_2F498-Map_Results		; 1F (Emerald 5 Art)
-		dc.w word_2F4A0-Map_Results		; 20 (Emerald 6 Art)
-		dc.w word_2F4A8-Map_Results		; 21 (Emerald 7 Art)
-		dc.w word_2F4B0-Map_Results		; 22
-		dc.w word_2F4FA-Map_Results		; 23
-		dc.w word_2F514-Map_Results		; 24
-		dc.w word_2F55E-Map_Results		; 25
-		dc.w word_2F56C-Map_Results		; 26
-		dc.w word_2F574-Map_Results		; 27
-		dc.w word_2F59C-Map_Results		; 28
-		dc.w word_2F5AA-Map_Results		; 29 (Continue Sonic Icon)
-		dc.w word_2F5B2-Map_Results		; 2A (Continue Tails Icon)
-		dc.w word_2F5BA-Map_Results		; 2B (Continue Knuckles Icon)
-		dc.w word_2F6E4-Map_Results		; 2C
-		dc.w word_2F6F8-Map_Results		; 2D
-		dc.w word_2F5C2-Map_Results		; 2E
-		dc.w word_2F5EE-Map_Results		; 2F
-		dc.w word_2F638-Map_Results		; 30
-		dc.w word_2F682-Map_Results		; 31
-		dc.w word_2F6A2-Map_Results		; 32
-		dc.w word_2F6BC-Map_Results		; 33
-		dc.w word_2F6D0-Map_Results		; 34
-		dc.w word_2F70C-Map_Results		; 35
-		dc.w word_2F71A-Map_Results		; 36
-		dc.w word_2F73A-Map_Results		; 37
-		dc.w word_2F754-Map_Results		; 38
-		dc.w word_2F768-Map_Results		; 39
-		dc.w word_2F588-Map_Results		; 3A
-word_2F2E2:
-		dc.w 1
-		dc.b 0, 1, $A0, 0, 0, 0
-word_2F2EA:
-		dc.w 1
-		dc.b 0, 1, $A0, 2, 0, 0
-word_2F2F2:
-		dc.w 1
-		dc.b 0, 1, $A0, 4, 0, 0
-word_2F2FA:
-		dc.w 1
-		dc.b 0, 1, $A0, 6, 0, 0
-word_2F302:
-		dc.w 1
-		dc.b 0, 1, $A0, 8, 0, 0
-word_2F30A:
-		dc.w 1
-		dc.b 0, 1, $A0, $A, 0, 0
-word_2F312:
-		dc.w 1
-		dc.b 0, 1, $A0, $C, 0, 0
-word_2F31A:
-		dc.w 1
-		dc.b 0, 1, $A0, $E, 0, 0
-word_2F322:
-		dc.w 1
-		dc.b 0, 1, $A0, $10, 0, 0
-word_2F32A:
-		dc.w 1
-		dc.b 0, 1, $A0, $12, 0, 0
-word_2F332:
-		dc.w 3					; Total
-		dc.b 0, 1, $A0, $24, 0, 0
-		dc.b 0, $D, $A0, $22, 0, 8
-		dc.b $F6, 6, $80, $14, 0, $24		; (Drop Art)
-word_2F346:						; Bonus
-		dc.w 3
-		dc.b 0, $D, $A0, $1A, $FF, $FF
-		dc.b 0, 1, $A1, $C8, 0, $20		; HUD address
-		dc.b $F6, 6, $80, $14, 0, $24		; (Drop Art)
-word_2F35A:
-		dc.w 1					; Ring
-		dc.b 0, $D, $A1, $CE, 0, 0		; HUD address
-word_2F362:
-		dc.w 1					; Time
-		dc.b 0, $D, $A1, $D6, 0, 0		; HUD address
-word_2F36A:						; ACT
-		dc.w 2
-		dc.b $10, 9, $80, $2A, 0, 0		; ACT
-		dc.b 0, $F, $80, $66, 0, $11		; (Number)
-word_2F378:
-		dc.w 6
-		dc.b 0, 5, $80, $40, 0, 0
-		dc.b 0, 5, $80, $34, 0, $10
-		dc.b 0, 5, $80, $3C, 0, $20
-		dc.b 0, 5, $80, $38, 0, $30
-		dc.b 0, 5, $80, $44, 0, $40
-		dc.b 0, $D, $80, $30, 0, $50
-word_2F39E:
-		dc.w 3
-		dc.b 0, 5, $80, $30, 0, 0
-		dc.b 0, 5, $80, $38, 0, $10
-		dc.b 0, 5, $80, $40, 0, $1E
-word_2F3B2:						; SUPER/HYPER
-		dc.w 3
-		dc.b 0, $D, $7F, -$20, 0, 0
-		dc.b 0, $D, $7F, -$18, 0, $20
-		dc.b 0, 5, $7F, -$10, 0, $40
-word_2F3C6:						; SONIC
-		dc.w 3
-		dc.b 0, $D, $80, $48, 0, 1
-		dc.b 0, $D, $80, $50, 0, $21
-		dc.b 0, 1, $80, $58, 0, $41
-word_2F3DA:						; MILES
-		dc.w 3
-		dc.b 0, $D, $80, $48, 0, 6
-		dc.b 0, $D, $80, $50, 0, $26
-		dc.b 0, 1, $80, $58, 0, $46
-word_2F3EE:						; TAILS
-		dc.w 2
-		dc.b 0, $D, $80, $48, 0, 1
-		dc.b 0, $D, $80, $50, 0, $21
-word_2F3FC:						; KNUCKLES
-		dc.w 4
-		dc.b 0, $D, $80, $48, 0, 4
-		dc.b 0, $D, $80, $50, 0, $24
-		dc.b 0, $D, $80, $58, 0, $44
-		dc.b 0, 9, $80, $60, 0, $64
-word_2F416:	dc.w 5						; Score (Special Stage)
-		dc.b 0, $D, $E1, $C8, $FF, $A0			; SCOR
-		dc.b 0, 1, $E1, $DC, $FF, $C0		; E
-		dc.b 0, 9, $A1, $DE, 0, $28
-		dc.b 0, $D, $A1, $E4, 0, $40
-		dc.b $F6, 6, $80, $14, $FF, $C4		; (Drop Art)
-word_2F436:						; Bonus (Special Stage)
-		dc.w 4
-		dc.b 0, $D, $E1, $CE, 0, 0		; RING
-		dc.b 0, $D, $E0, $1A, 0, $28		; BONU
-		dc.b 0, 1, $E1, $C8, 0, $48		; S
-		dc.b $F6, 6, $80, $14, 0, $4C		; (Drop Art)
-word_2F450:						; Perfect (Special Stage)
-		dc.w 3
-		dc.b 0, $D, $E0, $CC, 0, 0
-		dc.b 0, 9, $E0, $D4, 0, $20
-		dc.b $F6, 6, $80, $14, 0, $34		; (Drop Art)
-word_2F464:						; Continue (Special Stage)
-		dc.w 3
-		dc.b 0, $D, $E0, $DA, 0, 0
-		dc.b 0, $D, $E0, $E2, 0, $20
-		dc.b $F6, 6, $80, $14, 0, $3C		; (Drop Art)
-word_2F478:
-		dc.w 1
-		dc.b $F8, 5, $C0, $BC, $FF, $F8		; (Emerald 1 Art)
-word_2F480:
-		dc.w 1
-		dc.b $F8, 5, $C0, $B8, $FF, $F8		; (Emerald 2 Art)
-word_2F488:
-		dc.w 1
-		dc.b $F8, 5, $C0, $C0, $FF, $F8		; (Emerald 3 Art)
-word_2F490:
-		dc.w 1
-		dc.b $F8, 5, $A0, $B8, $FF, $F8		; (Emerald 4 Art)
-word_2F498:
-		dc.w 1
-		dc.b $F8, 5, $80, $C8, $FF, $F8		; (Emerald 5 Art)
-word_2F4A0:
-		dc.w 1
-		dc.b $F8, 5, $80, $C4, $FF, $F8		; (Emerald 6 Art)
-word_2F4A8:
-		dc.w 1
-		dc.b $F8, 5, $A0, $BC, $FF, $F8		; (Emerald 7 Art)
-word_2F4B0:
-		dc.w $C
-		dc.b 0, 5, $80, $A6, $FF, $A0		; S
-		dc.b 0, 5, $80, $9E, $FF, $B0		; P
-		dc.b 0, 5, $80, $80, $FF, $C0		; E
-		dc.b 0, 5, $80, $78, $FF, $D0		; C
-		dc.b 0, 1, $80, $8C, $FF, $E0		; I
-		dc.b 0, 5, $80, $70, $FF, $E8		; A
-		dc.b 0, 5, $80, $8E, $FF, $F8		; L
-		dc.b 0, 5, $80, $A6, 0, $10		; S
-		dc.b 0, 5, $80, $AA, 0, $20		; T
-		dc.b 0, 5, $80, $70, 0, $30		; A
-		dc.b 0, 5, $80, $84, 0, $40		; G
-		dc.b 0, 5, $80, $80, 0, $50		; E
-word_2F4FA:
-		dc.w 4
-		dc.b 0, 5, $80, $84, 0, 0		; G
-		dc.b 0, 5, $80, $9A, 0, $11		; O
-		dc.b 0, 5, $80, $AA, 0, $20		; T
-		dc.b 0, 5, $80, $70, 0, $38		; A
-word_2F514:
-		dc.w $C
-		dc.b 0, 5, $80, $78, $FF, $9C		; C
-		dc.b 0, 5, $80, $88, $FF, $AC		; H
-		dc.b 0, 5, $80, $70, $FF, $BC		; A
-		dc.b 0, 5, $80, $9A, $FF, $CC		; O
-		dc.b 0, 5, $80, $A6, $FF, $DC		; S
-		dc.b 0, 5, $80, $80, $FF, $F4		; E
-		dc.b 0, 5, $80, $92, 0, 4		; M
-		dc.b 0, 5, $80, $80, 0, $14		; E
-		dc.b 0, 5, $80, $A2, 0, $24		; R
-		dc.b 0, 5, $80, $70, 0, $34		; A
-		dc.b 0, 5, $80, $8E, 0, $44		; L
-		dc.b 0, 5, $80, $7C, 0, $54		; D
-word_2F55E:
-		dc.w 2
-		dc.b 0, 5, $80, $8E, 0, $48		; L
-		dc.b 0, 5, $80, $8E, 0, $56		; L
-word_2F56C:
-		dc.w 1
-		dc.b 0, 5, $80, $A6, 0, $64		; S
-word_2F574:
-		dc.w 3
-		dc.b 0, 5, $E0, $96, 0, 0		; N
-		dc.b 0, 5, $E0, $9A, 0, $11		; O
-		dc.b 0, 9, $E0, $B2, 0, $20		; W
-word_2F588:
-		dc.w 3
-		dc.b 0, 5, $E0, $78, 0, 0		; C
-		dc.b 0, 5, $E0, $70, 0, $10		; A
-		dc.b 0, 5, $E0, $96, 0, $20		; N
-word_2F59C:
-		dc.w 2
-		dc.b 0, 5, $E0, $74, 0, 0		; B
-		dc.b 0, 5, $E0, $80, 0, $F		; E
-word_2F5AA:
-		dc.w 1
-		dc.b $E8, $A, $80, $EA, $FF, $F4	; (Sonic Icon)
-word_2F5B2:
-		dc.w 1
-		dc.b $E8, $A, $81, $80, $FF, $F4	; (Tails Icon)
-word_2F5BA:
-		dc.w 1
-		dc.b $E8, $A, $81, $89, $FF, $F4	; (Knuckles Icon)
-word_2F5C2:	dc.w 7
-		dc.b 0, 5, $E5, $2B, $FF, $C0
-		dc.b 0, 5, $E5, $23, $FF, $D0
-		dc.b 0, 5, $E5, $49, $FF, $E0
-		dc.b 0, 5, $E5, $37, $FF, $F8
-		dc.b 0, 5, $E5, $4D, 0, 9
-		dc.b 0, 5, $E5, $5D, 0, $20
-		dc.b 0, 5, $E5, $4D, 0, $30
-word_2F5EE:	dc.w $C
-		dc.b 0, 5, $E5, $3B, $FF, $A0
-		dc.b 0, 1, $E5, $3F, $FF, $B0
-		dc.b 0, 5, $E5, $2F, $FF, $B9
-		dc.b 0, 5, $E5, $2F, $FF, $CA
-		dc.b 0, 5, $E5, $33, $FF, $DA
-		dc.b 0, 5, $E5, $49, $FF, $E9
-		dc.b 0, 5, $E5, $51, 0, 1
-		dc.b 0, 5, $E5, $23, 0, $10
-		dc.b 0, 5, $E5, $41, 0, $20
-		dc.b 0, 5, $E5, $23, 0, $30
-		dc.b 0, 5, $E5, $2B, 0, $40
-		dc.b 0, 5, $E5, $33, 0, $50
-word_2F638:	dc.w $C
-		dc.b 0, 5, $85, $59, $FF, $9C
-		dc.b 0, 5, $85, $61, $FF, $AC
-		dc.b 0, 5, $85, $51, $FF, $BC
-		dc.b 0, 5, $85, $33, $FF, $CC
-		dc.b 0, 5, $85, $55, $FF, $DC
-		dc.b 0, 5, $85, $33, $FF, $F4
-		dc.b 0, 5, $85, $45, 0, 4
-		dc.b 0, 5, $85, $33, 0, $14
-		dc.b 0, 5, $85, $55, 0, $24
-		dc.b 0, 5, $85, $23, 0, $34
-		dc.b 0, 5, $85, $41, 0, $44
-		dc.b 0, 5, $85, $2F, 0, $54
-word_2F682:	dc.w 5
-		dc.b 0, $D, $A1, $CA, $FF, $A0
-		dc.b 0, 1, $A1, $E2, $FF, $C0
-		dc.b 0, 9, $A1, $E4, 0, $28
-		dc.b 0, $D, $A1, $EA, 0, $40
-		dc.b $F6, 6, $80, $14, $FF, $C4
-word_2F6A2:	dc.w 4
-		dc.b 0, $D, $A1, $D2, 0, 0
-		dc.b 0, $D, $A5, $D2, 0, $28
-		dc.b 0, 1, $26, $CA, 0, $48
-		dc.b $F6, 6, $80, $14, 0, $4C
-word_2F6BC:	dc.w 3
-		dc.b 0, $D, $A5, $7F, 0, 0
-		dc.b 0, 9, $A5, $87, 0, $20
-		dc.b $F6, 6, $80, $14, 0, $34
-word_2F6D0:	dc.w 3
-		dc.b 0, $D, $A5, $8D, 0, 0
-		dc.b 0, $D, $A5, $95, 0, $20
-		dc.b $F6, 6, $80, $14, 0, $3C
-word_2F6E4:	dc.w 3
-		dc.b 0, 5, $85, $49, 0, 0
-		dc.b 0, 5, $85, $4D, 0, $11
-		dc.b 0, 9, $85, $65, 0, $20
-word_2F6F8:	dc.w 3
-		dc.b 0, 5, $85, $2B, 0, 0
-		dc.b 0, 5, $85, $23, 0, $10
-		dc.b 0, 5, $85, $49, 0, $20
-word_2F70C:	dc.w 2
-		dc.b 0, 5, $85, $27, 0, 0
-		dc.b 0, 5, $85, $33, 0, $F
-word_2F71A:	dc.w 5
-		dc.b 0, $D, $81, $CA, $FF, $A0
-		dc.b 0, 1, $81, $E2, $FF, $C0
-		dc.b 0, 9, $81, $E4, 0, $28
-		dc.b 0, $D, $81, $EA, 0, $40
-		dc.b $F6, 6, $80, $14, $FF, $C4
-word_2F73A:	dc.w 4
-		dc.b 0, $D, $81, $D2, 0, 0
-		dc.b 0, $D, $85, $D2, 0, $28
-		dc.b 0, 1, 6, $CA, 0, $48
-		dc.b $F6, 6, $80, $14, 0, $4C
-word_2F754:	dc.w 3
-		dc.b 0, $D, $85, $7F, 0, 0
-		dc.b 0, 9, $85, $87, 0, $20
-		dc.b $F6, 6, $80, $14, 0, $34
-word_2F768:	dc.w 3
-		dc.b 0, $D, $85, $8D, 0, 0
-		dc.b 0, $D, $85, $95, 0, $20
-		dc.b $F6, 6, $80, $14, 0, $3C
+Map_Results:	mappingsTable
+	dc.w 0		; 0 Null
+	mappingsTableEntry.w word_2F2E2		; 1 (Number 0)
+	mappingsTableEntry.w word_2F2EA		; 2 (Number 1)
+	mappingsTableEntry.w word_2F2F2		; 3 (Number 2)
+	mappingsTableEntry.w word_2F2FA		; 4 (Number 3)
+	mappingsTableEntry.w word_2F302		; 5 (Number 4)
+	mappingsTableEntry.w word_2F30A		; 6 (Number 5)
+	mappingsTableEntry.w word_2F312		; 7 (Number 6)
+	mappingsTableEntry.w word_2F31A		; 8 (Number 7)
+	mappingsTableEntry.w word_2F322		; 9 (Number 8)
+	mappingsTableEntry.w word_2F32A		; A (Number 9)
+	mappingsTableEntry.w word_2F332		; B (Total)
+	mappingsTableEntry.w word_2F346		; C (Bonus)
+	mappingsTableEntry.w word_2F35A		; D (Ring)
+	mappingsTableEntry.w word_2F362		; E (Time)
+	mappingsTableEntry.w word_2F36A		; F (ACT)
+	mappingsTableEntry.w word_2F378		; 10
+	mappingsTableEntry.w word_2F39E		; 11
+	mappingsTableEntry.w word_2F3B2		; 12 (SUPER/HYPER)
+	mappingsTableEntry.w word_2F3C6		; 13 (SONIC)
+	mappingsTableEntry.w word_2F3DA		; 14 (MILES)
+	mappingsTableEntry.w word_2F3EE		; 15 (TAILS)
+	mappingsTableEntry.w word_2F3FC		; 16 (KNUCKLES)
+	mappingsTableEntry.w word_2F416		; 17 (Score Special Stage)
+	mappingsTableEntry.w word_2F436		; 18 (Bonus Special Stage)
+	mappingsTableEntry.w word_2F450		; 19 (Perfect Special Stage)
+	mappingsTableEntry.w word_2F464		; 1A (Continue Special Stage)
+	mappingsTableEntry.w word_2F478		; 1B (Emerald 1 Art)
+	mappingsTableEntry.w word_2F480		; 1C (Emerald 2 Art)
+	mappingsTableEntry.w word_2F488		; 1D (Emerald 3 Art)
+	mappingsTableEntry.w word_2F490		; 1E (Emerald 4 Art)
+	mappingsTableEntry.w word_2F498		; 1F (Emerald 5 Art)
+	mappingsTableEntry.w word_2F4A0		; 20 (Emerald 6 Art)
+	mappingsTableEntry.w word_2F4A8		; 21 (Emerald 7 Art)
+	mappingsTableEntry.w word_2F4B0		; 22
+	mappingsTableEntry.w word_2F4FA		; 23
+	mappingsTableEntry.w word_2F514		; 24
+	mappingsTableEntry.w word_2F55E		; 25
+	mappingsTableEntry.w word_2F56C		; 26
+	mappingsTableEntry.w word_2F574		; 27
+	mappingsTableEntry.w word_2F59C		; 28
+	mappingsTableEntry.w word_2F5AA		; 29 (Continue Sonic Icon)
+	mappingsTableEntry.w word_2F5B2		; 2A (Continue Tails Icon)
+	mappingsTableEntry.w word_2F5BA		; 2B (Continue Knuckles Icon)
+	mappingsTableEntry.w word_2F6E4		; 2C
+	mappingsTableEntry.w word_2F6F8		; 2D
+	mappingsTableEntry.w word_2F5C2		; 2E
+	mappingsTableEntry.w word_2F5EE		; 2F
+	mappingsTableEntry.w word_2F638		; 30
+	mappingsTableEntry.w word_2F682		; 31
+	mappingsTableEntry.w word_2F6A2		; 32
+	mappingsTableEntry.w word_2F6BC		; 33
+	mappingsTableEntry.w word_2F6D0		; 34
+	mappingsTableEntry.w word_2F70C		; 35
+	mappingsTableEntry.w word_2F71A		; 36
+	mappingsTableEntry.w word_2F73A		; 37
+	mappingsTableEntry.w word_2F754		; 38
+	mappingsTableEntry.w word_2F768		; 39
+	mappingsTableEntry.w word_2F588		; 3A
+
+word_2F2E2:	spriteHeader
+	spritePiece	0, 0, 1, 2, 0, 0, 0, 1, 1
+word_2F2E2_End
+
+word_2F2EA:	spriteHeader
+	spritePiece	0, 0, 1, 2, 2, 0, 0, 1, 1
+word_2F2EA_End
+
+word_2F2F2:	spriteHeader
+	spritePiece	0, 0, 1, 2, 4, 0, 0, 1, 1
+word_2F2F2_End
+
+word_2F2FA:	spriteHeader
+	spritePiece	0, 0, 1, 2, 6, 0, 0, 1, 1
+word_2F2FA_End
+
+word_2F302:	spriteHeader
+	spritePiece	0, 0, 1, 2, 8, 0, 0, 1, 1
+word_2F302_End
+
+word_2F30A:	spriteHeader
+	spritePiece	0, 0, 1, 2, $A, 0, 0, 1, 1
+word_2F30A_End
+
+word_2F312:	spriteHeader
+	spritePiece	0, 0, 1, 2, $C, 0, 0, 1, 1
+word_2F312_End
+
+word_2F31A:	spriteHeader
+	spritePiece	0, 0, 1, 2, $E, 0, 0, 1, 1
+word_2F31A_End
+
+word_2F322:	spriteHeader
+	spritePiece	0, 0, 1, 2, $10, 0, 0, 1, 1
+word_2F322_End
+
+word_2F32A:	spriteHeader
+	spritePiece	0, 0, 1, 2, $12, 0, 0, 1, 1
+word_2F32A_End
+
+word_2F332:	spriteHeader
+	spritePiece	0, 0, 1, 2, $24, 0, 0, 1, 1
+	spritePiece	8, 0, 4, 2, $22, 0, 0, 1, 1
+	spritePiece	$24, -$A, 2, 3, $14, 0, 0, 0, 1		; (Drop Art)
+word_2F332_End
+
+word_2F346:	spriteHeader
+	spritePiece	-1, 0, 4, 2, $1A, 0, 0, 1, 1
+	spritePiece	$20, 0, 1, 2, $1C8, 0, 0, 1, 1		; HUD address
+	spritePiece	$24, -$A, 2, 3, $14, 0, 0, 0, 1		; (Drop Art)
+word_2F346_End
+
+word_2F35A:	spriteHeader
+	spritePiece	0, 0, 4, 2, $1CE, 0, 0, 1, 1		; HUD address
+word_2F35A_End
+
+word_2F362:	spriteHeader
+	spritePiece	0, 0, 4, 2, $1D6, 0, 0, 1, 1		; HUD address
+word_2F362_End
+
+word_2F36A:	spriteHeader
+	spritePiece	0, $10, 3, 2, $2A, 0, 0, 0, 1		; ACT
+	spritePiece	$11, 0, 4, 4, $66, 0, 0, 0, 1		; (Number)
+word_2F36A_End
+
+word_2F378:	spriteHeader
+	spritePiece	0, 0, 2, 2, $40, 0, 0, 0, 1
+	spritePiece	$10, 0, 2, 2, $34, 0, 0, 0, 1
+	spritePiece	$20, 0, 2, 2, $3C, 0, 0, 0, 1
+	spritePiece	$30, 0, 2, 2, $38, 0, 0, 0, 1
+	spritePiece	$40, 0, 2, 2, $44, 0, 0, 0, 1
+	spritePiece	$50, 0, 4, 2, $30, 0, 0, 0, 1
+word_2F378_End
+
+word_2F39E:	spriteHeader
+	spritePiece	0, 0, 2, 2, $30, 0, 0, 0, 1
+	spritePiece	$10, 0, 2, 2, $38, 0, 0, 0, 1
+	spritePiece	$1E, 0, 2, 2, $40, 0, 0, 0, 1
+word_2F39E_End
+
+word_2F3B2:	spriteHeader
+	spritePiece	0, 0, 4, 2, $7E0, 1, 1, 3, 0
+	spritePiece	$20, 0, 4, 2, $7E8, 1, 1, 3, 0
+	spritePiece	$40, 0, 2, 2, $7F0, 1, 1, 3, 0
+word_2F3B2_End
+
+word_2F3C6:	spriteHeader
+	spritePiece	1, 0, 4, 2, $48, 0, 0, 0, 1
+	spritePiece	$21, 0, 4, 2, $50, 0, 0, 0, 1
+	spritePiece	$41, 0, 1, 2, $58, 0, 0, 0, 1
+word_2F3C6_End
+
+word_2F3DA:	spriteHeader
+	spritePiece	6, 0, 4, 2, $48, 0, 0, 0, 1
+	spritePiece	$26, 0, 4, 2, $50, 0, 0, 0, 1
+	spritePiece	$46, 0, 1, 2, $58, 0, 0, 0, 1
+word_2F3DA_End
+
+word_2F3EE:	spriteHeader
+	spritePiece	1, 0, 4, 2, $48, 0, 0, 0, 1
+	spritePiece	$21, 0, 4, 2, $50, 0, 0, 0, 1
+word_2F3EE_End
+
+word_2F3FC:	spriteHeader
+	spritePiece	4, 0, 4, 2, $48, 0, 0, 0, 1
+	spritePiece	$24, 0, 4, 2, $50, 0, 0, 0, 1
+	spritePiece	$44, 0, 4, 2, $58, 0, 0, 0, 1
+	spritePiece	$64, 0, 3, 2, $60, 0, 0, 0, 1
+word_2F3FC_End
+
+word_2F416:	spriteHeader		; Score (Special Stage)
+	spritePiece	-$60, 0, 4, 2, $1C8, 0, 0, 3, 1		; SCOR
+	spritePiece	-$40, 0, 1, 2, $1DC, 0, 0, 3, 1		; E
+	spritePiece	$28, 0, 3, 2, $1DE, 0, 0, 1, 1
+	spritePiece	$40, 0, 4, 2, $1E4, 0, 0, 1, 1
+	spritePiece	-$3C, -$A, 2, 3, $14, 0, 0, 0, 1		; (Drop Art)
+word_2F416_End
+
+word_2F436:	spriteHeader
+	spritePiece	0, 0, 4, 2, $1CE, 0, 0, 3, 1		; RING
+	spritePiece	$28, 0, 4, 2, $1A, 0, 0, 3, 1		; BONU
+	spritePiece	$48, 0, 1, 2, $1C8, 0, 0, 3, 1		; S
+	spritePiece	$4C, -$A, 2, 3, $14, 0, 0, 0, 1		; (Drop Art)
+word_2F436_End
+
+word_2F450:	spriteHeader
+	spritePiece	0, 0, 4, 2, $CC, 0, 0, 3, 1
+	spritePiece	$20, 0, 3, 2, $D4, 0, 0, 3, 1
+	spritePiece	$34, -$A, 2, 3, $14, 0, 0, 0, 1		; (Drop Art)
+word_2F450_End
+
+word_2F464:	spriteHeader
+	spritePiece	0, 0, 4, 2, $DA, 0, 0, 3, 1
+	spritePiece	$20, 0, 4, 2, $E2, 0, 0, 3, 1
+	spritePiece	$3C, -$A, 2, 3, $14, 0, 0, 0, 1		; (Drop Art)
+word_2F464_End
+
+word_2F478:	spriteHeader
+	spritePiece	-8, -8, 2, 2, $BC, 0, 0, 2, 1		; (Emerald 1 Art)
+word_2F478_End
+
+word_2F480:	spriteHeader
+	spritePiece	-8, -8, 2, 2, $B8, 0, 0, 2, 1		; (Emerald 2 Art)
+word_2F480_End
+
+word_2F488:	spriteHeader
+	spritePiece	-8, -8, 2, 2, $C0, 0, 0, 2, 1		; (Emerald 3 Art)
+word_2F488_End
+
+word_2F490:	spriteHeader
+	spritePiece	-8, -8, 2, 2, $B8, 0, 0, 1, 1		; (Emerald 4 Art)
+word_2F490_End
+
+word_2F498:	spriteHeader
+	spritePiece	-8, -8, 2, 2, $C8, 0, 0, 0, 1		; (Emerald 5 Art)
+word_2F498_End
+
+word_2F4A0:	spriteHeader
+	spritePiece	-8, -8, 2, 2, $C4, 0, 0, 0, 1		; (Emerald 6 Art)
+word_2F4A0_End
+
+word_2F4A8:	spriteHeader
+	spritePiece	-8, -8, 2, 2, $BC, 0, 0, 1, 1		; (Emerald 7 Art)
+word_2F4A8_End
+
+word_2F4B0:	spriteHeader
+	spritePiece	-$60, 0, 2, 2, $A6, 0, 0, 0, 1		; S
+	spritePiece	-$50, 0, 2, 2, $9E, 0, 0, 0, 1		; P
+	spritePiece	-$40, 0, 2, 2, $80, 0, 0, 0, 1		; E
+	spritePiece	-$30, 0, 2, 2, $78, 0, 0, 0, 1		; C
+	spritePiece	-$20, 0, 1, 2, $8C, 0, 0, 0, 1		; I
+	spritePiece	-$18, 0, 2, 2, $70, 0, 0, 0, 1		; A
+	spritePiece	-8, 0, 2, 2, $8E, 0, 0, 0, 1		; L
+	spritePiece	$10, 0, 2, 2, $A6, 0, 0, 0, 1		; S
+	spritePiece	$20, 0, 2, 2, $AA, 0, 0, 0, 1		; T
+	spritePiece	$30, 0, 2, 2, $70, 0, 0, 0, 1		; A
+	spritePiece	$40, 0, 2, 2, $84, 0, 0, 0, 1		; G
+	spritePiece	$50, 0, 2, 2, $80, 0, 0, 0, 1		; E
+word_2F4B0_End
+
+word_2F4FA:	spriteHeader
+	spritePiece	0, 0, 2, 2, $84, 0, 0, 0, 1		; G
+	spritePiece	$11, 0, 2, 2, $9A, 0, 0, 0, 1		; O
+	spritePiece	$20, 0, 2, 2, $AA, 0, 0, 0, 1		; T
+	spritePiece	$38, 0, 2, 2, $70, 0, 0, 0, 1		; A
+word_2F4FA_End
+
+word_2F514:	spriteHeader
+	spritePiece	-$64, 0, 2, 2, $78, 0, 0, 0, 1		; C
+	spritePiece	-$54, 0, 2, 2, $88, 0, 0, 0, 1		; H
+	spritePiece	-$44, 0, 2, 2, $70, 0, 0, 0, 1		; A
+	spritePiece	-$34, 0, 2, 2, $9A, 0, 0, 0, 1		; O
+	spritePiece	-$24, 0, 2, 2, $A6, 0, 0, 0, 1		; S
+	spritePiece	-$C, 0, 2, 2, $80, 0, 0, 0, 1		; E
+	spritePiece	4, 0, 2, 2, $92, 0, 0, 0, 1		; M
+	spritePiece	$14, 0, 2, 2, $80, 0, 0, 0, 1		; E
+	spritePiece	$24, 0, 2, 2, $A2, 0, 0, 0, 1		; R
+	spritePiece	$34, 0, 2, 2, $70, 0, 0, 0, 1		; A
+	spritePiece	$44, 0, 2, 2, $8E, 0, 0, 0, 1		; L
+	spritePiece	$54, 0, 2, 2, $7C, 0, 0, 0, 1		; D
+word_2F514_End
+
+word_2F55E:	spriteHeader
+	spritePiece	$48, 0, 2, 2, $8E, 0, 0, 0, 1		; L
+	spritePiece	$56, 0, 2, 2, $8E, 0, 0, 0, 1		; L
+word_2F55E_End
+
+word_2F56C:	spriteHeader
+	spritePiece	$64, 0, 2, 2, $A6, 0, 0, 0, 1		; S
+word_2F56C_End
+
+word_2F574:	spriteHeader
+	spritePiece	0, 0, 2, 2, $96, 0, 0, 3, 1		; N
+	spritePiece	$11, 0, 2, 2, $9A, 0, 0, 3, 1		; O
+	spritePiece	$20, 0, 3, 2, $B2, 0, 0, 3, 1		; W
+word_2F574_End
+
+word_2F588:	spriteHeader
+	spritePiece	0, 0, 2, 2, $78, 0, 0, 3, 1		; C
+	spritePiece	$10, 0, 2, 2, $70, 0, 0, 3, 1		; A
+	spritePiece	$20, 0, 2, 2, $96, 0, 0, 3, 1		; N
+word_2F588_End
+
+word_2F59C:	spriteHeader
+	spritePiece	0, 0, 2, 2, $74, 0, 0, 3, 1		; B
+	spritePiece	$F, 0, 2, 2, $80, 0, 0, 3, 1		; E
+word_2F59C_End
+
+word_2F5AA:	spriteHeader
+	spritePiece	-$C, -$18, 3, 3, $EA, 0, 0, 0, 1		; (Sonic Icon)
+word_2F5AA_End
+
+word_2F5B2:	spriteHeader
+	spritePiece	-$C, -$18, 3, 3, $180, 0, 0, 0, 1		; (Tails Icon)
+word_2F5B2_End
+
+word_2F5BA:	spriteHeader
+	spritePiece	-$C, -$18, 3, 3, $189, 0, 0, 0, 1		; (Knuckles Icon)
+word_2F5BA_End
+
+word_2F5C2:	spriteHeader
+	spritePiece	-$40, 0, 2, 2, $52B, 0, 0, 3, 1
+	spritePiece	-$30, 0, 2, 2, $523, 0, 0, 3, 1
+	spritePiece	-$20, 0, 2, 2, $549, 0, 0, 3, 1
+	spritePiece	-8, 0, 2, 2, $537, 0, 0, 3, 1
+	spritePiece	9, 0, 2, 2, $54D, 0, 0, 3, 1
+	spritePiece	$20, 0, 2, 2, $55D, 0, 0, 3, 1
+	spritePiece	$30, 0, 2, 2, $54D, 0, 0, 3, 1
+word_2F5C2_End
+
+word_2F5EE:	spriteHeader
+	spritePiece	-$60, 0, 2, 2, $53B, 0, 0, 3, 1
+	spritePiece	-$50, 0, 1, 2, $53F, 0, 0, 3, 1
+	spritePiece	-$47, 0, 2, 2, $52F, 0, 0, 3, 1
+	spritePiece	-$36, 0, 2, 2, $52F, 0, 0, 3, 1
+	spritePiece	-$26, 0, 2, 2, $533, 0, 0, 3, 1
+	spritePiece	-$17, 0, 2, 2, $549, 0, 0, 3, 1
+	spritePiece	1, 0, 2, 2, $551, 0, 0, 3, 1
+	spritePiece	$10, 0, 2, 2, $523, 0, 0, 3, 1
+	spritePiece	$20, 0, 2, 2, $541, 0, 0, 3, 1
+	spritePiece	$30, 0, 2, 2, $523, 0, 0, 3, 1
+	spritePiece	$40, 0, 2, 2, $52B, 0, 0, 3, 1
+	spritePiece	$50, 0, 2, 2, $533, 0, 0, 3, 1
+word_2F5EE_End
+
+word_2F638:	spriteHeader
+	spritePiece	-$64, 0, 2, 2, $559, 0, 0, 0, 1
+	spritePiece	-$54, 0, 2, 2, $561, 0, 0, 0, 1
+	spritePiece	-$44, 0, 2, 2, $551, 0, 0, 0, 1
+	spritePiece	-$34, 0, 2, 2, $533, 0, 0, 0, 1
+	spritePiece	-$24, 0, 2, 2, $555, 0, 0, 0, 1
+	spritePiece	-$C, 0, 2, 2, $533, 0, 0, 0, 1
+	spritePiece	4, 0, 2, 2, $545, 0, 0, 0, 1
+	spritePiece	$14, 0, 2, 2, $533, 0, 0, 0, 1
+	spritePiece	$24, 0, 2, 2, $555, 0, 0, 0, 1
+	spritePiece	$34, 0, 2, 2, $523, 0, 0, 0, 1
+	spritePiece	$44, 0, 2, 2, $541, 0, 0, 0, 1
+	spritePiece	$54, 0, 2, 2, $52F, 0, 0, 0, 1
+word_2F638_End
+
+word_2F682:	spriteHeader
+	spritePiece	-$60, 0, 4, 2, $1CA, 0, 0, 1, 1
+	spritePiece	-$40, 0, 1, 2, $1E2, 0, 0, 1, 1
+	spritePiece	$28, 0, 3, 2, $1E4, 0, 0, 1, 1
+	spritePiece	$40, 0, 4, 2, $1EA, 0, 0, 1, 1
+	spritePiece	-$3C, -$A, 2, 3, $14, 0, 0, 0, 1
+word_2F682_End
+
+word_2F6A2:	spriteHeader
+	spritePiece	0, 0, 4, 2, $1D2, 0, 0, 1, 1
+	spritePiece	$28, 0, 4, 2, $5D2, 0, 0, 1, 1
+	spritePiece	$48, 0, 1, 2, $6CA, 0, 0, 1, 0
+	spritePiece	$4C, -$A, 2, 3, $14, 0, 0, 0, 1
+word_2F6A2_End
+
+word_2F6BC:	spriteHeader
+	spritePiece	0, 0, 4, 2, $57F, 0, 0, 1, 1
+	spritePiece	$20, 0, 3, 2, $587, 0, 0, 1, 1
+	spritePiece	$34, -$A, 2, 3, $14, 0, 0, 0, 1
+word_2F6BC_End
+
+word_2F6D0:	spriteHeader
+	spritePiece	0, 0, 4, 2, $58D, 0, 0, 1, 1
+	spritePiece	$20, 0, 4, 2, $595, 0, 0, 1, 1
+	spritePiece	$3C, -$A, 2, 3, $14, 0, 0, 0, 1
+word_2F6D0_End
+
+word_2F6E4:	spriteHeader
+	spritePiece	0, 0, 2, 2, $549, 0, 0, 0, 1
+	spritePiece	$11, 0, 2, 2, $54D, 0, 0, 0, 1
+	spritePiece	$20, 0, 3, 2, $565, 0, 0, 0, 1
+word_2F6E4_End
+
+word_2F6F8:	spriteHeader
+	spritePiece	0, 0, 2, 2, $52B, 0, 0, 0, 1
+	spritePiece	$10, 0, 2, 2, $523, 0, 0, 0, 1
+	spritePiece	$20, 0, 2, 2, $549, 0, 0, 0, 1
+word_2F6F8_End
+
+word_2F70C:	spriteHeader
+	spritePiece	0, 0, 2, 2, $527, 0, 0, 0, 1
+	spritePiece	$F, 0, 2, 2, $533, 0, 0, 0, 1
+word_2F70C_End
+
+word_2F71A:	spriteHeader
+	spritePiece	-$60, 0, 4, 2, $1CA, 0, 0, 0, 1
+	spritePiece	-$40, 0, 1, 2, $1E2, 0, 0, 0, 1
+	spritePiece	$28, 0, 3, 2, $1E4, 0, 0, 0, 1
+	spritePiece	$40, 0, 4, 2, $1EA, 0, 0, 0, 1
+	spritePiece	-$3C, -$A, 2, 3, $14, 0, 0, 0, 1
+word_2F71A_End
+
+word_2F73A:	spriteHeader
+	spritePiece	0, 0, 4, 2, $1D2, 0, 0, 0, 1
+	spritePiece	$28, 0, 4, 2, $5D2, 0, 0, 0, 1
+	spritePiece	$48, 0, 1, 2, $6CA, 0, 0, 0, 0
+	spritePiece	$4C, -$A, 2, 3, $14, 0, 0, 0, 1
+word_2F73A_End
+
+word_2F754:	spriteHeader
+	spritePiece	0, 0, 4, 2, $57F, 0, 0, 0, 1
+	spritePiece	$20, 0, 3, 2, $587, 0, 0, 0, 1
+	spritePiece	$34, -$A, 2, 3, $14, 0, 0, 0, 1
+word_2F754_End
+
+word_2F768:	spriteHeader
+	spritePiece	0, 0, 4, 2, $58D, 0, 0, 0, 1
+	spritePiece	$20, 0, 4, 2, $595, 0, 0, 0, 1
+	spritePiece	$3C, -$A, 2, 3, $14, 0, 0, 0, 1
+word_2F768_End
+
 	even

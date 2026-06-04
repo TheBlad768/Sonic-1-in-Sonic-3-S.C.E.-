@@ -47,7 +47,7 @@ Render_SSHUD:
 		move.w	#make_art_tile(ArtTile_SpecialStage_HUD,0,TRUE),d5		; VRAM
 
 		; draw HUD
-		moveq	#bytesToXcnt(Map_HUDSS_end-Map_HUDSS,6),d4			; tile count
+		moveq	#bytesToXcnt(Map_HUDSS_End-Map_HUDSS,6),d4			; tile count
 		lea	Map_HUDSS(pc),a1
 		jmp	(loc_1AF76).w							; draw
 ; ---------------------------------------------------------------------------

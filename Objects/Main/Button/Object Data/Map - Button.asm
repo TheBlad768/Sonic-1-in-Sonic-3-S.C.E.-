@@ -2,19 +2,30 @@
 ; Sprite mappings - switches (MZ, SYZ, LZ, SBZ)
 ; ---------------------------------------------------------------------------
 
-Map_Button:
-		dc.w Map_Button_8-Map_Button, Map_Button_16-Map_Button
-		dc.w Map_Button_24-Map_Button, Map_Button_32-Map_Button
-Map_Button_8:	dc.b 0, 2
-		dc.b $F5, 5, 0, 0, $FF, $F0
-		dc.b $F5, 5, 8, 0, 0, 0
-Map_Button_16:	dc.b 0, 2
-		dc.b $F5, 5, 0, 4, $FF, $F0
-		dc.b $F5, 5, 8, 4, 0, 0
-Map_Button_24:	dc.b 0, 2
-		dc.b $F5, 5, $FF, $FC, $FF, $F0
-		dc.b $F5, 5, 7, $FC, 0, 0
-Map_Button_32:	dc.b 0, 2
-		dc.b $F5, 5, 0, 4, $FF, $F0
-		dc.b $F5, 5, 8, 4, 0, 0
+Map_Button:	mappingsTable
+	mappingsTableEntry.w Map_Button_8
+	mappingsTableEntry.w Map_Button_16
+	mappingsTableEntry.w Map_Button_24
+	mappingsTableEntry.w Map_Button_32
+
+Map_Button_8:	spriteHeader
+	spritePiece	-$10, -$B, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	0, -$B, 2, 2, 0, 1, 0, 0, 0
+Map_Button_8_End
+
+Map_Button_16:	spriteHeader
+	spritePiece	-$10, -$B, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	0, -$B, 2, 2, 4, 1, 0, 0, 0
+Map_Button_16_End
+
+Map_Button_24:	spriteHeader
+	spritePiece	-$10, -$B, 2, 2, $7FC, 1, 1, 3, 1
+	spritePiece	0, -$B, 2, 2, $7FC, 0, 0, 0, 0
+Map_Button_24_End
+
+Map_Button_32:	spriteHeader
+	spritePiece	-$10, -$B, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	0, -$B, 2, 2, 4, 1, 0, 0, 0
+Map_Button_32_End
+
 		even

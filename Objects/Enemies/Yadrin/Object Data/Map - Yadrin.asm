@@ -2,44 +2,60 @@
 ; Sprite mappings - Yadrin enemy (SYZ)
 ; ---------------------------------------------------------------------------
 
-Map_Yadrin:
-		dc.w Map_Yadrin_C-Map_Yadrin, Map_Yadrin_2C-Map_Yadrin
-		dc.w Map_Yadrin_4C-Map_Yadrin, Map_Yadrin_6C-Map_Yadrin
-		dc.w Map_Yadrin_8C-Map_Yadrin, Map_Yadrin_AC-Map_Yadrin
-Map_Yadrin_C:	dc.b 0, 5
-		dc.b $F4, 8, 0, 0, $FF, $F4
-		dc.b $FC, $E, 0, 3, $FF, $EC
-		dc.b $EC, 4, 0, $F, $FF, $FC
-		dc.b $F4, 2, 0, $11, 0, $C
-		dc.b 4, 9, 0, $31, $FF, $FC
-Map_Yadrin_2C:	dc.b 0, 5
-		dc.b $F4, 8, 0, $14, $FF, $F4
-		dc.b $FC, $E, 0, $17, $FF, $EC
-		dc.b $EC, 4, 0, $F, $FF, $FC
-		dc.b $F4, 2, 0, $11, 0, $C
-		dc.b 4, 9, 0, $31, $FF, $FC
-Map_Yadrin_4C:	dc.b 0, 5
-		dc.b $F4, 9, 0, $23, $FF, $F4
-		dc.b 4, $D, 0, $29, $FF, $EC
-		dc.b $EC, 4, 0, $F, $FF, $FC
-		dc.b $F4, 2, 0, $11, 0, $C
-		dc.b 4, 9, 0, $31, $FF, $FC
-Map_Yadrin_6C:	dc.b 0, 5
-		dc.b $F4, 8, 0, 0, $FF, $F4
-		dc.b $FC, $E, 0, 3, $FF, $EC
-		dc.b $EC, 4, 0, $F, $FF, $FC
-		dc.b $F4, 2, 0, $11, 0, $C
-		dc.b 4, 9, 0, $37, $FF, $FC
-Map_Yadrin_8C:	dc.b 0, 5
-		dc.b $F4, 8, 0, $14, $FF, $F4
-		dc.b $FC, $E, 0, $17, $FF, $EC
-		dc.b $EC, 4, 0, $F, $FF, $FC
-		dc.b $F4, 2, 0, $11, 0, $C
-		dc.b 4, 9, 0, $37, $FF, $FC
-Map_Yadrin_AC:	dc.b 0, 5
-		dc.b $F4, 9, 0, $23, $FF, $F4
-		dc.b 4, $D, 0, $29, $FF, $EC
-		dc.b $EC, 4, 0, $F, $FF, $FC
-		dc.b $F4, 2, 0, $11, 0, $C
-		dc.b 4, 9, 0, $37, $FF, $FC
+Map_Yadrin:	mappingsTable
+	mappingsTableEntry.w Map_Yadrin_C
+	mappingsTableEntry.w Map_Yadrin_2C
+	mappingsTableEntry.w Map_Yadrin_4C
+	mappingsTableEntry.w Map_Yadrin_6C
+	mappingsTableEntry.w Map_Yadrin_8C
+	mappingsTableEntry.w Map_Yadrin_AC
+
+Map_Yadrin_C:	spriteHeader
+	spritePiece	-$C, -$C, 3, 1, 0, 0, 0, 0, 0
+	spritePiece	-$14, -4, 4, 3, 3, 0, 0, 0, 0
+	spritePiece	-4, -$14, 2, 1, $F, 0, 0, 0, 0
+	spritePiece	$C, -$C, 1, 3, $11, 0, 0, 0, 0
+	spritePiece	-4, 4, 3, 2, $31, 0, 0, 0, 0
+Map_Yadrin_C_End
+
+Map_Yadrin_2C:	spriteHeader
+	spritePiece	-$C, -$C, 3, 1, $14, 0, 0, 0, 0
+	spritePiece	-$14, -4, 4, 3, $17, 0, 0, 0, 0
+	spritePiece	-4, -$14, 2, 1, $F, 0, 0, 0, 0
+	spritePiece	$C, -$C, 1, 3, $11, 0, 0, 0, 0
+	spritePiece	-4, 4, 3, 2, $31, 0, 0, 0, 0
+Map_Yadrin_2C_End
+
+Map_Yadrin_4C:	spriteHeader
+	spritePiece	-$C, -$C, 3, 2, $23, 0, 0, 0, 0
+	spritePiece	-$14, 4, 4, 2, $29, 0, 0, 0, 0
+	spritePiece	-4, -$14, 2, 1, $F, 0, 0, 0, 0
+	spritePiece	$C, -$C, 1, 3, $11, 0, 0, 0, 0
+	spritePiece	-4, 4, 3, 2, $31, 0, 0, 0, 0
+Map_Yadrin_4C_End
+
+Map_Yadrin_6C:	spriteHeader
+	spritePiece	-$C, -$C, 3, 1, 0, 0, 0, 0, 0
+	spritePiece	-$14, -4, 4, 3, 3, 0, 0, 0, 0
+	spritePiece	-4, -$14, 2, 1, $F, 0, 0, 0, 0
+	spritePiece	$C, -$C, 1, 3, $11, 0, 0, 0, 0
+	spritePiece	-4, 4, 3, 2, $37, 0, 0, 0, 0
+Map_Yadrin_6C_End
+
+Map_Yadrin_8C:	spriteHeader
+	spritePiece	-$C, -$C, 3, 1, $14, 0, 0, 0, 0
+	spritePiece	-$14, -4, 4, 3, $17, 0, 0, 0, 0
+	spritePiece	-4, -$14, 2, 1, $F, 0, 0, 0, 0
+	spritePiece	$C, -$C, 1, 3, $11, 0, 0, 0, 0
+	spritePiece	-4, 4, 3, 2, $37, 0, 0, 0, 0
+Map_Yadrin_8C_End
+
+Map_Yadrin_AC:	spriteHeader
+	spritePiece	-$C, -$C, 3, 2, $23, 0, 0, 0, 0
+	spritePiece	-$14, 4, 4, 2, $29, 0, 0, 0, 0
+	spritePiece	-4, -$14, 2, 1, $F, 0, 0, 0, 0
+	spritePiece	$C, -$C, 1, 3, $11, 0, 0, 0, 0
+	spritePiece	-4, 4, 3, 2, $37, 0, 0, 0, 0
+Map_Yadrin_AC_End
+
 		even

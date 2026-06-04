@@ -1,13 +1,21 @@
-Map_WaterSplash:
-		dc.w Frame_237C86-Map_WaterSplash
-		dc.w Frame_237C86-Map_WaterSplash
-		dc.w Frame_237C86-Map_WaterSplash
-		dc.w Frame_237C86-Map_WaterSplash
-		dc.w Frame_237C86-Map_WaterSplash
-		dc.w Frame_247C94-Map_WaterSplash
-Frame_237C86:
-		dc.w 2
-		dc.b $F0, $D, 0, 0, $FF, $C8
-		dc.b $F0, 5, 0, 8, $FF, $E8
-Frame_247C94:
-		dc.w 0
+; ---------------------------------------------------------------------------
+; Sprite mappings - water splash
+; ---------------------------------------------------------------------------
+
+Map_WaterSplash:	mappingsTable
+	mappingsTableEntry.w Frame_237C86
+	mappingsTableEntry.w Frame_237C86
+	mappingsTableEntry.w Frame_237C86
+	mappingsTableEntry.w Frame_237C86
+	mappingsTableEntry.w Frame_237C86
+	mappingsTableEntry.w Frame_247C94
+
+Frame_237C86:	spriteHeader
+	spritePiece	-$38, -$10, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$18, -$10, 2, 2, 8, 0, 0, 0, 0
+Frame_237C86_End
+
+Frame_247C94:	spriteHeader
+Frame_247C94_End
+
+	even

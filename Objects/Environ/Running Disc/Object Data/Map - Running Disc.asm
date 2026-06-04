@@ -4,5 +4,5 @@
 ; part of the level tiles.)
 ; ---------------------------------------------------------------------------
 
-Map_Disc:	dc.b $F8, 5, $C3, $A0, $FF, $F8
+Map_RunningDisc:	spritePiece	-8, -8, 2, 2, $3A0, 0, 0, 2, 1
 	even

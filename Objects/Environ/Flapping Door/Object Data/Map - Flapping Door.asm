@@ -2,17 +2,24 @@
 ; Sprite mappings - flapping door (LZ)
 ; ---------------------------------------------------------------------------
 
-Map_FlapDoor:
-		dc.w Map_FlapDoor_6-Map_FlapDoor
-		dc.w Map_FlapDoor_14-Map_FlapDoor
-		dc.w Map_FlapDoor_22-Map_FlapDoor
-Map_FlapDoor_6:	dc.b 0, 2
-		dc.b $E0, 7, 0, 0, $FF, $F8
-		dc.b 0, 7, $10, 0, $FF, $F8
-Map_FlapDoor_14:	dc.b 0, 2
-		dc.b $DA, $F, 0, 8, $FF, $FB
-		dc.b 6, $F, $10, 8, $FF, $FB
-Map_FlapDoor_22:	dc.b 0, 2
-		dc.b $D8, $D, 0, $18, 0, 0
-		dc.b $18, $D, $10, $18, 0, 0
+Map_FlapDoor:	mappingsTable
+	mappingsTableEntry.w Map_FlapDoor_6
+	mappingsTableEntry.w Map_FlapDoor_14
+	mappingsTableEntry.w Map_FlapDoor_22
+
+Map_FlapDoor_6:	spriteHeader
+	spritePiece	-8, -$20, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 4, 0, 0, 1, 0, 0
+Map_FlapDoor_6_End
+
+Map_FlapDoor_14:	spriteHeader
+	spritePiece	-5, -$26, 4, 4, 8, 0, 0, 0, 0
+	spritePiece	-5, 6, 4, 4, 8, 0, 1, 0, 0
+Map_FlapDoor_14_End
+
+Map_FlapDoor_22:	spriteHeader
+	spritePiece	0, -$28, 4, 2, $18, 0, 0, 0, 0
+	spritePiece	0, $18, 4, 2, $18, 0, 1, 0, 0
+Map_FlapDoor_22_End
+
 		even

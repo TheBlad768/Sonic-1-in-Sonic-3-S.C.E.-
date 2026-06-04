@@ -2,57 +2,82 @@
 ; DPLC mappings - Knuckles ending
 ; ---------------------------------------------------------------------------
 
-DPLC_KnucklesEnding:
-DPLC_KnucklesEnding_0: 	dc.w DPLC_KnucklesEnding_18-DPLC_KnucklesEnding
-DPLC_KnucklesEnding_2: 	dc.w DPLC_KnucklesEnding_1E-DPLC_KnucklesEnding
-DPLC_KnucklesEnding_4: 	dc.w DPLC_KnucklesEnding_26-DPLC_KnucklesEnding
-DPLC_KnucklesEnding_6: 	dc.w DPLC_KnucklesEnding_2C-DPLC_KnucklesEnding
-DPLC_KnucklesEnding_8: 	dc.w DPLC_KnucklesEnding_32-DPLC_KnucklesEnding
-DPLC_KnucklesEnding_A: 	dc.w DPLC_KnucklesEnding_38-DPLC_KnucklesEnding
-DPLC_KnucklesEnding_C: 	dc.w DPLC_KnucklesEnding_3E-DPLC_KnucklesEnding
-DPLC_KnucklesEnding_E: 	dc.w DPLC_KnucklesEnding_44-DPLC_KnucklesEnding
-DPLC_KnucklesEnding_10: 	dc.w DPLC_KnucklesEnding_4A-DPLC_KnucklesEnding
-DPLC_KnucklesEnding_12: 	dc.w DPLC_KnucklesEnding_50-DPLC_KnucklesEnding
-DPLC_KnucklesEnding_14: 	dc.w DPLC_KnucklesEnding_56-DPLC_KnucklesEnding
-DPLC_KnucklesEnding_16: 	dc.w DPLC_KnucklesEnding_5C-DPLC_KnucklesEnding
-DPLC_KnucklesEnding_18: 	dc.b $0, $1
-	dc.b $0, $F
-	dc.b $1, $1
-DPLC_KnucklesEnding_1E: 	dc.b $0, $2
-	dc.b $1, $27
-	dc.b $0, $F
-	dc.b $1, $1
-DPLC_KnucklesEnding_26: 	dc.b $0, $1
-	dc.b $1, $AF
-	dc.b $2, $A5
-DPLC_KnucklesEnding_2C: 	dc.b $0, $1
-	dc.b $3, $F
-	dc.b $4, $5
-DPLC_KnucklesEnding_32: 	dc.b $0, $1
-	dc.b $4, $6F
-	dc.b $5, $67
-DPLC_KnucklesEnding_38: 	dc.b $0, $1
-	dc.b $5, $EF
-	dc.b $6, $E5
-DPLC_KnucklesEnding_3E: 	dc.b $0, $1
-	dc.b $7, $4F
-	dc.b $8, $47
-DPLC_KnucklesEnding_44: 	dc.b $0, $1
-	dc.b $8, $CF
-	dc.b $9, $C3
-DPLC_KnucklesEnding_4A: 	dc.b $0, $1
-	dc.b $A, $F
-	dc.b $B, $2
-DPLC_KnucklesEnding_50: 	dc.b $0, $1
-	dc.b $B, $3F
-	dc.b $C, $30
-DPLC_KnucklesEnding_56: 	dc.b $0, $1
-	dc.b $C, $4F
-	dc.b $D, $41
-DPLC_KnucklesEnding_5C: 	dc.b $0, $4
-	dc.b $D, $6F
-	dc.b $E, $6F
-	dc.b $F, $6F
-	dc.b $10, $6F
-	dc.b $11, $6D
+DPLC_KnucklesEnding:	mappingsTable
+	mappingsTableEntry.w DPLC_KnucklesEnding_18
+	mappingsTableEntry.w DPLC_KnucklesEnding_1E
+	mappingsTableEntry.w DPLC_KnucklesEnding_26
+	mappingsTableEntry.w DPLC_KnucklesEnding_2C
+	mappingsTableEntry.w DPLC_KnucklesEnding_32
+	mappingsTableEntry.w DPLC_KnucklesEnding_38
+	mappingsTableEntry.w DPLC_KnucklesEnding_3E
+	mappingsTableEntry.w DPLC_KnucklesEnding_44
+	mappingsTableEntry.w DPLC_KnucklesEnding_4A
+	mappingsTableEntry.w DPLC_KnucklesEnding_50
+	mappingsTableEntry.w DPLC_KnucklesEnding_56
+	mappingsTableEntry.w DPLC_KnucklesEnding_5C
+
+DPLC_KnucklesEnding_18:	dplcHeader
+	dplcEntry	$10, 0
+	dplcEntry	2, $10
+DPLC_KnucklesEnding_18_End
+
+DPLC_KnucklesEnding_1E:	dplcHeader
+	dplcEntry	8, $12
+	dplcEntry	$10, 0
+	dplcEntry	2, $10
+DPLC_KnucklesEnding_1E_End
+
+DPLC_KnucklesEnding_26:	dplcHeader
+	dplcEntry	$10, $1A
+	dplcEntry	6, $2A
+DPLC_KnucklesEnding_26_End
+
+DPLC_KnucklesEnding_2C:	dplcHeader
+	dplcEntry	$10, $30
+	dplcEntry	6, $40
+DPLC_KnucklesEnding_2C_End
+
+DPLC_KnucklesEnding_32:	dplcHeader
+	dplcEntry	$10, $46
+	dplcEntry	8, $56
+DPLC_KnucklesEnding_32_End
+
+DPLC_KnucklesEnding_38:	dplcHeader
+	dplcEntry	$10, $5E
+	dplcEntry	6, $6E
+DPLC_KnucklesEnding_38_End
+
+DPLC_KnucklesEnding_3E:	dplcHeader
+	dplcEntry	$10, $74
+	dplcEntry	8, $84
+DPLC_KnucklesEnding_3E_End
+
+DPLC_KnucklesEnding_44:	dplcHeader
+	dplcEntry	$10, $8C
+	dplcEntry	4, $9C
+DPLC_KnucklesEnding_44_End
+
+DPLC_KnucklesEnding_4A:	dplcHeader
+	dplcEntry	$10, $A0
+	dplcEntry	3, $B0
+DPLC_KnucklesEnding_4A_End
+
+DPLC_KnucklesEnding_50:	dplcHeader
+	dplcEntry	$10, $B3
+	dplcEntry	1, $C3
+DPLC_KnucklesEnding_50_End
+
+DPLC_KnucklesEnding_56:	dplcHeader
+	dplcEntry	$10, $C4
+	dplcEntry	2, $D4
+DPLC_KnucklesEnding_56_End
+
+DPLC_KnucklesEnding_5C:	dplcHeader
+	dplcEntry	$10, $D6
+	dplcEntry	$10, $E6
+	dplcEntry	$10, $F6
+	dplcEntry	$10, $106
+	dplcEntry	$E, $116
+DPLC_KnucklesEnding_5C_End
+
 	even

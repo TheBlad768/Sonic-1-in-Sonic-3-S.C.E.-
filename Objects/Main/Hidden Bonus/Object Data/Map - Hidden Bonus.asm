@@ -2,18 +2,22 @@
 ; Sprite mappings - hidden points at the end of a level
 ; ---------------------------------------------------------------------------
 
-Map_HiddenBonus:
-		dc.w 0										; blank
-		dc.w Map_HiddenBonus_A-Map_HiddenBonus	; 10000
-		dc.w Map_HiddenBonus_12-Map_HiddenBonus	; 1000
-		dc.w Map_HiddenBonus_1A-Map_HiddenBonus	; 100
-Map_HiddenBonus_A:
-		dc.w 1
-		dc.b $F4, $E, 0, 0, $FF, $F0
-Map_HiddenBonus_12:
-		dc.w 1
-		dc.b $F4, $E, 0, $C, $FF, $F0
-Map_HiddenBonus_1A:
-		dc.w 1
-		dc.b $F4, $E, 0, $18, $FF, $F0
+Map_HiddenBonus:	mappingsTable
+	dc.w 0						; blank
+	mappingsTableEntry.w Map_HiddenBonus_A		; 10000
+	mappingsTableEntry.w Map_HiddenBonus_12		; 1000
+	mappingsTableEntry.w Map_HiddenBonus_1A		; 100
+
+Map_HiddenBonus_A:	spriteHeader
+	spritePiece	-$10, -$C, 4, 3, 0, 0, 0, 0, 0
+Map_HiddenBonus_A_End
+
+Map_HiddenBonus_12:	spriteHeader
+	spritePiece	-$10, -$C, 4, 3, $C, 0, 0, 0, 0
+Map_HiddenBonus_12_End
+
+Map_HiddenBonus_1A:	spriteHeader
+	spritePiece	-$10, -$C, 4, 3, $18, 0, 0, 0, 0
+Map_HiddenBonus_1A_End
+
 	even

@@ -2,101 +2,133 @@
 ; Sprite mappings - Robotnik ship (boss levels)
 ; ---------------------------------------------------------------------------
 
-Map_RobotnikShip:
-Map_RobotnikShip_0: 	dc.w Map_RobotnikShip_20-Map_RobotnikShip
-Map_RobotnikShip_2: 	dc.w Map_RobotnikShip_28-Map_RobotnikShip
-Map_RobotnikShip_4: 	dc.w Map_RobotnikShip_30-Map_RobotnikShip
-Map_RobotnikShip_6: 	dc.w Map_RobotnikShip_3E-Map_RobotnikShip
-Map_RobotnikShip_8: 	dc.w Map_RobotnikShip_4C-Map_RobotnikShip
-Map_RobotnikShip_A: 	dc.w Map_RobotnikShip_5A-Map_RobotnikShip
-Map_RobotnikShip_C: 	dc.w Map_RobotnikShip_62-Map_RobotnikShip
-Map_RobotnikShip_E: 	dc.w Map_RobotnikShip_6A-Map_RobotnikShip
-Map_RobotnikShip_10: 	dc.w Map_RobotnikShip_B4-Map_RobotnikShip
-Map_RobotnikShip_12: 	dc.w Map_RobotnikShip_BC-Map_RobotnikShip
-Map_RobotnikShip_14: 	dc.w Map_RobotnikShip_D6-Map_RobotnikShip
-Map_RobotnikShip_16: 	dc.w Map_RobotnikShip_108-Map_RobotnikShip
-Map_RobotnikShip_18: 	dc.w Map_RobotnikShip_11C-Map_RobotnikShip
-Map_RobotnikShip_1A: 	dc.w Map_RobotnikShip_148-Map_RobotnikShip
-Map_RobotnikShip_1C: 	dc.w Map_RobotnikShip_16E-Map_RobotnikShip
-Map_RobotnikShip_1E: 	dc.w Map_RobotnikShip_194-Map_RobotnikShip
-Map_RobotnikShip_20: 	dc.b $0, $1
-	dc.b $F8, $D, $0, $0, $FF, $F0
-Map_RobotnikShip_28: 	dc.b $0, $1
-	dc.b $F8, $D, $0, $8, $FF, $F0
-Map_RobotnikShip_30: 	dc.b $0, $2
-	dc.b $F8, $D, $0, $10, $FF, $EC
-	dc.b $F8, $1, $0, $18, $0, $C
-Map_RobotnikShip_3E: 	dc.b $0, $2
-	dc.b $F8, $D, $0, $1A, $FF, $EB
-	dc.b $F8, $1, $0, $22, $0, $B
-Map_RobotnikShip_4C: 	dc.b $0, $2
-	dc.b $F8, $D, $0, $24, $FF, $EB
-	dc.b $F8, $1, $0, $2C, $0, $B
-Map_RobotnikShip_5A: 	dc.b $0, $1
-	dc.b $F8, $D, $0, $2E, $FF, $F0
-Map_RobotnikShip_62: 	dc.b $0, $1
-	dc.b $F8, $5, $0, $62, $0, $0
-Map_RobotnikShip_6A: 	dc.b $0, $C
-	dc.b $EC, $C, $0, $36, $FF, $E4
-	dc.b $EC, $8, $0, $3A, $0, $4
-	dc.b $F4, $E, $0, $3D, $FF, $E4
-	dc.b $F4, $A, $0, $49, $0, $4
-	dc.b $C, $8, $0, $52, $FF, $EC
-	dc.b $C, $4, $0, $55, $0, $4
-	dc.b $D4, $5, $0, $57, $FF, $F0
-	dc.b $DC, $1, $0, $5B, $FF, $E8
-	dc.b $D4, $5, $8, $57, $0, $0
-	dc.b $DC, $1, $8, $5B, $0, $10
-	dc.b $DA, $0, $0, $5F, $FF, $FE
-	dc.b $E4, $4, $0, $5D, $FF, $EC
-Map_RobotnikShip_B4: 	dc.b $0, $1
-	dc.b $FC, $4, $0, $60, $FF, $F8
-Map_RobotnikShip_BC: 	dc.b $0, $4
-	dc.b $F4, $5, $0, $57, $FF, $F0
-	dc.b $FC, $1, $0, $5B, $FF, $E8
-	dc.b $F4, $5, $8, $57, $0, $0
-	dc.b $FC, $1, $8, $5B, $0, $10
-Map_RobotnikShip_D6: 	dc.b $0, $8
-	dc.b $EC, $C, $0, $36, $FF, $E4
-	dc.b $EC, $8, $0, $3A, $0, $4
-	dc.b $D4, $5, $0, $57, $FF, $F0
-	dc.b $DC, $1, $0, $5B, $FF, $E8
-	dc.b $D4, $5, $8, $57, $0, $0
-	dc.b $DC, $1, $8, $5B, $0, $10
-	dc.b $DA, $0, $0, $5F, $FF, $FE
-	dc.b $E4, $4, $0, $5D, $FF, $EC
-Map_RobotnikShip_108: 	dc.b $0, $3
-	dc.b $EC, $C, $0, $36, $FF, $E4
-	dc.b $EC, $8, $0, $3A, $0, $4
-	dc.b $E4, $4, $0, $5D, $FF, $EC
-Map_RobotnikShip_11C: 	dc.b $0, $7
-	dc.b $EC, $C, $0, $36, $FF, $E4
-	dc.b $EC, $8, $0, $3A, $0, $4
-	dc.b $F4, $E, $0, $3D, $FF, $E4
-	dc.b $F4, $A, $0, $49, $0, $4
-	dc.b $C, $8, $0, $52, $FF, $EC
-	dc.b $C, $4, $0, $55, $0, $4
-	dc.b $E4, $4, $0, $5D, $FF, $EC
-Map_RobotnikShip_148: 	dc.b $0, $6
-	dc.b $EC, $C, $0, $36, $FF, $E4
-	dc.b $EC, $8, $0, $3A, $0, $4
-	dc.b $D4, $5, $0, $57, $FF, $F0
-	dc.b $DC, $1, $0, $5B, $FF, $E8
-	dc.b $D4, $5, $8, $57, $0, $0
-	dc.b $DC, $1, $8, $5B, $0, $10
-Map_RobotnikShip_16E: 	dc.b $0, $6
-	dc.b $D4, $5, $0, $57, $FF, $F0
-	dc.b $DC, $1, $0, $5B, $FF, $E8
-	dc.b $D4, $5, $8, $57, $0, $0
-	dc.b $DC, $1, $8, $5B, $0, $10
-	dc.b $DA, $0, $0, $5F, $FF, $FE
-	dc.b $E4, $4, $0, $5D, $FF, $EC
-Map_RobotnikShip_194: 	dc.b $0, $7
-	dc.b $4, $D, $0, $6F, $FF, $FD
-	dc.b $4, $A, $0, $66, $FF, $E5
-	dc.b $EC, $C, $0, $36, $FF, $E4
-	dc.b $EC, $8, $0, $3A, $0, $4
-	dc.b $F4, $E, $0, $3D, $FF, $E4
-	dc.b $F4, $A, $0, $49, $0, $4
-	dc.b $E4, $4, $0, $5D, $FF, $EC
+Map_RobotnikShip:	mappingsTable
+	mappingsTableEntry.w Map_RobotnikShip_20
+	mappingsTableEntry.w Map_RobotnikShip_28
+	mappingsTableEntry.w Map_RobotnikShip_30
+	mappingsTableEntry.w Map_RobotnikShip_3E
+	mappingsTableEntry.w Map_RobotnikShip_4C
+	mappingsTableEntry.w Map_RobotnikShip_5A
+	mappingsTableEntry.w Map_RobotnikShip_62
+	mappingsTableEntry.w Map_RobotnikShip_6A
+	mappingsTableEntry.w Map_RobotnikShip_B4
+	mappingsTableEntry.w Map_RobotnikShip_BC
+	mappingsTableEntry.w Map_RobotnikShip_D6
+	mappingsTableEntry.w Map_RobotnikShip_108
+	mappingsTableEntry.w Map_RobotnikShip_11C
+	mappingsTableEntry.w Map_RobotnikShip_148
+	mappingsTableEntry.w Map_RobotnikShip_16E
+	mappingsTableEntry.w Map_RobotnikShip_194
+
+Map_RobotnikShip_20:	spriteHeader
+	spritePiece	-$10, -8, 4, 2, 0, 0, 0, 0, 0
+Map_RobotnikShip_20_End
+
+Map_RobotnikShip_28:	spriteHeader
+	spritePiece	-$10, -8, 4, 2, 8, 0, 0, 0, 0
+Map_RobotnikShip_28_End
+
+Map_RobotnikShip_30:	spriteHeader
+	spritePiece	-$14, -8, 4, 2, $10, 0, 0, 0, 0
+	spritePiece	$C, -8, 1, 2, $18, 0, 0, 0, 0
+Map_RobotnikShip_30_End
+
+Map_RobotnikShip_3E:	spriteHeader
+	spritePiece	-$15, -8, 4, 2, $1A, 0, 0, 0, 0
+	spritePiece	$B, -8, 1, 2, $22, 0, 0, 0, 0
+Map_RobotnikShip_3E_End
+
+Map_RobotnikShip_4C:	spriteHeader
+	spritePiece	-$15, -8, 4, 2, $24, 0, 0, 0, 0
+	spritePiece	$B, -8, 1, 2, $2C, 0, 0, 0, 0
+Map_RobotnikShip_4C_End
+
+Map_RobotnikShip_5A:	spriteHeader
+	spritePiece	-$10, -8, 4, 2, $2E, 0, 0, 0, 0
+Map_RobotnikShip_5A_End
+
+Map_RobotnikShip_62:	spriteHeader
+	spritePiece	0, -8, 2, 2, $62, 0, 0, 0, 0
+Map_RobotnikShip_62_End
+
+Map_RobotnikShip_6A:	spriteHeader
+	spritePiece	-$1C, -$14, 4, 1, $36, 0, 0, 0, 0
+	spritePiece	4, -$14, 3, 1, $3A, 0, 0, 0, 0
+	spritePiece	-$1C, -$C, 4, 3, $3D, 0, 0, 0, 0
+	spritePiece	4, -$C, 3, 3, $49, 0, 0, 0, 0
+	spritePiece	-$14, $C, 3, 1, $52, 0, 0, 0, 0
+	spritePiece	4, $C, 2, 1, $55, 0, 0, 0, 0
+	spritePiece	-$10, -$2C, 2, 2, $57, 0, 0, 0, 0
+	spritePiece	-$18, -$24, 1, 2, $5B, 0, 0, 0, 0
+	spritePiece	0, -$2C, 2, 2, $57, 1, 0, 0, 0
+	spritePiece	$10, -$24, 1, 2, $5B, 1, 0, 0, 0
+	spritePiece	-2, -$26, 1, 1, $5F, 0, 0, 0, 0
+	spritePiece	-$14, -$1C, 2, 1, $5D, 0, 0, 0, 0
+Map_RobotnikShip_6A_End
+
+Map_RobotnikShip_B4:	spriteHeader
+	spritePiece	-8, -4, 2, 1, $60, 0, 0, 0, 0
+Map_RobotnikShip_B4_End
+
+Map_RobotnikShip_BC:	spriteHeader
+	spritePiece	-$10, -$C, 2, 2, $57, 0, 0, 0, 0
+	spritePiece	-$18, -4, 1, 2, $5B, 0, 0, 0, 0
+	spritePiece	0, -$C, 2, 2, $57, 1, 0, 0, 0
+	spritePiece	$10, -4, 1, 2, $5B, 1, 0, 0, 0
+Map_RobotnikShip_BC_End
+
+Map_RobotnikShip_D6:	spriteHeader
+	spritePiece	-$1C, -$14, 4, 1, $36, 0, 0, 0, 0
+	spritePiece	4, -$14, 3, 1, $3A, 0, 0, 0, 0
+	spritePiece	-$10, -$2C, 2, 2, $57, 0, 0, 0, 0
+	spritePiece	-$18, -$24, 1, 2, $5B, 0, 0, 0, 0
+	spritePiece	0, -$2C, 2, 2, $57, 1, 0, 0, 0
+	spritePiece	$10, -$24, 1, 2, $5B, 1, 0, 0, 0
+	spritePiece	-2, -$26, 1, 1, $5F, 0, 0, 0, 0
+	spritePiece	-$14, -$1C, 2, 1, $5D, 0, 0, 0, 0
+Map_RobotnikShip_D6_End
+
+Map_RobotnikShip_108:	spriteHeader
+	spritePiece	-$1C, -$14, 4, 1, $36, 0, 0, 0, 0
+	spritePiece	4, -$14, 3, 1, $3A, 0, 0, 0, 0
+	spritePiece	-$14, -$1C, 2, 1, $5D, 0, 0, 0, 0
+Map_RobotnikShip_108_End
+
+Map_RobotnikShip_11C:	spriteHeader
+	spritePiece	-$1C, -$14, 4, 1, $36, 0, 0, 0, 0
+	spritePiece	4, -$14, 3, 1, $3A, 0, 0, 0, 0
+	spritePiece	-$1C, -$C, 4, 3, $3D, 0, 0, 0, 0
+	spritePiece	4, -$C, 3, 3, $49, 0, 0, 0, 0
+	spritePiece	-$14, $C, 3, 1, $52, 0, 0, 0, 0
+	spritePiece	4, $C, 2, 1, $55, 0, 0, 0, 0
+	spritePiece	-$14, -$1C, 2, 1, $5D, 0, 0, 0, 0
+Map_RobotnikShip_11C_End
+
+Map_RobotnikShip_148:	spriteHeader
+	spritePiece	-$1C, -$14, 4, 1, $36, 0, 0, 0, 0
+	spritePiece	4, -$14, 3, 1, $3A, 0, 0, 0, 0
+	spritePiece	-$10, -$2C, 2, 2, $57, 0, 0, 0, 0
+	spritePiece	-$18, -$24, 1, 2, $5B, 0, 0, 0, 0
+	spritePiece	0, -$2C, 2, 2, $57, 1, 0, 0, 0
+	spritePiece	$10, -$24, 1, 2, $5B, 1, 0, 0, 0
+Map_RobotnikShip_148_End
+
+Map_RobotnikShip_16E:	spriteHeader
+	spritePiece	-$10, -$2C, 2, 2, $57, 0, 0, 0, 0
+	spritePiece	-$18, -$24, 1, 2, $5B, 0, 0, 0, 0
+	spritePiece	0, -$2C, 2, 2, $57, 1, 0, 0, 0
+	spritePiece	$10, -$24, 1, 2, $5B, 1, 0, 0, 0
+	spritePiece	-2, -$26, 1, 1, $5F, 0, 0, 0, 0
+	spritePiece	-$14, -$1C, 2, 1, $5D, 0, 0, 0, 0
+Map_RobotnikShip_16E_End
+
+Map_RobotnikShip_194:	spriteHeader
+	spritePiece	-3, 4, 4, 2, $6F, 0, 0, 0, 0
+	spritePiece	-$1B, 4, 3, 3, $66, 0, 0, 0, 0
+	spritePiece	-$1C, -$14, 4, 1, $36, 0, 0, 0, 0
+	spritePiece	4, -$14, 3, 1, $3A, 0, 0, 0, 0
+	spritePiece	-$1C, -$C, 4, 3, $3D, 0, 0, 0, 0
+	spritePiece	4, -$C, 3, 3, $49, 0, 0, 0, 0
+	spritePiece	-$14, -$1C, 2, 1, $5D, 0, 0, 0, 0
+Map_RobotnikShip_194_End
 	even

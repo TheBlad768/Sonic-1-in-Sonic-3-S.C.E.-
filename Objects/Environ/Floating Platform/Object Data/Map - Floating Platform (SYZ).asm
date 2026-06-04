@@ -2,10 +2,13 @@
 ; Sprite mappings - SYZ platforms
 ; ---------------------------------------------------------------------------
 
-Map_FloatingPlatform_SYZ:
-		dc.w Map_FloatingPlatform_SYZ_2-Map_FloatingPlatform_SYZ
-Map_FloatingPlatform_SYZ_2:	dc.b 0, 3
-		dc.b $F6, $B, 0, $19, $FF, $E0
-		dc.b $F6, 7, 0, $21, $FF, $F8
-		dc.b $F6, $B, 0, $25, 0, 8
+Map_FloatingPlatform_SYZ:	mappingsTable
+	mappingsTableEntry.w Map_FloatingPlatform_SYZ_2
+
+Map_FloatingPlatform_SYZ_2:	spriteHeader
+	spritePiece	-$20, -$A, 3, 4, $19, 0, 0, 0, 0
+	spritePiece	-8, -$A, 2, 4, $21, 0, 0, 0, 0
+	spritePiece	8, -$A, 3, 4, $25, 0, 0, 0, 0
+Map_FloatingPlatform_SYZ_2_End
+
 		even

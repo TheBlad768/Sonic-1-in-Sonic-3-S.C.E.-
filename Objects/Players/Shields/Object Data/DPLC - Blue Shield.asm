@@ -2,23 +2,36 @@
 ; DPLC mappings - Blue Shield
 ; ---------------------------------------------------------------------------
 
-DPLC_BlueShield:
-DPLC_BlueShield_0: 	dc.w DPLC_BlueShield_C-DPLC_BlueShield
-DPLC_BlueShield_2: 	dc.w DPLC_BlueShield_10-DPLC_BlueShield
-DPLC_BlueShield_4: 	dc.w DPLC_BlueShield_14-DPLC_BlueShield
-DPLC_BlueShield_6: 	dc.w DPLC_BlueShield_18-DPLC_BlueShield
-DPLC_BlueShield_8: 	dc.w DPLC_BlueShield_1C-DPLC_BlueShield
-DPLC_BlueShield_A: 	dc.w DPLC_BlueShield_20-DPLC_BlueShield
-DPLC_BlueShield_C: 	dc.b $0, $0
-	dc.b $0, $3
-DPLC_BlueShield_10: 	dc.b $0, $0
-	dc.b $0, $43
-DPLC_BlueShield_14: 	dc.b $0, $0
-	dc.b $0, $83
-DPLC_BlueShield_18: 	dc.b $0, $0
-	dc.b $0, $C3
-DPLC_BlueShield_1C: 	dc.b $0, $0
-	dc.b $1, $3
-DPLC_BlueShield_20: 	dc.b $0, $0
-	dc.b $1, $4B
+DPLC_BlueShield:	mappingsTable
+	mappingsTableEntry.w DPLC_BlueShield_C
+	mappingsTableEntry.w DPLC_BlueShield_10
+	mappingsTableEntry.w DPLC_BlueShield_14
+	mappingsTableEntry.w DPLC_BlueShield_18
+	mappingsTableEntry.w DPLC_BlueShield_1C
+	mappingsTableEntry.w DPLC_BlueShield_20
+
+DPLC_BlueShield_C:	dplcHeader
+	dplcEntry	4, 0
+DPLC_BlueShield_C_End
+
+DPLC_BlueShield_10:	dplcHeader
+	dplcEntry	4, 4
+DPLC_BlueShield_10_End
+
+DPLC_BlueShield_14:	dplcHeader
+	dplcEntry	4, 8
+DPLC_BlueShield_14_End
+
+DPLC_BlueShield_18:	dplcHeader
+	dplcEntry	4, $C
+DPLC_BlueShield_18_End
+
+DPLC_BlueShield_1C:	dplcHeader
+	dplcEntry	4, $10
+DPLC_BlueShield_1C_End
+
+DPLC_BlueShield_20:	dplcHeader
+	dplcEntry	$C, $14
+DPLC_BlueShield_20_End
+
 	even

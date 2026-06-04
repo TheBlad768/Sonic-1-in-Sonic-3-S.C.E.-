@@ -20,7 +20,7 @@ Render_Pylon:
 		addi.w	#gameplay_plane_height,d1					; ypos
 
 		; draw pylon
-		moveq	#bytesToXcnt(Map_Pylon_end-Map_Pylon,6),d4			; tile count
+		moveq	#bytesToXcnt(Map_Pylon_End-Map_Pylon,6),d4			; tile count
 		lea	Map_Pylon(pc),a1
 		jmp	(loc_1AF76).w							; draw
 ; ---------------------------------------------------------------------------

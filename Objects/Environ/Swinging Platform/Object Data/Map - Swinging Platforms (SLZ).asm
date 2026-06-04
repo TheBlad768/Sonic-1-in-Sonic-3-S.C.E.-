@@ -2,21 +2,28 @@
 ; Sprite mappings - SLZ swinging platforms
 ; ---------------------------------------------------------------------------
 
-Map_SwingingPlatform_SLZ:
-		dc.w Map_SwingingPlatform_SLZ_6-Map_SwingingPlatform_SLZ
-		dc.w Map_SwingingPlatform_SLZ_38-Map_SwingingPlatform_SLZ
-		dc.w Map_SwingingPlatform_SLZ_40-Map_SwingingPlatform_SLZ
-Map_SwingingPlatform_SLZ_6:	dc.b 0, 8
-		dc.b $F0, $F, 0, 4, $FF, $E0
-		dc.b $F0, $F, 8, 4, 0, 0
-		dc.b $F0, 5, 0, $14, $FF, $D0
-		dc.b $F0, 5, 8, $14, 0, $20
-		dc.b $10, 4, 0, $18, $FF, $E0
-		dc.b $10, 4, 8, $18, 0, $10
-		dc.b $10, 1, 0, $1A, $FF, $F8
-		dc.b $10, 1, 8, $1A, 0, 0
-Map_SwingingPlatform_SLZ_38:	dc.b 0, 1
-		dc.b $F8, 5, 0, 0, $FF, $F8
-Map_SwingingPlatform_SLZ_40:	dc.b 0, 1
-		dc.b $F8, 5, 0, $1C, $FF, $F8
+Map_SwingingPlatform_SLZ:	mappingsTable
+	mappingsTableEntry.w Map_SwingingPlatform_SLZ_6
+	mappingsTableEntry.w Map_SwingingPlatform_SLZ_38
+	mappingsTableEntry.w Map_SwingingPlatform_SLZ_40
+
+Map_SwingingPlatform_SLZ_6:	spriteHeader
+	spritePiece	-$20, -$10, 4, 4, 4, 0, 0, 0, 0
+	spritePiece	0, -$10, 4, 4, 4, 1, 0, 0, 0
+	spritePiece	-$30, -$10, 2, 2, $14, 0, 0, 0, 0
+	spritePiece	$20, -$10, 2, 2, $14, 1, 0, 0, 0
+	spritePiece	-$20, $10, 2, 1, $18, 0, 0, 0, 0
+	spritePiece	$10, $10, 2, 1, $18, 1, 0, 0, 0
+	spritePiece	-8, $10, 1, 2, $1A, 0, 0, 0, 0
+	spritePiece	0, $10, 1, 2, $1A, 1, 0, 0, 0
+Map_SwingingPlatform_SLZ_6_End
+
+Map_SwingingPlatform_SLZ_38:	spriteHeader
+	spritePiece	-8, -8, 2, 2, 0, 0, 0, 0, 0
+Map_SwingingPlatform_SLZ_38_End
+
+Map_SwingingPlatform_SLZ_40:	spriteHeader
+	spritePiece	-8, -8, 2, 2, $1C, 0, 0, 0, 0
+Map_SwingingPlatform_SLZ_40_End
+
 		even

@@ -2,45 +2,50 @@
 ; Sprite mappings - big ring flash
 ; ---------------------------------------------------------------------------
 
-Map_BigRingFlash:
-		dc.w word_61B30-Map_BigRingFlash
-		dc.w word_61B56-Map_BigRingFlash
-		dc.w word_61B7C-Map_BigRingFlash
-		dc.w word_61BAE-Map_BigRingFlash
-word_61B30:	dc.w 6
-		dc.b  $E0,   8,   0,   0,   0,   0
-		dc.b  $E8,   9,   0,   3,   0,   8
-		dc.b  $F8,   0,   0,   9,   0, $18
-		dc.b  $18,   8, $10,   0,   0,   0
-		dc.b    8,   9, $10,   3,   0,   8
-		dc.b    0,   0, $10,   9,   0, $18
-word_61B56:	dc.w 6
-		dc.b  $E0,  $C,   0,   0,   0,   0
-		dc.b  $E8,  $D,   0,   4,   0,   8
-		dc.b  $F8,   4,   0,  $C,   0, $18
-		dc.b  $18,  $C, $10,   0,   0,   0
-		dc.b    8,  $D, $10,   4,   0,   8
-		dc.b    0,   4, $10,  $C,   0, $18
-word_61B7C:	dc.w 8
-		dc.b  $E0,   8,   0,   0,   0,   0
-		dc.b  $E8,  $E,   0,   3,   0,   0
-		dc.b  $18,   8, $10,   0,   0,   0
-		dc.b    0,  $E, $10,   3,   0,   0
-		dc.b  $E0,   5,   8,  $F, $FF, $F0
-		dc.b  $F0,   1,   8, $13, $FF, $F8
-		dc.b  $10,   5, $18,  $F, $FF, $F0
-		dc.b    0,   1, $18, $13, $FF, $F8
-word_61BAE:	dc.w 8
-		dc.b  $E0,   8,   0,   0,   0,   0
-		dc.b  $E8,  $E,   0,   3,   0,   0
-		dc.b  $18,   8, $10,   0,   0,   0
-		dc.b    0,  $E, $10,   3,   0,   0
-		dc.b  $E0,   8,   8,   0, $FF, $E8
-		dc.b  $E8,  $E,   8,   3, $FF, $E0
-		dc.b  $18,   8, $18,   0, $FF, $E8
-		dc.b    0,  $E, $18,   3, $FF, $E0
-		dc.w 4
-		dc.b  $E0,   5,   0,   0,   0,   0
-		dc.b  $F0,   1,   0,   4,   0,   0
-		dc.b  $10,   5, $10,   0,   0,   0
-		dc.b    0,   1, $10,   4,   0,   0
+Map_BigRingFlash:	mappingsTable
+	mappingsTableEntry.w word_61B30
+	mappingsTableEntry.w word_61B56
+	mappingsTableEntry.w word_61B7C
+	mappingsTableEntry.w word_61BAE
+
+word_61B30:	spriteHeader
+	spritePiece	0, -$20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece	8, -$18, 3, 2, 3, 0, 0, 0, 0
+	spritePiece	$18, -8, 1, 1, 9, 0, 0, 0, 0
+	spritePiece	0, $18, 3, 1, 0, 0, 1, 0, 0
+	spritePiece	8, 8, 3, 2, 3, 0, 1, 0, 0
+	spritePiece	$18, 0, 1, 1, 9, 0, 1, 0, 0
+word_61B30_End
+
+word_61B56:	spriteHeader
+	spritePiece	0, -$20, 4, 1, 0, 0, 0, 0, 0
+	spritePiece	8, -$18, 4, 2, 4, 0, 0, 0, 0
+	spritePiece	$18, -8, 2, 1, $C, 0, 0, 0, 0
+	spritePiece	0, $18, 4, 1, 0, 0, 1, 0, 0
+	spritePiece	8, 8, 4, 2, 4, 0, 1, 0, 0
+	spritePiece	$18, 0, 2, 1, $C, 0, 1, 0, 0
+word_61B56_End
+
+word_61B7C:	spriteHeader
+	spritePiece	0, -$20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece	0, -$18, 4, 3, 3, 0, 0, 0, 0
+	spritePiece	0, $18, 3, 1, 0, 0, 1, 0, 0
+	spritePiece	0, 0, 4, 3, 3, 0, 1, 0, 0
+	spritePiece	-$10, -$20, 2, 2, $F, 1, 0, 0, 0
+	spritePiece	-8, -$10, 1, 2, $13, 1, 0, 0, 0
+	spritePiece	-$10, $10, 2, 2, $F, 1, 1, 0, 0
+	spritePiece	-8, 0, 1, 2, $13, 1, 1, 0, 0
+word_61B7C_End
+
+word_61BAE:	spriteHeader
+	spritePiece	0, -$20, 3, 1, 0, 0, 0, 0, 0
+	spritePiece	0, -$18, 4, 3, 3, 0, 0, 0, 0
+	spritePiece	0, $18, 3, 1, 0, 0, 1, 0, 0
+	spritePiece	0, 0, 4, 3, 3, 0, 1, 0, 0
+	spritePiece	-$18, -$20, 3, 1, 0, 1, 0, 0, 0
+	spritePiece	-$20, -$18, 4, 3, 3, 1, 0, 0, 0
+	spritePiece	-$18, $18, 3, 1, 0, 1, 1, 0, 0
+	spritePiece	-$20, 0, 4, 3, 3, 1, 1, 0, 0
+word_61BAE_End
+
+	even

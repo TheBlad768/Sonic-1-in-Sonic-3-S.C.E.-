@@ -2,61 +2,82 @@
 ; Sprite mappings - Crabmeat enemy (GHZ, SYZ)
 ; ---------------------------------------------------------------------------
 
-Map_Crabmeat:
-Map_Crabmeat_0: 	dc.w Map_Crabmeat_14-Map_Crabmeat
-Map_Crabmeat_2: 	dc.w Map_Crabmeat_2E-Map_Crabmeat
-Map_Crabmeat_4: 	dc.w Map_Crabmeat_48-Map_Crabmeat
-Map_Crabmeat_6: 	dc.w Map_Crabmeat_62-Map_Crabmeat
-Map_Crabmeat_8: 	dc.w Map_Crabmeat_7C-Map_Crabmeat
-Map_Crabmeat_A: 	dc.w Map_Crabmeat_96-Map_Crabmeat
-Map_Crabmeat_C: 	dc.w Map_Crabmeat_B0-Map_Crabmeat
-Map_Crabmeat_E: 	dc.w Map_Crabmeat_CA-Map_Crabmeat
-Map_Crabmeat_10: 	dc.w Map_Crabmeat_F0-Map_Crabmeat
-Map_Crabmeat_12: 	dc.w Map_Crabmeat_F8-Map_Crabmeat
-Map_Crabmeat_14: 	dc.b $0, $4
-	dc.b $F0, $9, $0, $0, $FF, $E8
-	dc.b $F0, $9, $8, $0, $0, $0
-	dc.b $0, $5, $0, $6, $FF, $F0
-	dc.b $0, $5, $8, $6, $0, $0
-Map_Crabmeat_2E: 	dc.b $0, $4
-	dc.b $F0, $9, $0, $A, $FF, $E8
-	dc.b $F0, $9, $0, $10, $0, $0
-	dc.b $0, $5, $0, $16, $FF, $F0
-	dc.b $0, $9, $0, $1A, $0, $0
-Map_Crabmeat_48: 	dc.b $0, $4
-	dc.b $EC, $9, $0, $A, $FF, $E8
-	dc.b $EC, $9, $0, $10, $0, $0
-	dc.b $FC, $9, $0, $26, $0, $0
-	dc.b $FC, $6, $0, $2C, $FF, $F0
-Map_Crabmeat_62: 	dc.b $0, $4
-	dc.b $EC, $9, $0, $0, $FF, $E8
-	dc.b $EC, $9, $8, $0, $0, $0
-	dc.b $FC, $5, $8, $6, $0, $0
-	dc.b $FC, $6, $0, $20, $FF, $F0
-Map_Crabmeat_7C: 	dc.b $0, $4
-	dc.b $F0, $9, $8, $A, $0, $0
-	dc.b $F0, $9, $8, $10, $FF, $E8
-	dc.b $0, $5, $8, $16, $0, $0
-	dc.b $0, $9, $8, $1A, $FF, $E8
-Map_Crabmeat_96: 	dc.b $0, $4
-	dc.b $EC, $9, $8, $A, $0, $0
-	dc.b $EC, $9, $8, $10, $FF, $E8
-	dc.b $FC, $9, $8, $26, $FF, $E8
-	dc.b $FC, $6, $8, $2C, $0, $0
-Map_Crabmeat_B0: 	dc.b $0, $4
-	dc.b $EC, $9, $8, $0, $0, $0
-	dc.b $EC, $9, $0, $0, $FF, $E8
-	dc.b $FC, $5, $0, $6, $FF, $F0
-	dc.b $FC, $6, $8, $20, $0, $0
-Map_Crabmeat_CA: 	dc.b $0, $6
-	dc.b $F0, $4, $0, $32, $FF, $F0
-	dc.b $F0, $4, $8, $32, $0, $0
-	dc.b $F8, $9, $0, $34, $FF, $E8
-	dc.b $F8, $9, $8, $34, $0, $0
-	dc.b $8, $4, $0, $3A, $FF, $F0
-	dc.b $8, $4, $8, $3A, $0, $0
-Map_Crabmeat_F0: 	dc.b $0, $1
-	dc.b $F8, $5, $0, $3C, $FF, $F8
-Map_Crabmeat_F8: 	dc.b $0, $1
-	dc.b $F8, $5, $0, $40, $FF, $F8
+Map_Crabmeat:	mappingsTable
+	mappingsTableEntry.w Map_Crabmeat_14
+	mappingsTableEntry.w Map_Crabmeat_2E
+	mappingsTableEntry.w Map_Crabmeat_48
+	mappingsTableEntry.w Map_Crabmeat_62
+	mappingsTableEntry.w Map_Crabmeat_7C
+	mappingsTableEntry.w Map_Crabmeat_96
+	mappingsTableEntry.w Map_Crabmeat_B0
+	mappingsTableEntry.w Map_Crabmeat_CA
+	mappingsTableEntry.w Map_Crabmeat_F0
+	mappingsTableEntry.w Map_Crabmeat_F8
+
+Map_Crabmeat_14:	spriteHeader
+	spritePiece	-$18, -$10, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	0, -$10, 3, 2, 0, 1, 0, 0, 0
+	spritePiece	-$10, 0, 2, 2, 6, 0, 0, 0, 0
+	spritePiece	0, 0, 2, 2, 6, 1, 0, 0, 0
+Map_Crabmeat_14_End
+
+Map_Crabmeat_2E:	spriteHeader
+	spritePiece	-$18, -$10, 3, 2, $A, 0, 0, 0, 0
+	spritePiece	0, -$10, 3, 2, $10, 0, 0, 0, 0
+	spritePiece	-$10, 0, 2, 2, $16, 0, 0, 0, 0
+	spritePiece	0, 0, 3, 2, $1A, 0, 0, 0, 0
+Map_Crabmeat_2E_End
+
+Map_Crabmeat_48:	spriteHeader
+	spritePiece	-$18, -$14, 3, 2, $A, 0, 0, 0, 0
+	spritePiece	0, -$14, 3, 2, $10, 0, 0, 0, 0
+	spritePiece	0, -4, 3, 2, $26, 0, 0, 0, 0
+	spritePiece	-$10, -4, 2, 3, $2C, 0, 0, 0, 0
+Map_Crabmeat_48_End
+
+Map_Crabmeat_62:	spriteHeader
+	spritePiece	-$18, -$14, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	0, -$14, 3, 2, 0, 1, 0, 0, 0
+	spritePiece	0, -4, 2, 2, 6, 1, 0, 0, 0
+	spritePiece	-$10, -4, 2, 3, $20, 0, 0, 0, 0
+Map_Crabmeat_62_End
+
+Map_Crabmeat_7C:	spriteHeader
+	spritePiece	0, -$10, 3, 2, $A, 1, 0, 0, 0
+	spritePiece	-$18, -$10, 3, 2, $10, 1, 0, 0, 0
+	spritePiece	0, 0, 2, 2, $16, 1, 0, 0, 0
+	spritePiece	-$18, 0, 3, 2, $1A, 1, 0, 0, 0
+Map_Crabmeat_7C_End
+
+Map_Crabmeat_96:	spriteHeader
+	spritePiece	0, -$14, 3, 2, $A, 1, 0, 0, 0
+	spritePiece	-$18, -$14, 3, 2, $10, 1, 0, 0, 0
+	spritePiece	-$18, -4, 3, 2, $26, 1, 0, 0, 0
+	spritePiece	0, -4, 2, 3, $2C, 1, 0, 0, 0
+Map_Crabmeat_96_End
+
+Map_Crabmeat_B0:	spriteHeader
+	spritePiece	0, -$14, 3, 2, 0, 1, 0, 0, 0
+	spritePiece	-$18, -$14, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -4, 2, 2, 6, 0, 0, 0, 0
+	spritePiece	0, -4, 2, 3, $20, 1, 0, 0, 0
+Map_Crabmeat_B0_End
+
+Map_Crabmeat_CA:	spriteHeader
+	spritePiece	-$10, -$10, 2, 1, $32, 0, 0, 0, 0
+	spritePiece	0, -$10, 2, 1, $32, 1, 0, 0, 0
+	spritePiece	-$18, -8, 3, 2, $34, 0, 0, 0, 0
+	spritePiece	0, -8, 3, 2, $34, 1, 0, 0, 0
+	spritePiece	-$10, 8, 2, 1, $3A, 0, 0, 0, 0
+	spritePiece	0, 8, 2, 1, $3A, 1, 0, 0, 0
+Map_Crabmeat_CA_End
+
+Map_Crabmeat_F0:	spriteHeader
+	spritePiece	-8, -8, 2, 2, $3C, 0, 0, 0, 0
+Map_Crabmeat_F0_End
+
+Map_Crabmeat_F8:	spriteHeader
+	spritePiece	-8, -8, 2, 2, $40, 0, 0, 0, 0
+Map_Crabmeat_F8_End
+
 	even

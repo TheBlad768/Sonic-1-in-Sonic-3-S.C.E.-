@@ -2,77 +2,110 @@
 ; DPLC mappings - scrap Eggman (SBZ)
 ; ---------------------------------------------------------------------------
 
-DPLC_ScrapEggman:
-DPLC_ScrapEggman_0: 	dc.w DPLC_ScrapEggman_20-DPLC_ScrapEggman
-DPLC_ScrapEggman_2: 	dc.w DPLC_ScrapEggman_26-DPLC_ScrapEggman
-DPLC_ScrapEggman_4: 	dc.w DPLC_ScrapEggman_2E-DPLC_ScrapEggman
-DPLC_ScrapEggman_6: 	dc.w DPLC_ScrapEggman_36-DPLC_ScrapEggman
-DPLC_ScrapEggman_8: 	dc.w DPLC_ScrapEggman_3E-DPLC_ScrapEggman
-DPLC_ScrapEggman_A: 	dc.w DPLC_ScrapEggman_46-DPLC_ScrapEggman
-DPLC_ScrapEggman_C: 	dc.w DPLC_ScrapEggman_4E-DPLC_ScrapEggman
-DPLC_ScrapEggman_E: 	dc.w DPLC_ScrapEggman_56-DPLC_ScrapEggman
-DPLC_ScrapEggman_10: 	dc.w DPLC_ScrapEggman_5E-DPLC_ScrapEggman
-DPLC_ScrapEggman_12: 	dc.w DPLC_ScrapEggman_64-DPLC_ScrapEggman
-DPLC_ScrapEggman_14: 	dc.w DPLC_ScrapEggman_6A-DPLC_ScrapEggman
-DPLC_ScrapEggman_16: 	dc.w DPLC_ScrapEggman_70-DPLC_ScrapEggman
-DPLC_ScrapEggman_18: 	dc.w DPLC_ScrapEggman_76-DPLC_ScrapEggman
-DPLC_ScrapEggman_1A: 	dc.w DPLC_ScrapEggman_7E-DPLC_ScrapEggman
-DPLC_ScrapEggman_1C: 	dc.w DPLC_ScrapEggman_84-DPLC_ScrapEggman
-DPLC_ScrapEggman_1E: 	dc.w DPLC_ScrapEggman_8A-DPLC_ScrapEggman
-DPLC_ScrapEggman_20: 	dc.b $0, $1
-	dc.b $0, $F
-	dc.b $1, $A
-DPLC_ScrapEggman_26: 	dc.b $0, $2
-	dc.b $1, $BF
-	dc.b $2, $B8
-	dc.b $1, $A0
-DPLC_ScrapEggman_2E: 	dc.b $0, $2
-	dc.b $3, $47
-	dc.b $0, $8F
-	dc.b $1, $82
-DPLC_ScrapEggman_36: 	dc.b $0, $2
-	dc.b $3, $CF
-	dc.b $4, $C9
-	dc.b $1, $A0
-DPLC_ScrapEggman_3E: 	dc.b $0, $2
-	dc.b $5, $67
-	dc.b $0, $8F
-	dc.b $1, $82
-DPLC_ScrapEggman_46: 	dc.b $0, $2
-	dc.b $5, $67
-	dc.b $0, $8F
-	dc.b $1, $82
-DPLC_ScrapEggman_4E: 	dc.b $0, $2
-	dc.b $5, $E7
-	dc.b $0, $8F
-	dc.b $1, $82
-DPLC_ScrapEggman_56: 	dc.b $0, $2
-	dc.b $6, $67
-	dc.b $0, $8F
-	dc.b $1, $82
-DPLC_ScrapEggman_5E: 	dc.b $0, $1
-	dc.b $6, $EF
-	dc.b $7, $EE
-DPLC_ScrapEggman_64: 	dc.b $0, $1
-	dc.b $6, $ED
-	dc.b $8, $DB
-DPLC_ScrapEggman_6A: 	dc.b $0, $1
-	dc.b $6, $ED
-	dc.b $9, $9F
-DPLC_ScrapEggman_70: 	dc.b $0, $1
-	dc.b $6, $ED
-	dc.b $A, $9B
-DPLC_ScrapEggman_76: 	dc.b $0, $2
-	dc.b $B, $5F
-	dc.b $7, $CF
-	dc.b $8, $C0
-DPLC_ScrapEggman_7E: 	dc.b $0, $1
-	dc.b $B, $5F
-	dc.b $8, $DB
-DPLC_ScrapEggman_84: 	dc.b $0, $1
-	dc.b $B, $5F
-	dc.b $9, $9F
-DPLC_ScrapEggman_8A: 	dc.b $0, $1
-	dc.b $B, $5F
-	dc.b $A, $9B
+DPLC_ScrapEggman:	mappingsTable
+	mappingsTableEntry.w DPLC_ScrapEggman_20
+	mappingsTableEntry.w DPLC_ScrapEggman_26
+	mappingsTableEntry.w DPLC_ScrapEggman_2E
+	mappingsTableEntry.w DPLC_ScrapEggman_36
+	mappingsTableEntry.w DPLC_ScrapEggman_3E
+	mappingsTableEntry.w DPLC_ScrapEggman_46
+	mappingsTableEntry.w DPLC_ScrapEggman_4E
+	mappingsTableEntry.w DPLC_ScrapEggman_56
+	mappingsTableEntry.w DPLC_ScrapEggman_5E
+	mappingsTableEntry.w DPLC_ScrapEggman_64
+	mappingsTableEntry.w DPLC_ScrapEggman_6A
+	mappingsTableEntry.w DPLC_ScrapEggman_70
+	mappingsTableEntry.w DPLC_ScrapEggman_76
+	mappingsTableEntry.w DPLC_ScrapEggman_7E
+	mappingsTableEntry.w DPLC_ScrapEggman_84
+	mappingsTableEntry.w DPLC_ScrapEggman_8A
+
+DPLC_ScrapEggman_20:	dplcHeader
+	dplcEntry	$10, 0
+	dplcEntry	$B, $10
+DPLC_ScrapEggman_20_End
+
+DPLC_ScrapEggman_26:	dplcHeader
+	dplcEntry	$10, $1B
+	dplcEntry	9, $2B
+	dplcEntry	1, $1A
+DPLC_ScrapEggman_26_End
+
+DPLC_ScrapEggman_2E:	dplcHeader
+	dplcEntry	8, $34
+	dplcEntry	$10, 8
+	dplcEntry	3, $18
+DPLC_ScrapEggman_2E_End
+
+DPLC_ScrapEggman_36:	dplcHeader
+	dplcEntry	$10, $3C
+	dplcEntry	$A, $4C
+	dplcEntry	1, $1A
+DPLC_ScrapEggman_36_End
+
+DPLC_ScrapEggman_3E:	dplcHeader
+	dplcEntry	8, $56
+	dplcEntry	$10, 8
+	dplcEntry	3, $18
+DPLC_ScrapEggman_3E_End
+
+DPLC_ScrapEggman_46:	dplcHeader
+	dplcEntry	8, $56
+	dplcEntry	$10, 8
+	dplcEntry	3, $18
+DPLC_ScrapEggman_46_End
+
+DPLC_ScrapEggman_4E:	dplcHeader
+	dplcEntry	8, $5E
+	dplcEntry	$10, 8
+	dplcEntry	3, $18
+DPLC_ScrapEggman_4E_End
+
+DPLC_ScrapEggman_56:	dplcHeader
+	dplcEntry	8, $66
+	dplcEntry	$10, 8
+	dplcEntry	3, $18
+DPLC_ScrapEggman_56_End
+
+DPLC_ScrapEggman_5E:	dplcHeader
+	dplcEntry	$10, $6E
+	dplcEntry	$F, $7E
+DPLC_ScrapEggman_5E_End
+
+DPLC_ScrapEggman_64:	dplcHeader
+	dplcEntry	$E, $6E
+	dplcEntry	$C, $8D
+DPLC_ScrapEggman_64_End
+
+DPLC_ScrapEggman_6A:	dplcHeader
+	dplcEntry	$E, $6E
+	dplcEntry	$10, $99
+DPLC_ScrapEggman_6A_End
+
+DPLC_ScrapEggman_70:	dplcHeader
+	dplcEntry	$E, $6E
+	dplcEntry	$C, $A9
+DPLC_ScrapEggman_70_End
+
+DPLC_ScrapEggman_76:	dplcHeader
+	dplcEntry	$10, $B5
+	dplcEntry	$10, $7C
+	dplcEntry	1, $8C
+DPLC_ScrapEggman_76_End
+
+DPLC_ScrapEggman_7E:	dplcHeader
+	dplcEntry	$10, $B5
+	dplcEntry	$C, $8D
+DPLC_ScrapEggman_7E_End
+
+DPLC_ScrapEggman_84:	dplcHeader
+	dplcEntry	$10, $B5
+	dplcEntry	$10, $99
+DPLC_ScrapEggman_84_End
+
+DPLC_ScrapEggman_8A:	dplcHeader
+	dplcEntry	$10, $B5
+	dplcEntry	$C, $A9
+DPLC_ScrapEggman_8A_End
+
 	even

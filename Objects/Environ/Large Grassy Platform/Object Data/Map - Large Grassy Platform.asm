@@ -2,39 +2,47 @@
 ; Sprite mappings - large moving grass-covered platforms (MZ)
 ; ---------------------------------------------------------------------------
 
-Map_LargeGrassPlatform:
-		dc.w Map_LargeGrassPlatform_6-Map_LargeGrassPlatform, Map_LargeGrassPlatform_56-Map_LargeGrassPlatform
-		dc.w Map_LargeGrassPlatform_94-Map_LargeGrassPlatform
-Map_LargeGrassPlatform_6:	dc.b 0, $D
-		dc.b $D8, 6, 0, $57, $FF, $C0
-		dc.b $F0, 5, 0, $53, $FF, $C0
-		dc.b 0, $F, 0, 1, $FF, $C0
-		dc.b $D0, $F, 0, $27, $FF, $D0
-		dc.b $F0, $D, 0, $37, $FF, $D0
-		dc.b $F0, $F, 0, 1, $FF, $E0
-		dc.b $D0, $F, 0, $11, $FF, $F0
-		dc.b $D0, $F, 0, $3F, 0, $10
-		dc.b $F0, $D, 0, $4F, 0, $10
-		dc.b $F0, $F, 0, 1, 0, 0
-		dc.b 0, $F, 0, 1, 0, $20
-		dc.b $D8, 6, 0, $57, 0, $30
-		dc.b $F0, 5, 0, $53, 0, $30
-Map_LargeGrassPlatform_56:	dc.b 0, $A
-		dc.b $D0, $F, 0, $27, $FF, $C0
-		dc.b $F0, $D, 0, $37, $FF, $C0
-		dc.b 0, $F, 0, 1, $FF, $C0
-		dc.b $C0, $F, 0, $27, $FF, $E0
-		dc.b $E0, $D, 0, $37, $FF, $E0
-		dc.b $F0, $F, 0, 1, $FF, $E0
-		dc.b $C0, $F, 0, $11, 0, 0
-		dc.b $E0, $F, 0, 1, 0, 0
-		dc.b $C0, $F, 0, $3F, 0, $20
-		dc.b $E0, $D, 0, $4F, 0, $20
-Map_LargeGrassPlatform_94:	dc.b 0, 6
-		dc.b $D0, $F, 0, $11, $FF, $E0
-		dc.b $F0, $F, 0, 1, $FF, $E0
-		dc.b $10, $F, 0, 1, $FF, $E0
-		dc.b $D0, $F, 0, $11, 0, 0
-		dc.b $F0, $F, 0, 1, 0, 0
-		dc.b $10, $F, 0, 1, 0, 0
+Map_LargeGrassPlatform:	mappingsTable
+	mappingsTableEntry.w Map_LargeGrassPlatform_6
+	mappingsTableEntry.w Map_LargeGrassPlatform_56
+	mappingsTableEntry.w Map_LargeGrassPlatform_94
+
+Map_LargeGrassPlatform_6:	spriteHeader
+	spritePiece	-$40, -$28, 2, 3, $57, 0, 0, 0, 0
+	spritePiece	-$40, -$10, 2, 2, $53, 0, 0, 0, 0
+	spritePiece	-$40, 0, 4, 4, 1, 0, 0, 0, 0
+	spritePiece	-$30, -$30, 4, 4, $27, 0, 0, 0, 0
+	spritePiece	-$30, -$10, 4, 2, $37, 0, 0, 0, 0
+	spritePiece	-$20, -$10, 4, 4, 1, 0, 0, 0, 0
+	spritePiece	-$10, -$30, 4, 4, $11, 0, 0, 0, 0
+	spritePiece	$10, -$30, 4, 4, $3F, 0, 0, 0, 0
+	spritePiece	$10, -$10, 4, 2, $4F, 0, 0, 0, 0
+	spritePiece	0, -$10, 4, 4, 1, 0, 0, 0, 0
+	spritePiece	$20, 0, 4, 4, 1, 0, 0, 0, 0
+	spritePiece	$30, -$28, 2, 3, $57, 0, 0, 0, 0
+	spritePiece	$30, -$10, 2, 2, $53, 0, 0, 0, 0
+Map_LargeGrassPlatform_6_End
+
+Map_LargeGrassPlatform_56:	spriteHeader
+	spritePiece	-$40, -$30, 4, 4, $27, 0, 0, 0, 0
+	spritePiece	-$40, -$10, 4, 2, $37, 0, 0, 0, 0
+	spritePiece	-$40, 0, 4, 4, 1, 0, 0, 0, 0
+	spritePiece	-$20, -$40, 4, 4, $27, 0, 0, 0, 0
+	spritePiece	-$20, -$20, 4, 2, $37, 0, 0, 0, 0
+	spritePiece	-$20, -$10, 4, 4, 1, 0, 0, 0, 0
+	spritePiece	0, -$40, 4, 4, $11, 0, 0, 0, 0
+	spritePiece	0, -$20, 4, 4, 1, 0, 0, 0, 0
+	spritePiece	$20, -$40, 4, 4, $3F, 0, 0, 0, 0
+	spritePiece	$20, -$20, 4, 2, $4F, 0, 0, 0, 0
+Map_LargeGrassPlatform_56_End
+
+Map_LargeGrassPlatform_94:	spriteHeader
+	spritePiece	-$20, -$30, 4, 4, $11, 0, 0, 0, 0
+	spritePiece	-$20, -$10, 4, 4, 1, 0, 0, 0, 0
+	spritePiece	-$20, $10, 4, 4, 1, 0, 0, 0, 0
+	spritePiece	0, -$30, 4, 4, $11, 0, 0, 0, 0
+	spritePiece	0, -$10, 4, 4, 1, 0, 0, 0, 0
+	spritePiece	0, $10, 4, 4, 1, 0, 0, 0, 0
+Map_LargeGrassPlatform_94_End
+
 		even

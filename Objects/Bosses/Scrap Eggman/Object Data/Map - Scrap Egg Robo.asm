@@ -2,101 +2,134 @@
 ; Sprite mappings - scrap Egg Robo (SBZ)
 ; ---------------------------------------------------------------------------
 
-Map_ScrapEggRobo:
-Map_ScrapEggRobo_0: 	dc.w Map_ScrapEggRobo_20-Map_ScrapEggRobo
-Map_ScrapEggRobo_2: 	dc.w Map_ScrapEggRobo_3A-Map_ScrapEggRobo
-Map_ScrapEggRobo_4: 	dc.w Map_ScrapEggRobo_54-Map_ScrapEggRobo
-Map_ScrapEggRobo_6: 	dc.w Map_ScrapEggRobo_6E-Map_ScrapEggRobo
-Map_ScrapEggRobo_8: 	dc.w Map_ScrapEggRobo_88-Map_ScrapEggRobo
-Map_ScrapEggRobo_A: 	dc.w Map_ScrapEggRobo_A2-Map_ScrapEggRobo
-Map_ScrapEggRobo_C: 	dc.w Map_ScrapEggRobo_D4-Map_ScrapEggRobo
-Map_ScrapEggRobo_E: 	dc.w Map_ScrapEggRobo_EE-Map_ScrapEggRobo
-Map_ScrapEggRobo_10: 	dc.w Map_ScrapEggRobo_108-Map_ScrapEggRobo
-Map_ScrapEggRobo_12: 	dc.w Map_ScrapEggRobo_122-Map_ScrapEggRobo
-Map_ScrapEggRobo_14: 	dc.w Map_ScrapEggRobo_136-Map_ScrapEggRobo
-Map_ScrapEggRobo_16: 	dc.w Map_ScrapEggRobo_150-Map_ScrapEggRobo
-Map_ScrapEggRobo_18: 	dc.w Map_ScrapEggRobo_164-Map_ScrapEggRobo
-Map_ScrapEggRobo_1A: 	dc.w Map_ScrapEggRobo_17E-Map_ScrapEggRobo
-Map_ScrapEggRobo_1C: 	dc.w Map_ScrapEggRobo_192-Map_ScrapEggRobo
-Map_ScrapEggRobo_1E: 	dc.w Map_ScrapEggRobo_1AC-Map_ScrapEggRobo
-Map_ScrapEggRobo_20: 	dc.b $0, $4
-	dc.b $E4, $D, $0, $0, $FF, $F0
-	dc.b $F4, $E, $0, $8, $FF, $F0
-	dc.b $C, $4, $0, $14, $FF, $F8
-	dc.b $14, $C, $0, $16, $FF, $F0
-Map_ScrapEggRobo_3A: 	dc.b $0, $4
-	dc.b $E4, $C, $0, $0, $FF, $F0
-	dc.b $EC, $F, $0, $4, $FF, $F0
-	dc.b $C, $4, $0, $14, $FF, $F8
-	dc.b $14, $C, $0, $16, $FF, $F0
-Map_ScrapEggRobo_54: 	dc.b $0, $4
-	dc.b $E4, $D, $0, $0, $FF, $F0
-	dc.b $F4, $E, $0, $8, $FF, $F0
-	dc.b $C, $4, $0, $14, $FF, $F8
-	dc.b $14, $C, $0, $16, $FF, $F0
-Map_ScrapEggRobo_6E: 	dc.b $0, $4
-	dc.b $E4, $D, $0, $0, $FF, $F0
-	dc.b $F4, $E, $0, $8, $FF, $F0
-	dc.b $C, $4, $0, $14, $FF, $F8
-	dc.b $14, $C, $0, $16, $FF, $F0
-Map_ScrapEggRobo_88: 	dc.b $0, $4
-	dc.b $E4, $D, $0, $0, $FF, $F0
-	dc.b $F4, $E, $0, $8, $FF, $F0
-	dc.b $C, $4, $0, $14, $FF, $F8
-	dc.b $14, $C, $0, $16, $FF, $F0
-Map_ScrapEggRobo_A2: 	dc.b $0, $8
-	dc.b $E4, $D, $0, $0, $FF, $F0
-	dc.b $F4, $E, $0, $8, $FF, $F0
-	dc.b $C, $4, $0, $14, $FF, $F8
-	dc.b $14, $C, $0, $16, $FF, $F0
-	dc.b $E0, $D, $48, $B0, $FF, $F0
-	dc.b $F0, $D, $48, $B0, $FF, $F0
-	dc.b $0, $D, $48, $B0, $FF, $F0
-	dc.b $10, $D, $48, $B0, $FF, $F0
-Map_ScrapEggRobo_D4: 	dc.b $0, $4
-	dc.b $E4, $D, $0, $0, $FF, $F0
-	dc.b $F4, $E, $0, $8, $FF, $F0
-	dc.b $C, $4, $0, $14, $FF, $F8
-	dc.b $14, $C, $0, $16, $FF, $F0
-Map_ScrapEggRobo_EE: 	dc.b $0, $4
-	dc.b $E4, $D, $0, $0, $FF, $F0
-	dc.b $F4, $E, $0, $8, $FF, $F0
-	dc.b $C, $4, $0, $14, $FF, $F8
-	dc.b $14, $C, $0, $16, $FF, $F0
-Map_ScrapEggRobo_108: 	dc.b $0, $4
-	dc.b $E8, $E, $0, $0, $FF, $F0
-	dc.b $8, $5, $0, $C, $FF, $E0
-	dc.b $0, $9, $0, $10, $FF, $F0
-	dc.b $0, $6, $0, $16, $0, $8
-Map_ScrapEggRobo_122: 	dc.b $0, $3
-	dc.b $E8, $E, $0, $0, $FF, $F0
-	dc.b $0, $D, $0, $C, $FF, $F0
-	dc.b $10, $9, $0, $14, $FF, $F0
-Map_ScrapEggRobo_136: 	dc.b $0, $4
-	dc.b $E8, $E, $0, $0, $FF, $F0
-	dc.b $10, $5, $0, $C, $FF, $E8
-	dc.b $0, $D, $0, $10, $FF, $F0
-	dc.b $10, $5, $0, $18, $0, $0
-Map_ScrapEggRobo_150: 	dc.b $0, $3
-	dc.b $E8, $E, $0, $0, $FF, $F0
-	dc.b $0, $D, $0, $C, $FF, $F0
-	dc.b $10, $8, $0, $14, $FF, $F0
-Map_ScrapEggRobo_164: 	dc.b $0, $4
-	dc.b $E8, $E, $0, $0, $FF, $F0
-	dc.b $8, $5, $0, $C, $FF, $E0
-	dc.b $0, $9, $0, $10, $FF, $F0
-	dc.b $0, $6, $0, $16, $0, $8
-Map_ScrapEggRobo_17E: 	dc.b $0, $3
-	dc.b $E8, $E, $0, $0, $FF, $F0
-	dc.b $0, $D, $0, $C, $FF, $F0
-	dc.b $10, $9, $0, $14, $FF, $F0
-Map_ScrapEggRobo_192: 	dc.b $0, $4
-	dc.b $E8, $E, $0, $0, $FF, $F0
-	dc.b $10, $5, $0, $C, $FF, $E8
-	dc.b $0, $D, $0, $10, $FF, $F0
-	dc.b $10, $5, $0, $18, $0, $0
-Map_ScrapEggRobo_1AC: 	dc.b $0, $3
-	dc.b $E8, $E, $0, $0, $FF, $F0
-	dc.b $0, $D, $0, $C, $FF, $F0
-	dc.b $10, $8, $0, $14, $FF, $F0
+Map_ScrapEggRobo:	mappingsTable
+	mappingsTableEntry.w Map_ScrapEggRobo_20
+	mappingsTableEntry.w Map_ScrapEggRobo_3A
+	mappingsTableEntry.w Map_ScrapEggRobo_54
+	mappingsTableEntry.w Map_ScrapEggRobo_6E
+	mappingsTableEntry.w Map_ScrapEggRobo_88
+	mappingsTableEntry.w Map_ScrapEggRobo_A2
+	mappingsTableEntry.w Map_ScrapEggRobo_D4
+	mappingsTableEntry.w Map_ScrapEggRobo_EE
+	mappingsTableEntry.w Map_ScrapEggRobo_108
+	mappingsTableEntry.w Map_ScrapEggRobo_122
+	mappingsTableEntry.w Map_ScrapEggRobo_136
+	mappingsTableEntry.w Map_ScrapEggRobo_150
+	mappingsTableEntry.w Map_ScrapEggRobo_164
+	mappingsTableEntry.w Map_ScrapEggRobo_17E
+	mappingsTableEntry.w Map_ScrapEggRobo_192
+	mappingsTableEntry.w Map_ScrapEggRobo_1AC
+
+Map_ScrapEggRobo_20:	spriteHeader
+	spritePiece	-$10, -$1C, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$C, 4, 3, 8, 0, 0, 0, 0
+	spritePiece	-8, $C, 2, 1, $14, 0, 0, 0, 0
+	spritePiece	-$10, $14, 4, 1, $16, 0, 0, 0, 0
+Map_ScrapEggRobo_20_End
+
+Map_ScrapEggRobo_3A:	spriteHeader
+	spritePiece	-$10, -$1C, 4, 1, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$14, 4, 4, 4, 0, 0, 0, 0
+	spritePiece	-8, $C, 2, 1, $14, 0, 0, 0, 0
+	spritePiece	-$10, $14, 4, 1, $16, 0, 0, 0, 0
+Map_ScrapEggRobo_3A_End
+
+Map_ScrapEggRobo_54:	spriteHeader
+	spritePiece	-$10, -$1C, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$C, 4, 3, 8, 0, 0, 0, 0
+	spritePiece	-8, $C, 2, 1, $14, 0, 0, 0, 0
+	spritePiece	-$10, $14, 4, 1, $16, 0, 0, 0, 0
+Map_ScrapEggRobo_54_End
+
+Map_ScrapEggRobo_6E:	spriteHeader
+	spritePiece	-$10, -$1C, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$C, 4, 3, 8, 0, 0, 0, 0
+	spritePiece	-8, $C, 2, 1, $14, 0, 0, 0, 0
+	spritePiece	-$10, $14, 4, 1, $16, 0, 0, 0, 0
+Map_ScrapEggRobo_6E_End
+
+Map_ScrapEggRobo_88:	spriteHeader
+	spritePiece	-$10, -$1C, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$C, 4, 3, 8, 0, 0, 0, 0
+	spritePiece	-8, $C, 2, 1, $14, 0, 0, 0, 0
+	spritePiece	-$10, $14, 4, 1, $16, 0, 0, 0, 0
+Map_ScrapEggRobo_88_End
+
+Map_ScrapEggRobo_A2:	spriteHeader
+	spritePiece	-$10, -$1C, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$C, 4, 3, 8, 0, 0, 0, 0
+	spritePiece	-8, $C, 2, 1, $14, 0, 0, 0, 0
+	spritePiece	-$10, $14, 4, 1, $16, 0, 0, 0, 0
+	spritePiece	-$10, -$20, 4, 2, $B0, 1, 0, 2, 0
+	spritePiece	-$10, -$10, 4, 2, $B0, 1, 0, 2, 0
+	spritePiece	-$10, 0, 4, 2, $B0, 1, 0, 2, 0
+	spritePiece	-$10, $10, 4, 2, $B0, 1, 0, 2, 0
+Map_ScrapEggRobo_A2_End
+
+Map_ScrapEggRobo_D4:	spriteHeader
+	spritePiece	-$10, -$1C, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$C, 4, 3, 8, 0, 0, 0, 0
+	spritePiece	-8, $C, 2, 1, $14, 0, 0, 0, 0
+	spritePiece	-$10, $14, 4, 1, $16, 0, 0, 0, 0
+Map_ScrapEggRobo_D4_End
+
+Map_ScrapEggRobo_EE:	spriteHeader
+	spritePiece	-$10, -$1C, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$C, 4, 3, 8, 0, 0, 0, 0
+	spritePiece	-8, $C, 2, 1, $14, 0, 0, 0, 0
+	spritePiece	-$10, $14, 4, 1, $16, 0, 0, 0, 0
+Map_ScrapEggRobo_EE_End
+
+Map_ScrapEggRobo_108:	spriteHeader
+	spritePiece	-$10, -$18, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$20, 8, 2, 2, $C, 0, 0, 0, 0
+	spritePiece	-$10, 0, 3, 2, $10, 0, 0, 0, 0
+	spritePiece	8, 0, 2, 3, $16, 0, 0, 0, 0
+Map_ScrapEggRobo_108_End
+
+Map_ScrapEggRobo_122:	spriteHeader
+	spritePiece	-$10, -$18, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$10, 0, 4, 2, $C, 0, 0, 0, 0
+	spritePiece	-$10, $10, 3, 2, $14, 0, 0, 0, 0
+Map_ScrapEggRobo_122_End
+
+Map_ScrapEggRobo_136:	spriteHeader
+	spritePiece	-$10, -$18, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$18, $10, 2, 2, $C, 0, 0, 0, 0
+	spritePiece	-$10, 0, 4, 2, $10, 0, 0, 0, 0
+	spritePiece	0, $10, 2, 2, $18, 0, 0, 0, 0
+Map_ScrapEggRobo_136_End
+
+Map_ScrapEggRobo_150:	spriteHeader
+	spritePiece	-$10, -$18, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$10, 0, 4, 2, $C, 0, 0, 0, 0
+	spritePiece	-$10, $10, 3, 1, $14, 0, 0, 0, 0
+Map_ScrapEggRobo_150_End
+
+Map_ScrapEggRobo_164:	spriteHeader
+	spritePiece	-$10, -$18, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$20, 8, 2, 2, $C, 0, 0, 0, 0
+	spritePiece	-$10, 0, 3, 2, $10, 0, 0, 0, 0
+	spritePiece	8, 0, 2, 3, $16, 0, 0, 0, 0
+Map_ScrapEggRobo_164_End
+
+Map_ScrapEggRobo_17E:	spriteHeader
+	spritePiece	-$10, -$18, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$10, 0, 4, 2, $C, 0, 0, 0, 0
+	spritePiece	-$10, $10, 3, 2, $14, 0, 0, 0, 0
+Map_ScrapEggRobo_17E_End
+
+Map_ScrapEggRobo_192:	spriteHeader
+	spritePiece	-$10, -$18, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$18, $10, 2, 2, $C, 0, 0, 0, 0
+	spritePiece	-$10, 0, 4, 2, $10, 0, 0, 0, 0
+	spritePiece	0, $10, 2, 2, $18, 0, 0, 0, 0
+Map_ScrapEggRobo_192_End
+
+Map_ScrapEggRobo_1AC:	spriteHeader
+	spritePiece	-$10, -$18, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$10, 0, 4, 2, $C, 0, 0, 0, 0
+	spritePiece	-$10, $10, 3, 1, $14, 0, 0, 0, 0
+Map_ScrapEggRobo_1AC_End
+
 	even

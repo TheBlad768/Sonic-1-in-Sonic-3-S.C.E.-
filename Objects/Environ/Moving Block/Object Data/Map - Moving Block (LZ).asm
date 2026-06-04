@@ -2,5 +2,5 @@
 ; Sprite mappings - moving block (LZ)
 ; ---------------------------------------------------------------------------
 
-Map_MovingBlockLZ:	dc.b $F8, $D, 0, 0, $FF, $F0
+Map_MovingBlockLZ:	spritePiece	-$10, -8, 4, 2, 0, 0, 0, 0, 0
 	even

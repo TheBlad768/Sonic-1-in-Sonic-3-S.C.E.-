@@ -2,5 +2,5 @@
 ; Sprite mappings - blocks that disintegrate when Eggman presses a switch
 ; ---------------------------------------------------------------------------
 
-Map_FFloor:		dc.b $F0, $F, 0, 0, $FF, $F0
+Map_FFloor:	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
 	even

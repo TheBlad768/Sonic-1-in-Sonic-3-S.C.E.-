@@ -2,9 +2,12 @@
 ; Sprite mappings - SLZ platforms
 ; ---------------------------------------------------------------------------
 
-Map_FloatingPlatform_SLZ:
-		dc.w Map_FloatingPlatform_SLZ_2-Map_FloatingPlatform_SLZ
-Map_FloatingPlatform_SLZ_2:	dc.b 0, 2
-		dc.b $F8, $F, 0, $21, $FF, $E0
-		dc.b $F8, $F, 0, $21, 0, 0
+Map_FloatingPlatform_SLZ:	mappingsTable
+	mappingsTableEntry.w Map_FloatingPlatform_SLZ_2
+
+Map_FloatingPlatform_SLZ_2:	spriteHeader
+	spritePiece	-$20, -8, 4, 4, $21, 0, 0, 0, 0
+	spritePiece	0, -8, 4, 4, $21, 0, 0, 0, 0
+Map_FloatingPlatform_SLZ_2_End
+
 		even

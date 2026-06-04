@@ -2,24 +2,27 @@
 ; Sprite mappings - "SONIC TEAM PRESENTS"
 ; ---------------------------------------------------------------------------
 
-Map_TText:
-		dc.w Map_TText_2-Map_TText
-Map_TText_2:	dc.b 0, $11
-		dc.b $E8, 5, 0, $2E, $FF, $B4
-		dc.b $E8, 5, 0, $26, $FF, $C4
-		dc.b $E8, 5, 0, $1A, $FF, $D4
-		dc.b $E8, 1, 0, $46, $FF, $E4
-		dc.b $E8, 5, 0, $1E, $FF, $EC
-		dc.b $E8, 5, 0, $3E, 0, 4
-		dc.b $E8, 5, 0, $E, 0, $14
-		dc.b $E8, 5, 0, 4, 0, $24
-		dc.b $E8, 9, 0, 8, 0, $34
-		dc.b 0, 5, 0, $12, $FF, $C0
-		dc.b 0, 5, 0, $22, $FF, $D0
-		dc.b 0, 5, 0, $E, $FF, $E0
-		dc.b 0, 5, 0, $2E, $FF, $F0
-		dc.b 0, 5, 0, $E, 0, 0
-		dc.b 0, 5, 0, $1A, 0, $10
-		dc.b 0, 5, 0, $3E, 0, $20
-		dc.b 0, 5, 0, $2E, 0, $30
+Map_TText:	mappingsTable
+	mappingsTableEntry.w Map_TText_2
+
+Map_TText_2:	spriteHeader
+	spritePiece	-$4C, -$18, 2, 2, $2E, 0, 0, 0, 0
+	spritePiece	-$3C, -$18, 2, 2, $26, 0, 0, 0, 0
+	spritePiece	-$2C, -$18, 2, 2, $1A, 0, 0, 0, 0
+	spritePiece	-$1C, -$18, 1, 2, $46, 0, 0, 0, 0
+	spritePiece	-$14, -$18, 2, 2, $1E, 0, 0, 0, 0
+	spritePiece	4, -$18, 2, 2, $3E, 0, 0, 0, 0
+	spritePiece	$14, -$18, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	$24, -$18, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	$34, -$18, 3, 2, 8, 0, 0, 0, 0
+	spritePiece	-$40, 0, 2, 2, $12, 0, 0, 0, 0
+	spritePiece	-$30, 0, 2, 2, $22, 0, 0, 0, 0
+	spritePiece	-$20, 0, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	-$10, 0, 2, 2, $2E, 0, 0, 0, 0
+	spritePiece	0, 0, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	$10, 0, 2, 2, $1A, 0, 0, 0, 0
+	spritePiece	$20, 0, 2, 2, $3E, 0, 0, 0, 0
+	spritePiece	$30, 0, 2, 2, $2E, 0, 0, 0, 0
+Map_TText_2_End
+
 	even

@@ -2,21 +2,26 @@
 ; Sprite mappings - Blue Shield
 ; ---------------------------------------------------------------------------
 
-Map_BlueShield:
-Map_BlueShield_0: 	dc.w Map_BlueShield_C-Map_BlueShield
-Map_BlueShield_2: 	dc.w Map_BlueShield_C-Map_BlueShield
-Map_BlueShield_4: 	dc.w Map_BlueShield_C-Map_BlueShield
-Map_BlueShield_6: 	dc.w Map_BlueShield_C-Map_BlueShield
-Map_BlueShield_8: 	dc.w Map_BlueShield_C-Map_BlueShield
-Map_BlueShield_A: 	dc.w Map_BlueShield_26-Map_BlueShield
-Map_BlueShield_C: 	dc.b $0, $4
-	dc.b $F0, $5, $0, $0, $FF, $F0
-	dc.b $F0, $5, $8, $0, $0, $0
-	dc.b $0, $5, $10, $0, $FF, $F0
-	dc.b $0, $5, $18, $0, $0, $0
-Map_BlueShield_26: 	dc.b $0, $4
-	dc.b $E0, $B, $0, $0, $FF, $E8
-	dc.b $E0, $B, $8, $0, $0, $0
-	dc.b $0, $B, $10, $0, $FF, $E8
-	dc.b $0, $B, $18, $0, $0, $0
+Map_BlueShield:	mappingsTable
+	mappingsTableEntry.w Map_BlueShield_C
+	mappingsTableEntry.w Map_BlueShield_C
+	mappingsTableEntry.w Map_BlueShield_C
+	mappingsTableEntry.w Map_BlueShield_C
+	mappingsTableEntry.w Map_BlueShield_C
+	mappingsTableEntry.w Map_BlueShield_26
+
+Map_BlueShield_C:	spriteHeader
+	spritePiece	-$10, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	0, -$10, 2, 2, 0, 1, 0, 0, 0
+	spritePiece	-$10, 0, 2, 2, 0, 0, 1, 0, 0
+	spritePiece	0, 0, 2, 2, 0, 1, 1, 0, 0
+Map_BlueShield_C_End
+
+Map_BlueShield_26:	spriteHeader
+	spritePiece	-$18, -$20, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	0, -$20, 3, 4, 0, 1, 0, 0, 0
+	spritePiece	-$18, 0, 3, 4, 0, 0, 1, 0, 0
+	spritePiece	0, 0, 3, 4, 0, 1, 1, 0, 0
+Map_BlueShield_26_End
+
 	even

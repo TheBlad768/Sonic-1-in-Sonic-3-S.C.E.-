@@ -2,57 +2,78 @@
 ; Sprite mappings - Tails ending
 ; ---------------------------------------------------------------------------
 
-Map_TailsEnding:
-Map_TailsEnding_0: 	dc.w Map_TailsEnding_14-Map_TailsEnding
-Map_TailsEnding_2: 	dc.w Map_TailsEnding_22-Map_TailsEnding
-Map_TailsEnding_4: 	dc.w Map_TailsEnding_36-Map_TailsEnding
-Map_TailsEnding_6: 	dc.w Map_TailsEnding_3E-Map_TailsEnding
-Map_TailsEnding_8: 	dc.w Map_TailsEnding_4C-Map_TailsEnding
-Map_TailsEnding_A: 	dc.w Map_TailsEnding_5A-Map_TailsEnding
-Map_TailsEnding_C: 	dc.w Map_TailsEnding_68-Map_TailsEnding
-Map_TailsEnding_E: 	dc.w Map_TailsEnding_76-Map_TailsEnding
-Map_TailsEnding_10: 	dc.w Map_TailsEnding_84-Map_TailsEnding
-Map_TailsEnding_12: 	dc.w Map_TailsEnding_9E-Map_TailsEnding
-Map_TailsEnding_14: 	dc.b $0, $2
-	dc.b $E9, $B, $0, $0, $FF, $F4
-	dc.b $9, $C, $0, $C, $FF, $F4
-Map_TailsEnding_22: 	dc.b $0, $3
-	dc.b $FC, $D, $0, $0, $FF, $F1
-	dc.b $E9, $B, $0, $8, $FF, $F4
-	dc.b $9, $C, $0, $14, $FF, $F4
-Map_TailsEnding_36: 	dc.b $0, $1
-	dc.b $F0, $F, $0, $0, $FF, $F1
-Map_TailsEnding_3E: 	dc.b $0, $2
-	dc.b $0, $D, $0, $0, $FF, $EC
-	dc.b $E8, $A, $0, $8, $FF, $F4
-Map_TailsEnding_4C: 	dc.b $0, $2
-	dc.b $0, $D, $0, $0, $FF, $EC
-	dc.b $E8, $A, $0, $8, $FF, $F4
-Map_TailsEnding_5A: 	dc.b $0, $2
-	dc.b $0, $D, $0, $0, $FF, $EC
-	dc.b $E8, $A, $0, $8, $FF, $F4
-Map_TailsEnding_68: 	dc.b $0, $2
-	dc.b $0, $D, $0, $0, $FF, $EC
-	dc.b $E8, $A, $0, $8, $FF, $F4
-Map_TailsEnding_76: 	dc.b $0, $2
-	dc.b $F2, $F, $0, $0, $FF, $EE
-	dc.b $2, $1, $0, $10, $FF, $E6
-Map_TailsEnding_84: 	dc.b $0, $4
-	dc.b $C8, $8, $0, $0, $FF, $F4
-	dc.b $D0, $E, $0, $3, $FF, $F4
-	dc.b $E8, $9, $0, $F, $FF, $F4
-	dc.b $D8, $2, $0, $15, $0, $14
-Map_TailsEnding_9E: 	dc.b $0, $C
-	dc.b $90, $F, $0, $0, $FF, $E8
-	dc.b $90, $F, $0, $10, $0, $8
-	dc.b $B0, $F, $0, $20, $FF, $E8
-	dc.b $B0, $F, $0, $30, $0, $8
-	dc.b $80, $5, $0, $40, $FF, $F0
-	dc.b $88, $4, $0, $44, $0, $0
-	dc.b $A0, $6, $0, $46, $FF, $D8
-	dc.b $B8, $1, $0, $4C, $FF, $E0
-	dc.b $D0, $5, $0, $4E, $FF, $E8
-	dc.b $D0, $D, $0, $52, $0, $0
-	dc.b $A0, $6, $0, $5A, $0, $28
-	dc.b $B8, $5, $0, $60, $0, $28
+Map_TailsEnding:	mappingsTable
+	mappingsTableEntry.w Map_TailsEnding_14
+	mappingsTableEntry.w Map_TailsEnding_22
+	mappingsTableEntry.w Map_TailsEnding_36
+	mappingsTableEntry.w Map_TailsEnding_3E
+	mappingsTableEntry.w Map_TailsEnding_4C
+	mappingsTableEntry.w Map_TailsEnding_5A
+	mappingsTableEntry.w Map_TailsEnding_68
+	mappingsTableEntry.w Map_TailsEnding_76
+	mappingsTableEntry.w Map_TailsEnding_84
+	mappingsTableEntry.w Map_TailsEnding_9E
+
+Map_TailsEnding_14:	spriteHeader
+	spritePiece	-$C, -$17, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-$C, 9, 4, 1, $C, 0, 0, 0, 0
+Map_TailsEnding_14_End
+
+Map_TailsEnding_22:	spriteHeader
+	spritePiece	-$F, -4, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$C, -$17, 3, 4, 8, 0, 0, 0, 0
+	spritePiece	-$C, 9, 4, 1, $14, 0, 0, 0, 0
+Map_TailsEnding_22_End
+
+Map_TailsEnding_36:	spriteHeader
+	spritePiece	-$F, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_TailsEnding_36_End
+
+Map_TailsEnding_3E:	spriteHeader
+	spritePiece	-$14, 0, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$C, -$18, 3, 3, 8, 0, 0, 0, 0
+Map_TailsEnding_3E_End
+
+Map_TailsEnding_4C:	spriteHeader
+	spritePiece	-$14, 0, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$C, -$18, 3, 3, 8, 0, 0, 0, 0
+Map_TailsEnding_4C_End
+
+Map_TailsEnding_5A:	spriteHeader
+	spritePiece	-$14, 0, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$C, -$18, 3, 3, 8, 0, 0, 0, 0
+Map_TailsEnding_5A_End
+
+Map_TailsEnding_68:	spriteHeader
+	spritePiece	-$14, 0, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$C, -$18, 3, 3, 8, 0, 0, 0, 0
+Map_TailsEnding_68_End
+
+Map_TailsEnding_76:	spriteHeader
+	spritePiece	-$12, -$E, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	-$1A, 2, 1, 2, $10, 0, 0, 0, 0
+Map_TailsEnding_76_End
+
+Map_TailsEnding_84:	spriteHeader
+	spritePiece	-$C, -$38, 3, 1, 0, 0, 0, 0, 0
+	spritePiece	-$C, -$30, 4, 3, 3, 0, 0, 0, 0
+	spritePiece	-$C, -$18, 3, 2, $F, 0, 0, 0, 0
+	spritePiece	$14, -$28, 1, 3, $15, 0, 0, 0, 0
+Map_TailsEnding_84_End
+
+Map_TailsEnding_9E:	spriteHeader
+	spritePiece	-$18, -$70, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	8, -$70, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$18, -$50, 4, 4, $20, 0, 0, 0, 0
+	spritePiece	8, -$50, 4, 4, $30, 0, 0, 0, 0
+	spritePiece	-$10, -$80, 2, 2, $40, 0, 0, 0, 0
+	spritePiece	0, -$78, 2, 1, $44, 0, 0, 0, 0
+	spritePiece	-$28, -$60, 2, 3, $46, 0, 0, 0, 0
+	spritePiece	-$20, -$48, 1, 2, $4C, 0, 0, 0, 0
+	spritePiece	-$18, -$30, 2, 2, $4E, 0, 0, 0, 0
+	spritePiece	0, -$30, 4, 2, $52, 0, 0, 0, 0
+	spritePiece	$28, -$60, 2, 3, $5A, 0, 0, 0, 0
+	spritePiece	$28, -$48, 2, 2, $60, 0, 0, 0, 0
+Map_TailsEnding_9E_End
+
 	even

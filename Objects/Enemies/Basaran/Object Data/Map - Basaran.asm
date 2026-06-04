@@ -2,23 +2,34 @@
 ; Sprite mappings - Basaran enemy (MZ)
 ; ---------------------------------------------------------------------------
 
-Map_Basaran:
-		dc.w SME_u9kpk_8-Map_Basaran, SME_u9kpk_10-Map_Basaran
-		dc.w SME_u9kpk_24-Map_Basaran, SME_u9kpk_3E-Map_Basaran
-SME_u9kpk_8:	dc.b 0, 1
-		dc.b $F4, 6, 0, 0, $FF, $F8
-SME_u9kpk_10:	dc.b 0, 3
-		dc.b $F2, $E, 0, 6, $FF, $F4
-		dc.b $A, 4, 0, $12, $FF, $FC
-		dc.b 2, 0, 0, $27, 0, $C
-SME_u9kpk_24:	dc.b 0, 4
-		dc.b $F8, 4, 0, $14, $FF, $F8
-		dc.b 0, $C, 0, $16, $FF, $F0
-		dc.b 8, 4, 0, $1A, 0, 0
-		dc.b 0, 0, 0, $28, 0, $C
-SME_u9kpk_3E:	dc.b 0, 4
-		dc.b $F6, 9, 0, $1C, $FF, $F5
-		dc.b 6, 8, 0, $22, $FF, $F4
-		dc.b $E, 4, 0, $25, $FF, $F4
-		dc.b $FE, 0, 0, $27, 0, $C
+Map_Basaran:	mappingsTable
+	mappingsTableEntry.w SME_u9kpk_8
+	mappingsTableEntry.w SME_u9kpk_10
+	mappingsTableEntry.w SME_u9kpk_24
+	mappingsTableEntry.w SME_u9kpk_3E
+
+SME_u9kpk_8:	spriteHeader
+	spritePiece	-8, -$C, 2, 3, 0, 0, 0, 0, 0
+SME_u9kpk_8_End
+
+SME_u9kpk_10:	spriteHeader
+	spritePiece	-$C, -$E, 4, 3, 6, 0, 0, 0, 0
+	spritePiece	-4, $A, 2, 1, $12, 0, 0, 0, 0
+	spritePiece	$C, 2, 1, 1, $27, 0, 0, 0, 0
+SME_u9kpk_10_End
+
+SME_u9kpk_24:	spriteHeader
+	spritePiece	-8, -8, 2, 1, $14, 0, 0, 0, 0
+	spritePiece	-$10, 0, 4, 1, $16, 0, 0, 0, 0
+	spritePiece	0, 8, 2, 1, $1A, 0, 0, 0, 0
+	spritePiece	$C, 0, 1, 1, $28, 0, 0, 0, 0
+SME_u9kpk_24_End
+
+SME_u9kpk_3E:	spriteHeader
+	spritePiece	-$B, -$A, 3, 2, $1C, 0, 0, 0, 0
+	spritePiece	-$C, 6, 3, 1, $22, 0, 0, 0, 0
+	spritePiece	-$C, $E, 2, 1, $25, 0, 0, 0, 0
+	spritePiece	$C, -2, 1, 1, $27, 0, 0, 0, 0
+SME_u9kpk_3E_End
+
 		even

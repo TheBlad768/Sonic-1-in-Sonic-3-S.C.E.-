@@ -2,23 +2,36 @@
 ; Sprite mappings - fans (SLZ)
 ; ---------------------------------------------------------------------------
 
-Map_Fan:
-		dc.w Map_Fan_A-Map_Fan, Map_Fan_18-Map_Fan
-		dc.w Map_Fan_26-Map_Fan, Map_Fan_34-Map_Fan
-		dc.w Map_Fan_42-Map_Fan
-Map_Fan_A:	dc.b 0, 2
-		dc.b $F0, 9, 0, 0, $FF, $F8
-		dc.b 0, $D, 0, 6, $FF, $F0
-Map_Fan_18:	dc.b 0, 2
-		dc.b $F0, $D, 0, $E, $FF, $F0
-		dc.b 0, $D, 0, $16, $FF, $F0
-Map_Fan_26:	dc.b 0, 2
-		dc.b $F0, $D, 0, $1E, $FF, $F0
-		dc.b 0, 9, 0, $26, $FF, $F8
-Map_Fan_34:	dc.b 0, 2
-		dc.b $F0, $D, 0, $E, $FF, $F0
-		dc.b 0, $D, 0, $16, $FF, $F0
-Map_Fan_42:	dc.b 0, 2
-		dc.b $F0, 9, 0, 0, $FF, $F8
-		dc.b 0, $D, 0, 6, $FF, $F0
+Map_Fan:	mappingsTable
+	mappingsTableEntry.w Map_Fan_A
+	mappingsTableEntry.w Map_Fan_18
+	mappingsTableEntry.w Map_Fan_26
+	mappingsTableEntry.w Map_Fan_34
+	mappingsTableEntry.w Map_Fan_42
+
+Map_Fan_A:	spriteHeader
+	spritePiece	-8, -$10, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, 0, 4, 2, 6, 0, 0, 0, 0
+Map_Fan_A_End
+
+Map_Fan_18:	spriteHeader
+	spritePiece	-$10, -$10, 4, 2, $E, 0, 0, 0, 0
+	spritePiece	-$10, 0, 4, 2, $16, 0, 0, 0, 0
+Map_Fan_18_End
+
+Map_Fan_26:	spriteHeader
+	spritePiece	-$10, -$10, 4, 2, $1E, 0, 0, 0, 0
+	spritePiece	-8, 0, 3, 2, $26, 0, 0, 0, 0
+Map_Fan_26_End
+
+Map_Fan_34:	spriteHeader
+	spritePiece	-$10, -$10, 4, 2, $E, 0, 0, 0, 0
+	spritePiece	-$10, 0, 4, 2, $16, 0, 0, 0, 0
+Map_Fan_34_End
+
+Map_Fan_42:	spriteHeader
+	spritePiece	-8, -$10, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, 0, 4, 2, 6, 0, 0, 0, 0
+Map_Fan_42_End
+
 		even

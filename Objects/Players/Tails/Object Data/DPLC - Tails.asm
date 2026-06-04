@@ -2,839 +2,1332 @@
 ; Tails DPLC mappings
 ; ---------------------------------------------------------------------------
 
-DPLC_Tails:
-DPLC_Tails_0: 	dc.w DPLC_Tails_1EC-DPLC_Tails
-DPLC_Tails_2: 	dc.w DPLC_Tails_1EE-DPLC_Tails
-DPLC_Tails_4: 	dc.w DPLC_Tails_1F4-DPLC_Tails
-DPLC_Tails_6: 	dc.w DPLC_Tails_1FA-DPLC_Tails
-DPLC_Tails_8: 	dc.w DPLC_Tails_200-DPLC_Tails
-DPLC_Tails_A: 	dc.w DPLC_Tails_206-DPLC_Tails
-DPLC_Tails_C: 	dc.w DPLC_Tails_20E-DPLC_Tails
-DPLC_Tails_E: 	dc.w DPLC_Tails_216-DPLC_Tails
-DPLC_Tails_10: 	dc.w DPLC_Tails_21C-DPLC_Tails
-DPLC_Tails_12: 	dc.w DPLC_Tails_224-DPLC_Tails
-DPLC_Tails_14: 	dc.w DPLC_Tails_228-DPLC_Tails
-DPLC_Tails_16: 	dc.w DPLC_Tails_22E-DPLC_Tails
-DPLC_Tails_18: 	dc.w DPLC_Tails_234-DPLC_Tails
-DPLC_Tails_1A: 	dc.w DPLC_Tails_23A-DPLC_Tails
-DPLC_Tails_1C: 	dc.w DPLC_Tails_240-DPLC_Tails
-DPLC_Tails_1E: 	dc.w DPLC_Tails_246-DPLC_Tails
-DPLC_Tails_20: 	dc.w DPLC_Tails_24C-DPLC_Tails
-DPLC_Tails_22: 	dc.w DPLC_Tails_250-DPLC_Tails
-DPLC_Tails_24: 	dc.w DPLC_Tails_256-DPLC_Tails
-DPLC_Tails_26: 	dc.w DPLC_Tails_25C-DPLC_Tails
-DPLC_Tails_28: 	dc.w DPLC_Tails_262-DPLC_Tails
-DPLC_Tails_2A: 	dc.w DPLC_Tails_268-DPLC_Tails
-DPLC_Tails_2C: 	dc.w DPLC_Tails_26E-DPLC_Tails
-DPLC_Tails_2E: 	dc.w DPLC_Tails_274-DPLC_Tails
-DPLC_Tails_30: 	dc.w DPLC_Tails_27A-DPLC_Tails
-DPLC_Tails_32: 	dc.w DPLC_Tails_280-DPLC_Tails
-DPLC_Tails_34: 	dc.w DPLC_Tails_286-DPLC_Tails
-DPLC_Tails_36: 	dc.w DPLC_Tails_28C-DPLC_Tails
-DPLC_Tails_38: 	dc.w DPLC_Tails_292-DPLC_Tails
-DPLC_Tails_3A: 	dc.w DPLC_Tails_298-DPLC_Tails
-DPLC_Tails_3C: 	dc.w DPLC_Tails_29E-DPLC_Tails
-DPLC_Tails_3E: 	dc.w DPLC_Tails_2A4-DPLC_Tails
-DPLC_Tails_40: 	dc.w DPLC_Tails_2AA-DPLC_Tails
-DPLC_Tails_42: 	dc.w DPLC_Tails_2AE-DPLC_Tails
-DPLC_Tails_44: 	dc.w DPLC_Tails_2B4-DPLC_Tails
-DPLC_Tails_46: 	dc.w DPLC_Tails_2BA-DPLC_Tails
-DPLC_Tails_48: 	dc.w DPLC_Tails_2C0-DPLC_Tails
-DPLC_Tails_4A: 	dc.w DPLC_Tails_2C6-DPLC_Tails
-DPLC_Tails_4C: 	dc.w DPLC_Tails_2CC-DPLC_Tails
-DPLC_Tails_4E: 	dc.w DPLC_Tails_2D2-DPLC_Tails
-DPLC_Tails_50: 	dc.w DPLC_Tails_2D8-DPLC_Tails
-DPLC_Tails_52: 	dc.w DPLC_Tails_2E2-DPLC_Tails
-DPLC_Tails_54: 	dc.w DPLC_Tails_2E8-DPLC_Tails
-DPLC_Tails_56: 	dc.w DPLC_Tails_2EE-DPLC_Tails
-DPLC_Tails_58: 	dc.w DPLC_Tails_2F4-DPLC_Tails
-DPLC_Tails_5A: 	dc.w DPLC_Tails_2FA-DPLC_Tails
-DPLC_Tails_5C: 	dc.w DPLC_Tails_300-DPLC_Tails
-DPLC_Tails_5E: 	dc.w DPLC_Tails_306-DPLC_Tails
-DPLC_Tails_60: 	dc.w DPLC_Tails_30C-DPLC_Tails
-DPLC_Tails_62: 	dc.w DPLC_Tails_312-DPLC_Tails
-DPLC_Tails_64: 	dc.w DPLC_Tails_316-DPLC_Tails
-DPLC_Tails_66: 	dc.w DPLC_Tails_31A-DPLC_Tails
-DPLC_Tails_68: 	dc.w DPLC_Tails_31E-DPLC_Tails
-DPLC_Tails_6A: 	dc.w DPLC_Tails_322-DPLC_Tails
-DPLC_Tails_6C: 	dc.w DPLC_Tails_326-DPLC_Tails
-DPLC_Tails_6E: 	dc.w DPLC_Tails_32A-DPLC_Tails
-DPLC_Tails_70: 	dc.w DPLC_Tails_32E-DPLC_Tails
-DPLC_Tails_72: 	dc.w DPLC_Tails_332-DPLC_Tails
-DPLC_Tails_74: 	dc.w DPLC_Tails_336-DPLC_Tails
-DPLC_Tails_76: 	dc.w DPLC_Tails_33A-DPLC_Tails
-DPLC_Tails_78: 	dc.w DPLC_Tails_33E-DPLC_Tails
-DPLC_Tails_7A: 	dc.w DPLC_Tails_342-DPLC_Tails
-DPLC_Tails_7C: 	dc.w DPLC_Tails_346-DPLC_Tails
-DPLC_Tails_7E: 	dc.w DPLC_Tails_34A-DPLC_Tails
-DPLC_Tails_80: 	dc.w DPLC_Tails_34E-DPLC_Tails
-DPLC_Tails_82: 	dc.w DPLC_Tails_352-DPLC_Tails
-DPLC_Tails_84: 	dc.w DPLC_Tails_356-DPLC_Tails
-DPLC_Tails_86: 	dc.w DPLC_Tails_35A-DPLC_Tails
-DPLC_Tails_88: 	dc.w DPLC_Tails_35E-DPLC_Tails
-DPLC_Tails_8A: 	dc.w DPLC_Tails_362-DPLC_Tails
-DPLC_Tails_8C: 	dc.w DPLC_Tails_366-DPLC_Tails
-DPLC_Tails_8E: 	dc.w DPLC_Tails_36A-DPLC_Tails
-DPLC_Tails_90: 	dc.w DPLC_Tails_36E-DPLC_Tails
-DPLC_Tails_92: 	dc.w DPLC_Tails_372-DPLC_Tails
-DPLC_Tails_94: 	dc.w DPLC_Tails_376-DPLC_Tails
-DPLC_Tails_96: 	dc.w DPLC_Tails_37A-DPLC_Tails
-DPLC_Tails_98: 	dc.w DPLC_Tails_37E-DPLC_Tails
-DPLC_Tails_9A: 	dc.w DPLC_Tails_382-DPLC_Tails
-DPLC_Tails_9C: 	dc.w DPLC_Tails_386-DPLC_Tails
-DPLC_Tails_9E: 	dc.w DPLC_Tails_38A-DPLC_Tails
-DPLC_Tails_A0: 	dc.w DPLC_Tails_38E-DPLC_Tails
-DPLC_Tails_A2: 	dc.w DPLC_Tails_392-DPLC_Tails
-DPLC_Tails_A4: 	dc.w DPLC_Tails_396-DPLC_Tails
-DPLC_Tails_A6: 	dc.w DPLC_Tails_39A-DPLC_Tails
-DPLC_Tails_A8: 	dc.w DPLC_Tails_39E-DPLC_Tails
-DPLC_Tails_AA: 	dc.w DPLC_Tails_3A2-DPLC_Tails
-DPLC_Tails_AC: 	dc.w DPLC_Tails_3A6-DPLC_Tails
-DPLC_Tails_AE: 	dc.w DPLC_Tails_3AA-DPLC_Tails
-DPLC_Tails_B0: 	dc.w DPLC_Tails_3AE-DPLC_Tails
-DPLC_Tails_B2: 	dc.w DPLC_Tails_3B2-DPLC_Tails
-DPLC_Tails_B4: 	dc.w DPLC_Tails_3B6-DPLC_Tails
-DPLC_Tails_B6: 	dc.w DPLC_Tails_3BA-DPLC_Tails
-DPLC_Tails_B8: 	dc.w DPLC_Tails_3BE-DPLC_Tails
-DPLC_Tails_BA: 	dc.w DPLC_Tails_3C4-DPLC_Tails
-DPLC_Tails_BC: 	dc.w DPLC_Tails_3C8-DPLC_Tails
-DPLC_Tails_BE: 	dc.w DPLC_Tails_3CC-DPLC_Tails
-DPLC_Tails_C0: 	dc.w DPLC_Tails_3D2-DPLC_Tails
-DPLC_Tails_C2: 	dc.w DPLC_Tails_3D6-DPLC_Tails
-DPLC_Tails_C4: 	dc.w DPLC_Tails_3DA-DPLC_Tails
-DPLC_Tails_C6: 	dc.w DPLC_Tails_3DE-DPLC_Tails
-DPLC_Tails_C8: 	dc.w DPLC_Tails_3E4-DPLC_Tails
-DPLC_Tails_CA: 	dc.w DPLC_Tails_3E8-DPLC_Tails
-DPLC_Tails_CC: 	dc.w DPLC_Tails_3EC-DPLC_Tails
-DPLC_Tails_CE: 	dc.w DPLC_Tails_3F2-DPLC_Tails
-DPLC_Tails_D0: 	dc.w DPLC_Tails_3F6-DPLC_Tails
-DPLC_Tails_D2: 	dc.w DPLC_Tails_3FA-DPLC_Tails
-DPLC_Tails_D4: 	dc.w DPLC_Tails_3FE-DPLC_Tails
-DPLC_Tails_D6: 	dc.w DPLC_Tails_402-DPLC_Tails
-DPLC_Tails_D8: 	dc.w DPLC_Tails_406-DPLC_Tails
-DPLC_Tails_DA: 	dc.w DPLC_Tails_40A-DPLC_Tails
-DPLC_Tails_DC: 	dc.w DPLC_Tails_40E-DPLC_Tails
-DPLC_Tails_DE: 	dc.w DPLC_Tails_412-DPLC_Tails
-DPLC_Tails_E0: 	dc.w DPLC_Tails_416-DPLC_Tails
-DPLC_Tails_E2: 	dc.w DPLC_Tails_41A-DPLC_Tails
-DPLC_Tails_E4: 	dc.w DPLC_Tails_41E-DPLC_Tails
-DPLC_Tails_E6: 	dc.w DPLC_Tails_422-DPLC_Tails
-DPLC_Tails_E8: 	dc.w DPLC_Tails_426-DPLC_Tails
-DPLC_Tails_EA: 	dc.w DPLC_Tails_42A-DPLC_Tails
-DPLC_Tails_EC: 	dc.w DPLC_Tails_42E-DPLC_Tails
-DPLC_Tails_EE: 	dc.w DPLC_Tails_432-DPLC_Tails
-DPLC_Tails_F0: 	dc.w DPLC_Tails_436-DPLC_Tails
-DPLC_Tails_F2: 	dc.w DPLC_Tails_43C-DPLC_Tails
-DPLC_Tails_F4: 	dc.w DPLC_Tails_440-DPLC_Tails
-DPLC_Tails_F6: 	dc.w DPLC_Tails_446-DPLC_Tails
-DPLC_Tails_F8: 	dc.w DPLC_Tails_44A-DPLC_Tails
-DPLC_Tails_FA: 	dc.w DPLC_Tails_450-DPLC_Tails
-DPLC_Tails_FC: 	dc.w DPLC_Tails_454-DPLC_Tails
-DPLC_Tails_FE: 	dc.w DPLC_Tails_45C-DPLC_Tails
-DPLC_Tails_100: 	dc.w DPLC_Tails_460-DPLC_Tails
-DPLC_Tails_102: 	dc.w DPLC_Tails_466-DPLC_Tails
-DPLC_Tails_104: 	dc.w DPLC_Tails_46C-DPLC_Tails
-DPLC_Tails_106: 	dc.w DPLC_Tails_472-DPLC_Tails
-DPLC_Tails_108: 	dc.w DPLC_Tails_478-DPLC_Tails
-DPLC_Tails_10A: 	dc.w DPLC_Tails_47E-DPLC_Tails
-DPLC_Tails_10C: 	dc.w DPLC_Tails_484-DPLC_Tails
-DPLC_Tails_10E: 	dc.w DPLC_Tails_488-DPLC_Tails
-DPLC_Tails_110: 	dc.w DPLC_Tails_48C-DPLC_Tails
-DPLC_Tails_112: 	dc.w DPLC_Tails_490-DPLC_Tails
-DPLC_Tails_114: 	dc.w DPLC_Tails_494-DPLC_Tails
-DPLC_Tails_116: 	dc.w DPLC_Tails_498-DPLC_Tails
-DPLC_Tails_118: 	dc.w DPLC_Tails_49C-DPLC_Tails
-DPLC_Tails_11A: 	dc.w DPLC_Tails_4A2-DPLC_Tails
-DPLC_Tails_11C: 	dc.w DPLC_Tails_4A6-DPLC_Tails
-DPLC_Tails_11E: 	dc.w DPLC_Tails_4AA-DPLC_Tails
-DPLC_Tails_120: 	dc.w DPLC_Tails_4AE-DPLC_Tails
-DPLC_Tails_122: 	dc.w DPLC_Tails_4B2-DPLC_Tails
-DPLC_Tails_124: 	dc.w DPLC_Tails_4B6-DPLC_Tails
-DPLC_Tails_126: 	dc.w DPLC_Tails_4BA-DPLC_Tails
-DPLC_Tails_128: 	dc.w DPLC_Tails_4BE-DPLC_Tails
-DPLC_Tails_12A: 	dc.w DPLC_Tails_4C4-DPLC_Tails
-DPLC_Tails_12C: 	dc.w DPLC_Tails_4CA-DPLC_Tails
-DPLC_Tails_12E: 	dc.w DPLC_Tails_4CE-DPLC_Tails
-DPLC_Tails_130: 	dc.w DPLC_Tails_4D2-DPLC_Tails
-DPLC_Tails_132: 	dc.w DPLC_Tails_4D6-DPLC_Tails
-DPLC_Tails_134: 	dc.w DPLC_Tails_4DA-DPLC_Tails
-DPLC_Tails_136: 	dc.w DPLC_Tails_4DE-DPLC_Tails
-DPLC_Tails_138: 	dc.w DPLC_Tails_4E2-DPLC_Tails
-DPLC_Tails_13A: 	dc.w DPLC_Tails_4E6-DPLC_Tails
-DPLC_Tails_13C: 	dc.w DPLC_Tails_4EC-DPLC_Tails
-DPLC_Tails_13E: 	dc.w DPLC_Tails_4F2-DPLC_Tails
-DPLC_Tails_140: 	dc.w DPLC_Tails_4F6-DPLC_Tails
-DPLC_Tails_142: 	dc.w DPLC_Tails_4FA-DPLC_Tails
-DPLC_Tails_144: 	dc.w DPLC_Tails_4FE-DPLC_Tails
-DPLC_Tails_146: 	dc.w DPLC_Tails_504-DPLC_Tails
-DPLC_Tails_148: 	dc.w DPLC_Tails_508-DPLC_Tails
-DPLC_Tails_14A: 	dc.w DPLC_Tails_50C-DPLC_Tails
-DPLC_Tails_14C: 	dc.w DPLC_Tails_510-DPLC_Tails
-DPLC_Tails_14E: 	dc.w DPLC_Tails_516-DPLC_Tails
-DPLC_Tails_150: 	dc.w DPLC_Tails_51C-DPLC_Tails
-DPLC_Tails_152: 	dc.w DPLC_Tails_522-DPLC_Tails
-DPLC_Tails_154: 	dc.w DPLC_Tails_526-DPLC_Tails
-DPLC_Tails_156: 	dc.w DPLC_Tails_52A-DPLC_Tails
-DPLC_Tails_158: 	dc.w DPLC_Tails_52E-DPLC_Tails
-DPLC_Tails_15A: 	dc.w DPLC_Tails_532-DPLC_Tails
-DPLC_Tails_15C: 	dc.w DPLC_Tails_536-DPLC_Tails
-DPLC_Tails_15E: 	dc.w DPLC_Tails_53A-DPLC_Tails
-DPLC_Tails_160: 	dc.w DPLC_Tails_53E-DPLC_Tails
-DPLC_Tails_162: 	dc.w DPLC_Tails_542-DPLC_Tails
-DPLC_Tails_164: 	dc.w DPLC_Tails_546-DPLC_Tails
-DPLC_Tails_166: 	dc.w DPLC_Tails_54A-DPLC_Tails
-DPLC_Tails_168: 	dc.w DPLC_Tails_54E-DPLC_Tails
-DPLC_Tails_16A: 	dc.w DPLC_Tails_552-DPLC_Tails
-DPLC_Tails_16C: 	dc.w DPLC_Tails_556-DPLC_Tails
-DPLC_Tails_16E: 	dc.w DPLC_Tails_55A-DPLC_Tails
-DPLC_Tails_170: 	dc.w DPLC_Tails_55E-DPLC_Tails
-DPLC_Tails_172: 	dc.w DPLC_Tails_562-DPLC_Tails
-DPLC_Tails_174: 	dc.w DPLC_Tails_566-DPLC_Tails
-DPLC_Tails_176: 	dc.w DPLC_Tails_56A-DPLC_Tails
-DPLC_Tails_178: 	dc.w DPLC_Tails_56E-DPLC_Tails
-DPLC_Tails_17A: 	dc.w DPLC_Tails_572-DPLC_Tails
-DPLC_Tails_17C: 	dc.w DPLC_Tails_578-DPLC_Tails
-DPLC_Tails_17E: 	dc.w DPLC_Tails_57E-DPLC_Tails
-DPLC_Tails_180: 	dc.w DPLC_Tails_584-DPLC_Tails
-DPLC_Tails_182: 	dc.w DPLC_Tails_58A-DPLC_Tails
-DPLC_Tails_184: 	dc.w DPLC_Tails_590-DPLC_Tails
-DPLC_Tails_186: 	dc.w DPLC_Tails_596-DPLC_Tails
-DPLC_Tails_188: 	dc.w DPLC_Tails_59C-DPLC_Tails
-DPLC_Tails_18A: 	dc.w DPLC_Tails_5A2-DPLC_Tails
-DPLC_Tails_18C: 	dc.w DPLC_Tails_5A8-DPLC_Tails
-DPLC_Tails_18E: 	dc.w DPLC_Tails_5AE-DPLC_Tails
-DPLC_Tails_190: 	dc.w DPLC_Tails_5B4-DPLC_Tails
-DPLC_Tails_192: 	dc.w DPLC_Tails_5BA-DPLC_Tails
-DPLC_Tails_194: 	dc.w DPLC_Tails_5C0-DPLC_Tails
-DPLC_Tails_196: 	dc.w DPLC_Tails_5C6-DPLC_Tails
-DPLC_Tails_198: 	dc.w DPLC_Tails_5CA-DPLC_Tails
-DPLC_Tails_19A: 	dc.w DPLC_Tails_5CE-DPLC_Tails
-DPLC_Tails_19C: 	dc.w DPLC_Tails_5D4-DPLC_Tails
-DPLC_Tails_19E: 	dc.w DPLC_Tails_5DA-DPLC_Tails
-DPLC_Tails_1A0: 	dc.w DPLC_Tails_5DE-DPLC_Tails
-DPLC_Tails_1A2: 	dc.w DPLC_Tails_5E2-DPLC_Tails
-DPLC_Tails_1A4: 	dc.w DPLC_Tails_5E6-DPLC_Tails
-DPLC_Tails_1A6: 	dc.w DPLC_Tails_5EA-DPLC_Tails
-DPLC_Tails_1A8: 	dc.w DPLC_Tails_5EE-DPLC_Tails
-DPLC_Tails_1AA: 	dc.w DPLC_Tails_5F2-DPLC_Tails
-DPLC_Tails_1AC: 	dc.w DPLC_Tails_5F6-DPLC_Tails
-DPLC_Tails_1AE: 	dc.w DPLC_Tails_5FA-DPLC_Tails
-DPLC_Tails_1B0: 	dc.w DPLC_Tails_5FE-DPLC_Tails
-DPLC_Tails_1B2: 	dc.w DPLC_Tails_602-DPLC_Tails
-DPLC_Tails_1B4: 	dc.w DPLC_Tails_606-DPLC_Tails
-DPLC_Tails_1B6: 	dc.w DPLC_Tails_60A-DPLC_Tails
-DPLC_Tails_1B8: 	dc.w DPLC_Tails_60E-DPLC_Tails
-DPLC_Tails_1BA: 	dc.w DPLC_Tails_612-DPLC_Tails
-DPLC_Tails_1BC: 	dc.w DPLC_Tails_616-DPLC_Tails
-DPLC_Tails_1BE: 	dc.w DPLC_Tails_61A-DPLC_Tails
-DPLC_Tails_1C0: 	dc.w DPLC_Tails_61E-DPLC_Tails
-DPLC_Tails_1C2: 	dc.w DPLC_Tails_622-DPLC_Tails
-DPLC_Tails_1C4: 	dc.w DPLC_Tails_626-DPLC_Tails
-DPLC_Tails_1C6: 	dc.w DPLC_Tails_62A-DPLC_Tails
-DPLC_Tails_1C8: 	dc.w DPLC_Tails_62E-DPLC_Tails
-DPLC_Tails_1CA: 	dc.w DPLC_Tails_632-DPLC_Tails
-DPLC_Tails_1CC: 	dc.w DPLC_Tails_636-DPLC_Tails
-DPLC_Tails_1CE: 	dc.w DPLC_Tails_63A-DPLC_Tails
-DPLC_Tails_1D0: 	dc.w DPLC_Tails_63E-DPLC_Tails
-DPLC_Tails_1D2: 	dc.w DPLC_Tails_642-DPLC_Tails
-DPLC_Tails_1D4: 	dc.w DPLC_Tails_646-DPLC_Tails
-DPLC_Tails_1D6: 	dc.w DPLC_Tails_64A-DPLC_Tails
-DPLC_Tails_1D8: 	dc.w DPLC_Tails_64E-DPLC_Tails
-DPLC_Tails_1DA: 	dc.w DPLC_Tails_654-DPLC_Tails
-DPLC_Tails_1DC: 	dc.w DPLC_Tails_65A-DPLC_Tails
-DPLC_Tails_1DE: 	dc.w DPLC_Tails_660-DPLC_Tails
-DPLC_Tails_1E0: 	dc.w DPLC_Tails_666-DPLC_Tails
-DPLC_Tails_1E2: 	dc.w DPLC_Tails_66C-DPLC_Tails
-DPLC_Tails_1E4: 	dc.w DPLC_Tails_672-DPLC_Tails
-DPLC_Tails_1E6: 	dc.w DPLC_Tails_678-DPLC_Tails
-DPLC_Tails_1E8: 	dc.w DPLC_Tails_67C-DPLC_Tails
-DPLC_Tails_1EA: 	dc.w DPLC_Tails_680-DPLC_Tails
-DPLC_Tails_1EC: 	dc.b $0, $0
-DPLC_Tails_1EE: 	dc.b $0, $2
-	dc.b $50, $62
-	dc.b $F0, $0
-DPLC_Tails_1F4: 	dc.b $0, $2
-	dc.b $50, $68
-	dc.b $E0, $10
-DPLC_Tails_1FA: 	dc.b $0, $2
-	dc.b $50, $6E
-	dc.b $B0, $1F
-DPLC_Tails_200: 	dc.b $0, $2
-	dc.b $E0, $2B
-	dc.b $50, $74
-DPLC_Tails_206: 	dc.b $0, $3
-	dc.b $10, $0
-	dc.b $D0, $3A
-	dc.b $50, $62
-DPLC_Tails_20E: 	dc.b $0, $3
-	dc.b $70, $10
-	dc.b $60, $48
-	dc.b $50, $68
-DPLC_Tails_216: 	dc.b $0, $2
-	dc.b $50, $6E
-	dc.b $B0, $4F
-DPLC_Tails_21C: 	dc.b $0, $3
-	dc.b $50, $74
-	dc.b $70, $2B
-	dc.b $60, $5B
-DPLC_Tails_224: 	dc.b $0, $1
-	dc.b $F0, $7A
-DPLC_Tails_228: 	dc.b $0, $2
-	dc.b $F0, $8A
-	dc.b $40, $9A
-DPLC_Tails_22E: 	dc.b $0, $2
-	dc.b $F0, $9F
-	dc.b $40, $AF
-DPLC_Tails_234: 	dc.b $0, $2
-	dc.b $F0, $B4
-	dc.b $20, $C4
-DPLC_Tails_23A: 	dc.b $0, $2
-	dc.b $F0, $C7
-	dc.b $0, $D7
-DPLC_Tails_240: 	dc.b $0, $2
-	dc.b $F0, $D8
-	dc.b $10, $E8
-DPLC_Tails_246: 	dc.b $0, $2
-	dc.b $F0, $EA
-	dc.b $0, $FA
-DPLC_Tails_24C: 	dc.b $0, $1
-	dc.b $E0, $FB
-DPLC_Tails_250: 	dc.b $0, $2
-	dc.b $51, $6D
-	dc.b $D1, $A
-DPLC_Tails_256: 	dc.b $0, $2
-	dc.b $51, $73
-	dc.b $C1, $18
-DPLC_Tails_25C: 	dc.b $0, $2
-	dc.b $51, $79
-	dc.b $A1, $25
-DPLC_Tails_262: 	dc.b $0, $2
-	dc.b $B1, $30
-	dc.b $51, $7F
-DPLC_Tails_268: 	dc.b $0, $2
-	dc.b $51, $6D
-	dc.b $D1, $3C
-DPLC_Tails_26E: 	dc.b $0, $2
-	dc.b $51, $73
-	dc.b $B1, $4A
-DPLC_Tails_274: 	dc.b $0, $2
-	dc.b $51, $79
-	dc.b $A1, $56
-DPLC_Tails_27A: 	dc.b $0, $2
-	dc.b $51, $7F
-	dc.b $B1, $61
-DPLC_Tails_280: 	dc.b $0, $2
-	dc.b $F1, $85
-	dc.b $1, $95
-DPLC_Tails_286: 	dc.b $0, $2
-	dc.b $F1, $96
-	dc.b $31, $A6
-DPLC_Tails_28C: 	dc.b $0, $2
-	dc.b $F1, $AA
-	dc.b $31, $BA
-DPLC_Tails_292: 	dc.b $0, $2
-	dc.b $F1, $BE
-	dc.b $21, $CE
-DPLC_Tails_298: 	dc.b $0, $2
-	dc.b $F1, $D1
-	dc.b $1, $E1
-DPLC_Tails_29E: 	dc.b $0, $2
-	dc.b $F1, $E2
-	dc.b $1, $F2
-DPLC_Tails_2A4: 	dc.b $0, $2
-	dc.b $F1, $F3
-	dc.b $2, $3
-DPLC_Tails_2AA: 	dc.b $0, $1
-	dc.b $E2, $4
-DPLC_Tails_2AE: 	dc.b $0, $2
-	dc.b $B2, $13
-	dc.b $72, $2B
-DPLC_Tails_2B4: 	dc.b $0, $2
-	dc.b $B2, $1F
-	dc.b $32, $35
-DPLC_Tails_2BA: 	dc.b $0, $2
-	dc.b $B2, $13
-	dc.b $12, $33
-DPLC_Tails_2C0: 	dc.b $0, $2
-	dc.b $B2, $1F
-	dc.b $32, $35
-DPLC_Tails_2C6: 	dc.b $0, $2
-	dc.b $B2, $41
-	dc.b $B2, $59
-DPLC_Tails_2CC: 	dc.b $0, $2
-	dc.b $B2, $4D
-	dc.b $52, $65
-DPLC_Tails_2D2: 	dc.b $0, $2
-	dc.b $B2, $41
-	dc.b $32, $6B
-DPLC_Tails_2D8: 	dc.b $0, $4
-	dc.b $52, $6F
-	dc.b $32, $55
-	dc.b $52, $4F
-	dc.b $12, $4D
-DPLC_Tails_2E2: 	dc.b $0, $2
-	dc.b $B2, $87
-	dc.b $72, $9F
-DPLC_Tails_2E8: 	dc.b $0, $2
-	dc.b $B2, $93
-	dc.b $32, $A9
-DPLC_Tails_2EE: 	dc.b $0, $2
-	dc.b $B2, $87
-	dc.b $12, $A7
-DPLC_Tails_2F4: 	dc.b $0, $2
-	dc.b $B2, $87
-	dc.b $32, $A9
-DPLC_Tails_2FA: 	dc.b $0, $2
-	dc.b $B2, $B5
-	dc.b $B2, $CD
-DPLC_Tails_300: 	dc.b $0, $2
-	dc.b $B2, $C1
-	dc.b $52, $D9
-DPLC_Tails_306: 	dc.b $0, $2
-	dc.b $32, $DF
-	dc.b $B2, $B5
-DPLC_Tails_30C: 	dc.b $0, $2
-	dc.b $B2, $C1
-	dc.b $52, $E3
-DPLC_Tails_312: 	dc.b $0, $1
-	dc.b $B2, $E9
-DPLC_Tails_316: 	dc.b $0, $1
-	dc.b $D2, $F5
-DPLC_Tails_31A: 	dc.b $0, $1
-	dc.b $B3, $3
-DPLC_Tails_31E: 	dc.b $0, $1
-	dc.b $83, $F
-DPLC_Tails_322: 	dc.b $0, $1
-	dc.b $93, $18
-DPLC_Tails_326: 	dc.b $0, $1
-	dc.b $A3, $22
-DPLC_Tails_32A: 	dc.b $0, $1
-	dc.b $A3, $2D
-DPLC_Tails_32E: 	dc.b $0, $1
-	dc.b $A3, $38
-DPLC_Tails_332: 	dc.b $0, $1
-	dc.b $A3, $43
-DPLC_Tails_336: 	dc.b $0, $1
-	dc.b $73, $4E
-DPLC_Tails_33A: 	dc.b $0, $1
-	dc.b $93, $56
-DPLC_Tails_33E: 	dc.b $0, $1
-	dc.b $93, $60
-DPLC_Tails_342: 	dc.b $0, $1
-	dc.b $A3, $D8
-DPLC_Tails_346: 	dc.b $0, $1
-	dc.b $93, $CE
-DPLC_Tails_34A: 	dc.b $0, $1
-	dc.b $83, $C5
-DPLC_Tails_34E: 	dc.b $0, $1
-	dc.b $93, $BB
-DPLC_Tails_352: 	dc.b $0, $1
-	dc.b $B3, $AF
-DPLC_Tails_356: 	dc.b $0, $1
-	dc.b $B3, $A3
-DPLC_Tails_35A: 	dc.b $0, $1
-	dc.b $A3, $98
-DPLC_Tails_35E: 	dc.b $0, $1
-	dc.b $93, $8E
-DPLC_Tails_362: 	dc.b $0, $1
-	dc.b $63, $87
-DPLC_Tails_366: 	dc.b $0, $1
-	dc.b $73, $7F
-DPLC_Tails_36A: 	dc.b $0, $1
-	dc.b $93, $75
-DPLC_Tails_36E: 	dc.b $0, $1
-	dc.b $A3, $6A
-DPLC_Tails_372: 	dc.b $0, $1
-	dc.b $B3, $E3
-DPLC_Tails_376: 	dc.b $0, $1
-	dc.b $A3, $EF
-DPLC_Tails_37A: 	dc.b $0, $1
-	dc.b $83, $FA
-DPLC_Tails_37E: 	dc.b $0, $1
-	dc.b $A4, $3
-DPLC_Tails_382: 	dc.b $0, $1
-	dc.b $94, $E
-DPLC_Tails_386: 	dc.b $0, $1
-	dc.b $C4, $18
-DPLC_Tails_38A: 	dc.b $0, $1
-	dc.b $D4, $25
-DPLC_Tails_38E: 	dc.b $0, $1
-	dc.b $C4, $33
-DPLC_Tails_392: 	dc.b $0, $1
-	dc.b $94, $40
-DPLC_Tails_396: 	dc.b $0, $1
-	dc.b $74, $4A
-DPLC_Tails_39A: 	dc.b $0, $1
-	dc.b $A4, $52
-DPLC_Tails_39E: 	dc.b $0, $1
-	dc.b $A4, $5D
-DPLC_Tails_3A2: 	dc.b $0, $1
-	dc.b $C4, $68
-DPLC_Tails_3A6: 	dc.b $0, $1
-	dc.b $B4, $75
-DPLC_Tails_3AA: 	dc.b $0, $1
-	dc.b $94, $81
-DPLC_Tails_3AE: 	dc.b $0, $1
-	dc.b $B4, $8B
-DPLC_Tails_3B2: 	dc.b $0, $1
-	dc.b $B4, $97
-DPLC_Tails_3B6: 	dc.b $0, $1
-	dc.b $94, $A3
-DPLC_Tails_3BA: 	dc.b $0, $1
-	dc.b $B4, $AD
-DPLC_Tails_3BE: 	dc.b $0, $2
-	dc.b $F4, $B9
-	dc.b $4, $C9
-DPLC_Tails_3C4: 	dc.b $0, $1
-	dc.b $B4, $CA
-DPLC_Tails_3C8: 	dc.b $0, $1
-	dc.b $D4, $D6
-DPLC_Tails_3CC: 	dc.b $0, $2
-	dc.b $F4, $E4
-	dc.b $14, $F4
-DPLC_Tails_3D2: 	dc.b $0, $1
-	dc.b $B4, $F6
-DPLC_Tails_3D6: 	dc.b $0, $1
-	dc.b $B5, $2
-DPLC_Tails_3DA: 	dc.b $0, $1
-	dc.b $C5, $E
-DPLC_Tails_3DE: 	dc.b $0, $2
-	dc.b $F5, $1B
-	dc.b $5, $2B
-DPLC_Tails_3E4: 	dc.b $0, $1
-	dc.b $B5, $2C
-DPLC_Tails_3E8: 	dc.b $0, $1
-	dc.b $E5, $38
-DPLC_Tails_3EC: 	dc.b $0, $2
-	dc.b $F5, $47
-	dc.b $15, $57
-DPLC_Tails_3F2: 	dc.b $0, $1
-	dc.b $B5, $59
-DPLC_Tails_3F6: 	dc.b $0, $1
-	dc.b $B5, $65
-DPLC_Tails_3FA: 	dc.b $0, $1
-	dc.b $F5, $71
-DPLC_Tails_3FE: 	dc.b $0, $1
-	dc.b $C5, $81
-DPLC_Tails_402: 	dc.b $0, $1
-	dc.b $A5, $8E
-DPLC_Tails_406: 	dc.b $0, $1
-	dc.b $A5, $99
-DPLC_Tails_40A: 	dc.b $0, $1
-	dc.b $A5, $A4
-DPLC_Tails_40E: 	dc.b $0, $1
-	dc.b $A5, $AF
-DPLC_Tails_412: 	dc.b $0, $1
-	dc.b $75, $BA
-DPLC_Tails_416: 	dc.b $0, $1
-	dc.b $95, $C2
-DPLC_Tails_41A: 	dc.b $0, $1
-	dc.b $A5, $CC
-DPLC_Tails_41E: 	dc.b $0, $1
-	dc.b $B5, $D7
-DPLC_Tails_422: 	dc.b $0, $1
-	dc.b $D5, $E3
-DPLC_Tails_426: 	dc.b $0, $1
-	dc.b $B5, $F1
-DPLC_Tails_42A: 	dc.b $0, $1
-	dc.b $85, $FD
-DPLC_Tails_42E: 	dc.b $0, $1
-	dc.b $A6, $6
-DPLC_Tails_432: 	dc.b $0, $1
-	dc.b $A6, $11
-DPLC_Tails_436: 	dc.b $0, $2
-	dc.b $F6, $1C
-	dc.b $6, $2C
-DPLC_Tails_43C: 	dc.b $0, $1
-	dc.b $F6, $2D
-DPLC_Tails_440: 	dc.b $0, $2
-	dc.b $F6, $3D
-	dc.b $6, $4D
-DPLC_Tails_446: 	dc.b $0, $1
-	dc.b $F6, $4E
-DPLC_Tails_44A: 	dc.b $0, $2
-	dc.b $F6, $1C
-	dc.b $6, $2C
-DPLC_Tails_450: 	dc.b $0, $1
-	dc.b $F6, $2D
-DPLC_Tails_454: 	dc.b $0, $3
-	dc.b $66, $3D
-	dc.b $56, $5E
-	dc.b $36, $4A
-DPLC_Tails_45C: 	dc.b $0, $1
-	dc.b $F6, $4E
-DPLC_Tails_460: 	dc.b $0, $2
-	dc.b $F6, $64
-	dc.b $6, $74
-DPLC_Tails_466: 	dc.b $0, $2
-	dc.b $F6, $75
-	dc.b $46, $85
-DPLC_Tails_46C: 	dc.b $0, $2
-	dc.b $F6, $8A
-	dc.b $26, $9A
-DPLC_Tails_472: 	dc.b $0, $2
-	dc.b $F6, $9D
-	dc.b $36, $AD
-DPLC_Tails_478: 	dc.b $0, $2
-	dc.b $F6, $B1
-	dc.b $16, $C1
-DPLC_Tails_47E: 	dc.b $0, $2
-	dc.b $F6, $C3
-	dc.b $6, $D3
-DPLC_Tails_484: 	dc.b $0, $1
-	dc.b $96, $D4
-DPLC_Tails_488: 	dc.b $0, $1
-	dc.b $A6, $DE
-DPLC_Tails_48C: 	dc.b $0, $1
-	dc.b $96, $E9
-DPLC_Tails_490: 	dc.b $0, $1
-	dc.b $F6, $F3
-DPLC_Tails_494: 	dc.b $0, $1
-	dc.b $F7, $3
-DPLC_Tails_498: 	dc.b $0, $1
-	dc.b $F7, $13
-DPLC_Tails_49C: 	dc.b $0, $2
-	dc.b $37, $13
-	dc.b $B7, $23
-DPLC_Tails_4A2: 	dc.b $0, $1
-	dc.b $D7, $2F
-DPLC_Tails_4A6: 	dc.b $0, $1
-	dc.b $C7, $D6
-DPLC_Tails_4AA: 	dc.b $0, $1
-	dc.b $C7, $E3
-DPLC_Tails_4AE: 	dc.b $0, $1
-	dc.b $D7, $3D
-DPLC_Tails_4B2: 	dc.b $0, $1
-	dc.b $D7, $4B
-DPLC_Tails_4B6: 	dc.b $0, $1
-	dc.b $D7, $59
-DPLC_Tails_4BA: 	dc.b $0, $1
-	dc.b $87, $67
-DPLC_Tails_4BE: 	dc.b $0, $2
-	dc.b $77, $70
-	dc.b $E7, $7E
-DPLC_Tails_4C4: 	dc.b $0, $2
-	dc.b $F7, $78
-	dc.b $47, $88
-DPLC_Tails_4CA: 	dc.b $0, $1
-	dc.b $F7, $8D
-DPLC_Tails_4CE: 	dc.b $0, $1
-	dc.b $F7, $9D
-DPLC_Tails_4D2: 	dc.b $0, $1
-	dc.b $F7, $AD
-DPLC_Tails_4D6: 	dc.b $0, $1
-	dc.b $87, $CD
-DPLC_Tails_4DA: 	dc.b $0, $1
-	dc.b $C7, $F0
-DPLC_Tails_4DE: 	dc.b $0, $1
-	dc.b $C7, $FD
-DPLC_Tails_4E2: 	dc.b $0, $1
-	dc.b $F7, $BD
-DPLC_Tails_4E6: 	dc.b $0, $2
-	dc.b $F8, $A
-	dc.b $8, $1A
-DPLC_Tails_4EC: 	dc.b $0, $2
-	dc.b $F8, $1B
-	dc.b $8, $2B
-DPLC_Tails_4F2: 	dc.b $0, $1
-	dc.b $D8, $2C
-DPLC_Tails_4F6: 	dc.b $0, $1
-	dc.b $E8, $3A
-DPLC_Tails_4FA: 	dc.b $0, $1
-	dc.b $E8, $49
-DPLC_Tails_4FE: 	dc.b $0, $2
-	dc.b $28, $3A
-	dc.b $B8, $58
-DPLC_Tails_504: 	dc.b $0, $1
-	dc.b $E8, $64
-DPLC_Tails_508: 	dc.b $0, $1
-	dc.b $E8, $73
-DPLC_Tails_50C: 	dc.b $0, $1
-	dc.b $B8, $82
-DPLC_Tails_510: 	dc.b $0, $2
-	dc.b $F8, $8E
-	dc.b $18, $9E
-DPLC_Tails_516: 	dc.b $0, $2
-	dc.b $F9, $D5
-	dc.b $9, $E5
-DPLC_Tails_51C: 	dc.b $0, $2
-	dc.b $F9, $E6
-	dc.b $9, $F6
-DPLC_Tails_522: 	dc.b $0, $1
-	dc.b $C8, $A0
-DPLC_Tails_526: 	dc.b $0, $1
-	dc.b $B8, $AD
-DPLC_Tails_52A: 	dc.b $0, $1
-	dc.b $B8, $B9
-DPLC_Tails_52E: 	dc.b $0, $1
-	dc.b $B8, $C5
-DPLC_Tails_532: 	dc.b $0, $1
-	dc.b $B8, $D1
-DPLC_Tails_536: 	dc.b $0, $1
-	dc.b $B8, $DD
-DPLC_Tails_53A: 	dc.b $0, $1
-	dc.b $B8, $E9
-DPLC_Tails_53E: 	dc.b $0, $1
-	dc.b $B8, $F5
-DPLC_Tails_542: 	dc.b $0, $1
-	dc.b $B9, $1
-DPLC_Tails_546: 	dc.b $0, $1
-	dc.b $B9, $D
-DPLC_Tails_54A: 	dc.b $0, $1
-	dc.b $B9, $19
-DPLC_Tails_54E: 	dc.b $0, $1
-	dc.b $B9, $25
-DPLC_Tails_552: 	dc.b $0, $1
-	dc.b $C9, $31
-DPLC_Tails_556: 	dc.b $0, $1
-	dc.b $C9, $3E
-DPLC_Tails_55A: 	dc.b $0, $1
-	dc.b $B9, $4B
-DPLC_Tails_55E: 	dc.b $0, $1
-	dc.b $C9, $3E
-DPLC_Tails_562: 	dc.b $0, $1
-	dc.b $C9, $31
-DPLC_Tails_566: 	dc.b $0, $1
-	dc.b $B9, $57
-DPLC_Tails_56A: 	dc.b $0, $1
-	dc.b $99, $63
-DPLC_Tails_56E: 	dc.b $0, $1
-	dc.b $B9, $57
-DPLC_Tails_572: 	dc.b $0, $2
-	dc.b $F9, $6D
-	dc.b $9, $7D
-DPLC_Tails_578: 	dc.b $0, $2
-	dc.b $F9, $7E
-	dc.b $9, $8E
-DPLC_Tails_57E: 	dc.b $0, $2
-	dc.b $F9, $8F
-	dc.b $9, $9F
-DPLC_Tails_584: 	dc.b $0, $2
-	dc.b $F9, $A0
-	dc.b $19, $B0
-DPLC_Tails_58A: 	dc.b $0, $2
-	dc.b $F9, $B2
-	dc.b $19, $C2
-DPLC_Tails_590: 	dc.b $0, $2
-	dc.b $F9, $C4
-	dc.b $9, $D4
-DPLC_Tails_596: 	dc.b $0, $2
-	dc.b $B2, $13
-	dc.b $72, $39
-DPLC_Tails_59C: 	dc.b $0, $2
-	dc.b $B2, $1F
-	dc.b $72, $39
-DPLC_Tails_5A2: 	dc.b $0, $2
-	dc.b $B2, $41
-	dc.b $82, $75
-DPLC_Tails_5A8: 	dc.b $0, $2
-	dc.b $B2, $4D
-	dc.b $82, $7E
-DPLC_Tails_5AE: 	dc.b $0, $2
-	dc.b $B2, $87
-	dc.b $72, $AD
-DPLC_Tails_5B4: 	dc.b $0, $2
-	dc.b $B2, $93
-	dc.b $72, $AD
-DPLC_Tails_5BA: 	dc.b $0, $2
-	dc.b $B2, $B5
-	dc.b $82, $7E
-DPLC_Tails_5C0: 	dc.b $0, $2
-	dc.b $B2, $C1
-	dc.b $82, $75
-DPLC_Tails_5C6: 	dc.b $0, $1
-	dc.b $F6, $F3
-DPLC_Tails_5CA: 	dc.b $0, $1
-	dc.b $F7, $3
-DPLC_Tails_5CE: 	dc.b $0, $2
-	dc.b $D9, $F7
-	dc.b $9, $D2
-DPLC_Tails_5D4: 	dc.b $0, $2
-	dc.b $DA, $5
-	dc.b $9, $D2
-DPLC_Tails_5DA: 	dc.b $0, $1
-	dc.b $DA, $13
-DPLC_Tails_5DE: 	dc.b $0, $1
-	dc.b $DA, $21
-DPLC_Tails_5E2: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_5E6: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_5EA: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_5EE: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_5F2: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_5F6: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_5FA: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_5FE: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_602: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_606: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_60A: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_60E: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_612: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_616: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_61A: 	dc.b $0, $1
-	dc.b $B0, $0
-DPLC_Tails_61E: 	dc.b $0, $1
-	dc.b $A0, $C
-DPLC_Tails_622: 	dc.b $0, $1
-	dc.b $C0, $17
-DPLC_Tails_626: 	dc.b $0, $1
-	dc.b $C0, $24
-DPLC_Tails_62A: 	dc.b $0, $1
-	dc.b $E0, $31
-DPLC_Tails_62E: 	dc.b $0, $1
-	dc.b $F0, $40
-DPLC_Tails_632: 	dc.b $0, $1
-	dc.b $F0, $50
-DPLC_Tails_636: 	dc.b $0, $1
-	dc.b $C0, $60
-DPLC_Tails_63A: 	dc.b $0, $1
-	dc.b $B0, $6D
-DPLC_Tails_63E: 	dc.b $0, $1
-	dc.b $D0, $79
-DPLC_Tails_642: 	dc.b $0, $1
-	dc.b $C0, $87
-DPLC_Tails_646: 	dc.b $0, $1
-	dc.b $B0, $94
-DPLC_Tails_64A: 	dc.b $0, $1
-	dc.b $80, $A0
-DPLC_Tails_64E: 	dc.b $0, $2
-	dc.b $F0, $A9
-	dc.b $0, $B9
-DPLC_Tails_654: 	dc.b $0, $2
-	dc.b $F0, $BA
-	dc.b $0, $CA
-DPLC_Tails_65A: 	dc.b $0, $2
-	dc.b $F0, $BA
-	dc.b $0, $CA
-DPLC_Tails_660: 	dc.b $0, $2
-	dc.b $F1, $49
-	dc.b $1, $59
-DPLC_Tails_666: 	dc.b $0, $2
-	dc.b $F1, $5A
-	dc.b $1, $6A
-DPLC_Tails_66C: 	dc.b $0, $2
-	dc.b $F1, $6B
-	dc.b $1, $7B
-DPLC_Tails_672: 	dc.b $0, $2
-	dc.b $F1, $7C
-	dc.b $1, $8C
-DPLC_Tails_678: 	dc.b $0, $1
-	dc.b $F1, $8D
-DPLC_Tails_67C: 	dc.b $0, $1
-	dc.b $F1, $9D
-DPLC_Tails_680: 	dc.b $0, $1
-	dc.b $F1, $AD
+DPLC_Tails:	mappingsTable
+	mappingsTableEntry.w DPLC_Tails_1EC
+	mappingsTableEntry.w DPLC_Tails_1EE
+	mappingsTableEntry.w DPLC_Tails_1F4
+	mappingsTableEntry.w DPLC_Tails_1FA
+	mappingsTableEntry.w DPLC_Tails_200
+	mappingsTableEntry.w DPLC_Tails_206
+	mappingsTableEntry.w DPLC_Tails_20E
+	mappingsTableEntry.w DPLC_Tails_216
+	mappingsTableEntry.w DPLC_Tails_21C
+	mappingsTableEntry.w DPLC_Tails_224
+	mappingsTableEntry.w DPLC_Tails_228
+	mappingsTableEntry.w DPLC_Tails_22E
+	mappingsTableEntry.w DPLC_Tails_234
+	mappingsTableEntry.w DPLC_Tails_23A
+	mappingsTableEntry.w DPLC_Tails_240
+	mappingsTableEntry.w DPLC_Tails_246
+	mappingsTableEntry.w DPLC_Tails_24C
+	mappingsTableEntry.w DPLC_Tails_250
+	mappingsTableEntry.w DPLC_Tails_256
+	mappingsTableEntry.w DPLC_Tails_25C
+	mappingsTableEntry.w DPLC_Tails_262
+	mappingsTableEntry.w DPLC_Tails_268
+	mappingsTableEntry.w DPLC_Tails_26E
+	mappingsTableEntry.w DPLC_Tails_274
+	mappingsTableEntry.w DPLC_Tails_27A
+	mappingsTableEntry.w DPLC_Tails_280
+	mappingsTableEntry.w DPLC_Tails_286
+	mappingsTableEntry.w DPLC_Tails_28C
+	mappingsTableEntry.w DPLC_Tails_292
+	mappingsTableEntry.w DPLC_Tails_298
+	mappingsTableEntry.w DPLC_Tails_29E
+	mappingsTableEntry.w DPLC_Tails_2A4
+	mappingsTableEntry.w DPLC_Tails_2AA
+	mappingsTableEntry.w DPLC_Tails_2AE
+	mappingsTableEntry.w DPLC_Tails_2B4
+	mappingsTableEntry.w DPLC_Tails_2BA
+	mappingsTableEntry.w DPLC_Tails_2C0
+	mappingsTableEntry.w DPLC_Tails_2C6
+	mappingsTableEntry.w DPLC_Tails_2CC
+	mappingsTableEntry.w DPLC_Tails_2D2
+	mappingsTableEntry.w DPLC_Tails_2D8
+	mappingsTableEntry.w DPLC_Tails_2E2
+	mappingsTableEntry.w DPLC_Tails_2E8
+	mappingsTableEntry.w DPLC_Tails_2EE
+	mappingsTableEntry.w DPLC_Tails_2F4
+	mappingsTableEntry.w DPLC_Tails_2FA
+	mappingsTableEntry.w DPLC_Tails_300
+	mappingsTableEntry.w DPLC_Tails_306
+	mappingsTableEntry.w DPLC_Tails_30C
+	mappingsTableEntry.w DPLC_Tails_312
+	mappingsTableEntry.w DPLC_Tails_316
+	mappingsTableEntry.w DPLC_Tails_31A
+	mappingsTableEntry.w DPLC_Tails_31E
+	mappingsTableEntry.w DPLC_Tails_322
+	mappingsTableEntry.w DPLC_Tails_326
+	mappingsTableEntry.w DPLC_Tails_32A
+	mappingsTableEntry.w DPLC_Tails_32E
+	mappingsTableEntry.w DPLC_Tails_332
+	mappingsTableEntry.w DPLC_Tails_336
+	mappingsTableEntry.w DPLC_Tails_33A
+	mappingsTableEntry.w DPLC_Tails_33E
+	mappingsTableEntry.w DPLC_Tails_342
+	mappingsTableEntry.w DPLC_Tails_346
+	mappingsTableEntry.w DPLC_Tails_34A
+	mappingsTableEntry.w DPLC_Tails_34E
+	mappingsTableEntry.w DPLC_Tails_352
+	mappingsTableEntry.w DPLC_Tails_356
+	mappingsTableEntry.w DPLC_Tails_35A
+	mappingsTableEntry.w DPLC_Tails_35E
+	mappingsTableEntry.w DPLC_Tails_362
+	mappingsTableEntry.w DPLC_Tails_366
+	mappingsTableEntry.w DPLC_Tails_36A
+	mappingsTableEntry.w DPLC_Tails_36E
+	mappingsTableEntry.w DPLC_Tails_372
+	mappingsTableEntry.w DPLC_Tails_376
+	mappingsTableEntry.w DPLC_Tails_37A
+	mappingsTableEntry.w DPLC_Tails_37E
+	mappingsTableEntry.w DPLC_Tails_382
+	mappingsTableEntry.w DPLC_Tails_386
+	mappingsTableEntry.w DPLC_Tails_38A
+	mappingsTableEntry.w DPLC_Tails_38E
+	mappingsTableEntry.w DPLC_Tails_392
+	mappingsTableEntry.w DPLC_Tails_396
+	mappingsTableEntry.w DPLC_Tails_39A
+	mappingsTableEntry.w DPLC_Tails_39E
+	mappingsTableEntry.w DPLC_Tails_3A2
+	mappingsTableEntry.w DPLC_Tails_3A6
+	mappingsTableEntry.w DPLC_Tails_3AA
+	mappingsTableEntry.w DPLC_Tails_3AE
+	mappingsTableEntry.w DPLC_Tails_3B2
+	mappingsTableEntry.w DPLC_Tails_3B6
+	mappingsTableEntry.w DPLC_Tails_3BA
+	mappingsTableEntry.w DPLC_Tails_3BE
+	mappingsTableEntry.w DPLC_Tails_3C4
+	mappingsTableEntry.w DPLC_Tails_3C8
+	mappingsTableEntry.w DPLC_Tails_3CC
+	mappingsTableEntry.w DPLC_Tails_3D2
+	mappingsTableEntry.w DPLC_Tails_3D6
+	mappingsTableEntry.w DPLC_Tails_3DA
+	mappingsTableEntry.w DPLC_Tails_3DE
+	mappingsTableEntry.w DPLC_Tails_3E4
+	mappingsTableEntry.w DPLC_Tails_3E8
+	mappingsTableEntry.w DPLC_Tails_3EC
+	mappingsTableEntry.w DPLC_Tails_3F2
+	mappingsTableEntry.w DPLC_Tails_3F6
+	mappingsTableEntry.w DPLC_Tails_3FA
+	mappingsTableEntry.w DPLC_Tails_3FE
+	mappingsTableEntry.w DPLC_Tails_402
+	mappingsTableEntry.w DPLC_Tails_406
+	mappingsTableEntry.w DPLC_Tails_40A
+	mappingsTableEntry.w DPLC_Tails_40E
+	mappingsTableEntry.w DPLC_Tails_412
+	mappingsTableEntry.w DPLC_Tails_416
+	mappingsTableEntry.w DPLC_Tails_41A
+	mappingsTableEntry.w DPLC_Tails_41E
+	mappingsTableEntry.w DPLC_Tails_422
+	mappingsTableEntry.w DPLC_Tails_426
+	mappingsTableEntry.w DPLC_Tails_42A
+	mappingsTableEntry.w DPLC_Tails_42E
+	mappingsTableEntry.w DPLC_Tails_432
+	mappingsTableEntry.w DPLC_Tails_436
+	mappingsTableEntry.w DPLC_Tails_43C
+	mappingsTableEntry.w DPLC_Tails_440
+	mappingsTableEntry.w DPLC_Tails_446
+	mappingsTableEntry.w DPLC_Tails_44A
+	mappingsTableEntry.w DPLC_Tails_450
+	mappingsTableEntry.w DPLC_Tails_454
+	mappingsTableEntry.w DPLC_Tails_45C
+	mappingsTableEntry.w DPLC_Tails_460
+	mappingsTableEntry.w DPLC_Tails_466
+	mappingsTableEntry.w DPLC_Tails_46C
+	mappingsTableEntry.w DPLC_Tails_472
+	mappingsTableEntry.w DPLC_Tails_478
+	mappingsTableEntry.w DPLC_Tails_47E
+	mappingsTableEntry.w DPLC_Tails_484
+	mappingsTableEntry.w DPLC_Tails_488
+	mappingsTableEntry.w DPLC_Tails_48C
+	mappingsTableEntry.w DPLC_Tails_490
+	mappingsTableEntry.w DPLC_Tails_494
+	mappingsTableEntry.w DPLC_Tails_498
+	mappingsTableEntry.w DPLC_Tails_49C
+	mappingsTableEntry.w DPLC_Tails_4A2
+	mappingsTableEntry.w DPLC_Tails_4A6
+	mappingsTableEntry.w DPLC_Tails_4AA
+	mappingsTableEntry.w DPLC_Tails_4AE
+	mappingsTableEntry.w DPLC_Tails_4B2
+	mappingsTableEntry.w DPLC_Tails_4B6
+	mappingsTableEntry.w DPLC_Tails_4BA
+	mappingsTableEntry.w DPLC_Tails_4BE
+	mappingsTableEntry.w DPLC_Tails_4C4
+	mappingsTableEntry.w DPLC_Tails_4CA
+	mappingsTableEntry.w DPLC_Tails_4CE
+	mappingsTableEntry.w DPLC_Tails_4D2
+	mappingsTableEntry.w DPLC_Tails_4D6
+	mappingsTableEntry.w DPLC_Tails_4DA
+	mappingsTableEntry.w DPLC_Tails_4DE
+	mappingsTableEntry.w DPLC_Tails_4E2
+	mappingsTableEntry.w DPLC_Tails_4E6
+	mappingsTableEntry.w DPLC_Tails_4EC
+	mappingsTableEntry.w DPLC_Tails_4F2
+	mappingsTableEntry.w DPLC_Tails_4F6
+	mappingsTableEntry.w DPLC_Tails_4FA
+	mappingsTableEntry.w DPLC_Tails_4FE
+	mappingsTableEntry.w DPLC_Tails_504
+	mappingsTableEntry.w DPLC_Tails_508
+	mappingsTableEntry.w DPLC_Tails_50C
+	mappingsTableEntry.w DPLC_Tails_510
+	mappingsTableEntry.w DPLC_Tails_516
+	mappingsTableEntry.w DPLC_Tails_51C
+	mappingsTableEntry.w DPLC_Tails_522
+	mappingsTableEntry.w DPLC_Tails_526
+	mappingsTableEntry.w DPLC_Tails_52A
+	mappingsTableEntry.w DPLC_Tails_52E
+	mappingsTableEntry.w DPLC_Tails_532
+	mappingsTableEntry.w DPLC_Tails_536
+	mappingsTableEntry.w DPLC_Tails_53A
+	mappingsTableEntry.w DPLC_Tails_53E
+	mappingsTableEntry.w DPLC_Tails_542
+	mappingsTableEntry.w DPLC_Tails_546
+	mappingsTableEntry.w DPLC_Tails_54A
+	mappingsTableEntry.w DPLC_Tails_54E
+	mappingsTableEntry.w DPLC_Tails_552
+	mappingsTableEntry.w DPLC_Tails_556
+	mappingsTableEntry.w DPLC_Tails_55A
+	mappingsTableEntry.w DPLC_Tails_55E
+	mappingsTableEntry.w DPLC_Tails_562
+	mappingsTableEntry.w DPLC_Tails_566
+	mappingsTableEntry.w DPLC_Tails_56A
+	mappingsTableEntry.w DPLC_Tails_56E
+	mappingsTableEntry.w DPLC_Tails_572
+	mappingsTableEntry.w DPLC_Tails_578
+	mappingsTableEntry.w DPLC_Tails_57E
+	mappingsTableEntry.w DPLC_Tails_584
+	mappingsTableEntry.w DPLC_Tails_58A
+	mappingsTableEntry.w DPLC_Tails_590
+	mappingsTableEntry.w DPLC_Tails_596
+	mappingsTableEntry.w DPLC_Tails_59C
+	mappingsTableEntry.w DPLC_Tails_5A2
+	mappingsTableEntry.w DPLC_Tails_5A8
+	mappingsTableEntry.w DPLC_Tails_5AE
+	mappingsTableEntry.w DPLC_Tails_5B4
+	mappingsTableEntry.w DPLC_Tails_5BA
+	mappingsTableEntry.w DPLC_Tails_5C0
+	mappingsTableEntry.w DPLC_Tails_5C6
+	mappingsTableEntry.w DPLC_Tails_5CA
+	mappingsTableEntry.w DPLC_Tails_5CE
+	mappingsTableEntry.w DPLC_Tails_5D4
+	mappingsTableEntry.w DPLC_Tails_5DA
+	mappingsTableEntry.w DPLC_Tails_5DE
+	mappingsTableEntry.w DPLC_Tails_5E2
+	mappingsTableEntry.w DPLC_Tails_5E6
+	mappingsTableEntry.w DPLC_Tails_5EA
+	mappingsTableEntry.w DPLC_Tails_5EE
+	mappingsTableEntry.w DPLC_Tails_5F2
+	mappingsTableEntry.w DPLC_Tails_5F6
+	mappingsTableEntry.w DPLC_Tails_5FA
+	mappingsTableEntry.w DPLC_Tails_5FE
+	mappingsTableEntry.w DPLC_Tails_602
+	mappingsTableEntry.w DPLC_Tails_606
+	mappingsTableEntry.w DPLC_Tails_60A
+	mappingsTableEntry.w DPLC_Tails_60E
+	mappingsTableEntry.w DPLC_Tails_612
+	mappingsTableEntry.w DPLC_Tails_616
+	mappingsTableEntry.w DPLC_Tails_61A
+	mappingsTableEntry.w DPLC_Tails_61E
+	mappingsTableEntry.w DPLC_Tails_622
+	mappingsTableEntry.w DPLC_Tails_626
+	mappingsTableEntry.w DPLC_Tails_62A
+	mappingsTableEntry.w DPLC_Tails_62E
+	mappingsTableEntry.w DPLC_Tails_632
+	mappingsTableEntry.w DPLC_Tails_636
+	mappingsTableEntry.w DPLC_Tails_63A
+	mappingsTableEntry.w DPLC_Tails_63E
+	mappingsTableEntry.w DPLC_Tails_642
+	mappingsTableEntry.w DPLC_Tails_646
+	mappingsTableEntry.w DPLC_Tails_64A
+	mappingsTableEntry.w DPLC_Tails_64E
+	mappingsTableEntry.w DPLC_Tails_654
+	mappingsTableEntry.w DPLC_Tails_65A
+	mappingsTableEntry.w DPLC_Tails_660
+	mappingsTableEntry.w DPLC_Tails_666
+	mappingsTableEntry.w DPLC_Tails_66C
+	mappingsTableEntry.w DPLC_Tails_672
+	mappingsTableEntry.w DPLC_Tails_678
+	mappingsTableEntry.w DPLC_Tails_67C
+	mappingsTableEntry.w DPLC_Tails_680
+
+DPLC_Tails_1EC:	s3kPlayerDplcHeader
+DPLC_Tails_1EC_End
+
+DPLC_Tails_1EE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $62
+	s3kPlayerDplcEntry	$10, 0
+DPLC_Tails_1EE_End
+
+DPLC_Tails_1F4:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $68
+	s3kPlayerDplcEntry	$F, $10
+DPLC_Tails_1F4_End
+
+DPLC_Tails_1FA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $6E
+	s3kPlayerDplcEntry	$C, $1F
+DPLC_Tails_1FA_End
+
+DPLC_Tails_200:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$F, $2B
+	s3kPlayerDplcEntry	6, $74
+DPLC_Tails_200_End
+
+DPLC_Tails_206:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	2, 0
+	s3kPlayerDplcEntry	$E, $3A
+	s3kPlayerDplcEntry	6, $62
+DPLC_Tails_206_End
+
+DPLC_Tails_20E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	8, $10
+	s3kPlayerDplcEntry	7, $48
+	s3kPlayerDplcEntry	6, $68
+DPLC_Tails_20E_End
+
+DPLC_Tails_216:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $6E
+	s3kPlayerDplcEntry	$C, $4F
+DPLC_Tails_216_End
+
+DPLC_Tails_21C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $74
+	s3kPlayerDplcEntry	8, $2B
+	s3kPlayerDplcEntry	7, $5B
+DPLC_Tails_21C_End
+
+DPLC_Tails_224:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $7A
+DPLC_Tails_224_End
+
+DPLC_Tails_228:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $8A
+	s3kPlayerDplcEntry	5, $9A
+DPLC_Tails_228_End
+
+DPLC_Tails_22E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $9F
+	s3kPlayerDplcEntry	5, $AF
+DPLC_Tails_22E_End
+
+DPLC_Tails_234:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $B4
+	s3kPlayerDplcEntry	3, $C4
+DPLC_Tails_234_End
+
+DPLC_Tails_23A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $C7
+	s3kPlayerDplcEntry	1, $D7
+DPLC_Tails_23A_End
+
+DPLC_Tails_240:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $D8
+	s3kPlayerDplcEntry	2, $E8
+DPLC_Tails_240_End
+
+DPLC_Tails_246:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $EA
+	s3kPlayerDplcEntry	1, $FA
+DPLC_Tails_246_End
+
+DPLC_Tails_24C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$F, $FB
+DPLC_Tails_24C_End
+
+DPLC_Tails_250:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $16D
+	s3kPlayerDplcEntry	$E, $10A
+DPLC_Tails_250_End
+
+DPLC_Tails_256:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $173
+	s3kPlayerDplcEntry	$D, $118
+DPLC_Tails_256_End
+
+DPLC_Tails_25C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $179
+	s3kPlayerDplcEntry	$B, $125
+DPLC_Tails_25C_End
+
+DPLC_Tails_262:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $130
+	s3kPlayerDplcEntry	6, $17F
+DPLC_Tails_262_End
+
+DPLC_Tails_268:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $16D
+	s3kPlayerDplcEntry	$E, $13C
+DPLC_Tails_268_End
+
+DPLC_Tails_26E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $173
+	s3kPlayerDplcEntry	$C, $14A
+DPLC_Tails_26E_End
+
+DPLC_Tails_274:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $179
+	s3kPlayerDplcEntry	$B, $156
+DPLC_Tails_274_End
+
+DPLC_Tails_27A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $17F
+	s3kPlayerDplcEntry	$C, $161
+DPLC_Tails_27A_End
+
+DPLC_Tails_280:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $185
+	s3kPlayerDplcEntry	1, $195
+DPLC_Tails_280_End
+
+DPLC_Tails_286:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $196
+	s3kPlayerDplcEntry	4, $1A6
+DPLC_Tails_286_End
+
+DPLC_Tails_28C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $1AA
+	s3kPlayerDplcEntry	4, $1BA
+DPLC_Tails_28C_End
+
+DPLC_Tails_292:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $1BE
+	s3kPlayerDplcEntry	3, $1CE
+DPLC_Tails_292_End
+
+DPLC_Tails_298:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $1D1
+	s3kPlayerDplcEntry	1, $1E1
+DPLC_Tails_298_End
+
+DPLC_Tails_29E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $1E2
+	s3kPlayerDplcEntry	1, $1F2
+DPLC_Tails_29E_End
+
+DPLC_Tails_2A4:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $1F3
+	s3kPlayerDplcEntry	1, $203
+DPLC_Tails_2A4_End
+
+DPLC_Tails_2AA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$F, $204
+DPLC_Tails_2AA_End
+
+DPLC_Tails_2AE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $213
+	s3kPlayerDplcEntry	8, $22B
+DPLC_Tails_2AE_End
+
+DPLC_Tails_2B4:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $21F
+	s3kPlayerDplcEntry	4, $235
+DPLC_Tails_2B4_End
+
+DPLC_Tails_2BA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $213
+	s3kPlayerDplcEntry	2, $233
+DPLC_Tails_2BA_End
+
+DPLC_Tails_2C0:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $21F
+	s3kPlayerDplcEntry	4, $235
+DPLC_Tails_2C0_End
+
+DPLC_Tails_2C6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $241
+	s3kPlayerDplcEntry	$C, $259
+DPLC_Tails_2C6_End
+
+DPLC_Tails_2CC:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $24D
+	s3kPlayerDplcEntry	6, $265
+DPLC_Tails_2CC_End
+
+DPLC_Tails_2D2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $241
+	s3kPlayerDplcEntry	4, $26B
+DPLC_Tails_2D2_End
+
+DPLC_Tails_2D8:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	6, $26F
+	s3kPlayerDplcEntry	4, $255
+	s3kPlayerDplcEntry	6, $24F
+	s3kPlayerDplcEntry	2, $24D
+DPLC_Tails_2D8_End
+
+DPLC_Tails_2E2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $287
+	s3kPlayerDplcEntry	8, $29F
+DPLC_Tails_2E2_End
+
+DPLC_Tails_2E8:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $293
+	s3kPlayerDplcEntry	4, $2A9
+DPLC_Tails_2E8_End
+
+DPLC_Tails_2EE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $287
+	s3kPlayerDplcEntry	2, $2A7
+DPLC_Tails_2EE_End
+
+DPLC_Tails_2F4:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $287
+	s3kPlayerDplcEntry	4, $2A9
+DPLC_Tails_2F4_End
+
+DPLC_Tails_2FA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $2B5
+	s3kPlayerDplcEntry	$C, $2CD
+DPLC_Tails_2FA_End
+
+DPLC_Tails_300:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $2C1
+	s3kPlayerDplcEntry	6, $2D9
+DPLC_Tails_300_End
+
+DPLC_Tails_306:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	4, $2DF
+	s3kPlayerDplcEntry	$C, $2B5
+DPLC_Tails_306_End
+
+DPLC_Tails_30C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $2C1
+	s3kPlayerDplcEntry	6, $2E3
+DPLC_Tails_30C_End
+
+DPLC_Tails_312:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $2E9
+DPLC_Tails_312_End
+
+DPLC_Tails_316:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $2F5
+DPLC_Tails_316_End
+
+DPLC_Tails_31A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $303
+DPLC_Tails_31A_End
+
+DPLC_Tails_31E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	9, $30F
+DPLC_Tails_31E_End
+
+DPLC_Tails_322:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $318
+DPLC_Tails_322_End
+
+DPLC_Tails_326:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $322
+DPLC_Tails_326_End
+
+DPLC_Tails_32A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $32D
+DPLC_Tails_32A_End
+
+DPLC_Tails_32E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $338
+DPLC_Tails_32E_End
+
+DPLC_Tails_332:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $343
+DPLC_Tails_332_End
+
+DPLC_Tails_336:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	8, $34E
+DPLC_Tails_336_End
+
+DPLC_Tails_33A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $356
+DPLC_Tails_33A_End
+
+DPLC_Tails_33E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $360
+DPLC_Tails_33E_End
+
+DPLC_Tails_342:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $3D8
+DPLC_Tails_342_End
+
+DPLC_Tails_346:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $3CE
+DPLC_Tails_346_End
+
+DPLC_Tails_34A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	9, $3C5
+DPLC_Tails_34A_End
+
+DPLC_Tails_34E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $3BB
+DPLC_Tails_34E_End
+
+DPLC_Tails_352:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $3AF
+DPLC_Tails_352_End
+
+DPLC_Tails_356:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $3A3
+DPLC_Tails_356_End
+
+DPLC_Tails_35A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $398
+DPLC_Tails_35A_End
+
+DPLC_Tails_35E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $38E
+DPLC_Tails_35E_End
+
+DPLC_Tails_362:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	7, $387
+DPLC_Tails_362_End
+
+DPLC_Tails_366:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	8, $37F
+DPLC_Tails_366_End
+
+DPLC_Tails_36A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $375
+DPLC_Tails_36A_End
+
+DPLC_Tails_36E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $36A
+DPLC_Tails_36E_End
+
+DPLC_Tails_372:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $3E3
+DPLC_Tails_372_End
+
+DPLC_Tails_376:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $3EF
+DPLC_Tails_376_End
+
+DPLC_Tails_37A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	9, $3FA
+DPLC_Tails_37A_End
+
+DPLC_Tails_37E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $403
+DPLC_Tails_37E_End
+
+DPLC_Tails_382:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $40E
+DPLC_Tails_382_End
+
+DPLC_Tails_386:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $418
+DPLC_Tails_386_End
+
+DPLC_Tails_38A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $425
+DPLC_Tails_38A_End
+
+DPLC_Tails_38E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $433
+DPLC_Tails_38E_End
+
+DPLC_Tails_392:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $440
+DPLC_Tails_392_End
+
+DPLC_Tails_396:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	8, $44A
+DPLC_Tails_396_End
+
+DPLC_Tails_39A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $452
+DPLC_Tails_39A_End
+
+DPLC_Tails_39E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $45D
+DPLC_Tails_39E_End
+
+DPLC_Tails_3A2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $468
+DPLC_Tails_3A2_End
+
+DPLC_Tails_3A6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $475
+DPLC_Tails_3A6_End
+
+DPLC_Tails_3AA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $481
+DPLC_Tails_3AA_End
+
+DPLC_Tails_3AE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $48B
+DPLC_Tails_3AE_End
+
+DPLC_Tails_3B2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $497
+DPLC_Tails_3B2_End
+
+DPLC_Tails_3B6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $4A3
+DPLC_Tails_3B6_End
+
+DPLC_Tails_3BA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $4AD
+DPLC_Tails_3BA_End
+
+DPLC_Tails_3BE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $4B9
+	s3kPlayerDplcEntry	1, $4C9
+DPLC_Tails_3BE_End
+
+DPLC_Tails_3C4:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $4CA
+DPLC_Tails_3C4_End
+
+DPLC_Tails_3C8:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $4D6
+DPLC_Tails_3C8_End
+
+DPLC_Tails_3CC:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $4E4
+	s3kPlayerDplcEntry	2, $4F4
+DPLC_Tails_3CC_End
+
+DPLC_Tails_3D2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $4F6
+DPLC_Tails_3D2_End
+
+DPLC_Tails_3D6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $502
+DPLC_Tails_3D6_End
+
+DPLC_Tails_3DA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $50E
+DPLC_Tails_3DA_End
+
+DPLC_Tails_3DE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $51B
+	s3kPlayerDplcEntry	1, $52B
+DPLC_Tails_3DE_End
+
+DPLC_Tails_3E4:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $52C
+DPLC_Tails_3E4_End
+
+DPLC_Tails_3E8:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$F, $538
+DPLC_Tails_3E8_End
+
+DPLC_Tails_3EC:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $547
+	s3kPlayerDplcEntry	2, $557
+DPLC_Tails_3EC_End
+
+DPLC_Tails_3F2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $559
+DPLC_Tails_3F2_End
+
+DPLC_Tails_3F6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $565
+DPLC_Tails_3F6_End
+
+DPLC_Tails_3FA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $571
+DPLC_Tails_3FA_End
+
+DPLC_Tails_3FE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $581
+DPLC_Tails_3FE_End
+
+DPLC_Tails_402:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $58E
+DPLC_Tails_402_End
+
+DPLC_Tails_406:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $599
+DPLC_Tails_406_End
+
+DPLC_Tails_40A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $5A4
+DPLC_Tails_40A_End
+
+DPLC_Tails_40E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $5AF
+DPLC_Tails_40E_End
+
+DPLC_Tails_412:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	8, $5BA
+DPLC_Tails_412_End
+
+DPLC_Tails_416:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $5C2
+DPLC_Tails_416_End
+
+DPLC_Tails_41A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $5CC
+DPLC_Tails_41A_End
+
+DPLC_Tails_41E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $5D7
+DPLC_Tails_41E_End
+
+DPLC_Tails_422:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $5E3
+DPLC_Tails_422_End
+
+DPLC_Tails_426:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $5F1
+DPLC_Tails_426_End
+
+DPLC_Tails_42A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	9, $5FD
+DPLC_Tails_42A_End
+
+DPLC_Tails_42E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $606
+DPLC_Tails_42E_End
+
+DPLC_Tails_432:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $611
+DPLC_Tails_432_End
+
+DPLC_Tails_436:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $61C
+	s3kPlayerDplcEntry	1, $62C
+DPLC_Tails_436_End
+
+DPLC_Tails_43C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $62D
+DPLC_Tails_43C_End
+
+DPLC_Tails_440:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $63D
+	s3kPlayerDplcEntry	1, $64D
+DPLC_Tails_440_End
+
+DPLC_Tails_446:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $64E
+DPLC_Tails_446_End
+
+DPLC_Tails_44A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $61C
+	s3kPlayerDplcEntry	1, $62C
+DPLC_Tails_44A_End
+
+DPLC_Tails_450:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $62D
+DPLC_Tails_450_End
+
+DPLC_Tails_454:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	7, $63D
+	s3kPlayerDplcEntry	6, $65E
+	s3kPlayerDplcEntry	4, $64A
+DPLC_Tails_454_End
+
+DPLC_Tails_45C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $64E
+DPLC_Tails_45C_End
+
+DPLC_Tails_460:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $664
+	s3kPlayerDplcEntry	1, $674
+DPLC_Tails_460_End
+
+DPLC_Tails_466:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $675
+	s3kPlayerDplcEntry	5, $685
+DPLC_Tails_466_End
+
+DPLC_Tails_46C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $68A
+	s3kPlayerDplcEntry	3, $69A
+DPLC_Tails_46C_End
+
+DPLC_Tails_472:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $69D
+	s3kPlayerDplcEntry	4, $6AD
+DPLC_Tails_472_End
+
+DPLC_Tails_478:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $6B1
+	s3kPlayerDplcEntry	2, $6C1
+DPLC_Tails_478_End
+
+DPLC_Tails_47E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $6C3
+	s3kPlayerDplcEntry	1, $6D3
+DPLC_Tails_47E_End
+
+DPLC_Tails_484:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $6D4
+DPLC_Tails_484_End
+
+DPLC_Tails_488:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $6DE
+DPLC_Tails_488_End
+
+DPLC_Tails_48C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $6E9
+DPLC_Tails_48C_End
+
+DPLC_Tails_490:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $6F3
+DPLC_Tails_490_End
+
+DPLC_Tails_494:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $703
+DPLC_Tails_494_End
+
+DPLC_Tails_498:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $713
+DPLC_Tails_498_End
+
+DPLC_Tails_49C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	4, $713
+	s3kPlayerDplcEntry	$C, $723
+DPLC_Tails_49C_End
+
+DPLC_Tails_4A2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $72F
+DPLC_Tails_4A2_End
+
+DPLC_Tails_4A6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $7D6
+DPLC_Tails_4A6_End
+
+DPLC_Tails_4AA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $7E3
+DPLC_Tails_4AA_End
+
+DPLC_Tails_4AE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $73D
+DPLC_Tails_4AE_End
+
+DPLC_Tails_4B2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $74B
+DPLC_Tails_4B2_End
+
+DPLC_Tails_4B6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $759
+DPLC_Tails_4B6_End
+
+DPLC_Tails_4BA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	9, $767
+DPLC_Tails_4BA_End
+
+DPLC_Tails_4BE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	8, $770
+	s3kPlayerDplcEntry	$F, $77E
+DPLC_Tails_4BE_End
+
+DPLC_Tails_4C4:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $778
+	s3kPlayerDplcEntry	5, $788
+DPLC_Tails_4C4_End
+
+DPLC_Tails_4CA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $78D
+DPLC_Tails_4CA_End
+
+DPLC_Tails_4CE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $79D
+DPLC_Tails_4CE_End
+
+DPLC_Tails_4D2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $7AD
+DPLC_Tails_4D2_End
+
+DPLC_Tails_4D6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	9, $7CD
+DPLC_Tails_4D6_End
+
+DPLC_Tails_4DA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $7F0
+DPLC_Tails_4DA_End
+
+DPLC_Tails_4DE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $7FD
+DPLC_Tails_4DE_End
+
+DPLC_Tails_4E2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $7BD
+DPLC_Tails_4E2_End
+
+DPLC_Tails_4E6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $80A
+	s3kPlayerDplcEntry	1, $81A
+DPLC_Tails_4E6_End
+
+DPLC_Tails_4EC:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $81B
+	s3kPlayerDplcEntry	1, $82B
+DPLC_Tails_4EC_End
+
+DPLC_Tails_4F2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $82C
+DPLC_Tails_4F2_End
+
+DPLC_Tails_4F6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$F, $83A
+DPLC_Tails_4F6_End
+
+DPLC_Tails_4FA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$F, $849
+DPLC_Tails_4FA_End
+
+DPLC_Tails_4FE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	3, $83A
+	s3kPlayerDplcEntry	$C, $858
+DPLC_Tails_4FE_End
+
+DPLC_Tails_504:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$F, $864
+DPLC_Tails_504_End
+
+DPLC_Tails_508:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$F, $873
+DPLC_Tails_508_End
+
+DPLC_Tails_50C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $882
+DPLC_Tails_50C_End
+
+DPLC_Tails_510:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $88E
+	s3kPlayerDplcEntry	2, $89E
+DPLC_Tails_510_End
+
+DPLC_Tails_516:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $9D5
+	s3kPlayerDplcEntry	1, $9E5
+DPLC_Tails_516_End
+
+DPLC_Tails_51C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $9E6
+	s3kPlayerDplcEntry	1, $9F6
+DPLC_Tails_51C_End
+
+DPLC_Tails_522:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $8A0
+DPLC_Tails_522_End
+
+DPLC_Tails_526:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $8AD
+DPLC_Tails_526_End
+
+DPLC_Tails_52A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $8B9
+DPLC_Tails_52A_End
+
+DPLC_Tails_52E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $8C5
+DPLC_Tails_52E_End
+
+DPLC_Tails_532:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $8D1
+DPLC_Tails_532_End
+
+DPLC_Tails_536:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $8DD
+DPLC_Tails_536_End
+
+DPLC_Tails_53A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $8E9
+DPLC_Tails_53A_End
+
+DPLC_Tails_53E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $8F5
+DPLC_Tails_53E_End
+
+DPLC_Tails_542:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $901
+DPLC_Tails_542_End
+
+DPLC_Tails_546:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $90D
+DPLC_Tails_546_End
+
+DPLC_Tails_54A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $919
+DPLC_Tails_54A_End
+
+DPLC_Tails_54E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $925
+DPLC_Tails_54E_End
+
+DPLC_Tails_552:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $931
+DPLC_Tails_552_End
+
+DPLC_Tails_556:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $93E
+DPLC_Tails_556_End
+
+DPLC_Tails_55A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $94B
+DPLC_Tails_55A_End
+
+DPLC_Tails_55E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $93E
+DPLC_Tails_55E_End
+
+DPLC_Tails_562:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $931
+DPLC_Tails_562_End
+
+DPLC_Tails_566:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $957
+DPLC_Tails_566_End
+
+DPLC_Tails_56A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$A, $963
+DPLC_Tails_56A_End
+
+DPLC_Tails_56E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $957
+DPLC_Tails_56E_End
+
+DPLC_Tails_572:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $96D
+	s3kPlayerDplcEntry	1, $97D
+DPLC_Tails_572_End
+
+DPLC_Tails_578:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $97E
+	s3kPlayerDplcEntry	1, $98E
+DPLC_Tails_578_End
+
+DPLC_Tails_57E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $98F
+	s3kPlayerDplcEntry	1, $99F
+DPLC_Tails_57E_End
+
+DPLC_Tails_584:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $9A0
+	s3kPlayerDplcEntry	2, $9B0
+DPLC_Tails_584_End
+
+DPLC_Tails_58A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $9B2
+	s3kPlayerDplcEntry	2, $9C2
+DPLC_Tails_58A_End
+
+DPLC_Tails_590:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $9C4
+	s3kPlayerDplcEntry	1, $9D4
+DPLC_Tails_590_End
+
+DPLC_Tails_596:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $213
+	s3kPlayerDplcEntry	8, $239
+DPLC_Tails_596_End
+
+DPLC_Tails_59C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $21F
+	s3kPlayerDplcEntry	8, $239
+DPLC_Tails_59C_End
+
+DPLC_Tails_5A2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $241
+	s3kPlayerDplcEntry	9, $275
+DPLC_Tails_5A2_End
+
+DPLC_Tails_5A8:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $24D
+	s3kPlayerDplcEntry	9, $27E
+DPLC_Tails_5A8_End
+
+DPLC_Tails_5AE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $287
+	s3kPlayerDplcEntry	8, $2AD
+DPLC_Tails_5AE_End
+
+DPLC_Tails_5B4:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $293
+	s3kPlayerDplcEntry	8, $2AD
+DPLC_Tails_5B4_End
+
+DPLC_Tails_5BA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $2B5
+	s3kPlayerDplcEntry	9, $27E
+DPLC_Tails_5BA_End
+
+DPLC_Tails_5C0:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $2C1
+	s3kPlayerDplcEntry	9, $275
+DPLC_Tails_5C0_End
+
+DPLC_Tails_5C6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $6F3
+DPLC_Tails_5C6_End
+
+DPLC_Tails_5CA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $703
+DPLC_Tails_5CA_End
+
+DPLC_Tails_5CE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $9F7
+	s3kPlayerDplcEntry	1, $9D2
+DPLC_Tails_5CE_End
+
+DPLC_Tails_5D4:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $A05
+	s3kPlayerDplcEntry	1, $9D2
+DPLC_Tails_5D4_End
+
+DPLC_Tails_5DA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $A13
+DPLC_Tails_5DA_End
+
+DPLC_Tails_5DE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $A21
+DPLC_Tails_5DE_End
+
+DPLC_Tails_5E2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_5E2_End
+
+DPLC_Tails_5E6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_5E6_End
+
+DPLC_Tails_5EA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_5EA_End
+
+DPLC_Tails_5EE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_5EE_End
+
+DPLC_Tails_5F2:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_5F2_End
+
+DPLC_Tails_5F6:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_5F6_End
+
+DPLC_Tails_5FA:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_5FA_End
+
+DPLC_Tails_5FE:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_5FE_End
+
+DPLC_Tails_602:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_602_End
+
+DPLC_Tails_606:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_606_End
+
+DPLC_Tails_60A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_60A_End
+
+DPLC_Tails_60E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_60E_End
+
+DPLC_Tails_612:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_612_End
+
+DPLC_Tails_616:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_616_End
+
+DPLC_Tails_61A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, 0
+DPLC_Tails_61A_End
+
+DPLC_Tails_61E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$B, $C
+DPLC_Tails_61E_End
+
+DPLC_Tails_622:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $17
+DPLC_Tails_622_End
+
+DPLC_Tails_626:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $24
+DPLC_Tails_626_End
+
+DPLC_Tails_62A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$F, $31
+DPLC_Tails_62A_End
+
+DPLC_Tails_62E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $40
+DPLC_Tails_62E_End
+
+DPLC_Tails_632:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $50
+DPLC_Tails_632_End
+
+DPLC_Tails_636:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $60
+DPLC_Tails_636_End
+
+DPLC_Tails_63A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $6D
+DPLC_Tails_63A_End
+
+DPLC_Tails_63E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$E, $79
+DPLC_Tails_63E_End
+
+DPLC_Tails_642:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$D, $87
+DPLC_Tails_642_End
+
+DPLC_Tails_646:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$C, $94
+DPLC_Tails_646_End
+
+DPLC_Tails_64A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	9, $A0
+DPLC_Tails_64A_End
+
+DPLC_Tails_64E:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $A9
+	s3kPlayerDplcEntry	1, $B9
+DPLC_Tails_64E_End
+
+DPLC_Tails_654:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $BA
+	s3kPlayerDplcEntry	1, $CA
+DPLC_Tails_654_End
+
+DPLC_Tails_65A:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $BA
+	s3kPlayerDplcEntry	1, $CA
+DPLC_Tails_65A_End
+
+DPLC_Tails_660:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $149
+	s3kPlayerDplcEntry	1, $159
+DPLC_Tails_660_End
+
+DPLC_Tails_666:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $15A
+	s3kPlayerDplcEntry	1, $16A
+DPLC_Tails_666_End
+
+DPLC_Tails_66C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $16B
+	s3kPlayerDplcEntry	1, $17B
+DPLC_Tails_66C_End
+
+DPLC_Tails_672:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $17C
+	s3kPlayerDplcEntry	1, $18C
+DPLC_Tails_672_End
+
+DPLC_Tails_678:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $18D
+DPLC_Tails_678_End
+
+DPLC_Tails_67C:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $19D
+DPLC_Tails_67C_End
+
+DPLC_Tails_680:	s3kPlayerDplcHeader
+	s3kPlayerDplcEntry	$10, $1AD
+DPLC_Tails_680_End
+
 	even

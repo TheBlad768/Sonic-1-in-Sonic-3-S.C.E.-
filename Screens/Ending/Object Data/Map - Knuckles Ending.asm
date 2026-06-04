@@ -2,65 +2,90 @@
 ; Sprite mappings - Knuckles ending
 ; ---------------------------------------------------------------------------
 
-Map_KnucklesEnding:
-Map_KnucklesEnding_0: 	dc.w Map_KnucklesEnding_18-Map_KnucklesEnding
-Map_KnucklesEnding_2: 	dc.w Map_KnucklesEnding_26-Map_KnucklesEnding
-Map_KnucklesEnding_4: 	dc.w Map_KnucklesEnding_3A-Map_KnucklesEnding
-Map_KnucklesEnding_6: 	dc.w Map_KnucklesEnding_54-Map_KnucklesEnding
-Map_KnucklesEnding_8: 	dc.w Map_KnucklesEnding_68-Map_KnucklesEnding
-Map_KnucklesEnding_A: 	dc.w Map_KnucklesEnding_76-Map_KnucklesEnding
-Map_KnucklesEnding_C: 	dc.w Map_KnucklesEnding_8A-Map_KnucklesEnding
-Map_KnucklesEnding_E: 	dc.w Map_KnucklesEnding_98-Map_KnucklesEnding
-Map_KnucklesEnding_10: 	dc.w Map_KnucklesEnding_A6-Map_KnucklesEnding
-Map_KnucklesEnding_12: 	dc.w Map_KnucklesEnding_B4-Map_KnucklesEnding
-Map_KnucklesEnding_14: 	dc.w Map_KnucklesEnding_C8-Map_KnucklesEnding
-Map_KnucklesEnding_16: 	dc.w Map_KnucklesEnding_D6-Map_KnucklesEnding
-Map_KnucklesEnding_18: 	dc.b $0, $2
-	dc.b $EB, $B, $0, $0, $FF, $F4
-	dc.b $B, $9, $0, $C, $FF, $F4
-Map_KnucklesEnding_26: 	dc.b $0, $3
-	dc.b $FB, $D, $0, $0, $FF, $EF
-	dc.b $EB, $B, $0, $8, $FF, $F4
-	dc.b $B, $9, $0, $14, $FF, $F4
-Map_KnucklesEnding_3A: 	dc.b $0, $4
-	dc.b $EC, $B, $0, $0, $FF, $FA
-	dc.b $F4, $5, $0, $C, $FF, $EA
-	dc.b $F4, $2, $0, $10, $0, $12
-	dc.b $C, $8, $0, $13, $FF, $F2
-Map_KnucklesEnding_54: 	dc.b $0, $3
-	dc.b $FF, $E, $0, $0, $FF, $ED
-	dc.b $E7, $A, $0, $C, $FF, $F5
-	dc.b $FF, $0, $0, $15, $0, $D
-Map_KnucklesEnding_68: 	dc.b $0, $2
-	dc.b $EA, $F, $0, $0, $FF, $EF
-	dc.b $A, $D, $0, $10, $FF, $EF
-Map_KnucklesEnding_76: 	dc.b $0, $3
-	dc.b $FF, $E, $0, $0, $FF, $ED
-	dc.b $E7, $A, $0, $C, $FF, $F5
-	dc.b $FF, $0, $0, $15, $0, $D
-Map_KnucklesEnding_8A: 	dc.b $0, $2
-	dc.b $EA, $F, $0, $0, $FF, $EF
-	dc.b $A, $D, $0, $10, $FF, $EF
-Map_KnucklesEnding_98: 	dc.b $0, $2
-	dc.b $EB, $B, $0, $0, $FF, $F2
-	dc.b $B, $D, $0, $C, $FF, $F2
-Map_KnucklesEnding_A6: 	dc.b $0, $2
-	dc.b $ED, $F, $0, $0, $FF, $EC
-	dc.b $D, $8, $0, $10, $FF, $F4
-Map_KnucklesEnding_B4: 	dc.b $0, $3
-	dc.b $DC, $B, $0, $0, $FF, $F0
-	dc.b $FC, $4, $0, $C, $FF, $F8
-	dc.b $E4, $2, $0, $E, $0, $8
-Map_KnucklesEnding_C8: 	dc.b $0, $2
-	dc.b $C8, $F, $0, $0, $FF, $F0
-	dc.b $E8, $4, $0, $10, $0, $0
-Map_KnucklesEnding_D6: 	dc.b $0, $8
-	dc.b $84, $F, $0, $0, $0, $0
-	dc.b $84, $5, $0, $10, $FF, $F0
-	dc.b $94, $F, $0, $14, $FF, $E0
-	dc.b $A4, $D, $0, $24, $0, $0
-	dc.b $B4, $F, $0, $2C, $FF, $E0
-	dc.b $B4, $6, $0, $3C, $0, $0
-	dc.b $CC, $9, $0, $42, $0, $0
-	dc.b $D4, $6, $0, $48, $FF, $F0
+Map_KnucklesEnding:	mappingsTable
+	mappingsTableEntry.w Map_KnucklesEnding_18
+	mappingsTableEntry.w Map_KnucklesEnding_26
+	mappingsTableEntry.w Map_KnucklesEnding_3A
+	mappingsTableEntry.w Map_KnucklesEnding_54
+	mappingsTableEntry.w Map_KnucklesEnding_68
+	mappingsTableEntry.w Map_KnucklesEnding_76
+	mappingsTableEntry.w Map_KnucklesEnding_8A
+	mappingsTableEntry.w Map_KnucklesEnding_98
+	mappingsTableEntry.w Map_KnucklesEnding_A6
+	mappingsTableEntry.w Map_KnucklesEnding_B4
+	mappingsTableEntry.w Map_KnucklesEnding_C8
+	mappingsTableEntry.w Map_KnucklesEnding_D6
+
+Map_KnucklesEnding_18:	spriteHeader
+	spritePiece	-$C, -$15, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-$C, $B, 3, 2, $C, 0, 0, 0, 0
+Map_KnucklesEnding_18_End
+
+Map_KnucklesEnding_26:	spriteHeader
+	spritePiece	-$11, -5, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$C, -$15, 3, 4, 8, 0, 0, 0, 0
+	spritePiece	-$C, $B, 3, 2, $14, 0, 0, 0, 0
+Map_KnucklesEnding_26_End
+
+Map_KnucklesEnding_3A:	spriteHeader
+	spritePiece	-6, -$14, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-$16, -$C, 2, 2, $C, 0, 0, 0, 0
+	spritePiece	$12, -$C, 1, 3, $10, 0, 0, 0, 0
+	spritePiece	-$E, $C, 3, 1, $13, 0, 0, 0, 0
+Map_KnucklesEnding_3A_End
+
+Map_KnucklesEnding_54:	spriteHeader
+	spritePiece	-$13, -1, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$B, -$19, 3, 3, $C, 0, 0, 0, 0
+	spritePiece	$D, -1, 1, 1, $15, 0, 0, 0, 0
+Map_KnucklesEnding_54_End
+
+Map_KnucklesEnding_68:	spriteHeader
+	spritePiece	-$11, -$16, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	-$11, $A, 4, 2, $10, 0, 0, 0, 0
+Map_KnucklesEnding_68_End
+
+Map_KnucklesEnding_76:	spriteHeader
+	spritePiece	-$13, -1, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$B, -$19, 3, 3, $C, 0, 0, 0, 0
+	spritePiece	$D, -1, 1, 1, $15, 0, 0, 0, 0
+Map_KnucklesEnding_76_End
+
+Map_KnucklesEnding_8A:	spriteHeader
+	spritePiece	-$11, -$16, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	-$11, $A, 4, 2, $10, 0, 0, 0, 0
+Map_KnucklesEnding_8A_End
+
+Map_KnucklesEnding_98:	spriteHeader
+	spritePiece	-$E, -$15, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-$E, $B, 4, 2, $C, 0, 0, 0, 0
+Map_KnucklesEnding_98_End
+
+Map_KnucklesEnding_A6:	spriteHeader
+	spritePiece	-$14, -$13, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	-$C, $D, 3, 1, $10, 0, 0, 0, 0
+Map_KnucklesEnding_A6_End
+
+Map_KnucklesEnding_B4:	spriteHeader
+	spritePiece	-$10, -$24, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-8, -4, 2, 1, $C, 0, 0, 0, 0
+	spritePiece	8, -$1C, 1, 3, $E, 0, 0, 0, 0
+Map_KnucklesEnding_B4_End
+
+Map_KnucklesEnding_C8:	spriteHeader
+	spritePiece	-$10, -$38, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	0, -$18, 2, 1, $10, 0, 0, 0, 0
+Map_KnucklesEnding_C8_End
+
+Map_KnucklesEnding_D6:	spriteHeader
+	spritePiece	0, -$7C, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$7C, 2, 2, $10, 0, 0, 0, 0
+	spritePiece	-$20, -$6C, 4, 4, $14, 0, 0, 0, 0
+	spritePiece	0, -$5C, 4, 2, $24, 0, 0, 0, 0
+	spritePiece	-$20, -$4C, 4, 4, $2C, 0, 0, 0, 0
+	spritePiece	0, -$4C, 2, 3, $3C, 0, 0, 0, 0
+	spritePiece	0, -$34, 3, 2, $42, 0, 0, 0, 0
+	spritePiece	-$10, -$2C, 2, 3, $48, 0, 0, 0, 0
+Map_KnucklesEnding_D6_End
+
 	even

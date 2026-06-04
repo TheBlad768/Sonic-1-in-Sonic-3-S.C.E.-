@@ -1,15 +1,26 @@
-Map_RobotnikShipStand:
-Map_RobotnikShipStand_0: 	dc.w Map_RobotnikShipStand_6-Map_RobotnikShipStand
-Map_RobotnikShipStand_2: 	dc.w Map_RobotnikShipStand_1A-Map_RobotnikShipStand
-Map_RobotnikShipStand_4: 	dc.w Map_RobotnikShipStand_28-Map_RobotnikShipStand
-Map_RobotnikShipStand_6: 	dc.b $0, $3
-	dc.b $F6, $E, $0, $0, $FF, $F8
-	dc.b $F6, $6, $0, $C, $FF, $E8
-	dc.b $6, $0, $0, $12, $FF, $E0
-Map_RobotnikShipStand_1A: 	dc.b $0, $2
-	dc.b $F6, $D, $0, $13, $FF, $E9
-	dc.b $F6, $5, $0, $1B, $0, $9
-Map_RobotnikShipStand_28: 	dc.b $0, $2
-	dc.b $F6, $D, $0, $1F, $FF, $E5
-	dc.b $F6, $5, $0, $27, $0, $5
+; ---------------------------------------------------------------------------
+; Sprite mappings - Robotnik ship stand (boss levels)
+; ---------------------------------------------------------------------------
+
+Map_RobotnikShipStand:	mappingsTable
+	mappingsTableEntry.w Map_RobotnikShipStand_6
+	mappingsTableEntry.w Map_RobotnikShipStand_1A
+	mappingsTableEntry.w Map_RobotnikShipStand_28
+
+Map_RobotnikShipStand_6:	spriteHeader
+	spritePiece	-8, -$A, 4, 3, 0, 0, 0, 0, 0
+	spritePiece	-$18, -$A, 2, 3, $C, 0, 0, 0, 0
+	spritePiece	-$20, 6, 1, 1, $12, 0, 0, 0, 0
+Map_RobotnikShipStand_6_End
+
+Map_RobotnikShipStand_1A:	spriteHeader
+	spritePiece	-$17, -$A, 4, 2, $13, 0, 0, 0, 0
+	spritePiece	9, -$A, 2, 2, $1B, 0, 0, 0, 0
+Map_RobotnikShipStand_1A_End
+
+Map_RobotnikShipStand_28:	spriteHeader
+	spritePiece	-$1B, -$A, 4, 2, $1F, 0, 0, 0, 0
+	spritePiece	5, -$A, 2, 2, $27, 0, 0, 0, 0
+Map_RobotnikShipStand_28_End
+
 	even

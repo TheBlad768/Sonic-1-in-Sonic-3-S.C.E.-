@@ -2,35 +2,56 @@
 ; Sprite mappings - lava balls (MZ, SLZ)
 ; ---------------------------------------------------------------------------
 
-Map_LavaBall:
-Map_LavaBall_0: 	dc.w Map_LavaBall_14-Map_LavaBall
-Map_LavaBall_2: 	dc.w Map_LavaBall_1C-Map_LavaBall
-Map_LavaBall_4: 	dc.w Map_LavaBall_24-Map_LavaBall
-Map_LavaBall_6: 	dc.w Map_LavaBall_2C-Map_LavaBall
-Map_LavaBall_8: 	dc.w Map_LavaBall_34-Map_LavaBall
-Map_LavaBall_A: 	dc.w Map_LavaBall_3C-Map_LavaBall
-Map_LavaBall_C: 	dc.w Map_LavaBall_44-Map_LavaBall
-Map_LavaBall_E: 	dc.w Map_LavaBall_4C-Map_LavaBall
-Map_LavaBall_10: 	dc.w Map_LavaBall_54-Map_LavaBall
-Map_LavaBall_12: 	dc.w Map_LavaBall_5C-Map_LavaBall
-Map_LavaBall_14: 	dc.b $0, $1
-	dc.b $E8, $7, $0, $0, $FF, $F8
-Map_LavaBall_1C: 	dc.b $0, $1
-	dc.b $E8, $7, $8, $0, $FF, $F8
-Map_LavaBall_24: 	dc.b $0, $1
-	dc.b $E8, $7, $0, $8, $FF, $F8
-Map_LavaBall_2C: 	dc.b $0, $1
-	dc.b $E8, $7, $8, $8, $FF, $F8
-Map_LavaBall_34: 	dc.b $0, $1
-	dc.b $F0, $6, $0, $10, $FF, $F8
-Map_LavaBall_3C: 	dc.b $0, $1
-	dc.b $F8, $D, $0, $16, $FF, $E8
-Map_LavaBall_44: 	dc.b $0, $1
-	dc.b $F8, $D, $10, $16, $FF, $E8
-Map_LavaBall_4C: 	dc.b $0, $1
-	dc.b $F8, $D, $0, $1E, $FF, $E8
-Map_LavaBall_54: 	dc.b $0, $1
-	dc.b $F8, $D, $10, $1E, $FF, $E8
-Map_LavaBall_5C: 	dc.b $0, $1
-	dc.b $F8, $9, $0, $26, $FF, $F0
+Map_LavaBall:	mappingsTable
+	mappingsTableEntry.w Map_LavaBall_14
+	mappingsTableEntry.w Map_LavaBall_1C
+	mappingsTableEntry.w Map_LavaBall_24
+	mappingsTableEntry.w Map_LavaBall_2C
+	mappingsTableEntry.w Map_LavaBall_34
+	mappingsTableEntry.w Map_LavaBall_3C
+	mappingsTableEntry.w Map_LavaBall_44
+	mappingsTableEntry.w Map_LavaBall_4C
+	mappingsTableEntry.w Map_LavaBall_54
+	mappingsTableEntry.w Map_LavaBall_5C
+
+Map_LavaBall_14:	spriteHeader
+	spritePiece	-8, -$18, 2, 4, 0, 0, 0, 0, 0
+Map_LavaBall_14_End
+
+Map_LavaBall_1C:	spriteHeader
+	spritePiece	-8, -$18, 2, 4, 0, 1, 0, 0, 0
+Map_LavaBall_1C_End
+
+Map_LavaBall_24:	spriteHeader
+	spritePiece	-8, -$18, 2, 4, 8, 0, 0, 0, 0
+Map_LavaBall_24_End
+
+Map_LavaBall_2C:	spriteHeader
+	spritePiece	-8, -$18, 2, 4, 8, 1, 0, 0, 0
+Map_LavaBall_2C_End
+
+Map_LavaBall_34:	spriteHeader
+	spritePiece	-8, -$10, 2, 3, $10, 0, 0, 0, 0
+Map_LavaBall_34_End
+
+Map_LavaBall_3C:	spriteHeader
+	spritePiece	-$18, -8, 4, 2, $16, 0, 0, 0, 0
+Map_LavaBall_3C_End
+
+Map_LavaBall_44:	spriteHeader
+	spritePiece	-$18, -8, 4, 2, $16, 0, 1, 0, 0
+Map_LavaBall_44_End
+
+Map_LavaBall_4C:	spriteHeader
+	spritePiece	-$18, -8, 4, 2, $1E, 0, 0, 0, 0
+Map_LavaBall_4C_End
+
+Map_LavaBall_54:	spriteHeader
+	spritePiece	-$18, -8, 4, 2, $1E, 0, 1, 0, 0
+Map_LavaBall_54_End
+
+Map_LavaBall_5C:	spriteHeader
+	spritePiece	-$10, -8, 3, 2, $26, 0, 0, 0, 0
+Map_LavaBall_5C_End
+
 	even

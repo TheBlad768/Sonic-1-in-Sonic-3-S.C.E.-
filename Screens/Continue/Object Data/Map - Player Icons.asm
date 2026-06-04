@@ -1,31 +1,54 @@
-Map_ContinueIcons:
-		dc.w word_5CD12-Map_ContinueIcons
-		dc.w word_5CD20-Map_ContinueIcons
-		dc.w word_5CD2E-Map_ContinueIcons
-		dc.w word_5CD36-Map_ContinueIcons
-		dc.w word_5CD3E-Map_ContinueIcons
-		dc.w word_5CD46-Map_ContinueIcons
-		dc.w word_5CD4E-Map_ContinueIcons
-		dc.w word_5CD56-Map_ContinueIcons
-		dc.w word_5CD5E-Map_ContinueIcons
-word_5CD12:	dc.w 2
-		dc.b $F4, 5, 0, 0, $FF, $F4
-		dc.b 4, 8, 0, 4, $FF, $F4
-word_5CD20:	dc.w 2
-		dc.b $F4, 5, 0, 0, $FF, $F4
-		dc.b 4, 8, 0, 7, $FF, $F4
-word_5CD2E:	dc.w 1
-		dc.b $F4, 6, 0, $A, $FF, $F8
-word_5CD36:	dc.w 1
-		dc.b $F4, 6, 0, $10, $FF, $F8
-word_5CD3E:	dc.w 1
-		dc.b $FC, 5, 0, $16, $FF, $F2
-word_5CD46:	dc.w 1
-		dc.b $FC, 5, 0, $1A, $FF, $F2
-word_5CD4E:	dc.w 1
-		dc.b $FC, 5, 0, $1E, $FF, $F2
-word_5CD56:	dc.w 1
-		dc.b $F4, 6, 0, $22, $FF, $F8
-word_5CD5E:	dc.w 1
-		dc.b $F4, 6, 0, $28, $FF, $F8
+; ---------------------------------------------------------------------------
+; Sprite mappings - continue icons
+; ---------------------------------------------------------------------------
+
+Map_ContinueIcons:	mappingsTable
+	mappingsTableEntry.w word_5CD12
+	mappingsTableEntry.w word_5CD20
+	mappingsTableEntry.w word_5CD2E
+	mappingsTableEntry.w word_5CD36
+	mappingsTableEntry.w word_5CD3E
+	mappingsTableEntry.w word_5CD46
+	mappingsTableEntry.w word_5CD4E
+	mappingsTableEntry.w word_5CD56
+	mappingsTableEntry.w word_5CD5E
+
+word_5CD12:	spriteHeader
+	spritePiece	-$C, -$C, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$C, 4, 3, 1, 4, 0, 0, 0, 0
+word_5CD12_End
+
+word_5CD20:	spriteHeader
+	spritePiece	-$C, -$C, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$C, 4, 3, 1, 7, 0, 0, 0, 0
+word_5CD20_End
+
+word_5CD2E:	spriteHeader
+	spritePiece	-8, -$C, 2, 3, $A, 0, 0, 0, 0
+word_5CD2E_End
+
+word_5CD36:	spriteHeader
+	spritePiece	-8, -$C, 2, 3, $10, 0, 0, 0, 0
+word_5CD36_End
+
+word_5CD3E:	spriteHeader
+	spritePiece	-$E, -4, 2, 2, $16, 0, 0, 0, 0
+word_5CD3E_End
+
+word_5CD46:	spriteHeader
+	spritePiece	-$E, -4, 2, 2, $1A, 0, 0, 0, 0
+word_5CD46_End
+
+word_5CD4E:	spriteHeader
+	spritePiece	-$E, -4, 2, 2, $1E, 0, 0, 0, 0
+word_5CD4E_End
+
+word_5CD56:	spriteHeader
+	spritePiece	-8, -$C, 2, 3, $22, 0, 0, 0, 0
+word_5CD56_End
+
+word_5CD5E:	spriteHeader
+	spritePiece	-8, -$C, 2, 3, $28, 0, 0, 0, 0
+word_5CD5E_End
+
 	even

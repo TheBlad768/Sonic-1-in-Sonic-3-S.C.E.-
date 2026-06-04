@@ -2,42 +2,46 @@
 ; Sprite mappings - stomper and platforms (SBZ)
 ; ---------------------------------------------------------------------------
 
-Map_Stomp:
-		dc.w Map_Stomp_A-Map_Stomp
-		dc.w Map_Stomp_24-Map_Stomp
-		dc.w Map_Stomp_24-Map_Stomp
-		dc.w Map_Stomp_24-Map_Stomp
-		dc.w Map_Stomp_BA-Map_Stomp
-Map_Stomp_A:
-		dc.b 0, 4
-		dc.b $F4, $E, $20, $DD, $FF, $C0
-		dc.b $F4, $E, $20, $E0, $FF, $E0
-		dc.b $F4, $E, $20, $E0, 0, 0
-		dc.b $F4, $E, $28, $DD, 0, $20
-Map_Stomp_24:
-		dc.b 0, 8
-		dc.b $E0, $C, 0, $C, $FF, $E4
-		dc.b $E0, 8, 0, $10, 0, 4
-		dc.b $E8, $E, $20, $13, $FF, $E4
-		dc.b $E8, $A, $20, $1F, 0, 4
-		dc.b 0, $E, $20, $13, $FF, $E4
-		dc.b 0, $A, $20, $1F, 0, 4
-		dc.b $18, $C, 0, $C, $FF, $E4
-		dc.b $18, 8, 0, $10, 0, 4
-Map_Stomp_BA:
-		dc.b 0, $E
-		dc.b $C0, $F, 0, 0, $FF, $80
-		dc.b $C0, $F, 0, $10, $FF, $A0
-		dc.b $C0, $F, 0, $20, $FF, $C0
-		dc.b $C0, $F, 0, $10, $FF, $E0
-		dc.b $C0, $F, 0, $20, 0, 0
-		dc.b $C0, $F, 0, $10, 0, $20
-		dc.b $C0, $F, 0, $30, 0, $40
-		dc.b $C0, $D, 0, $40, 0, $60
-		dc.b $E0, $F, 0, $48, $FF, $80
-		dc.b $E0, $F, 0, $48, $FF, $C0
-		dc.b $E0, $F, 0, $58, 0, 0
-		dc.b 0, $F, 0, $48, $FF, $80
-		dc.b 0, $F, 0, $58, $FF, $C0
-		dc.b $20, $F, 0, $58, $FF, $80
+Map_Stomp:	mappingsTable
+	mappingsTableEntry.w Map_Stomp_A
+	mappingsTableEntry.w Map_Stomp_24
+	mappingsTableEntry.w Map_Stomp_24
+	mappingsTableEntry.w Map_Stomp_24
+	mappingsTableEntry.w Map_Stomp_BA
+
+Map_Stomp_A:	spriteHeader
+	spritePiece	-$40, -$C, 4, 3, $DD, 0, 0, 1, 0
+	spritePiece	-$20, -$C, 4, 3, $E0, 0, 0, 1, 0
+	spritePiece	0, -$C, 4, 3, $E0, 0, 0, 1, 0
+	spritePiece	$20, -$C, 4, 3, $DD, 1, 0, 1, 0
+Map_Stomp_A_End
+
+Map_Stomp_24:	spriteHeader
+	spritePiece	-$1C, -$20, 4, 1, $C, 0, 0, 0, 0
+	spritePiece	4, -$20, 3, 1, $10, 0, 0, 0, 0
+	spritePiece	-$1C, -$18, 4, 3, $13, 0, 0, 1, 0
+	spritePiece	4, -$18, 3, 3, $1F, 0, 0, 1, 0
+	spritePiece	-$1C, 0, 4, 3, $13, 0, 0, 1, 0
+	spritePiece	4, 0, 3, 3, $1F, 0, 0, 1, 0
+	spritePiece	-$1C, $18, 4, 1, $C, 0, 0, 0, 0
+	spritePiece	4, $18, 3, 1, $10, 0, 0, 0, 0
+Map_Stomp_24_End
+
+Map_Stomp_BA:	spriteHeader
+	spritePiece	-$80, -$40, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	-$60, -$40, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$40, -$40, 4, 4, $20, 0, 0, 0, 0
+	spritePiece	-$20, -$40, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	0, -$40, 4, 4, $20, 0, 0, 0, 0
+	spritePiece	$20, -$40, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	$40, -$40, 4, 4, $30, 0, 0, 0, 0
+	spritePiece	$60, -$40, 4, 2, $40, 0, 0, 0, 0
+	spritePiece	-$80, -$20, 4, 4, $48, 0, 0, 0, 0
+	spritePiece	-$40, -$20, 4, 4, $48, 0, 0, 0, 0
+	spritePiece	0, -$20, 4, 4, $58, 0, 0, 0, 0
+	spritePiece	-$80, 0, 4, 4, $48, 0, 0, 0, 0
+	spritePiece	-$40, 0, 4, 4, $58, 0, 0, 0, 0
+	spritePiece	-$80, $20, 4, 4, $58, 0, 0, 0, 0
+Map_Stomp_BA_End
+
 		even
