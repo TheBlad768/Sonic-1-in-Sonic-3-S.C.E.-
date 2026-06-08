@@ -20,7 +20,7 @@ if [ ! -f S1S3.debug.p ]; then
 fi
 
 # Convert the assembled file to binary
-${AS_MSGPATH}/p2bin -p=FF -z=0,kosinskiplus,Size_of_DAC_driver_guess,after S1S3.debug.p S1S3.debug.gen S1S3.debug.h
+${AS_MSGPATH}/p2bin -p=FF S1S3.debug.p S1S3.debug.gen S1S3.debug.h
 
 # Delete temporary files
 rm -f S1S3.debug.p

@@ -38,7 +38,7 @@ IF NOT EXIST S1S3.debug.p (
 )
 
 REM // Convert the assembled file to binary
-"%AS_MSGPATH%\p2bin.exe" -p=FF -z=0,kosinskiplus,Size_of_DAC_driver_guess,after S1S3.debug.p S1S3.debug.gen S1S3.debug.h
+"%AS_MSGPATH%\p2bin.exe" -p=FF S1S3.debug.p S1S3.debug.gen S1S3.debug.h
 IF ERRORLEVEL 1 (
     echo Failed to convert S1S3.debug.p to S1S3.debug.gen
     pause & exit /b 1
