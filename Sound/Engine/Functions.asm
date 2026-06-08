@@ -186,18 +186,18 @@ SMPS_PlayDACSample:
 
 SMPS_PlayPWMSample:
 
-	; Merge ID with volume/pan to get PWM command
+	; merge ID with volume/pan to get PWM command
 	lsl.w	#8,d1
 	move.b	d0,d1
 
-	; Save a0
+	; save a0
 	move.l	a0,d0
 
-	; Send PWM command
+	; send PWM command
 	lea	(SMPS_pwm_comm).l,a0
 	move.w	d1,(a0,d2.w)
 
-	; Restore a0
+	; restore a0
 	movea.l	d0,a0
 	rts
     endif
