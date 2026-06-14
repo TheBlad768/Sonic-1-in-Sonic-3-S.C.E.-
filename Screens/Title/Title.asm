@@ -153,7 +153,7 @@ TitleScreen:
 		DrawPlaneText	Title_CopyrightText, (VRAM_Plane_A_Name_Table+$D38), $50F, 1, FALSE
 
 		; set level size
-		jsr	(Get_LevelSizeStart).w
+		jsrb	Get_LevelSizeStart
 
 		; load level data
 		jsr	(DeformBgLayer).w

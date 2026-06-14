@@ -113,7 +113,7 @@ EndingScreen:
 .noemer
 
 		; set level size
-		jsr	(Get_LevelSizeStart).w
+		jsrb	Get_LevelSizeStart
 
 		; load level data
 		jsr	(DeformBgLayer).w

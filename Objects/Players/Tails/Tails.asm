@@ -480,11 +480,7 @@ loc_13C50:
 		moveq	#$C,d2
 
 loc_13C88:
-		move.b	x_vel(a1),d1
-		bpl.s	loc_13C90
-		neg.b	d1
-
-loc_13C90:
+		mvabs.b	x_vel(a1),d1
 		add.b	d1,d2
 		addq.w	#1,d2
 		tst.w	d0
