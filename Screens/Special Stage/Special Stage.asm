@@ -337,7 +337,7 @@ SpecialStageScreen:
 		tst.b	(Special_bonus_entry_flag).w
 		beq.s	.skip
 		clr.b	(Special_bonus_entry_flag).w					; clear Special Stage flag
-		move.w	(Saved2_zone_and_act).w,(Current_zone_and_act).w
+		move.w	(Saved_zone_and_act).w,(Current_zone_and_act).w
 		ori.b	#$80,(Last_star_post_hit).w					; flag for restore starpost data
 
 .skip
