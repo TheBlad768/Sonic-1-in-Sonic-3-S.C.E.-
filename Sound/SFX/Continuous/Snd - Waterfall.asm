@@ -4,10 +4,10 @@ SndD0_Waterfall_Header:
 	smpsHeaderTempoSFX  $01
 	smpsHeaderChanSFX   $01
 
-	smpsHeaderSFXChannel cFM3, SndD0_Waterfall_FM3,	$00, $10
+	smpsHeaderSFXChannel cFM4, SndD0_Waterfall_FM4,	$00, $10
 
-; FM3 Data
-SndD0_Waterfall_FM3:
+; FM4 Data
+SndD0_Waterfall_FM4:
 	smpsSetvoice        $00
 	dc.b	nG6, $02
 
