@@ -43,7 +43,7 @@ LevelSelectRSDK.vertical_count_prev			ds.w 1
 ; =============== S U B R O U T I N E =======================================
 
 LevelSelectRSDKScreen:
-		music	mus_Stop							; stop music
+		music	cmd_Stop							; stop music
 		jsr	(Clear_KosPlus_Module_Queue).w					; clear KosPlusM PLCs
 		ResetDMAQueue								; clear DMA queue
 		jsr	(Pal_FadeToBlack).w
@@ -329,7 +329,7 @@ LevelSelectRSDK_Controls:
 ; --------------------------------------------------------------------------
 
 .stop
-		music	mus_Stop,1
+		music	cmd_Stop,1
 
 ; =============== S U B R O U T I N E =======================================
 

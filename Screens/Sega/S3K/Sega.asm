@@ -18,7 +18,7 @@ Sega_VDP:
 ; =============== S U B R O U T I N E =======================================
 
 SegaScreen:
-		music	mus_Stop							; stop music
+		music	cmd_Stop							; stop music
 		jsr	(Clear_KosPlus_Module_Queue).w					; clear KosPlusM PLCs
 		ResetDMAQueue								; clear DMA queue
 		jsr	(Pal_FadeToBlack).w
@@ -86,7 +86,7 @@ SegaScreen:
 		jsr	(Wait_VSync).w
 		enableDisplay
 		jsr	(Pal_FadeFromBlack).w
-		music	mus_SEGA							; play SEGA sound
+		music	cmd_SegaSound							; play SEGA sound
 
 		; set
 		move.w	#3*60,(Demo_timer).w						; set to wait for 3 seconds
@@ -102,7 +102,7 @@ SegaScreen:
 		bne.s	.loop
 
 .exit
-		music	mus_StopSEGA							; stop SEGA sound
+		music	cmd_StopSega							; stop SEGA sound
 
 		; wait stop SEGA sound
 		move.l	#VInt_Main,(V_int_ptr).w					; set VInt pointer

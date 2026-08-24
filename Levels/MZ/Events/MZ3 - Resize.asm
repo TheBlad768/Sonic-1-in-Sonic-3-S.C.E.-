@@ -26,7 +26,7 @@ MZ3_Resize:
 		move.w	d0,(Camera_target_max_Y_pos).w
 
 		; load intro
-		music	mus_FadeOut
+		music	cmd_FadeOut
 		move.l	#.return,(Level_data_addr_RAM.Resize).w
 
 		; check intro flag

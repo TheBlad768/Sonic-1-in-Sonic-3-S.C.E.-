@@ -111,7 +111,7 @@ SpecialStage_VDP2:
 ; =============== S U B R O U T I N E =======================================
 
 SpecialStageScreen:
-		music	mus_Stop							; stop music
+		music	cmd_Stop							; stop music
 		sfx	sfx_EnterSS							; play special stage entry sound
 		jsr	(Clear_KosPlus_Module_Queue).w					; clear KosPlusM PLCs
 		ResetDMAQueue								; clear DMA queue
@@ -316,7 +316,7 @@ SpecialStageScreen:
 		bne.s	.finloop
 
 		; next
-		music	mus_FadeOut							; fade out music
+		music	cmd_FadeOut							; fade out music
 		ResetDMAQueue								; clear DMA queue
 		disableInts
 		lea	SpecialStage_VDP2(pc),a1

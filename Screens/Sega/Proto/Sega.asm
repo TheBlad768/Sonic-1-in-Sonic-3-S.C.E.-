@@ -18,7 +18,7 @@ Sega_VDP:
 ; =============== S U B R O U T I N E =======================================
 
 SegaScreen:
-		music	mus_Stop							; stop music
+		music	cmd_Stop							; stop music
 		jsr	(Clear_KosPlus_Module_Queue).w					; clear KosPlusM PLCs
 		ResetDMAQueue								; clear DMA queue
 		disableInts

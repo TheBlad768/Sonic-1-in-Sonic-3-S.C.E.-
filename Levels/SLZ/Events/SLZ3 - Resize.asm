@@ -30,7 +30,7 @@ SLZ3_Resize:
 		move.w	d0,(Camera_target_max_Y_pos).w
 
 		; set fade
-		music	mus_FadeOut
+		music	cmd_FadeOut
 		move.w	#2*60,(Events_fg+2).w						; fade time
 		move.l	#.fade_boss,(Level_data_addr_RAM.Resize).w
 

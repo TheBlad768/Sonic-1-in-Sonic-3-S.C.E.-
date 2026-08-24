@@ -48,7 +48,7 @@ Game_Program:
 .init
 		jsr	(Init_DMA_Queue).w
 		jsr	(Init_VDP).w
-		jsr	(SndDrvInit).w
+		jsr	(SndDrvInit).l
 		bsr.s	Init_Controllers
 
 	ifdef __DEBUG__

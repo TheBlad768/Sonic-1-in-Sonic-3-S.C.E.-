@@ -51,7 +51,7 @@ Options_VDP:
 ; =============== S U B R O U T I N E =======================================
 
 OptionsScreen:
-		music	mus_Stop							; stop music
+		music	cmd_Stop							; stop music
 		jsr	(Clear_KosPlus_Module_Queue).w					; clear KosPlusM PLCs
 		ResetDMAQueue								; clear DMA queue
 		jsr	(Pal_FadeToBlack).w
@@ -222,7 +222,7 @@ Options_Controls:
 		move.w	(Options.save_music).w,d0
 		tst.b	d3
 		beq.s	.play
-		moveq	#signextendB(mus_Stop),d0
+		moveq	#signextendB(cmd_Stop),d0
 
 .play
 		jmp	(Play_Music2).w
@@ -281,7 +281,7 @@ Options_Controls:
 ; --------------------------------------------------------------------------
 
 .stop
-		music	mus_Stop,1
+		music	cmd_Stop,1
 
 ; ---------------------------------------------------------------------------
 ; Play sound

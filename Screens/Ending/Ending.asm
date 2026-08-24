@@ -13,7 +13,7 @@ Ending.player						ds.w 1
 ; =============== S U B R O U T I N E =======================================
 
 EndingScreen:
-		music	mus_Stop							; stop music
+		music	cmd_Stop							; stop music
 		jsr	(Clear_KosPlus_Module_Queue).w					; clear KosPlusM PLCs
 		ResetDMAQueue								; clear DMA queue
 		jsr	(Pal_FadeToBlack).w

@@ -26,7 +26,7 @@ PlayerResults_Index:
 ; ---------------------------------------------------------------------------
 
 Obj_LevelResults:
-		music	mus_FadeOut							; fade out music
+		music	cmd_FadeOut							; fade out music
 
 		; load general art
 		QueueKosPlusModule	ArtKosPlusM_ResultsGeneral, $500

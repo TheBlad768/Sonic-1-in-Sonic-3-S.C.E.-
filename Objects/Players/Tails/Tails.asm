@@ -2619,7 +2619,7 @@ Tails_Spindash:
 		and.b	(Ctrl_2_pressed_logical).w,d0
 		beq.s	locret_1527A
 		move.b	#AniIDSonAni_SpinDash,anim(a0)
-		sfx	sfx_SpinDash
+		sfx	sfx_Spindash
 		addq.w	#4,sp
 		move.b	#1,spin_dash_flag(a0)
 		clr.w	spin_dash_counter(a0)
@@ -2737,7 +2737,7 @@ loc_1534A:
 		and.b	(Ctrl_2_pressed_logical).w,d0
 		beq.s	loc_1537A
 		move.w	#bytes_to_word(AniIDSonAni_SpinDash,AniIDSonAni_Walk),anim(a0)
-		sfx	sfx_SpinDash
+		sfx	sfx_Spindash
 		addi.w	#$200,spin_dash_counter(a0)
 		cmpi.w	#$800,spin_dash_counter(a0)
 		blo.s	loc_1537A

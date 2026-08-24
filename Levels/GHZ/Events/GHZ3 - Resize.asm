@@ -62,7 +62,7 @@ GHZ3_Resize:
 		move.w	d0,(Camera_target_max_Y_pos).w
 
 		; load intro
-		music	mus_FadeOut							; fade out music
+		music	cmd_FadeOut							; fade out music
 		move.w	#2*60,(Events_fg+2).w						; fade time
 
 		; set
