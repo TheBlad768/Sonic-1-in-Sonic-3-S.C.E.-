@@ -891,16 +891,6 @@ Gen_ContinuousSound_Table macro declsfx
 	endm
 ; ---------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
 ; ---------------------------------------------------------------------------
 ; play a sound effect or music
 ; input: track, terminate routine, branch or jump, move operand size
@@ -1001,5 +991,3 @@ SMPS_UnpauseMusic macro
 	move.b	#$80,(Z80_RAM+zPauseFlag).l	; unpause music
 	zStartZ80
     endm
-
-
