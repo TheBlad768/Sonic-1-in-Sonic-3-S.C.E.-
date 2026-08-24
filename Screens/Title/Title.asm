@@ -149,7 +149,7 @@ TitleScreen:
 		EniDecomp	MapEni_TitleFG, RAM_start, $200, 0, FALSE		; decompress Enigma mappings
 		copyTilemap	(VRAM_Plane_A_Name_Table+$208), 272, 176
 
-		; load ©1991 text
+		; load @1991 text
 		DrawPlaneText	Title_CopyrightText, (VRAM_Plane_A_Name_Table+$D38), $50F, 1, FALSE
 
 		; set level size
