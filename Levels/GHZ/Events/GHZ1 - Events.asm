@@ -37,7 +37,7 @@ GHZ1_BackgroundInit:
 		; deform
 		lea	GHZ1_BGDeformArray(pc),a4
 		lea	(H_scroll_table).w,a5
-		jmp	(ApplyDeformation).w
+		jmp	(ApplyBGDeformation).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -62,7 +62,7 @@ GHZ1_BackgroundEvent:
 		; deform
 		lea	GHZ1_BGDeformArray(pc),a4
 		lea	(H_scroll_table).w,a5
-		jmp	(ApplyDeformation).w
+		jmp	(ApplyBGDeformation).w
 ; ---------------------------------------------------------------------------
 
 GHZ1_Transition:

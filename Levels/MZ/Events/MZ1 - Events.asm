@@ -38,7 +38,7 @@ MZ1_BackgroundInit:
 		; deform
 		lea	MZ1_BGDeformArray(pc),a4
 		lea	(H_scroll_table).w,a5
-		jmp	(ApplyDeformation).w
+		jmp	(ApplyBGDeformation).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -61,7 +61,7 @@ MZ1_BackgroundEvent:
 		; deform
 		lea	MZ1_BGDeformArray(pc),a4
 		lea	(H_scroll_table).w,a5
-		jmp	(ApplyDeformation).w
+		jmp	(ApplyBGDeformation).w
 ; ---------------------------------------------------------------------------
 
 MZ1_Transition:
