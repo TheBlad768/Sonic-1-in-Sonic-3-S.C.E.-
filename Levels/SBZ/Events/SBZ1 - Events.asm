@@ -38,7 +38,7 @@ SBZ1_BackgroundInit:
 		; deform
 		lea	SBZ1_BGDeformArray(pc),a4
 		lea	(H_scroll_table).w,a5
-		jmp	(ApplyDeformation).w
+		jmp	(ApplyBGDeformation).w
 
 ; =============== S U B R O U T I N E =======================================
 
@@ -61,7 +61,7 @@ SBZ1_BackgroundEvent:
 		; deform
 		lea	SBZ1_BGDeformArray(pc),a4
 		lea	(H_scroll_table).w,a5
-		jmp	(ApplyDeformation).w
+		jmp	(ApplyBGDeformation).w
 ; ---------------------------------------------------------------------------
 
 SBZ1_Transition:

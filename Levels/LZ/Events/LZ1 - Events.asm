@@ -114,7 +114,7 @@ LZ1_ApplyDeformWater:
 		lea	LZ1_DeformArray(pc),a4
 		lea	(Camera_X_pos_BG_copy).w,a5
 		subq.w	#1,d1								; 223-1
-		jsr	(ApplyDeformation3).w
+		jsr	(ApplyBGDeformation3).w
 		pea	(a1)								; save H_scroll_buffer+normal position
 
 		; foreground deformation
