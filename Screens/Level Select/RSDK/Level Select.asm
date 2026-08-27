@@ -84,16 +84,16 @@ LevelSelectRSDKScreen:
 		jsr	(LoadPLC_Raw_KosPlusM).w
 
 		; load BG mapping
-		EniDecomp	MapEni_LevelSelectRSDKBG, RAM_start+$2000, $60, 0, FALSE	; decompress Enigma mappings
+		EniDecomp	MapEni_LevelSelectRSDKBG, LevelSelectRSDK.buffer2, $60, 0, FALSE	; decompress Enigma mappings
 		copyTilemap	VRAM_Plane_B_Name_Table, 320, 224
 
 		; load icons mapping
-		EniDecomp	MapEni_LevelSelectRSDKIcons, RAM_start+$2000, 0, 0, FALSE	; decompress Enigma mappings
+		EniDecomp	MapEni_LevelSelectRSDKIcons, LevelSelectRSDK.buffer2, 0, 0, FALSE	; decompress Enigma mappings
 		lea	(LevelSelectRSDK.buffer+planeLoc(64,24,21)).l,a2
 		copyTilemapToRAM	80, 48, $80
 
 		; load icon art
-		QueueKosPlus	ArtKosPlus_LevelSelectRSDKIcons, RAM_start+$2000
+		QueueKosPlus	ArtKosPlus_LevelSelectRSDKIcons, LevelSelectRSDK.buffer2
 
 		; load text
 		bsr.w	LevelSelectRSDK_LoadText
@@ -397,7 +397,7 @@ LevelSelectRSDK_UpdateIcons:
 
 		; load art
 		move.w	.table+2(pc,d1.w),d1
-		addi.l	#dmaSource(RAM_start+$2000),d1					; get next frame
+		addi.l	#dmaSource(LevelSelectRSDK.buffer2),d1				; get next frame
 		move.w	#tiles_to_bytes($50),d2						; load art destination
 
 		; size of art (in words) ; we only need one frame
