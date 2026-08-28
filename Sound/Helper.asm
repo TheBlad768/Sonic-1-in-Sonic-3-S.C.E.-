@@ -21,6 +21,7 @@
 ; ===========================================================================
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
+QueueSound1:
 PlayMusic:
 Play_Music:
 	tst.b	(Music_disable_flag).w
@@ -28,7 +29,7 @@ Play_Music:
 
 Play_Music2:
 	zStopZ80
-	move.b	d0,(Z80_RAM+zMusicNumber).l
+	move.b	d0,(fZ80_RAM+zMusicNumber).l
 	zStartZ80
 
 .done:
@@ -42,6 +43,7 @@ Play_SFX_Local:
 	tst.b	render_flags(a0)
 	bpl.s	Play_SFX2.done
 
+QueueSound2:
 PlaySoundStereo:
 Play_SFX:
 PlaySound:
@@ -50,16 +52,16 @@ PlaySound:
 
 Play_SFX2:
 	zStopZ80
-	cmp.b	(Z80_RAM+zSFXNumber0).l,d0
+	cmp.b	(fZ80_RAM+zSFXNumber0).l,d0
 	beq.s	.startz80
-	tst.b	(Z80_RAM+zSFXNumber0).l
+	tst.b	(fZ80_RAM+zSFXNumber0).l
 	bne.s	.slot1
-	move.b	d0,(Z80_RAM+zSFXNumber0).l
+	move.b	d0,(fZ80_RAM+zSFXNumber0).l
 	zStartZ80
 	rts
 ; ---------------------------------------------------------------------------
 .slot1:
-	move.b	d0,(Z80_RAM+zSFXNumber1).l
+	move.b	d0,(fZ80_RAM+zSFXNumber1).l
 
 .startz80:
 	zStartZ80
@@ -80,7 +82,7 @@ Change_Music_Tempo:
 	bne.s	.done
 
 	zStopZ80
-	move.b	d0,(Z80_RAM+zTempoSpeedup).l
+	move.b	d0,(fZ80_RAM+zTempoSpeedup).l
 	zStartZ80
 
 .done:
@@ -94,10 +96,28 @@ Play_Sample:
 	bne.s	.done
 
 	zStopZ80
-	move.b  d0,(Z80_RAM+zDACIndex).l
+	move.b  d0,(fZ80_RAM+zDACIndex).l
 	zStartZ80
 
 .done:
 	rts
 ; End of function Play_Sample
+; ===========================================================================
+
+; =============== S U B R O U T I N E =======================================
+Pause_Music:
+	zStopZ80
+	move.b	#1,(fZ80_RAM+zPauseFlag).l
+	zStartZ80
+	rts
+; End of function Pause_Music
+; ===========================================================================
+
+; =============== S U B R O U T I N E =======================================
+Unpause_Music:
+	zStopZ80
+	move.b	#0,(fZ80_RAM+zPauseFlag).l
+	zStartZ80
+	rts
+; End of function Unpause_Music
 ; ===========================================================================
