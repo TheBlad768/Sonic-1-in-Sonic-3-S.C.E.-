@@ -79,7 +79,6 @@ Mus81_GHZ_Call07:
 ; FM2 Data
 Mus81_GHZ_FM2:
 	smpsSetvoice        $00
-	smpsNop             $01
 	dc.b	nRst, $08, nA2, nA3, nA2, nBb2, nBb3, nB2, nB3
 	smpsNoteFill        $04
 	smpsSetvoice        $01
@@ -114,7 +113,6 @@ Mus81_GHZ_Jump03:
 	dc.b	nEb3, nD3, $08, nRst, nC3, nRst, nG2, $18, nD3, nG2, nG3, $08
 	dc.b	nE2, nE3, nF2, nF3, nG2, nG3
 	smpsNoteFill        $04
-	smpsNop             $01
 	smpsJump            Mus81_GHZ_Jump03
 
 Mus81_GHZ_Call05:

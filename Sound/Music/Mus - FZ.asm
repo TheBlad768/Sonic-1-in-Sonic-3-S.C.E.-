@@ -36,7 +36,6 @@ Mus8D_FZ_Jump02:
 ; FM2 Data
 Mus8D_FZ_FM2:
 	smpsSetvoice        $01
-	smpsNop             $01
 	dc.b	nE4, $03, nRst, nE3, nRst, nE3, nRst, nE4, nE4, nRst, $12, nC4
 	dc.b	$03, nB3
 
@@ -47,7 +46,6 @@ Mus8D_FZ_Jump01:
 	dc.b	nAb3, $06, nF3, $0C, nF3, $09, nF3, $03, nF3, $06, nF3, $0C
 	dc.b	nC3, $06, nG3, nG3, $0C, nG3, $06, nE3, nE3, $0C, nC4, $03
 	dc.b	nB3
-	smpsNop             $01
 	smpsJump            Mus8D_FZ_Jump01
 
 Mus8D_FZ_Call01:

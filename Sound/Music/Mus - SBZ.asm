@@ -47,7 +47,6 @@ Mus86_SBZ_Loop0F:
 Mus86_SBZ_FM2:
 	smpsSetvoice        $00
 	smpsAlterVol        $FD
-	smpsNop             $01
 	smpsNoteFill        $06
 	dc.b	nA3, $03, nB3, nRst, nC4, nRst, nD4, nE4
 	smpsNoteFill        $00
@@ -93,7 +92,6 @@ Mus86_SBZ_Loop0E:
 	smpsLoop            $00, $02, Mus86_SBZ_Loop0E
 	smpsLoop            $01, $04, Mus86_SBZ_Loop0B
 	smpsNoteFill        $00
-	smpsNop             $01
 	smpsJump            Mus86_SBZ_FM2
 
 Mus86_SBZ_Call08:

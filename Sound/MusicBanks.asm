@@ -32,7 +32,7 @@ MusData_SYZ:			include "Sound/Music/Mus - SYZ.asm"
 MusData_LZ:		    	include "Sound/Music/Mus - LZ.asm"
 MusData_SLZ:			include "Sound/Music/Mus - SLZ.asm"
 MusData_SBZ:			include "Sound/Music/Mus - SBZ.asm"
-MusData_Invincible:		include "Sound/Music/Mus - Invincibility.asm"
+MusData_Invincible:		include "Sound/Music/Mus - Invincible.asm"
 MusData_ExtraLife:		include "Sound/Music/Mus - Extra Life.asm"
 MusData_SpecialStage:	include "Sound/Music/Mus - Special Stage.asm"
 MusData_Title:			include "Sound/Music/Mus - Title Screen.asm"
@@ -48,7 +48,7 @@ MusData_GameOver:		include "Sound/Music/Mus - Game Over.asm"
 MusData_Continue:		include "Sound/Music/Mus - Continue Screen.asm"
 MusData_S3Credits:		include "Sound/Music/Mus - S3 Credits.asm"
 MusData_Drowning:		include "Sound/Music/Mus - Drowning.asm"
-MusData_Emerald:		include "Sound/Music/Mus - Get Emerald.asm"
+MusData_Emerald:		include "Sound/Music/Mus - Chaos Emerald.asm"
 
 	finishBank
 ; ---------------------------------------------------------------------------

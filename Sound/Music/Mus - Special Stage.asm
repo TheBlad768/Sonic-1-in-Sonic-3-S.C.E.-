@@ -32,7 +32,6 @@ Mus89_Special_Stage_Loop05:
 ; FM2 Data
 Mus89_Special_Stage_FM2:
 	smpsSetvoice        $02
-	smpsNop             $01
 
 Mus89_Special_Stage_Loop04:
 	dc.b	nF5, $0C, nRst, $18, nE5, $0C, nRst, $18, nD5, $0C, nRst, $18
@@ -42,7 +41,6 @@ Mus89_Special_Stage_Loop04:
 	dc.b	nBb4, $0C, nRst, $18, nBb4, $0C, nRst, $18, nC5, $0C, nRst, $18
 	dc.b	nC5, $0C, nRst, $18, nBb4, $0C, nRst, $18, nBb4, $0C, nRst, $18
 	dc.b	nD5, $0C, nRst, $18, nG5, $24
-	smpsNop             $01
 	smpsJump            Mus89_Special_Stage_Loop04
 
 ; FM3 Data
