@@ -186,8 +186,6 @@ Snd_Boss_PSG1:
 
 ; PSG2 Data
 Snd_Boss_PSG2:
-	smpsStop
-
 ; PSG3 Data
 Snd_Boss_PSG3:
 	smpsStop
