@@ -44,13 +44,11 @@ Mus8C_Boss_FM2:
 	smpsSetvoice        $00
 
 Mus8C_Boss_Jump02:
-	smpsNop             $01
 	dc.b	nFs4, $06, nFs5, nFs4, nFs5, nFs4, nFs5, nFs4, nFs5
 	smpsCall            Mus8C_Boss_Call02
 	dc.b	nB3, $06, nE4, nE4, $0C, nB3, $06
 	smpsCall            Mus8C_Boss_Call02
 	dc.b	nE4, $06, nD4, nD4, $0C, nD4, $06, nCs4, $30
-	smpsNop             $01
 	smpsJump            Mus8C_Boss_Jump02
 
 Mus8C_Boss_Call02:

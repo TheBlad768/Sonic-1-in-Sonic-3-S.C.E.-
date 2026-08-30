@@ -47,7 +47,6 @@ Mus82_LZ_Call05:
 ; FM2 Data
 Mus82_LZ_FM2:
 	smpsSetvoice        $01
-	smpsNop             $01
 	dc.b	nRst, $12, nD4, $0C, nG4, $03, nRst, nG4, nRst, $09
 
 Mus82_LZ_Loop02:
@@ -67,7 +66,6 @@ Mus82_LZ_Loop03:
 	dc.b	nE4, nRst, nRst, nE4, nA4, nRst, nRst, nA4, nA4, $18
 	smpsCall            Mus82_LZ_Call03
 	dc.b	nBb4, nRst, nRst, nBb4, nC5, nRst, nRst, nC5, nG4, $0C, nG4
-	smpsNop             $01
 	smpsJump            Mus82_LZ_Loop02
 
 Mus82_LZ_Call03:

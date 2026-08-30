@@ -40,7 +40,6 @@ Mus8B_Ending_Call00:
 ; FM2 Data
 Mus8B_Ending_FM2:
 	smpsSetvoice        $01
-	smpsNop             $01
 	dc.b	nRst, $60
 
 Mus8B_Ending_Loop03:
@@ -54,7 +53,6 @@ Mus8B_Ending_Loop03:
 	dc.b	$12, nRst, $06, nA2, $12, nAb3, nA3, $06, nRst
 	smpsAlterVol        $FD
 	dc.b	nA2, $6C
-	smpsNop             $01
 	smpsStop
 
 ; FM3 Data

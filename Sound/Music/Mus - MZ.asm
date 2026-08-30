@@ -106,7 +106,6 @@ Mus83_MZ_Call01:
 Mus83_MZ_FM2:
 	smpsSetvoice        $01
 	dc.b	nRst, $06, nE4, $03, nE4
-	smpsNop             $01
 	dc.b	nE4, $06, nRst, nE3, $24
 
 Mus83_MZ_Jump01:
@@ -133,7 +132,6 @@ Mus83_MZ_Loop01:
 	dc.b	nA3, $12, nA3, $06, nG3, $12, nG3, $06, nF3, $12, nF3, $06
 	dc.b	nG3, $12, nG3, $06
 	smpsLoop            $01, $02, Mus83_MZ_Loop01
-	smpsNop             $01
 	smpsJump            Mus83_MZ_Jump01
 
 Mus83_MZ_Call00:

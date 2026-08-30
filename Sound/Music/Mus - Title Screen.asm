@@ -31,13 +31,11 @@ Mus8A_Title_Screen_FM1:
 ; FM2 Data
 Mus8A_Title_Screen_FM2:
 	smpsSetvoice        $01
-	smpsNop             $01
 	dc.b	nRst, $30, nA3, $06, nRst, nA3, nRst, nE3, nRst, nE3, nRst, nG3
 	dc.b	$12, nFs3, $0C, nG3, $06, nFs3, $0C, nA3, $06, nRst, nA3, nRst
 	dc.b	nE3, nRst, nE3, nRst, nD4, $12, nCs4, $0C, nD4, $06, nCs4, $0C
 	dc.b	nRst, nA2, nRst, nA2, nRst, $06, nAb3, $12, nA3, $06, nRst, nA2
 	dc.b	$6C
-	smpsNop             $01
 	smpsStop
 
 ; FM3 Data

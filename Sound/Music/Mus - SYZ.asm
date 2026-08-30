@@ -63,7 +63,6 @@ Mus85_SYZ_Call0A:
 Mus85_SYZ_FM2:
 	smpsSetvoice        $01
 	smpsAlterVol        $FE
-	smpsNop             $01
 	dc.b	nA4, $03, nRst, nA4, nRst, nG4, nRst, nG4, nRst, nF4, nRst, nF4
 	dc.b	nRst, nE4, nRst, nE4, $02, nRst, nD4
 	smpsAlterVol        $02
@@ -83,7 +82,6 @@ Mus85_SYZ_Loop04:
 	smpsCall            Mus85_SYZ_Call07
 	dc.b	nE4, nRst, $04, nE4, $08, nE4, $03, nRst, nE4, nRst, nA4, $09
 	dc.b	nRst, $03, nA4, $0A, nD4, $02, nRst, $2E, nD4, $02
-	smpsNop             $01
 	smpsJump            Mus85_SYZ_Jump01
 
 Mus85_SYZ_Call06:

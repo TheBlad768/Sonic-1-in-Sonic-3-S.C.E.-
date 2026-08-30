@@ -52,7 +52,7 @@ Music05:		include "Sound/Music/Mus - SLZ.asm"
 	even
 Music06:		include "Sound/Music/Mus - SBZ.asm"
 	even
-Music07:		include "Sound/Music/Mus - Invincibility.asm"
+Music07:		include "Sound/Music/Mus - Invincible.asm"
 	even
 Music08:		include "Sound/Music/Mus - Extra Life.asm"
 	even
@@ -84,5 +84,5 @@ Music15:		include "Sound/Music/Mus - S3 Credits.asm"
 	even
 Music16:		include "Sound/Music/Mus - Drowning.asm"
 	even
-Music17:		include "Sound/Music/Mus - Get Emerald.asm"
+Music17:		include "Sound/Music/Mus - Chaos Emerald.asm"
 	even
