@@ -254,7 +254,7 @@ LevelScreen:
 		addq.w	#1,(Level_frame_counter).w
 		jsr	(Random_Number).w
 		bsr.w	Demo_PlayRecord
-		jsr	(Special_Events).w
+		jsrb	Special_Events
 		jsr	(Load_Objects).w
 		jsr	(Process_Objects).w
 
