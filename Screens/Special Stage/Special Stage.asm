@@ -475,12 +475,27 @@ loc_48E2:
 		movem.l	(sp)+,d0-d4
 
 loc_48F2:
-		addi.l	#vdpCommDelta(planeLoc(8,0,1)),d0
+
+		; increment value
+		addi.l	#vdpCommDelta( \
+		planeLoc(8,0,1) \
+		),d0
+
 		dbf	d5,loc_48CE
-		addi.l	#vdpCommDelta(planeLoc(128,320,1)),d0
+
+		; increment value
+		addi.l	#vdpCommDelta( \
+		planeLoc(128,320,1) \
+		),d0
+
 		eori.b	#1,d4
 		dbf	d6,loc_48CC
-		addi.l	#vdpCommDelta(planeLoc(2048,0,1)),d3
+
+		; increment value
+		addi.l	#vdpCommDelta( \
+		planeLoc(2048,0,1) \
+		),d3
+
 		bpl.s	loc_491C
 		swap	d3
 		addi.l	#$C000,d3

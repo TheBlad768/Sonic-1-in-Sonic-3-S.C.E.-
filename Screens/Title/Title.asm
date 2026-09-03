@@ -521,10 +521,19 @@ Obj_TitlePSB:
 		moveq	#1,d0
 		and.b	(Title.control).w,d0
 		locVRAM	(VRAM_Plane_A_Name_Table+$C1A),d1				; plane address
-		move.l	#vdpCommDelta(planeLoc(64,1,2)),d2
+
+		; row increment value
+		move.l	#vdpCommDelta( \
+		planeLoc(64,1,2) \
+		),d2
+
 		tst.w	(Current_zone_and_act).w
 		beq.s	.drawicon
-		move.l	#vdpCommDelta(planeLoc(64,0,2)),d2
+
+		; row increment value
+		move.l	#vdpCommDelta( \
+		planeLoc(64,0,2) \
+		),d2
 
 .drawicon
 		moveq	#2-1,d6

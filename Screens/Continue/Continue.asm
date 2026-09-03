@@ -910,7 +910,11 @@ Continue_LoadNumbers:
 		move.w	d2,d1
 		addq.w	#1,d1								; next tile
 		move.w	#$8F80,VDP_control_port-VDP_control_port(a5)			; VRAM increment at $80 bytes (draw tiles vertically)
-		move.l	#vdpCommDelta(planeLoc(64,1,0)),d4				; row increment value
+
+		; row increment value
+		move.l	#vdpCommDelta( \
+		planeLoc(64,1,0) \
+		),d4
 
 		; draw numbers
 		locVRAM	(VRAM_Plane_A_Name_Table+$726),d2
