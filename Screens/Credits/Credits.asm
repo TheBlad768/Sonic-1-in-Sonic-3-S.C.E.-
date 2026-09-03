@@ -231,7 +231,11 @@ Credits_LoadText:
 		lea	(VDP_data_port).l,a6						; load VDP data address to a6
 		lea	VDP_control_port-VDP_data_port(a6),a5				; load VDP control address to a5
 		move.w	#$8F80,VDP_control_port-VDP_control_port(a5)			; VRAM increment at $80 bytes (vertical write)
-		move.l	#vdpCommDelta(planeLoc(64,1,0)),d4				; row increment value
+
+		; row increment value
+		move.l	#vdpCommDelta( \
+		planeLoc(64,1,0) \
+		),d4
 
 .loop
 		move.l	d5,d3
