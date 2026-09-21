@@ -77,7 +77,7 @@ Obj_SwingingPlatform:
 		lsl.b	#4,d0								; multiply by $10
 		move.b	d0,width_pixels(a1)						; set width
 		move.b	d0,height_pixels(a1)						; set height
-		move.w	d1,mainspr_childsprites(a1)
+		move.w	d1,mainspr_childsprites(a1)					; set number of child sprites
 		subq.w	#1,d1
 		blo.s	.offscreen
 		lea	sub2_x_pos(a1),a2

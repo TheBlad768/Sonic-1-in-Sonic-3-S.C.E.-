@@ -26,7 +26,7 @@ Obj_LavaWall:
 		; set
 		moveq	#1,d0
 		move.b	d0,mapping_frame(a0)
-		move.w	d0,mainspr_childsprites(a0)					; set sub objects
+		move.w	d0,mainspr_childsprites(a0)					; set number of child sprites
 
 		; set sub object xpos
 		moveq	#signextendB(128),d1						; subtract 128 pixels

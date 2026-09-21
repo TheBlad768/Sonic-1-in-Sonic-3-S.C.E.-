@@ -24,7 +24,9 @@ Obj_GlassBlock:
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.w	y_pos(a0),glassblock.origY(a0)
 		move.w	#$90,glassblock.dist(a0)
-		move.w	#2,mainspr_childsprites(a0)					; block and reflector
+
+		; set sub objects (block and reflector)
+		move.w	#2,mainspr_childsprites(a0)					; set number of child sprites
 
 		; sub objects
 		lea	sub2_x_pos(a0),a1						; $16-$23 bytes reserved

@@ -43,8 +43,8 @@ Obj_SidewaysStomper:
 		; set multi-draw flag
 		bset	#render_flags.multi_sprite,render_flags(a0)
 
-		; set sub objects
-		move.w	#2,mainspr_childsprites(a0)					; wall bracket, pole
+		; set sub objects (wall bracket, pole)
+		move.w	#2,mainspr_childsprites(a0)					; set number of child sprites
 
 		; set xpos
 		move.w	x_pos(a0),d0

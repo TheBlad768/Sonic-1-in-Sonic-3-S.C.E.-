@@ -19,7 +19,7 @@ Obj_WaterSplash:
 		st	watersplash.prev_frame(a0)					; reset DPLC frame
 		movem.l	ObjDat_WaterSplash(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
-		move.w	#2,mainspr_childsprites(a0)
+		move.w	#2,mainspr_childsprites(a0)					; set number of child sprites
 
 		; set
 		lea	sub2_x_pos(a0),a2						; $16-$23 bytes reserved

@@ -20,7 +20,7 @@ Obj_SpikePole:
 		moveq	#16,d2								; +16 pixels
 
 		; load 8 spike pole spikes
-		move.w	#8,mainspr_childsprites(a0)
+		move.w	#8,mainspr_childsprites(a0)					; set number of child sprites
 		lea	sub2_x_pos(a0),a1
 		lea	y_pos(a0),a2
 

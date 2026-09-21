@@ -24,7 +24,9 @@ Obj_Junction:
 		; init
 		movem.l	ObjDat_Junction(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
-		move.w	#2,mainspr_childsprites(a0)					; large circular and wheel
+
+		; set sub objects (large circular and wheel)
+		move.w	#2,mainspr_childsprites(a0)					; set number of child sprites
 		addq.b	#1,junction.frame(a0)						; set 1
 
 		; sub objects

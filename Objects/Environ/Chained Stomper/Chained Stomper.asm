@@ -84,8 +84,8 @@ Obj_ChainedStomper:
 		add.w	d0,d1
 		move.w	d1,chainedstomper.chain_yoffset(a0)
 
-		; set sub objects
-		move.w	#2,mainspr_childsprites(a0)					; chain and cap
+		; set sub objects (chain and cap)
+		move.w	#2,mainspr_childsprites(a0)					; set number of child sprites
 
 		; sub object 1
 		lea	sub2_x_pos(a0),a1						; $16-$29 bytes reserved
