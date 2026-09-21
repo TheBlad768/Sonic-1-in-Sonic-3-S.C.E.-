@@ -90,7 +90,7 @@ TensionBridge_CreateSegments:
 		move.b	d0,render_flags(a1)
 		move.w	priority(a0),priority(a1)
 		move.w	#bytes_to_word(16/2,128/2),height_pixels(a1)			; set height and width
-		move.w	d1,mainspr_childsprites(a1)
+		move.w	d1,mainspr_childsprites(a1)					; set number of child sprites
 		subq.w	#1,d1								; fix dbf
 		lea	sub2_x_pos(a1),a2						; starting address for subsprite data
 
