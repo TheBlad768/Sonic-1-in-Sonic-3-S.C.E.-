@@ -73,11 +73,9 @@ GHZ1_Transition:
 
 GHZ1_Deform:
 
-.setBGy =	1									; original or alt
-
 		; yscroll
 
-	if .setBGy
+	if GHZ1Deform
 		move.w	(Camera_Y_pos_copy).w,d0					; 100% to d0 ($1000)
 		asr.w	#6,d0								; get 1.5625% ($40)
 		move.w	d0,(Camera_Y_pos_BG_copy).w					; save 1.5625%
