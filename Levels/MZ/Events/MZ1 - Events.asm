@@ -72,8 +72,6 @@ MZ1_Transition:
 
 MZ1_Deform:
 
-.setBG =	1									; original or alt
-
 		; yscroll
 		move.w	#512,d0								; start with 512px, ignoring 4 chunks
 		move.w	(Camera_Y_pos_copy).w,d1
@@ -100,7 +98,7 @@ MZ1_Deform:
 		asr.l	d1								; get 50% ($8000)
 		move.l	d1,d2								; copy 50% to d2 ($8000)
 
-	if .setBG
+	if MZ1Deform
 		asr.l	#4,d2								; get 3.125% ($800)
 	else
 		asr.l	#3,d2								; get 6.25% ($1000)
@@ -112,7 +110,7 @@ MZ1_Deform:
 		add.l	d3,d2								; add 0.1953125% to d2 ($900/$1200)
 		add.l	d3,d2								; add 0.1953125% to d2 ($980/$1300)
 
-	if .setBG
+	if MZ1Deform
 
 		rept 9
 			swap	d1
@@ -167,7 +165,7 @@ MZ1_BGDrawArray_end
 MZ1_BGDeformArray:
 		dc.w 512	; sky size
 
-	if MZ1_Deform.setBG
+	if MZ1Deform
 		dcb.w 10, 8	; clouds size
 	else
 		dcb.w 5, 16	; clouds size

@@ -32,6 +32,10 @@ ExtendedCamera =					0				; if 1, enable extended camera
 LevelBoundCheckTop =					1				; if 1, enable check up boundary
 OriginalMode =						0				; if 1, disable Spin Dash and Insta Shield (Sonic 1 style)
 
+; deform options
+GHZ1Deform =						1				; if 1, enable alternative deformation
+MZ1Deform =						1				; if 1, enable alternative deformation
+
 ; level main options
 ZoneCount =						6				; set discrete zones are: GHZ, MZ, SYZ, LZ, SLZ, SBZ
 HUDScroll =						1				; if 1, enable HUD scrolling movement on level start/finish
