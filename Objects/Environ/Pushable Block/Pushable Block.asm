@@ -143,7 +143,7 @@ Obj_PushableBlock:
 ; ---------------------------------------------------------------------------
 
 .restore
-		jsr	(Chk_WidthOffScreen).w						; object visible on the screen?
+		jsr	(Check_PartiallyOffScreen).w					; object visible on the screen?
 		beq.s	.return								; if yes, branch
 		move.l	#.action,code_addr(a0)
 		clr.b	pushableblock.float_flag(a0)
