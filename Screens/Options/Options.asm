@@ -335,9 +335,8 @@ Options_FindUpDownControls:
 		moveq	#btnUD,d1
 		and.b	(Ctrl_1_pressed).w,d1
 		beq.s	.notpressed
-		sfx	sfx_Switch
 		move.w	#16,(a3)
-		bra.s	.pressed
+		bra.s	.sfx
 ; --------------------------------------------------------------------------
 
 .notpressed
@@ -347,6 +346,8 @@ Options_FindUpDownControls:
 		subq.w	#1,(a3)
 		bpl.s	.returnup
 		addq.w	#4,(a3)
+
+.sfx
 		sfx	sfx_Switch
 
 .pressed
@@ -379,9 +380,8 @@ Options_FindLeftRightControls:
 		moveq	#btnLR,d1
 		and.b	(Ctrl_1_pressed).w,d1
 		beq.s	.notpressed
-		sfx	sfx_Switch
 		move.w	#16,(a3)
-		bra.s	.pressed
+		bra.s	.sfx
 ; --------------------------------------------------------------------------
 
 .notpressed
@@ -391,6 +391,8 @@ Options_FindLeftRightControls:
 		subq.w	#1,(a3)
 		bpl.s	.returnleft
 		addq.w	#4,(a3)
+
+.sfx
 		sfx	sfx_Switch
 
 .pressed
