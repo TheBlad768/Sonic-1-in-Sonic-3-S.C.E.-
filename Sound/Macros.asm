@@ -978,7 +978,7 @@ sample macro id,terminate,byte
 
 SMPS_PauseMusic macro
 	zStopZ80
-	move.b	#1,(Z80_RAM+zPauseFlag).l	; pause the music
+	move.b	#flagTriggerPause,(fZ80_RAM+zPauseFlag).l	; pause the music
 	zStartZ80
     endm
 
@@ -988,6 +988,6 @@ SMPS_PauseMusic macro
 
 SMPS_UnpauseMusic macro
 	zStopZ80
-	move.b	#$80,(Z80_RAM+zPauseFlag).l	; unpause music
+	move.b	#flagUnpause,(fZ80_RAM+zPauseFlag).l	; unpause music
 	zStartZ80
     endm
