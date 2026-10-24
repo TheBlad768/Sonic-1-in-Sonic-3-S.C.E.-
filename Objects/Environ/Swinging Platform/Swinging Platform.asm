@@ -78,14 +78,14 @@ Obj_SwingingPlatform:
 		move.b	d0,width_pixels(a1)						; set width
 		move.b	d0,height_pixels(a1)						; set height
 		move.w	d1,mainspr_childsprites(a1)					; set number of child sprites
-		subq.w	#1,d1
-		blo.s	.offscreen
+		subq.w	#1,d1								; fix dbf
+		blo.s	.offscreen							; if there are no child sprites here, delete it
 		lea	sub2_x_pos(a1),a2
 
 .loop
 		move.w	d2,(a2)+							; xpos
 		move.w	d3,(a2)+							; ypos
-		move.w	#1,(a2)+							; mapping frame
+		move.w	#1,(a2)+							; mapping frame (chain)
 		dbf	d1,.loop
 		move.b	#2,mapping_frame(a1)
 
@@ -185,8 +185,7 @@ SwingingPlatform_Move:
 		move.w	swingingplatform.origX(a0),d3
 		movea.w	parent3(a0),a1							; load chain address into a1
 		move.w	mainspr_childsprites(a1),d6
-		subq.w	#1,d6
-		blo.s	.return
+		subq.w	#1,d6								; fix dbf
 		swap	d0
 		clr.w	d0
 		swap	d1
@@ -227,8 +226,6 @@ SwingingPlatform_Move:
 		add.w	d3,d5
 		move.w	d5,x_pos(a0)
 		move.w	d4,y_pos(a0)
-
-.return
 		rts
 ; ---------------------------------------------------------------------------
 
