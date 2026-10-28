@@ -46,7 +46,7 @@ EndingScreen:
 
 		; load level
 		lea	LevelLoadPointer_Ending(pc),a2
-		jsr	(LoadLevelPointer.load).w
+		jsr	(Load_LevelPointer.load).w
 
 	if GameDebug
 
@@ -117,7 +117,7 @@ EndingScreen:
 
 		; load level data
 		jsr	(DeformBgLayer).w
-		jsr	(LoadLevelLoadBlock2.skipPLC).w
+		jsr	(Load_LevelData_Secondary.skipPLC).w
 		disableInts
 		jsr	(Level_Setup).w
 		enableInts
