@@ -49,7 +49,7 @@ TitleScreen:
 
 		; load level
 		lea	LevelLoadPointer_Title(pc),a2
-		jsr	(LoadLevelPointer.load).w
+		jsr	(Load_LevelPointer.load).w
 
 		; load text art
 		lea	(ArtKosPlusM_TitleText).l,a1
@@ -157,7 +157,7 @@ TitleScreen:
 
 		; load level data
 		jsr	(DeformBgLayer).w
-		jsr	(LoadLevelLoadBlock2.skipPLC).w
+		jsr	(Load_LevelData_Secondary.skipPLC).w
 		disableInts
 		jsr	(Level_Setup).w
 		enableInts
