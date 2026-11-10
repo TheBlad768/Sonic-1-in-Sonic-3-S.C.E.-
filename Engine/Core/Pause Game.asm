@@ -34,7 +34,7 @@ Pause_Game:
 		move.l	#VInt_Pause,(V_int_ptr).w					; set new VInt pointer
 
 .loop
-		bsr.s	Wait_VSync
+		jsr	(Wait_VSync).w
 
     if GameDebug
 	if LevelSelectCheat

@@ -198,7 +198,7 @@ EndingScreen:
 		jsr	(Pal_FadeFromBlack).w
 
 .loop
-		jsr	(Pause_Game.ending).w
+		bsr.w	Pause_Game.ending
 		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync.skip).w
@@ -224,7 +224,7 @@ EndingScreen:
 		clr.w	(Pal_fade_delay).w
 
 .allemlds_loop
-		jsr	(Pause_Game.ending).w
+		bsr.w	Pause_Game.ending
 		st	(V_int_flag).w							; set VInt flag
 		jsr	(Process_KosPlus_Queue).w
 		jsr	(Wait_VSync.skip).w
