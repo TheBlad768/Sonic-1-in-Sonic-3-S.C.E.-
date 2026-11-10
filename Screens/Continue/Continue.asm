@@ -233,8 +233,8 @@ Obj_Continue_SonicWTails:
 		; init
 		movem.l	ObjDat_Continue_SonicWTails(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
-		move.w	#$80+((screen_width/2)-8),x_pos(a0)
-		move.w	#$80+((screen_height/2)+48),y_pos(a0)
+		move.w	#spriteScreenPositionX((screen_width/2)-8),x_pos(a0)
+		move.w	#spriteScreenPositionY((screen_height/2)+48),y_pos(a0)
 
 .main
 		movea.w	(Continue.countdown).w,a1
@@ -320,7 +320,7 @@ Obj_Continue_SonicWTails:
 .run
 		jsr	(Sonic_Animate).l
 		addq.w	#6,x_pos(a0)
-		cmpi.w	#$80+(320+32),x_pos(a0)
+		cmpi.w	#spriteScreenPositionX(screen_width+32),x_pos(a0)
 		bhs.s	.stoprun
 		bra.s	.draw
 ; ---------------------------------------------------------------------------
@@ -342,8 +342,8 @@ Obj_Continue_SonicAlone:
 		; init
 		movem.l	ObjDat_Continue_SonicAlone(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
-		move.w	#$80+(screen_width/2),x_pos(a0)
-		move.w	#$80+((screen_height/2)+48),y_pos(a0)
+		move.w	#spriteScreenPositionX(screen_width/2),x_pos(a0)
+		move.w	#spriteScreenPositionY((screen_height/2)+48),y_pos(a0)
 
 .main
 		movea.w	(Continue.countdown).w,a1
@@ -376,7 +376,7 @@ Obj_Continue_SonicAlone:
 
 .run
 		addq.w	#6,x_pos(a0)
-		cmpi.w	#$80+(320+32),x_pos(a0)
+		cmpi.w	#spriteScreenPositionX(screen_width+32),x_pos(a0)
 		bhs.s	.stoprun
 		lea	AniRaw_5CBB4(pc),a1
 		bra.s	.anim
@@ -400,8 +400,8 @@ Obj_Continue_TailsWSonic:
 		; init
 		movem.l	ObjDat_Continue_TailsWSonic(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
-		move.w	#$80+((screen_width/2)+12),x_pos(a0)
-		move.w	#$80+((screen_height/2)+48),y_pos(a0)
+		move.w	#spriteScreenPositionX((screen_width/2)+12),x_pos(a0)
+		move.w	#spriteScreenPositionY((screen_height/2)+48),y_pos(a0)
 
 .waitstart
 		movea.w	(Continue.countdown).w,a1
@@ -470,7 +470,7 @@ Obj_Continue_TailsWSonic:
 
 .run
 		addq.w	#6,x_pos(a0)
-		cmpi.w	#$80+(320+32),x_pos(a0)
+		cmpi.w	#spriteScreenPositionX(screen_width+32),x_pos(a0)
 		blo.s	.anim
 		move.b	#1,(Continue.routine).w						; set screen routine
 		bra.s	.anim
@@ -502,8 +502,8 @@ Obj_Continue_Knuckles:
 		bhs.s	.setKnux							; if yes, branch
 
 		; for Sonic and Tails
-		move.w	#$80-64,x_pos(a0)
-		move.w	#$80+((screen_height/2)+48),y_pos(a0)
+		move.w	#spriteScreenPositionX(-64),x_pos(a0)
+		move.w	#spriteScreenPositionX((screen_height/2)+48),y_pos(a0)
 
 		; next
 		move.l	#.main,code_addr(a0)
@@ -515,8 +515,8 @@ Obj_Continue_Knuckles:
 		; init
 		movem.l	ObjDat_Continue_Knuckles(pc),d0-d3				; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
-		move.w	#$80+((screen_width/2)-4),x_pos(a0)
-		move.w	#$80+((screen_height/2)+48),y_pos(a0)
+		move.w	#spriteScreenPositionX((screen_width/2)-4),x_pos(a0)
+		move.w	#spriteScreenPositionY((screen_height/2)+48),y_pos(a0)
 
 .waitstart
 		move.w	#$2F,wait_timer(a0)						; set wait
@@ -568,12 +568,12 @@ Obj_Continue_Knuckles:
 		addq.w	#6,d0
 		move.w	d0,x_pos(a0)
 		movea.w	(Continue.countdown).w,a1
-		cmpi.w	#$80+(screen_width/2),d0
+		cmpi.w	#spriteScreenPositionX(screen_width/2),d0
 		blo.s	.checkpos
 		bset	#2,state_flags(a1)						; set Knuckles in the middle of the screen flag
 
 .checkpos
-		cmpi.w	#$80+(320+32),d0
+		cmpi.w	#spriteScreenPositionX(screen_width+32),d0
 		bhs.s	.stoprun
 		lea	AniRaw_5CBB4(pc),a1
 		jsr	(Animate_RawNoSSTCheckResult).w
@@ -645,8 +645,8 @@ Obj_Continue_EggRobo:
 		jsr	(SetUp_ObjAttributes).w
 		move.b	#render_flags.y_flip,render_flags(a0)				; flipx
 		move.l	#.main,code_addr(a0)
-		move.w	#$80-32,x_pos(a0)
-		move.w	#$80+(screen_height/2),y_pos(a0)
+		move.w	#spriteScreenPositionX(-32),x_pos(a0)
+		move.w	#spriteScreenPositionY(screen_height/2),y_pos(a0)
 		move.w	#$600,x_vel(a0)
 		jsr	(Swing_Setup1).w
 		lea	Child1_EggRobo_Misc(pc),a2
@@ -745,8 +745,8 @@ Obj_Continue_Stars:
 		movem.l	ObjDat_Continue_Stars(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
 		move.b	#7,mapping_frame(a0)
-		move.w	#$80+(screen_width/2),x_pos(a0)
-		move.w	#($80+(screen_height/2))+5,y_pos(a0)
+		move.w	#spriteScreenPositionX(screen_width/2),x_pos(a0)
+		move.w	#spriteScreenPositionY((screen_height/2)+5),y_pos(a0)
 
 		; draw
 		jmp	(Draw_Sprite).w
@@ -823,7 +823,7 @@ Obj_Continue_Icons:
 
 .notKnux
 		bsr.s	Continue_Icons_GetPos
-		move.w	#$80+((screen_height/2)-24),y_pos(a0)
+		move.w	#spriteScreenPositionY((screen_height/2)-24),y_pos(a0)
 		bsr.s	Continue_Icons_LoadAnim
 
 .main
