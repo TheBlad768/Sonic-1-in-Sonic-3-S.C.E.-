@@ -139,7 +139,8 @@ ContinueScreen:
 		jsr	(Process_Objects).w
 		jsr	(Render_Sprites).w
 		music	mus_Continue
-		move.l	#VInt_Continue,(V_int_ptr).w					; set VInt pointer
+		move.l	#Continue_LoadNumbers,(V_int_extra_ptr).w			; set VInt extra pointer
+		move.l	#VInt_MenuCustom,(V_int_ptr).w					; set VInt pointer
 		jsr	(Wait_VSync).w
 		enableDisplay
 		jsr	(Pal_FadeFromBlack).w

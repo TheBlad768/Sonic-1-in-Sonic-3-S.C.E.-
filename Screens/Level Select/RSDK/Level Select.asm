@@ -132,7 +132,8 @@ LevelSelectRSDKScreen:
 		music	mus_Menu							; play music
 
 		; next
-		move.l	#VInt_LevelSelect,(V_int_ptr).w					; set VInt pointer
+		move.l	#LevelSelect_UpdateScreen,(V_int_extra_ptr).w			; set VInt extra pointer
+		move.l	#VInt_MainCustom,(V_int_ptr).w					; set VInt pointer
 		jsr	(Wait_VSync).w
 		enableDisplay
 		jsr	(Pal_FadeFromBlack).w

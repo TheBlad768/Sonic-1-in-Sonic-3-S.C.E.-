@@ -256,7 +256,7 @@ SpecialStageScreen:
 		jsr	(Pal_FadeFromWhite).w
 
 .loop
-		jsr	(Pause_Game).w
+		bsr.w	Pause_Game
 		jsr	(Wait_VSync).w
 		bsr.w	Demo_PlayRecord
 		bsr.w	Process_SSSprites
@@ -291,7 +291,7 @@ SpecialStageScreen:
 .fin
 
 		; set
-		move.l	#VInt_Menu,(V_int_ptr).w					; set VInt pointer
+		move.l	#VInt_Main,(V_int_ptr).w					; set VInt pointer
 		move.w	#1*60,(Demo_timer).w						; set delay time to 1 second
 		move.w	#bytes_to_word((palette_line_0>>8),64-1),(Palette_fade_info).w	; set fade info and fade count
 		clr.w	(Pal_fade_delay).w
@@ -327,6 +327,7 @@ SpecialStageScreen:
 		move.b	#1,(Update_HUD_score).w
 		clr.b	(HUD_RAM.status).w
 		clr.b	(Level_started_flag).w
+		move.l	#VInt_Menu,(V_int_ptr).w					; set VInt pointer
 
 		; remove HUD
 		moveq	#0,d1								; current slot

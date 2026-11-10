@@ -104,10 +104,11 @@ Security_Addr =						Security_addr
 ; Level Misc
 ; ---------------------------------------------------------------------------
 
+ChaosEmeralds_Count =					7				; number of chaos emeralds (6 or 7)
+ObjectsTable_Size =					1024				; maximum objects on the level (affects RAM, even values only)
 RingsTable_Size =					1024				; maximum rings on the level (affects RAM, even values only)
 RingsList_Size =					63				; maximum rings being consumed at once (affects RAM)
-ObjectsTable_Size =					1024				; maximum objects on the level (affects RAM, even values only)
-ChaosEmeralds_Count =					7				; number of chaos emeralds (6 or 7)
+SlottedObject_Size =					8				; number of slots used for slotted objects (affects RAM, even values only)
 
 ; ---------------------------------------------------------------------------
 ; PLC queues
