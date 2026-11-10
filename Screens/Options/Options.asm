@@ -99,7 +99,7 @@ OptionsScreen:
 
 		; load mapping
 		EniDecomp	MapEni_OptionsBG, RAM_start, 1, 2, FALSE		; decompress Enigma mappings
-		copyTilemap	VRAM_Plane_B_Name_Table, 320, 224
+		copyTilemap	VRAM_Plane_B_Name_Table
 
 		; clear foreground buffers
 		clearRAM RAM_start, (RAM_start+$2000)

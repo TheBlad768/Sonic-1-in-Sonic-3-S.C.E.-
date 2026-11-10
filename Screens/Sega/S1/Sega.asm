@@ -68,7 +68,7 @@ SegaScreen:
 
 .skipTM
 		copyTilemap	VRAM_Plane_B_Name_Table+$510, 192, 64
-		copyTilemap	VRAM_Plane_A_Name_Table, 320, 224
+		copyTilemap	VRAM_Plane_A_Name_Table
 
 		; init palette
 		lea	(Palette_cycle_counters+2).w,a0

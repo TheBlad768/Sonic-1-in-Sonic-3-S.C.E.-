@@ -85,7 +85,7 @@ LevelSelectRSDKScreen:
 
 		; load BG mapping
 		EniDecomp	MapEni_LevelSelectRSDKBG, RAM_start+$2000, $60, 0, FALSE	; decompress Enigma mappings
-		copyTilemap	VRAM_Plane_B_Name_Table, 320, 224
+		copyTilemap	VRAM_Plane_B_Name_Table
 
 		; load icons mapping
 		EniDecomp	MapEni_LevelSelectRSDKIcons, RAM_start+$2000, 0, 0, FALSE	; decompress Enigma mappings

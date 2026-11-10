@@ -61,7 +61,7 @@ SegaScreen:
 		clr.l	$3AC(a1)							; remove the TM from the Sega logo if on a japan console
 
 .skipTM
-		copyTilemap	VRAM_Plane_A_Name_Table, 320, 224
+		copyTilemap	VRAM_Plane_A_Name_Table
 
 		; load main palette
 		lea	(Target_palette).w,a1

@@ -58,7 +58,7 @@ TitleScreen:
 
 		; load mapping
 		EniDecomp	MapEni_TitleCredits, RAM_start, $540, 0, TRUE		; decompress Enigma mappings
-		copyTilemap	VRAM_Plane_B_Name_Table, 320, 224
+		copyTilemap	VRAM_Plane_B_Name_Table
 
 		; load credits text art
 		lea	(ArtKosPlusM_TitleCredits).l,a1
