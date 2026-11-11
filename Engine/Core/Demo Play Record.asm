@@ -27,8 +27,9 @@ GetDemoPtr:
 		move.b	(a0)+,(Demo_hold_counter).w
 		move.l	a0,(Demo_data_addr).w						; save DemoDat+1
 		clr.b	(Demo_hold_buttons).w
-		move.w	#$8000,(Ctrl_1).w
-		move.w	#$8000,(Ctrl_2).w
+		move.w	#bytes_to_word(button_start_mask,0),d0
+		move.w	d0,(Ctrl_1).w
+		move.w	d0,(Ctrl_2).w
 		st	(Demo_start_button).w
 		move.w	#30*60,(Demo_timer).w						; set demo timer
 		clr.l	(RNG_seed).w							; reset RNG seed
@@ -64,11 +65,11 @@ Demo_PlayRecord:
 		move.b	-1(a0),(Demo_hold_counter).w					; reset counter to length of next press
 
 .skip
-		moveq	#signextendB($80),d1
+		moveq	#signextendB(button_start_mask),d1
 		and.b	(Demo_start_button).w,d1
 		or.b	(Demo_hold_buttons).w,d1
 		move.b	d2,(Demo_hold_buttons).w
-		moveq	#signextendB($80),d0
+		moveq	#signextendB(button_start_mask),d0
 		and.b	(Ctrl_1_held).w,d0
 		sne	(Demo_start_button).w
 		or.b	d2,d0
@@ -76,7 +77,7 @@ Demo_PlayRecord:
 		eor.b	d0,d1
 		and.b	d0,d1
 		move.b	d1,(Ctrl_1_pressed).w
-		move.w	#$8080,d0
+		move.w	#bytes_to_word(button_start_mask,button_start_mask),d0
 		and.w	d0,(Ctrl_2).w
 		move.l	a0,(Demo_data_addr).w
 
@@ -102,7 +103,7 @@ Demo_Record:
 		adda.w	d0,a0
 
 		; save length and button
-		moveq	#$7F,d0
+		moveq	#~button_start_mask&$FF,d0
 		and.b	(Ctrl_1_held).w,d0						; load input of player 1
 		cmp.b	1(a0),d0							; is same button held?
 		bne.s	.next								; if not, branch
