@@ -99,7 +99,7 @@ Obj_Caterkiller:
 ; ---------------------------------------------------------------------------
 
 .move
-		addq.b	#2,routine(a0)
+		st	routine(a0)
 		move.b	#$10,caterkiller.timer(a0)
 		move.w	#-$C0,x_vel(a0)
 		move.w	#$40,ground_vel(a0)

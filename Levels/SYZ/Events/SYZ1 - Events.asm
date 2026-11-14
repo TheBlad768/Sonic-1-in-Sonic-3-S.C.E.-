@@ -20,7 +20,9 @@ SYZ3_ForegroundEvent:
 		move.w	(Camera_X_pos_copy).w,d1
 		move.w	(Camera_Y_pos_copy).w,d2
 		bsr.w	Draw_PlaneVertBottomUp						; refresh main plane
-		bpl.s	.draw
+
+		; check draw delayed rowcount
+		bpl.s	.draw								; if draw delayed rowcount remains, branch
 		clr.b	(Screen_event_flag).w						; clear redraw flag
 
 .draw
