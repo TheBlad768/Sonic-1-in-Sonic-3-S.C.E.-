@@ -19,7 +19,7 @@ Obj_SpikeBall_LZ:
 		; init
 		movem.l	ObjDat_SpikeBall_LZ(pc),d0-d3					; copy data to d0-d3
 		movem.l	d0-d3,code_addr(a0)						; set data from d0-d3 to current object
-		move.b	#1,mapping_frame(a0)
+		move.b	#1,mapping_frame(a0)						; set "spike ball" frame
 		move.b	#collision_type.npc.hurt,collision_type(a0)			; set spike ball collision type
 		move.w	#bytes_to_word(16/2,16/2),collision_height(a0)			; set height and width collision
 		move.w	x_pos(a0),spikeball_lz.origX(a0)
@@ -51,22 +51,34 @@ Obj_SpikeBall_LZ:
 		move.w	d2,x_pos(a1)
 		move.w	y_pos(a0),d3
 		move.w	d3,y_pos(a1)
+
+		; set
 		moveq	#$F,d1
 		and.b	subtype.byte(a0),d1
-		move.w	d1,d0
-		lsl.w	#4,d0								; multiply by $10
+		move.b	d1,d0
+		addq.b	#1,d0
+		lsl.b	#4,d0								; multiply by $10
 		move.b	d0,width_pixels(a1)						; set width
 		move.b	d0,height_pixels(a1)						; set height
-		subq.w	#1,d1
-		blo.s	.delete
-		move.w	d1,mainspr_childsprites(a1)					; set number of child sprites
+
+		; for some reason, this object differs from Swinging Platform, and subtype does not match the number of chains
+		; and anchor required, so a subtraction is needed here
+		subq.w	#1,d1								; fix dbf
+		blo.s	.offscreen							; if there are no subtype here, delete it
+		move.w	d1,mainspr_childsprites(a1)					; set number of child sprites (-1)
+		subq.w	#1,d1								; fix dbf again
+		blo.s	.set								; if there are no child sprites here, branch
+
+		; set chain and anchor
 		lea	sub2_x_pos(a1),a2
 
 .loop
-		movem.w	d2-d3,(a2)
+		movem.w	d2-d3,(a2)							; xpos, ypos
 		addq.w	#next_subspr,a2							; next subsprite
 		dbf	d1,.loop
-		move.b	#2,mapping_frame(a1)
+
+.set
+		move.b	#2,mapping_frame(a1)						; set "anchor" frame
 
 .main
 		bsr.s	SpikeBall_LZ_Move
@@ -95,19 +107,21 @@ Obj_SpikeBall_LZ:
 .delete
 		jmp	(Delete_Current_Object).w
 
+; ---------------------------------------------------------------------------
+; Spike Ball (LZ) movement
+; ---------------------------------------------------------------------------
+
 ; =============== S U B R O U T I N E =======================================
 
 SpikeBall_LZ_Move:
+
+		; set angle
 		move.w	spikeball_lz.speed(a0),d0
 		add.w	d0,angle(a0)
 		move.b	angle(a0),d0
+
+		; MoveSprite_CircularSimple
 		jsr	(GetSineCosine).w
-		move.w	spikeball_lz.origY(a0),d2
-		move.w	spikeball_lz.origX(a0),d3
-		movea.w	parent3(a0),a1							; load chain address into a1
-		move.w	mainspr_childsprites(a1),d6
-		subq.w	#1,d6
-		blo.s	.return
 		swap	d0
 		clr.w	d0
 		swap	d1
@@ -116,6 +130,14 @@ SpikeBall_LZ_Move:
 		asr.l	#4,d1
 		move.l	d0,d4
 		move.l	d1,d5
+		move.w	spikeball_lz.origY(a0),d2
+		move.w	spikeball_lz.origX(a0),d3
+		movea.w	parent3(a0),a1							; load chain address into a1
+		move.w	mainspr_childsprites(a1),d6
+		subq.w	#1,d6								; fix dbf
+		blo.s	.set								; if there are no child sprites here, branch
+
+		; move chain
 		lea	sub2_x_pos(a1),a2
 
 .loop
@@ -133,14 +155,16 @@ SpikeBall_LZ_Move:
 		add.l	d0,d4
 		add.l	d1,d5
 		dbf	d6,.loop
+
+.set
+
+		; move spike ball
 		swap	d4
 		swap	d5
 		add.w	d2,d4
 		add.w	d3,d5
 		move.w	d5,x_pos(a0)
 		move.w	d4,y_pos(a0)
-
-.return
 		rts
 
 ; =============== S U B R O U T I N E =======================================

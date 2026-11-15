@@ -49,6 +49,7 @@ Debug_GHZ1: dbglistheader
 		dbglistobj Obj_TensionBridge, Map_TensionBridge, 14, 0, $33E, 2, FALSE
 		dbglistobj Obj_TensionBridge, Map_TensionBridge, 16, 0, $33E, 2, FALSE
 		dbglistobj Obj_EdgeWall, Map_EdgeWall, 0, 0, $3A4, 2, FALSE
+		dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 0, 0, $3C2, 0, FALSE
 		dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 1, 0, $3C2, 0, FALSE
 		dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 2, 0, $3C2, 0, FALSE
 		dbglistobj Obj_SwingingPlatform, Map_SwingingPlatform_GHZ, 3, 0, $3C2, 0, FALSE
