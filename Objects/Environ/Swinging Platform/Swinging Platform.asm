@@ -70,6 +70,8 @@ Obj_SwingingPlatform:
 		move.w	d2,x_pos(a1)
 		move.w	y_pos(a0),d3
 		move.w	d3,y_pos(a1)
+
+		; set
 		moveq	#$F,d1
 		and.b	subtype.byte(a0),d1
 		move.b	d1,d0
@@ -79,7 +81,9 @@ Obj_SwingingPlatform:
 		move.b	d0,height_pixels(a1)						; set height
 		move.w	d1,mainspr_childsprites(a1)					; set number of child sprites
 		subq.w	#1,d1								; fix dbf
-		blo.s	.offscreen							; if there are no child sprites here, delete it
+		blo.s	.set								; if there are no child sprites here, branch
+
+		; set chain and anchor
 		lea	sub2_x_pos(a1),a2
 
 .loop
@@ -87,7 +91,9 @@ Obj_SwingingPlatform:
 		move.w	d3,(a2)+							; ypos
 		move.w	#1,(a2)+							; mapping frame (chain)
 		dbf	d1,.loop
-		move.b	#2,mapping_frame(a1)
+
+.set
+		move.b	#2,mapping_frame(a1)						; set "anchor" frame
 
 		; check level
 		move.l	#.mainghz,code_addr(a0)						; set GHZ
@@ -160,9 +166,15 @@ Obj_SwingingPlatform:
 		jsr	(SolidObjectTop).w
 		bra.s	.checkdeletesbz
 
+; ---------------------------------------------------------------------------
+; Swinging Platform movement
+; ---------------------------------------------------------------------------
+
 ; =============== S U B R O U T I N E =======================================
 
 SwingingPlatform_Move:
+
+		; set angle
 		move.b	(Oscillating_Data+$18).w,d0
 		tst.b	subtype.byte(a0)
 		bpl.s	.normal
@@ -180,12 +192,9 @@ SwingingPlatform_Move:
 		neg.b	d0
 
 .notflipy
+
+		; MoveSprite_CircularSimple
 		jsr	(GetSineCosine).w
-		move.w	swingingplatform.origY(a0),d2
-		move.w	swingingplatform.origX(a0),d3
-		movea.w	parent3(a0),a1							; load chain address into a1
-		move.w	mainspr_childsprites(a1),d6
-		subq.w	#1,d6								; fix dbf
 		swap	d0
 		clr.w	d0
 		swap	d1
@@ -194,6 +203,14 @@ SwingingPlatform_Move:
 		asr.l	#4,d1
 		move.l	d0,d4
 		move.l	d1,d5
+		move.w	swingingplatform.origY(a0),d2
+		move.w	swingingplatform.origX(a0),d3
+		movea.w	parent3(a0),a1							; load chain address into a1
+		move.w	mainspr_childsprites(a1),d6
+		subq.w	#1,d6								; fix dbf
+		blo.s	.set								; if there are no child sprites here, branch
+
+		; move chain
 		lea	sub2_x_pos(a1),a2
 
 .loop
@@ -211,6 +228,10 @@ SwingingPlatform_Move:
 		add.l	d0,d4
 		add.l	d1,d5
 		dbf	d6,.loop
+
+.set
+
+		; move platform
 
 	if ~~SwingingPlatformChain
 		; sonic 1 fix pos
