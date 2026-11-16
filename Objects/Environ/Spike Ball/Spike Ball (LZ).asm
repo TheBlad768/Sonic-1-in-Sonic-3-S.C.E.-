@@ -33,7 +33,12 @@ Obj_SpikeBall_LZ:
 		move.w	d1,spikeball_lz.speed(a0)					; set object twirl speed
 		move.b	status(a0),d0
 		ror.b	#2,d0
-		andi.b	#$C0,d0
+
+		andi.b	#( \
+			setBit(status.npc.x_flip) | \
+			setBit(status.npc.y_flip) \
+		)<<6,d0
+
 		move.b	d0,angle(a0)
 
 		; create chain

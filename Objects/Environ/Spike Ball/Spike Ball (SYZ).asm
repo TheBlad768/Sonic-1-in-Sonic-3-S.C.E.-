@@ -28,7 +28,12 @@ Obj_SpikeBall_SYZ:
 		move.w	d1,spikeball_syz.speed(a0)					; set object twirl speed
 		move.b	status(a0),d0
 		ror.b	#2,d0
-		andi.b	#$C0,d0
+
+		andi.b	#( \
+			setBit(status.npc.x_flip) | \
+			setBit(status.npc.y_flip) \
+		)<<6,d0
+
 		move.b	d0,circular_angle(a0)
 
 		; get number of spike balls for CreateChild8_TreeListRepeated
