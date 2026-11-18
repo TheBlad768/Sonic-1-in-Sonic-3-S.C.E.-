@@ -362,9 +362,17 @@ conveyorplatformend macro
 conveyorplatformcount_{"\{conveyorplatformcountcur}"} = conveyorplatformcount - 1
     endm
 
-stillspritesobjdata macro prio,vram,pal,pri,height,width
+stillspritesobjdata macro prio,vram,pal,pri,height,width,coltype,colh,colw
 	dc.w sprite_priority(prio),make_art_tile(vram,pal,pri)
 	dc.b (height/2),(width/2)
+	dc.b 0,coltype,(colh/2),(colw/2)
+    endm
+
+stillspritesmovementobjdata macro prio,vram,pal,pri,height,width,speedx,speedy,coltype,colh,colw
+	dc.w sprite_priority(prio),make_art_tile(vram,pal,pri)
+	dc.b (height/2),(width/2)
+	dc.w speedx,speedy
+	dc.b 0,coltype,(colh/2),(colw/2)
     endm
 ; ---------------------------------------------------------------------------
 

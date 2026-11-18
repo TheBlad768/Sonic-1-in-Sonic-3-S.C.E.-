@@ -8,13 +8,13 @@
 	dsset x_vel									; pretend we're in the RAM
 
 teleport_p1_attached =			*
-teleport_p1_attached.routine		ds.b 1	; (1 byte)
-teleport_p1_attached.sine		ds.b 1	; (1 byte)
-teleport_p1_attached.timer		ds.w 1	; (2 bytes)
-teleport_p1_attached.size		ds.w 1	; (2 bytes)
-teleport_p1_attached.pointer		ds.l 1	; (4 bytes)				; save address
-teleport_p1_attached.saveX		ds.w 1	; (2 bytes)
-teleport_p1_attached.saveY		ds.w 1	; (2 bytes)
+teleport_p1_attached.routine		ds.b 1						; (1 byte)
+teleport_p1_attached.sine		ds.b 1						; (1 byte)
+teleport_p1_attached.timer		ds.w 1						; (2 bytes)
+teleport_p1_attached.size		ds.w 1						; (2 bytes)
+teleport_p1_attached.pointer		ds.l 1						; save address (4 bytes)
+teleport_p1_attached.saveX		ds.w 1						; (2 bytes)
+teleport_p1_attached.saveY		ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -22,13 +22,13 @@ teleport_p1_attached.saveY		ds.w 1	; (2 bytes)
 	dsset wait_timer								; pretend we're in the RAM
 
 teleport_p2_attached =			*
-teleport_p2_attached.routine		ds.b 1	; (1 byte)
-teleport_p2_attached.sine		ds.b 1	; (1 byte)
-teleport_p2_attached.timer		ds.w 1	; (2 bytes)
-teleport_p2_attached.size		ds.w 1	; (2 bytes)
-teleport_p2_attached.pointer		ds.l 1	; (4 bytes)				; save address
-teleport_p2_attached.saveX		ds.w 1	; (2 bytes)
-teleport_p2_attached.saveY		ds.w 1	; (2 bytes)
+teleport_p2_attached.routine		ds.b 1						; (1 byte)
+teleport_p2_attached.sine		ds.b 1						; (1 byte)
+teleport_p2_attached.timer		ds.w 1						; (2 bytes)
+teleport_p2_attached.size		ds.w 1						; (2 bytes)
+teleport_p2_attached.pointer		ds.l 1						; save address (4 bytes)
+teleport_p2_attached.saveX		ds.w 1						; (2 bytes)
+teleport_p2_attached.saveY		ds.w 1						; (2 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 

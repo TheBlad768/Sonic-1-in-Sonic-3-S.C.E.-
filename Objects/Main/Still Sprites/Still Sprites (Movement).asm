@@ -8,6 +8,9 @@
 
 movementstillsprite.origX		ds.w 1						; original x-axis position (2 bytes)
 movementstillsprite.origY		ds.w 1						; original y-axis position (2 bytes)
+movementstillsprite.speedX		ds.w 1						; (2 bytes)
+movementstillsprite.speedY		ds.w 1						; (2 bytes)
+movementstillsprite.draw_pointer	ds.w 1						; save address (4 bytes)
 
 	dsreset										; stop pretending and reset the program counter
 
@@ -22,180 +25,75 @@ Obj_MovementStillSprite:
 		move.w	y_pos(a0),movementstillsprite.origY(a0)
 
 		; get
-		moveq	#$F,d0
-		and.w	subtype(a0),d0
-		move.b	d0,mapping_frame(a0)
-		add.w	d0,d0								; multiply by 6
-		move.w	d0,d1
-		add.w	d0,d0
+		move.w	subtype(a0),d0
+		move.b	d0,mapping_frame(a0)						; set mapping frame
+		move.w	d0,d1								; multiply by 14
+		add.w	d1,d1
 		add.w	d1,d0
+		add.w	d1,d0
+		add.w	d1,d0
+		add.w	d0,d0
 		lea	.index(pc,d0.w),a1
 		move.l	(a1)+,priority(a0)						; set priority and VRAM
-		move.w	(a1),height_pixels(a0)						; set height and width
+		move.w	(a1)+,height_pixels(a0)						; set height and width
+		move.l	(a1)+,movementstillsprite.speedX(a0)				; set speedXY
 
-		; load
-		move.w	subtype(a0),d0
-		lsr.w	#2,d0
-		andi.w	#$3C,d0
-		movea.l	.load(pc,d0.w),a1
+		; check collision type
+		lea	(Sprite_OnScreen_Test2).w,a2					; normal draw
+		move.w	(a1)+,d0							; get collision type
+		beq.s	.set								; if it doesn't have collision, branch
+		move.b	d0,collision_type(a0)						; set collision type
+		move.w	(a1),collision_height(a0)					; set collision height and width
+		lea	(Sprite_OnScreen_Test2_Collision).w,a2				; collision draw
+
+.set
+		move.l	a2,movementstillsprite.draw_pointer(a0)
 
 		; draw
+		lea	MovementStillSprite_Move(pc),a1
 		move.l	a1,code_addr(a0)
 		jmp	(a1)
 ; ---------------------------------------------------------------------------
 
-.load
-		dc.l sub_2C26A	; 0
-		dc.l sub_2C270	; 4
-		dc.l sub_2C2A6	; 8
-		dc.l sub_2C2DC	; C
-		dc.l sub_2C312	; 10
-		dc.l sub_2C348	; 14
-		dc.l sub_2C37A	; 18
-
 .index
+
+		; object priority, VRAM, palette, priority, height, width, speedx, speedy, collision type, collision height, collision width
 
 		; empty yet...								; 0
 
+; ---------------------------------------------------------------------------
+; Still Sprite movement
+; ---------------------------------------------------------------------------
+
 ; =============== S U B R O U T I N E =======================================
 
-sub_2C26A:
-		jmp	(Sprite_OnScreen_Test).w
+MovementStillSprite_Move:
 
-; =============== S U B R O U T I N E =======================================
-
-sub_2C270:
+		; xpos
 		move.w	movementstillsprite.origX(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_width/2,d1
 		sub.w	(Camera_X_pos).w,d1
-		asr.w	#4,d1
+		muls.w	movementstillsprite.speedX(a0),d1
+		asr.l	#8,d1
 		add.w	d2,d1
 		move.w	d1,x_pos(a0)
+
+		; ypos
 		move.w	movementstillsprite.origY(a0),d1
 		move.w	d1,d2
 		subi.w	#screen_height/2,d1
 		sub.w	(Camera_Y_pos).w,d1
-		asr.w	#4,d1
+		muls.w	movementstillsprite.speedY(a0),d1
+		asr.l	#8,d1
 		add.w	d2,d1
 		move.w	d1,y_pos(a0)
 
 		; draw
 		moveq	#-$80,d0							; round down to nearest $80
 		and.w	movementstillsprite.origX(a0),d0				; get object position
-		jmp	(Sprite_OnScreen_Test2).w
-
-; =============== S U B R O U T I N E =======================================
-
-sub_2C2A6:
-		move.w	movementstillsprite.origX(a0),d1
-		move.w	d1,d2
-		subi.w	#screen_width/2,d1
-		sub.w	(Camera_X_pos).w,d1
-		asr.w	#3,d1
-		add.w	d2,d1
-		move.w	d1,x_pos(a0)
-		move.w	movementstillsprite.origY(a0),d1
-		move.w	d1,d2
-		subi.w	#screen_height/2,d1
-		sub.w	(Camera_Y_pos).w,d1
-		asr.w	#3,d1
-		add.w	d2,d1
-		move.w	d1,y_pos(a0)
-
-		; draw
-		moveq	#-$80,d0							; round down to nearest $80
-		and.w	movementstillsprite.origX(a0),d0				; get object position
-		jmp	(Sprite_OnScreen_Test2).w
-
-; =============== S U B R O U T I N E =======================================
-
-sub_2C2DC:
-		move.w	movementstillsprite.origX(a0),d1
-		move.w	d1,d2
-		subi.w	#screen_width/2,d1
-		sub.w	(Camera_X_pos).w,d1
-		asr.w	#2,d1
-		add.w	d2,d1
-		move.w	d1,x_pos(a0)
-		move.w	movementstillsprite.origY(a0),d1
-		move.w	d1,d2
-		subi.w	#screen_height/2,d1
-		sub.w	(Camera_Y_pos).w,d1
-		asr.w	#2,d1
-		add.w	d2,d1
-		move.w	d1,y_pos(a0)
-
-		; draw
-		moveq	#-$80,d0							; round down to nearest $80
-		and.w	movementstillsprite.origX(a0),d0				; get object position
-		jmp	(Sprite_OnScreen_Test2).w
-
-; =============== S U B R O U T I N E =======================================
-
-sub_2C312:
-		move.w	movementstillsprite.origX(a0),d1
-		move.w	d1,d2
-		subi.w	#screen_width/2,d1
-		sub.w	(Camera_X_pos).w,d1
-		asr.w	#1,d1
-		add.w	d2,d1
-		move.w	d1,x_pos(a0)
-		move.w	movementstillsprite.origY(a0),d1
-		move.w	d1,d2
-		subi.w	#screen_height/2,d1
-		sub.w	(Camera_Y_pos).w,d1
-		asr.w	#1,d1
-		add.w	d2,d1
-		move.w	d1,y_pos(a0)
-
-		; draw
-		moveq	#-$80,d0							; round down to nearest $80
-		and.w	movementstillsprite.origX(a0),d0				; get object position
-		jmp	(Sprite_OnScreen_Test2).w
-
-; =============== S U B R O U T I N E =======================================
-
-sub_2C348:
-		move.w	movementstillsprite.origX(a0),d1
-		move.w	d1,d2
-		subi.w	#screen_width/2,d1
-		sub.w	(Camera_X_pos).w,d1
-		add.w	d2,d1
-		move.w	d1,x_pos(a0)
-		move.w	movementstillsprite.origY(a0),d1
-		move.w	d1,d2
-		subi.w	#screen_height/2,d1
-		sub.w	(Camera_Y_pos).w,d1
-		add.w	d2,d1
-		move.w	d1,y_pos(a0)
-
-		; draw
-		moveq	#-$80,d0							; round down to nearest $80
-		and.w	movementstillsprite.origX(a0),d0				; get object position
-		jmp	(Sprite_OnScreen_Test2).w
-
-; =============== S U B R O U T I N E =======================================
-
-sub_2C37A:
-		move.w	movementstillsprite.origX(a0),d1
-		move.w	d1,d2
-		subi.w	#screen_width/2,d1
-		sub.w	(Camera_X_pos).w,d1
-		add.w	d1,d1
-		add.w	d2,d1
-		move.w	d1,x_pos(a0)
-		move.w	movementstillsprite.origY(a0),d1
-		move.w	d1,d2
-		subi.w	#screen_height/2,d1
-		sub.w	(Camera_Y_pos).w,d1
-		add.w	d2,d1
-		move.w	d1,y_pos(a0)
-
-		; draw
-		moveq	#-$80,d0							; round down to nearest $80
-		and.w	movementstillsprite.origX(a0),d0				; get object position
-		jmp	(Sprite_OnScreen_Test2).w
+		movea.l	movementstillsprite.draw_pointer(a0),a1
+		jmp	(a1)
 ; ---------------------------------------------------------------------------
 
 		; mappings

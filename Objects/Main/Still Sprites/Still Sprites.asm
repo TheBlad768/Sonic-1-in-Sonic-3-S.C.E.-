@@ -17,37 +17,45 @@ Obj_StillSprite:
 
 		; get
 		move.w	subtype(a0),d0
-		move.b	d0,mapping_frame(a0)
-		add.w	d0,d0								; multiply by 6
-		move.w	d0,d1
-		add.w	d0,d0
-		add.w	d1,d0
+		move.b	d0,mapping_frame(a0)						; set mapping frame
+		lsl.w	#3,d0								; multiply by 8
 		lea	.index(pc,d0.w),a1
 		move.l	(a1)+,priority(a0)						; set priority and VRAM
-		move.w	(a1),height_pixels(a0)						; set height and width
+		move.w	(a1)+,height_pixels(a0)						; set height and width
+
+		; check collision type
+		lea	(Sprite_OnScreen_Test).w,a2					; normal draw
+		move.w	(a1)+,d0							; get collision type
+		beq.s	.set								; if it doesn't have collision, branch
+		move.b	d0,collision_type(a0)						; set collision type
+		move.w	(a1),collision_height(a0)					; set collision height and width
+		lea	(Sprite_OnScreen_Test_Collision).w,a2				; collision draw
+
+.set
 
 		; draw
-		lea	(Sprite_OnScreen_Test).w,a1
-		move.l	a1,code_addr(a0)
-		jmp	(a1)
+		move.l	a2,code_addr(a0)
+		jmp	(a2)
 ; ---------------------------------------------------------------------------
 
 .index
 
-		; GHZ (Bridge)								; 0
-		stillspritesobjdata	1, $342, 2, FALSE, 32, 16
+		; object priority, VRAM, palette, priority, height, width, collision type, collision height, collision width
 
-		; MZ (Brick)								; 1
-		stillspritesobjdata	1, 1, 2, FALSE, 32, 32
+		; 0 ; GHZ (Bridge)
+		stillspritesobjdata	1, $342, 2, FALSE, 16, 32, collision_type.npc.none, 0, 0
 
-		; SYZ (Siren)								; 2
-		stillspritesobjdata	6, $11, 0, FALSE, 16, 32
+		; 1 ; MZ (Brick)
+		stillspritesobjdata	1, 1, 2, FALSE, 32, 32, collision_type.npc.none, 0, 0
 
-		; LZ (Wheel)								; 3
-		stillspritesobjdata	1, $3F6, 0, FALSE, 32, 32
+		; 2 ; SYZ (Siren)
+		stillspritesobjdata	6, $11, 0, FALSE, 16, 32, collision_type.npc.none, 0, 0
 
-		; SLZ (Cannon)								; 4
-		stillspritesobjdata	2, $42C, 2, FALSE, 32, 16
+		; 3 ; LZ (Wheel)
+		stillspritesobjdata	1, $3F6, 0, FALSE, 32, 32, collision_type.npc.none, 0, 0
+
+		; 4 ; SLZ (Cannon)
+		stillspritesobjdata	2, $42C, 2, FALSE, 32, 16, collision_type.npc.none, 0, 0
 ; ---------------------------------------------------------------------------
 
 		; mappings
