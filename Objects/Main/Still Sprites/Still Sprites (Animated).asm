@@ -17,15 +17,25 @@ Obj_AnimatedStillSprite:
 
 		; get
 		move.w	subtype(a0),d0
-		move.b	d0,anim(a0)
-		add.w	d0,d0								; multiply by 6
-		move.w	d0,d1
-		add.w	d0,d0
-		add.w	d1,d0
+		move.b	d0,anim(a0)							; set animation script id
+		lsl.w	#3,d0								; multiply by 8
 		lea	.index(pc,d0.w),a1
 		move.l	(a1)+,priority(a0)						; set priority and VRAM
-		move.w	(a1),height_pixels(a0)						; set height and width
-		move.l	#.anim,code_addr(a0)
+		move.w	(a1)+,height_pixels(a0)						; set height and width
+
+		; check collision type
+		move.l	#.anim,code_addr(a0)						; normal draw
+		move.w	(a1)+,d0							; get collision type
+		beq.s	.anim								; if it doesn't have collision, branch
+		move.b	d0,collision_type(a0)						; set collision type
+		move.w	(a1),collision_height(a0)					; set collision height and width
+		move.l	#.anim_col,code_addr(a0)					; collision draw
+
+.anim_col
+		lea	Ani_AnimatedStillSprites(pc),a1
+		jsr	(Animate_SpriteNoSST).w
+		jmp	(Sprite_OnScreen_Test_Collision).w
+; ---------------------------------------------------------------------------
 
 .anim
 		lea	Ani_AnimatedStillSprites(pc),a1
@@ -34,6 +44,8 @@ Obj_AnimatedStillSprite:
 ; ---------------------------------------------------------------------------
 
 .index
+
+		; object priority, VRAM, palette, priority, height, width, collision type, collision height, collision width
 
 		; empty yet...								; 0
 ; ---------------------------------------------------------------------------
