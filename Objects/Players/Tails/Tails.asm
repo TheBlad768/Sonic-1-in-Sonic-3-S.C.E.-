@@ -180,13 +180,13 @@ loc_13840:
 		bsr.w	Tails_CPU_Control
 
 loc_1384A:
-		btst	#0,object_control(a0)
+		btst	#object_control.lock_control,object_control(a0)
 		beq.s	loc_13872
 		clr.b	double_jump_flag(a0)
 		tst.b	(Flying_carrying_Sonic_flag).w
 		beq.s	loc_1388C
 		lea	(Player_1).w,a1							; a1=character
-		clr.b	object_control(a1)
+		clr.b	object_control(a1)						; restore Sonic's movement
 		clr.b	anim_frame(a1)
 		clr.b	anim_frame_timer(a1)
 		bset	#status.player.in_air,status(a1)
@@ -227,7 +227,7 @@ loc_1388C:
 		move.b	prev_anim(a0),anim(a0)
 
 .anim
-		btst	#1,object_control(a0)
+		btst	#object_control.no_animation,object_control(a0)
 		bne.s	.touch
 		bsr.w	Tails_Animate
 		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
@@ -238,7 +238,12 @@ loc_1388C:
 		bsr.w	Tails_Load_PLC
 
 .touch
-		moveq	#signextendB($A0),d0
+
+		moveq	#signextendB( \
+			setBit(object_control.ignore_touch) | \
+			setBit(object_control.no_interaction) \
+		),d0
+
 		and.b	object_control(a0),d0
 		bne.s	.return
 		jmp	TouchResponse(pc)
@@ -368,7 +373,7 @@ loc_13AF4:
 		clr.b	status(a0)
 
 loc_13B12:
-		clr.b	object_control(a0)
+		clr.b	object_control(a0)						; restore Tails's movement
 
 loc_13B18:
 		move.w	#6,(Tails_CPU_routine).w
@@ -386,7 +391,7 @@ Tails_Catch_Up_Flying:
 		and.w	(Level_frame_counter).w,d0
 		bne.s	locret_13B1E
 		tst.b	object_control(a1)
-		bmi.s	locret_13B1E
+		bmi.s	locret_13B1E							; branch if object collisions are disabled for Sonic
 
 		moveq	#signextendB( \
 			setBit(status.player.prevent_tails_respawn) \
@@ -421,7 +426,12 @@ loc_13B78:
 		move.b	d0,double_jump_flag(a0)
 		move.b	#setBit(status.player.in_air),status(a0)
 		move.b	#30,air_left(a0)
-		move.b	#$81,object_control(a0)
+
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_interaction) \
+		),object_control(a0)
+
 		move.b	d0,flips_remaining(a0)
 		move.b	d0,flip_speed(a0)
 		move.w	d0,move_lock(a0)
@@ -447,7 +457,12 @@ Tails_FlySwim_Unknown:
 		blo.s	loc_13C50
 		clr.w	(Tails_CPU_flight_timer).w
 		move.w	#2,(Tails_CPU_routine).w
-		move.b	#$81,object_control(a0)
+
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_interaction) \
+		),object_control(a0)
+
 		move.b	#setBit(status.player.in_air),status(a0)
 		clr.w	x_pos(a0)
 		clr.w	y_pos(a0)
@@ -528,7 +543,7 @@ loc_13CD2:
 		cmpi.b	#PlayerID_Death,(Player_1+routine).w				; has player just died?
 		bhs.s	loc_13D42							; if yes, branch
 		move.w	#6,(Tails_CPU_routine).w
-		clr.b	object_control(a0)
+		clr.b	object_control(a0)						; restore Tails's movement
 		clr.b	anim(a0)							; AniIDSonAni_Walk
 		clr.l	x_vel(a0)
 		clr.w	ground_vel(a0)
@@ -546,7 +561,12 @@ loc_13D34:
 ; ---------------------------------------------------------------------------
 
 loc_13D42:
-		move.b	#$81,object_control(a0)
+
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_interaction) \
+		),object_control(a0)
+
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -556,7 +576,12 @@ loc_13D4A:
 		move.w	#4,(Tails_CPU_routine).w
 		clr.b	spin_dash_flag(a0)
 		clr.w	spin_dash_counter(a0)
-		move.b	#$81,object_control(a0)
+
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_interaction) \
+		),object_control(a0)
+
 		move.b	#setBit(status.player.in_air),status(a0)
 		move.b	#AniIDTailsAni_Flying,anim(a0)
 		rts
@@ -567,7 +592,7 @@ loc_13D78:
 		tst.w	(Tails_CPU_idle_timer).w
 		bne.w	loc_13EBE
 		tst.b	object_control(a0)
-		bmi.w	loc_13EBE
+		bmi.w	loc_13EBE							; branch if object collisions are disabled for Tails
 		tst.b	status_tertiary(a1)
 		bmi.w	loc_13EBE
 		tst.w	move_lock(a0)
@@ -617,7 +642,7 @@ loc_13E0A:
 		beq.s	loc_13E64
 		btst	#status.player.x_flip,status(a0)
 		beq.s	loc_13E64
-		btst	#0,object_control(a0)
+		btst	#object_control.lock_control,object_control(a0)
 		bne.s	loc_13E64
 		subq.w	#1,x_pos(a0)
 		bra.s	loc_13E64
@@ -634,7 +659,7 @@ loc_13E34:
 		beq.s	loc_13E64
 		btst	#status.player.x_flip,status(a0)
 		bne.s	loc_13E64
-		btst	#0,object_control(a0)
+		btst	#object_control.lock_control,object_control(a0)
 		bne.s	loc_13E64
 		addq.w	#1,x_pos(a0)
 		bra.s	loc_13E64
@@ -698,7 +723,12 @@ sub_13ECA:
 		clr.w	(Tails_CPU_idle_timer).w
 		clr.w	(Tails_CPU_flight_timer).w
 		move.w	#2,(Tails_CPU_routine).w
-		move.b	#$81,object_control(a0)
+
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_interaction) \
+		),object_control(a0)
+
 		move.b	#setBit(status.player.in_air),status(a0)
 		move.w	#$7F00,x_pos(a0)						; move offscreen
 		clr.w	y_pos(a0)
@@ -813,7 +843,7 @@ loc_14016:
 		btst	#status.player.in_air,status(a1)				; is the player in the air?
 		bne.s	loc_14082							; if yes, branch
 		move.w	#6,(Tails_CPU_routine).w
-		clr.b	object_control(a0)
+		clr.b	object_control(a0)						; restore Tails's movement
 		clr.b	anim(a0)							; AniIDSonAni_Walk
 		clr.l	x_vel(a0)
 		clr.w	ground_vel(a0)
@@ -1006,7 +1036,7 @@ loc_142A2:
 		btst	#status.player.in_air,status(a0)				; is the player in the air?
 		bne.s	locret_142E0							; if yes, branch
 		move.w	#6,(Tails_CPU_routine).w
-		clr.b	object_control(a0)
+		clr.b	object_control(a0)						; restore Tails's movement
 		clr.b	anim(a0)							; AniIDSonAni_Walk
 		clr.l	x_vel(a0)
 		clr.w	ground_vel(a0)
@@ -1114,10 +1144,10 @@ Tails_Carry_Sonic:
 		cmp.w	y_vel(a1),d1
 		bne.s	loc_14460
 		tst.b	object_control(a1)
-		bmi.w	loc_1446A
+		bmi.w	loc_1446A							; branch if object collisions are disabled for Sonic
 		andi.b	#btnABC,d0							; are buttons A, B or C being pressed?
 		beq.w	loc_14474							; if not, branch
-		clr.b	object_control(a1)
+		clr.b	object_control(a1)						; restore Sonic's movement
 		clr.b	anim_frame(a1)
 		clr.b	anim_frame_timer(a1)
 		clr.b	(a2)
@@ -1158,7 +1188,7 @@ loc_14460:
 		clr.b	jumping(a1)
 
 loc_14466:
-		clr.b	object_control(a1)
+		clr.b	object_control(a1)						; restore Sonic's movement
 		clr.b	anim_frame(a1)
 		clr.b	anim_frame_timer(a1)
 
@@ -1293,7 +1323,12 @@ sub_1459E:
 		move.w	d0,anim(a1)
 		clr.b	anim_frame_timer(a1)
 		clr.b	anim_frame(a1)
-		move.b	#3,object_control(a1)
+
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_animation) \
+		),object_control(a1)
+
 		bset	#status.player.in_air,status(a1)
 
 	if PlayerRollJumpLock
@@ -1427,7 +1462,7 @@ Tails_MdNormal:
 		tst.b	(Flying_carrying_Sonic_flag).w
 		beq.s	loc_14760
 		lea	(Player_1).w,a1							; a1=character
-		clr.b	object_control(a1)
+		clr.b	object_control(a1)						; restore Sonic's movement
 		clr.b	anim_frame(a1)
 		clr.b	anim_frame_timer(a1)
 		bset	#status.player.in_air,status(a1)
@@ -1666,7 +1701,7 @@ Tails_MdRoll:
 		tst.b	(Flying_carrying_Sonic_flag).w
 		beq.s	loc_1494C
 		lea	(Player_1).w,a1							; a1=character
-		clr.b	object_control(a1)
+		clr.b	object_control(a1)						; restore Sonic's movement
 		clr.b	anim_frame(a1)
 		clr.b	anim_frame_timer(a1)
 		bset	#status.player.in_air,status(a1)
@@ -1723,7 +1758,7 @@ Tails_MdJump:
 		tst.b	(Flying_carrying_Sonic_flag).w
 		beq.s	loc_149BA
 		lea	(Player_1).w,a1							; a1=character
-		clr.b	object_control(a1)
+		clr.b	object_control(a1)						; restore Sonic's movement
 		clr.b	anim_frame(a1)
 		clr.b	anim_frame_timer(a1)
 		bset	#status.player.in_air,status(a1)
@@ -1939,7 +1974,7 @@ loc_14B5C:
 		move.w	d0,y_vel(a0)
 
 loc_14B7A:
-		btst	#6,object_control(a0)
+		btst	#object_control.ignore_walls,object_control(a0)
 		bne.s	locret_14BF8
 		moveq	#$3F,d0
 		and.b	angle(a0),d0
@@ -2597,7 +2632,12 @@ Tails_Transform:
 		move.b	#$F,(Palette_timer).w
 		move.b	#1,(Super_Tails_flag).w						; set flag to Super Tails
 		move.w	#(1*60)-1,(Super_frame_count).w
-		move.b	#$81,object_control(a0)
+
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_interaction) \
+		),object_control(a0)
+
 		move.b	#AniIDTailsAni_Transform,anim(a0)				; enter 'transformation' animation
 		move.l	#Obj_SuperTailsBirds,(Invincibility_stars).w			; load Super Flickies object
 		move.w	#$800,Max_speed_P2-Max_speed_P2(a4)
@@ -3116,7 +3156,7 @@ Tails_Hurt:
 		tst.b	(Flying_carrying_Sonic_flag).w
 		beq.s	loc_156D6
 		lea	(Player_1).w,a1							; a1=character
-		clr.b	object_control(a1)
+		clr.b	object_control(a1)						; restore Sonic's movement
 		clr.b	anim_frame(a1)
 		clr.b	anim_frame_timer(a1)
 		bset	#status.player.in_air,status(a1)
@@ -3208,7 +3248,7 @@ Tails_Death:
 		tst.b	(Flying_carrying_Sonic_flag).w
 		beq.s	loc_157C8
 		lea	(Player_1).w,a1							; a1=character
-		clr.b	object_control(a1)
+		clr.b	object_control(a1)						; restore Sonic's movement
 		clr.b	anim_frame(a1)
 		clr.b	anim_frame_timer(a1)
 		bset	#status.player.in_air,status(a1)
@@ -3264,7 +3304,7 @@ Tails_Drown:
 		tst.b	(Flying_carrying_Sonic_flag).w
 		beq.s	loc_15828
 		lea	(Player_1).w,a1							; a1=character
-		clr.b	object_control(a1)
+		clr.b	object_control(a1)						; restore Sonic's movement
 		clr.b	anim_frame(a1)
 		clr.b	anim_frame_timer(a1)
 		bset	#status.player.in_air,status(a1)

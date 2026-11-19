@@ -66,7 +66,7 @@ Obj_Bumper:
 		tst.b	(Flying_carrying_Sonic_flag).w
 		beq.s	.notcarry
 		lea	(Player_1).w,a2							; a2=character
-		clr.b	object_control(a2)
+		clr.b	object_control(a2)						; restore Sonic's movement
 		clr.b	anim_frame(a2)
 		clr.b	anim_frame_timer(a2)
 		bset	#status.player.in_air,status(a2)

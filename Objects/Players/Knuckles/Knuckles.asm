@@ -130,7 +130,7 @@ loc_165A2:
 		move.w	(Ctrl_1).w,(Ctrl_1_logical).w
 
 loc_165AE:
-		btst	#0,object_control(a0)
+		btst	#object_control.lock_control,object_control(a0)
 		beq.s	loc_165BE
 		clr.b	double_jump_flag(a0)
 		bra.s	loc_165D8
@@ -169,7 +169,7 @@ loc_165D8:
 		move.b	prev_anim(a0),anim(a0)
 
 .anim
-		btst	#1,object_control(a0)
+		btst	#object_control.no_animation,object_control(a0)
 		bne.s	.touch
 		bsr.w	Knuckles_Animate
 		tst.b	(Reverse_gravity_flag).w					; are we in reverse gravity mode?
@@ -180,7 +180,12 @@ loc_165D8:
 		bsr.w	Knuckles_Load_PLC
 
 .touch
-		moveq	#signextendB($A0),d0
+
+		moveq	#signextendB( \
+			setBit(object_control.ignore_touch) | \
+			setBit(object_control.no_interaction) \
+		),d0
+
 		and.b	object_control(a0),d0
 		bne.s	.return
 		jmp	TouchResponse(pc)
@@ -1702,7 +1707,7 @@ loc_17364:
 		move.w	d0,y_vel(a0)
 
 loc_17382:
-		btst	#6,object_control(a0)
+		btst	#object_control.ignore_walls,object_control(a0)
 		bne.s	locret_17400
 		moveq	#$3F,d0
 		and.b	angle(a0),d0
@@ -2289,7 +2294,12 @@ Knux_Transform:
 		move.b	#1,(Super_palette_status).w					; set Super/Hyper palette status to 'fading'
 		move.b	#$F,(Palette_timer).w
 		move.w	#(1*60)-1,(Super_frame_count).w
-		move.b	#$81,object_control(a0)
+
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_interaction) \
+		),object_control(a0)
+
 		move.b	#AniIDSupSonAni_Transform,anim(a0)				; enter 'transformation' animation
 
 	if ~~SuperHyperSonKnux

@@ -69,7 +69,12 @@ End_MoveSonic:
 		clr.b	(a3)								; clear ctrl locked
 		clr.w	(a2)								; clear ctrl logical
 		clr.w	ground_vel(a1)							; clear ground velocity
-		move.b	#$81,object_control(a1)
+
+		; lock controls and disable object interaction
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_interaction) \
+		),object_control(a1)
 
 		; p2
 		move.w	#bytes_to_word(AniIDSonAni_Wait,AniIDSonAni_Walk),anim(a1)	; use "standing" animation and reset animate
