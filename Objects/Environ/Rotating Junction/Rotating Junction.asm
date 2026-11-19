@@ -87,7 +87,7 @@ Obj_Junction:
 		move.b	#AniIDSonAni_Roll,anim(a1)					; make Sonic use "rolling" animation
 		clr.l	x_vel(a1)
 		move.w	#$800,ground_vel(a1)
-		move.b	#1,object_control(a1)						; lock controls
+		move.b	#setBit(object_control.lock_control),object_control(a1)		; lock controls
 		bclr	#status.player.pushing,status(a1)				; clear character push bit
 
 	if PlayerRollJumpLock

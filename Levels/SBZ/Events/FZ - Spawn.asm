@@ -26,7 +26,11 @@ Obj_Spawn_FinalZone:
 		beq.s	.return
 
 .set
-		move.b	#3,object_control(a1)
+
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_animation) \
+		),object_control(a1)
 
 .return
 		rts
@@ -59,7 +63,7 @@ Obj_Spawn_FinalZone:
 		bset	#status.player.in_air,status(a1)
 		clr.b	jumping(a1)
 		move.b	#AniIDSonAni_Spring,anim(a1)
-		move.b	#1,object_control(a1)						; lock controls
+		move.b	#setBit(object_control.lock_control),object_control(a1)		; lock controls
 
 .return2
 		rts
@@ -79,13 +83,13 @@ Obj_Spawn_FinalZone:
 		lea	(Player_1).w,a2							; a2=character
 		cmpi.w	#$5C0,y_pos(a2)
 		bhs.s	.check_falling
-		clr.b	object_control(a2)
+		clr.b	object_control(a2)						; restore Sonic's movement
 
 		; check p2
 		lea	(Player_2).w,a2							; a2=character
 		tst.l	code_addr(a2)
 		beq.s	.delete
-		clr.b	object_control(a2)
+		clr.b	object_control(a2)						; restore Tails's movement
 
 .delete
 		clr.w	(Ctrl_1_locked).w						; unlock control 1 and control 2

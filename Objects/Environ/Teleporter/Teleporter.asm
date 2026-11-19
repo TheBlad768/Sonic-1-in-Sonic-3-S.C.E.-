@@ -128,7 +128,7 @@ Obj_Teleport:
 
 .notwrapping
 		clr.b	teleport_p1_attached.routine-teleport_p1_attached(a4)		; clear routine
-		clr.b	object_control(a1)
+		clr.b	object_control(a1)						; restore Player's movement
 		move.l	#words_to_long(0,$200),x_vel(a1)				; x_vel + y_vel
 
 .return
@@ -155,7 +155,13 @@ loc_271D0:
 		tst.b	object_control(a1)
 		bne.s	locret_1675C
 		addq.b	#4,teleport_p1_attached.routine-teleport_p1_attached(a4)	; next routine
-		move.b	#$81,object_control(a1)						; lock controls and disable object interaction
+
+		; lock controls and disable object interaction
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_interaction) \
+		),object_control(a1)
+
 		move.b	#PlayerID_Control,routine(a1)
 		move.b	#AniIDSonAni_Roll,anim(a1)					; use Sonic's rolling animation
 		move.w	#$800,ground_vel(a1)

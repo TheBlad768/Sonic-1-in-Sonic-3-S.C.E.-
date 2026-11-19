@@ -353,7 +353,7 @@ loc_2328E:
 		addi.w	#24,d3
 		lea	(Player_1).w,a1							; a1=character
 		tst.b	object_control(a1)
-		bmi.s	loc_232E2
+		bmi.s	loc_232E2							; branch if object collisions are disabled for Sonic
 		cmpi.b	#PlayerID_Death,routine(a1)					; has player just died?
 		bhs.s	loc_232E2							; if yes, branch
 		tst.w	(Debug_placement_mode).w					; is debug mode on?
@@ -385,7 +385,7 @@ loc_232B6:
 loc_232E2:
 		lea	(Player_2).w,a1							; a1=character
 		tst.b	object_control(a1)
-		bmi.s	locret_23324
+		bmi.s	locret_23324							; branch if object collisions are disabled for Sonic
 		cmpi.b	#PlayerID_Death,routine(a1)					; has player just died?
 		bhs.s	locret_23324							; if yes, branch
 		btst	#status.player.in_air,status(a1)				; is the player in the air?

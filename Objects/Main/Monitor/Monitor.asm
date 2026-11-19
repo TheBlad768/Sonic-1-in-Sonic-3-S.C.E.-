@@ -562,7 +562,13 @@ Monitor_Give_SuperSonic:
 		move.w	#$C0,Deceleration-Max_speed(a4)					; set deceleration
 
 .continued
-		move.b	#$81,object_control(a2)
+
+		; lock controls
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_interaction) \
+		),object_control(a2)
+
 		clr.b	invincibility_timer(a2)
 		bset	#status_secondary.invincible,status_secondary(a2)
 		sfx	sfx_SuperTransform

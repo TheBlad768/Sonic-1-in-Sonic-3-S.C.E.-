@@ -277,7 +277,7 @@ Obj_Bubbler_Bubbles:
 
 .check_range2
 		tst.b	object_control(a1)
-		bmi.s	.return
+		bmi.s	.return								; branch if object collisions are disabled for Sonic
 		btst	#status_secondary.bubble_shield,status_secondary(a1)		; does Sonic have a Bubble Shield?
 		bne.s	.return								; if yes, branch
 

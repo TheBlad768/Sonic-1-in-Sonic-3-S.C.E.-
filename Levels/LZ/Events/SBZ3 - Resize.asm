@@ -14,7 +14,7 @@ SBZ3_Resize:
 
 		; start new level
 		clr.b	(Game_mode_last).w						; clear last Game mode (unlock FZ spawn)
-		move.b	#1,(Player_1+object_control).w
+		move.b	#setBit(object_control.lock_control),(Player_1+object_control).w	; lock controls
 
 		; next zone
 		move.w	#bytes_to_word(LevelID_SBZ,ACT_3),d0

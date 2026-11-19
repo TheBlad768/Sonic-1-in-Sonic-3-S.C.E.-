@@ -23,6 +23,8 @@ Obj_BigRing:
 
 		; set cycle
 		bset	#6,state_flags(a0)						; make this a Super Emerald ring
+
+		; set up the palette script pointers
 		lea	PalSPtr_BigRing(pc),a1
 		lea	(Palette_rotation_data).w,a2
 		move.l	(a1)+,(a2)+
@@ -30,7 +32,7 @@ Obj_BigRing:
 		lea	PalSPtr_BigRing2(pc),a1
 		move.l	(a1)+,(a2)+
 		move.l	(a1)+,(a2)+
-		clr.w	(a2)								; set up the palette script pointers
+		clr.w	(a2)								; end marker
 
 .main
 		jsr	(Animate_Raw).w
@@ -77,7 +79,14 @@ Obj_BigRing:
 		st	(Player_prev_frame).w						; make the player disappear and lock input
 		clr.b	mapping_frame(a1)
 		move.b	#AniIDSonAni_Blank,anim(a1)
-		move.b	#$53,object_control(a1)
+
+		; lock both players, etc
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_animation) | \
+			setBit(object_control.bit4) | \
+			setBit(object_control.ignore_walls) \
+		),object_control(a1)
 
 		; check fly
 		tst.b	(Flying_carrying_Sonic_flag).w
@@ -88,10 +97,17 @@ Obj_BigRing:
 		lea	(Player_2).w,a1
 		tst.l	code_addr(a1)							; is the player RAM empty?
 		beq.s	.create								; if yes, branch
-		st	(Player_prev_frame_P2).w
+		st	(Player_prev_frame_P2).w					; make the player disappear and lock input
 		clr.b	mapping_frame(a1)
 		move.b	#AniIDSonAni_Blank,anim(a1)
-		move.b	#$53,object_control(a1)						; lock both players, etc
+
+		; lock both players, etc
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_animation) | \
+			setBit(object_control.bit4) | \
+			setBit(object_control.ignore_walls) \
+		),object_control(a1)
 
 .create
 

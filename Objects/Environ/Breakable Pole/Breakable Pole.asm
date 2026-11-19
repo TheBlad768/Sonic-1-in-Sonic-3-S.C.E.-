@@ -82,12 +82,18 @@ Obj_BreakablePole:
 .release
 		tst.b	breakablepole_p1_attached(a0)
 		beq.s	.notp1
-		andi.b	#$FE,(Player_1+object_control).w
+
+		andi.b	#~( \
+			setBit(object_control.lock_control) \
+		),(Player_1+object_control).w
 
 .notp1
 		tst.b	breakablepole_p2_attached(a0)
 		beq.s	.notp2
-		andi.b	#$FE,(Player_2+object_control).w
+
+		andi.b	#~( \
+			setBit(object_control.lock_control) \
+		),(Player_2+object_control).w
 
 .notp2
 		clr.b	(WindTunnel_holding_flag).w					; enable wind tunnel
@@ -131,7 +137,11 @@ Obj_BreakablePole:
 		clr.b	breakablepole_p1_attached.touch-breakablepole_p1_attached(a2)
 		move.b	#1*60,breakablepole_p1_attached.timer-breakablepole_p1_attached(a2)
 		bclr	d2,(WindTunnel_holding_flag).w					; enable wind tunnel
-		andi.b	#$FE,object_control(a1)
+
+		andi.b	#~( \
+			setBit(object_control.lock_control) \
+		),object_control(a1)
+
 		btst	#6,subtype.byte(a0)						; $40?
 		bne.s	.return
 		st	breakablepole.grabbed(a0)					; begin countdown to breakage
@@ -200,7 +210,7 @@ Obj_BreakablePole:
 		move.w	d0,x_pos(a1)
 		bclr	#status.player.x_flip,status(a1)
 		move.b	#AniIDSonAni_Hang,anim(a1)					; set player's animation to "hanging" ($11)
-		move.b	#1,object_control(a1)						; lock controls
+		move.b	#setBit(object_control.lock_control),object_control(a1)		; lock controls
 		bset	d2,(WindTunnel_holding_flag).w					; disable wind tunnel
 		st	breakablepole_p1_attached.touch-breakablepole_p1_attached(a2)	; set "grab" flag
 		sfx	sfx_Grab,1							; play grab sound

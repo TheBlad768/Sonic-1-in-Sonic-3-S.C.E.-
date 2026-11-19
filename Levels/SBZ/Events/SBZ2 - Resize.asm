@@ -120,7 +120,14 @@ SBZ2_Resize:
 		addi.w	#256,d0
 		cmp.w	(Player_2+y_pos).w,d0
 		bhs.s	.not_p2
-		move.b	#$83,(Player_2+object_control).w				; lock controls and physics
+
+		; lock controls and physics
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_animation) | \
+			setBit(object_control.no_interaction) \
+		),(Player_2+object_control).w
+
 		move.w	#$A,(Tails_CPU_routine).w					; disable CPU
 
 .not_p2
@@ -128,7 +135,13 @@ SBZ2_Resize:
 		; check player 1
 		cmp.w	(Player_1+y_pos).w,d0
 		bhs.w	.return
-		move.b	#$83,(Player_1+object_control).w				; lock controls and physics
+
+		; lock controls and physics
+		move.b	#( \
+			setBit(object_control.lock_control) | \
+			setBit(object_control.no_animation) | \
+			setBit(object_control.no_interaction) \
+		),(Player_1+object_control).w
 
 		; save player status
 		move.b	(Player_1+status).w,(SBZ2_player_roll).w
